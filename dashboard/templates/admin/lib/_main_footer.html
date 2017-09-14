@@ -1,0 +1,13 @@
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        {% block footer_right %}
+            <b></b>
+        {% endblock %}
+    </div>
+
+    {% block footer_center %}
+        {% block legal %}
+            <strong>&copy;</strong> Todos los Derechos Reservados
+        {% endblock %}
+    {% endblock %}
+</footer>

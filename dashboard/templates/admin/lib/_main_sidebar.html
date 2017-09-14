@@ -1,0 +1,71 @@
+{% load adminlte_helpers i18n %}
+<!-- Left side column. contains the sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        {% block nav_links_ul %}
+        <ul class="sidebar-menu">
+            {% block nav_links_outer %}
+            
+
+            {% with menudb="Base de Datos 2" coin="coin" %}
+            {% block nav_links %}
+                <li class="active">
+                    <a href="#">
+                        <i class="fa fa-users"></i> <span>{% trans _("Actores") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-table"></i> <span>{% trans menudb %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-money"></i> <span>{% trans coin %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-diamond"></i> <span>{% trans _("Productos") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-comments-o"></i> <span>{% trans _("Alertas") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-cog"></i> <span>{% trans _("General") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>{% trans _("Inventarios") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-key"></i> <span>{% trans _("Autorizaciones") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calculator"></i> <span>{% trans _("Estados de Cuenta") %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-list-ol"></i> <span>{% trans _("Reportes") %}</span>
+                    </a>
+                </li>
+            {% endblock nav_links %}
+            {% endwith %}
+            {% endblock nav_links_outer %}
+        </ul>
+        {% endblock nav_links_ul %}
+    </section>
+    <!-- /.sidebar -->
+</aside>

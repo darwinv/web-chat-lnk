@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    {% block title_outer %}
+        <title>{% block title %}{{ site.name }}{% endblock %}</title>
+    {% endblock %}
+
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% endblock %}
+
+    {% block stylesheets %}
+        {% include 'admin/lib/_styles.html' %}
+    {% endblock %}
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+{% block body %}
+  <div class="wrapper">
+
+    {% block nav_header %}
+        {% include 'admin/lib/_main_header.html' %}
+    {% endblock %}
+
+    {% block nav_sidebar %}
+        {% include 'admin/lib/_main_sidebar.html' %}
+    {% endblock %}
+
+
+
+    {% block content_wrapper %}
+    <div class="content-wrapper">
+      
+        {% block content_header %}
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+            <h1>
+              {% block logo_content_header %}
+                <i class="fa fa-users"></i>
+              {% endblock logo_content_header %}
+              <span>{% block tittle_content_header %}
+                 Actores - Clientes
+              {% endblock tittle_content_header %}</span>
+            </h1>        
+            </section>
+        {% endblock content_header %}
+
+
+
+      {% block main_content %}
+      <!-- Main content -->
+      <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+
+
+
+
+
+        {% block main_content_row %}
+
+            <div class="col-xs-12 marB25 cont-search-client" >          
+              <button type="button" class="btn btn-flat btn-black pull-right">Busca</button>
+              <input type="text" name="" placeholder="Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)" class="search col-xs-8 col-lg-4 pull-right flat marR15">
+            </div>
+
+            <div class="col-xs-12 marB25 general-info-client">
+
+              
+                <div class="cont-info-user text-center padL40 padR40" >
+                  <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
+                  <p>
+                    <span>Mariapia</span>
+                    <span>Gonzalez Moral</span>
+                    <span>MapiGonzalez@gmail.com</span>
+                    <span>947177289</span>
+                    <span>3526687</span>
+                  </p>
+                </div>
+
+
+
+                <div class="cont-info-user text-left padL20 padR20" >
+                  <div class="cont-user-title">              
+                    <span class="">Datos</span>
+                    <button type="button" class="btn btn-flat btn-black pull-right">Edita</button>
+                  </div>
+                  <p>
+                    <span>Nick: TuGatita333</span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i> Persona Natural</span>
+                    <span><i class="fa fa-star" aria-hidden="true"></i> Usuario Transferido</span>
+                    <span><i class="fa fa-circle-o-notch" aria-hidden="true"></i> CIIU: 6910 - Actividades Jurídicas</span>
+                    <span><i class="fa fa-globe" aria-hidden="true"></i> Peruana</span>
+                    <span><i class="fa fa-home" aria-hidden="true"></i> Peru</span>
+                    <span><i class="fa fa-briefcase" aria-hidden="true"></i> ingeniero Industrial</span>
+                    <span><i class="fa fa-building" aria-hidden="true"></i> Nestlé S.A.C</span>
+                  </p>
+                </div>
+
+
+                <div class="send-mail-backend">
+                  <div>
+                    <span><i class="fa fa-envelope-o"></i> Enviar Mensaje</span>              
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-flat btn-black">Agregar</button>              
+                  </div>
+                </div>
+              
+            </div>
+
+
+            <div class="col-xs-12 total-general-detail marB25">
+              <div class="tg-head">
+                <div class="tg-title pull-left">Total General</div>
+                <div class="pull-right">Ve Productos Vigentes</div>
+              </div>
+
+              <div class="tg-history">
+                <div class="block-center-flat acquired">
+                  <div class="bcf-body">
+                    <span class="bcf-title">9</span>
+                    <span class="bcf-desc">Consultas adquiridas</span>
+                  </div>
+                </div>
+                <div class="block-center-flat acquitted">
+                  <div class="bcf-body">
+                    <span class="bcf-title">56</span>
+                    <span class="bcf-desc">Consultas absueltas</span>
+                  </div>
+                </div>
+                <div class="block-center-flat toAcquit">
+                  <div class="bcf-body">
+                    <span class="bcf-title">2</span>
+                    <span class="bcf-desc">Consultas por Absolver</span>
+                  </div>
+                </div>
+                <div class="block-center-flat available">
+                  <div class="bcf-body">
+                    <span class="bcf-title">32</span>
+                    <span class="bcf-desc">Consultas disponibles</span>
+                  </div>
+                </div>
+                <div class="block-center-flat match">
+                  <div class="bcf-body">
+                    <span class="bcf-title">10</span>
+                    <span class="bcf-desc">Match</span>
+                  </div>
+                </div>            
+              </div>
+            </div>
+
+
+            <div class="block-alert-user col-xs-12 marB25">
+              <span class="alert-action-warning">Mariapia tiene 1 consulta pendiente de respuesta de Derecho Penal 2/05/16</span>
+              <span class="alert-action-warning">Mariapia le asigno baja calificación a respuesta recibida de Publicidad y Marketing</span>
+              <span class="alert-action-success">Mariapia transfirió 1 Plan Express Duo a Jorge Luis Pérez con DNI 40793456</span>
+              <span class="alert-action-info">Mariapia ha compartido 2 consultas de su Minipack con Stefano Salas con DNI 20506723</span>
+            </div>
+
+
+            <div class="col-xs-12 produc-client-detail marB25">
+              <div class="tg-head">
+                <div class="tg-title pull-left">Minipack 02/05/16</div>
+              </div>
+
+              <div class="tg-history">
+                <div class="block-center-flat acquired">
+                  <div class="bcf-body">
+                    <span class="bcf-title">6</span>
+                    <span class="bcf-desc">Consultas adquiridas</span>
+                  </div>
+                </div>
+                <div class="block-center-flat acquitted">
+                  <div class="bcf-body">
+                    <span class="bcf-title">4</span>
+                    <span class="bcf-desc">Consultas absueltas</span>
+                  </div>
+                </div>
+                <div class="block-center-flat toAcquit">
+                  <div class="bcf-body">
+                    <span class="bcf-title">2</span>
+                    <span class="bcf-desc">Consultas por Absolver</span>
+                  </div>
+                </div>
+                <div class="block-center-flat available">
+                  <div class="bcf-body">
+                    <span class="bcf-title">0</span>
+                    <span class="bcf-desc">Consultas disponibles</span>
+                  </div>
+                </div>
+                <div class="block-center-flat match">
+                  <div class="bcf-body">
+                    <span class="bcf-title">0</span>
+                    <span class="bcf-desc">Match</span>
+                  </div>
+                </div>            
+              </div>
+            </div>
+
+
+            <div class="col-xs-12 text-center">
+                <button type="button" class="btn btn-flat btn-black">Bloquea</button>
+            </div>
+
+            {% endblock main_content_row %}
+
+
+
+
+
+        </div>
+        
+
+      </section>
+      <!-- /.content -->
+      {% endblock main_content %}
+
+
+
+    </div>
+    {% endblock content_wrapper %}
+
+
+
+
+    
+    {% block nav_footer %}
+        {% include 'admin/lib/_main_footer.html' %}
+    {% endblock %}
+    
+  </div>
+  <!-- ./wrapper -->
+{% endblock body %}
+
+{% block javascript %}
+  {% include 'admin/lib/_scripts.html' %}
+{% endblock %}
+
+{% block extra_foot %}{% endblock %}
+</body>
+</html>
