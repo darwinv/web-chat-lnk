@@ -315,7 +315,7 @@ a:focus {
   float: left;
   /*height: 50px;*/
   font-size: 20px;
-  line-height: 50px;
+  line-height: 90px;
   text-align: center;
   width: 230px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -690,6 +690,10 @@ a:focus {
     margin-left: -15px;
     margin-right: -15px;
     font-size: 18px;
+    color: #40b6d2;
+  }
+  .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini b {
+    color: white;
   }
   .sidebar-mini.sidebar-collapse .main-header .logo > .logo-lg {
     display: none;

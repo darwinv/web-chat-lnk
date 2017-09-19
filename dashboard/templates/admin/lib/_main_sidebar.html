@@ -8,61 +8,59 @@
         <ul class="sidebar-menu">
             {% block nav_links_outer %}
             
-
-            {% with menudb="Base de Datos 2" coin="coin" %}
             {% block nav_links %}
                 <li class="active">
                     <a href="#">
-                        <i class="fa fa-users"></i> <span>{% trans _("Actores") %}</span>
+                        <i class="fa fa-users"></i> <span>{% trans "Actores" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-table"></i> <span>{% trans menudb %}</span>
+                        <i class="fa fa-table"></i> <span>{% trans "Base de Datos" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-money"></i> <span>{% trans coin %}</span>
+                        <i class="fa fa-money"></i> <span>{% trans "Moneda" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-diamond"></i> <span>{% trans _("Productos") %}</span>
+                        <i class="fa fa-diamond"></i> <span>{% trans "Productos" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-comments-o"></i> <span>{% trans _("Alertas") %}</span>
+                        <i class="fa fa-comments-o"></i> <span>{% trans "Alertas" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-cog"></i> <span>{% trans _("General") %}</span>
+                        <i class="fa fa-cog"></i> <span>{% trans "General" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-list"></i> <span>{% trans _("Inventarios") %}</span>
+                        <i class="fa fa-list"></i> <span>{% trans "Inventarios" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-key"></i> <span>{% trans _("Autorizaciones") %}</span>
+                        <i class="fa fa-key"></i> <span>{% trans "Autorizaciones" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-calculator"></i> <span>{% trans _("Estados de Cuenta") %}</span>
+                        <i class="fa fa-calculator"></i> <span>{% trans "Estados de Cuenta" %}</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-list-ol"></i> <span>{% trans _("Reportes") %}</span>
+                        <i class="fa fa-list-ol"></i> <span>{% trans "Reportes" %}</span>
                     </a>
                 </li>
             {% endblock nav_links %}
-            {% endwith %}
+            
             {% endblock nav_links_outer %}
         </ul>
         {% endblock nav_links_ul %}

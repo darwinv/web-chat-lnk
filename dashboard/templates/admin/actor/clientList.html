@@ -1,0 +1,149 @@
+{% extends 'admin/base.html' %}
+{% load static i18n %}
+
+
+{% block main_content_row %}
+
+    <div class="col-xs-12 marB25 cont-search-client" >          
+      <button type="button" class="btn btn-flat btn-black pull-right">{% trans "Search" %}</button>
+      <input type="text" name="" placeholder="Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)" class="search col-xs-8 col-lg-4 pull-right flat marR15">
+    </div>
+
+    <div class="col-xs-12 marB25 general-info-client">
+
+      
+        <div class="cont-info-user text-center padL40 padR40" >
+          <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
+          <p>
+            <span>Mariapia</span>
+            <span>Gonzalez Moral</span>
+            <span>MapiGonzalez@gmail.com</span>
+            <span>947177289</span>
+            <span>3526687</span>
+          </p>
+        </div>
+
+        <div class="cont-info-user text-left padL20 padR20" >
+          <div class="cont-user-title">              
+            <span class="">Datos</span>
+            <button type="button" class="btn btn-flat btn-black pull-right">Edita</button>
+          </div>
+          <p>
+            <span>Nick: TuGatita333</span>
+            <span><i class="fa fa-star" aria-hidden="true"></i> Persona Natural</span>
+            <span><i class="fa fa-star" aria-hidden="true"></i> Usuario Transferido</span>
+            <span><i class="fa fa-circle-o-notch" aria-hidden="true"></i> CIIU: 6910 - Actividades Jurídicas</span>
+            <span><i class="fa fa-globe" aria-hidden="true"></i> Peruana</span>
+            <span><i class="fa fa-home" aria-hidden="true"></i> Peru</span>
+            <span><i class="fa fa-briefcase" aria-hidden="true"></i> ingeniero Industrial</span>
+            <span><i class="fa fa-building" aria-hidden="true"></i> Nestlé S.A.C</span>
+          </p>
+        </div>
+
+
+        <div class="send-mail-backend">
+          <div>
+            <span><i class="fa fa-envelope-o"></i> Enviar Mensaje</span>              
+          </div>
+          <div>
+            <button type="button" class="btn btn-flat btn-black">Agregar</button>              
+          </div>
+        </div>
+      
+    </div>
+
+
+    <div class="col-xs-12 total-general-detail marB25">
+      <div class="tg-head">
+        <div class="tg-title pull-left">Total General</div>
+        <div class="pull-right"> <input type="checkbox" name="activeProducts" checked > Ve Productos Vigentes</div>
+      </div>
+
+      <div class="tg-history">
+        <div class="block-center-flat acquired">
+          <div class="bcf-body">
+            <span class="bcf-title">9</span>
+            <span class="bcf-desc">Consultas adquiridas</span>
+          </div>
+        </div>
+        <div class="block-center-flat acquitted">
+          <div class="bcf-body">
+            <span class="bcf-title">56</span>
+            <span class="bcf-desc">Consultas absueltas</span>
+          </div>
+        </div>
+        <div class="block-center-flat toAcquit">
+          <div class="bcf-body">
+            <span class="bcf-title">2</span>
+            <span class="bcf-desc">Consultas por Absolver</span>
+          </div>
+        </div>
+        <div class="block-center-flat available">
+          <div class="bcf-body">
+            <span class="bcf-title">32</span>
+            <span class="bcf-desc">Consultas disponibles</span>
+          </div>
+        </div>
+        <div class="block-center-flat match">
+          <div class="bcf-body">
+            <span class="bcf-title">10</span>
+            <span class="bcf-desc">Match</span>
+          </div>
+        </div>            
+      </div>
+    </div>
+
+
+    <div class="block-alert-user col-xs-12 marB25">
+      <span class="alert-action-warning">Mariapia tiene 1 consulta pendiente de respuesta de Derecho Penal 2/05/16</span>
+      <span class="alert-action-warning">Mariapia le asigno baja calificación a respuesta recibida de Publicidad y Marketing</span>
+      <span class="alert-action-success">Mariapia transfirió 1 Plan Express Duo a Jorge Luis Pérez con DNI 40793456</span>
+      <span class="alert-action-info">Mariapia ha compartido 2 consultas de su Minipack con Stefano Salas con DNI 20506723</span>
+    </div>
+
+
+    <div class="col-xs-12 produc-client-detail marB25">
+      <div class="tg-head">
+        <div class="tg-title pull-left">Minipack 02/05/16</div>
+      </div>
+
+      <div class="tg-history">
+        <div class="block-center-flat acquired">
+          <div class="bcf-body">
+            <span class="bcf-title">6</span>
+            <span class="bcf-desc">Consultas adquiridas</span>
+          </div>
+        </div>
+        <div class="block-center-flat acquitted">
+          <div class="bcf-body">
+            <span class="bcf-title">4</span>
+            <span class="bcf-desc">Consultas absueltas</span>
+          </div>
+        </div>
+        <div class="block-center-flat toAcquit">
+          <div class="bcf-body">
+            <span class="bcf-title">2</span>
+            <span class="bcf-desc">Consultas por Absolver</span>
+          </div>
+        </div>
+        <div class="block-center-flat available">
+          <div class="bcf-body">
+            <span class="bcf-title">0</span>
+            <span class="bcf-desc">Consultas disponibles</span>
+          </div>
+        </div>
+        <div class="block-center-flat match">
+          <div class="bcf-body">
+            <span class="bcf-title">0</span>
+            <span class="bcf-desc">Match</span>
+          </div>
+        </div>            
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 text-center">
+        <button type="button" class="btn btn-flat btn-black">{% trans "Block" %}</button>
+    </div>
+
+{% endblock main_content_row %}

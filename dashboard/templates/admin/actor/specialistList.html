@@ -1,0 +1,31 @@
+{% extends 'admin/base.html' %}
+{% load i18n %}
+
+
+{% block logo_content_header %}
+	<i class="fa fa-users"></i>
+{% endblock logo_content_header %}
+
+{% block tittle_content_header %}
+ 	{% trans "Actors" %} - {% trans "Specialists" %}
+{% endblock tittle_content_header %}
+
+
+
+{% block main_content_row %}
+	<div class="col-xs-12 marB25 cont-search-client" >          
+      <button type="button" class="btn btn-flat btn-black pull-right">{% trans "Seach" %}</button>
+      <input type="text" name="" class="search col-xs-8 col-lg-4 pull-right flat marR15">
+    </div>
+
+    <div>
+    	<div class="left-btn">
+    		<a href="" class="">{% trans "Specialists" %}</a>
+    	</div>
+
+    	<div class="right-btn">
+    		
+    	</div>
+    </div>
+
+{% endblock main_content_row %}

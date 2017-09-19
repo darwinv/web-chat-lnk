@@ -4,8 +4,15 @@ from . import views
 
 app_name = 'admin'
 urlpatterns = [
-	url(r'^$', views.Client.showList, name='index'),
-    url(r'^admin/client/$', views.Client.showList, name='client-list'),
-    url(r'^admin/client/(?P<client_id>[0-9]+)$', views.Client.showClientProfile, name='client-detail'),
+
+    url(r'^$', views.Specialist.showList, name='index'),
+    url(r'^actor/$', views.Specialist.showList, name='actor'),
+    url(r'^actor/specialist/$', views.Specialist.showList, name='actor-specialist'),
+
+    url(r'^actor/specialist/(?P<specialist_id>[0-9]+)$', views.Specialist.showSpecialistProfile, name='actor-specialist-detail'),
+
+
+    url(r'^actor/client/(?P<client_id>[0-9]+)$', views.Client.showClientProfile, name='actor-client-detail'),
+
 
 ]

@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block scripts %}
+<script src="{% static "js/jquery.min.js" %}"></script>
+<!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    // $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="{% static "bootstrap/js/bootstrap.min.js" %} "></script>
+<script src="{% static "js/app.js" %}"></script>
+
+<script>
+  // $(function () {
+  //   $('input').iCheck({
+  //     checkboxClass: 'icheckbox_square-blue',
+  //     radioClass: 'iradio_square-blue',
+  //     increaseArea: '20%' // optional
+  //   });
+  // });
+</script>
+{% endblock %}

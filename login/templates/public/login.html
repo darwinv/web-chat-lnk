@@ -1,0 +1,42 @@
+{% extends 'public/base.html' %}
+{% load i18n %}
+{% block login %}
+<div class="vertical-aling" >
+  <div class="login-box">
+
+    <div class="login-logo">
+      <a href=""><b style="color:white;">Link</b><b style="color:#00ACC5">Up</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-form">
+      <form action="" class="log-user" method="post">{% csrf_token %}
+        {% if error_message %}
+          <p class="login-box-msg" style="color: red;">{{ error_message }}</p>
+        {% endif %}
+        <div class="form-group has-feedback">
+          {{ form.user }}
+        </div>
+        <div class="form-group has-feedback">
+          {{ form.password }}
+        </div>
+        <div class="checkbox icheck">
+          <label>
+            <input type="checkbox" class="checkbox"> {% trans "Remember me" %}
+          </label>
+        </div>
+        <div class="foo-links">
+          <a href="#">{% trans "Recover your password" %}</a><br>
+          <a href="#" class="text-center">{% trans "New register" %}</a>
+        </div>
+        <div class="marT20">
+          <button type="submit" class="btn btn-lightBlue">{% trans "Sign in" %}</button>
+        </div>
+        
+      </form>
+
+    </div>
+
+  <!-- /.login-box-body -->
+  </div>
+</div>
+{% endblock %}
