@@ -15,15 +15,20 @@ from .forms import Login
 
 
 def weblogin(request):
+    """
+    Vista para mostrar el formulario de login y autenticar al usuario
+
+    :param request:
+    :return: formulario de login o listado de especialistas
+    """
+
     user = ''
     if request.method == 'POST':
 
         form = Login(request.POST)
         if form.is_valid():
 
-            print "form is_valid()"
-
-            print request.POST['user']
+            # Autenticamos datos de usuario del backend
             user = authenticate(request, username=request.POST['user'], password=request.POST['password'])
 
             if user is not None:
