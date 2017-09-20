@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'login'
 urlpatterns = [
-    url(r'^$', views.login, name='indexlogin'),
+    url(r'^$', views.weblogin, name='indexlogin'),
 
-    url(r'^login/$', views.login, name='login'),
+    url(r'^accounts/login/$', views.weblogin, name='login'),
 ]
