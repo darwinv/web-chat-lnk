@@ -1,12 +1,17 @@
+#django
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from api.connection import api
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import login
 
-from .forms import Login
-
+#seguridad
 from django.contrib.auth import authenticate, login
+
+#api
+from api.connection import api
+
+#forms
+from .forms import Login
 
 
 def weblogin(request):
