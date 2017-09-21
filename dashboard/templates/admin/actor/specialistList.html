@@ -4,29 +4,76 @@
 
 {% block logo_content_header %}
 	<i class="fa fa-users"></i>
-{% endblock %}
+{% endblock logo_content_header %}
 
 {% block tittle_content_header %}
- 	{% trans "Actors" %} - {% trans "Specialists" %}
-{% endblock  %}
+ 	{% trans "actors"|title %} - {% trans "specialists"|title %}
+{% endblock tittle_content_header %}
 
 
 
 {% block main_content_row %}
-	<div class="col-xs-12 marB25 cont-search-client" >          
-      <button type="button" class="btn btn-flat btn-black pull-right">{% trans "Seach" %}</button>
+	<div class="col-xs-12 marB25 cont-search-actor" >
+      <button type="button" class="btn btn-flat btn-black pull-right">{% trans "seach"|title %}</button>
       <input type="text" name="" class="search col-xs-8 col-lg-4 pull-right flat marR15">
     </div>
 
-    <div>
-    	<div class="left-btn">
-    		<a href="" class="">{% trans "Specialists" %}</a>
+    <div class="col-xs-12 marB10 cont-head-actor">
+    	<div class="pull-left actors-cont-btn">
+    		<a href="" class="btn btn-flat btn-gray">{% trans "specialists"|title %}</a>
+
+    		<a href="" class="btn btn-flat btn-gray">{% trans "clients"|title %}</a>
+
+    		<a href="" class="btn btn-flat btn-gray">{% trans "sellers"|title %}</a>
+
+    		<a href="" class="btn btn-flat btn-gray">{% trans "administrators"|title %}</a>
     	</div>
 
-    	<div class="right-btn">
-    		
+    	<div class="pull-right">
+    		<button type="button" class="btn btn-flat btn-black">{% trans "filter"|title %}</button>
+    		<button type="button" class="btn btn-flat btn-black">{% trans "add"|title %}</button>
     	</div>
     </div>
 
-{% endblock %}
+    <div class="col-xs-12 marB10">
 
+    	{{data|safe}}
+
+    	{{dataList|safe}}
+    	<table class="table table-striped table-bordered table-hover">
+		  <tr>
+		  	<th>{% trans "lastname and name"|title %}</th>
+			<th>{% trans "code"|title %}</th>
+			<th>{% trans "email"|title %}</th>
+			<th>{% trans "RUC" %}</th>
+			<th>{% trans "category"|title %}</th>
+			<th>{% trans "specialty"|title %}</th>
+		  </tr>
+		  <tr>
+		    <td>Bill Gates</td>
+		    <td>55577854</td>
+		    <td>55577855</td>
+		    <td>55577855</td>
+		    <td>Bill Gates</td>
+		    <td>Bill Gates</td>
+		  </tr>
+		  <tr>
+		    <td>Bill Gates</td>
+		    <td>55577854</td>
+		    <td>55577855</td>
+		    <td>55577855</td>
+			<td>55577854</td>
+			<td>55577854</td>
+		  </tr>
+		  <tr>
+		    <td>Bill Gates</td>
+		    <td>55577854</td>
+		    <td>55577855</td>
+			<td>55577855</td>
+			<td>55577855</td>
+			<td>55577855</td>
+		  </tr>
+		</table>
+    </div>
+
+{% endblock main_content_row %}

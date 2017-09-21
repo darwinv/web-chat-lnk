@@ -278,3 +278,24 @@ input,button,select{
     width: -moz-fit-content;
     margin-bottom: 1px;
 }
+
+
+
+/***GRAY BTN ***/
+.btn.btn-gray {
+    background-color: #827f7f;
+    color: white;
+}
+.btn.btn-gray:active,.btn.btn-gray:focus,.btn.btn-gray:hover,.btn.btn-gray.active {
+    background-color: #00adc6;
+}
+/*** ***/
+.actors-cont-btn .btn {
+ width: 180px;
+}
+
+
+th {
+    background-color: black;
+    color: white;
+}
