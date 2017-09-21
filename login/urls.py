@@ -4,7 +4,13 @@ from . import views
 
 app_name = 'login'
 urlpatterns = [
-    url(r'^$', views.login, name='indexlogin'),
 
-    url(r'^login/$', views.login, name='login'),
+    #login
+    #ingreso por defecto
+    url(r'^$', views.weblogin, name='indexlogin'),
+
+    #requerido por Django para cuando rechazar un request de un
+    #usuario que no esta autorizado
+    url(r'^accounts/login/$', views.weblogin, name='login'),
+
 ]
