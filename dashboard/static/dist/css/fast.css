@@ -21,7 +21,9 @@
     border-radius: 0px;
     border-width: 1px;
 }
-
+.aling-right{
+	text-align: right;
+}
 .mar10{
 	margin: 10px;
 }
