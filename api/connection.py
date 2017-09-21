@@ -1,12 +1,13 @@
 #from django.contrib.sessions.backends.db import SessionStore
+from config import *
 import requests
 import logging
 import pdb #testing
 
 class api:
-    _url = 'http://localhost:3000/'
-    _client_id = 'FUN5EkBDdiQo8SixJYslF41ZkrjAhQtWKkV7BEE2'
-    _client_secret = 'P7pj3QcE6GyhlS0QUzJOJ8SRLlTGHYSMESGr7QzlyKnuMsc4osaaStB6wSiGGxAelKjXv6xJ7p9Go8R5el2KaVlcM4P50IeplkY2CWHxaOc9NI1fLKS9DoWxD9UbG4TN'
+    _url = CONF_url
+    _client_id = CONF_client_id
+    _client_secret = CONF_client_secret
     _grant_type = 'password'
 
     def __init__(self):
