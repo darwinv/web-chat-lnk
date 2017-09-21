@@ -22,9 +22,9 @@ class Specialist:
         header = {"Lastname":"last_name","Code":"code","Email":"email_exact","RUC":"ruc","Category":"institute","Specialty":"nationality"}
         table_attributes = {"class" : "table table-striped table-bordered table-hover"}
 
-        data = convert(json_object, table_attributes=table_attributes,header=header, customColumn=customColumn)
+        tabla = convert(json_object, table_attributes=table_attributes,header=header, customColumn=customColumn)
 
-        return render(request, 'admin/actor/specialistList.html',{'data': data})
+        return render(request, 'admin/actor/specialistList.html',{'tabla': tabla})
 
     def showSpecialistProfile(request,client_id):        
         ObjApi = api()
