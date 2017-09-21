@@ -3,6 +3,11 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from api.connection import api
 
+#project
+from mysite.settings import API_CLIENT_ID
+from mysite.settings import API_CLIENT_SECRET
+from mysite.settings import API_URL
+
 class APIBackend(object):
     """
     """
@@ -22,7 +27,7 @@ class APIBackend(object):
         #print request.POST
 
         #crear objeto api
-        apiObj = api()
+        apiObj = api(API_CLIENT_ID, API_CLIENT_SECRET, API_URL)
 
         #validar datos por medio de una consulta del token del usuario
         token = apiObj.token(request.POST['user'], request.POST['password'])
@@ -61,7 +66,7 @@ class APIBackend(object):
         #print user_id
 
         try:
-            apiObj = api()
+            apiObj = api(API_CLIENT_ID, API_CLIENT_SECRET, API_URL)
             #consultar un usuario por el identificador unico
             return apiObj.getuserById(user_id)
 

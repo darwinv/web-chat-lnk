@@ -137,3 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Connection credentials
+API_CLIENT_ID = 'NpQiYAbuqisnd2PI65mOVX1eV7kF9WxwowOfOEyv'
+API_CLIENT_SECRET = 'hIfdJUTjiT8FXyxQlp3fmhmkxqIMLiIJ2DsRzgJAGgRUxRgKMkDhZBv2b7Ij5BCFzKeGTNkRg7VloF5bZ87y2Z9D49eN2omXymd0CJCqXOy6UZfhkv2eE0n7TxEMBlHF'
+API_URL = 'http://localhost:7000/'

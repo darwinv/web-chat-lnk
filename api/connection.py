@@ -5,15 +5,16 @@ import pdb
 #Django
 from django.contrib.auth.models import User
 
-
 class api:
     _url = 'http://localhost:7000/'
     _client_id = 'NpQiYAbuqisnd2PI65mOVX1eV7kF9WxwowOfOEyv'
     _client_secret = 'hIfdJUTjiT8FXyxQlp3fmhmkxqIMLiIJ2DsRzgJAGgRUxRgKMkDhZBv2b7Ij5BCFzKeGTNkRg7VloF5bZ87y2Z9D49eN2omXymd0CJCqXOy6UZfhkv2eE0n7TxEMBlHF'
     _grant_type = 'password'
 
-    def __init__(self):
-        pass
+    def __init__(self, cliente_id, client_secret, url):
+        self._url = url
+        self._client_id = cliente_id
+        self._client_secret = client_secret
 
     def token(self,username,password):
         """
