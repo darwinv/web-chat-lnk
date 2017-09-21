@@ -43,6 +43,7 @@ def convert(json_input, table_attributes=None,header=None,customColumn=None):
     "<table border="1"><tr><th>key</th><td>value</td></tr></table>"
 
     """
+    table_attributes = {"class" : "table table-striped table-bordered table-hover"}
     json_converter = JsonConverter(table_attributes=table_attributes)
     return json_converter.convert(json_input,header=header,customColumn=customColumn)
 
