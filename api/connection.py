@@ -1,5 +1,10 @@
 #from django.contrib.sessions.backends.db import SessionStore
-from config import *
+
+#project
+from api.config import API_URL
+from api.config import API_CLIENT_ID
+from api.config import API_CLIENT_SECRET
+from api.config import API_HEADERS
 import requests
 import logging
 import pdb
@@ -8,15 +13,18 @@ import pdb
 from django.contrib.auth.models import User
 
 class api:
-    _url = 'http://localhost:7000/'
-    _client_id = 'NpQiYAbuqisnd2PI65mOVX1eV7kF9WxwowOfOEyv'
-    _client_secret = 'hIfdJUTjiT8FXyxQlp3fmhmkxqIMLiIJ2DsRzgJAGgRUxRgKMkDhZBv2b7Ij5BCFzKeGTNkRg7VloF5bZ87y2Z9D49eN2omXymd0CJCqXOy6UZfhkv2eE0n7TxEMBlHF'
-    _grant_type = 'password'
-
-    def __init__(self, cliente_id, client_secret, url):
-        self._url = url
-        self._client_id = cliente_id
-        self._client_secret = client_secret
+    _url            = API_URL
+    _client_id      = API_CLIENT_ID
+    _client_secret  = API_CLIENT_SECRET
+    _grant_type     = 'password'
+    _headers        = API_HEADERS
+    def __init__(self, cliente_id=None, client_secret=None, url=None):
+        if url:
+            self._url = url
+        if cliente_id:
+            self._client_id = url
+        if client_secret:
+            self._client_secret = url
 
     def token(self,username,password):
         """
@@ -35,11 +43,11 @@ class api:
                    'client_secret': self._client_secret,\
                    'grant_type':    self._grant_type,\
                    'username':      username,\
-                   'password':      password}
+                   'password':      password,}
 
             #obtener el token
-            r = requests.post(self._url+'o/token/', params=arg)
-
+            r = requests.post(self._url+'o/token/', params=arg, headers=self._headers)
+            
             #evaluar respuesta
             if r.status_code == 200:
                 #respuesta correcta
@@ -53,9 +61,7 @@ class api:
             return None
 
         except Exception as e:
-            #registrar error
-            logging.basicConfig(filename='logging.log',level=logging.DEBUG)
-            logging.error(e)
+            pass
 
     def getuserById(self, user_id):
         """
@@ -73,7 +79,10 @@ class api:
             #Django requiere que la clase de autenticacion siempre le devuelva
             #cualquier usuario por id
             headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
-            r = requests.get(self._url+'users/' + str(user_id) + '/', headers=headers)
+            
+            #self._headers.extend(headers)
+            self._headers = {'Authorization': 'Bearer ' + token,'x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
+            r = requests.get(self._url+'users/' + str(user_id) + '/', headers=self._headers)
 
             data = r.json()
 
@@ -84,9 +93,7 @@ class api:
             return user
 
         except Exception as e:
-            print e
-            logging.basicConfig(filename='logging.log',level=logging.DEBUG)
-            logging.error(e)
+            pass
 
 
     def getUsuario(self, token, username):
@@ -102,33 +109,47 @@ class api:
 
         try:
             headers = {'Authorization': 'Bearer ' + token}
-            r = requests.get(self._url+'users?username=' + username, headers=headers)
+
+            # print(type(self._headers))
+            # print(type(headers))
+            # print("------se---------")
+            self._headers = {'Authorization': 'Bearer ' + token,'x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
+
+            r = requests.get(self._url+'users?username=' + username, headers=self._headers)
 
             data = r.json()
 
             user = User()
 
+
             try:
                 user.id = int(data[0]['id'])
                 user.username = str(data[0]['username'])
-
             except Exception as e:
-                print e
+                pass
 
             return user
 
         except Exception as e:
-            logging.basicConfig(filename='logging.log',level=logging.DEBUG)
-            logging.error(e)
+            pass
+
+
+
 
     def get(self,arg):
+
         try:
-            r = requests.get(self._url+arg)
+            self._headers = {'Authorization': 'Bearer YSlqvt8zdSTYaW0sKa2kUJIRN6jTva','x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
+
+            r = requests.get(self._url+arg, headers=self._headers)
+
+
+            # print(r)
+            # print("-------------------------------------------------se----")
             #r = requests.get(self._url, params=arg)
             return r.json()
         except Exception as e:
-            logging.basicConfig(filename='logging.log',level=logging.DEBUG)
-            logging.error(e)
+            pass
 
     def post(self,arg):
         try:
@@ -136,5 +157,4 @@ class api:
             r = requests.get(self._url, params=arg)
             return r.json()
         except Exception as e:
-            logging.basicConfig(filename='logging.log',level=logging.DEBUG)
-            logging.error(e)
+            pass

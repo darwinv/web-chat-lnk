@@ -7,5 +7,5 @@ urlpatterns = i18n_patterns(
     url(r'^', include('login.urls')),
 
     #admin linkup
-    url(r'admin/', include('dashboard.urls')),
+    url(r'^admin/', include('dashboard.urls')),
 )

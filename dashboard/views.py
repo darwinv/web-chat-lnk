@@ -10,36 +10,31 @@ from django.utils.translation import ugettext_lazy as _
 from api.json2table import convert
 
 
-#project
-from mysite.settings import API_CLIENT_ID
-from mysite.settings import API_CLIENT_SECRET
-from mysite.settings import API_URL
 
 class Specialist:
 
     def showSpecialistProfile(request,client_id):
-        ObjApi = api(API_CLIENT_ID, API_CLIENT_SECRET, API_URL)
+        ObjApi = api()
         data = ObjApi.get('clients/'+client_id)
         return render(request, 'admin/detailClient.html',{'data': data})
 
-@login_required()
+#@login_required()
 def showList(request):
-    ObjApi = api(API_CLIENT_ID, API_CLIENT_SECRET, API_URL)
-    json_object = ObjApi.get('clients/')
+    # print(request.user.is_authenticated())
+    # print("--------------------------------")
+    ObjApi = api()
+    json_object = ObjApi.get('specialist/')
 
-    # json_object = {"key" : "value","key2" : "value2","key3" : "value3","key4" : "value4"}
 
     customColumn = {"last_name": {'username', 'last_name'}}
 
     header = {"Lastname": "last_name", "Code": "code", "Email": "email_exact", "RUC": "ruc", "Category": "institute",
               "Specialty": "nationality"}
-    table_attributes = {"class": "table table-striped table-bordered table-hover"}
+    
+    tablaSpecialist = convert(json_object, header=header, customColumn=customColumn)
 
-    #data = convert(json_object, table_attributes=table_attributes, header=header, customColumn=customColumn)
-
-    #return render(request, 'admin/actor/specialistList.html', {'data': data})
-    return render(request, 'admin/actor/specialistList.html')
-
+    return render(request, 'admin/actor/specialistList.html', {'tablaSpecialist': tablaSpecialist})
+    
 class Client:
 
     def showList(request):

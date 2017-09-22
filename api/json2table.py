@@ -49,6 +49,7 @@ def convert(json_input, table_attributes=None,header=None,customColumn=None):
 
 
 class JsonConverter(object):
+
     """
     Class that manages the conversion of a JSON object to a string of HTML.
 
@@ -59,8 +60,11 @@ class JsonConverter(object):
     """
 
     def __init__(self, table_attributes=None):
+
+        table_attributes_defaul = {"class": "table table-striped table-bordered table-hover"}
         if table_attributes is not None and not isinstance(table_attributes, dict):
             raise TypeError("Table attributes must be either a `dict` or `None`.")
+        table_attributes.update(table_attributes_defaul)
         self._table_opening_tag = "<table{:s}>".format(JsonConverter._dict_to_html_attributes(table_attributes))
 
     def convert(self, json_input,header,customColumn=None):
@@ -80,20 +84,21 @@ class JsonConverter(object):
         html_output = self._table_opening_tag
         html_output += self._markup_header_row(header.keys())
         html_output += "<tr>"
-        for listData in json_input:
-            for key in header.values():
+        if json_input:
+            for listData in json_input:
+                for key in header.values():
 
-                if key in customColumn:                    
-                    customValue = self.create_custom_column(listData,key,customColumn[key])
-                    html_output += "<td>{}</td>".format(customValue)
-                elif key in listData.keys():
-                    html_output += "<td>{}</td>".format(listData[key])
-                else:
-                    html_output += "<td>see</td>"
+                    if key in customColumn:                    
+                        customValue = self.create_custom_column(listData,key,customColumn[key])
+                        html_output += "<td>{}</td>".format(customValue)
+                    elif key in listData.keys():
+                        html_output += "<td>{}</td>".format(listData[key])
+                    else:
+                        html_output += "<td>see</td>"
 
-                
-                #html_output += "<td>1</td>"
-            html_output += "</tr>"
+                    
+                    #html_output += "<td>1</td>"
+                html_output += "</tr>"
         html_output += "</table>"
         return html_output
 
