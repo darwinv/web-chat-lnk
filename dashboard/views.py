@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse
-from django.views import View
 from api.connection import api
 from django.contrib.auth.decorators import login_required
 
 from django.utils.translation import ugettext_lazy as _
 
-from api.json2table import convert
+from dashboard.json2table import convert
+from dashboard.json2table import getActualPage
+
+
 
 
 
@@ -20,21 +22,23 @@ class Specialist:
 
 #@login_required()
 def showList(request):
-    # print(request.user.is_authenticated())
-    # print("--------------------------------")
+
+    actualPage = getActualPage(request)
+
+    arg = {"page": actualPage}
     ObjApi = api()
-    json_object = ObjApi.get('specialist/')
+    data = ObjApi.get(slug='specialist/',arg=arg)
 
 
     customColumn = {"last_name": {'username', 'last_name'}}
+    header = {_("lastname"): "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "institute",
+              _("specialty"): "nationality"}
+    tablaSpecialist = convert(data, header=header,actualPage=actualPage, customColumn=customColumn )
 
-    header = {"Lastname": "last_name", "Code": "code", "Email": "email_exact", "RUC": "ruc", "Category": "institute",
-              "Specialty": "nationality"}
-    
-    tablaSpecialist = convert(json_object, header=header, customColumn=customColumn)
 
     return render(request, 'admin/actor/specialistList.html', {'tablaSpecialist': tablaSpecialist})
     
+
 class Client:
 
     def showList(request):

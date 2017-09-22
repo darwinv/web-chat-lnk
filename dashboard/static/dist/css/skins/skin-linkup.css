@@ -323,10 +323,19 @@ input,button,select{
     height: 40px;
 }
 .pagination > .p-btn ,.pagination > spam {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  background-color: white;
 }
-.pagination > .p-btn:hover:not(.active) {background-color: #ddd;}
+.pagination > .p-btn:hover:not(.disable) {
+  background-color: #ddd;
+}
+.p-btn.disable {
+  cursor: no-drop;
+}
+.p-btn:focus {
+    outline: none;
+}

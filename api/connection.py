@@ -136,17 +136,13 @@ class api:
 
 
 
-    def get(self,arg):
+    def get(self,slug,arg):
 
         try:
             self._headers = {'Authorization': 'Bearer YSlqvt8zdSTYaW0sKa2kUJIRN6jTva','x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
 
-            r = requests.get(self._url+arg, headers=self._headers)
-
-
-            # print(r)
-            # print("-------------------------------------------------se----")
-            #r = requests.get(self._url, params=arg)
+            r = requests.get(self._url+slug, headers=self._headers)
+            
             return r.json()
         except Exception as e:
             pass

@@ -24,6 +24,10 @@
 .aling-right{
 	text-align: right;
 }
+.overflow-auto{	
+    overflow: auto;
+}
+
 .mar10{
 	margin: 10px;
 }

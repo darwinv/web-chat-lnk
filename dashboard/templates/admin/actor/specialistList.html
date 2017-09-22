@@ -13,38 +13,33 @@
 
 
 {% block main_content_row %}
-	<div class="col-xs-12 marB25 cont-search-actor" >          
-      <button type="button" class="btn btn-flat btn-black pull-right">{% trans "seach"|title %}</button>
-      <input type="text" name="" class="search col-xs-8 col-lg-4 pull-right flat marR15">
-    </div>
-
-    <div class="col-xs-12 marB10 cont-head-actor">
-    	<div class="pull-left actors-cont-btn">
-    		<a href="" class="btn btn-flat btn-gray">{% trans "specialists"|title %}</a>
-
-    		<a href="" class="btn btn-flat btn-gray">{% trans "clients"|title %}</a>
-
-    		<a href="" class="btn btn-flat btn-gray">{% trans "sellers"|title %}</a>
-
-    		<a href="" class="btn btn-flat btn-gray">{% trans "administrators"|title %}</a>
-    	</div>
-
-    	<div class="pull-right">
-    		<button type="button" class="btn btn-flat btn-black">{% trans "filter"|title %}</button>
-    		<button type="button" class="btn btn-flat btn-black">{% trans "add"|title %}</button>
-    	</div>
-    </div>
-
-    <div class="col-xs-12 marB10">
-
-    	{{tablaSpecialist|safe}}
-        <div class="aling-right">
-          <div class="pagination">
-            <a class="p-btn p-left" href="#"></a>
-                <spam>Pagina 1 de  5</spam>
-            <a class="p-btn p-right" href="#"></a>
-          </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+    	<div class="col-xs-12 marB25 cont-search-actor" >          
+          <button type="button" class="btn btn-flat btn-black pull-right">{% trans "seach"|title %}</button>
+          <input type="text" name="" class="search col-xs-8 col-lg-4 pull-right flat marR15">
         </div>
-    </div>
+
+        <div class="col-xs-12 marB10 cont-head-actor">
+        	<div class="pull-left actors-cont-btn">
+        		<a href="" class="btn btn-flat btn-gray">{% trans "specialists"|title %}</a>
+
+        		<a href="" class="btn btn-flat btn-gray">{% trans "clients"|title %}</a>
+
+        		<a href="" class="btn btn-flat btn-gray">{% trans "sellers"|title %}</a>
+
+        		<a href="" class="btn btn-flat btn-gray">{% trans "administrators"|title %}</a>
+        	</div>
+
+        	<div class="pull-right">
+        		<button type="button" class="btn btn-flat btn-black">{% trans "filter"|title %}</button>
+        		<button type="button" class="btn btn-flat btn-black">{% trans "add"|title %}</button>
+        	</div>
+        </div>
+
+        <div class="col-xs-12 marB10">
+        	<div>{{tablaSpecialist|safe}}</div>
+        </div>
+    </form>
 
 {% endblock main_content_row %}
