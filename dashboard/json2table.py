@@ -5,16 +5,16 @@ Their code can be found at https://github.com/softvar/json2html
 """
 from django.utils.translation import ugettext_lazy as _
 
-def convert(data, table_attributes=None,header=None,customColumn=None,actualPage=0):
+def convert(data, table_attributes=None,header=None,customColumn=None,actualPage=None):
 
     generateTableObj    = generateTableList(table_attributes=table_attributes)
     html_output         = generateTableObj.convert(data['list'],header=header,customColumn=customColumn)
-    html_output        += generateTableObj.pagination(countPages=data['countPages'], actualPage=actualPage);
+
+    if actualPage is not None:
+        html_output        += generateTableObj.pagination(countPages=data['countPages'], actualPage=actualPage);
     return html_output
 
 def getActualPage(request):
-    print(request.POST)
-    print("----------")
     if 'page' in request.POST:
         actualPage = request.POST['page']
     elif 'actualPage' in request.POST:
