@@ -20,7 +20,7 @@ class Specialist:
         data = ObjApi.get('clients/'+client_id)
         return render(request, 'admin/detailClient.html',{'data': data})
 
-#@login_required()
+@login_required()
 def showList(request):
 
     actualPage = getActualPage(request)

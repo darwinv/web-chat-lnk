@@ -78,10 +78,15 @@ class api:
             #solo para este metodo se va usar un token fijo
             #Django requiere que la clase de autenticacion siempre le devuelva
             #cualquier usuario por id
-            headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+            #headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
             
             #self._headers.extend(headers)
-            self._headers = {'Authorization': 'Bearer ' + token,'x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
+            #TODO
+            #Ubicar el uso del token estatico en la configuracion
+            #Esta metodo requerido por el framework siempre debe poder
+            #acceder a los usuarios, siempre usa el mismo token
+            #usar git diff para ver diferencias y encontra los bugs
+            self._headers = {'Authorization': 'Bearer ' + 'EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz','x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
             r = requests.get(self._url+'users/' + str(user_id) + '/', headers=self._headers)
 
             data = r.json()
@@ -113,6 +118,7 @@ class api:
             # print(type(self._headers))
             # print(type(headers))
             # print("------se---------")
+            #TODO
             self._headers = {'Authorization': 'Bearer ' + token,'x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
 
             r = requests.get(self._url+'users?username=' + username, headers=self._headers)
