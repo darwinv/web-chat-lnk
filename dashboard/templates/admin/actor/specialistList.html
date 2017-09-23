@@ -22,13 +22,24 @@
 
         <div class="col-xs-12 marB10 cont-head-actor">
         	<div class="pull-left actors-cont-btn">
-        		<a href="" class="btn btn-flat btn-gray">{% trans "specialists"|title %}</a>
+        		<a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-gray">
+                    {% trans "specialists"|title %}
+                </a>
 
-        		<a href="" class="btn btn-flat btn-gray">{% trans "clients"|title %}</a>
+        		<a href="{% url 'dashboard:actor-clients-list' %}" class="btn btn-flat btn-gray">
+                    {% trans "clients"|title %}
 
-        		<a href="" class="btn btn-flat btn-gray">{% trans "sellers"|title %}</a>
+                </a>
 
-        		<a href="" class="btn btn-flat btn-gray">{% trans "administrators"|title %}</a>
+        		<a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-flat btn-gray">
+                    {% trans "sellers"|title %}
+
+                </a>
+
+        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray">
+                    {% trans "administrators"|title %}
+
+                </a>
         	</div>
 
         	<div class="pull-right">
@@ -36,7 +47,6 @@
         		<button type="button" class="btn btn-flat btn-black">{% trans "add"|title %}</button>
         	</div>
         </div>
-
         <div class="col-xs-12 marB10">
         	<div>{{tablaSpecialist|safe}}</div>
         </div>
