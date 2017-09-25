@@ -58,10 +58,10 @@ msgstr ""
 msgid "Reportes"
 msgstr ""
 
-#: .\mysite\settings.py:104
+#: .\linkup\settings.py:104
 msgid "Español"
 msgstr ""
 
-#: .\mysite\settings.py:105
+#: .\linkup\settings.py:105
 msgid "English"
 msgstr ""

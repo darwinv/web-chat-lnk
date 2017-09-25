@@ -4,6 +4,7 @@ This is based off of the `json2html` project.
 Their code can be found at https://github.com/softvar/json2html
 """
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse
 
 def convert(data, table_attributes=None,header=None,customColumn=None,actualPage=None):
 
@@ -83,8 +84,14 @@ class generateTableList(object):
 
     def create_custom_column(self, list,key,customColumnData):
         value = ""
-        for key in customColumnData:
-            value+=" {}".format(list[key])
+        if customColumnData['type'] == 'concat':            
+            for key in customColumnData['data']:
+                value+=" {}".format(list[key])
+
+        if customColumnData['type'] == 'detail':
+            data    = customColumnData['data']
+            see     = "see"
+            value  +='<div class="text-center"><a href="'+reverse(data['href'], args=(list[data['key']],))+'"><i class="fa fa-search" aria-hidden="true"></i></a><div></div></div>'
 
         return value
 

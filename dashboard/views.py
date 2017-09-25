@@ -23,16 +23,19 @@ class Specialist:
 @login_required()
 def showList(request):
 
-    actualPage = getActualPage(request)
+    actualPage  = getActualPage(request)
 
-    arg = {"page": actualPage}
-    ObjApi = api()
-    data = ObjApi.get(slug='specialist/',arg=arg)
+    arg         = {"page": actualPage}
+    ObjApi      = api()
+    data        = ObjApi.get(slug='specialist/',arg=arg,request=request)
 
 
-    customColumn = {"last_name": {'username', 'last_name'}}
-    header = {_("lastname"): "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "institute",
-              _("specialty"): "nationality"}
+    customColumn = {"last_name": {'type':'concat','data':{'username', 'last_name'}},
+                    "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-edit','key':'id'}}
+                    }
+    lastnamesTittle = "{} {} {}".format(_("surnames"),_("and"),_("names"))
+    header          = {lastnamesTittle: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "institute",
+                       _("specialty"): "nationality",_("detail"): "detail"}
     tablaSpecialist = convert(data, header=header,actualPage=actualPage, customColumn=customColumn )
 
 

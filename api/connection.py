@@ -22,9 +22,9 @@ class api:
         if url:
             self._url = url
         if cliente_id:
-            self._client_id = url
+            self._client_id = cliente_id
         if client_secret:
-            self._client_secret = url
+            self._client_secret = client_secret
 
     def token(self,username,password):
         """
@@ -86,8 +86,12 @@ class api:
             #Esta metodo requerido por el framework siempre debe poder
             #acceder a los usuarios, siempre usa el mismo token
             #usar git diff para ver diferencias y encontra los bugs
-            self._headers = {'Authorization': 'Bearer ' + 'EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz','x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
-            r = requests.get(self._url+'users/' + str(user_id) + '/', headers=self._headers)
+
+            headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+
+            headers = dict(headers, **self._headers)
+            
+            r = requests.get(self._url+'users/' + str(user_id) + '/', headers=headers)
 
             data = r.json()
 
@@ -119,9 +123,11 @@ class api:
             # print(type(headers))
             # print("------se---------")
             #TODO
-            self._headers = {'Authorization': 'Bearer ' + token,'x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
+            headers = {'Authorization': 'Bearer '+token}
 
-            r = requests.get(self._url+'users?username=' + username, headers=self._headers)
+            headers = dict(headers, **self._headers)
+
+            r = requests.get(self._url+'users?username=' + username, headers=headers)
 
             data = r.json()
 
@@ -142,21 +148,39 @@ class api:
 
 
 
-    def get(self,slug,arg):
+    def get(self,slug,arg,request):
 
         try:
-            self._headers = {'Authorization': 'Bearer YSlqvt8zdSTYaW0sKa2kUJIRN6jTva','x-api-key': 'ebb845f4442a4842aad190f680f731c5'}
+            headers = {'Authorization': 'Bearer '+request.session['token']}
 
-            r = requests.get(self._url+slug, headers=self._headers)
+            headers = dict(headers, **self._headers)
+            
+            r = requests.get(self._url+slug, headers=headers)
             
             return r.json()
         except Exception as e:
             pass
 
-    def post(self,arg):
+    def post(self,arg,request):
+        headers = {'Authorization': 'Bearer '+request.session['token']}
+
+        headers = dict(headers, **self._headers)
+
         try:
             payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
-            r = requests.get(self._url, params=arg)
+            r = requests.post(self._url, params=arg)
+            return r.json()
+        except Exception as e:
+            pass
+
+    def put(self,arg,request):
+        headers = {'Authorization': 'Bearer '+request.session['token']}
+
+        headers = dict(headers, **self._headers)
+
+        try:
+            payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
+            r = requests.post(self._url, params=arg)
             return r.json()
         except Exception as e:
             pass
