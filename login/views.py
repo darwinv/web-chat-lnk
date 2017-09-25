@@ -21,8 +21,11 @@ def weblogin(request):
     :param request:
     :return: formulario de login o listado de especialistas
     """
-
     user = ''
+    
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/admin/actor/specialists')
+    
     if request.method == 'POST':
 
         form = Login(request.POST)
