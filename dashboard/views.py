@@ -30,8 +30,8 @@ def showList(request):
     data        = ObjApi.get(slug='specialist/',arg=arg,request=request)
 
 
-    customColumn = {"last_name": {'type':'concat','data':{'username', 'last_name'}},
-                    "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-edit','key':'id'}}
+    customColumn    = {"last_name": {'type':'concat','data':{'username', 'last_name'}},
+                       "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-edit','key':'id'}}
                     }
     lastnamesTittle = "{} {} {}".format(_("surnames"),_("and"),_("names"))
     header          = {lastnamesTittle: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "institute",
@@ -47,7 +47,7 @@ class Client:
     def showList(request):
         return render(request, 'admin/index.html')
 
-    def showClientProfile(request,client_id):        
+    def showClientProfile(request,client_id):
         ObjApi = api(API_CLIENT_ID, API_CLIENT_SECRET, API_URL)
         data = ObjApi.get('clients/'+client_id)
         return render(request, 'admin/detailClient.html',{'data': data})
