@@ -139,11 +139,11 @@
 }
 
 /** CUSTOM BTN **/
-.btn-black{
+.btn-black, a:link.btn-black,a.btn-black{
   color: white;
   background-color: black;
 }
-.btn-black:hover,.btn-black:active,.btn-black:focus {
+.btn-black:hover,.btn-black:active,.btn-black:focus,a:link.btn-black:hover,a:link.btn-black:active,a:link.btn-black:focus {
     color: #cacaca;
 }
 
@@ -299,8 +299,12 @@ input,button,select{
 /**<TABLE>**/
 
 .table th {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+.table td{
+  text-align: center;
 }
 /**PAGINATION**/
 .pagination >  .p-btn.p-left:before{  

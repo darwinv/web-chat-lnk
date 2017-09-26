@@ -116,11 +116,11 @@ class generateTableList(object):
             html_output += "<th>{}</th>".format(self.capitalize(key))
         return html_output + "</tr>"
 
-        s = 'the brown fox'
 
     @staticmethod
     def capitalize(line):
-        return ' '.join(s[0].upper() + s[1:] for s in line.split(' '))
+        return line[0].upper() + line[1:]
+        #return ' '.join(s[0].upper() + s[1:] for s in line.split(' '))
     @staticmethod
     def _dict_to_html_attributes(d):
         """

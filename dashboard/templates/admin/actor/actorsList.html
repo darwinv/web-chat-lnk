@@ -2,16 +2,6 @@
 {% load i18n %}
 
 
-{% block logo_content_header %}
-	<i class="fa fa-users"></i>
-{% endblock logo_content_header %}
-
-{% block tittle_content_header %}
- 	{% trans "actors"|title %} - {% trans "specialists"|title %}
-{% endblock tittle_content_header %}
-
-
-
 {% block main_content_row %}
     <form action="" method="POST">
         {% csrf_token %}
@@ -22,33 +12,27 @@
 
         <div class="col-xs-12 marB10 cont-head-actor">
         	<div class="pull-left actors-cont-btn">
-        		<a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-gray">
+        		<a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-gray {{varsPage.btnSpecialistsClass}}">
                     {% trans "specialists"|title %}
                 </a>
-
-        		<a href="{% url 'dashboard:actor-clients-list' %}" class="btn btn-flat btn-gray">
+        		<a href="{% url 'dashboard:actor-clients-list' %}" class="btn btn-flat btn-gray {{varsPage.btnClientsClass}}">
                     {% trans "clients"|title %}
-
                 </a>
-
-        		<a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-flat btn-gray">
+        		<a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-flat btn-gray {{varsPage.btnSellersClass}}">
                     {% trans "sellers"|title %}
-
                 </a>
-
-        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray">
+        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray {{varsPage.btnAdministratorsClass}}">
                     {% trans "administrators"|title %}
-
                 </a>
         	</div>
 
         	<div class="pull-right">
         		<button type="button" class="btn btn-flat btn-black">{% trans "filter"|title %}</button>
-        		<button type="button" class="btn btn-flat btn-black">{% trans "add"|title %}</button>
+                <a href="{% url varsPage.nameCreateURL %}" class="btn btn-flat btn-black" >{% trans "add"|title %}</a>
         	</div>
         </div>
         <div class="col-xs-12 marB10">
-        	<div>{{tablaSpecialist|safe}}</div>
+        	<div>{{tabla|safe}}</div>
         </div>
     </form>
 

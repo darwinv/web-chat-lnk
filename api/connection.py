@@ -1,10 +1,7 @@
 #from django.contrib.sessions.backends.db import SessionStore
 
 #project
-from api.config import API_URL
-from api.config import API_CLIENT_ID
-from api.config import API_CLIENT_SECRET
-from api.config import API_HEADERS
+from api.config import API_URL,API_CLIENT_ID,API_CLIENT_SECRET,API_HEADERS
 import requests
 import logging
 import pdb
