@@ -116,12 +116,6 @@ class api:
         try:
             headers = {'Authorization': 'Bearer ' + token}
 
-            # print(type(self._headers))
-            # print(type(headers))
-            # print("------se---------")
-            #TODO
-            headers = {'Authorization': 'Bearer '+token}
-
             headers = dict(headers, **self._headers)
 
             r = requests.get(self._url+'users?username=' + username, headers=headers)
@@ -145,7 +139,7 @@ class api:
 
 
 
-    def get(self,slug,arg,request):
+    def get(self,slug,request,arg=None,):
 
         try:
             headers = {'Authorization': 'Bearer '+request.session['token']}

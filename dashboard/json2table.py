@@ -90,8 +90,11 @@ class generateTableList(object):
 
         if customColumnData['type'] == 'detail':
             data    = customColumnData['data']
-            see     = "see"
-            value  +='<div class="text-center"><a href="'+reverse(data['href'], args=(list[data['key']],))+'"><i class="fa fa-search" aria-hidden="true"></i></a><div></div></div>'
+            value  +='<a href="'+reverse(data['href'], args=(list[data['key']],))+'"><i class="fa fa-search"></i></a>'
+
+        if customColumnData['type'] == 'delete':
+            data    = customColumnData['data']
+            value  +='<i class="fa fa-trash"></i>'
 
         return value
 

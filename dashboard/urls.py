@@ -11,7 +11,7 @@ urlpatterns = [
 
     #specialists
     url(r'^actor/specialists$', views.actors.Specialist().showList, name='actor-specialists-list'),
-    url(r'^actor/specialists/(?P<specialist_id>[0-9]+)$', views.actors.Specialist().showList, name='actor-specialists-detail'),
+    url(r'^actor/specialists/(?P<specialist_id>[0-9]+)$', views.actors.Specialist().detail, name='actor-specialists-detail'),
     url(r'^actor/specialists/edit/(?P<specialist_id>[0-9]+)$', views.actors.Specialist().showList, name='actor-specialists-edit'),
     url(r'^actor/specialists/create/$', views.actors.Specialist().showList, name='actor-specialists-create'),
 

@@ -1,6 +1,140 @@
 {% extends 'admin/base.html' %}
+{% load static i18n %}
+
+{% block main_content_row %}
+    <div class="col-xs-12 marB25 cont-search-client" >          
+      <button type="button" class="btn btn-flat btn-black pull-right">{% trans "search"|title %}</button>
+      <input type="text" name="" placeholder="Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)" class="search col-xs-8 col-lg-4 pull-right flat marR15">
+    </div>
+
+    <div class="col-xs-12">
 
 
-{% block tittle_content_header %}
-    {{ block.super }} 
-{% endblock tittle_content_header %}
+        <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
+          <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
+          <p>
+            <span class="size18">Mariapia Gonzalez Moral</span>
+            <span>MapiGonzalez@gmail.com</span>
+            <span>947177289</span>
+            <span>3526687</span>
+          </p>
+        </div>
+
+
+        <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
+          <div class="cont-user-title">              
+            <span class="">Datos</span>
+            <button type="button" class="btn btn-flat btn-black pull-right">Edita</button>
+          </div>
+          <p>
+            <span><i class="fa fa-star"></i> Especialista Principal</span>
+            <span><i class="fa fa-circle-o-notch"></i> CIIU: 6910 - Actividades Jurídicas</span>
+            <span><i class="fa fa-globe"></i> Peruana</span>
+            <span><i class="fa fa-home"></i> Av. El Derby 250 - 4to Piso Santiago de Surco | Lima 33</span>
+            <span><i class="fa fa-briefcase"></i> Derecho Penal </span>
+            <span><i class="fa fa-building"></i> ACS Abogados</span>
+            <div class="text-center">
+                <button type="button" class="btn btn-flat btn-black">Ve Especialistas Asociados</button>
+            </div>
+          </p>
+        </div>
+
+
+        <div class="text-center pull-left" >
+            <div>                
+                <img src="{% static "dist/img/automatizacion.png" %}" class="img-circle">
+                <p>
+                    <span>Derecho Penal</span>
+                </p>
+            </div>
+              <div class="cont-info-user text-left padL20 padR20" >          
+              <p>
+                <span>RUC: 39402984283 </span>
+                <span>www.dlabogados.com</span>
+                <span><i class="fa fa-globe"></i> CV</span>
+                <span>Valoración 
+                	<span>
+						<i class="fa fa-star yellow"></i>
+						<i class="fa fa-star yellow"></i>
+						<i class="fa fa-star yellow"></i>
+						<i class="fa fa-star yellow"></i>
+						<i class="fa fa-star"></i>
+					</span>
+                </span>
+              </p>
+            </div>
+            <div class="send-mail-backend">
+              <div>
+                <span><i class="fa fa-envelope-o"></i> Enviar Mensaje</span>              
+              </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <div class="col-xs-12 col-md-6">
+		<div class="tg-head">
+			<div class="tg-title pull-left">Personal</div>
+		</div>
+		<div class="tg-history">
+			<div class="block-center-flat acquitted">
+				<div class="bcf-body">
+					<span class="bcf-title">56</span>
+					<span class="bcf-desc">Consultas resueltas</span>
+				</div>
+			</div>
+			<div class="block-center-flat toAcquit">
+				<div class="bcf-body">
+					<span class="bcf-title">2</span>
+					<span class="bcf-desc">Consultas por Absolver</span>
+				</div>
+			</div>
+			<div class="block-center-flat match">
+				<div class="bcf-body">
+					<span class="bcf-title">10</span>
+					<span class="bcf-desc">Match</span>
+				</div>
+			</div>            
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<div class="tg-head">
+			<div class="tg-title pull-left">Especialidad</div>
+		</div>
+		<div class="tg-history">
+			<div class="block-center-flat acquitted">
+				<div class="bcf-body">
+					<span class="bcf-title">56</span>
+					<span class="bcf-desc">Consultas resueltas</span>
+				</div>
+			</div>
+			<div class="block-center-flat toAcquit">
+				<div class="bcf-body">
+					<span class="bcf-title">2</span>
+					<span class="bcf-desc">Consultas por Absolver</span>
+				</div>
+			</div>
+			<div class="block-center-flat match">
+				<div class="bcf-body">
+					<span class="bcf-title">10</span>
+					<span class="bcf-desc">Match</span>
+				</div>
+			</div>            
+		</div>
+	</div>
+
+
+	<div class="block-alert-user col-xs-12 marB25">
+		<h3>Dashboard</h3>
+      <span class="alert-action-warning">Mariapia tiene 1 consulta pendiente de respuesta de Derecho Penal 2/05/16</span>
+      <span class="alert-action-warning">Mariapia le asigno baja calificación a respuesta recibida de Publicidad y Marketing</span>
+      <span class="alert-action-success">Mariapia transfirió 1 Plan Express Duo a Jorge Luis Pérez con DNI 40793456</span>
+      <span class="alert-action-info">Mariapia ha compartido 2 consultas de su Minipack con Stefano Salas con DNI 20506723</span>
+    </div>
+
+
+    <div class="col-xs-12 text-center">
+        <button type="button" class="btn btn-flat btn-black">{% trans "block"|title %}</button>
+    </div>
+
+{% endblock main_content_row %}

@@ -43,31 +43,37 @@ class Specialist(Actor):
 
         customColumn    = {
                             "last_name": {'type':'concat','data':{'username', 'last_name'}},
-                            "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-detail','key':'id'}}
+                            "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-detail','key':'id'}},
+                            "delete": {'type':'delete','data':{'href':'dashboard:actor-specialists-detail','key':'id'}}
                           }
         lastnamesTitle  = "{} {} {}".format(_("surnames"),_("and"),_("names"))
         header_tabla    = {lastnamesTitle: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "",
-                           _("specialty"): "",_("detail"): "detail"}
+                           _("specialty"): "",_("detail"): "detail",_("delete"): "delete"}
         tabla           = convert(data, header=header_tabla,actualPage=actualPage, customColumn=customColumn )
 
         varsPage        = self.generateHeader(CustomTitle=_('specialists').title())
         return render(request, 'admin/actor/specialistsList.html', {'tabla': tabla,'varsPage':varsPage})
 
 
+    @method_decorator(login_required)
+    def detail(self,request,specialist_id):
+        #ObjApi = api()
+        #data   = ObjApi.get(slug='specialists/'+specialist_id,request=request)
+        CustomTitle     = "{} - {}".format(_('main specialist').title(),_('detail').title())
+        varsPage        = self.generateHeader(CustomTitle=CustomTitle)
+        data =""
+        return render(request, 'admin/actor/specialistsDetail.html',{'data': data,'varsPage':varsPage})
+
 
     @method_decorator(login_required)
     def create(request):
         return render(request, 'admin/actor/specialistsForm.html')
     @method_decorator(login_required)
-    def edit(request,specialist_id):
+    def edit(self,request,specialist_id):
         ObjApi      = api()
         data        = ObjApi.get(slug='specialists/'+specialist_id,request=request)
         return render(request, 'admin/actor/specialistsAdd.html', {'data': data})
-    @method_decorator(login_required)
-    def detail(request,client_id):
-        ObjApi = api()
-        data = ObjApi.get('clients/'+client_id)
-        return render(request, 'admin/detailClient.html',{'data': data})
+    
 
 
 ##CLIENT##
