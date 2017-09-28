@@ -10,7 +10,8 @@ from api.connection import api
 from dashboard.json2table import convert,getActualPage
 
 
-
+#forms
+from dashboard.forms import SpecialistForm
 
 class Actor:
     logo_content_header    = "fa fa-users"
@@ -66,8 +67,19 @@ class Specialist(Actor):
 
 
     @method_decorator(login_required)
-    def create(request):
-        return render(request, 'admin/actor/specialistsForm.html')
+    def create(self,request):
+        ObjApi      = api()
+
+        categories  = ObjApi.get(slug='categories/',request=request)
+        departments = ObjApi.get(slug='departments/',request=request)
+
+        formExtra   = {'categories': categories, 'departments': departments}
+
+        form        = SpecialistForm(initial={'category': State})
+        varsPage    = self.generateHeader(CustomTitle=_('create specialist').title())
+        return render(request, 'admin/actor/specialistsForm.html', {'form':form,'varsPage':varsPage})
+
+
     @method_decorator(login_required)
     def edit(self,request,specialist_id):
         ObjApi      = api()

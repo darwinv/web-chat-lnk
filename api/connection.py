@@ -7,7 +7,8 @@ import logging
 import pdb
 
 #Django
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from dashboard.models import User
 
 class api:
     _url            = API_URL

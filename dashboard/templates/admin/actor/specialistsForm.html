@@ -1,11 +1,70 @@
 {% extends 'admin/base.html' %}
-
-{% block tittle_content_header %}
- 	{% trans "actors"|title %} - {% trans "Add specialists"|title %}
-{% endblock tittle_content_header %}
-
+{% load i18n %}
 
 
 {% block main_content_row %}
 
+    <form class="">
+        {% csrf_token %}
+        
+        {{ form.non_field_errors }}
+        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.category.errors }}
+			{{ form.category.label_tag }}
+			{{ form.category }}
+		</div>
+        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.first_name.errors }}
+			{{ form.first_name.label_tag }}
+			{{ form.first_name }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.last_name.errors }}
+			{{ form.last_name.label_tag }}
+			{{ form.last_name }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.email_exact.errors }}
+			{{ form.email_exact.label_tag }}
+			{{ form.email_exact }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.telephone.errors }}
+			{{ form.telephone.label_tag }}
+			{{ form.telephone }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.cellphone.errors }}
+			{{ form.cellphone.label_tag }}
+			{{ form.cellphone }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.document_type.errors }}
+			{{ form.document_type.label_tag }}
+			{{ form.document_type }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.document_number.errors }}
+			{{ form.document_number.label_tag }}
+			{{ form.document_number }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.ruc.errors }}
+			{{ form.ruc.label_tag }}
+			{{ form.ruc }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.bussiness_name.errors }}
+			{{ form.bussiness_name.label_tag }}
+			{{ form.bussiness_name }}
+		</div>
+		<div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			{{ form.type_specialist.errors }}
+			{{ form.type_specialist.label_tag }}
+			{{ form.type_specialist }}
+		</div>
+		<div class="col-xs-12 text-center">
+			<input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'guardar'|title %}">
+		</div>
+    </form>
 {% endblock main_content_row %}
