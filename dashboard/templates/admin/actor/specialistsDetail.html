@@ -24,7 +24,7 @@
         <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
           <div class="cont-user-title">              
             <span class="">Datos</span>
-            <button type="button" class="btn btn-flat btn-black pull-right">Edita</button>
+            <a href="{% url 'dashboard:actor-specialists-edit' 2 %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
           </div>
           <p>
             <span><i class="fa fa-star"></i> Especialista Principal</span>

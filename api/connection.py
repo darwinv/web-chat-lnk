@@ -140,7 +140,7 @@ class api:
 
 
 
-    def get(self,slug,request,arg=None,):
+    def get(self,request,slug='',arg=None,):
 
         try:
             headers = {'Authorization': 'Bearer '+request.session['token']}
@@ -153,26 +153,32 @@ class api:
         except Exception as e:
             pass
 
-    def post(self,arg,request):
+    def post(self,request,slug='',arg=None):
         headers = {'Authorization': 'Bearer '+request.session['token']}
-
         headers = dict(headers, **self._headers)
 
-        try:
-            payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
+        try:            
             r = requests.post(self._url, params=arg)
             return r.json()
         except Exception as e:
             pass
 
-    def put(self,arg,request):
+    def put(self,request,slug='',arg=None):
         headers = {'Authorization': 'Bearer '+request.session['token']}
-
         headers = dict(headers, **self._headers)
 
-        try:
-            payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
-            r = requests.post(self._url, params=arg)
+        try:            
+            r = requests.put(self._url, params=arg)
+            return r.json()
+        except Exception as e:
+            pass
+
+    def delete(self,request,slug='',arg=None):
+        headers = {'Authorization': 'Bearer '+request.session['token']}
+        headers = dict(headers, **self._headers)
+
+        try:            
+            r = requests.delete(self._url, params=arg)
             return r.json()
         except Exception as e:
             pass

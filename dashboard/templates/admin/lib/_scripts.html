@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 {% block scripts %}
 <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
@@ -9,4 +9,58 @@
 </script>
 <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %} "></script>
 <script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>
+<script>
+    $(document).on('change', '#id_department', function() {
+    	url 	= 'https://ba78504b-f112-44a8-9f78-da216ea296f5.mock.pstmn.io/provinces'
+    	id 		= $(this).val();
+    	element = $('#id_province');
+    	elementB= $('#id_district');
+
+    	clearOptions(element)
+    	clearOptions(elementB)
+    	sendAjax(url,id,element);
+	});
+
+	$(document).on('change', '#id_province', function() {
+    	url 	= 'https://ba78504b-f112-44a8-9f78-da216ea296f5.mock.pstmn.io/districts'
+    	id 		= $(this).val();
+    	element = $('#id_district');
+
+    	clearOptions(element)
+    	sendAjax(url,id,element);
+	});
+
+    
+	function sendAjax(url,id,element){
+		$.ajax({
+		  type: "GET",
+		  beforeSend: function(request) {
+		    request.setRequestHeader('x-api-key', '8323f54b0e37435289037b7af03c13da');
+		  },
+		  url: url,
+		  processData: false,
+		  dataType: "json",
+		  success: function(msg) {
+		    generateOptions(element,msg.list);
+		  }
+		});
+
+	}
+
+	function generateOptions(element,data) {
+			element.append('<option>{% trans "select"|title %}</option>')
+			$.each(data, function(){
+				element.append('<option value="'+ this.id +'">'+ this.name +'</option>')			
+			});
+	}
+
+	function clearOptions(element){
+		element.find('option').remove();
+	}
+	
+	
+</script>
+
+
+  
 {% endblock %}
