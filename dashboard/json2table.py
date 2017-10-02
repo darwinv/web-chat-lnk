@@ -9,7 +9,13 @@ from django.urls import reverse
 def convert(data, table_attributes=None,header=None,customColumn=None,actualPage=None):
 
     generateTableObj    = generateTableList(table_attributes=table_attributes)
-    html_output         = generateTableObj.convert(data['list'],header=header,customColumn=customColumn)
+
+    if 'list' in data:
+        dataTable = data
+    else:
+        dataTable = None
+        
+    html_output         = generateTableObj.convert(dataTable,header=header,customColumn=customColumn)
 
     if actualPage is not None:
         html_output        += generateTableObj.pagination(countPages=data['countPages'], actualPage=actualPage);
@@ -65,8 +71,8 @@ class generateTableList(object):
         html_output = "<div class='overflow-auto'>"
         html_output += self._table_opening_tag
         html_output += self._markup_header_row(header.keys())
-        html_output += "<tr>"
         if json_input:
+            html_output += "<tr>"
             for listData in json_input:
                 for key in header.values():
 
@@ -94,7 +100,7 @@ class generateTableList(object):
 
         if customColumnData['type'] == 'delete':
             data    = customColumnData['data']
-            value  +='<i class="fa fa-trash"></i>'
+            value  +='<i class="fa fa-trash pointer {} color-red" data-id="{id}"></i>'.format(data['class'],id=list[data['key']])
 
         return value
 

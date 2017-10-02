@@ -24,7 +24,7 @@ class APIBackend(object):
 
         #crear objeto api
         apiObj = api()
-
+        
         #validar datos por medio de una consulta del token del usuario
         token = apiObj.token(request.POST['user'], request.POST['password'])
 

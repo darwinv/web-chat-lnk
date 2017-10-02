@@ -15,7 +15,9 @@
 		}
 	end Exmaple
 */
-
+.pointer{
+	cursor: pointer;
+}
 .flat {
     margin-right: 10px;
     border-radius: 0px;
@@ -57,4 +59,7 @@
 }
 .size18 {
     font-size: 18px;
+}
+.color-red {
+    color: red;
 }

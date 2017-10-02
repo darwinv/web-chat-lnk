@@ -10,53 +10,110 @@
 <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %} "></script>
 <script src="{% static "admin-lte/dist/js/app.min.js" %}"></script>
 <script>
+	var urlBase   	= 'https://04c2b9c2-5111-46b4-bf48-21ead5cea35d.mock.pstmn.io/'
+	var x_api_key   = '90bd028513c2440f9c262c5c09c668e5'
     $(document).on('change', '#id_department', function() {
-    	url 	= 'https://ba78504b-f112-44a8-9f78-da216ea296f5.mock.pstmn.io/provinces'
+    	url 	= urlBase+'provinces'
     	id 		= $(this).val();
     	element = $('#id_province');
     	elementB= $('#id_district');
 
     	clearOptions(element)
     	clearOptions(elementB)
-    	sendAjax(url,id,element);
+    	data = {'department': id}
+    	msg  = sendAjaxGeo(url,data,element);
 	});
 
 	$(document).on('change', '#id_province', function() {
-    	url 	= 'https://ba78504b-f112-44a8-9f78-da216ea296f5.mock.pstmn.io/districts'
+    	url 	= urlBase+'districts'
     	id 		= $(this).val();
     	element = $('#id_district');
 
     	clearOptions(element)
-    	sendAjax(url,id,element);
+    	data = {'province': id}
+    	msg  = sendAjaxGeo(url,data,element);
 	});
 
     
-	function sendAjax(url,id,element){
+	function sendAjaxGeo(url,data,element,type="GET"){
+		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 		$.ajax({
-		  type: "GET",
-		  beforeSend: function(request) {
-		    request.setRequestHeader('x-api-key', '8323f54b0e37435289037b7af03c13da');
+		  type: type,
+		  beforeSend: function(request, settings) {
+		  	if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+	            request.setRequestHeader("X-CSRFToken", csrftoken);
+	        }
+		    request.setRequestHeader('x-api-key', x_api_key);
 		  },
 		  url: url,
-		  processData: false,
+		  data:data,
 		  dataType: "json",
 		  success: function(msg) {
-		    generateOptions(element,msg.list);
+			generateOptions(element,msg.list);
 		  }
 		});
-
 	}
+	function sendAjaxDelete(url,data,element,type='POST'){
+		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+		$.ajax({
+		  type: 'POST',
+		  beforeSend: function(request, settings) {
+		  	if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+	            request.setRequestHeader("X-CSRFToken", csrftoken);
+	        }
+		    request.setRequestHeader('x-api-key', x_api_key);
+		  },
+		  url: url,
+		  data:data,
+		  dataType: "json",
+		  success: function(msg) {
+		  	console.log(element)
+
+		  	element.closest("form").submit();
+		  }
+		});
+	}
+	function csrfSafeMethod(method) {
+	    // these HTTP methods do not require CSRF protection
+	    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+	}
+	// using jQuery
+	function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+	        var cookies = document.cookie.split(';');
+	        for (var i = 0; i < cookies.length; i++) {
+	            var cookie = jQuery.trim(cookies[i]);
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	}
+
 
 	function generateOptions(element,data) {
 			element.append('<option>{% trans "select"|title %}</option>')
 			$.each(data, function(){
-				element.append('<option value="'+ this.id +'">'+ this.name +'</option>')			
+				element.append('<option value="'+ this.name +'">'+ this.name +'</option>')			
 			});
 	}
 
 	function clearOptions(element){
 		element.find('option').remove();
 	}
+
+	$(document).on('click', '.deleteSpecialist', function() {
+    	id 		= $(this).data('id');
+    	url 	= '{% url "dashboard:actor-specialists-delete"  %}'
+    	data 	= {'specialist_id': id}
+
+    	sendAjaxDelete(url,data,$(this));
+	});
+
 	
 	
 </script>

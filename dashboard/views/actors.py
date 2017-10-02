@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
+
 
 from api.connection import api
 
@@ -45,7 +46,7 @@ class Specialist(Actor):
         customColumn    = {
                             "last_name": {'type':'concat','data':{'username', 'last_name'}},
                             "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-detail','key':'id'}},
-                            "delete": {'type':'delete','data':{'href':'dashboard:actor-specialists-detail','key':'id'}}
+                            "delete": {'type':'delete','data':{'class':'deleteSpecialist','key':'id'}}
                           }
         lastnamesTitle  = "{} {} {}".format(_("surnames"),_("and"),_("names"))
         header_tabla    = {lastnamesTitle: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "",
@@ -58,11 +59,12 @@ class Specialist(Actor):
 
     @method_decorator(login_required)
     def detail(self,request,specialist_id):
-        #ObjApi = api()
-        #data   = ObjApi.get(slug='specialists/'+specialist_id,request=request)
-        CustomTitle     = "{} - {}".format(_('main specialist').title(),_('detail').title())
+        ObjApi = api()
+        data   = ObjApi.get(slug='specialists/'+specialist_id,request=request)
+        
+        CustomTitle     = "{} {} - {}".format(_('specialist').title(),_(data['type_specialist']),_('detail').title())
         varsPage        = self.generateHeader(CustomTitle=CustomTitle)
-        data =""
+        
         return render(request, 'admin/actor/specialistsDetail.html',{'data': data,'varsPage':varsPage})
 
 
@@ -71,23 +73,19 @@ class Specialist(Actor):
         ObjApi      = api()
 
         if request.method == 'POST':
-            form = SpecialistForm(request.POST)
+            form = SpecialistForm(data=request.POST)
             # check whether it's valid:
             if form.is_valid():
-                departments = ObjApi.post(slug='specilist/',request=request)
+                result = ObjApi.post(slug='specilist/',request=request)
                 return HttpResponseRedirect(reverse('dashboard:actor-specialists-list'))
 
         else:
-            form    = SpecialistForm()
-
-        categories  = ObjApi.get(slug='categories/',request=request)
-        departments = ObjApi.get(slug='departments/',request=request)
-
-        formExtra   = {'categories': categories, 'departments': departments}
-
-        
+            categories  = ObjApi.get(slug='categories/',request=request)
+            departments = ObjApi.get(slug='departments/',request=request)
+            form        = SpecialistForm(categories=categories['list'],departments=departments['list'])
+                
         varsPage    = self.generateHeader(CustomTitle=_('create specialist').title())
-        return render(request, 'admin/actor/specialistsForm.html', {'varsPage':varsPage,'form':form,'formExtra':formExtra})
+        return render(request, 'admin/actor/specialistsForm.html', {'varsPage':varsPage,'form':form})
 
 
 
@@ -96,28 +94,45 @@ class Specialist(Actor):
         ObjApi      = api()
 
         if request.method == 'POST':
-            form = SpecialistForm(request.POST)
+            form = SpecialistForm(data=request.POST)
             # check whether it's valid:
             if form.is_valid():
-                departments = ObjApi.put(slug='specilist/'+specialist_id,request=request)
+                result = ObjApi.put(slug='specilist/'+specialist_id,request=request)
                 return HttpResponseRedirect(reverse('dashboard:actor-specialists-list'))
 
         else:
-            specilist  = ObjApi.get(slug='specialists/'+specialist_id,request=request)
-            print(specilist)
-            print("----------------------------------------------------")
-            form    = SpecialistForm(initial=specilist)
+            specilist   = ObjApi.get(slug='specialists/'+specialist_id,request=request)
+            categories  = ObjApi.get(slug='categories/',request=request)
+            departments = ObjApi.get(slug='departments/',request=request)
 
-        categories  = ObjApi.get(slug='categories/',request=request)
-        departments = ObjApi.get(slug='departments/',request=request)
+            if 'department' in specilist:
+                arg = {'department':specilist['department']}
+                provinces   = ObjApi.get(slug='provinces/',request=request,arg=arg)
+            else:
+                provinces   = {'list':None}
 
-        formExtra   = {'categories': categories, 'departments': departments}
+            if 'district' in specilist:
+                arg = {'province':specilist['province']}
+                districts   = ObjApi.get(slug='districts/',request=request,arg=arg)
+            else:
+                districts   = {'list':None}
 
+            form        = SpecialistForm(categories=categories['list'],departments=departments['list'],provinces=provinces['list'],districts=districts['list'],initial=specilist)
         
         varsPage    = self.generateHeader(CustomTitle=_('edit specialist').title())
-        return render(request, 'admin/actor/specialistsForm.html', {'varsPage':varsPage,'form':form,'formExtra':formExtra})
+        return render(request, 'admin/actor/specialistsForm.html', {'varsPage':varsPage,'form':form})
 
     
+    @method_decorator(login_required)
+    def delete(self,request):
+        if request.method == 'POST':
+            specialist_id   = request.POST['specialist_id']
+            ObjApi          = api()
+            result          = ObjApi.delete(slug='specialists/'+specialist_id,request=request)
+
+            return JsonResponse({'result': result})
+
+        return JsonResponse({})
 
 
 ##CLIENT##

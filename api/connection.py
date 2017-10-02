@@ -43,9 +43,9 @@ class api:
                    'username':      username,\
                    'password':      password,}
 
+
             #obtener el token
             r = requests.post(self._url+'o/token/', params=arg, headers=self._headers)
-            
             #evaluar respuesta
             if r.status_code == 200:
                 #respuesta correcta
@@ -124,8 +124,6 @@ class api:
             data = r.json()
 
             user = User()
-
-
             try:
                 user.id = int(data[0]['id'])
                 user.username = str(data[0]['username'])
@@ -146,8 +144,7 @@ class api:
             headers = {'Authorization': 'Bearer '+request.session['token']}
 
             headers = dict(headers, **self._headers)
-            
-            r = requests.get(self._url+slug, headers=headers)
+            r = requests.get(self._url+slug, headers=headers, params=arg)
             
             return r.json()
         except Exception as e:
@@ -158,7 +155,7 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.post(self._url, params=arg)
+            r = requests.post(self._url+slug, headers=headers, params=arg)
             return r.json()
         except Exception as e:
             pass
@@ -168,17 +165,20 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.put(self._url, params=arg)
+            r = requests.put(self._url+slug, headers=headers, params=arg)
             return r.json()
         except Exception as e:
             pass
 
     def delete(self,request,slug='',arg=None):
+        # print(self._url+slug)
+        # print("-------------------")
         headers = {'Authorization': 'Bearer '+request.session['token']}
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.delete(self._url, params=arg)
+            r = requests.delete(self._url+slug, headers=headers, params=arg)
+
             return r.json()
         except Exception as e:
             pass
