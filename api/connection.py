@@ -43,9 +43,9 @@ class api:
                    'username':      username,\
                    'password':      password,}
 
-
             #obtener el token
             r = requests.post(self._url+'o/token/', params=arg, headers=self._headers)
+            
             #evaluar respuesta
             if r.status_code == 200:
                 #respuesta correcta
@@ -93,9 +93,20 @@ class api:
 
             data = r.json()
 
-            user = User()
-            user.id = int(data['id'])
-            user.username = data['username']
+            # obtener id de la respuesta
+            id = int(data['id'])
+
+            user = None
+            if User.objects.filter(id=id).count() > 0:
+                user = User.objects.filter(id=id)[0]
+
+            # evaluar si existe el usuario en las sesiones guardadas
+            if user:
+                user.username = str(data['username'])
+            else:
+                user = User()
+                user.id = id
+                user.username = str(data['username'])
 
             return user
 
@@ -123,10 +134,22 @@ class api:
 
             data = r.json()
 
-            user = User()
             try:
-                user.id = int(data[0]['id'])
-                user.username = str(data[0]['username'])
+                # obtener id de la respuesta
+                id = int(data['results'][0]['id'])
+
+                user = None
+                if User.objects.filter(id=id).count() > 0:
+                   user = User.objects.filter(id=id)[0]
+
+                # evaluar si existe el usuario en las sesiones guardadas
+                if user:
+                    user.username = str(data['results'][0]['username'])
+                else:
+                    user = User()
+                    user.id = id
+                    user.username = str(data['results'][0]['username'])
+
             except Exception as e:
                 pass
 
@@ -174,7 +197,7 @@ class api:
         headers = {'Authorization': 'Bearer '+token}
         headers = dict(headers, **self._headers)
 
-        try:            
+        try:
             r = requests.delete(self._url+slug, headers=headers, params=arg)
 
             return r.json()

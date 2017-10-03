@@ -19,6 +19,7 @@ def convert(data, table_attributes=None,header=None,custom_column=None,actual_pa
 
     if actual_page is not None and type(data) is dict and 'countPages' in data:
         html_output        += generateTableObj.pagination(count_pages=data['countPages'], actual_page=actual_page);
+
     return html_output
 
 def getActualPage(request):
@@ -71,7 +72,7 @@ class generateTableList(object):
         html_output = "<div class='overflow-auto'>"
         html_output += self._table_opening_tag
         html_output += self._markup_header_row(header.keys())
-        
+
         if json_input:
             html_output += "<tr>"
             for listData in json_input:
