@@ -108,96 +108,10 @@
 
 {% block extra_head %}
   <link rel="stylesheet" href='{% static "cropper/dist/cropper.css" %}' >
-    <style>
-    .cropper-view-box,
-    .cropper-face {
-      border-radius: 50%;
-      outline: none;
-    }
-    .content-frame-profile-img {
-        text-align: center;
-        float: left;
-    }
-    #frame-profile-img {
-        border: 1px solid rgba(0, 0, 0, 0.19);
-        border-radius: 50%;
-    }
-    #frame-profile-img, #frame-profile-img img, #frame-profile-img canvas {
-        border-radius: 50%;
-        width: 200px;
-    }    
-    canvas {
-        margin: 0px 0px -6px 0px;
-    }
-
-  </style>
 {% endblock extra_head %}
 
 
 {% block extra_foot %}
-  <!-- Scripts -->
   <script src='{% static "cropper/dist/cropper.min.js" %}' ></script>
-  <script>
-    $(function () {
-      var $image      = $('#image');
-      var $modal      = $('#modal');
-      var $frame      = $('#frame-profile-img');
-      var $inputImage = $('#inputImage');
-      var btnSave     = '#save-model-imgProfile';
-      var getCroppedCanvas;
-      var fileTempModal
-
-      $image.hide();
-      $modal.on('shown.bs.modal', function () {
-        $image
-          .attr('src', fileTempModal)
-          .show()
-          .cropper({
-            cropBoxResizable: true,
-            guides: false,
-            aspectRatio: 1,
-            ready: function () {
-              croppable = true;
-            }
-          });  
-      }).on('hidden.bs.modal', function () {
-        $image.cropper('destroy').hide();
-      })
-
-      
-      $(document).on('click',btnSave,function(){
-        event.preventDefault();
-        $modal.modal('hide');        
-        getCroppedCanvas  = $image.cropper('getCroppedCanvas',{ width: 200, height: 200 });
-        $frame.html(getCroppedCanvas);
-      });
-
-      // Import image
-      var URL = window.URL || window.webkitURL;  
-      if (URL) {
-        $inputImage.change(function () {
-          var files = this.files;
-          var file;
-          if (files && files.length) {
-            file = files[0];
-            if (/^image\/\w+$/.test(file.type)) {
-              uploadedImageType = file.type;
-              if (fileTempModal) {
-                URL.revokeObjectURL(fileTempModal);
-              }
-              fileTempModal = URL.createObjectURL(file);
-              $modal.modal('show');
-              $inputImage.val('');
-            } else {
-              window.alert('{% trans "please choose an image file."|title %}');
-            }
-          }
-        });
-      } else {
-        $inputImage.prop('disabled', true).parent().addClass('disabled');
-      }
-
-
-    });
-  </script>
+  {% include 'admin/lib/_cropper.html' %}  
 {% endblock extra_foot %}

@@ -3,8 +3,9 @@
 
 
 {% block main_content_row %}
-    <form action="" method="POST">
-        {% csrf_token %}
+    
+    {% csrf_token %}  <!-- Token fuera del GET para evitar envios CRF desde el listado -->
+    <form action="" method="GET">
     	<div class="col-xs-12 marB25 cont-search-actor" >          
           <button type="button" class="btn btn-flat btn-black pull-right">{% trans "seach"|title %}</button>
           <input type="text" name="" class="search col-xs-8 col-lg-4 pull-right flat marR15">
@@ -12,25 +13,30 @@
 
         <div class="col-xs-12 marB10 cont-head-actor">
         	<div class="pull-left actors-cont-btn">
-        		<a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-gray {{varsPage.btnSpecialistsClass}}">
+        		<a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-gray {{vars_page.btn_specialists_class}}">
                     {% trans "specialists"|title %}
                 </a>
-        		<a href="{% url 'dashboard:actor-clients-list' %}" class="btn btn-flat btn-gray {{varsPage.btnClientsClass}}">
+        		<a href="{% url 'dashboard:actor-clients-list' %}" class="btn btn-flat btn-gray {{vars_page.btnClientsClass}}">
                     {% trans "clients"|title %}
                 </a>
-        		<a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-flat btn-gray {{varsPage.btnSellersClass}}">
+        		<a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-flat btn-gray {{vars_page.btnSellersClass}}">
                     {% trans "sellers"|title %}
                 </a>
-        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray {{varsPage.btnAdministratorsClass}}">
+        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray {{vars_page.btnAdministratorsClass}}">
                     {% trans "administrators"|title %}
                 </a>
         	</div>
 
         	<div class="pull-right">
         		<button type="button" class="btn btn-flat btn-black">{% trans "filter"|title %}</button>
-                <a href="{% url varsPage.nameCreateURL %}" class="btn btn-flat btn-black" >{% trans "add"|title %}</a>
+                <a href="{% url vars_page.name_create_URL %}" class="btn btn-flat btn-black" >{% trans "add"|title %}</a>
         	</div>
         </div>
+        {% block filters_actor %}
+            
+        {% endblock filters_actor %}
+
+        <!-- Listado actores -->
         <div class="col-xs-12 marB10">
         	<div>{{tabla|safe}}</div>
         </div>

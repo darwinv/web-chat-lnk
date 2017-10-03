@@ -73,17 +73,17 @@ class api:
         """
 
         try:
-            #solo para este metodo se va usar un token fijo
-            #Django requiere que la clase de autenticacion siempre le devuelva
-            #cualquier usuario por id
-            #headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+            # solo para este metodo se va usar un token fijo
+            # Django requiere que la clase de autenticacion siempre le devuelva
+            # cualquier usuario por id
+            # headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
             
-            #self._headers.extend(headers)
-            #TODO
-            #Ubicar el uso del token estatico en la configuracion
-            #Esta metodo requerido por el framework siempre debe poder
-            #acceder a los usuarios, siempre usa el mismo token
-            #usar git diff para ver diferencias y encontra los bugs
+            # self._headers.extend(headers)
+            # TODO
+            # Ubicar el uso del token estatico en la configuracion
+            # Esta metodo requerido por el framework siempre debe poder
+            # acceder a los usuarios, siempre usa el mismo token
+            # usar git diff para ver diferencias y encontra los bugs
 
             headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
 
@@ -109,7 +109,7 @@ class api:
 
         Devuelve un objeto User de la api por medio de un identificador unico
 
-        :param token:token necesario para consultar datos, se utiliza en el header Authorization
+        :param token: token necesario para consultar datos, se utiliza en el header Authorization
         :param user_id: indentificador unico de un usuario en el API
         :return: objeto User
         """
@@ -138,10 +138,10 @@ class api:
 
 
 
-    def get(self,request,slug='',arg=None,):
+    def get(self,token,slug='',arg=None,):
 
         try:
-            headers = {'Authorization': 'Bearer '+request.session['token']}
+            headers = {'Authorization': 'Bearer '+token}
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url+slug, headers=headers, params=arg)
@@ -150,8 +150,8 @@ class api:
         except Exception as e:
             pass
 
-    def post(self,request,slug='',arg=None):
-        headers = {'Authorization': 'Bearer '+request.session['token']}
+    def post(self,token,slug='',arg=None):
+        headers = {'Authorization': 'Bearer '+token}
         headers = dict(headers, **self._headers)
 
         try:            
@@ -160,8 +160,8 @@ class api:
         except Exception as e:
             pass
 
-    def put(self,request,slug='',arg=None):
-        headers = {'Authorization': 'Bearer '+request.session['token']}
+    def put(self,token,slug='',arg=None):
+        headers = {'Authorization': 'Bearer '+token}
         headers = dict(headers, **self._headers)
 
         try:            
@@ -170,10 +170,8 @@ class api:
         except Exception as e:
             pass
 
-    def delete(self,request,slug='',arg=None):
-        # print(self._url+slug)
-        # print("-------------------")
-        headers = {'Authorization': 'Bearer '+request.session['token']}
+    def delete(self,token,slug='',arg=None):
+        headers = {'Authorization': 'Bearer '+token}
         headers = dict(headers, **self._headers)
 
         try:            

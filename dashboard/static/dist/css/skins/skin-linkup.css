@@ -378,3 +378,25 @@ i.fa.fa-star.yellow{
 .input-form-control > input, .input-form-control > select{
   width: 100%;
 }
+
+/* Cropper para generar imagenes recortadas*/
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50%;
+  outline: none;
+}
+.content-frame-profile-img {
+    text-align: center;
+    float: left;
+}
+#frame-profile-img {
+    border: 1px solid rgba(0, 0, 0, 0.19);
+    border-radius: 50%;
+}
+#frame-profile-img, #frame-profile-img img, #frame-profile-img canvas {
+    border-radius: 50%;
+    width: 200px;
+}    
+canvas {
+    margin: 0px 0px -6px 0px;
+}

@@ -1,0 +1,86 @@
+{% load i18n static %}
+
+<script>
+    $(function () {
+      var $image      = $('#image');  // Imagen dentro del modal 
+      var $modal      = $('#modal-img-profile');
+      var $frame      = $('#frame-profile-img');  // Contenedor de foto perfil
+      var $inputFile  = $('#inputFile');
+      var btnSave     = '#save-model-imgProfile';  // Boton de guardar desde el modal
+      var fileTempModal
+
+      $modal.on('shown.bs.modal', function () {
+        $image
+          .attr('src', fileTempModal)
+          .show()
+          .cropper({
+            cropBoxResizable: true,
+            guides: false,
+            aspectRatio: 1,
+            ready: function () {
+              croppable = true;
+            }
+          });  
+      }).on('hidden.bs.modal', function () {
+        $image.cropper('destroy').hide(); //al cerrar el modal se oculta la imagen para mejorar experiencia de usuario
+      })
+
+      // Cuando se preciona guardar imagen desde Modal
+      $(document).on('click',btnSave,function(){
+        event.preventDefault();
+        $modal.modal('hide');
+        getCroppedCanvas  = $image.cropper('getCroppedCanvas',{ width: 200, height: 200 });
+        $frame.html(getCroppedCanvas);
+      });
+
+      // Funcion generica para abrir modal despues de seleccionar archivo
+      var URL = window.URL || window.webkitURL;  
+      if (URL) {
+        $inputFile.change(function () {
+          var files = this.files;
+          var file;
+          if (files && files.length) {
+            file = files[0];
+            if (/^image\/\w+$/.test(file.type)) {
+              uploadedImageType = file.type;
+              if (fileTempModal) {
+                URL.revokeObjectURL(fileTempModal);
+              }
+              fileTempModal = URL.createObjectURL(file);
+              $modal.modal('show');
+              $inputFile.val('');
+            } else {
+              window.alert('{% trans "please choose an image file."|title %}');
+            }
+          }
+        });
+      } else {
+        $inputFile.prop('disabled', true).parent().addClass('disabled');
+      }
+      // Fin funcion generica
+
+    });
+  </script>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal-img-profile" aria-labelledby="modalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">{% trans "crop the image"|title %}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <img id="image" src="{% static 'dist/img/profile.png' %}" style="display: none;" >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "close"|title %}</button>
+          <button class="btn btn-success" id="save-model-imgProfile">{% trans "save changes"|title %}</button>
+        </div>
+      </div>
+    </div>
+  </div>

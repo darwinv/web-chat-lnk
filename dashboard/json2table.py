@@ -6,29 +6,29 @@ Their code can be found at https://github.com/softvar/json2html
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
-def convert(data, table_attributes=None,header=None,customColumn=None,actualPage=None):
+def convert(data, table_attributes=None,header=None,custom_column=None,actual_page=None):
 
     generateTableObj    = generateTableList(table_attributes=table_attributes)
-
-    if 'list' in data:
+    
+    if type(data) is dict and 'list' in data:
         dataTable = data['list']
     else:
         dataTable = None
         
-    html_output         = generateTableObj.convert(dataTable,header=header,customColumn=customColumn)
+    html_output         = generateTableObj.convert(dataTable,header=header,custom_column=custom_column)
 
-    if actualPage is not None:
-        html_output        += generateTableObj.pagination(countPages=data['countPages'], actualPage=actualPage);
+    if actual_page is not None and type(data) is dict and 'countPages' in data:
+        html_output        += generateTableObj.pagination(count_pages=data['countPages'], actual_page=actual_page);
     return html_output
 
 def getActualPage(request):
-    if 'page' in request.POST:
-        actualPage = request.POST['page']
-    elif 'actualPage' in request.POST:
-        actualPage = request.POST['actualPage']
+    if 'page' in request.GET:
+        actual_page = request.GET['page']
+    elif 'actual_page' in request.GET:
+        actual_page = request.GET['a_page']
     else:
-        actualPage = 0
-    return actualPage
+        actual_page = 0
+    return actual_page
     
 class generateTableList(object):
 
@@ -53,7 +53,7 @@ class generateTableList(object):
         self._table_opening_tag = "<table{:s}>".format(generateTableList._dict_to_html_attributes(table_attributes_defaul))
 
 
-    def convert(self, json_input,header,customColumn=None):
+    def convert(self, json_input,header,custom_column=None):
         """
         Converts JSON to HTML Table format.
 
@@ -77,34 +77,33 @@ class generateTableList(object):
             for listData in json_input:
                 for key in header.values():
 
-                    if key in customColumn:                    
-                        customValue = self.create_custom_column(listData,key,customColumn[key])
+                    if key in custom_column:                    
+                        customValue = self.create_custom_column(listData,key,custom_column[key])
                         html_output += "<td>{}</td>".format(customValue)
                     elif key in listData.keys():
                         html_output += "<td>{}</td>".format(listData[key])
                     else:
                         html_output += "<td></td>"
                 html_output += "</tr>"
+        else:
+            html_output += "<tr><td colspan='{}'>{}</td></tr>".format(len(header.keys()),_("search is empty").title())
         html_output += "</table></div>"
         return html_output
 
 
-    def create_custom_column(self, list,key,customColumnData):
+    def create_custom_column(self, list,key,custom_column_data):
         value = ""
-        print(list)
-        print(key)
-        print("-------------------------")
 
-        if customColumnData['type'] == 'concat':            
-            for key in customColumnData['data']:
+        if custom_column_data['type'] == 'concat':            
+            for key in custom_column_data['data']:
                 value+=" {}".format(list[key])
 
-        if customColumnData['type'] == 'detail':
-            data    = customColumnData['data']
+        if custom_column_data['type'] == 'detail':
+            data    = custom_column_data['data']
             value  +='<a href="'+reverse(data['href'], args=(list[data['key']],))+'"><i class="fa fa-search"></i></a>'
 
-        if customColumnData['type'] == 'delete':
-            data    = customColumnData['data']
+        if custom_column_data['type'] == 'delete':
+            data    = custom_column_data['data']
             value  +='<i class="fa fa-trash pointer {} color-red" data-id="{id}"></i>'.format(data['class'],id=list[data['key']])
 
         return value
@@ -169,26 +168,26 @@ class generateTableList(object):
         return dict(custom, **default);
 
 
-    def pagination(self,countPages,actualPage):
-        leftClass   = rightClass    = ''
+    def pagination(self,count_pages,actual_page):
+        left_class  = right_class    = ''
         leftType    = rightType     = 'submit'
-        page        = int(actualPage) + 1
+        page        = int(actual_page)
 
         paginationHTML  = '<div class="aling-right"><div class="pagination">'
         if page<=1:
-            leftClass   = 'disable'
+            left_class   = 'disable'
             leftType    = 'button'
-        paginationHTML += '<button type="{t}" name="page" value="{}" class="p-btn p-left {}"></button>'.format(int(actualPage)-1,leftClass,t=leftType)
+        paginationHTML += '<button type="{t}" name="page" value="{}" class="p-btn p-left {}"></button>'.format(int(page)-1,left_class,t=leftType)
         
-        paginationHTML += '<spam>{p} {} {of} {}</spam>'.format(page,countPages,p=_('page').title(),of=_('of'))
+        paginationHTML += '<spam>{p} {} {of} {}</spam>'.format(page,count_pages,p=_('page').title(),of=_('of'))
         
-        if page>=countPages:
-            rightClass  = 'disable'
+        if page>=count_pages:
+            right_class  = 'disable'
             rightType   = 'button'
-        paginationHTML += '<button type="{t}" name="page" value="{}" class="p-btn p-right {}"></button>'.format(int(actualPage)+1,rightClass,t=rightType)
+        paginationHTML += '<button type="{t}" name="page" value="{}" class="p-btn p-right {}"></button>'.format(int(page)+1,right_class,t=rightType)
 
 
         paginationHTML += '</div></div>'
-        paginationHTML += '<input type="hidden" name="actualPage" value="{}">'.format(actualPage)
+        paginationHTML += '<input type="hidden" name="a_page" value="{}">'.format(page)
 
         return paginationHTML

@@ -1,1 +1,10 @@
 {% extends 'admin/actor/actorsList.html' %}
+{% load i18n adminlte_helpers %}
+
+{% block filters_actor %}
+	{% if filters.mainSpecialist and filters.mainSpecialist.first_name %}
+		<div class="col-xs-12">
+			<span class="size17">{% trans "asociate specialists to"|upfirstletter %} <strong>{{filters.mainSpecialist.first_name|title}} {{filters.mainSpecialist.lastname|title}}</strong></span>
+		</div>
+	{% endif %}
+{% endblock filters_actor %}
