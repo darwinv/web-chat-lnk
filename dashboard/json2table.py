@@ -11,7 +11,7 @@ def convert(data, table_attributes=None,header=None,customColumn=None,actualPage
     generateTableObj    = generateTableList(table_attributes=table_attributes)
 
     if 'list' in data:
-        dataTable = data
+        dataTable = data['list']
     else:
         dataTable = None
         
@@ -71,6 +71,7 @@ class generateTableList(object):
         html_output = "<div class='overflow-auto'>"
         html_output += self._table_opening_tag
         html_output += self._markup_header_row(header.keys())
+        
         if json_input:
             html_output += "<tr>"
             for listData in json_input:
@@ -90,6 +91,10 @@ class generateTableList(object):
 
     def create_custom_column(self, list,key,customColumnData):
         value = ""
+        print(list)
+        print(key)
+        print("-------------------------")
+
         if customColumnData['type'] == 'concat':            
             for key in customColumnData['data']:
                 value+=" {}".format(list[key])
