@@ -5,7 +5,6 @@ from api.config import API_URL,API_CLIENT_ID,API_CLIENT_SECRET,API_HEADERS
 import requests
 import logging
 import pdb
-import datetime
 
 #Django
 #from django.contrib.auth.models import User
@@ -94,10 +93,20 @@ class api:
 
             data = r.json()
 
-            user = User()
-            user.id = int(data['id'])
-            user.username = data['username']
-            user.updated_at = datetime.datetime.now()
+            # obtener id de la respuesta
+            id = int(data['id'])
+
+            user = None
+            if User.objects.filter(id=id).count() > 0:
+                user = User.objects.filter(id=id)[0]
+
+            # evaluar si existe el usuario en las sesiones guardadas
+            if user:
+                user.username = str(data['username'])
+            else:
+                user = User()
+                user.id = id
+                user.username = str(data['username'])
 
             return user
 
@@ -125,13 +134,21 @@ class api:
 
             data = r.json()
 
-            user = User()
-
-
             try:
-                user.id = int(data[0]['id'])
-                user.username = str(data[0]['username'])
-                user.updated_at = datetime.datetime.now()
+                # obtener id de la respuesta
+                id = int(data['results'][0]['id'])
+
+                user = None
+                if User.objects.filter(id=id).count() > 0:
+                   user = User.objects.filter(id=id)[0]
+
+                # evaluar si existe el usuario en las sesiones guardadas
+                if user:
+                    user.username = str(data['results'][0]['username'])
+                else:
+                    user = User()
+                    user.id = id
+                    user.username = str(data['results'][0]['username'])
 
             except Exception as e:
                 pass

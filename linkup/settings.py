@@ -31,16 +31,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-#AUTH_USER_MODEL = 'dashboard.UserWeb'
+AUTH_USER_MODEL = 'dashboard.User'
 # Application definition
 
 INSTALLED_APPS = [
     'login',
     'dashboard',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    #'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
@@ -55,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SESSION_ENGINE = "django.contrib.sessions.backends.file"
 
 ROOT_URLCONF = 'linkup.urls'
 
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'linkup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'testdb6.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'testdb17.sqlite3'),
     }
 }
 
