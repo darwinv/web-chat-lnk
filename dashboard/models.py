@@ -72,10 +72,11 @@ class User(AbstractUser):
     ruc = models.CharField(max_length=40, unique=True, null=True)
     code = models.CharField(max_length=45, unique=True)
     anonymous = models.BooleanField(default=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True, null=True)
     nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1)
     role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
     address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
+
 
 # Aplicamos herencia multi tabla para que
 # Seller herede de User y se vincule 1 a 1
