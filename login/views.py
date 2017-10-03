@@ -32,6 +32,7 @@ def weblogin(request):
         if form.is_valid():
 
             # Autenticamos datos de usuario del backend
+            
             user = authenticate(request, username=request.POST['user'], password=request.POST['password'])
 
             if user is not None:

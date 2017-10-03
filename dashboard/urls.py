@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^actor/specialists/(?P<specialist_id>[0-9]+)$', views.actors.Specialist().detail, name='actor-specialists-detail'),
     url(r'^actor/specialists/edit/(?P<specialist_id>[0-9]+)$', views.actors.Specialist().edit, name='actor-specialists-edit'),
     url(r'^actor/specialists/create/$', views.actors.Specialist().create, name='actor-specialists-create'),
+    url(r'^actor/specialists/delete/$', views.actors.Specialist().delete, name='actor-specialists-delete'),
 
     #clients
     url(r'^actor/clients/$', views.actors.Client().showList, name='actor-clients-list'),

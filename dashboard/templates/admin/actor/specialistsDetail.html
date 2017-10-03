@@ -13,10 +13,18 @@
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
           <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
           <p>
-            <span class="size18">Mariapia Gonzalez Moral</span>
-            <span>MapiGonzalez@gmail.com</span>
-            <span>947177289</span>
-            <span>3526687</span>
+            {% if data.first_name or data.lastname %}
+              <span class="size18">{{data.first_name}} {{data.lastname}}</span>
+            {% endif %}
+            {% if data.email_exact %}
+              <span>{{data.email_exact}}</span>
+            {% endif %}
+            {% if data.telephone %}
+              <span>{{data.telephone}}</span>
+            {% endif %}
+            {% if data.cellphone %}
+              <span>{{data.cellphone}}</span>
+            {% endif %}
           </p>
         </div>
 
@@ -24,18 +32,34 @@
         <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
           <div class="cont-user-title">              
             <span class="">Datos</span>
-            <a href="{% url 'dashboard:actor-specialists-edit' 2 %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
+            <a href="{% url 'dashboard:actor-specialists-edit' data.id %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
           </div>
           <p>
-            <span><i class="fa fa-star"></i> Especialista Principal</span>
-            <span><i class="fa fa-circle-o-notch"></i> CIIU: 6910 - Actividades Jurídicas</span>
-            <span><i class="fa fa-globe"></i> Peruana</span>
-            <span><i class="fa fa-home"></i> Av. El Derby 250 - 4to Piso Santiago de Surco | Lima 33</span>
-            <span><i class="fa fa-briefcase"></i> Derecho Penal </span>
-            <span><i class="fa fa-building"></i> ACS Abogados</span>
-            <div class="text-center">
-                <button type="button" class="btn btn-flat btn-black">Ve Especialistas Asociados</button>
-            </div>
+            {% if data.type_specialist %}
+              <span><i class="fa fa-star"></i> {% trans "specialist"|title %} {% trans data.type_specialist|title %}</span>
+            {% endif %}
+            {% if data.ciiu %}
+              <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu}}</span>
+            {% endif %}
+            {% if data.nationality %}
+              <span><i class="fa fa-globe"></i> {{data.nationality}}</span> 
+            {% endif %}
+            {% if data.address %}
+              <span><i class="fa fa-home"></i> {{data.address}}</span> 
+            {% endif %}
+            {% if data.category %}
+              <span><i class="fa fa-briefcase"></i> {{data.category}} </span> 
+            {% endif %}
+            {% if data.bussiness_name %}
+              <span><i class="fa fa-building"></i> {{data.bussiness_name}}</span> 
+            {% endif %}
+
+            {% if data.type_specialist == "main" %}
+              <div class="text-center">
+                  <button type="button" class="btn btn-flat btn-black">{% trans "see associate specialists"|title %}</button>
+              </div>
+            {% endif %}
+            
           </p>
         </div>
 
@@ -44,97 +68,91 @@
             <div>                
                 <img src="{% static "dist/img/automatizacion.png" %}" class="img-circle">
                 <p>
-                    <span>Derecho Penal</span>
+                  {% if data.category %}                
+                    <span>{{data.category}}</span>            
+                  {% endif %}
                 </p>
             </div>
-              <div class="cont-info-user text-left padL20 padR20" >          
+            <div class="cont-info-user text-left padL20 padR20" >          
               <p>
-                <span>RUC: 39402984283 </span>
-                <span>www.dlabogados.com</span>
-                <span><i class="fa fa-globe"></i> CV</span>
+                {% if data.ruc %}                
+                  <span>RUC: {{data.ruc}} </span>
+                {% endif %}
+                {% if data.web %}                
+                  <span>{{data.web}} </span>
+                {% endif %}
+                {% if data.cv %}                
+                  <span><i class="fa fa-globe"></i> {{data.cv}}</span>
+                {% endif %}
+                
+                
                 <span>Valoración 
                 	<span>
-						<i class="fa fa-star yellow"></i>
-						<i class="fa fa-star yellow"></i>
-						<i class="fa fa-star yellow"></i>
-						<i class="fa fa-star yellow"></i>
-						<i class="fa fa-star"></i>
-					</span>
+        						<i class="fa fa-star yellow"></i>
+        						<i class="fa fa-star yellow"></i>
+        						<i class="fa fa-star yellow"></i>
+        						<i class="fa fa-star yellow"></i>
+        						<i class="fa fa-star"></i>
+        					</span>
                 </span>
               </p>
             </div>
             <div class="send-mail-backend">
               <div>
-                <span><i class="fa fa-envelope-o"></i> Enviar Mensaje</span>              
+                <span><i class="fa fa-envelope-o"></i> {% trans "send a message"|title %}</span>              
               </div>
             </div>
         </div>
 
     </div>
     <hr>
+  {% if data.personal_totals %}
     <div class="col-xs-12 col-md-6">
-		<div class="tg-head">
-			<div class="tg-title pull-left">Personal</div>
-		</div>
-		<div class="tg-history">
-			<div class="block-center-flat acquitted">
-				<div class="bcf-body">
-					<span class="bcf-title">56</span>
-					<span class="bcf-desc">Consultas resueltas</span>
-				</div>
-			</div>
-			<div class="block-center-flat toAcquit">
-				<div class="bcf-body">
-					<span class="bcf-title">2</span>
-					<span class="bcf-desc">Consultas por Absolver</span>
-				</div>
-			</div>
-			<div class="block-center-flat match">
-				<div class="bcf-body">
-					<span class="bcf-title">10</span>
-					<span class="bcf-desc">Match</span>
-				</div>
-			</div>            
-		</div>
-	</div>
-	<div class="col-xs-12 col-md-6">
-		<div class="tg-head">
-			<div class="tg-title pull-left">Especialidad</div>
-		</div>
-		<div class="tg-history">
-			<div class="block-center-flat acquitted">
-				<div class="bcf-body">
-					<span class="bcf-title">56</span>
-					<span class="bcf-desc">Consultas resueltas</span>
-				</div>
-			</div>
-			<div class="block-center-flat toAcquit">
-				<div class="bcf-body">
-					<span class="bcf-title">2</span>
-					<span class="bcf-desc">Consultas por Absolver</span>
-				</div>
-			</div>
-			<div class="block-center-flat match">
-				<div class="bcf-body">
-					<span class="bcf-title">10</span>
-					<span class="bcf-desc">Match</span>
-				</div>
-			</div>            
-		</div>
-	</div>
-
-
-	<div class="block-alert-user col-xs-12 marB25">
-		<h3>Dashboard</h3>
-      <span class="alert-action-warning">Mariapia tiene 1 consulta pendiente de respuesta de Derecho Penal 2/05/16</span>
-      <span class="alert-action-warning">Mariapia le asigno baja calificación a respuesta recibida de Publicidad y Marketing</span>
-      <span class="alert-action-success">Mariapia transfirió 1 Plan Express Duo a Jorge Luis Pérez con DNI 40793456</span>
-      <span class="alert-action-info">Mariapia ha compartido 2 consultas de su Minipack con Stefano Salas con DNI 20506723</span>
+      <div class="tg-head">
+      	<div class="tg-title pull-left">{% trans "personal"|title %}</div>
+      </div>
+      <div class="tg-history">
+        {% for total in data.personal_totals %}
+          <div class="block-center-flat {{total.type}}">
+            <div class="bcf-body">
+              <span class="bcf-title">{{total.amount}}</span>
+              <span class="bcf-desc">{{total.name|title}}</span>
+            </div>
+          </div>
+        {% endfor %}           
+      </div>
     </div>
+  {% endif %}
+  {% if data.specialty_totals %}
+  	<div class="col-xs-12 col-md-6">
+  		<div class="tg-head">
+  			<div class="tg-title pull-left">{% trans "specialty"|title %}</div>
+  		</div>
+  		<div class="tg-history">
+  			{% for total in data.specialty_totals %}
+          <div class="block-center-flat {{total.type}}">
+            <div class="bcf-body">
+              <span class="bcf-title">{{total.amount}}</span>
+              <span class="bcf-desc">{{total.name|title}}</span>
+            </div>
+          </div>
+        {% endfor %}     
+  		</div>
+  	</div>
+  {% endif %}
+  {% if data.alerts %}
+    <div class="block-alert-user col-xs-12 marB25">
+		  <h3>{% trans "dashboard"|title %}</h3>
+      {% for alert in data.alerts %}
+        <span class="{{alert.type}}">{{alert.text}}</span>
+      {% endfor %} 
+    </div>
+  {% endif %}
 
 
     <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-flat btn-black">{% trans "block"|title %}</button>
+        <button type="button" class="btn btn-flat btn-black">{% trans data.bloked|title %}</button>
     </div>
+  }
 
 {% endblock main_content_row %}

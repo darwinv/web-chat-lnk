@@ -167,8 +167,7 @@ class api:
             headers = {'Authorization': 'Bearer '+request.session['token']}
 
             headers = dict(headers, **self._headers)
-            
-            r = requests.get(self._url+slug, headers=headers)
+            r = requests.get(self._url+slug, headers=headers, params=arg)
             
             return r.json()
         except Exception as e:
@@ -179,7 +178,7 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.post(self._url, params=arg)
+            r = requests.post(self._url+slug, headers=headers, params=arg)
             return r.json()
         except Exception as e:
             pass
@@ -189,7 +188,7 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.put(self._url, params=arg)
+            r = requests.put(self._url+slug, headers=headers, params=arg)
             return r.json()
         except Exception as e:
             pass
@@ -199,7 +198,8 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.delete(self._url, params=arg)
+            r = requests.delete(self._url+slug, headers=headers, params=arg)
+
             return r.json()
         except Exception as e:
             pass
