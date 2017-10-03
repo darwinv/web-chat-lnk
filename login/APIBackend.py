@@ -41,8 +41,7 @@ class APIBackend(object):
                 #se debe pasar user y token para obtener los datos del usuario
                 user = apiObj.getUsuario(token, username)
                 #guardar usuario unicamete para que el framework acepte el objeto
-                
-                user.save()
+                #user.save()
 
             except User.DoesNotExist:
                 return None

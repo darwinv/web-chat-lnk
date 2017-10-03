@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from django.utils.translation import ugettext_lazy as _
 import os
 from django.db import models
+from linkup.local_settings import *
+
 #import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTH_USER_MODEL = 'dashboard.User'
+#AUTH_USER_MODEL = 'dashboard.UserWeb'
 # Application definition
 
 INSTALLED_APPS = [
@@ -84,7 +86,7 @@ WSGI_APPLICATION = 'linkup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'testdb4.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'testdb6.sqlite3'),
     }
 }
 

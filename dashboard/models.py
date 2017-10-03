@@ -1,6 +1,26 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+#
+# class UserWeb(models.Model):
+#     username = models.CharField( \
+#         ('username'),
+#         max_length=150,
+#         unique=True
+#     )
+#     email = models.EmailField(('email address'), blank=True)
+#
+#     @property
+#     def is_anonymous(self):
+#         return False
+#
+#     @property
+#     def is_authenticated(self):
+#         return True
+#
+#     USERNAME_FIELD = 'username'
+#     REQUIRED_FIELDS = ['email']
+
 class Countries(models.Model):
     name = models.CharField(max_length=90, unique=True)
     code_phone = models.CharField(max_length=4, unique=True)
@@ -76,6 +96,7 @@ class User(AbstractUser):
     nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1)
     role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
     address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
+
 
 # Aplicamos herencia multi tabla para que
 # Seller herede de User y se vincule 1 a 1

@@ -5,6 +5,7 @@ from api.config import API_URL,API_CLIENT_ID,API_CLIENT_SECRET,API_HEADERS
 import requests
 import logging
 import pdb
+import datetime
 
 #Django
 #from django.contrib.auth.models import User
@@ -96,6 +97,7 @@ class api:
             user = User()
             user.id = int(data['id'])
             user.username = data['username']
+            user.updated_at = datetime.datetime.now()
 
             return user
 
@@ -129,6 +131,8 @@ class api:
             try:
                 user.id = int(data[0]['id'])
                 user.username = str(data[0]['username'])
+                user.updated_at = datetime.datetime.now()
+
             except Exception as e:
                 pass
 

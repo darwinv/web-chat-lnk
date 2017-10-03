@@ -9,10 +9,10 @@ from django.urls import reverse
 def convert(data, table_attributes=None,header=None,customColumn=None,actualPage=None):
 
     generateTableObj    = generateTableList(table_attributes=table_attributes)
-    html_output         = generateTableObj.convert(data['list'],header=header,customColumn=customColumn)
+    html_output         = generateTableObj.convert(data['results'],header=header,customColumn=customColumn)
 
     if actualPage is not None:
-        html_output        += generateTableObj.pagination(countPages=data['countPages'], actualPage=actualPage);
+        html_output        += generateTableObj.pagination(countPages=data['count'], actualPage=actualPage);
     return html_output
 
 def getActualPage(request):
