@@ -2,7 +2,7 @@
 <!-- Este archivo es llamado por toda la App para cumplir funciones  -->
 <!-- personalizadas para 2 o mas vistas -->
 <script>
-	
+	$(function () {
 	// get globar api var traidas desde api_tools
 	{% autoescape off %}
 		var urlBase   		= '{% get_api_url %}';	
@@ -68,15 +68,31 @@
 
 	// Funciones genericas para borrar desde listado
 	//
-	// Funcion para borrar 
-	$(document).on('click', '.deleteSpecialist', function() {
-    	id 		= $(this).data('id');
-    	url 	= '{% url "dashboard:actor-specialists-delete"  %}'
-    	data 	= {'specialist_id': id}
+	// Cuando se preciona guardar imagen desde Modal
+	var $modalConfirmDelete	= $('#confirm-delete'),
+		icoDelete 			= '.ico-delete-row',
+		btnDelete 			= '.btn-delete-ok';
 
-    	sendAjaxDelete(url,data,$(this),'POST');
+    $(document).on('click',icoDelete,function(){
+    	var dataAttr = $(this).data()
+
+    	$.each(dataAttr, function(key, value) {
+    		$(btnDelete).data(key,value);
+        });
+    	console.log("seee");
+    	$modalConfirmDelete.modal('show');
 	});
-	function sendAjaxDelete(url,data,element,type='POST'){
+
+	$(document).on('click',btnDelete,function(){
+		event.preventDefault();		
+		id 		= $(this).data('id');
+    	url 	= $(this).data('url');
+    	data 	= {'id': id}
+    	console.log(data);
+    	sendAjaxDelete(url,data,'POST');
+	});
+
+	function sendAjaxDelete(url,data,type='POST'){
 		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 		$.ajax({
 		  type: type,
@@ -95,7 +111,7 @@
 		  data:data,
 		  dataType: "json",
 		  success: function(msg) {
-			element.closest("form").submit(); // Podria ser reloadPage pero conservar filtros
+			location.reload();
 		  }
 		});
 	}
@@ -120,6 +136,6 @@
 	    return cookieValue;
 	}
 	
-	
+	});
 	
 </script>

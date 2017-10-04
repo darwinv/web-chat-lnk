@@ -28,7 +28,7 @@ def getActualPage(request):
     elif 'actual_page' in request.GET:
         actual_page = request.GET['a_page']
     else:
-        actual_page = 0
+        actual_page = 1
     return actual_page
     
 class generateTableList(object):
@@ -101,11 +101,11 @@ class generateTableList(object):
 
         if custom_column_data['type'] == 'detail':
             data    = custom_column_data['data']
-            value  +='<a href="'+reverse(data['href'], args=(list[data['key']],))+'"><i class="fa fa-search"></i></a>'
+            value  +='<a href="{}"><i class="fa fa-search"></i></a>'.format(reverse(data['url'], args=(list[data['key']],)))
 
         if custom_column_data['type'] == 'delete':
             data    = custom_column_data['data']
-            value  +='<i class="fa fa-trash pointer {} color-red" data-id="{id}"></i>'.format(data['class'],id=list[data['key']])
+            value  +='<i class="fa fa-trash pointer color-red ico-delete-row" data-url="{}" data-id="{id}"></i>'.format(reverse(data['url']),id=list[data['key']])
 
         return value
 

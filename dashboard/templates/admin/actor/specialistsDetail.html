@@ -13,8 +13,8 @@
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
           <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
           <p>
-            {% if data.first_name or data.lastname %}
-              <span class="size18">{{data.first_name}} {{data.lastname}}</span>
+            {% if data.first_name or data.last_name %}
+              <span class="size18">{{data.first_name}} {{data.last_name}}</span>
             {% endif %}
             {% if data.email_exact %}
               <span>{{data.email_exact}}</span>
@@ -36,7 +36,9 @@
           </div>
           <p>
             {% if data.type_specialist %}
-              <span><i class="fa fa-star"></i> {% trans "specialist"|title %} {% trans data.type_specialist|title %}</span>
+              {% with data.type_specialist|add:" speecialist" as type_specialist %}
+                <span><i class="fa fa-star yellow"></i> {% trans type_specialist|title %}</span>
+              {% endwith %}
             {% endif %}
             {% if data.ciiu %}
               <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu}}</span>
@@ -45,7 +47,13 @@
               <span><i class="fa fa-globe"></i> {{data.nationality}}</span> 
             {% endif %}
             {% if data.address %}
-              <span><i class="fa fa-home"></i> {{data.address}}</span> 
+              <span>
+                <i class="fa fa-home"></i>                
+                {{data.address.street}} - 
+                {{data.address.department}} |
+                {{data.address.province}} | 
+                {{data.address.district}}
+              </span>
             {% endif %}
             {% if data.category %}
               <span><i class="fa fa-briefcase"></i> {{data.category}} </span> 

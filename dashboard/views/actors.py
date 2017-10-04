@@ -29,10 +29,14 @@ class Actor:
 
 
 class Specialist(Actor):
-    vars_page = {
-                'btn_specialists_class':'active',
-                'name_create_URL':'dashboard:actor-specialists-create',
-                }
+
+    _delete      = 'dashboard:actor-specialists-delete'
+    _detail      = 'dashboard:actor-specialists-detail'
+    _create      = 'dashboard:actor-specialists-create'
+    vars_page   = {
+                    'btn_specialists_class':'active',
+                    'name_create_URL':_create,
+                   }
 
     @method_decorator(login_required)
     def list(self,request):
@@ -56,8 +60,8 @@ class Specialist(Actor):
         # Definimos columnas adicionales/personalizadas
         custom_column    = {
                             "last_name": {'type':'concat','data':{'username', 'last_name'}},
-                            "detail": {'type':'detail','data':{'href':'dashboard:actor-specialists-detail','key':'id'}},
-                            "delete": {'type':'delete','data':{'class':'deleteSpecialist','key':'id'}}
+                            "detail": {'type':'detail','data':{'url':self._detail,'key':'id'}},
+                            "delete": {'type':'delete','data':{'url':self._delete,'key':'id'}}
                           }
         
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
@@ -88,6 +92,7 @@ class Specialist(Actor):
             type_specialist = data['type_specialist']
         else:
             type_specialist = ''
+
 
         title_page     = "{} {} - {}".format(_('specialist').title(),_(type_specialist),_('detail').title())
         vars_page      = self.generateHeader(custom_title=title_page)
@@ -186,9 +191,9 @@ class Specialist(Actor):
     @method_decorator(login_required)
     def delete(self,request):
         if request.method == 'POST':
-            specialist_id   = request.POST['specialist_id']
+            id              = request.POST['id']
             ObjApi          = api()
-            result          = ObjApi.delete(slug='specialists/'+specialist_id,token=request.session['token'])
+            result          = ObjApi.delete(slug='specialists/'+id,token=request.session['token'])
 
             return JsonResponse({'result': result})
 
