@@ -18,9 +18,10 @@ urlpatterns = [
 
     #clients
     url(r'^actor/clients/$', views.actors.Client().list, name='actor-clients-list'),
-    url(r'^actor/clients/(?P<client_id>[0-9]+)$', views.actors.Client().list, name='actor-clients-detail'),
-    url(r'^actor/clients/edit/(?P<client_id>[0-9]+)$', views.actors.Client().list, name='actor-clients-edit'),
-    url(r'^actor/clients/create/$', views.actors.Client().list, name='actor-clients-create'),
+    url(r'^actor/clients/(?P<client_id>[0-9]+)$', views.actors.Client().detail, name='actor-clients-detail'),
+    url(r'^actor/clients/edit/(?P<client_id>[0-9]+)$', views.actors.Client().edit, name='actor-clients-edit'),
+    url(r'^actor/clients/create/$', views.actors.Client().create, name='actor-clients-create'),
+    url(r'^actor/specialists/delete/$', views.actors.Client().delete, name='actor-specialists-delete'),
 
     #sellers
     url(r'^actor/sellers/$', views.actors.Seller().list, name='actor-sellers-list'),

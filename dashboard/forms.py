@@ -34,7 +34,7 @@ class SpecialistForm(ModelForm):
 
     class Meta:
         model   = Specialist
-        fields  = ['first_name','last_name','email_exact','telephone','cellphone','document_type','document_number','ruc', 'bussiness_name','type_specialist']
+        fields  = ['username','nick','password','first_name','last_name','email_exact','telephone','cellphone','document_type','document_number','ruc', 'bussiness_name','type_specialist']
         labels  = {
             'email_exact': _('email').title(),
             'ruc': 'RUC',

@@ -56,11 +56,11 @@
 
             {% if data.type_specialist == "main" %}
               <div class="text-center">
-                <a href="{% url 'dashboard:actor-specialists-list' %}?mainSpecialist=2" class="btn btn-flat btn-black">{% trans "see associate specialists"|title %}</a>
+                <a href="{% url 'dashboard:actor-specialists-list' %}?main_specialist=2" class="btn btn-flat btn-black">{% trans "see associate specialists"|title %}</a>
               </div>
-            {% elif data.type_specialist == "associate" and data.mainSpecialist %}
+            {% elif data.type_specialist == "associate" and data.main_specialist %}
               <div class="text-center">
-                <a href="{% url 'dashboard:actor-specialists-detail' data.mainSpecialist %}" class="btn btn-flat btn-black">{% trans "see main specialist"|title %}</a>
+                <a href="{% url 'dashboard:actor-specialists-detail' data.main_specialist %}" class="btn btn-flat btn-black">{% trans "see main specialist"|title %}</a>
               </div>
             {% endif %}
             
@@ -154,8 +154,10 @@
   {% endif %}
 
 
+  {% if data.bloked %}
     <div class="col-xs-12 text-center">
         <button type="button" class="btn btn-flat btn-black">{% trans data.bloked|title %}</button>
     </div>
+  {% endif %} 
 
 {% endblock main_content_row %}

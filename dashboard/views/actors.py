@@ -10,6 +10,8 @@ from api.connection import api
 
 from dashboard.json2table import convert,getActualPage
 from dashboard.forms import SpecialistForm
+import json
+import pdb
 
 class Actor:
     logo_content_header    = "fa fa-users"
@@ -23,6 +25,7 @@ class Actor:
 
         header = {'icon':self.logo_content_header,'title':title}
         return {**header, **self.vars_page}
+
 
 
 class Specialist(Actor):
@@ -39,15 +42,16 @@ class Specialist(Actor):
         arg             = {"page": actual_page}
 
         # Filtro de especialista principal
-        if 'mainSpecialist' in request.GET:
-            mainSpecialist      =  request.GET['mainSpecialist']
-            arg.update({"mainSpecialist": mainSpecialist})
-            dataMainSpecilist   = ObjApi.get(slug='specialists/'+mainSpecialist,token=request.session['token'])
-            filters.update({'mainSpecialist':dataMainSpecilist})
+        if 'main_specialist' in request.GET:
+            main_specialist      =  request.GET['main_specialist']
+            arg.update({"main_specialist": main_specialist})
+            dataMainSpecilist   = ObjApi.get(slug='specialists/'+main_specialist,token=request.session['token'])
+            filters.update({'main_specialist':dataMainSpecilist})
 
 
         # Traer data para el listado
         data            = ObjApi.get(slug='specialists/',arg=arg,token=request.session['token'])
+        
 
         # Definimos columnas adicionales/personalizadas
         custom_column    = {
@@ -57,7 +61,7 @@ class Specialist(Actor):
                           }
         
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
-        lastnames_title  = "{} {} {}".format(_("surnames"),_("and"),_("names"))
+        lastnames_title = "{} {} {}".format(_("surnames"),_("and"),_("names"))
         header_tabla    = {lastnames_title: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "",
                            _("specialty"): "",_("detail"): "detail",_("delete"): "delete"}
 
@@ -98,13 +102,42 @@ class Specialist(Actor):
         if request.method == 'POST':
             form = SpecialistForm(data=request.POST)            
             if form.is_valid():
-                result = ObjApi.post(slug='specilist/',token=request.session['token'])
+
+                data = form.cleaned_data
+                data.update({"photo": "preview.jpg","payment_per_answer": "3.2"})
+                
+                # {
+                #     "address": {
+                #         "street": "jupiter 209",
+                #         "department": "Lima",
+                #         "province": "Lima",
+                #         "district": "Surco"
+                #     },
+                #     "photo": "preview.jpg",
+                #     "payment_per_answer": 3.2,
+                # }
+                data_arg    = json.dumps(data, ensure_ascii=False)  # Transforma dict en JSON
+
+                result      = ObjApi.post(slug='specilists/',token=request.session['token'],arg=data_arg)                
+                return HttpResponse(data_arg)  # retornar json por pantalla
+
+
                 return HttpResponseRedirect(reverse('dashboard:actor-specialists-list'))
 
         else:
-            categories  = ObjApi.get(slug='categories/',token=request.session['token'])
-            departments = ObjApi.get(slug='departments/',token=request.session['token'])
-            form        = SpecialistForm(categories=categories['list'],departments=departments['list'])
+            categories_api  = ObjApi.get(slug='categories/',token=request.session['token'])
+            departments_api = ObjApi.get(slug='departments/',token=request.session['token'])
+
+            if departments_api and 'list' in departments_api:
+                departments=departments_api['list']
+            else:
+                departments=None
+            if categories_api and 'list' in categories_api:
+                categories=categories_api['list']
+            else:
+                categories=None
+
+            form        = SpecialistForm(categories=categories,departments=departments)
                 
         title_page     = _('create specialist').title()
         vars_page      = self.generateHeader(custom_title=title_page)
@@ -121,7 +154,7 @@ class Specialist(Actor):
             form = SpecialistForm(data=request.POST)
             # check whether it's valid:
             if form.is_valid():
-                result = ObjApi.put(slug='specilist/'+specialist_id,token=request.session['token'])
+                result = ObjApi.put(slug='specilists/'+specialist_id,token=request.session['token'])
                 return HttpResponseRedirect(reverse('dashboard:actor-specialists-list'))
 
         else:
@@ -132,14 +165,14 @@ class Specialist(Actor):
             # Si el usuario tiene department, traemos provincia
             if 'department' in specilist:
                 arg = {'department':specilist['department']}
-                provinces   = ObjApi.get(slug='provinces/',request=request,arg=arg)
+                provinces   = ObjApi.get(slug='provinces/',token=request.session['token'],arg=arg)
             else:
                 provinces   = {'list':None}
 
             # Si el usuario tiene province, traemos distritos
             if 'province' in specilist:
                 arg = {'province':specilist['province']}
-                districts   = ObjApi.get(slug='districts/',request=request,arg=arg)
+                districts   = ObjApi.get(slug='districts/',token=request.session['token'],arg=arg)
             else:
                 districts   = {'list':None}
 
@@ -162,39 +195,76 @@ class Specialist(Actor):
         return JsonResponse({})
 
 
-
 class Client(Actor):
     vars_page = {
-                'btnClientsClass':'active',
-                'nameCreateURL':'dashboard:actor-clients-create',
+                'btn_clients_class':'active',
+                'name_create_URL':'dashboard:actor-clients-create',
                 }
 
     @method_decorator(login_required)
     def list(self,request):
-        actual_page      = getActualPage(request)
-        arg             = {"page": actual_page}
         ObjApi          = api()
+        filters         = {}
+        actual_page     = getActualPage(request)
+        arg             = {"page": actual_page}
+
+
+        # Traer data para el listado
         data            = ObjApi.get(slug='clients/',arg=arg,token=request.session['token'])
         
-
+        # Definimos columnas adicionales/personalizadas
         custom_column    = {
                             "detail": {'type':'detail','data':{'href':'dashboard:actor-clients-detail','key':'id'}}
                           }
-        lastnames_title  = "{}/{}".format(_("names"),_("business name"))
+        lastnames_title = "{}/{}".format(_("names"),_("business name"))
         header_tabla    = {lastnames_title: "bussiness_name", _("alias"): "nick", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "",
                            _("identification document"): "document_number",_("RUC"): "ruc",_("category"): "",_("consultas"): "",_("detail"): "detail"}
         tabla           = convert(data, header=header_tabla,actual_page=actual_page, custom_column=custom_column )
 
+        
+        title_page      = _('clients').title()
+        vars_page       = self.generateHeader(custom_title=title_page)
 
-        vars_page        = self.generateHeader(custom_title=_('clients').title())
-        return render(request, 'admin/actor/clientsList.html', {'tabla': tabla,'vars_page':vars_page})
+        return render(request, 'admin/actor/clientsList.html', {'tabla': tabla,'vars_page':vars_page,'filters':filters})
+
+    @method_decorator(login_required)
+    def detail(self,request,client_id):
+        ObjApi = api()
+        data   = ObjApi.get(slug='clients/'+client_id,token=request.session['token'])
+
+        # Si la data del usuario no es valida
+        if type(data) is not dict or 'id' not in data:
+            raise Http404()
+
+
+
+        title_page     = "{}".format(_('user').title())
+        vars_page      = self.generateHeader(custom_title=title_page)
+
+        return render(request, 'admin/actor/clientsDetail.html',{'data': data,'vars_page':vars_page})
+
+
+    @method_decorator(login_required)
+    def create(self,request):
+        pass
+
+
+
+    @method_decorator(login_required)
+    def edit(self,request,specialist_id):
+        pass
+
+    
+    @method_decorator(login_required)
+    def delete(self,request):
+        pass
 
 
 
 class Seller(Actor):
     vars_page = {
-                'btnSellersClass':'active',
-                'nameCreateURL':'dashboard:actor-sellers-create',
+                'btn_sellers_class':'active',
+                'name_create_URL':'dashboard:actor-sellers-create',
                 }
 
     @method_decorator(login_required)
@@ -221,8 +291,8 @@ class Seller(Actor):
 
 class Administrator(Actor):
     vars_page = {
-                'btnAdministratorsClass':'active',
-                'nameCreateURL':'dashboard:actor-administrators-create',
+                'btn_administrators_class':'active',
+                'name_create_URL':'dashboard:actor-administrators-create',
                 }
 
     @method_decorator(login_required)
@@ -231,7 +301,7 @@ class Administrator(Actor):
         arg             = {"page": actual_page}
         ObjApi          = api()
         data            = ObjApi.get(slug='administrators/',arg=arg,token=request.session['token'])
-
+        
         custom_column    = {
                             "last_name": {'type':'concat','data':{'username', 'last_name'}},
                             "detail": {'type':'detail','data':{'href':'dashboard:actor-administrators-detail','key':'id'}}

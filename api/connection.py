@@ -136,9 +136,11 @@ class api:
 
             try:
                 # obtener id de la respuesta
-                id = int(data['results'][0]['id'])
 
+                id = int(data['results'][0]['id'])
+                
                 user = None
+
                 if User.objects.filter(id=id).count() > 0:
                    user = User.objects.filter(id=id)[0]
 
@@ -151,7 +153,9 @@ class api:
                     user.username = str(data['results'][0]['username'])
 
             except Exception as e:
-                pass
+                print(e)
+                print("---------------ERROR---------------")
+
 
             return user
 
@@ -181,7 +185,8 @@ class api:
             r = requests.post(self._url+slug, headers=headers, params=arg)
             return r.json()
         except Exception as e:
-            pass
+            print(e.args)
+            print("---------------ERROR---------------")
 
     def put(self,token,slug='',arg=None):
         headers = {'Authorization': 'Bearer '+token}
@@ -191,7 +196,8 @@ class api:
             r = requests.put(self._url+slug, headers=headers, params=arg)
             return r.json()
         except Exception as e:
-            pass
+            print(e)
+            print("---------------ERROR---------------")
 
     def delete(self,token,slug='',arg=None):
         headers = {'Authorization': 'Bearer '+token}
@@ -202,4 +208,5 @@ class api:
 
             return r.json()
         except Exception as e:
-            pass
+            print(e)
+            print("---------------ERROR---------------")

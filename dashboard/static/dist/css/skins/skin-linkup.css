@@ -194,6 +194,7 @@ input,button,select{
   padding-top: 10px;
   padding-bottom: 10px;
   max-width: 450px;
+  min-width: 200px;
 }
 .cont-info-user p>span {
     display: block;

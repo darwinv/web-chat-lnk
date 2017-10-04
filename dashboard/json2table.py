@@ -7,18 +7,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
 def convert(data, table_attributes=None,header=None,custom_column=None,actual_page=None):
-
+    
     generateTableObj    = generateTableList(table_attributes=table_attributes)
     
-    if type(data) is dict and 'list' in data:
-        dataTable = data['list']
+    if type(data) is dict and 'results' in data:
+        dataTable = data['results']
     else:
         dataTable = None
         
     html_output         = generateTableObj.convert(dataTable,header=header,custom_column=custom_column)
 
-    if actual_page is not None and type(data) is dict and 'countPages' in data:
-        html_output        += generateTableObj.pagination(count_pages=data['countPages'], actual_page=actual_page);
+    if actual_page is not None and type(data) is dict and 'count' in data:
+        html_output    += generateTableObj.pagination(count_pages=data['count'], actual_page=actual_page);
 
     return html_output
 
