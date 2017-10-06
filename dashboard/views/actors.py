@@ -29,10 +29,11 @@ class Actor:
 
 
 class Specialist(Actor):
-
-    _delete      = 'dashboard:actor-specialists-delete'
-    _detail      = 'dashboard:actor-specialists-detail'
-    _create      = 'dashboard:actor-specialists-create'
+    _list       = 'dashboard:actor-specialists-list'
+    _delete     = 'dashboard:actor-specialists-delete'
+    _detail     = 'dashboard:actor-specialists-detail'
+    _create     = 'dashboard:actor-specialists-create'
+    _edit       = 'dashboard:actor-specialists-edit'
     vars_page   = {
                     'btn_specialists_class':'active',
                     'name_create_URL':_create,
@@ -79,9 +80,9 @@ class Specialist(Actor):
 
 
     @method_decorator(login_required)
-    def detail(self,request,specialist_id):
+    def detail(self,request,id):
         ObjApi = api()
-        data   = ObjApi.get(slug='specialists/'+specialist_id,token=request.session['token'])
+        data   = ObjApi.get(slug='specialists/'+id,token=request.session['token'])
 
         # Si la data del usuario no es valida
         if type(data) is not dict or 'id' not in data:
@@ -102,90 +103,131 @@ class Specialist(Actor):
 
     @method_decorator(login_required)
     def create(self,request):
-        ObjApi      = api()
+        ObjApi                 = api()
+        token                   = request.session['token']
 
         if request.method == 'POST':
-            form = SpecialistForm(data=request.POST)            
+            form = self.generateFormSpecialist(token=token,ObjApi=ObjApi,data=request.POST)
             if form.is_valid():
-
+                # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
-                data.update({"photo": "preview.jpg","payment_per_answer": "3.2"})
+                data.update({
+                                "photo": "preview.jpg",
+                                "address": {
+                                    "street": data["street"],
+                                    "department": "Lima",
+                                    "province": "Lima",
+                                    "district": "Surco"
+                                }
+                            })
                 
-                # {
-                #     "address": {
-                #         "street": "jupiter 209",
-                #         "department": "Lima",
-                #         "province": "Lima",
-                #         "district": "Surco"
-                #     },
-                #     "photo": "preview.jpg",
-                #     "payment_per_answer": 3.2,
-                # }
-                data_arg    = json.dumps(data, ensure_ascii=False)  # Transforma dict en JSON
-
-                result      = ObjApi.post(slug='specilists/',token=request.session['token'],arg=data_arg)                
-                return HttpResponse(data_arg)  # retornar json por pantalla
-
-
-                return HttpResponseRedirect(reverse('dashboard:actor-specialists-list'))
-
+                result      = ObjApi.post(slug='specialists/',token=token,arg=data)
+                
+                if result and 'id' in result:
+                    # Process success                    
+                    return HttpResponseRedirect(reverse(self._list))
+                else:
+                    # Mostrar Errores en Form
+                    form.add_error_custom(add_errors=result)  # Agregamos errores retornados por la app para este formulario
+                    
+                    return render(request, 'admin/actor/specialistsForm.html', {'form':form})
+                
         else:
-            categories_api  = ObjApi.get(slug='categories/',token=request.session['token'])
-            departments_api = ObjApi.get(slug='departments/',token=request.session['token'])
-
-            if departments_api and 'list' in departments_api:
-                departments=departments_api['list']
-            else:
-                departments=None
-            if categories_api and 'list' in categories_api:
-                categories=categories_api['list']
-            else:
-                categories=None
-
-            form        = SpecialistForm(categories=categories,departments=departments)
+            # Crear formulario de especialistas vacio, se traeran 
+            # datos de selecion como Categorias y Departamentos.
+            form = self.generateFormSpecialist(token=token,ObjApi=ObjApi)
                 
-        title_page     = _('create specialist').title()
-        vars_page      = self.generateHeader(custom_title=title_page)
 
-        return render(request, 'admin/actor/specialistsForm.html', {'vars_page':vars_page,'form':form})
+        title_page          = _('create specialist').title()
+        vars_page           = self.generateHeader(custom_title=title_page)
+        specialists_form    = reverse(self._create)
+        return render(request, 'admin/actor/specialistsForm.html', {'vars_page':vars_page,'form':form,'specialists_form':specialists_form})
 
+
+    def generateFormSpecialist(self,token,ObjApi,data=None,specilist=None,form_edit=None):
+        """
+        Funcion para generar traer formulario de especialistas
+
+        :param token: codigo de autentificacion
+        :param ObjApi: objeto para conectar a la api
+        :param data: objeto POST o dict de valores relacional
+        :param specilist: dict que contiene los valores iniciales del usuario
+        :param form_edit: Bolean para saber si sera un formulario para editar usuario
+        :return: objeto Form de acuerdo a parametros
+        """
+        categories = departments = provinces = districts = None
+
+        categories_api  = ObjApi.get(slug='categories/',token=token)
+        departments_api = ObjApi.get(slug='departments/',token=token)
+
+
+        if departments_api and 'results' in departments_api:
+            departments = departments_api['results']
+        
+        if categories_api:
+            categories = categories_api  #  Borrar este comentario de que este resuelto.. Debe ser con paginacion para seguir estandar..
+        
+
+        # Validamos que el listado este en la respuesta
+        # si no cumple las validaciones por Default el valor sera None
+        # Si el usuario tiene department, traemos provincia
+        if specilist and 'department' in specilist:
+            arg = {'department':specilist['department']}
+            provinces_api   = ObjApi.get(slug='provinces/',token=token,arg=arg)
+            if provinces_api and 'result' in provinces_api:
+                provinces = provinces_api['result']
+        
+        # Si el usuario tiene province, traemos distritos
+        if specilist and 'province' in specilist:
+            arg = {'province':specilist['province']}
+            districts_api   = ObjApi.get(slug='districts/',token=token,arg=arg)
+            if districts_api and 'result' in districts_api:
+                districts = districts_api['result']
+        
+        return SpecialistForm(data=data,categories=categories,departments=departments,provinces=provinces,districts=districts,initial=specilist,form_edit=form_edit)
 
 
     @method_decorator(login_required)
-    def edit(self,request,specialist_id):
-        ObjApi      = api()
+    def edit(self,request,id):
+        ObjApi              = api()
+        token               = request.session['token']
 
         if request.method == 'POST':
-            form = SpecialistForm(data=request.POST)
+            form = self.generateFormSpecialist(token=token,ObjApi=ObjApi,data=request.POST,form_edit=True)
             # check whether it's valid:
             if form.is_valid():
-                result = ObjApi.put(slug='specilists/'+specialist_id,token=request.session['token'])
-                return HttpResponseRedirect(reverse('dashboard:actor-specialists-list'))
+                # Tomamos todo el formulario para enviarlo a la API
+                data = form.cleaned_data
+                data.update({
+                                "photo": "preview.jpg",
+                                "address": {
+                                    "street": data["street"],
+                                    "department": "Lima",
+                                    "province": "Lima",
+                                    "district": "Surco"
+                                }
+                            })
+                
+                result = ObjApi.put(slug='specialists/'+id,token=token,arg=data)
+                
+                if result and 'id' in result:
+                    # Process success                    
+                    return HttpResponseRedirect(reverse(self._list))
+                else:
+                    # Mostrar Errores en Form
+                    form.add_error_custom(add_errors=result)  # Agregamos errores retornados por la app para este formulario
+                    
+                    return render(request, 'admin/actor/specialistsForm.html', {'form':form})
 
         else:
-            specilist   = ObjApi.get(slug='specialists/'+specialist_id,token=request.session['token'])
-            categories  = ObjApi.get(slug='categories/',token=request.session['token'])
-            departments = ObjApi.get(slug='departments/',token=request.session['token'])
+            specilist   = ObjApi.get(slug='specialists/'+id,token=token)
 
-            # Si el usuario tiene department, traemos provincia
-            if 'department' in specilist:
-                arg = {'department':specilist['department']}
-                provinces   = ObjApi.get(slug='provinces/',token=request.session['token'],arg=arg)
-            else:
-                provinces   = {'list':None}
+            form = self.generateFormSpecialist(token=token,ObjApi=ObjApi,specilist=specilist,form_edit=True)
 
-            # Si el usuario tiene province, traemos distritos
-            if 'province' in specilist:
-                arg = {'province':specilist['province']}
-                districts   = ObjApi.get(slug='districts/',token=request.session['token'],arg=arg)
-            else:
-                districts   = {'list':None}
-
-            form        = SpecialistForm(categories=categories['list'],departments=departments['list'],provinces=provinces['list'],districts=districts['list'],initial=specilist)
-
-        title_page     = _('edit specialist').title()
-        vars_page      = self.generateHeader(custom_title=title_page)
-        return render(request, 'admin/actor/specialistsForm.html', {'vars_page':vars_page,'form':form})
+        title_page          = _('edit specialist').title()
+        vars_page           = self.generateHeader(custom_title=title_page)
+        specialists_form    = reverse(self._edit, args=(id,))
+        return render(request, 'admin/actor/specialistsForm.html', {'vars_page':vars_page,'form':form,'specialists_form':specialists_form})
 
     
     @method_decorator(login_required)
@@ -233,9 +275,9 @@ class Client(Actor):
         return render(request, 'admin/actor/clientsList.html', {'tabla': tabla,'vars_page':vars_page,'filters':filters})
 
     @method_decorator(login_required)
-    def detail(self,request,client_id):
+    def detail(self,request,id):
         ObjApi = api()
-        data   = ObjApi.get(slug='clients/'+client_id,token=request.session['token'])
+        data   = ObjApi.get(slug='clients/'+id,token=request.session['token'])
 
         # Si la data del usuario no es valida
         if type(data) is not dict or 'id' not in data:
@@ -256,7 +298,7 @@ class Client(Actor):
 
 
     @method_decorator(login_required)
-    def edit(self,request,specialist_id):
+    def edit(self,request,id):
         pass
 
     

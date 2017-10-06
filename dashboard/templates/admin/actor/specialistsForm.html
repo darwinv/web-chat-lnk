@@ -4,7 +4,7 @@
 
 {% block main_content_row %}
 
-    <form class="" action="{% url 'dashboard:actor-specialists-create' %}" method="POST" >
+    <form class="" action="{{specialists_form}}" method="POST" >
         {% csrf_token %}
         
         {{ form.non_field_errors }}
@@ -13,91 +13,139 @@
         </div>
 
 
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.username.errors }}
-            {{ form.username.label_tag }}
-            {{ form.username }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.nick.errors }}
-            {{ form.nick.label_tag }}
-            {{ form.nick }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.password.errors }}
-            {{ form.password.label_tag }}
-            {{ form.password }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.first_name.errors }}
-            {{ form.first_name.label_tag }}
-            {{ form.first_name }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.last_name.errors }}
-            {{ form.last_name.label_tag }}
-            {{ form.last_name }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.email_exact.errors }}
-            {{ form.email_exact.label_tag }}
-            {{ form.email_exact }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.telephone.errors }}
-            {{ form.telephone.label_tag }}
-            {{ form.telephone }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.cellphone.errors }}
-            {{ form.cellphone.label_tag }}
-            {{ form.cellphone }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.document_type.errors }}
-            {{ form.document_type.label_tag }}
-            {{ form.document_type }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.document_number.errors }}
-            {{ form.document_number.label_tag }}
-            {{ form.document_number }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.ruc.errors }}
-            {{ form.ruc.label_tag }}
-            {{ form.ruc }}
-        </div>        
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.category.errors }}
-            {{ form.category.label_tag }}
-            {{ form.category }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.department.errors }}
-            {{ form.department.label_tag }}
-            {{ form.department }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.province.errors }}
-            {{ form.province.label_tag }}
-            {{ form.province }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.district.errors }}
-            {{ form.district.label_tag }}
-            {{ form.district }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.bussiness_name.errors }}
-            {{ form.bussiness_name.label_tag }}
-            {{ form.bussiness_name }}
-        </div>
-        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            {{ form.type_specialist.errors }}
-            {{ form.type_specialist.label_tag }}
-            {{ form.type_specialist }}
-        </div>
+        {% if form.username %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+        {% endif %}
+        {% if form.nick %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.nick.label_tag }}
+                {{ form.nick }}
+                {{ form.nick.errors }}
+            </div>
+        {% endif %}
+        {% if form.password %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+        {% endif %}
+        {% if form.first_name %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+            </div>
+        {% endif %}
+        {% if form.last_name %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+            </div>
+        {% endif %}
+        {% if form.email_exact %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.email_exact.label_tag }}
+                {{ form.email_exact }}
+                {{ form.email_exact.errors }}
+            </div>
+        {% endif %}
+        {% if form.telephone %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.telephone.label_tag }}
+                {{ form.telephone }}
+                {{ form.telephone.errors }}
+            </div>
+        {% endif %}
+        {% if form.cellphone %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.cellphone.label_tag }}
+                {{ form.cellphone }}
+                {{ form.cellphone.errors }}
+            </div>
+        {% endif %}
+        {% if form.document_type %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.document_type.label_tag }}
+                {{ form.document_type }}
+                {{ form.document_type.errors }}
+            </div>
+        {% endif %}
+        {% if form.document_number %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.document_number.label_tag }}
+                {{ form.document_number }}
+                {{ form.document_number.errors }}
+            </div>
+        {% endif %}
+        {% if form.ruc %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.ruc.label_tag }}
+                {{ form.ruc }}
+                {{ form.ruc.errors }}
+            </div>
+        {% endif %}        
+        {% if form.category %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.category.label_tag }}
+                {{ form.category }}
+                {{ form.category.errors }}
+            </div>
+        {% endif %}
+        {% if form.department %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.department.label_tag }}
+                {{ form.department }}
+                {{ form.department.errors }}
+            </div>
+        {% endif %}
+        {% if form.province %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.province.label_tag }}
+                {{ form.province }}
+                {{ form.province.errors }}
+            </div>
+        {% endif %}
+        {% if form.district %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.district.label_tag }}
+                {{ form.district }}
+                {{ form.district.errors }}
+            </div>
+        {% endif %}
+        {% if form.street %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.street.label_tag }}
+                {{ form.street }}
+                {{ form.street.errors }}
+            </div>
+        {% endif %}
+        {% if form.bussiness_name %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.bussiness_name.label_tag }}
+                {{ form.bussiness_name }}
+                {{ form.bussiness_name.errors }}
+            </div>
+        {% endif %}
+        {% if form.type_specialist %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.type_specialist.label_tag }}
+                {{ form.type_specialist }}
+                {{ form.type_specialist.errors }}
+            </div>
+        {% endif %}
+        {% if form.payment_per_answer %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">            
+                {{ form.payment_per_answer.label_tag }}
+                {{ form.payment_per_answer }}
+                {{ form.payment_per_answer.errors }}
+            </div>
+        {% endif %}
         <hr>
         <div class="col-xs-12 text-center">
             <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">

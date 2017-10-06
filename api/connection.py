@@ -178,11 +178,11 @@ class api:
             pass
 
     def post(self,token,slug='',arg=None):
-        headers = {'Authorization': 'Bearer '+token}
+        headers = {'Authorization': 'Bearer ' + token}
         headers = dict(headers, **self._headers)
-
+        
         try:            
-            r = requests.post(self._url+slug, headers=headers, params=arg)
+            r = requests.post(self._url+slug, headers=headers, json=arg)
             return r.json()
         except Exception as e:
             print(e.args)
@@ -193,7 +193,7 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.put(self._url+slug, headers=headers, params=arg)
+            r = requests.put(self._url+slug+'/', headers=headers, json=arg)
             return r.json()
         except Exception as e:
             print(e)
