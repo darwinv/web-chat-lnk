@@ -1,5 +1,0 @@
-msgid "Base de Datos 2"
-msgstr "Database"
-
-msgid "coin"
-msgstr "coin2"

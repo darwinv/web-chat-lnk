@@ -374,7 +374,14 @@ i.fa.fa-star.yellow{
 .p-btn:focus {
     outline: none;
 }
-
+input:read-only {
+  cursor: no-drop;
+  background: #ebebe4;
+}
+input:-moz-read-only{
+  cursor: no-drop;
+  background: #ebebe4;
+}
 /** FORM **/
 .input-form-control > input, .input-form-control > select{
   width: 100%;
@@ -385,6 +392,9 @@ i.fa.fa-star.yellow{
 .cropper-face {
   border-radius: 50%;
   outline: none;
+}
+.modal-body img {
+  max-width: 100%;
 }
 .content-frame-profile-img {
     text-align: center;
@@ -403,7 +413,7 @@ canvas {
 }
 
 /*errorlist*/
-ul.errorlist {
+ul.errorlist:not(.nonfield) {
     position: absolute;
     width: 100%;
 }
@@ -420,7 +430,6 @@ ul.errorlist {
 }
 ul.errorlist li {
     list-style: none;
-    position: absolute;
     background: white;
     border: 1px solid rgba(224, 21, 21, 0.37);
     color: red;
@@ -430,7 +439,10 @@ ul.errorlist li {
     padding: 2px 10px;
     text-align: center;
 }
-ul.errorlist:before {
+ul.errorlist:not(.nonfield) li {
+    position: absolute;
+}
+ul.errorlist:not(.nonfield):before {
     content: "X";
     position: absolute;
     top: -29px;

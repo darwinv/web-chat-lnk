@@ -4,7 +4,7 @@
 {% block main_content_row %}
     <div class="col-xs-12 marB25 cont-search-client" >          
       <button type="button" class="btn btn-flat btn-black pull-right">{% trans "search"|title %}</button>
-      <input type="text" name="" placeholder="Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)" class="search col-xs-8 col-lg-4 pull-right flat marR15">
+      <input type="text" name="" placeholder='{% trans "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"|title %}' class="search col-xs-8 col-lg-4 pull-right flat marR15">
     </div>
 
     <div class="col-xs-12">
@@ -31,7 +31,7 @@
 
         <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
           <div class="cont-user-title">              
-            <span class="">Datos</span>
+            <span class="">{% trans "data"|title %}</span>
             <a href="{% url 'dashboard:actor-specialists-edit' data.id %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
           </div>
           <p>
@@ -58,15 +58,15 @@
             {% if data.category %}
               <span><i class="fa fa-briefcase"></i> {{data.category}} </span> 
             {% endif %}
-            {% if data.bussiness_name %}
-              <span><i class="fa fa-building"></i> {{data.bussiness_name}}</span> 
+            {% if data.business_name %}
+              <span><i class="fa fa-building"></i> {{data.business_name}}</span> 
             {% endif %}
 
-            {% if data.type_specialist == "main" %}
+            {% if data.type_specialist == "Main" %}
               <div class="text-center">
-                <a href="{% url 'dashboard:actor-specialists-list' %}?main_specialist=2" class="btn btn-flat btn-black">{% trans "see associate specialists"|title %}</a>
+                <a href="{% url 'dashboard:actor-specialists-list' %}?main_specialist={{data.id}}" class="btn btn-flat btn-black">{% trans "see associate specialists"|title %}</a>
               </div>
-            {% elif data.type_specialist == "associate" and data.main_specialist %}
+            {% elif data.type_specialist == "Associate" and data.main_specialist %}
               <div class="text-center">
                 <a href="{% url 'dashboard:actor-specialists-detail' data.main_specialist %}" class="btn btn-flat btn-black">{% trans "see main specialist"|title %}</a>
               </div>

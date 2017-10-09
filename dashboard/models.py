@@ -61,7 +61,7 @@ class User(AbstractUser):
     email_exact = models.CharField(max_length=150, unique=True)
     telephone = models.CharField(max_length=14)
     cellphone = models.CharField(max_length=14)
-    photo = models.CharField(max_length=250, default='preview.png') ## instalar pillow para ImageField
+    photo = models.CharField(max_length=250, default='preview.png', null=True)
     options_documents = (
         ('0', 'DNI'),
         ('1', 'Passport'),
@@ -72,11 +72,10 @@ class User(AbstractUser):
     ruc = models.CharField(max_length=40, unique=True, null=True)
     code = models.CharField(max_length=45, unique=True)
     anonymous = models.BooleanField(default=True)
-    updated_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1)
     role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
     address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
-
 
 # Aplicamos herencia multi tabla para que
 # Seller herede de User y se vincule 1 a 1
@@ -108,7 +107,7 @@ class SellerContactNoEfective(models.Model):
     contact_lastname = models.CharField(max_length=55, null=True)
     options_type = (
         ('n', 'Natural'),
-        ('b', 'Bussiness'),
+        ('b', 'business'),
     )
 
     type_contact = models.CharField(max_length=1, choices=options_type)
@@ -120,7 +119,7 @@ class SellerContactNoEfective(models.Model):
     )
     document_type = models.CharField(max_length=1, choices=options_documents)
     document_number = models.CharField(max_length=18)
-    contact_bussinessname = models.CharField(max_length=45, null=True)
+    contact_businessname = models.CharField(max_length=45, null=True)
     agent_firstname = models.CharField(max_length=45, null=True)
     agent_lastname = models.CharField(max_length=45, null=True)
     latitude = models.CharField(max_length=45)
@@ -154,7 +153,7 @@ class LevelInstruction(models.Model):
 class Client(User):
     options_type = (
         ('n', 'Natural'),
-        ('b', 'Bussiness'),
+        ('b', 'business'),
     )
     type_client = models.CharField(max_length=1, choices=options_type)
 
@@ -181,7 +180,7 @@ class Client(User):
     )
     ocupation = models.CharField(max_length=1, choices=options_ocupation)
     about = models.CharField(max_length=255)
-    bussiness_name = models.CharField(max_length=45, null=True)
+    business_name = models.CharField(max_length=45, null=True)
     agent_firstname = models.CharField(max_length=45, null=True)
     agent_lastname = models.CharField(max_length=45, null=True)
     position = models.CharField(max_length=45, null=True)
@@ -200,18 +199,18 @@ class Category(models.Model):
     description = models.CharField(max_length=255)
     payment_per_answer = models.FloatField()
     def __str__(self):
-        return self.name
+       return self.name
 
 
 class Specialist(User):
-    bussiness_name = models.CharField(max_length=55)
+    business_name = models.CharField(max_length=55)
     options_type = (
         ('m', 'Main'),
         ('a', 'Associate'),
     )
     type_specialist = models.CharField(max_length=1, choices=options_type)
     star_rating = models.IntegerField(null=True)
-    cv = models.CharField(max_length=150)
+    cv = models.CharField(max_length=150,null=True)
     payment_per_answer = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 

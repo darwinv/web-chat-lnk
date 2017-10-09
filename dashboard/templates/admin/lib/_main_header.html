@@ -24,7 +24,11 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 {% block header_dropdowns %}
-
+                        {% get_available_languages as languages %}
+                        
+                        {% for lang_code, lang_name in languages %}
+                            <link rel="alternate" hreflang="{{ lang_code }}" href="{% change_lang lang_code %}">
+                        {% endfor %}
 
 
                         <!-- Notifications: style can be found in dropdown.less -->
