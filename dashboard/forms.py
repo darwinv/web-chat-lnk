@@ -8,6 +8,7 @@ from dashboard.models import Specialist
 #     user = forms.CharField()
 
 class SpecialistForm(ModelForm):
+    # Data fake
     CHOICES_C = (
         (1, 'Lima'),
     )
