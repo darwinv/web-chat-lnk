@@ -58,7 +58,7 @@ class User(AbstractUser):
     #  class Meta:
     #      db_table = 'user'
     nick = models.CharField(max_length=45, blank=True)
-    email_exact = models.CharField(max_length=150, unique=True)
+    email_exact = models.CharField(max_length=150)
     telephone = models.CharField(max_length=14)
     cellphone = models.CharField(max_length=14)
     photo = models.CharField(max_length=250, default='preview.png', null=True)
@@ -68,7 +68,7 @@ class User(AbstractUser):
         ('2', 'Foreign Card'),
     )
     document_type = models.CharField(max_length=1, choices=options_documents)
-    document_number = models.CharField(max_length=45, unique=True)
+    document_number = models.CharField(max_length=45)
     ruc = models.CharField(max_length=40, unique=True, null=True)
     code = models.CharField(max_length=45)
     anonymous = models.BooleanField(default=True)
