@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 12:57-0500\n"
+"POT-Creation-Date: 2017-10-10 14:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\dashboard\forms.py:22 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:376
+#: .\dashboard\forms.py:22 .\dashboard\views\actors.py:75
+#: .\dashboard\views\actors.py:374
 msgid "category"
 msgstr ""
 
@@ -67,9 +67,9 @@ msgstr ""
 msgid "lastname"
 msgstr ""
 
-#: .\dashboard\forms.py:108 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:285 .\dashboard\views\actors.py:349
-#: .\dashboard\views\actors.py:376
+#: .\dashboard\forms.py:108 .\dashboard\views\actors.py:75
+#: .\dashboard\views\actors.py:283 .\dashboard\views\actors.py:347
+#: .\dashboard\views\actors.py:374
 msgid "email"
 msgstr ""
 
@@ -89,13 +89,13 @@ msgstr ""
 msgid "document number"
 msgstr ""
 
-#: .\dashboard\forms.py:113 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:285 .\dashboard\views\actors.py:286
-#: .\dashboard\views\actors.py:349 .\dashboard\views\actors.py:376
+#: .\dashboard\forms.py:113 .\dashboard\views\actors.py:75
+#: .\dashboard\views\actors.py:283 .\dashboard\views\actors.py:284
+#: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:374
 msgid "RUC"
 msgstr ""
 
-#: .\dashboard\forms.py:114 .\dashboard\views\actors.py:284
+#: .\dashboard\forms.py:114 .\dashboard\views\actors.py:282
 msgid "business name"
 msgstr ""
 
@@ -126,22 +126,22 @@ msgid "search"
 msgstr ""
 
 #: .\dashboard\templates\admin\actor\actorsList.html:17
-#: .\dashboard\views\actors.py:83
+#: .\dashboard\views\actors.py:81
 msgid "specialists"
 msgstr ""
 
 #: .\dashboard\templates\admin\actor\actorsList.html:20
-#: .\dashboard\views\actors.py:290 .\dashboard\views\actors.py:348
+#: .\dashboard\views\actors.py:288 .\dashboard\views\actors.py:346
 msgid "clients"
 msgstr ""
 
 #: .\dashboard\templates\admin\actor\actorsList.html:23
-#: .\dashboard\views\actors.py:354
+#: .\dashboard\views\actors.py:352
 msgid "sellers"
 msgstr ""
 
 #: .\dashboard\templates\admin\actor\actorsList.html:26
-#: .\dashboard\views\actors.py:381
+#: .\dashboard\views\actors.py:379
 msgid "administrators"
 msgstr ""
 
@@ -154,7 +154,6 @@ msgid "add"
 msgstr ""
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:9
-#: .\dashboard\templates\admin\actor\specialistsDetail.html:7
 msgid "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"
 msgstr ""
 
@@ -186,6 +185,10 @@ msgstr ""
 msgid "dashboard"
 msgstr ""
 
+#: .\dashboard\templates\admin\actor\specialistsDetail.html:7
+msgid "Search by any criteria (Name, Nick, Ubigeo, Etc)"
+msgstr ""
+
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:67
 msgid "see associate specialists"
 msgstr ""
@@ -199,7 +202,7 @@ msgid "personal"
 msgstr ""
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:141
-#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:377
+#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:375
 msgid "specialty"
 msgstr ""
 
@@ -233,7 +236,7 @@ msgid "select"
 msgstr ""
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:14
-#: .\dashboard\views\actors.py:18
+#: .\dashboard\views\actors.py:21
 msgid "actors"
 msgstr "actors"
 
@@ -298,81 +301,81 @@ msgid "cancel"
 msgstr ""
 
 #: .\dashboard\templates\admin\lib\_modals.html:39
-#: .\dashboard\views\actors.py:78
+#: .\dashboard\views\actors.py:76
 msgid "delete"
 msgstr ""
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:347
-#: .\dashboard\views\actors.py:375
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:345
+#: .\dashboard\views\actors.py:373
 msgid "surnames"
 msgstr ""
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:347
-#: .\dashboard\views\actors.py:375
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:345
+#: .\dashboard\views\actors.py:373
 msgid "and"
 msgstr ""
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:284
-#: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:375
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:282
+#: .\dashboard\views\actors.py:345 .\dashboard\views\actors.py:373
 msgid "names"
 msgstr ""
 
-#: .\dashboard\views\actors.py:77 .\dashboard\views\actors.py:285
-#: .\dashboard\views\actors.py:349 .\dashboard\views\actors.py:376
+#: .\dashboard\views\actors.py:75 .\dashboard\views\actors.py:283
+#: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:374
 msgid "code"
 msgstr ""
 
-#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:105
-#: .\dashboard\views\actors.py:286 .\dashboard\views\actors.py:307
-#: .\dashboard\views\actors.py:350 .\dashboard\views\actors.py:377
+#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:103
+#: .\dashboard\views\actors.py:284 .\dashboard\views\actors.py:305
+#: .\dashboard\views\actors.py:348 .\dashboard\views\actors.py:375
 msgid "detail"
 msgstr ""
 
-#: .\dashboard\views\actors.py:105 .\dashboard\views\actors.py:307
+#: .\dashboard\views\actors.py:103 .\dashboard\views\actors.py:305
 msgid "specialist"
 msgstr ""
 
-#: .\dashboard\views\actors.py:149
+#: .\dashboard\views\actors.py:147
 msgid "create specialist"
 msgstr ""
 
-#: .\dashboard\views\actors.py:235
+#: .\dashboard\views\actors.py:233
 msgid "edit specialist"
 msgstr ""
 
-#: .\dashboard\views\actors.py:285
+#: .\dashboard\views\actors.py:283
 msgid "alias"
 msgstr ""
 
-#: .\dashboard\views\actors.py:286
+#: .\dashboard\views\actors.py:284
 msgid "identification document"
 msgstr ""
 
-#: .\dashboard\views\actors.py:286
+#: .\dashboard\views\actors.py:284
 msgid "querys"
 msgstr ""
 
-#: .\dashboard\views\actors.py:348
+#: .\dashboard\views\actors.py:346
 msgid "see"
 msgstr ""
 
-#: .\dashboard\views\actors.py:349
+#: .\dashboard\views\actors.py:347
 msgid "ubigeo"
 msgstr ""
 
-#: .\dashboard\views\actors.py:350
+#: .\dashboard\views\actors.py:348
 msgid "fee"
 msgstr ""
 
-#: .\dashboard\views\actors.py:350
+#: .\dashboard\views\actors.py:348
 msgid "advance"
 msgstr ""
 
-#: .\dashboard\views\actors.py:350
+#: .\dashboard\views\actors.py:348
 msgid "number of plans sold"
 msgstr ""
 
-#: .\dashboard\views\actors.py:350
+#: .\dashboard\views\actors.py:348
 msgid "number of queries"
 msgstr ""
 
