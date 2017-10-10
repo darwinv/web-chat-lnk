@@ -1,4 +1,11 @@
-API_URL 			= 'https://6ff1eb9e-f9bb-4410-bb3d-fadcad284635.mock.pstmn.io/'
+API_URL 			= 'http://ec2-34-236-250-113.compute-1.amazonaws.com:8000/'
 API_CLIENT_ID 		= 'FUN5EkBDdiQo8SixJYslF41ZkrjAhQtWKkV7BEE2'
 API_CLIENT_SECRET 	= 'P7pj3QcE6GyhlS0QUzJOJ8SRLlTGHYSMESGr7QzlyKnuMsc4osaaStB6wSiGGxAelKjXv6xJ7p9Go8R5el2KaVlcM4P50IeplkY2CWHxaOc9NI1fLKS9DoWxD9UbG4TN'
-API_HEADERS			= {'x-api-key': '90bd028513c2440f9c262c5c09c668e5'}
+#API_HEADERS			= {'x-api-key': '90bd028513c2440f9c262c5c09c668e5'}
+API_HEADERS			= {}
+
+
+
+# API_URL 			= 'http://localhost:9000/'
+# API_CLIENT_ID 		= 'z4myRqKyqGBhYBstkqqYB3j5KYFZND1J6SXma0n4'
+# API_CLIENT_SECRET 	= '1P1tV2V7dLVKz7SvB8NhsYHOUqt1q9dvMaSb7a3QdvPNhEpzDNTjNQjeGp2N6yrVEmvyN9mEoDK4YqputT6c0fhwUSqieZUil7IwWCOKyMkkJDjtyf6CwdAfYw2Z3Ujz'
