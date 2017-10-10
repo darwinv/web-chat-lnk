@@ -6,6 +6,19 @@
   float: left;
   width: 100%;
  }
+
+ /*LANGUAGE*/
+.main-header .navbar .nav > li.language > a > .label {
+    font-size: 16px;
+    position: initial;
+    padding: 5px 20px;
+    margin-right: -10px;
+}
+li.language > ul.dropdown-menu {
+    min-width: 50px;
+}
+ /****/
+
 .skin-blue .main-header .navbar {
   background-color: #00000d;
 }

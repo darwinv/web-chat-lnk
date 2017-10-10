@@ -15,12 +15,10 @@ import pdb
 
 class Actor:
     logo_content_header    = "fa fa-users"
-    title_content_text     = _("actors")
-    title_content_header   = "{} - ".format(title_content_text.title())
 
     def generateHeader(self,custom_title=None):
         if custom_title:
-            title = self.title_content_header + custom_title
+            title = "{} - ".format(_("actors")).title() + custom_title
         else:
             title = self.title_content_header
 
@@ -74,7 +72,7 @@ class Specialist(Actor):
 
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"),_("and"),_("names"))
-        header_tabla    = {lastnames_title: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "category",
+        header_tabla    = {lastnames_title: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc", _("category"): "category_name",
                            _("specialty"): "type_specialist",_("detail"): "detail",_("delete"): "delete"}
 
         tabla           = convert(data, header=header_tabla,actual_page=actual_page, custom_column=custom_column )

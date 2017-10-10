@@ -43,30 +43,30 @@
             {% if data.ciiu %}
               <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu}}</span>
             {% endif %}
-            {% if data.nationality %}
-              <span><i class="fa fa-globe"></i> {{data.nationality}}</span> 
+            {% if data.nationality_name %}
+              <span><i class="fa fa-globe"></i> {{data.nationality_name}}</span> 
             {% endif %}
             {% if data.address %}
               <span>
                 <i class="fa fa-home"></i>                
                 {{data.address.street}} - 
-                {{data.address.department}} |
-                {{data.address.province}} | 
-                {{data.address.district}}
+                {{data.address.department_name}} |
+                {{data.address.province_name}} | 
+                {{data.address.district_name}}
               </span>
             {% endif %}
-            {% if data.category %}
-              <span><i class="fa fa-briefcase"></i> {{data.category}} </span> 
+            {% if data.category_name %}
+              <span><i class="fa fa-briefcase"></i> {{data.category_name}} </span> 
             {% endif %}
             {% if data.business_name %}
               <span><i class="fa fa-building"></i> {{data.business_name}}</span> 
             {% endif %}
 
-            {% if data.type_specialist == "Main" %}
+            {% if data.type_specialist == "m" %}
               <div class="text-center">
                 <a href="{% url 'dashboard:actor-specialists-list' %}?main_specialist={{data.id}}" class="btn btn-flat btn-black">{% trans "see associate specialists"|title %}</a>
               </div>
-            {% elif data.type_specialist == "Associate" and data.main_specialist %}
+            {% elif data.type_specialist == "a" and data.main_specialist %}
               <div class="text-center">
                 <a href="{% url 'dashboard:actor-specialists-detail' data.main_specialist %}" class="btn btn-flat btn-black">{% trans "see main specialist"|title %}</a>
               </div>
@@ -80,8 +80,8 @@
             <div>                
                 <img src="{% static "dist/img/automatizacion.png" %}" class="img-circle">
                 <p>
-                  {% if data.category %}                
-                    <span>{{data.category}}</span>            
+                  {% if data.category_name %}
+                    <span>{{data.category_name}}</span>            
                   {% endif %}
                 </p>
             </div>

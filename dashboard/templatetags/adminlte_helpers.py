@@ -36,22 +36,40 @@ def upfirstletter(value):
  
 
 @register.simple_tag(takes_context=True)
-def change_lang(context, lang=None, *args, **kwargs):
+def change_lang(context, lang=None, default_arg=True, *args, **kwargs):
     """
     Get active page's url by a specified language
     Usage: {% change_lang 'en' %}
-    """
 
+    :param lang: codigo de idioma
+    :param default_arg: permite reenviar valores GET
+    :return: string con la ruta para cambiar el lenguaje
+    """
+    defaul_arg_data = {}
     path = context['request'].path
+
+
     url_parts = resolve( path )
+
+            
 
     url = path
     cur_language = get_language()
     try:
         activate(lang)
-        url = reverse( url_parts.view_name, kwargs=url_parts.kwargs )
+        url = reverse( url_parts.view_name, kwargs=url_parts.kwargs)
+        
     finally:
         activate(cur_language)
 
+
+    if default_arg:
+        get_request = context['request'].GET
+        get_values  = ""
+        for key in get_request:
+            get_values = "{name}={value}".format(name=key,value=get_request[key] )
+
+        if get_values:            
+            url = "{}?{get_values}".format(url,get_values=get_values)
 
     return "%s" % url

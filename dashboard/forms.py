@@ -73,7 +73,7 @@ class SpecialistForm(ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError(
-                _("Password and confirm_password does not match")
+                _("Password and confirm password does not match")
             )
 
 
@@ -113,4 +113,5 @@ class SpecialistForm(ModelForm):
             'ruc'               : _('RUC').title(),
             'business_name'    : _('business name').title(),
             'type_specialist'   : _('type specialist').title(),
+            'payment_per_answer'   : _('payment per answer').title(),
         }
