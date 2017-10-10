@@ -26,7 +26,7 @@
       })
 
       // Cuando se preciona guardar imagen desde Modal
-      $(document).on('click',btnSave,function(){
+      $(document).on('click',btnSave,function(event){
         event.preventDefault();
         $modal.modal('hide');
         getCroppedCanvas  = $image.cropper('getCroppedCanvas',{ width: 200, height: 200 });

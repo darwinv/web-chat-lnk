@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'linkup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'testdb17.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'testLocal.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR, 'testAmazon.sqlite3'),
     }
 }
 
@@ -116,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGES = (
-    ('es', _('Español')),
+    ('es', _('Spanish')),
     ('en', _('English')),
 )
 # Set the default language for your site.

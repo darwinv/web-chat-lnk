@@ -45,7 +45,8 @@ class api:
 
             #obtener el token
             r = requests.post(self._url+'o/token/', params=arg, headers=self._headers)
-            
+            print(r)
+            print("------------------------------------")
             #evaluar respuesta
             if r.status_code == 200:
                 #respuesta correcta
@@ -154,7 +155,7 @@ class api:
 
             except Exception as e:
                 print(e)
-                print("---------------ERROR---------------")
+                print("---------------ERROR GETUSER---------------")
 
 
             return user
@@ -167,15 +168,19 @@ class api:
 
     def get(self,token,slug='',arg=None,):
 
+
         try:
             headers = {'Authorization': 'Bearer '+token}
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url+slug, headers=headers, params=arg)
-            
+            print(r)
+            print(r.json())
+            print("---------------GET---------------")
             return r.json()
         except Exception as e:
-            pass
+            print(e.args)
+            print("---------------ERROR GET---------------")
 
     def post(self,token,slug='',arg=None):
         headers = {'Authorization': 'Bearer ' + token}
@@ -183,10 +188,13 @@ class api:
         
         try:            
             r = requests.post(self._url+slug, headers=headers, json=arg)
+            print(r)
+            print(r.json())
+            print("---------------POST---------------")
             return r.json()
         except Exception as e:
             print(e.args)
-            print("---------------ERROR---------------")
+            print("---------------ERROR POST---------------")
 
     def put(self,token,slug='',arg=None):
         headers = {'Authorization': 'Bearer '+token}
@@ -194,10 +202,13 @@ class api:
 
         try:            
             r = requests.put(self._url+slug+'/', headers=headers, json=arg)
+            print(r)
+            print(r.json())
+            print("---------------PUT---------------")
             return r.json()
         except Exception as e:
             print(e)
-            print("---------------ERROR---------------")
+            print("---------------ERROR PUT---------------")
 
     def delete(self,token,slug='',arg=None):
         headers = {'Authorization': 'Bearer '+token}
@@ -209,4 +220,4 @@ class api:
             return r.json()
         except Exception as e:
             print(e)
-            print("---------------ERROR---------------")
+            print("---------------ERROR DELETE---------------")

@@ -21,7 +21,7 @@ def weblogin(request):
     :param request:
     :return: formulario de login o listado de especialistas
     """
-    user = ''
+    user = error_message = ''
     
     if request.user.is_authenticated():
         return HttpResponseRedirect('/admin/actor/specialists')
@@ -42,10 +42,8 @@ def weblogin(request):
                 #redirect according to user type
                 return HttpResponseRedirect('/admin/actor/specialists')
             else:
-                return render(request, 'public/login.html', {
-                'error_message': _("Wrong Credentials"),'user': user
-                })
+               error_message = _("Wrong Credentials")
     else:
         form = Login()
 
-    return render(request, 'public/login.html', {'form': form})
+    return render(request, 'public/login.html', {'form': form,'error_message': error_message})

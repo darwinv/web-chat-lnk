@@ -24,7 +24,25 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 {% block header_dropdowns %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_language_info for LANGUAGE_CODE as LANG %}
 
+                        <li class="dropdown language">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="label label-warning">{{LANG.name_translated}} <i class="fa fa-caret-down lightblue" aria-hidden="true"></i> </span>
+                          </a>
+                          <ul class="dropdown-menu">
+                            {% get_available_languages as languages %}
+                        
+                            {% for lang_code, lang_name in languages %}
+                                <li class="">
+                                  <a rel="alternate" hreflang="{{ lang_code }}" href="{% change_lang lang_code %}">{{ lang_name }}</a>
+                                </li>                                
+                            {% endfor %}
+                          </ul>
+                        </li>
+
+                        
 
 
                         <!-- Notifications: style can be found in dropdown.less -->

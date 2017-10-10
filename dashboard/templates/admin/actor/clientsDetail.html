@@ -6,11 +6,10 @@
 {% block main_content_row %}
     <div class="col-xs-12 marB25 cont-search-client" >          
       <button type="button" class="btn btn-flat btn-black pull-right">{% trans "search"|title %}</button>
-      <input type="text" name="" placeholder="Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)" class="search col-xs-8 col-lg-4 pull-right flat marR15">
+      <input type="text" name="" placeholder='{% trans "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"|title %}' class="search col-xs-8 col-lg-4 pull-right flat marR15">
     </div>
 
     <div class="col-xs-12">
-
 
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
           <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
@@ -33,42 +32,40 @@
 
         <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
           <div class="cont-user-title">              
-            <span class="">Datos</span>
+            <span class="">{% trans "data"|title %}</span>
             <a href="{% url 'dashboard:actor-specialists-edit' data.id %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
           </div>
           <p>
 
             {% if data.nick %}
-              <span>Nick: {{data.nick}}</span>
+              <span>{% trans "nick"|title %}: {{data.nick}}</span>
             {% endif %}
             {% if data.type_client %}
-              {% with data.type_client|add:" person" as type_client %}
-              <span><i class="fa fa-star yellow"></i> {% trans type_client|title %}</span>
-              {% endwith %}
+              <span><i class="fa fa-star yellow"></i> {% trans "person"|title %} {{data.type_client}}</span>
             {% endif %}
             {% if data.user_transfer %}
               <span><i class="fa fa-star"></i> {{data.user_transfer}}</span>
             {% endif %}
-            {% if data.type_specialist %}
+            {% if data.ciiu %}
               <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu}}</span>
             {% endif %}
-            {% if data.nationality %}
-              <span><i class="fa fa-globe"></i> {{data.nationality}}</span>
+            {% if data.nationality_name %}
+              <span><i class="fa fa-globe"></i> {{data.nationality_name}}</span>
             {% endif %}
             {% if data.address %}
               <span>
-                <i class="fa fa-home"></i> 
-                {{data.department}}
-                {{data.province}}
-                {{data.district}}
-                {{data.street}}
+                <i class="fa fa-home"></i>                
+                {{data.address.street}} - 
+                {{data.address.department_name}} |
+                {{data.address.province_name}} | 
+                {{data.address.district_name}}
               </span>
             {% endif %}
-            {% if data.profession %}
-              <span><i class="fa fa-briefcase"></i> {{data.profession}}</span>
+            {% if data.profession_name %}
+              <span><i class="fa fa-briefcase"></i> {{data.profession_name}}</span>
             {% endif %}
-            {% if data.bussiness_name %}
-              <span><i class="fa fa-building"></i> {{data.bussiness_name}}</span>
+            {% if data.business_name %}
+              <span><i class="fa fa-building"></i> {{data.business_name}}</span>
             {% endif %}
             
           </p>
