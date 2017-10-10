@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from django.utils.translation import ugettext_lazy as _
 import os
 from django.db import models
-from linkup.local_settings import *
+#from linkup.local_settings import *
 
 #import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -142,8 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 #Connection credentials
 API_CLIENT_ID = 'NpQiYAbuqisnd2PI65mOVX1eV7kF9WxwowOfOEyv'
 API_CLIENT_SECRET = 'hIfdJUTjiT8FXyxQlp3fmhmkxqIMLiIJ2DsRzgJAGgRUxRgKMkDhZBv2b7Ij5BCFzKeGTNkRg7VloF5bZ87y2Z9D49eN2omXymd0CJCqXOy6UZfhkv2eE0n7TxEMBlHF'
 API_URL = 'http://localhost:7000/'
+
+from linkup.local_settings import *
+
