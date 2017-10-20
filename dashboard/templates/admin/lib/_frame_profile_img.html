@@ -12,11 +12,13 @@
 	      <img src="{{img_profile}}" class="img img-responsive foto-perfil" >
 	    </div>
 	    <label class="btn btn-primary btn-upload" for="inputFile" title="Upload image file">
-	      <input type="file" class="sr-only" id="inputFile" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-	      <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
-	        <span class="fa fa-upload"> {% trans "upload a photo"|title %}</span>
-	      </span>
+			
+			{{ form.photo }}
+			<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
+				<span class="fa fa-upload"> {{ form.photo.label_tag }}</span>
+			</span>
 	    </label>
+	    {{ form.photo.errors }}
 	</div>
 {% endblock frame_profile_img %}
 

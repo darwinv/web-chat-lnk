@@ -45,7 +45,8 @@ class api:
 
             #obtener el token
             r = requests.post(self._url+'o/token/', params=arg, headers=self._headers)
-            print(r)
+
+            print(r.json())
             print("------------------------------------")
             #evaluar respuesta
             if r.status_code == 200:
@@ -60,7 +61,8 @@ class api:
             return None
 
         except Exception as e:
-            pass
+            print(e.args)
+            print("---------------ERROR TOKEN---------------")
 
     def getuserById(self, user_id):
         """
@@ -167,27 +169,22 @@ class api:
 
 
     def get(self,token,slug='',arg=None,):
-
-
         try:
             headers = {'Authorization': 'Bearer '+token}
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url+slug, headers=headers, params=arg)
-            print(r)
-            print(r.json())
-            print("---------------GET---------------")
             return r.json()
         except Exception as e:
             print(e.args)
             print("---------------ERROR GET---------------")
 
-    def post(self,token,slug='',arg=None):
+    def post(self,token,slug='',arg=None,files=None):
         headers = {'Authorization': 'Bearer ' + token}
         headers = dict(headers, **self._headers)
         
         try:            
-            r = requests.post(self._url+slug, headers=headers, json=arg)
+            r = requests.post(self._url+slug, headers=headers, json=arg,files=files)
             print(r)
             print(r.json())
             print("---------------POST---------------")
@@ -196,12 +193,12 @@ class api:
             print(e.args)
             print("---------------ERROR POST---------------")
 
-    def put(self,token,slug='',arg=None):
+    def put(self,token,slug='',arg=None,files=None):
         headers = {'Authorization': 'Bearer '+token}
         headers = dict(headers, **self._headers)
 
         try:            
-            r = requests.put(self._url+slug+'/', headers=headers, json=arg)
+            r = requests.put(self._url+slug+'/', headers=headers, json=arg,files=files)
             print(r)
             print(r.json())
             print("---------------PUT---------------")

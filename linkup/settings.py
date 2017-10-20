@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'linkup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'testLocal.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'testLocalDarwin.sqlite3'),
         #'NAME': os.path.join(BASE_DIR, 'testAmazon.sqlite3'),
     }
 }
@@ -121,7 +121,8 @@ LANGUAGES = (
     ('en', _('English')),
 )
 # Set the default language for your site.
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'en'
+
 # Tell Django where the project's translation files should be.
 LOCALE_PATHS = (    
     os.path.join(BASE_DIR, 'locale/static_db'),   

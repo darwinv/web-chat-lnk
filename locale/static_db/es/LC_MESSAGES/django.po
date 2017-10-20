@@ -1,5 +1,0 @@
-msgid "Base de Datos 2"
-msgstr "BASEDATOS"
-
-msgid "coin"
-msgstr "moneda"

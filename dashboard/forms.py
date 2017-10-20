@@ -4,8 +4,52 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
 from dashboard.models import Specialist
 
-# class SpecialistForm(forms.Form):
-#     user = forms.CharField()
+
+# class FormFilters
+    #def EnythingIsNotRequerid()
+
+    #def 
+# class GetCategories()
+# class GetDeparments()
+# class PaginatorFilter()
+
+
+
+class FilterForm(forms.Form):
+    page = forms.CharField()
+
+    """
+    Clase creada para estandarizar las caracteristicas de los filtros
+    """
+    def __init__(self, *args, **kwargs):
+        super(forms.Form, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
+
+    def clean(self):
+        super(forms.Form, self).clean()
+        data = self.cleaned_data
+
+        for field in data:  # Los filtros vacios seran seteados en None
+            if data[field]=='':
+                self.cleaned_data[field] = None
+
+        return self.cleaned_data
+
+
+class SellerFormFilters(FilterForm):
+    first_name  = forms.CharField(label=_('first name').title())
+    last_name   = forms.CharField(label=_('last name').title())
+    ruc         = forms.CharField(label=_('RUC'))
+    mail        = forms.CharField(label=_('mail').title())
+
+
+    
+
+    # department  = forms.CharField(widget=forms.Select(),required=True,label=_('department').title())
+    # province    = forms.CharField(widget=forms.Select(),required=True,label=_('province').title())
+    # district    = forms.CharField(widget=forms.Select(),required=True,label=_('district').title())
 
 class SpecialistForm(ModelForm):
     # Data fake
@@ -24,8 +68,10 @@ class SpecialistForm(ModelForm):
     province    = forms.CharField(widget=forms.Select(choices=CHOICES_D),required=True,label=_('province').title())
     district    = forms.CharField(widget=forms.Select(choices=CHOICES_P),required=True,label=_('district').title())
     street      = forms.CharField(required=True,label=_('street').title())
-    
+    photo       = forms.FileField(required=False,label=_('upload a photo').title(),widget=forms.TextInput(attrs={'class': 'sr-only', 'id': 'inputFile','accept':'.jpg,.jpeg,.png,.gif,.bmp,.tiff','type':'file'},))
+
     confirm_password = forms.CharField(widget=forms.PasswordInput,label=_('confirm password').title())
+
     widgets = {
         'confirm_password': forms.PasswordInput(),
     }
@@ -57,7 +103,7 @@ class SpecialistForm(ModelForm):
         
         # Algoritmo para poder extraer subitem en el initial del form
         # este algoritmo se realiza mas que todo para solventar el envio
-        # de data anidad desde la API RESTFULL
+        # de data anidada desde la API RESTFULL
         if initial:
             for item in initial:
                 if type(initial[item]) is dict:
@@ -103,8 +149,8 @@ class SpecialistForm(ModelForm):
             'username'          : _('username').title(),
             'nick'              : _('nick').title(),
             'password'          : _('password').title(),
-            'first_name'        : _('firstname').title(),
-            'last_name'         : _('lastname').title(),
+            'first_name'        : _('first name').title(),
+            'last_name'         : _('last name').title(),
             'email_exact'       : _('email').title(),
             'telephone'         : _('telephone').title(),
             'cellphone'         : _('cellphone').title(),

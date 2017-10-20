@@ -5,9 +5,10 @@
       var $image      = $('#image');  // Imagen dentro del modal 
       var $modal      = $('#modal-img-profile');
       var $frame      = $('#frame-profile-img');  // Contenedor de foto perfil
+      var $imageProf  = $('#frame-profile-img > img');  // imagen dentro del Contenedor de foto perfil
       var $inputFile  = $('#inputFile');
       var btnSave     = '#save-model-imgProfile';  // Boton de guardar desde el modal
-      var fileTempModal
+      var fileTempModal;
 
       $modal.on('shown.bs.modal', function () {
         $image
@@ -20,7 +21,7 @@
             ready: function () {
               croppable = true;
             }
-          });  
+          });
       }).on('hidden.bs.modal', function () {
         $image.cropper('destroy').hide(); //al cerrar el modal se oculta la imagen para mejorar experiencia de usuario
       })
@@ -30,6 +31,9 @@
         event.preventDefault();
         $modal.modal('hide');
         getCroppedCanvas  = $image.cropper('getCroppedCanvas',{ width: 200, height: 200 });
+
+        //Aqui va el envio por ajax de la imagen Croppeada
+
         $frame.html(getCroppedCanvas);
       });
 
@@ -38,7 +42,7 @@
       if (URL) {
         $inputFile.change(function () {
           var files = this.files;
-          var file;
+          
           if (files && files.length) {
             file = files[0];
             if (/^image\/\w+$/.test(file.type)) {
@@ -47,8 +51,12 @@
                 URL.revokeObjectURL(fileTempModal);
               }
               fileTempModal = URL.createObjectURL(file);
-              $modal.modal('show');
-              $inputFile.val('');
+
+              // $modal.modal('show');  Linea comentada hasta que no este listo envio por ajax de solamente la foto scropeada
+              // $inputFile.val('');
+
+              $imageProf.attr("src", fileTempModal);
+              
             } else {
               window.alert('{% trans "please choose an image file."|title %}');
             }

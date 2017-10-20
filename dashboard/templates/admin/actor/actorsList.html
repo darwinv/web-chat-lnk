@@ -11,6 +11,9 @@
           <input type="text" name="" class="search col-xs-8 col-lg-4 pull-right flat marR15">
         </div>
 
+
+        {% block filters_actor_top %}
+        {% endblock filters_actor_top %}
         <div class="col-xs-12 marB10 cont-head-actor">
         	<div class="pull-left actors-cont-btn">
         		<a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-gray {{vars_page.btn_specialists_class}}">
@@ -28,7 +31,7 @@
         	</div>
 
         	<div class="pull-right">
-        		<button type="button" class="btn btn-flat btn-black">{% trans "filter"|title %}</button>
+        		<button type="button" class="btn btn-flat btn-black toggleFilter">{% trans "filter"|title %}</button>
                 <a href="{% url vars_page.name_create_URL %}" class="btn btn-flat btn-black" >{% trans "add"|title %}</a>
         	</div>
         </div>

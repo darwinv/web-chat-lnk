@@ -2,7 +2,7 @@
 <!-- Este archivo es llamado por toda la App para cumplir funciones  -->
 <!-- personalizadas para 2 o mas vistas -->
 <script>
-	$(function () {
+$(function () {
 	// get globar api var traidas desde api_tools
 	{% autoescape off %}
 		var urlBase   		= '{% get_api_url %}';	
@@ -138,23 +138,28 @@
 
 
  
-	    // Show dropdown
-	    $('.selected').click(function () {
-	        $('.custom-sel').addClass('show-sel');
-	        $('.custom-sel a').removeClass('hidden');
-	    });
+    // Show dropdown
+    $('.selected').click(function () {
+        $('.custom-sel').addClass('show-sel');
+        $('.custom-sel a').removeClass('hidden');
+    });
 
-	    // Hide dropdown when not focused
-	    $('.custom-sel').focusout(function () {
-	        $('.custom-sel').removeClass('show-sel');
-	        $('.custom-sel a:not(:first)').addClass('hidden');
-	    }).blur(function () {
-	        $('.custom-sel').removeClass('show-sel');
-	        $('.custom-sel a:not(:first)').addClass('hidden');
-	    });
+    // Hide dropdown when not focused
+    $('.custom-sel').focusout(function () {
+        $('.custom-sel').removeClass('show-sel');
+        $('.custom-sel a:not(:first)').addClass('hidden');
+    }).blur(function () {
+        $('.custom-sel').removeClass('show-sel');
+        $('.custom-sel a:not(:first)').addClass('hidden');
+    });
+
+
+    $(document).on('click', '.toggleFilter', function() {
+		$(".filters").fadeToggle();
+	});
 
 
 	
-	});
+});
 	
 </script>

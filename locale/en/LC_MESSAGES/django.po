@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 14:47-0500\n"
+"POT-Creation-Date: 2017-10-10 16:09-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,220 +20,220 @@ msgstr ""
 #: .\dashboard\forms.py:22 .\dashboard\views\actors.py:75
 #: .\dashboard\views\actors.py:374
 msgid "category"
-msgstr ""
+msgstr "category"
 
 #: .\dashboard\forms.py:23
 msgid "department"
-msgstr ""
+msgstr "department"
 
 #: .\dashboard\forms.py:24
 msgid "province"
-msgstr ""
+msgstr "province"
 
 #: .\dashboard\forms.py:25
 msgid "district"
-msgstr ""
+msgstr "district"
 
 #: .\dashboard\forms.py:26
 msgid "street"
-msgstr ""
+msgstr "street"
 
 #: .\dashboard\forms.py:28
 msgid "confirm password"
-msgstr ""
+msgstr "confirm password"
 
 #: .\dashboard\forms.py:76
 msgid "Password and confirm password does not match"
-msgstr ""
+msgstr "Password and confirm password does not match"
 
 #: .\dashboard\forms.py:103
 msgid "username"
-msgstr ""
+msgstr "username"
 
 #: .\dashboard\forms.py:104
 #: .\dashboard\templates\admin\actor\clientsDetail.html:41
 msgid "nick"
-msgstr ""
+msgstr "nick"
 
 #: .\dashboard\forms.py:105
 msgid "password"
-msgstr ""
+msgstr "password"
 
 #: .\dashboard\forms.py:106
 msgid "firstname"
-msgstr ""
+msgstr "firstname"
 
 #: .\dashboard\forms.py:107
 msgid "lastname"
-msgstr ""
+msgstr "lastname"
 
 #: .\dashboard\forms.py:108 .\dashboard\views\actors.py:75
 #: .\dashboard\views\actors.py:283 .\dashboard\views\actors.py:347
 #: .\dashboard\views\actors.py:374
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: .\dashboard\forms.py:109
 msgid "telephone"
-msgstr ""
+msgstr "telephone"
 
 #: .\dashboard\forms.py:110
 msgid "cellphone"
-msgstr ""
+msgstr "cellphone"
 
 #: .\dashboard\forms.py:111
 msgid "document type"
-msgstr ""
+msgstr "document type"
 
 #: .\dashboard\forms.py:112
 msgid "document number"
-msgstr ""
+msgstr "document number"
 
 #: .\dashboard\forms.py:113 .\dashboard\views\actors.py:75
 #: .\dashboard\views\actors.py:283 .\dashboard\views\actors.py:284
 #: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:374
 msgid "RUC"
-msgstr ""
+msgstr "RUC"
 
 #: .\dashboard\forms.py:114 .\dashboard\views\actors.py:282
 msgid "business name"
-msgstr ""
+msgstr "business name"
 
 #: .\dashboard\forms.py:115
 msgid "type specialist"
-msgstr ""
+msgstr "type specialist"
 
 #: .\dashboard\forms.py:116
 msgid "payment per answer"
-msgstr ""
+msgstr "payment per answer"
 
 #: .\dashboard\json2table.py:90
 msgid "search is empty"
-msgstr ""
+msgstr "search is empty"
 
 #: .\dashboard\json2table.py:183
 msgid "page"
-msgstr ""
+msgstr "page"
 
 #: .\dashboard\json2table.py:183
 msgid "of"
-msgstr ""
+msgstr "of"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:10
 #: .\dashboard\templates\admin\actor\clientsDetail.html:8
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:6
 msgid "search"
-msgstr ""
+msgstr "search"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:17
 #: .\dashboard\views\actors.py:81
 msgid "specialists"
-msgstr ""
+msgstr "specialists"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:20
 #: .\dashboard\views\actors.py:288 .\dashboard\views\actors.py:346
 msgid "clients"
-msgstr ""
+msgstr "clients"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:23
 #: .\dashboard\views\actors.py:352
 msgid "sellers"
-msgstr ""
+msgstr "sellers"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:26
 #: .\dashboard\views\actors.py:379
 msgid "administrators"
-msgstr ""
+msgstr "administrators"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:31
 msgid "filter"
-msgstr ""
+msgstr "filter"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:32
 msgid "add"
-msgstr ""
+msgstr "add"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:9
 msgid "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"
-msgstr ""
+msgstr "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:35
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:34
 msgid "data"
-msgstr ""
+msgstr "data"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:36
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:35
 msgid "edit"
-msgstr ""
+msgstr "edit"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:44
 msgid "person"
-msgstr ""
+msgstr "person"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:78
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:114
 msgid "send a message"
-msgstr ""
+msgstr "send a message"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:88
 msgid "grand Total"
-msgstr ""
+msgstr "grand Total"
 
 #: .\dashboard\templates\admin\actor\clientsDetail.html:107
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:157
 msgid "dashboard"
-msgstr ""
+msgstr "dashboard"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:7
 msgid "Search by any criteria (Name, Nick, Ubigeo, Etc)"
-msgstr ""
+msgstr "Search by any criteria (Name, Nick, Ubigeo, Etc)"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:67
 msgid "see associate specialists"
-msgstr ""
+msgstr "see associate specialists"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:71
 msgid "see main specialist"
-msgstr ""
+msgstr "see main specialist"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:124
 msgid "personal"
-msgstr ""
+msgstr "personal"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:141
 #: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:375
 msgid "specialty"
-msgstr ""
+msgstr "specialty"
 
 #: .\dashboard\templates\admin\actor\specialistsForm.html:158
 msgid "save"
-msgstr ""
+msgstr "save"
 
 #: .\dashboard\templates\admin\actor\specialistsForm.html:160
 msgid "go back"
-msgstr ""
+msgstr "go back"
 
 #: .\dashboard\templates\admin\actor\specialistsList.html:7
 msgid "asociate specialists to"
-msgstr ""
+msgstr "asociate specialists to"
 
 #: .\dashboard\templates\admin\lib\_cropper.html:53
 msgid "please choose an image file."
-msgstr ""
+msgstr "please choose an image file."
 
 #: .\dashboard\templates\admin\lib\_frame_profile_img.html:17
 msgid "upload a photo"
-msgstr ""
+msgstr "upload a photo"
 
 #: .\dashboard\templates\admin\lib\_main_footer.html:11
 #: .\login\templates\public\lib\footer.html:4
 msgid "All rights reserved"
-msgstr ""
+msgstr "All rights reserved"
 
 #: .\dashboard\templates\admin\lib\_main_scripts.html:58
 msgid "select"
-msgstr ""
+msgstr "select"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:14
 #: .\dashboard\views\actors.py:21
@@ -242,175 +242,175 @@ msgstr "actors"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:19
 msgid "Data base"
-msgstr ""
+msgstr "Data base"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:24
 msgid "coin"
-msgstr ""
+msgstr "coin"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:29
 msgid "products"
-msgstr ""
+msgstr "products"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:34
 msgid "alerts"
-msgstr ""
+msgstr "alerts"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:39
 msgid "general"
-msgstr ""
+msgstr "general"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:44
 msgid "inventory"
-msgstr ""
+msgstr "inventory"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:49
 msgid "authorizations"
-msgstr ""
+msgstr "authorizations"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:54
 msgid "Account statements"
-msgstr ""
+msgstr "Account statements"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:59
 msgid "reports"
-msgstr ""
+msgstr "reports"
 
 #: .\dashboard\templates\admin\lib\_modals.html:7
 msgid "crop the image"
-msgstr ""
+msgstr "crop the image"
 
 #: .\dashboard\templates\admin\lib\_modals.html:16
 msgid "close"
-msgstr ""
+msgstr "close"
 
 #: .\dashboard\templates\admin\lib\_modals.html:17
 msgid "save changes"
-msgstr ""
+msgstr "save changes"
 
 #: .\dashboard\templates\admin\lib\_modals.html:30
 msgid "confirm delete"
-msgstr ""
+msgstr "confirm delete"
 
 #: .\dashboard\templates\admin\lib\_modals.html:34
 msgid "Are you sure to delete this item?"
-msgstr ""
+msgstr "Are you sure to delete this item?"
 
 #: .\dashboard\templates\admin\lib\_modals.html:38
 msgid "cancel"
-msgstr ""
+msgstr "cancel"
 
 #: .\dashboard\templates\admin\lib\_modals.html:39
 #: .\dashboard\views\actors.py:76
 msgid "delete"
-msgstr ""
+msgstr "delete"
 
 #: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:345
 #: .\dashboard\views\actors.py:373
 msgid "surnames"
-msgstr ""
+msgstr "surnames"
 
 #: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:345
 #: .\dashboard\views\actors.py:373
 msgid "and"
-msgstr ""
+msgstr "and"
 
 #: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:282
 #: .\dashboard\views\actors.py:345 .\dashboard\views\actors.py:373
 msgid "names"
-msgstr ""
+msgstr "names"
 
 #: .\dashboard\views\actors.py:75 .\dashboard\views\actors.py:283
 #: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:374
 msgid "code"
-msgstr ""
+msgstr "code"
 
 #: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:103
 #: .\dashboard\views\actors.py:284 .\dashboard\views\actors.py:305
 #: .\dashboard\views\actors.py:348 .\dashboard\views\actors.py:375
 msgid "detail"
-msgstr ""
+msgstr "detail"
 
 #: .\dashboard\views\actors.py:103 .\dashboard\views\actors.py:305
 msgid "specialist"
-msgstr ""
+msgstr "specialist"
 
 #: .\dashboard\views\actors.py:147
 msgid "create specialist"
-msgstr ""
+msgstr "create specialist"
 
 #: .\dashboard\views\actors.py:233
 msgid "edit specialist"
-msgstr ""
+msgstr "edit specialist"
 
 #: .\dashboard\views\actors.py:283
 msgid "alias"
-msgstr ""
+msgstr "alias"
 
 #: .\dashboard\views\actors.py:284
 msgid "identification document"
-msgstr ""
+msgstr "identification document"
 
 #: .\dashboard\views\actors.py:284
 msgid "querys"
-msgstr ""
+msgstr "querys"
 
 #: .\dashboard\views\actors.py:346
 msgid "see"
-msgstr ""
+msgstr "see"
 
 #: .\dashboard\views\actors.py:347
 msgid "ubigeo"
-msgstr ""
+msgstr "ubigeo"
 
 #: .\dashboard\views\actors.py:348
 msgid "fee"
-msgstr ""
+msgstr "fee"
 
 #: .\dashboard\views\actors.py:348
 msgid "advance"
-msgstr ""
+msgstr "advance"
 
 #: .\dashboard\views\actors.py:348
 msgid "number of plans sold"
-msgstr ""
+msgstr "number of plans sold"
 
 #: .\dashboard\views\actors.py:348
 msgid "number of queries"
-msgstr ""
+msgstr "number of queries"
 
 #: .\linkup\settings.py:120
 msgid "Spanish"
-msgstr ""
+msgstr "Spanish"
 
 #: .\linkup\settings.py:121
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: .\login\forms.py:5
 msgid "User"
-msgstr ""
+msgstr "User"
 
 #: .\login\forms.py:6
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: .\login\templates\public\login.html:24
 msgid "Remember me"
-msgstr ""
+msgstr "Remember me"
 
 #: .\login\templates\public\login.html:28
 msgid "Recover your password"
-msgstr ""
+msgstr "Recover your password"
 
 #: .\login\templates\public\login.html:29
 msgid "Sign up"
-msgstr ""
+msgstr "Sign up"
 
 #: .\login\templates\public\login.html:32
 msgid "Log in"
-msgstr ""
+msgstr "Log in"
 
 #: .\login\views.py:45
 msgid "Wrong Credentials"
-msgstr ""
+msgstr "Wrong Credentials"
