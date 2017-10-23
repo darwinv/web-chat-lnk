@@ -169,6 +169,8 @@ class api:
 
 
     def get(self,token,slug='',arg=None,):
+        print(arg)
+        print("---------------arg GET---------------")
         try:
             headers = {'Authorization': 'Bearer '+token}
 

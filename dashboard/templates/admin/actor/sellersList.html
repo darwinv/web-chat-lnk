@@ -2,39 +2,65 @@
 {% load i18n adminlte_helpers %}
 
 
-
-
 {% block filters_actor %}
 	<div class="col-xs-12 marB10">
-		<div class="filters" style="display: none">
-			{% if form_filters.first_name %}
-		        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-		            {{ form_filters.first_name.label_tag }}
-		            {{ form_filters.first_name }}
-		            {{ form_filters.first_name.errors }}
-		        </div>
-		    {% endif %}
-		    {% if form_filters.last_name %}
-		        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-		            {{ form_filters.last_name.label_tag }}
-		            {{ form_filters.last_name }}
-		            {{ form_filters.last_name.errors }}
-		        </div>
-		    {% endif %}
-		    {% if form_filters.ruc %}
-		        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-		            {{ form_filters.ruc.label_tag }}
-		            {{ form_filters.ruc }}
-		            {{ form_filters.ruc.errors }}
-		        </div>
-		    {% endif %}
-		    {% if form_filters.mail %}
-		        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-		            {{ form_filters.mail.label_tag }}
-		            {{ form_filters.mail }}
-		            {{ form_filters.mail.errors }}
-		        </div>
-		    {% endif %}
-		</div>
+
+			{% if form_filters.showFilters %}
+				<div class="filters" style="display: flow-root;">
+			{% else %}
+				<div class="filters" style="display: none;">
+			{% endif %}
+				{% if form_filters.first_name %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.first_name.label_tag }}
+			            {{ form_filters.first_name }}
+			            {{ form_filters.first_name.errors }}
+			        </div>
+			    {% endif %}
+			    {% if form_filters.last_name %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.last_name.label_tag }}
+			            {{ form_filters.last_name }}
+			            {{ form_filters.last_name.errors }}
+			        </div>
+			    {% endif %}
+			    {% if form_filters.ruc %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.ruc.label_tag }}
+			            {{ form_filters.ruc }}
+			            {{ form_filters.ruc.errors }}
+			        </div>
+			    {% endif %}
+			    {% if form_filters.email_exact %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.email_exact.label_tag }}
+			            {{ form_filters.email_exact }}
+			            {{ form_filters.email_exact.errors }}
+			        </div>
+			    {% endif %}
+
+
+
+			    {% if form_filters.count_plans_seller %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.count_plans_seller.label_tag }}
+			            {{ form_filters.count_plans_seller }}
+			            {{ form_filters.count_plans_seller.errors }}
+			        </div>
+			    {% endif %}
+			    {% if form_filters.count_queries_more_than %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.count_queries_more_than.label_tag }}
+			            {{ form_filters.count_queries_more_than }}
+			            {{ form_filters.count_queries_more_than.errors }}
+			        </div>
+			    {% endif %}
+
+				<div class="col-xs-12 text-center">
+					<button type="submit" class="btn btn-flat btn-black">Enviar</button>
+				</div>
+			</div>
+
+
 	</div>
 {% endblock filters_actor %}
