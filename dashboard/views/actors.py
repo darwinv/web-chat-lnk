@@ -271,14 +271,10 @@ class Client(Actor):
     def list(self, request):
         ObjApi = api()
         actual_page = getActualPage(request)
-
-        form_filters = SellerFormFilters(request.GET)
-        filters = form_filters.cleaned_data
-
         token = request.session['token']
+        filters = {}
 
-        print(form_filters)
-        print("------------------------------------")
+        
 
         # Traer data para el listado
         data = ObjApi.get(slug='clients/', arg=filters, token=token)
@@ -313,7 +309,7 @@ class Client(Actor):
         vars_page = self.generateHeader(custom_title=title_page)
 
         return render(request, 'admin/actor/clientsList.html',
-                      {'tabla': tabla, 'vars_page': vars_page, 'form_filters': form_filters})
+                      {'tabla': tabla, 'vars_page': vars_page})
 
     @method_decorator(login_required)
     def detail(self, request, id):
