@@ -121,8 +121,8 @@ class generateTableList(object):
 
 
             for key_column in data:
-
-                if key_column in row_data:  # Si la columna existe en la data enviada
+                
+                if row_data and key_column in row_data:  # Si la columna existe en la data enviada
                     if type(data) is dict:  # Si la data es un dict, recorremos recursivamente den elemento padre
                         custom_column_data_aux = {'type':type_colum,'data':data[key_column],'separator':separator}
                         recursion = self.create_custom_value(row_data[key_column],custom_column_data_aux)
@@ -130,7 +130,7 @@ class generateTableList(object):
                     else:
                         texts.append(str(row_data[key_column]))
 
-                elif type(key_column) is str:  # Si el valor es un simple string, se guarda
+                elif row_data and type(key_column) is str:  # Si el valor es un simple string, se guarda
                     texts.append(str(key_column))
 
 

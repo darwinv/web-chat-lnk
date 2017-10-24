@@ -50,7 +50,7 @@ class SellerFormFilters(FilterForm):
     email_exact = forms.CharField(label=_('mail').title())
 
     count_plans_seller = forms.IntegerField(label=_('number of plans sold greater than').title())
-    count_queries_more_than = forms.IntegerField(label=_('number of queries sold greater than').title())
+    count_queries_seller = forms.IntegerField(label=_('number of queries sold greater than').title())
 
 
     # department  = forms.CharField(widget=forms.Select(),required=True,label=_('department').title())

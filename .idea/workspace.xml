@@ -5,13 +5,566 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4261945e-b0c1-4d7c-88c0-8fbeb2f12010" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/AdminLTE.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/AdminLTE.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/_all-skins.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/_all-skins.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-black-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-black-light.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-black.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-black.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-blue-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-blue-light.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-blue.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-green-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-green-light.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-green.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-purple-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-purple-light.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-purple.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-red-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-red-light.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-red.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-yellow-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-yellow-light.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/css/skins/skin-yellow.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/avatar.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/avatar04.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/avatar2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/avatar3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/avatar5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/boxed-bg.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/boxed-bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/american-express.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/cirrus.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/mastercard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/mestro.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/paypal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/paypal2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/credit/visa.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/default-50x50.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/photo1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/photo2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/photo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/photo4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user1-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user2-160x160.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user3-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user4-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user5-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user6-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user7-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/img/user8-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/js/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/js/app.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/js/demo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/js/pages/dashboard.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/admin-lte/dist/js/pages/dashboard2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/css/bootstrap.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/bootstrap/dist/js/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/conflicts/conflicts.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.babelrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.editorconfig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.eslintrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/ISSUE_TEMPLATE.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/build/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/cropper.common.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/cropper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/cropper.esm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/cropper.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/cropper.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/change.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/defaults.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/events.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/handlers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/preview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/render.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/template.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/dist/js/utilities.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/apple-touch-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/css/cropper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/images/data.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/images/layers.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/images/picture-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/images/picture-3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/images/picture.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/js/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/css/cropper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/css/cropper.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/img/picture-1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/img/picture-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/js/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/js/cropper.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v0.7.9/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/css/cropper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/css/cropper.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/img/picture-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/img/picture.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/js/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/js/cropper.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v1.0.0/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/css/cropper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/css/cropper.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/img/data.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/img/icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/img/layers.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/img/picture-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/img/picture-3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/img/picture.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/js/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/js/cropper.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/docs/v2.3.4/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/a-range-of-aspect-ratio.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-a-round-image.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/crop.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/images/picture.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-avatar/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/crop-on-canvas.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/cropper-in-modal.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/customize-preview.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/fixed-crop-box.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/full-crop-box.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/modal.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/multiple-croppers.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/examples/responsive-container.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/package-lock.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/postcss.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/rollup.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/css/cropper.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/images/bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/change.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/defaults.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/events.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/handlers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/methods.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/preview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/render.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/template.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/src/js/utilities.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/events/crop.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/events/cropend.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/events/cropmove.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/events/cropstart.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/events/ready.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/events/zoom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/clear.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/crop.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/destroy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/disable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/enable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/getCanvasData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/getContainerData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/getCropBoxData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/getCroppedCanvas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/getData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/getImageData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/move.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/moveTo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/replace.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/reset.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/rotate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/rotateTo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/scale.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/scaleX.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/scaleY.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/setAspectRatio.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/setCanvasData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/setCropBoxData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/setData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/setDragMode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/zoom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/methods/zoomTo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/aspectRatio.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/autoCrop.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/background.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/center.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/checkCrossOrigin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/checkOrientation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/cropBoxMovable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/cropBoxResizable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/data.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/dragMode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/guides.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/highlight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/minCanvasHeight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/minCanvasWidth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/minContainerHeight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/minContainerWidth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/minCropBoxHeight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/minCropBoxWidth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/modal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/movable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/rotatable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/scalable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/toggleDragModeOnDblclick.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/viewMode.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/zoomOnTouch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/zoomOnWheel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/cropper/test/options/zoomable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/css/AdminLTE.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/css/fast.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/css/skins/skin-linkup.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/automatizacion.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/contabilidad.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/electronica.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/gastronomia.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/impuestos.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/logo2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/avatar.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/avatar04.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/avatar2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/avatar3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/avatar5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/boxed-bg.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/boxed-bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/american-express.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/cirrus.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/mastercard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/mestro.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/paypal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/paypal2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/credit/visa.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/default-50x50.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/photo1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/photo2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/photo3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/photo4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user1-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user2-160x160.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user3-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user4-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user5-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user6-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user7-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/lte/user8-128x128.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/profile.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/propiedad.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/publicidad.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/tic.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dist/img/tributo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/css/font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/css/font-awesome.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/css/font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/font-awesome/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/icheck.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/icheck.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/aero.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/aero@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/blue@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/flat.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/flat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/flat@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/grey@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/orange.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/orange@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/pink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/pink@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/purple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/purple@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/red@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/yellow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/flat/yellow@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/futurico/futurico.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/futurico/futurico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/futurico/futurico@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/line.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/line.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/line@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/line/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/aero.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/aero@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/blue@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/grey@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/minimal.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/minimal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/minimal@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/orange.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/orange@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/pink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/pink@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/purple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/purple@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/red@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/yellow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/minimal/yellow@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/polaris/polaris.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/polaris/polaris.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/polaris/polaris@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/aero.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/aero@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/blue@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/grey@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/orange.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/orange@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/pink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/pink@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/purple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/purple@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/red@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/square.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/square.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/square@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/yellow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/icheck/skins/square/yellow@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/jquery/dist/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/jquery/dist/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/jquery/dist/jquery.min.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/css/bootstrap.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/bootstrap/js/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/css/AdminLTE.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/css/fast.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/css/front.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/aero.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/aero@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/blue@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/flat.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/flat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/flat@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/grey@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/orange.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/orange@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/pink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/pink@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/purple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/purple@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/red@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/yellow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/flat/yellow@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/futurico/futurico.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/futurico/futurico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/futurico/futurico@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/icheck.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/icheck.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/line.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/line.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/line@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/line/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/aero.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/aero@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/blue@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/grey@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/minimal.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/minimal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/minimal@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/orange.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/orange@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/pink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/pink@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/purple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/purple@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/red@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/yellow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/minimal/yellow@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/polaris/polaris.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/polaris/polaris.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/polaris/polaris@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/_all.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/aero.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/aero.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/aero@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/blue.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/blue@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/green.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/grey.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/grey.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/grey@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/orange.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/orange.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/orange@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/pink.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/pink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/pink@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/purple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/purple.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/purple@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/red.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/red@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/square.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/square.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/square@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/yellow.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/yellow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/static/plugins/iCheck/square/yellow@2x.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/dist/img/logo.png" afterPath="$PROJECT_DIR$/static/dist/img/logo.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/connection.py" afterPath="$PROJECT_DIR$/api/connection.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/forms.py" afterPath="$PROJECT_DIR$/dashboard/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/actor/actorsList.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/actor/actorsList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/actor/clientsDetail.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/actor/clientsDetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/json2table.py" afterPath="$PROJECT_DIR$/dashboard/json2table.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/actor/sellersList.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/actor/sellersList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/actor/specialistsDetail.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/actor/specialistsDetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/dist/css/skins/skin-linkup.css" afterPath="$PROJECT_DIR$/static/dist/css/skins/skin-linkup.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,28 +574,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="connection.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/connection.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272">
-              <caret line="172" column="34" lean-forward="false" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -56,12 +588,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/dashboard/static/dist/css/skins/skin-linkup.css" />
-        <option value="$PROJECT_DIR$/dashboard/json2table.py" />
         <option value="$PROJECT_DIR$/api/config.py" />
         <option value="$PROJECT_DIR$/dashboard/views/actors.py" />
         <option value="$PROJECT_DIR$/dashboard/templates/admin/actor/sellersList.html" />
         <option value="$PROJECT_DIR$/api/connection.py" />
         <option value="$PROJECT_DIR$/dashboard/forms.py" />
+        <option value="$PROJECT_DIR$/dashboard/json2table.py" />
       </list>
     </option>
   </component>
@@ -117,7 +649,7 @@
             <path>
               <item name="linkup_adminlte" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkup_adminlte" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -141,7 +673,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.local 8000">
+  <component name="RunManager" selected="Python.Red :8000">
+    <configuration name="Red :8000" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\DELL\env\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="linkup_adminlte" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="runserver 0.0.0.0:8000" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -176,6 +725,10 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.Red :8000" />
+      <item index="1" class="java.lang.String" itemvalue="Python.local 8000" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -202,16 +755,16 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21255673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21558245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21938775" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.8632479" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33049405" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45918366" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62564105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -234,7 +787,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="35" />
+      <option name="time" value="36" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -243,13 +796,27 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3315">
+          <caret line="195" column="61" lean-forward="true" selection-start-line="195" selection-start-column="61" selection-end-line="195" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/views/actors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -298,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/json2table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="243" column="36" lean-forward="false" selection-start-line="243" selection-start-column="36" selection-end-line="243" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/static/dist/css/skins/skin-linkup.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
@@ -316,20 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="275" column="29" lean-forward="true" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/contrib/auth/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/utils/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -375,21 +921,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/views/actors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="366" column="8" lean-forward="false" selection-start-line="366" selection-start-column="8" selection-end-line="366" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/templates/admin/actor/clientsList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -397,7 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -405,22 +939,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/connection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="172" column="34" lean-forward="false" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
+        <state relative-caret-position="17">
+          <caret line="195" column="61" lean-forward="false" selection-start-line="195" selection-start-column="61" selection-end-line="195" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/contrib/auth/decorators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/utils/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/utils/deprecation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/core/handlers/exception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/core/handlers/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/env/Lib/site-packages/django/contrib/staticfiles/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/wsgiref/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="136" column="0" lean-forward="false" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/views/actors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="402" column="0" lean-forward="false" selection-start-line="402" selection-start-column="0" selection-end-line="402" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/json2table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
           <folding />
         </state>
       </provider>
