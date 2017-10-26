@@ -7,7 +7,11 @@
 
 
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
-          <img src="{% static "dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
+          {% if data.photo %}
+            <img src="{{data.photo}}" class="img-circle">
+          {% else %}
+            <img src="{% static "dist/img/profile.png" %}" class="img-circle">
+          {% endif %}
           <p>
             {% if data.first_name or data.last_name %}
               <span class="size18">{{data.first_name}} {{data.last_name}}</span>
