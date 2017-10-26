@@ -7,7 +7,7 @@
 
 
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
-          {% if data.photo %}
+          {% if data.photo and data.photo != "preview.png" %}
             <img src="{{data.photo}}" class="img-circle">
           {% else %}
             <img src="{% static "dist/img/profile.png" %}" class="img-circle">

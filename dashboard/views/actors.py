@@ -59,7 +59,7 @@ class Specialist(Actor):
 
         # Definimos columnas adicionales/personalizadas
         custom_column = {
-            "last_name": {'type': 'concat', 'data': {'last_name', ' ', 'first_name',' '}},
+            "last_name": {'type': 'concat', 'data': {'last_name', ' ', 'first_name'}},
             "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
             "delete": {'type': 'delete', 'data': {'url': self._delete, 'key': 'id'}}
         }

@@ -3,15 +3,12 @@
 
 {% block frame_profile_img %}
 	<!-- HTML que muestra imagen de usuario y boton de subir archivo -->
-	{% if not form.photo.value %}
-		{% static 'dist/img/profile.png' as form.photo.value %}
-	{% endif %}
-
+	
 
 	<div class="content-frame-profile-img">
 	  	<div id="frame-profile-img" >
 	  		
-	  	  {% if form.photo.value %}
+	  	  {% if form.photo.value and form.photo.value != "preview.png" %}
             <img src="{{form.photo.value}}" class="img img-responsive foto-perfil" >
           {% else %}
             <img src="{% static "dist/img/profile.png" %}" class="img img-responsive foto-perfil" >
