@@ -277,7 +277,9 @@ i.fa.fa-star.yellow{
   img.img-circle {
     border: 0.5px solid rgba(0, 0, 0, 0.13);
   }
-
+  .cont-info-user img.img-circle {
+      max-width: 150px;
+  }
 
 
 /** More Skins **/

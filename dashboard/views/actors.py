@@ -132,8 +132,9 @@ class Specialist(Actor):
 
                 if result and 'id' in result:
 
-                    photo = {'photo': request.FILES['photo']}
-                    ObjApi.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
+                    if 'photo' in request.FILES:
+                        photo = {'photo': request.FILES['photo']}
+                        ObjApi.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
                     # Process success
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -222,8 +223,9 @@ class Specialist(Actor):
                 result = ObjApi.put(slug='specialists/' + id, token=token, arg=data)
 
                 if result and 'id' in result:
-                    photo = {'photo': request.FILES['photo']}
-                    ObjApi.put(slug='upload_photo/' + id, token=token, files=photo)
+                    if 'photo' in request.FILES:
+                        photo = {'photo': request.FILES['photo']}
+                        ObjApi.put(slug='upload_photo/' + id, token=token, files=photo)
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
