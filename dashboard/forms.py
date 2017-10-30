@@ -4,31 +4,25 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
 from dashboard.models import Specialist
 
-
-# class FormFilters
-# def EnythingIsNotRequerid()
-
-# def
-# class GetCategories()
-# class GetDeparments()
-# class PaginatorFilter()
-
+from api.connection import api
 
 
 class FilterForm(forms.Form):
+    """
+    Clase creada para estandarizar las caracteristicas de los filtros
+    Al heredar de esta clase ya se incluira el envio de paginacion,
+    por defecto ningun valor sera requerido, si hereda de esta clase
+    a menos que sea definido como requerido
+    """
     page = forms.CharField()
     showFilters = False
 
-    """
-    Clase creada para estandarizar las caracteristicas de los filtros
-    """
 
     def __init__(self, *args, **kwargs):
-        super(forms.Form, self).__init__(*args, **kwargs)
+        super(FilterForm, self).__init__(*args, **kwargs)
 
         for field in self.fields:
-            self.fields[
-                field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
+            self.fields[field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
 
     def clean(self):
         super(forms.Form, self).clean()
@@ -37,13 +31,16 @@ class FilterForm(forms.Form):
         for field in data:  # Los filtros vacios seran seteados en None
             if not data[field] or data[field] == '':
                 self.cleaned_data[field] = None
-            elif field!='page' :
+            elif field!='page' :  # Ignoramos la paginacion para el atributo Mostrar Filtros
                 self.showFilters = True
 
         return self.cleaned_data
 
 
 class SellerFormFilters(FilterForm):
+    """
+    Clase creada para filtrar el listado de vendedores
+    """
     first_name = forms.CharField(label=_('first name').title())
     last_name = forms.CharField(label=_('last name').title())
     ruc = forms.CharField(label=_('RUC'))
@@ -52,10 +49,6 @@ class SellerFormFilters(FilterForm):
     count_plans_seller = forms.IntegerField(label=_('number of plans sold greater than').title())
     count_queries_seller = forms.IntegerField(label=_('number of queries sold greater than').title())
 
-
-    # department  = forms.CharField(widget=forms.Select(),required=True,label=_('department').title())
-    # province    = forms.CharField(widget=forms.Select(),required=True,label=_('province').title())
-    # district    = forms.CharField(widget=forms.Select(),required=True,label=_('district').title())
 
 
 class SpecialistForm(ModelForm):
@@ -126,16 +119,16 @@ class SpecialistForm(ModelForm):
                 _("Password and confirm password does not match")
             )
 
-    def add_error_custom(self, add_errors=None):
+    def add_error_custom(self, add_errors=None):        
+        """
+        Funcion creada para agregar errores, posteriormente a las validaciones
+        hechas por la clase Form
+        """
         if add_errors:  # errores retornados por terceros
             for key in add_errors:
                 if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
-                    print("soy un %##### LIST")
-                    print("------------------------------------")
                     self.add_error(key, add_errors[key])
                 elif type(key) is list:
-                    print("soy un #$#$ DICT")
-                    print("------------------------------------")
                     for item in key:
                         if item and item in self.fields:
                             self.add_error(item, key[item])
@@ -165,3 +158,29 @@ class SpecialistForm(ModelForm):
             'type_specialist': _('type specialist').title(),
             'payment_per_answer': _('payment per answer').title(),
         }
+
+
+
+class AccountStatus(FilterForm):
+    """
+    Clase creada para filtrar estados de cuenta
+    """
+    date = forms.CharField(label=_('date').title())
+
+
+
+class SellerAccountStatus(AccountStatus):
+    """
+    Formulario para filtrar estados de cuenta por vendedor
+    """
+    seller = forms.CharField(widget=forms.Select(), required=True, label=_('seller').title())
+
+
+    def __init__(self, token=None, *args, **kwargs):
+        super(SellerAccountStatus, self).__init__(*args, **kwargs)
+
+        # Traer vendedores directamente desde la api
+        data = ObjApi.get(slug='sellers/', arg=filters, token=token)
+
+        if categories:
+            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['name']) for l in categories]
