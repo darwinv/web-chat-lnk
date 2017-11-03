@@ -121,7 +121,7 @@ LANGUAGES = (
     ('en', _('English')),
 )
 # Set the default language for your site.
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 
 # Tell Django where the project's translation files should be.
 LOCALE_PATHS = (    

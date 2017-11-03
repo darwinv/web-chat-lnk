@@ -1,9 +1,6 @@
 """
-A simple tool for converting JSON to an HTML table.
-This is based off of the `json2html` project.
-Their code can be found at https://github.com/softvar/json2html
 
-#Aca va ejemplos de como se debe armar json
+###Aca va ejemplos de como se debe armar json
 Columnas personalizadas # Aca va explicacion y ejemplo de las columas personalizadas
 'concat':
 'detail':
@@ -13,18 +10,21 @@ Columnas personalizadas # Aca va explicacion y ejemplo de las columas personaliz
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
-def convert(data, table_attributes=None,header=None,custom_column=None,actual_page=None,attributes_colum=None):
+def convert(data,header=None, table_attributes=None,custom_column=None,actual_page=None,attributes_colum=None):
     
+    # Genera la etiqueta <table> con sus atributos 
     generateTableObj    = generateTableList(table_attributes=table_attributes)  #  Se inicia la clase y definen atributos de la tabla
     
     if type(data) is dict and 'results' in data:  # Si la data no tiene el elemento "results" se setea "None" para eliminar errores de compilacion
         dataTable = data['results']
     else:
         dataTable = None
-        
+    
+    # Genera el cuerpo de la tabla
     html_output         = generateTableObj.convert(dataTable,header=header,custom_column=custom_column,attributes_colum=attributes_colum)  # Construye el cuerpo hasta el cierre de la etiqueta </table>
 
-    if actual_page is not None and type(data) is dict and 'total_pages' in data:  # Si se envia la cantidad de paginas para el listado
+    # Genera el paginador, Si envian pagina actual y data tiene el total de paginas
+    if actual_page and type(data) is dict and 'total_pages' in data:  # Si se envia la cantidad de paginas para el listado
         html_output    += generateTableObj.pagination(count_pages=data['total_pages'], actual_page=actual_page);
 
     return html_output
@@ -44,7 +44,7 @@ class generateTableList(object):
     Methods
     -------
     convert(json_input)
-        Converts JSON to HTML.
+        Converts Dict to HTML.
     """
 
     def __init__(self, table_attributes=None):
@@ -61,7 +61,7 @@ class generateTableList(object):
 
     def convert(self, json_input,header,custom_column=None,attributes_colum=None):
         """
-        Converts JSON to HTML Table format.
+        Converts Dict to HTML Table format.
 
         Parameters
         ----------
@@ -76,14 +76,14 @@ class generateTableList(object):
         
         html_output = "<div class='overflow-auto'>"
         html_output += self._table_opening_tag
-        html_output += self._markup_header_row(header.keys())
+        html_output += self._markup_header_row(header)
 
         if json_input:
             html_output += "<tr>"
             for listData in json_input:
-                for key in header.values():
+                for (field,key) in header:
 
-                    if key in custom_column:                    
+                    if custom_column and key in custom_column:
                         customValue = self.create_custom_value(listData,custom_column[key])                        
                         value = customValue
                     elif key in listData.keys() and listData[key]:
@@ -95,7 +95,7 @@ class generateTableList(object):
 
                 html_output += "</tr>"
         else:
-            html_output += "<tr><td colspan='{}'>{}</td></tr>".format(len(header.keys()),_("search is empty").title())
+            html_output += "<tr><td colspan='{}'>{}</td></tr>".format(len(header),_("search is empty").title())
         html_output += "</table></div>"
         return html_output
 
@@ -195,7 +195,7 @@ class generateTableList(object):
             Table row of headers.
         """
         html_output = "<tr>"
-        for key in headers:
+        for (key, value) in headers:
             html_output += "<th>{}</th>".format(self.capitalize(key))
         return html_output + "</tr>"
 

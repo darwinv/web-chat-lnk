@@ -91,13 +91,22 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>
+                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>                        
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="{% url 'dashboard:account-status-seller' %}"><i class="fa fa-circle-o"></i> {% trans "Seller"|title %}</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">
                         <i class="fa fa-list-ol"></i> <span>{% trans "reports"|title %}</span>
                     </a>
+
                 </li>
             {% endblock nav_links %}
             
