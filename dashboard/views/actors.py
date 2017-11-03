@@ -59,7 +59,7 @@ class Specialist(Actor):
 
         # Definimos columnas adicionales/personalizadas
         custom_column = {
-            "last_name": {'type': 'concat', 'data': {'last_name', ' ', 'first_name'}},
+            "last_name": {'type': 'concat', 'data': ('last_name', ' ', 'first_name')},
             "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
             "delete": {'type': 'delete', 'data': {'url': self._delete, 'key': 'id'}}
         }
@@ -74,9 +74,9 @@ class Specialist(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_tabla = {_("detail"): "detail", lastnames_title: "last_name", _("code"): "code",
-                        _("email"): "email_exact", _("RUC"): "ruc", _("category"): "category_name",
-                        _("specialty"): "type_specialist", _("delete"): "delete"}
+        header_tabla = [(_("detail"), "detail"),(lastnames_title, "last_name"),( _("code"), "code"),(
+                        _("email"), "email_exact"),( _("RUC"), "ruc"),( _("category"), "category_name"),(
+                        _("specialty"), "type_specialist"),( _("delete"), "delete")]
 
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
                         attributes_colum=attributes_colum)
@@ -200,7 +200,7 @@ class Specialist(Actor):
     def edit(self, request, id):
         ObjApi = api()
         token = request.session['token']
-
+        
         if request.method == 'POST':
             form = self.generateFormSpecialist(token=token, ObjApi=ObjApi, data=request.POST, form_edit=True,
                                                files=request.FILES)
@@ -299,10 +299,10 @@ class Client(Actor):
 
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} / {}".format(_("names"), _("business name"))
-        header_tabla = {lastnames_title: "business_name", _("alias"): "nick", _("code"): "code",
-                        _("email"): "email_exact", _("RUC"): "ruc",
-                        _("identification document"): "document_number", _("RUC"): "ruc", _("querys"): "",
-                        _("detail"): "detail"}
+        header_tabla = [(lastnames_title, "business_name"),( _("alias"), "nick"),( _("code"), "code"),(
+                        _("email"), "email_exact"),( _("RUC"), "ruc"),(
+                        _("identification document"), "document_number"),( _("RUC"), "ruc"),( _("querys"), ""),(
+                        _("detail"), "detail")]
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
                         attributes_colum=attributes_colum)
 
@@ -372,10 +372,10 @@ class Seller(Actor):
 
         # Definimos columnas adicionales/personalizadas
         custom_column = {
-            "last_name": {'type': 'concat', 'data': {'last_name', 'first_name'}, 'separator': ' '},
+            "last_name": {'type': 'concat', 'data': ('last_name', 'first_name'), 'separator': ' '},
             "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
-            "advance": {'type': 'concat', 'data': {'quota', 'count_plans_seller'}, 'separator': '/'},
-            "ubigeo": {'type': 'concat', 'data': {'address': {'department_name', 'province_name', 'district_name'}},
+            "advance": {'type': 'concat', 'data': ('quota', 'count_plans_seller'), 'separator': '/'},
+            "ubigeo": {'type': 'concat', 'data': {'address': ('department_name', 'province_name', 'district_name')},
                        'separator': '/'},
             "seeclients": {'type': 'link', 'data': {'url': self._list_clients, 'arguments': {'seller': 'id'},
                                                     'text': _('see portfolio')}},
@@ -391,11 +391,11 @@ class Seller(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_tabla = {_("detail"): "detail", lastnames_title: "last_name", _("code"): "code",
-                        _("email"): "email_exact",
-                        _("RUC"): "ruc", _('see portfolio'): "seeclients", _("ubigeo"): "ubigeo", _("quota"): "quota",
-                        _("advance"): "advance",
-                        _("number of plans sold"): "count_plans_seller", _("number of queries"): "count_queries"}
+        header_tabla = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
+                        _("email"), "email_exact"),(
+                        _("RUC"), "ruc"),( _('see portfolio'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
+                        _("advance"), "advance"),(
+                        _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
 
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
                         attributes_colum=attributes_colum)

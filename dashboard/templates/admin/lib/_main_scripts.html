@@ -1,6 +1,11 @@
 {% load static i18n api_tools %}
 <!-- Este archivo es llamado por toda la App para cumplir funciones  -->
 <!-- personalizadas para 2 o mas vistas -->
+
+<!-- Definicion de lenguaje formato 'ES' -->
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as LANG %}
+
 <script>
 $(function () {
 	// get globar api var traidas desde api_tools
@@ -153,11 +158,19 @@ $(function () {
         $('.custom-sel a:not(:first)').addClass('hidden');
     });
 
-
+    // Show/Hide Filter container
     $(document).on('click', '.toggleFilter', function() {
 		$(".filters").fadeToggle();
 	});
 
+    $.datepicker.setDefaults(
+	  $.extend(
+	    $.datepicker.regional['{{LANG.code}}'],
+	    {'dateFormat':'dd/mm/yy'}
+	  )
+	);
+    // Generate datepciker by class
+    $( ".datepicker" ).datepicker();
 
 	
 });

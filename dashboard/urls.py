@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^actor/administrators/create/$', views.actors.Administrator().list, name='actor-administrators-create'),
 
 
-    # Estados de cuenta     
-    url(r'^account_status/sellers/$', views.actors.Seller().list, name='statements-account-seller'),
+    # Estados de cuenta   
+    url(r'^account_status/sellers/$', views.account_status.AccountStatusSeller().list, name='account-status-seller'),
 
 ]

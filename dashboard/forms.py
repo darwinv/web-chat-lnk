@@ -6,6 +6,7 @@ from dashboard.models import Specialist
 
 from api.connection import api
 
+from django.contrib.admin.widgets import AdminDateWidget
 
 class FilterForm(forms.Form):
     """
@@ -161,26 +162,43 @@ class SpecialistForm(ModelForm):
 
 
 
+"""
+Reportes de estado de cuenta
+"""
+
 class AccountStatus(FilterForm):
     """
     Clase creada para filtrar estados de cuenta
     """
-    date = forms.CharField(label=_('date').title())
+    from_date = forms.DateField(widget=forms.TextInput(attrs=
+                                {
+                                    'class':'datepicker'
+                                }),label=_('from').title())
+    until_date = forms.DateField(widget=forms.TextInput(attrs=
+                                {
+                                    'class':'datepicker'
+                                }),label=_('until').title())
+
+    
 
 
-
-class SellerAccountStatus(AccountStatus):
+class AccountStatusSellerFormFilters(AccountStatus):
     """
     Formulario para filtrar estados de cuenta por vendedor
     """
     seller = forms.CharField(widget=forms.Select(), required=True, label=_('seller').title())
+    show_sum_column = forms.BooleanField(label=_('Show Total').title())
 
+    # checkTotalsum
 
     def __init__(self, token=None, *args, **kwargs):
-        super(SellerAccountStatus, self).__init__(*args, **kwargs)
+        super(AccountStatusSellerFormFilters, self).__init__(*args, **kwargs)
+        ObjApi = api()
 
         # Traer vendedores directamente desde la api
-        data = ObjApi.get(slug='sellers/', arg=filters, token=token)
-
-        if categories:
-            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['name']) for l in categories]
+        # y actualizamos los options del select
+        # "?page_size=0" trae un listado, ignorando la paginacion
+        data = ObjApi.get(slug='sellers/?page_size=0', token=token) 
+        
+        if type(data) is list:
+            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]

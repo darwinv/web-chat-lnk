@@ -55,12 +55,16 @@ li.language > ul.dropdown-menu {
     background-color: rgba(255, 255, 255, 0.1);
   }
   .skin-blue .main-header .navbar .dropdown-menu li a {
-    color: #fff;
+    /*color: #fff;*/
   }
   .skin-blue .main-header .navbar .dropdown-menu li a:hover {
-    background: #367fa9;
+    /*background: #367fa9;*/
+  }
+  li.dropdown.language {
+    position: relative;
   }
 }
+
 .skin-blue .main-header .logo {
   background-color: #00000d;
   color: #ffffff;
@@ -336,11 +340,17 @@ i.fa.fa-star.yellow{
 }
 /*** ***/
 .actors-cont-btn .btn {
- width: 180px;
+  width: 180px;
+  margin-bottom: 1px;
 }
-
-
-
+.actors-cont-btn {
+  margin-bottom: 10px;
+}
+@media (max-width: 991px) {
+  .actors-cont-btn .btn {
+    width: 100%;
+  }
+}
 /**<TABLE>**/
 
 .table th {
@@ -391,6 +401,9 @@ td.numeric {
   transition: background-color .3s;
   background-color: white;
   position: relative;
+}
+.pagination > .p-btn {
+    margin: 0px 1px;
 }
 .pagination > .p-btn:hover:not(.disable) {
   background-color: #ddd;
