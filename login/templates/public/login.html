@@ -1,11 +1,11 @@
 {% extends 'public/base.html' %}
-{% load i18n %}
+{% load i18n static %}
 {% block login %}
 <div class="vertical-aling" >
   <div class="login-box">
 
     <div class="login-logo">
-      <a href=""><b style="color:white;">Link</b><b style="color:#00ACC5">Up</b></a>
+      {% block logo_text %}<img src="{% static "dist/img/logo.png" %}" >{% endblock %}
     </div>
     <!-- /.login-logo -->
     <div class="login-form">

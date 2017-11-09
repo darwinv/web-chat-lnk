@@ -9,7 +9,7 @@ from api.connection import api
 
 from dashboard.json2table import convert, getActualPage
 from dashboard.forms import SpecialistForm, SellerFormFilters
-import json
+
 import pdb
 
 

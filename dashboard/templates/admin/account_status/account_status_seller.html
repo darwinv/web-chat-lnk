@@ -9,9 +9,6 @@
 
 {% endblock %}
 
-{% block info_user %}
-
-{% endblock info_user %}
 
 {% block filters_table %}
 	<div class="col-xs-12 marB10">
@@ -38,6 +35,13 @@
 			            {{ form_filters.seller.errors }}
 			        </div>
 			    {% endif %}
+			    {% if form_filters.show_sum_column %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.show_sum_column.label_tag }}
+			            {{ form_filters.show_sum_column }}
+			            {{ form_filters.show_sum_column.errors }}
+			        </div>
+			    {% endif %}
 			    
 
 				<div class="col-xs-12 text-center">
@@ -47,3 +51,55 @@
 
 	</div>
 {% endblock filters_table %}
+
+{% block info_user %}
+<div class="col-xs-12">
+	<div class="cont-info-user text-center padL40 padR40 pull-left marR15 without-border" >
+      {% if data_user.photo and data_user.photo != "preview.png" %}
+        <img src="{{data_user.photo}}" class="img-circle">
+      {% else %}
+        <img src="{% static "dist/img/profile.png" %}" class="img-circle">
+      {% endif %}
+
+	</div>
+	<div class="pull-left span-block padT10 marR15" >
+      
+        {% if data_user.first_name or data_user.last_name %}
+          <span class="size18">{{data_user.first_name}} {{data_user.last_name}}</span>
+        {% endif %}
+        {% if data_user.nick %}
+          <span>{% trans "nick"|title %} {{data_user.nick}}</span>
+        {% endif %}
+        {% if data_user.code %}
+          <span>{{data_user.code}}</span>
+        {% endif %}
+
+        {% if data_user.email_exact %}
+          <span>{{data_user.email_exact}}</span>
+        {% endif %}
+    </div>
+    <div class="pull-left span-block padT10 marR15" >
+
+        {% if data_user.cellphone %}
+          <span>{% trans "celphone"|title %}: {{data_user.cellphone}}</span>
+        {% endif %}
+        {% if data_user.telephone %}
+          <span>{% trans "phone"|title %}: {{data_user.telephone}}</span>
+        {% endif %}
+     
+        {% if data_user.address %}
+          <span>
+            <i class="fa fa-home"></i>                
+            {{data_user.address.street}} - 
+            {{data_user.address.department_name}} |
+            {{data_user.address.province_name}} | 
+            {{data_user.address.district_name}}
+          </span>
+        {% endif %}
+    </div>
+    <div class="pull-right">
+		<button type="button" class="btn btn-flat btn-black toggleFilter">{% trans "filter"|title %}</button>
+	</div>
+</div>
+
+{% endblock info_user %}

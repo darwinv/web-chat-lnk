@@ -29,7 +29,9 @@
 .overflow-auto{	
     overflow: auto;
 }
-
+.without-border {
+    border: none !important;
+}
 .mar10{
 	margin: 10px;
 }
@@ -41,6 +43,9 @@
 }
 .marB10 {
     margin-bottom: 10px;
+}
+.padT10{
+	padding-top: 10px;
 }
 .padL40{
 	padding-left: 40px;
