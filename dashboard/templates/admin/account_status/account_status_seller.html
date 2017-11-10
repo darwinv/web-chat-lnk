@@ -46,6 +46,7 @@
 
 				<div class="col-xs-12 text-center">
 					<button type="submit" class="btn btn-flat btn-black">{% trans "Send"|title %}</button>
+					<button type="button" class="btn btn-flat btn-default cleatFilter">{% trans "clear"|title %}</button>
 				</div>
 			</div>
 
@@ -53,53 +54,54 @@
 {% endblock filters_table %}
 
 {% block info_user %}
-<div class="col-xs-12">
-	<div class="cont-info-user text-center padL40 padR40 pull-left marR15 without-border" >
-      {% if data_user.photo and data_user.photo != "preview.png" %}
-        <img src="{{data_user.photo}}" class="img-circle">
-      {% else %}
-        <img src="{% static "dist/img/profile.png" %}" class="img-circle">
-      {% endif %}
+	{% if data_user %}
+		<div class="col-xs-12">
+			<div class="cont-info-user text-center padL40 padR40 pull-left marR15 without-border" >
+		      {% if data_user.photo and data_user.photo != "preview.png" %}
+		        <img src="{{data_user.photo}}" class="img-circle">
+		      {% else %}
+		        <img src="{% static "dist/img/profile.png" %}" class="img-circle">
+		      {% endif %}
 
-	</div>
-	<div class="pull-left span-block padT10 marR15" >
-      
-        {% if data_user.first_name or data_user.last_name %}
-          <span class="size18">{{data_user.first_name}} {{data_user.last_name}}</span>
-        {% endif %}
-        {% if data_user.nick %}
-          <span>{% trans "nick"|title %} {{data_user.nick}}</span>
-        {% endif %}
-        {% if data_user.code %}
-          <span>{{data_user.code}}</span>
-        {% endif %}
+			</div>
+			<div class="pull-left span-block padT10 marR15" >
+		      
+		        {% if data_user.first_name or data_user.last_name %}
+		          <span class="size18">{{data_user.first_name}} {{data_user.last_name}}</span>
+		        {% endif %}
+		        {% if data_user.nick %}
+		          <span>{% trans "nick"|title %} {{data_user.nick}}</span>
+		        {% endif %}
+		        {% if data_user.code %}
+		          <span>{{data_user.code}}</span>
+		        {% endif %}
 
-        {% if data_user.email_exact %}
-          <span>{{data_user.email_exact}}</span>
-        {% endif %}
-    </div>
-    <div class="pull-left span-block padT10 marR15" >
+		        {% if data_user.email_exact %}
+		          <span>{{data_user.email_exact}}</span>
+		        {% endif %}
+		    </div>
+		    <div class="pull-left span-block padT10 marR15" >
 
-        {% if data_user.cellphone %}
-          <span>{% trans "celphone"|title %}: {{data_user.cellphone}}</span>
-        {% endif %}
-        {% if data_user.telephone %}
-          <span>{% trans "phone"|title %}: {{data_user.telephone}}</span>
-        {% endif %}
-     
-        {% if data_user.address %}
-          <span>
-            <i class="fa fa-home"></i>                
-            {{data_user.address.street}} - 
-            {{data_user.address.department_name}} |
-            {{data_user.address.province_name}} | 
-            {{data_user.address.district_name}}
-          </span>
-        {% endif %}
-    </div>
-    <div class="pull-right">
-		<button type="button" class="btn btn-flat btn-black toggleFilter">{% trans "filter"|title %}</button>
-	</div>
-</div>
-
+		        {% if data_user.cellphone %}
+		          <span>{% trans "celphone"|title %}: {{data_user.cellphone}}</span>
+		        {% endif %}
+		        {% if data_user.telephone %}
+		          <span>{% trans "phone"|title %}: {{data_user.telephone}}</span>
+		        {% endif %}
+		     
+		        {% if data_user.address %}
+		          <span>
+		            <i class="fa fa-home"></i>                
+		            {{data_user.address.street}} - 
+		            {{data_user.address.department_name}} |
+		            {{data_user.address.province_name}} | 
+		            {{data_user.address.district_name}}
+		          </span>
+		        {% endif %}
+		    </div>
+		    <div class="pull-right">
+				<button type="button" class="btn btn-flat btn-black toggleFilter">{% trans "filter"|title %}</button>
+			</div>
+		</div>
+	{% endif %}
 {% endblock info_user %}

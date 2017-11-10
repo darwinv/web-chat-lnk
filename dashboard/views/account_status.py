@@ -103,7 +103,7 @@ class AccountStatusSeller(AccountStatus):
                 _("mounth of duration"), "purchase__product__expiration_number"),(
                 _("price"), "purchase__total_amount"),(_("Payments Made"), "purchase_fee_amount"),(
                 _("Pending payment"), "pending_payment"),(
-                _("reference fee"),"purchase__fee__reference_number"),(
+                _("advance"),"purchase__fee__reference_number"),(
                 
 
                 _(""), "count_products_c"),(_(""), "fee_accumulated_c"),(_(""), "purchase__fee__fee_amount_c"),(_(""), "amount_accumulated_c"),(
