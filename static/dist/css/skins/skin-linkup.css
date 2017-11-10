@@ -253,6 +253,9 @@ i.fa.fa-star {
 i.fa.fa-star.yellow{
   color: yellow;
 }
+.span-block span {
+    display: block;
+}
 
   /** GENERIC BLOCK TEXT **/
   .block-center-flat {
@@ -364,6 +367,10 @@ i.fa.fa-star.yellow{
 td.numeric {
     text-align: left;
 }
+table.table th {
+    vertical-align: middle !important;
+}
+
 /**PAGINATION**/
 .pagination >  .p-btn.p-left-start:before{
     content: "<<";
