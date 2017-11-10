@@ -4,8 +4,7 @@
     {% block logo %}
     <a href="{% block logo_href %}/{% endblock %}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">{% block logo_text_small %}<b>L</b>UP{% endblock %}</span>
-        <!-- logo for regular state and mobile devices -->
+        <span class="logo-mini">{% block logo_text_small %}<img src="{% static "dist/img/icono-link.ico" %}" >{% endblock %}</span>        <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">{% block logo_text %}<img src="{% static "dist/img/logo.png" %}" >{% endblock %}</span>
     </a>
     {% endblock %}
@@ -41,9 +40,6 @@
                             {% endfor %}
                           </ul>
                         </li>
-
-                        
-
 
                         <!-- Notifications: style can be found in dropdown.less -->
                           <li class="dropdown notifications-menu">

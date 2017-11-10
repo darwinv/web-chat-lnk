@@ -189,7 +189,6 @@ class AccountStatusSellerFormFilters(AccountStatus):
     seller = forms.CharField(widget=forms.Select(), required=True, label=_('seller').title())
     show_sum_column = forms.BooleanField(label=_('Show Total').title())
 
-    # checkTotalsum
 
     def __init__(self, token=None, *args, **kwargs):
         super(AccountStatusSellerFormFilters, self).__init__(*args, **kwargs)

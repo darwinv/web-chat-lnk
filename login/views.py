@@ -2,8 +2,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth import login
-
+from django.contrib.auth import login, logout
+from django.urls import reverse
 #seguridad
 from django.contrib.auth import authenticate, login
 
@@ -47,3 +47,9 @@ def weblogin(request):
         form = Login()
 
     return render(request, 'public/login.html', {'form': form,'error_message': error_message})
+
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login:login'))

@@ -13,4 +13,5 @@ urlpatterns = [
     #usuario que no esta autorizado
     url(r'^accounts/login/$', views.weblogin, name='login'),
 
+    url(r'^logout/', views.logout_view, name='logout'),
 ]

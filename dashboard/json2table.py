@@ -1,5 +1,4 @@
 """
-
 ###Aca va ejemplos de como se debe armar json
 Columnas personalizadas # Aca va explicacion y ejemplo de las columas personalizadas
 'concat':
@@ -9,19 +8,25 @@ Columnas personalizadas # Aca va explicacion y ejemplo de las columas personaliz
 """
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
+from dashboard.tools import ToolsBackend as Tools
 
-def convert(data,header=None, table_attributes=None,custom_column=None,actual_page=None,attributes_colum=None):
-    
+def convert(data,header=None, table_attributes=None,custom_column=None,actual_page=None,attributes_colum=None,multi_header=None,footer=None):
+        
     # Genera la etiqueta <table> con sus atributos 
     generateTableObj    = generateTableList(table_attributes=table_attributes)  #  Se inicia la clase y definen atributos de la tabla
     
+    generateTableObj._multi_header = multi_header
+
     if type(data) is dict and 'results' in data:  # Si la data no tiene el elemento "results" se setea "None" para eliminar errores de compilacion
         dataTable = data['results']
+    elif type(data) is list:
+        dataTable = data
     else:
         dataTable = None
     
+    
     # Genera el cuerpo de la tabla
-    html_output         = generateTableObj.convert(dataTable,header=header,custom_column=custom_column,attributes_colum=attributes_colum)  # Construye el cuerpo hasta el cierre de la etiqueta </table>
+    html_output         = generateTableObj.convert(dataTable,header,custom_column,attributes_colum,footer)  # Construye el cuerpo hasta el cierre de la etiqueta </table>
 
     # Genera el paginador, Si envian pagina actual y data tiene el total de paginas
     if actual_page and type(data) is dict and 'total_pages' in data:  # Si se envia la cantidad de paginas para el listado
@@ -37,7 +42,8 @@ def getActualPage(request):
     return actual_page
     
 class generateTableList(object):
-
+    _multi_header = None
+    _acum = {}
     """
     Class that manages the conversion of a JSON object to a string of HTML.
 
@@ -48,7 +54,7 @@ class generateTableList(object):
     """
 
     def __init__(self, table_attributes=None):
-        table_attributes_defaul = {"class": "table table-striped table-bordered table-hover "}        
+        table_attributes_defaul = {"class": "table table-striped table-bordered table-hover "}
         
         
         if table_attributes is not None and not isinstance(table_attributes, dict):
@@ -59,7 +65,8 @@ class generateTableList(object):
         self._table_opening_tag = "<table{:s}>".format(generateTableList._dict_to_html_attributes(table_attributes_defaul))
 
 
-    def convert(self, json_input,header,custom_column=None,attributes_colum=None):
+    def convert(self, json_input,header,custom_column,attributes_colum,footer):
+
         """
         Converts Dict to HTML Table format.
 
@@ -76,30 +83,41 @@ class generateTableList(object):
         
         html_output = "<div class='overflow-auto'>"
         html_output += self._table_opening_tag
-        html_output += self._markup_header_row(header)
+        if self._multi_header:
+            headers_tabla = self._multi_header
+        elif header:
+            headers_tabla = header
+        html_output += self._markup_header_row(headers_tabla)
 
         if json_input:
             html_output += "<tr>"
-            for listData in json_input:
-                for (field,key) in header:
-
+            for row_data in json_input:
+                for (field,key) in header:  # key es el identificar de la columna
                     if custom_column and key in custom_column:
-                        customValue = self.create_custom_value(listData,custom_column[key])                        
+                        customValue = self.create_custom_value(custom_column[key],row_data)                        
                         value = customValue
-                    elif key in listData.keys() and listData[key]:
-                        value = listData[key]
+                    elif key in row_data.keys() and row_data[key]:
+                        value = row_data[key]
                     else:
                         value = ""
 
-                    html_output += self.create_table_data(key,value,attributes_colum)
 
+                    html_output += self.create_table_data(value,key,attributes_colum)
+
+                    if footer:
+                        self.accumulate_values(row_data,key,footer)
                 html_output += "</tr>"
+
+            if footer:
+                html_output += self.get_footer(footer,header)
+
+
         else:
             html_output += "<tr><td colspan='{}'>{}</td></tr>".format(len(header),_("search is empty").title())
         html_output += "</table></div>"
         return html_output
 
-    def create_table_data(self,key,value,attributes_colum):
+    def create_table_data(self,value,key=None,attributes_colum=None):
         attrs = ""
         if type(attributes_colum) is dict and key in attributes_colum:
             for attr_name in attributes_colum[key]:
@@ -108,7 +126,61 @@ class generateTableList(object):
 
         return "<td {attrs}>{value}</td>".format(value=value,attrs=attrs)
 
-    def create_custom_value(self, row_data,custom_column_data):
+    def get_footer(self,footer,header):
+        html_output = ''
+        
+        for row in footer:
+            html_output += '<tr>'
+            for (field,key) in header:
+                value = ''
+                if key in row:
+                    value = self.get_footer_value(row,key,footer)
+
+                html_output += self.create_table_data(value)
+            html_output += '</tr>'
+        return html_output
+    
+    def get_footer_value(self,row,key,footer=None):
+        data = row[key]
+        value = ''
+
+        if data['type'] == 'acum':
+            value = 0
+            for acum in self._acum[key]:
+                value += float(self._acum[key][acum])
+
+        if data['type'] == 'eval':
+            f = footer
+            value = eval(data['data'])  # Esto debe ser string como "int(r['num'])-1"
+
+
+
+        if 'format_price' in data:
+            tools = Tools()
+            value = tools.format_to_decimal(value)
+
+
+        row.update( {'_'+key:value} )  # Guarda el valor para la columna y posicione del footer
+
+        return value
+
+    def accumulate_values(self,row_data,key,footer):
+        """
+        Funcion creada para acumular o guardar en un dict los valores de una columna
+        """
+
+        for f in footer:
+
+            if key in f and f[key]['type'] == 'acum':
+
+                if key not in self._acum:
+                    self._acum[key] = {}  # Si no existe todavia ese acumulador, se define como dict
+
+                self._acum[key].update( {row_data[f[key]['id']]:row_data[f[key]['value']]} )
+
+
+
+    def create_custom_value(self,custom_column_data,row_data=None):
         value = ""
         type_colum = custom_column_data['type']
         data    = custom_column_data['data']
@@ -119,13 +191,12 @@ class generateTableList(object):
             if 'separator' in custom_column_data:
                 separator = custom_column_data['separator']
 
-
             for key_column in data:
                 
                 if row_data and key_column in row_data:  # Si la columna existe en la data enviada
                     if type(data) is dict:  # Si la data es un dict, recorremos recursivamente den elemento padre
                         custom_column_data_aux = {'type':type_colum,'data':data[key_column],'separator':separator}
-                        recursion = self.create_custom_value(row_data[key_column],custom_column_data_aux)
+                        recursion = self.create_custom_value(custom_column_data_aux,row_data[key_column])
                         texts.append(str(recursion))
                     else:
                         texts.append(str(row_data[key_column]))
@@ -163,7 +234,7 @@ class generateTableList(object):
                 data_arg = data['arguments']
                 for arg_key in data_arg:
                     argument_value = ''
-                    if data_arg[arg_key] in row_data:
+                    if row_data and data_arg[arg_key] in row_data:
                         argument_value = row_data[data_arg[arg_key]]
                     else:
                         argument_value = data_arg[arg_key]
@@ -175,6 +246,49 @@ class generateTableList(object):
                 url = reverse(data['url'])
 
             value  +='<a href="{url}{arg}">{text}</i></a>'.format(url=url, arg=arguments, text=data['text'])
+
+        if type_colum == 'date':
+            tools = Tools()
+
+            date = data[0]
+            if row_data and date in row_data:
+                date = row_data[data[0]]
+
+            value = tools.date_format_to_view(date=date)
+
+
+        if type_colum == 'format_price':
+            tools = Tools()
+
+            number = data[0]
+            if row_data and number in row_data:
+                number = row_data[data[0]]
+
+            value = tools.format_to_decimal(number)
+
+
+        if type_colum == 'eval':
+            r = row_data
+            value = eval(data[0])  # Esto debe ser string como "int(r['num'])-1"
+
+
+
+        if type_colum == 'if_eval':
+            r = row_data
+            condition = eval(data[0])  # Esto debe ser string como "int(r['num'])>1"
+
+            if not condition:  # Eval retorna string
+                custom_column_data = dict(custom_column_data)  # Se crea una copia de si mismo para no afectar otras columnas
+                custom_column_data.pop('next', None)  # Eliminamos next por no cumplir con la condicion
+
+
+        if 'next' in custom_column_data:
+            next_custom_colum = custom_column_data['next']
+
+            if 'data' not in next_custom_colum:
+                next_custom_colum['data'] = (value,)
+
+            value = self.create_custom_value(next_custom_colum,row_data)
 
         return value
 
@@ -194,16 +308,41 @@ class generateTableList(object):
         str
             Table row of headers.
         """
-        html_output = "<tr>"
-        for (key, value) in headers:
-            html_output += "<th>{}</th>".format(self.capitalize(key))
-        return html_output + "</tr>"
+
+        html_output = ''
+
+            
+        if type(headers[0]) is list:  # Si el primer registro es una lista, se usa funcion recursiva para traer multiples head
+            for h in headers:
+                html_output +=self._markup_header_row(h)
+
+            return html_output
+
+
+          
+        html_output = "<tr>"   
+        for (key, data) in headers:
+            rowspan = '1'
+            colspan = '1'
+
+            if type(data) is dict:
+                if 'rowspan' in data:
+                    rowspan = data['rowspan']
+                if 'colspan' in data:
+                    colspan = data['colspan']
+
+            html_output += "<th rowspan='{rs}' colspan='{cs}'>{}</th>".format(self.capitalize(key),rs=rowspan, cs=colspan)
+        html_output += "</tr>"
+
+        return html_output
 
 
     @staticmethod
     def capitalize(line):
+        if len(line) <=0:
+            return '';            
         return line[0].upper() + line[1:]
-        #return ' '.join(s[0].upper() + s[1:] for s in line.split(' '))
+
     @staticmethod
     def _dict_to_html_attributes(d):
         """
@@ -225,9 +364,7 @@ class generateTableList(object):
         if d is None:
             return ""
 
-        return "".join(" {}=\"{}\"".format(key, value) for key, value in iter(d.items()))
-
-    
+        return "".join(" {}=\"{}\"".format(key, value) for key, value in iter(d.items()))    
 
 
 

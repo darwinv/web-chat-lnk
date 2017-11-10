@@ -162,6 +162,11 @@ $(function () {
     $(document).on('click', '.toggleFilter', function() {
 		$(".filters").fadeToggle();
 	});
+	$(document).on('click', '.cleatFilter', function() {		
+    	var form = $(this).parents('form:first');
+    	form.find('input,select').val('');
+    	form.find('input[type=checkbox]').attr('checked', false);
+	});
 
     $.datepicker.setDefaults(
 	  $.extend(

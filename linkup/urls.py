@@ -5,6 +5,7 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = i18n_patterns(
     #login
     url(r'^', include('login.urls')),
+    url(r'^logout/', include('login.urls')),
 
     #admin linkup
     url(r'^admin/', include('dashboard.urls')),

@@ -9,7 +9,7 @@ from api.connection import api
 
 from dashboard.json2table import convert, getActualPage
 from dashboard.forms import SpecialistForm, SellerFormFilters
-import json
+
 import pdb
 
 
@@ -374,7 +374,7 @@ class Seller(Actor):
         custom_column = {
             "last_name": {'type': 'concat', 'data': ('last_name', 'first_name'), 'separator': ' '},
             "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
-            "advance": {'type': 'concat', 'data': ('quota', 'count_plans_seller'), 'separator': '/'},
+            "advance": {'type': 'concat', 'data': ('count_plans_seller','quota'), 'separator': '/'},
             "ubigeo": {'type': 'concat', 'data': {'address': ('department_name', 'province_name', 'district_name')},
                        'separator': '/'},
             "seeclients": {'type': 'link', 'data': {'url': self._list_clients, 'arguments': {'seller': 'id'},
