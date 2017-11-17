@@ -3,7 +3,8 @@
 #project
 from api.config import API_URL,API_CLIENT_ID,API_CLIENT_SECRET,API_HEADERS
 import requests
-import logging
+from django.utils import translation
+
 import pdb
 
 #Django
@@ -16,7 +17,10 @@ class api:
     _client_secret  = API_CLIENT_SECRET
     _grant_type     = 'password'
     _headers        = API_HEADERS
-    def __init__(self, cliente_id=None, client_secret=None, url=None):
+
+    _language = 'es'
+
+    def __init__(self, cliente_id=None, client_secret=None, url=None, language = None):
         if url:
             self._url = url
         if cliente_id:
@@ -24,6 +28,13 @@ class api:
         if client_secret:
             self._client_secret = client_secret
 
+        if language:
+            self._language = language
+        else:
+            cur_language = translation.get_language()
+            self._language = cur_language
+
+            
     def token(self,username,password):
         """
         Requerido por el app login por el uso de la clase de autentitcacion APIBackend
@@ -182,7 +193,7 @@ class api:
             print("---------------ERROR GET---------------")
 
     def post(self,token,slug='',arg=None,files=None):
-        headers = {'Authorization': 'Bearer ' + token}
+        headers = {'Authorization': 'Bearer ' + token, 'Accept-Language':self._language}
         headers = dict(headers, **self._headers)
         
         try:            
