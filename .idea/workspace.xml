@@ -2,9 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4261945e-b0c1-4d7c-88c0-8fbeb2f12010" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0002_auto_20171010_1942.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0003_auto_20171010_1945.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0004_auto_20171010_1946.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fee.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdb17.sqlite3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdb4.sqlite3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testdb5.sqlite3" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.mo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/connection.py" afterPath="$PROJECT_DIR$/api/connection.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models.py" afterPath="$PROJECT_DIR$/api/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/forms.py" afterPath="$PROJECT_DIR$/dashboard/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/models.py" afterPath="$PROJECT_DIR$/dashboard/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/account_status/account_status_seller.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/account_status/account_status_seller.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/actor/specialistsDetail.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/actor/specialistsDetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/lib/_frame_profile_img.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/lib/_frame_profile_img.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/lib/_main_scripts.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/lib/_main_scripts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/account_status.py" afterPath="$PROJECT_DIR$/dashboard/views/account_status.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/actors.py" afterPath="$PROJECT_DIR$/dashboard/views/actors.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linkup/settings.py" afterPath="$PROJECT_DIR$/linkup/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linkup/urls.py" afterPath="$PROJECT_DIR$/linkup/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/APIBackend.py" afterPath="$PROJECT_DIR$/login/APIBackend.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +39,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="241" column="0" lean-forward="false" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+              <folding>
+                <element signature="e#1#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -30,17 +68,17 @@
         <option value="$PROJECT_DIR$/dashboard/static/dist/css/skins/skin-linkup.css" />
         <option value="$PROJECT_DIR$/api/config.py" />
         <option value="$PROJECT_DIR$/dashboard/templates/admin/actor/sellersList.html" />
-        <option value="$PROJECT_DIR$/dashboard/forms.py" />
         <option value="$PROJECT_DIR$/linkup/settings.py" />
         <option value="$PROJECT_DIR$/dashboard/tools.py" />
         <option value="$PROJECT_DIR$/dashboard/views/actors.py" />
         <option value="$PROJECT_DIR$/dashboard/json2table.py" />
         <option value="$PROJECT_DIR$/dashboard/views/account_status.py" />
         <option value="$PROJECT_DIR$/api/connection.py" />
+        <option value="$PROJECT_DIR$/dashboard/forms.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="159" />
     <option name="y" value="58" />
     <option name="width" value="815" />
@@ -81,7 +119,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -89,10 +126,16 @@
               <item name="linkup_adminlte" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkup_adminlte" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="linkup_adminlte" type="b2602c69:ProjectViewProjectNode" />
+              <item name="linkup_adminlte" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -191,18 +234,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24281392" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17246597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2940171" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2940171" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33049405" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4923077" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -225,7 +268,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="49" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -487,13 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/env/Lib/site-packages/django/contrib/auth/decorators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -589,6 +625,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="241" column="0" lean-forward="false" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

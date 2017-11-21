@@ -162,10 +162,12 @@
   {% endif %}
 
 
-  {% if data.bloked %}
+  
     <div class="col-xs-12 text-center">
-        <button type="button" class="btn btn-flat btn-black">{% trans data.bloked|title %}</button>
+        <button type="button" class="btn btn-flat btn-black">{% trans "bloked"|title %}</button>
+
+        <a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-flat btn-default">{% trans "return to list"|title %}</a>
     </div>
-  {% endif %} 
+    
 
 {% endblock main_content_row %}

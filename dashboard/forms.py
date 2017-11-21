@@ -1,12 +1,12 @@
+
 from django import forms
-from django.utils.translation import ugettext_lazy as _
-
 from django.forms import ModelForm
-from dashboard.models import Specialist
-
+from api.models import Specialist, Category, Department, Province, District
+from django.utils.translation import ugettext_lazy as _
 from api.connection import api
-
 from django.contrib.admin.widgets import AdminDateWidget
+
+
 
 class FilterForm(forms.Form):
     """
@@ -52,48 +52,61 @@ class SellerFormFilters(FilterForm):
 
 
 
-class SpecialistForm(ModelForm):
-    # Data fake
-    CHOICES_C = (
-        (1, 'Lima'),
-    )
-    CHOICES_D = (
-        (1, 'Lima'),
-    )
-    CHOICES_P = (
-        (1, 'Surco'),
-    )
+class SpecialistForm(ModelForm):   
 
-    category = forms.CharField(widget=forms.Select(), required=True, label=_('category').title())
-    department = forms.CharField(widget=forms.Select(choices=CHOICES_C), required=True, label=_('department').title())
-    province = forms.CharField(widget=forms.Select(choices=CHOICES_D), required=True, label=_('province').title())
-    district = forms.CharField(widget=forms.Select(choices=CHOICES_P), required=True, label=_('district').title())
-    street = forms.CharField(required=True, label=_('street').title())
-    photo = forms.FileField(required=False, label=_('upload a photo').title(), widget=forms.TextInput(
+    category = forms.CharField(widget=forms.Select(), required=True )
+    department = forms.CharField(widget=forms.Select(), required=True )
+    province = forms.CharField(widget=forms.Select(), required=True )
+    district = forms.CharField(widget=forms.Select(), required=True )
+    street = forms.CharField(required=True )
+    photo = forms.FileField(required=False , widget=forms.TextInput(
         attrs={'class': 'sr-only', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
 
-    confirm_password = forms.CharField(widget=forms.PasswordInput, label=_('confirm password').title())
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
 
     widgets = {
         'confirm_password': forms.PasswordInput(),
     }
 
-    def __init__(self, initial=None, categories=None, departments=None, provinces=None, districts=None, form_edit=None,
+    def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
 
+        """
+            Declaramos el label traducido para los campos declarados en la clase
+        """
+        self.fields['confirm_password'].label = _('confirm password')
+        self.fields['category'].label = _('category')
+        self.fields['department'].label = _('department')
+        self.fields['province'].label = _('province')
+        self.fields['district'].label = _('district')
+        self.fields['street'].label = _('street')
+        self.fields['photo'].label = _('upload a photo')
+
+
+        categories = Category.objects.all()
+        departments = Department.objects.all()
+
         if categories:
-            self.fields['category'].widget.choices = [('', '')] + [(l['id'], l['name']) for l in categories]
+            self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
 
         if departments:
-            self.fields['department'].widget.choices = [('', '')] + [(l['id'], l['name']) for l in departments]
+            self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
 
-        if provinces:
-            self.fields['province'].widget.choices = [('', '')] + [(l['id'], l['name']) for l in provinces]
 
-        if districts:
-            self.fields['district'].widget.choices = [('', '')] + [(l['id'], l['name']) for l in districts]
+        if department:
+            provinces = Province.objects.filter(department_id=department)
+            self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
 
+        if province:
+            districts = District.objects.filter(province_id=province)
+            self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
+
+
+        # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
+        """
+            Declaramos el label traducido para los campos declarados en la clase
+        """
         if form_edit:
             self.fields.pop('password')
             self.fields.pop('confirm_password')
@@ -143,24 +156,29 @@ class SpecialistForm(ModelForm):
         fields = ['payment_per_answer', 'username', 'nick', 'password', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number', 'ruc', 'business_name',
                   'type_specialist']
-        labels = {
-            'username': _('username').title(),
-            'nick': _('nick').title(),
-            'password': _('password').title(),
-            'first_name': _('first name').title(),
-            'last_name': _('last name').title(),
-            'email_exact': _('email').title(),
-            'telephone': _('telephone').title(),
-            'cellphone': _('cellphone').title(),
-            'document_type': _('document type').title(),
-            'document_number': _('document number').title(),
-            'ruc': _('RUC').title(),
-            'business_name': _('business name').title(),
-            'type_specialist': _('type specialist').title(),
-            'payment_per_answer': _('payment per answer').title(),
-        }
+        
 
+        def __init__(self, arg):
+            super(Meta, self).__init__()
+            self.arg = arg
 
+            self.labels = {
+                'username': _('username').title(),
+                'nick': _('nick').title(),
+                'password': _('password').title(),
+                'first_name': _('first name').title(),
+                'last_name': _('last name').title(),
+                'email_exact': _('email').title(),
+                'telephone': _('telephone').title(),
+                'cellphone': _('cellphone').title(),
+                'document_type': _('document type').title(),
+                'document_number': _('document number').title(),
+                'ruc': _('RUC').title(),
+                'business_name': _('business name').title(),
+                'type_specialist': _('type specialist').title(),
+                'payment_per_answer': _('payment per answer').title(),
+            }
+                
 
 """
 Reportes de estado de cuenta
@@ -173,31 +191,59 @@ class AccountStatus(FilterForm):
     from_date = forms.DateField(widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
-                                }),label=_('from').title())
+                                }))
     until_date = forms.DateField(widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
-                                }),label=_('until').title())
+                                }))
 
-    
+    def __init__(self, token=None, *args, **kwargs):
+        super(AccountStatus, self).__init__(*args, **kwargs)
+
+        self.fields['from_date'].label = _('from').title()
+        self.fields['until_date'].label = _('until').title()
+
+class transLabelFields(object):
+    """
+        Clase creada para solventar bug en traducciones
+        i18n para atributos de las clases.
+    """
+    def __init__(self, arg):
+        super(transLabelFields, self).__init__()
+        self.arg = arg
+
+        
+    def myself(self):
+        for field in self.fields:
+            print(field)
+            print("------------------------------------")
+        print(self.fields['show_sum_column'].label)
+        print(self.fields['seller'].label)
+        print("-----------------FIEELDS-------------------")
 
 
-class AccountStatusSellerFormFilters(AccountStatus):
+class AccountStatusSellerFormFilters(AccountStatus,transLabelFields):
     """
     Formulario para filtrar estados de cuenta por vendedor
-    """
-    seller = forms.CharField(widget=forms.Select(), required=True, label=_('seller').title())
-    show_sum_column = forms.BooleanField(label=_('Show Total').title())
+    """    
+    seller = forms.CharField(label=_('seller').title(),widget=forms.Select(), required=True)
+    show_sum_column = forms.BooleanField()
 
 
     def __init__(self, token=None, *args, **kwargs):
         super(AccountStatusSellerFormFilters, self).__init__(*args, **kwargs)
         ObjApi = api()
 
+        # Se definen los values 
+
+        self.fields['show_sum_column'].label = _('Show Total').title()
+        # self.fields['seller'].label = _('seller').title()
+
+
         # Traer vendedores directamente desde la api
         # y actualizamos los options del select
         # "?page_size=0" trae un listado, ignorando la paginacion
         data = ObjApi.get(slug='sellers/?page_size=0', token=token) 
         
-        if type(data) is list:
+        if type(data) is list:  
             self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]

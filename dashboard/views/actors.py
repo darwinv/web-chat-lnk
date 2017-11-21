@@ -54,6 +54,7 @@ class Specialist(Actor):
             filters.update({'main_specialist': dataMainSpecilist})
             title_page = _('associated specialists').title()
 
+
         # Traer data para el listado
         data = ObjApi.get(slug='specialists/', arg=arg, token=token)
 
@@ -76,7 +77,7 @@ class Specialist(Actor):
 
         header_tabla = [(_("detail"), "detail"),(lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),( _("RUC"), "ruc"),( _("category"), "category_name"),(
-                        _("specialty"), "type_specialist"),( _("delete"), "delete")]
+                        _("specialty"), "type_specialist_name"),( _("delete"), "delete")]
 
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
                         attributes_colum=attributes_colum)
@@ -115,7 +116,7 @@ class Specialist(Actor):
 
         # Si llega envio por POST se valida contra el SpecialistForm
         if request.method == 'POST':
-            form = self.generateFormSpecialist(token=token, ObjApi=ObjApi, data=request.POST, files=request.FILES)
+            form = self.generateFormSpecialist(data=request.POST, files=request.FILES)
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
@@ -147,7 +148,7 @@ class Specialist(Actor):
         else:
             # Crear formulario de especialistas vacio, se traeran
             # datos de selecion como Categorias y Departamentos.
-            form = self.generateFormSpecialist(token=token, ObjApi=ObjApi)
+            form = self.generateFormSpecialist()
 
         title_page = _('create specialist').title()
         vars_page = self.generateHeader(custom_title=title_page)
@@ -155,46 +156,29 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
-    def generateFormSpecialist(self, token, ObjApi, data=None, files=None, specilist=None, form_edit=None):
+    def generateFormSpecialist(self, data=None, files=None, specilist=None, form_edit=None):
         """
         Funcion para generar traer formulario de especialistas
 
-        :param token: codigo de autentificacion
-        :param ObjApi: objeto para conectar a la api
         :param data: objeto POST o dict de valores relacional
         :param specilist: dict que contiene los valores iniciales del usuario
         :param form_edit: Bolean para saber si sera un formulario para editar usuario
         :return: objeto Form de acuerdo a parametros
         """
-        categories = departments = provinces = districts = None
-
-        categories_api = ObjApi.get(slug='categories/', token=token)
-        departments_api = ObjApi.get(slug='departments/', token=token)
-
-        if departments_api and 'results' in departments_api:
-            departments = departments_api['results']
-
-        if categories_api:
-            categories = categories_api  # Borrar este comentario de que este resuelto.. Debe ser con paginacion para seguir estandar..
-
+        department = province = None
+        
+        
         # Validamos que el listado este en la respuesta
         # si no cumple las validaciones por Default el valor sera None
         # Si el usuario tiene department, traemos provincia
-        if specilist and 'department' in specilist:
-            arg = {'department': specilist['department']}
-            provinces_api = ObjApi.get(slug='provinces/', token=token, arg=arg)
-            if provinces_api and 'result' in provinces_api:
-                provinces = provinces_api['result']
+        if specilist and 'address' in specilist and 'department' in specilist['address']:
+            department = specilist['address']['department']
 
-        # Si el usuario tiene province, traemos distritos
-        if specilist and 'province' in specilist:
-            arg = {'province': specilist['province']}
-            districts_api = ObjApi.get(slug='districts/', token=token, arg=arg)
-            if districts_api and 'result' in districts_api:
-                districts = districts_api['result']
+        if specilist and 'address' in specilist and 'province' in specilist['address']:
+            province = specilist['address']['province']
 
-        return SpecialistForm(data=data, files=files, categories=categories, departments=departments,
-                              provinces=provinces, districts=districts, initial=specilist, form_edit=form_edit)
+        return SpecialistForm(data=data, files=files, department=department,
+                              province=province, initial=specilist, form_edit=form_edit)
 
     @method_decorator(login_required)
     def edit(self, request, id):
@@ -202,7 +186,7 @@ class Specialist(Actor):
         token = request.session['token']
         
         if request.method == 'POST':
-            form = self.generateFormSpecialist(token=token, ObjApi=ObjApi, data=request.POST, form_edit=True,
+            form = self.generateFormSpecialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
 
             # check whether it's valid:
@@ -238,7 +222,7 @@ class Specialist(Actor):
         else:
             specilist = ObjApi.get(slug='specialists/' + id, token=token)
 
-            form = self.generateFormSpecialist(token=token, ObjApi=ObjApi, specilist=specilist, form_edit=True)
+            form = self.generateFormSpecialist(specilist=specilist, form_edit=True)
 
         title_page = _('edit specialist').title()
         vars_page = self.generateHeader(custom_title=title_page)
@@ -378,7 +362,7 @@ class Seller(Actor):
             "ubigeo": {'type': 'concat', 'data': {'address': ('department_name', 'province_name', 'district_name')},
                        'separator': '/'},
             "seeclients": {'type': 'link', 'data': {'url': self._list_clients, 'arguments': {'seller': 'id'},
-                                                    'text': _('see portfolio')}},
+                                                    'text': _('see clients')}},
         }
         # Atributos para aplicar a la columna RUC
         attributes_colum = {
@@ -393,7 +377,7 @@ class Seller(Actor):
 
         header_tabla = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),(
-                        _("RUC"), "ruc"),( _('see portfolio'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
+                        _("RUC"), "ruc"),( _('see clients'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
                         _("advance"), "advance"),(
                         _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
 
