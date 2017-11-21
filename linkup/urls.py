@@ -6,8 +6,13 @@ from api.connection import api
 urlpatterns = i18n_patterns(
     #login
     url(r'^', include('login.urls')),
-    url(r'^logout/', include('login.urls')),
-
     #admin linkup
     url(r'^admin/', include('dashboard.urls')),
+
 )
+
+
+urlpatterns += [
+	#api web
+	url(r'^api/', include('api.urls')),
+]

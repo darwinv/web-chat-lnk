@@ -99,16 +99,14 @@ class AccountStatusSeller(AccountStatus):
                 # Cabecera principal, los titulos de la columna seran sobrepuestos si se pasa el listado de cabecera multiple
                 header_table = [(_("date"), "purchase__fee__date"),(_("type"), "is_billable"),(
                 _("number"), "purchase__code"),(_("code"), "purchase__client__code" ),(_("nick"), "purchase__client__nick" ),(
-                _("nombre"), "purchase__product__name" ),(_("query amount"), "purchase__query_amount" ),(
+                _("name"), "purchase__product__name" ),(_("query amount"), "purchase__query_amount" ),(
                 _("mounth of duration"), "purchase__product__expiration_number"),(
                 _("price"), "purchase__total_amount"),(_("Payments Made"), "purchase_fee_amount"),(
                 _("Pending payment"), "pending_payment"),(
                 _("advance"),"purchase__fee__reference_number"),(
-                
-
-                _(""), "count_products_c"),(_(""), "fee_accumulated_c"),(_(""), "purchase__fee__fee_amount_c"),(_(""), "amount_accumulated_c"),(
-                _(""), "count_products_q"),(_(""), "fee_accumulated_q"),(_(""), "purchase__fee__fee_amount_q"),(_(""), "amount_accumulated_q"),(
-                _(""), "count_products" ),(_(""), "fee_accumulated" ),(_(""), "purchase__fee__fee_amount"),(_(""),"amount_accumulated")]
+                "", "count_products_c"),("", "fee_accumulated_c"),("", "purchase__fee__fee_amount_c"),("", "amount_accumulated_c"),(
+                "", "count_products_q"),("", "fee_accumulated_q"),("", "purchase__fee__fee_amount_q"),("", "amount_accumulated_q"),(
+                "", "count_products" ),("", "fee_accumulated" ),("", "purchase__fee__fee_amount"),("","amount_accumulated")]
 
 
                 # Multiples header, una lista por cada nivel de la cabecera 
@@ -137,7 +135,7 @@ class AccountStatusSeller(AccountStatus):
                                 [
                                     (_('type'), {}),
                                     (_('number'), {}),
-                                    (_('code '), {}),
+                                    (_('code'), {}),
                                     (_('Nick'), {}),
                                     (_('name'), {}),
                                     (_('N° of queries'), {}),

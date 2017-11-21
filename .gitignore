@@ -8,6 +8,7 @@
 *.sqlite3
 __pycache__/
 local_settings.py
+settings_secret.py
 media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/

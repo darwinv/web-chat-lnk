@@ -9,7 +9,7 @@ import pdb
 
 #Django
 #from django.contrib.auth.models import User
-from dashboard.models import User
+from api.models import User
 
 class api:
     _url            = API_URL

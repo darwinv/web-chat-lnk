@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from django.utils.translation import ugettext_lazy as _
 import os
 from django.db import models
-#from linkup.local_settings import *
+from linkup.settings_secret import *
 
 #import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTH_USER_MODEL = 'dashboard.User'
+AUTH_USER_MODEL = 'api.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,22 +76,13 @@ TEMPLATES = [
     },
 ]
 
+
+
 AUTHENTICATION_BACKENDS = ['login.APIBackend.APIBackend']
 
 WSGI_APPLICATION = 'linkup.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'testLocalDarwin.sqlite3'),
-        #'NAME': os.path.join(BASE_DIR, 'testAmazon.sqlite3'),
-    }
-}
 
 
 # Password validation
