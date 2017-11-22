@@ -187,6 +187,8 @@ class api:
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url+slug, headers=headers, params=arg)
+            print(r.json())
+            print("------------------------------------")
             return r.json()
         except Exception as e:
             print(e.args)
@@ -198,8 +200,6 @@ class api:
         
         try:            
             r = requests.post(self._url+slug, headers=headers, json=arg,files=files)
-            print(r)
-            print(r.json())
             print("---------------POST---------------")
             return r.json()
         except Exception as e:

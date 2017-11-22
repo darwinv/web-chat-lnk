@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4261945e-b0c1-4d7c-88c0-8fbeb2f12010" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0002_auto_20171010_1942.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0003_auto_20171010_1945.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/migrations/0004_auto_20171010_1946.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fee.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testdb17.sqlite3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testdb4.sqlite3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testdb5.sqlite3" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/es/LC_MESSAGES/static.mo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/es/LC_MESSAGES/static.po" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/connection.py" afterPath="$PROJECT_DIR$/api/connection.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models.py" afterPath="$PROJECT_DIR$/api/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/forms.py" afterPath="$PROJECT_DIR$/dashboard/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/models.py" afterPath="$PROJECT_DIR$/dashboard/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/account_status/account_status_seller.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/account_status/account_status_seller.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/actor/specialistsDetail.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/actor/specialistsDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/lib/_frame_profile_img.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/lib/_frame_profile_img.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/admin/lib/_main_scripts.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/lib/_main_scripts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/account_status.py" afterPath="$PROJECT_DIR$/dashboard/views/account_status.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views/actors.py" afterPath="$PROJECT_DIR$/dashboard/views/actors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linkup/settings.py" afterPath="$PROJECT_DIR$/linkup/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/linkup/urls.py" afterPath="$PROJECT_DIR$/linkup/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/es/LC_MESSAGES/django.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/APIBackend.py" afterPath="$PROJECT_DIR$/login/APIBackend.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,7 +55,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="159" />
     <option name="y" value="58" />
     <option name="width" value="815" />
@@ -234,7 +211,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17246597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
