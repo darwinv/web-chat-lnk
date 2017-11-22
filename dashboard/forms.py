@@ -162,23 +162,28 @@ class SpecialistForm(ModelForm):
         fields = ['payment_per_answer', 'username', 'nick', 'password', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number', 'ruc', 'business_name',
                   'type_specialist']
-        
-        labels = {
-                'username': _('username').title(),
-                'nick': _('nick').title(),
-                'password': _('password').title(),
-                'first_name': _('first name').title(),
-                'last_name': _('last name').title(),
-                'email_exact': _('email').title(),
-                'telephone': _('telephone').title(),
-                'cellphone': _('cellphone').title(),
-                'document_type': _('document type').title(),
-                'document_number': _('document number').title(),
-                'ruc': _('RUC').title(),
-                'business_name': _('business name').title(),
-                'type_specialist': _('type specialist').title(),
-                'payment_per_answer': _('payment per answer').title(),
-            }
+
+
+        """Definicion de los labels con internacionalizacion"""
+        def __init__(self, arg):
+            super(Meta, self).__init__()
+            self.arg = arg
+
+            self.fields['username'].label = _('username').title(),
+            self.fields['nick'].label = _('nick').title(),
+            self.fields['password'].label = _('password').title(),
+            self.fields['first_name'].label = _('first name').title(),
+            self.fields['last_name'].label = _('last name').title(),
+            self.fields['email_exact'].label = _('email').title(),
+            self.fields['telephone'].label = _('telephone').title(),
+            self.fields['cellphone'].label = _('cellphone').title(),
+            self.fields['document_type'].label = _('document type').title(),
+            self.fields['document_number'].label = _('document number').title(),
+            self.fields['ruc'].label = _('RUC').title(),
+            self.fields['business_name'].label = _('business name').title(),
+            self.fields['type_specialist'].label = _('type specialist').title(),
+            self.fields['payment_per_answer'].label = _('payment per answer').title(),
+
 
             
             
