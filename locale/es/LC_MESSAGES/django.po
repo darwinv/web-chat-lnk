@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-22 10:09-0500\n"
+"POT-Creation-Date: 2017-11-22 18:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,131 +211,131 @@ msgstr "Moderar"
 msgid "Positive"
 msgstr "Positivo"
 
-#: .\dashboard\forms.py:45 .\dashboard\forms.py:169
+#: .\dashboard\forms.py:58 .\dashboard\forms.py:178
 msgid "first name"
 msgstr "primer nombre"
 
-#: .\dashboard\forms.py:46 .\dashboard\forms.py:170
+#: .\dashboard\forms.py:59 .\dashboard\forms.py:179
 msgid "last name"
 msgstr "apellidos"
 
-#: .\dashboard\forms.py:47 .\dashboard\forms.py:176
+#: .\dashboard\forms.py:60 .\dashboard\forms.py:185
 #: .\dashboard\views\actors.py:79 .\dashboard\views\actors.py:287
 #: .\dashboard\views\actors.py:288 .\dashboard\views\actors.py:380
 #: .\dashboard\views\actors.py:412
 msgid "RUC"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:48
+#: .\dashboard\forms.py:61
 msgid "mail"
 msgstr "correo"
 
-#: .\dashboard\forms.py:50
+#: .\dashboard\forms.py:62
 msgid "number of plans sold greater than"
 msgstr "números de planes vendidos mas de"
 
-#: .\dashboard\forms.py:51
+#: .\dashboard\forms.py:63
 msgid "number of queries sold greater than"
 msgstr "numero de consultas vendidas mas de"
 
-#: .\dashboard\forms.py:78
+#: .\dashboard\forms.py:90
 msgid "confirm password"
 msgstr "confirmar contraseña"
 
-#: .\dashboard\forms.py:79 .\dashboard\views\actors.py:79
+#: .\dashboard\forms.py:91 .\dashboard\views\actors.py:79
 #: .\dashboard\views\actors.py:413
 msgid "category"
 msgstr "categoría"
 
-#: .\dashboard\forms.py:80
+#: .\dashboard\forms.py:92
 msgid "department"
 msgstr "departamento"
 
-#: .\dashboard\forms.py:81
+#: .\dashboard\forms.py:93
 msgid "province"
 msgstr "provincia"
 
-#: .\dashboard\forms.py:82
+#: .\dashboard\forms.py:94
 msgid "district"
 msgstr "distrito"
 
-#: .\dashboard\forms.py:83
+#: .\dashboard\forms.py:95
 msgid "street"
 msgstr "calle"
 
-#: .\dashboard\forms.py:84
+#: .\dashboard\forms.py:96
 msgid "upload a photo"
 msgstr "subir una foto"
 
-#: .\dashboard\forms.py:133
+#: .\dashboard\forms.py:142
 msgid "Password and confirm password does not match"
 msgstr "Contraseña y confirmar contraseña no coinciden"
 
-#: .\dashboard\forms.py:166
+#: .\dashboard\forms.py:175
 msgid "username"
 msgstr "nombre de usuario"
 
-#: .\dashboard\forms.py:167
+#: .\dashboard\forms.py:176
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:73
 #: .\dashboard\templates\admin\actor\clientsDetail.html:37
 #: .\dashboard\views\account_status.py:101
 msgid "nick"
 msgstr "nick"
 
-#: .\dashboard\forms.py:168
+#: .\dashboard\forms.py:177
 msgid "password"
 msgstr "Contraseña"
 
-#: .\dashboard\forms.py:171 .\dashboard\views\actors.py:79
+#: .\dashboard\forms.py:180 .\dashboard\views\actors.py:79
 #: .\dashboard\views\actors.py:287 .\dashboard\views\actors.py:379
 #: .\dashboard\views\actors.py:412
 msgid "email"
 msgstr "correo"
 
-#: .\dashboard\forms.py:172
+#: .\dashboard\forms.py:181
 msgid "telephone"
 msgstr "telefono"
 
-#: .\dashboard\forms.py:173
+#: .\dashboard\forms.py:182
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:86
 msgid "cellphone"
 msgstr "celular"
 
-#: .\dashboard\forms.py:174
+#: .\dashboard\forms.py:183
 msgid "document type"
 msgstr "tipo de documento"
 
-#: .\dashboard\forms.py:175
+#: .\dashboard\forms.py:184
 msgid "document number"
 msgstr "numero de documento"
 
-#: .\dashboard\forms.py:177 .\dashboard\views\actors.py:285
+#: .\dashboard\forms.py:186 .\dashboard\views\actors.py:285
 msgid "business name"
 msgstr "nombre de la empresa"
 
-#: .\dashboard\forms.py:178
+#: .\dashboard\forms.py:187
 msgid "type specialist"
 msgstr "tipo de especialista"
 
-#: .\dashboard\forms.py:179
+#: .\dashboard\forms.py:188
 msgid "payment per answer"
 msgstr "pago por respuesta"
 
-#: .\dashboard\forms.py:203
+#: .\dashboard\forms.py:215
 msgid "from"
 msgstr "desde"
 
-#: .\dashboard\forms.py:204
+#: .\dashboard\forms.py:216
 msgid "until"
 msgstr "hasta"
 
-#: .\dashboard\forms.py:229
-msgid "seller"
-msgstr "vendedor"
-
-#: .\dashboard\forms.py:239
+#: .\dashboard\forms.py:231
 msgid "Show Total"
 msgstr "Mostrar total"
+
+#: .\dashboard\forms.py:232
+msgid "seller"
+msgstr "vendedor"
 
 #: .\dashboard\json2table.py:116
 msgid "search is empty"
@@ -350,8 +350,9 @@ msgid "of"
 msgstr "de"
 
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:48
-msgid "Send"
-msgstr "Enviar"
+#: .\dashboard\templates\admin\actor\sellersList.html:60
+msgid "send"
+msgstr "enviar"
 
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:49
 #: .\dashboard\templates\admin\actor\sellersList.html:61
@@ -745,9 +746,13 @@ msgstr "documento de identidad"
 msgid "querys"
 msgstr "consultas"
 
-#: .\dashboard\views\actors.py:365 .\dashboard\views\actors.py:380
+#: .\dashboard\views\actors.py:365
 msgid "see clients"
 msgstr "ver clientes"
+
+#: .\dashboard\views\actors.py:380
+msgid "see portfolio"
+msgstr "ver cartera"
 
 #: .\dashboard\views\actors.py:380
 msgid "ubigeo"

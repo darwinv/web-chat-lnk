@@ -377,7 +377,7 @@ class Seller(Actor):
 
         header_tabla = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),(
-                        _("RUC"), "ruc"),( _('see clients'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
+                        _("RUC"), "ruc"),( _('see portfolio'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
                         _("advance"), "advance"),(
                         _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
 

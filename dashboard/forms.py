@@ -4,7 +4,6 @@ from django.forms import ModelForm
 from api.models import Specialist, Category, Department, Province, District
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
-from django.contrib.admin.widgets import AdminDateWidget
 
 
 
@@ -52,7 +51,10 @@ class SellerFormFilters(FilterForm):
     def __init__(self, arg):
         super(SellerFormFilters, self).__init__()
         self.arg = arg
-
+        """
+            Declaramos el label traducido para los campos declarados en la clase
+            con internacionalizacion
+        """
         self.fields['first_name'].label = _('first name').title()
         self.fields['last_name'].label = _('last name').title()
         self.fields['ruc'].label = _('RUC').title()
@@ -83,6 +85,7 @@ class SpecialistForm(ModelForm):
 
         """
             Declaramos el label traducido para los campos declarados en la clase
+            con internacionalizacion
         """
         self.fields['confirm_password'].label = _('confirm password').title()
         self.fields['category'].label = _('category').title()
