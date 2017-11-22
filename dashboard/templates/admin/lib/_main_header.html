@@ -159,16 +159,6 @@
                               <li class="footer"><a href="#">See All Messages</a></li>
                             </ul>
                           </li>
-                          
-
-
-
-
-
-
-
-
-
 
 
 
@@ -184,7 +174,7 @@
                                     <img src="{% avatar_url size=180 %}" class="img-circle" alt="User Image">
                                     <p>
                                         {% firstof request.user.get_short_name request.user.get_username %}
-                                        <small>Member since {{ request.user.date_joined }}</small>
+                                        <small>{% trans "Member since" %} {{ request.user.date_joined }}</small>
                                     </p>
                                 </li>
                                 {% endblock %}
@@ -199,7 +189,7 @@
                                     </div>
                                     {% endcomment %}
                                     <div class="pull-right">
-                                        <a href="{% block logout_url %}{% logout_url %}{% endblock %}" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="{% block logout_url %}{% logout_url %}{% endblock %}" class="btn btn-default btn-flat">{% trans "Sign out" %}</a>
                                     </div>
                                 </li>
                                 {% endblock %}

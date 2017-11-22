@@ -284,9 +284,8 @@ class Client(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} / {}".format(_("names"), _("business name"))
         header_tabla = [(lastnames_title, "business_name"),( _("alias"), "nick"),( _("code"), "code"),(
-                        _("email"), "email_exact"),( _("RUC"), "ruc"),(
-                        _("identification document"), "document_number"),( _("RUC"), "ruc"),( _("querys"), ""),(
-                        _("detail"), "detail")]
+                        _("email"), "email_exact"),(_("identification document"), "document_number"),(
+                        _("RUC"), "ruc"),( _("querys"), ""),(_("detail"), "detail")]
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
                         attributes_colum=attributes_colum)
 
