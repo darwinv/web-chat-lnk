@@ -42,15 +42,24 @@ class SellerFormFilters(FilterForm):
     """
     Clase creada para filtrar el listado de vendedores
     """
-    first_name = forms.CharField(label=_('first name').title())
-    last_name = forms.CharField(label=_('last name').title())
-    ruc = forms.CharField(label=_('RUC'))
-    email_exact = forms.CharField(label=_('mail').title())
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    ruc = forms.CharField()
+    email_exact = forms.CharField()
+    count_plans_seller = forms.IntegerField()
+    count_queries_seller = forms.IntegerField()
 
-    count_plans_seller = forms.IntegerField(label=_('number of plans sold greater than').title())
-    count_queries_seller = forms.IntegerField(label=_('number of queries sold greater than').title())
+    def __init__(self, arg):
+        super(SellerFormFilters, self).__init__()
+        self.arg = arg
 
-
+        self.fields['first_name'].label = _('first name').title()
+        self.fields['last_name'].label = _('last name').title()
+        self.fields['ruc'].label = _('RUC').title()
+        self.fields['email_exact'].label = _('mail').title()
+        self.fields['count_plans_seller'].label = _('number of plans sold greater than').title()
+        self.fields['count_queries_seller'].label = _('number of queries sold greater than').title()
+        
 
 class SpecialistForm(ModelForm):   
 
@@ -75,13 +84,13 @@ class SpecialistForm(ModelForm):
         """
             Declaramos el label traducido para los campos declarados en la clase
         """
-        self.fields['confirm_password'].label = _('confirm password')
-        self.fields['category'].label = _('category')
-        self.fields['department'].label = _('department')
-        self.fields['province'].label = _('province')
-        self.fields['district'].label = _('district')
-        self.fields['street'].label = _('street')
-        self.fields['photo'].label = _('upload a photo')
+        self.fields['confirm_password'].label = _('confirm password').title()
+        self.fields['category'].label = _('category').title()
+        self.fields['department'].label = _('department').title()
+        self.fields['province'].label = _('province').title()
+        self.fields['district'].label = _('district').title()
+        self.fields['street'].label = _('street').title()
+        self.fields['photo'].label = _('upload a photo').title()
 
 
         categories = Category.objects.all()
@@ -104,9 +113,6 @@ class SpecialistForm(ModelForm):
 
 
         # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
-        """
-            Declaramos el label traducido para los campos declarados en la clase
-        """
         if form_edit:
             self.fields.pop('password')
             self.fields.pop('confirm_password')
@@ -157,12 +163,7 @@ class SpecialistForm(ModelForm):
                   'telephone', 'cellphone', 'document_type', 'document_number', 'ruc', 'business_name',
                   'type_specialist']
         
-
-        def __init__(self, arg):
-            super(Meta, self).__init__()
-            self.arg = arg
-
-            self.labels = {
+        labels = {
                 'username': _('username').title(),
                 'nick': _('nick').title(),
                 'password': _('password').title(),
@@ -178,7 +179,10 @@ class SpecialistForm(ModelForm):
                 'type_specialist': _('type specialist').title(),
                 'payment_per_answer': _('payment per answer').title(),
             }
-                
+
+            
+            
+
 
 """
 Reportes de estado de cuenta
@@ -203,41 +207,21 @@ class AccountStatus(FilterForm):
         self.fields['from_date'].label = _('from').title()
         self.fields['until_date'].label = _('until').title()
 
-class transLabelFields(object):
-    """
-        Clase creada para solventar bug en traducciones
-        i18n para atributos de las clases.
-    """
-    def __init__(self, arg):
-        super(transLabelFields, self).__init__()
-        self.arg = arg
 
-        
-    def myself(self):
-        for field in self.fields:
-            print(field)
-            print("------------------------------------")
-        print(self.fields['show_sum_column'].label)
-        print(self.fields['seller'].label)
-        print("-----------------FIEELDS-------------------")
-
-
-class AccountStatusSellerFormFilters(AccountStatus,transLabelFields):
+class AccountStatusSellerFormFilters(AccountStatus):
     """
     Formulario para filtrar estados de cuenta por vendedor
-    """    
-    seller = forms.CharField(label=_('seller').title(),widget=forms.Select(), required=True)
+    """
+    seller = forms.CharField(widget=forms.Select(), required=True)
     show_sum_column = forms.BooleanField()
-
 
     def __init__(self, token=None, *args, **kwargs):
         super(AccountStatusSellerFormFilters, self).__init__(*args, **kwargs)
         ObjApi = api()
 
-        # Se definen los values 
-
+        # Se definen los values de los labels
         self.fields['show_sum_column'].label = _('Show Total').title()
-        # self.fields['seller'].label = _('seller').title()
+        self.fields['seller'].label = _('seller').title() 
 
 
         # Traer vendedores directamente desde la api

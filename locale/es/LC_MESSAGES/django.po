@@ -651,13 +651,13 @@ msgstr "Totales"
 #: .\dashboard\views\account_status.py:130
 #: .\dashboard\views\account_status.py:132
 msgid "units"
-msgstr ""
+msgstr "unidades"
 
 #: .\dashboard\views\account_status.py:129
 #: .\dashboard\views\account_status.py:131
 #: .\dashboard\views\account_status.py:133
 msgid "amount"
-msgstr "unidades"
+msgstr "cantidad"
 
 #: .\dashboard\views\account_status.py:139
 msgid "Nick"
