@@ -1,16 +1,9 @@
-#django
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth import login, logout
+from django.contrib.auth import logout
 from django.urls import reverse
-#seguridad
 from django.contrib.auth import authenticate, login
-
-#api
-from api.connection import api
-
-#forms
 from .forms import Login
 
 
@@ -21,7 +14,7 @@ def weblogin(request):
     :param request:
     :return: formulario de login o listado de especialistas
     """
-    user = error_message = ''
+    error_message = ''
     
     if request.user.is_authenticated():
         return HttpResponseRedirect('/admin/actor/specialists')
@@ -38,16 +31,14 @@ def weblogin(request):
             if user is not None:
                 login(request, user)
 
-                #TODO
-                #redirect according to user type
+                # redirect according to user type
                 return HttpResponseRedirect('/admin/actor/specialists')
             else:
-               error_message = _("Wrong Credentials")
+                error_message = _("Wrong Credentials")
     else:
         form = Login()
 
-    return render(request, 'public/login.html', {'form': form,'error_message': error_message})
-
+    return render(request, 'public/login.html', {'form': form, 'error_message': error_message})
 
 
 def logout_view(request):

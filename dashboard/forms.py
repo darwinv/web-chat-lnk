@@ -225,7 +225,7 @@ class AccountStatusSellerFormFilters(AccountStatus):
 
     def __init__(self, token=None, *args, **kwargs):
         super(AccountStatusSellerFormFilters, self).__init__(*args, **kwargs)
-        ObjApi = api()
+        obj_api = api()
 
         # Se definen los values de los labels
         self.fields['show_sum_column'].label = _('Show Total').title()
@@ -235,7 +235,7 @@ class AccountStatusSellerFormFilters(AccountStatus):
         # Traer vendedores directamente desde la api
         # y actualizamos los options del select
         # "?page_size=0" trae un listado, ignorando la paginacion
-        data = ObjApi.get(slug='sellers/?page_size=0', token=token) 
+        data = obj_api.get(slug='sellers/?page_size=0', token=token) 
         
         if type(data) is list:  
             self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]

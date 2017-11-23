@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from api.connection import api
 
-from dashboard.json2table import convert, getActualPage
+from dashboard.json2table import convert, get_actual_page
 from dashboard.forms import SpecialistForm, SellerFormFilters
 
 import pdb
@@ -16,7 +16,7 @@ import pdb
 class Actor:
     logo_content_header = "fa fa-users"
 
-    def generateHeader(self, custom_title=None):
+    def generate_header(self, custom_title=None):
         if custom_title:
             title = "{} - ".format(_("actors")).title() + custom_title
         else:
@@ -39,9 +39,9 @@ class Specialist(Actor):
 
     @method_decorator(login_required)
     def list(self, request):
-        ObjApi = api()
+        obj_api = api()
         filters = {}
-        actual_page = getActualPage(request)
+        actual_page = get_actual_page(request)
         arg = {"page": actual_page}
         token = request.session['token']
         title_page = _('specialists').title()
@@ -50,13 +50,12 @@ class Specialist(Actor):
         if 'main_specialist' in request.GET:
             main_specialist = request.GET['main_specialist']
             arg.update({"main_specialist": main_specialist})
-            dataMainSpecilist = ObjApi.get(slug='specialists/' + main_specialist, token=token)
-            filters.update({'main_specialist': dataMainSpecilist})
+            data_main_specilist = obj_api.get(slug='specialists/' + main_specialist, token=token)
+            filters.update({'main_specialist': data_main_specilist})
             title_page = _('associated specialists').title()
 
-
         # Traer data para el listado
-        data = ObjApi.get(slug='specialists/', arg=arg, token=token)
+        data = obj_api.get(slug='specialists/', arg=arg, token=token)
 
         # Definimos columnas adicionales/personalizadas
         custom_column = {
@@ -65,7 +64,7 @@ class Specialist(Actor):
             "delete": {'type': 'delete', 'data': {'url': self._delete, 'key': 'id'}}
         }
         # Atributos para aplicar a la columna RUC
-        attributes_colum = {
+        attributes_column = {
             "ruc":
                 {
                     "class": "numeric"
@@ -80,21 +79,21 @@ class Specialist(Actor):
                         _("specialty"), "type_specialist_name"),( _("delete"), "delete")]
 
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
-                        attributes_colum=attributes_colum)
+                        attributes_column=attributes_column)
 
         # Titulo de la vista y variables de la Clase
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/specialistsList.html',
                       {'tabla': tabla, 'vars_page': vars_page, 'filters': filters})
 
     @method_decorator(login_required)
-    def detail(self, request, id):
-        ObjApi = api()
-        data = ObjApi.get(slug='specialists/' + id, token=request.session['token'])
+    def detail(self, request, pk):
+        obj_api = api()
+        data = obj_api.get(slug='specialists/' + pk, token=request.session['token'])
 
         # Si la data del usuario no es valida
-        if type(data) is not dict or 'id' not in data:
+        if type(data) is not dict or 'pk' not in data:
             raise Http404()
 
         # Si esta definido el tipo de especialista que es el usuario
@@ -105,18 +104,18 @@ class Specialist(Actor):
 
         # Titulo de la vista y variables de la Clase
         title_page = "{} {} - {}".format(_('specialist').title(), _(type_specialist), _('detail').title())
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/specialistsDetail.html', {'data': data, 'vars_page': vars_page})
 
     @method_decorator(login_required)
     def create(self, request):
-        ObjApi = api()
+        obj_api = api()
         token = request.session['token']
 
         # Si llega envio por POST se valida contra el SpecialistForm
         if request.method == 'POST':
-            form = self.generateFormSpecialist(data=request.POST, files=request.FILES)
+            form = self.generate_form_specialist(data=request.POST, files=request.FILES)
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
@@ -129,13 +128,13 @@ class Specialist(Actor):
                     }
                 })
 
-                result = ObjApi.post(slug='specialists/', token=token, arg=data)
+                result = obj_api.post(slug='specialists/', token=token, arg=data)
 
                 if result and 'id' in result:
 
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
-                        ObjApi.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
+                        obj_api.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
                     # Process success
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -148,15 +147,15 @@ class Specialist(Actor):
         else:
             # Crear formulario de especialistas vacio, se traeran
             # datos de selecion como Categorias y Departamentos.
-            form = self.generateFormSpecialist()
+            form = self.generate_form_specialist()
 
         title_page = _('create specialist').title()
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._create)
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
-    def generateFormSpecialist(self, data=None, files=None, specilist=None, form_edit=None):
+    def generate_form_specialist(self, data=None, files=None, specilist=None, form_edit=None):
         """
         Funcion para generar traer formulario de especialistas
 
@@ -182,11 +181,11 @@ class Specialist(Actor):
 
     @method_decorator(login_required)
     def edit(self, request, id):
-        ObjApi = api()
+        obj_api = api()
         token = request.session['token']
         
         if request.method == 'POST':
-            form = self.generateFormSpecialist(data=request.POST, form_edit=True,
+            form = self.generate_form_specialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
 
             # check whether it's valid:
@@ -204,12 +203,12 @@ class Specialist(Actor):
                 })
 
                 # return JsonResponse(data)
-                result = ObjApi.put(slug='specialists/' + id, token=token, arg=data)
+                result = obj_api.put(slug='specialists/' + id, token=token, arg=data)
 
                 if result and 'id' in result:
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
-                        ObjApi.put(slug='upload_photo/' + id, token=token, files=photo)
+                        obj_api.put(slug='upload_photo/' + id, token=token, files=photo)
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -220,12 +219,12 @@ class Specialist(Actor):
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
 
         else:
-            specilist = ObjApi.get(slug='specialists/' + id, token=token)
+            specilist = obj_api.get(slug='specialists/' + id, token=token)
 
-            form = self.generateFormSpecialist(specilist=specilist, form_edit=True)
+            form = self.generate_form_specialist(specilist=specilist, form_edit=True)
 
         title_page = _('edit specialist').title()
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._edit, args=(id,))
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
@@ -234,8 +233,8 @@ class Specialist(Actor):
     def delete(self, request):
         if request.method == 'POST':
             id = request.POST['id']
-            ObjApi = api()
-            result = ObjApi.delete(slug='specialists/' + id, token=request.session['token'])
+            obj_api = api()
+            result = obj_api.delete(slug='specialists/' + id, token=request.session['token'])
 
             return JsonResponse({'result': result})
 
@@ -255,22 +254,22 @@ class Client(Actor):
 
     @method_decorator(login_required)
     def list(self, request):
-        ObjApi = api()
-        actual_page = getActualPage(request)
+        obj_api = api()
+        actual_page = get_actual_page(request)
         token = request.session['token']
         filters = {}
 
         
 
         # Traer data para el listado
-        data = ObjApi.get(slug='clients/', arg=filters, token=token)
+        data = obj_api.get(slug='clients/', arg=filters, token=token)
 
         # Definimos columnas adicionales/personalizadas
         custom_column = {
             "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}}
         }
         # Atributos para aplicar a la columna RUC
-        attributes_colum = {
+        attributes_column = {
             "ruc":
                 {
                     "class": "numeric"
@@ -287,19 +286,19 @@ class Client(Actor):
                         _("email"), "email_exact"),(_("identification document"), "document_number"),(
                         _("RUC"), "ruc"),( _("querys"), ""),(_("detail"), "detail")]
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
-                        attributes_colum=attributes_colum)
+                        attributes_column=attributes_column)
 
         # Titulo de la vista y variables de la Clase
         title_page = _('clients').title()
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/clientsList.html',
                       {'tabla': tabla, 'vars_page': vars_page})
 
     @method_decorator(login_required)
     def detail(self, request, id):
-        ObjApi = api()
-        data = ObjApi.get(slug='clients/' + id, token=request.session['token'])
+        obj_api = api()
+        data = obj_api.get(slug='clients/' + id, token=request.session['token'])
 
         # Si la data del usuario no es valida
         if type(data) is not dict or 'id' not in data:
@@ -307,7 +306,7 @@ class Client(Actor):
 
         # Titulo de la vista y variables de la Clase
         title_page = "{} - {}".format(_('specialist').title(), _('detail').title())
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/clientsDetail.html', {'data': data, 'vars_page': vars_page})
 
@@ -338,8 +337,8 @@ class Seller(Actor):
 
     @method_decorator(login_required)
     def list(self, request):
-        ObjApi = api()
-        actual_page = getActualPage(request)
+        obj_api = api()
+        actual_page = get_actual_page(request)
         token = request.session['token']
         title_page = _('sellers').title()
         filters = {}
@@ -351,7 +350,7 @@ class Seller(Actor):
 
         
         # Traer data para el listado
-        data = ObjApi.get(slug='sellers/', arg=filters, token=token)
+        data = obj_api.get(slug='sellers/', arg=filters, token=token)
 
         # Definimos columnas adicionales/personalizadas
         custom_column = {
@@ -364,7 +363,7 @@ class Seller(Actor):
                                                     'text': _('see clients')}},
         }
         # Atributos para aplicar a la columna RUC
-        attributes_colum = {
+        attributes_column = {
             "ruc":
                 {
                     "class": "numeric"
@@ -381,10 +380,10 @@ class Seller(Actor):
                         _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
 
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
-                        attributes_colum=attributes_colum)
+                        attributes_column=attributes_column)
 
         # Titulo de la vista y variables de la Clase
-        vars_page = self.generateHeader(custom_title=title_page)
+        vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/sellersList.html',
                       {'tabla': tabla, 'vars_page': vars_page, 'form_filters': form_filters})
@@ -398,10 +397,10 @@ class Administrator(Actor):
 
     @method_decorator(login_required)
     def list(self, request):
-        actual_page = getActualPage(request)
+        actual_page = get_actual_page(request)
         arg = {"page": actual_page}
-        ObjApi = api()
-        data = ObjApi.get(slug='administrators/', arg=arg, token=request.session['token'])
+        obj_api = api()
+        data = obj_api.get(slug='administrators/', arg=arg, token=request.session['token'])
 
         custom_column = {
             "last_name": {'type': 'concat', 'data': {'username', 'last_name'}},
@@ -413,5 +412,5 @@ class Administrator(Actor):
                         _("specialty"): "", _("detail"): "detail"}
         tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column)
 
-        vars_page = self.generateHeader(custom_title=_('administrators').title())
+        vars_page = self.generate_header(custom_title=_('administrators').title())
         return render(request, 'admin/actor/administratorsList.html', {'tabla': tabla, 'vars_page': vars_page})

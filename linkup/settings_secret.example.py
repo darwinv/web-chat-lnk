@@ -9,7 +9,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'testLocalDarwin.sqlite3'),
-        #'NAME': os.path.join(BASE_DIR, 'testAmazon.sqlite3'),
     }
 }
 
