@@ -34,9 +34,12 @@ AUTH_USER_MODEL = 'api.User'
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'login',
     'dashboard',
-    'api',
+    'client',
+    'specialist',
+    'seller',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',

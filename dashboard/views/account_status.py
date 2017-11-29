@@ -35,7 +35,7 @@ class AccountStatusSeller(AccountStatus):
         token = request.session['token']
         title_page = _('Seller').title()
 
-        form_filters = AccountStatusSellerFormFilters(data=request.GET, token=token)
+        form_filters = AccountStatusSellerFormFilters(initial=request.GET, token=token)
         if form_filters.is_valid():
             filters = form_filters.cleaned_data
             pk = filters['seller']
@@ -183,8 +183,8 @@ class AccountStatusSeller(AccountStatus):
 
                 table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                                 multi_header=multi_header, footer=footer)
-
-                data_user = obj_api.get(slug='sellers/' + id, token=token)
+                
+                data_user = obj_api.get(slug='sellers/' + pk, token=token)
 
         vars_page = self.generate_header(custom_title=title_page)
         return render(request, 'admin/account_status/account_status_seller.html',

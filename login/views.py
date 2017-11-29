@@ -16,8 +16,11 @@ def weblogin(request):
     """
     error_message = ''
     
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('/admin/actor/specialists')
+    if request.user.is_authenticated():        
+        app = get_app_by_user(request.user.role.name)
+
+        if app:
+            return HttpResponseRedirect(reverse('{app}:index'.format(app=app)))
     
     if request.method == 'POST':
 
@@ -32,7 +35,10 @@ def weblogin(request):
                 login(request, user)
 
                 # redirect according to user type
-                return HttpResponseRedirect('/admin/actor/specialists')
+                app = get_app_by_user(user.role.name)
+
+                if app:
+                    return HttpResponseRedirect(reverse('{app}:index'.format(app=app)))
             else:
                 error_message = _("Wrong Credentials")
     else:
@@ -44,3 +50,24 @@ def weblogin(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login:login'))
+
+
+def get_app_by_user(role):
+    """
+    Funcion creada para retornar a que aplicacion debe redirigir cada rol de usuario
+    :param role: String con le nombre del rol
+    :return: nombre de la Django App Correspondiente al Rol
+    """
+
+    if role== 'admin':
+        app = 'dashboard'
+    elif role== 'client':
+        app = 'client'
+    elif role== 'specialist':
+        app = 'specialist'
+    elif role== 'seller':
+        app = 'seller'
+    else:
+        app = None
+        
+    return app

@@ -90,10 +90,12 @@ class Specialist(Actor):
     @method_decorator(login_required)
     def detail(self, request, pk):
         obj_api = api()
-        data = obj_api.get(slug='specialists/' + pk, token=request.session['token'])
+        token = request.session['token']
+
+        data = obj_api.get(slug='specialists/' + pk, token=token)
 
         # Si la data del usuario no es valida
-        if type(data) is not dict or 'pk' not in data:
+        if not data and type(data) is not dict:
             raise Http404()
 
         # Si esta definido el tipo de especialista que es el usuario
@@ -101,6 +103,7 @@ class Specialist(Actor):
             type_specialist = data['type_specialist']
         else:
             type_specialist = ''
+
 
         # Titulo de la vista y variables de la Clase
         title_page = "{} {} - {}".format(_('specialist').title(), _(type_specialist), _('detail').title())
@@ -180,7 +183,7 @@ class Specialist(Actor):
                               province=province, initial=specilist, form_edit=form_edit)
 
     @method_decorator(login_required)
-    def edit(self, request, id):
+    def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
         
@@ -203,12 +206,12 @@ class Specialist(Actor):
                 })
 
                 # return JsonResponse(data)
-                result = obj_api.put(slug='specialists/' + id, token=token, arg=data)
+                result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
 
-                if result and 'id' in result:
+                if result:
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
-                        obj_api.put(slug='upload_photo/' + id, token=token, files=photo)
+                        obj_api.put(slug='upload_photo/' + pk, token=token, files=photo)
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -219,13 +222,13 @@ class Specialist(Actor):
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
 
         else:
-            specilist = obj_api.get(slug='specialists/' + id, token=token)
+            specilist = obj_api.get(slug='specialists/' + pk, token=token)
 
             form = self.generate_form_specialist(specilist=specilist, form_edit=True)
 
         title_page = _('edit specialist').title()
         vars_page = self.generate_header(custom_title=title_page)
-        specialists_form = reverse(self._edit, args=(id,))
+        specialists_form = reverse(self._edit, args=(pk,))
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
@@ -344,7 +347,7 @@ class Seller(Actor):
         filters = {}
 
         form_filters = SellerFormFilters(request.GET)
-        
+
         if form_filters.is_valid():
             filters = form_filters.cleaned_data
 
