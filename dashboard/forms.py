@@ -41,26 +41,12 @@ class SellerFormFilters(FilterForm):
     """
     Clase creada para filtrar el listado de vendedores
     """
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    ruc = forms.CharField()
-    email_exact = forms.CharField()
-    count_plans_seller = forms.IntegerField()
-    count_queries_seller = forms.IntegerField()
-
-    def __init__(self, *args):
-        super(SellerFormFilters, self).__init__(*args)
-        
-        """
-            Declaramos el label traducido para los campos declarados en la clase
-            con internacionalizacion
-        """
-        self.fields['first_name'].label = cap(_('first name'))
-        self.fields['last_name'].label = cap(_('last name'))
-        self.fields['ruc'].label = cap(_('RUC'))
-        self.fields['email_exact'].label = cap(_('mail'))
-        self.fields['count_plans_seller'].label = cap(_('number of plans sold greater than'))
-        self.fields['count_queries_seller'].label = cap(_('number of queries sold greater than'))
+    first_name = forms.CharField(label = cap(_('first name')))
+    last_name = forms.CharField(label = cap(_('last name')))
+    ruc = forms.CharField(label = cap(_('RUC')))
+    email_exact = forms.CharField(label = cap(_('mail')))
+    count_plans_seller = forms.IntegerField(label = cap(_('number of plans sold greater than')))
+    count_queries_seller = forms.IntegerField(label = cap(_('number of queries sold greater than')))
 
 
 class SpecialistForm(ModelForm):   
@@ -71,8 +57,9 @@ class SpecialistForm(ModelForm):
     district = forms.CharField(widget=forms.Select(), required=True, label = cap(_('district'))  )
     street = forms.CharField(required=True, label = cap(_('street')))
     photo = forms.FileField(required=False, label = cap(_('upload a photo')), widget=forms.TextInput(
-        attrs={'class': 'sr-only', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
-
+        attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
+    img_document_number = forms.FileField(required=False, label = cap(_('upload document')), widget=forms.TextInput(
+        attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
     confirm_password = forms.CharField(widget=forms.PasswordInput, label = cap(_('confirm password')))
 
     widgets = {
@@ -135,7 +122,7 @@ class SpecialistForm(ModelForm):
         hechas por la clase Form
         """
         print(add_errors)
-        print("----------------FOR ERRRORS--------------------")
+        print("----------------FORM ERRRORS--------------------")
         if add_errors:  # errores retornados por terceros
             if type(add_errors) is dict:
                 for key in add_errors:

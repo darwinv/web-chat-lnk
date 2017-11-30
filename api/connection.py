@@ -160,7 +160,8 @@ class api:
                 else:
                     user = User()
 
-                
+                # Se agregan campos necesarios en base de datos local
+                # tomando en cuenta campos requeridos y unicos
                 user.id = id
                 user.username = str(data['results'][0]['username'])
                 user.code = str(data['results'][0]['code'])
