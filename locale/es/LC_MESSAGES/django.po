@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-22 18:21-0500\n"
+"POT-Creation-Date: 2017-12-01 15:00-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,7 @@ msgstr "Principal"
 msgid "Associate"
 msgstr "Asociado"
 
-#: .\api\api_choices_models.py:57 .\api\api_choices_models.py:91
+#: .\api\api_choices_models.py:57 .\api\api_choices_models.py:90
 msgid "Requested"
 msgstr "Preguntada"
 
@@ -126,226 +126,219 @@ msgstr "Porcentaje"
 msgid "Number"
 msgstr "Número"
 
-#: .\api\api_choices_models.py:71 .\api\api_choices_models.py:77
+#: .\api\api_choices_models.py:70 .\api\api_choices_models.py:76
 msgid "Pending"
 msgstr "Pendiente"
 
-#: .\api\api_choices_models.py:72 .\api\api_choices_models.py:78
-#: .\api\api_choices_models.py:86
+#: .\api\api_choices_models.py:71 .\api\api_choices_models.py:77
+#: .\api\api_choices_models.py:85
 msgid "Paid"
 msgstr "Pagado"
 
-#: .\api\api_choices_models.py:83
+#: .\api\api_choices_models.py:82
 msgid "Wait"
 msgstr "Espera"
 
-#: .\api\api_choices_models.py:84
+#: .\api\api_choices_models.py:83
 msgid "Denied"
 msgstr "Negado"
 
-#: .\api\api_choices_models.py:85
+#: .\api\api_choices_models.py:84
 msgid "Exhaled"
 msgstr "Exhalado"
 
-#: .\api\api_choices_models.py:92
+#: .\api\api_choices_models.py:91
 msgid "Requested Derived"
 msgstr "Pregunta derivado"
 
-#: .\api\api_choices_models.py:93
+#: .\api\api_choices_models.py:92
 msgid "Pending Response"
 msgstr "Respuesta pendiente"
 
-#: .\api\api_choices_models.py:94
+#: .\api\api_choices_models.py:93
 msgid "Pending Main Response"
 msgstr "Respuesta principal pendiente"
 
-#: .\api\api_choices_models.py:95
+#: .\api\api_choices_models.py:94
 msgid "Answered Main"
 msgstr "Respondido Principal"
 
-#: .\api\api_choices_models.py:96
+#: .\api\api_choices_models.py:95
 msgid "Answered"
 msgstr "Contestada"
 
-#: .\api\api_choices_models.py:97
+#: .\api\api_choices_models.py:96
 msgid "Absolved Main"
 msgstr "Absuelto Principal"
 
-#: .\api\api_choices_models.py:98
+#: .\api\api_choices_models.py:97
 msgid "Absolved"
 msgstr "Absuelto"
 
-#: .\api\api_choices_models.py:104
+#: .\api\api_choices_models.py:102
 msgid "query"
 msgstr "consulta"
 
-#: .\api\api_choices_models.py:105
+#: .\api\api_choices_models.py:103
 msgid "requery"
 msgstr "reconsulta"
 
-#: .\api\api_choices_models.py:106
+#: .\api\api_choices_models.py:104
 msgid "answer"
 msgstr "responder"
 
-#: .\api\api_choices_models.py:111
+#: .\api\api_choices_models.py:109
 msgid "Image"
 msgstr "Imagen"
 
-#: .\api\api_choices_models.py:112
+#: .\api\api_choices_models.py:110
 msgid "Voice"
 msgstr "Voz"
 
-#: .\api\api_choices_models.py:113
+#: .\api\api_choices_models.py:111
 msgid "Document"
 msgstr "Documento"
 
-#: .\api\api_choices_models.py:118
+#: .\api\api_choices_models.py:116
 msgid "Critic"
 msgstr "Crítico"
 
-#: .\api\api_choices_models.py:119
+#: .\api\api_choices_models.py:117
 msgid "Moderate"
 msgstr "Moderar"
 
-#: .\api\api_choices_models.py:120
+#: .\api\api_choices_models.py:118
 msgid "Positive"
 msgstr "Positivo"
 
-#: .\dashboard\forms.py:58 .\dashboard\forms.py:178
+#: .\dashboard\forms.py:44 .\dashboard\forms.py:143
 msgid "first name"
 msgstr "primer nombre"
 
-#: .\dashboard\forms.py:59 .\dashboard\forms.py:179
+#: .\dashboard\forms.py:45 .\dashboard\forms.py:144
 msgid "last name"
 msgstr "apellidos"
 
-#: .\dashboard\forms.py:60 .\dashboard\forms.py:185
-#: .\dashboard\views\actors.py:79 .\dashboard\views\actors.py:287
-#: .\dashboard\views\actors.py:288 .\dashboard\views\actors.py:380
-#: .\dashboard\views\actors.py:412
+#: .\dashboard\forms.py:46 .\dashboard\forms.py:70
+#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:306
+#: .\dashboard\views\actors.py:397 .\dashboard\views\actors.py:429
 msgid "RUC"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:61
+#: .\dashboard\forms.py:47
 msgid "mail"
 msgstr "correo"
 
-#: .\dashboard\forms.py:62
+#: .\dashboard\forms.py:48
 msgid "number of plans sold greater than"
 msgstr "números de planes vendidos mas de"
 
-#: .\dashboard\forms.py:63
+#: .\dashboard\forms.py:49
 msgid "number of queries sold greater than"
 msgstr "numero de consultas vendidas mas de"
 
-#: .\dashboard\forms.py:90
-msgid "confirm password"
-msgstr "confirmar contraseña"
-
-#: .\dashboard\forms.py:91 .\dashboard\views\actors.py:79
-#: .\dashboard\views\actors.py:413
+#: .\dashboard\forms.py:54 .\dashboard\views\actors.py:78
+#: .\dashboard\views\actors.py:430
 msgid "category"
 msgstr "categoría"
 
-#: .\dashboard\forms.py:92
+#: .\dashboard\forms.py:55
 msgid "department"
 msgstr "departamento"
 
-#: .\dashboard\forms.py:93
+#: .\dashboard\forms.py:56
 msgid "province"
 msgstr "provincia"
 
-#: .\dashboard\forms.py:94
+#: .\dashboard\forms.py:57
 msgid "district"
 msgstr "distrito"
 
-#: .\dashboard\forms.py:95
+#: .\dashboard\forms.py:58
 msgid "street"
 msgstr "calle"
 
-#: .\dashboard\forms.py:96
+#: .\dashboard\forms.py:59
 msgid "upload a photo"
 msgstr "subir una foto"
 
-#: .\dashboard\forms.py:142
-msgid "Password and confirm password does not match"
-msgstr "Contraseña y confirmar contraseña no coinciden"
+#: .\dashboard\forms.py:61
+#, fuzzy
+#| msgid "upload a photo"
+msgid "upload document"
+msgstr "subir una foto"
 
-#: .\dashboard\forms.py:175
+#: .\dashboard\forms.py:67
 msgid "username"
 msgstr "nombre de usuario"
 
-#: .\dashboard\forms.py:176
-#: .\dashboard\templates\admin\account_status\account_status_seller.html:73
-#: .\dashboard\templates\admin\actor\clientsDetail.html:37
-#: .\dashboard\views\account_status.py:101
-msgid "nick"
-msgstr "nick"
-
-#: .\dashboard\forms.py:177
-msgid "password"
-msgstr "Contraseña"
-
-#: .\dashboard\forms.py:180 .\dashboard\views\actors.py:79
-#: .\dashboard\views\actors.py:287 .\dashboard\views\actors.py:379
-#: .\dashboard\views\actors.py:412
+#: .\dashboard\forms.py:68 .\dashboard\views\actors.py:78
+#: .\dashboard\views\actors.py:305 .\dashboard\views\actors.py:396
+#: .\dashboard\views\actors.py:429
 msgid "email"
 msgstr "correo"
 
-#: .\dashboard\forms.py:181
+#: .\dashboard\forms.py:69
+msgid "document number"
+msgstr "numero de documento"
+
+#: .\dashboard\forms.py:142
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:73
+#: .\dashboard\templates\admin\actor\clientsDetail.html:37
+#: .\dashboard\views\account_status.py:96
+msgid "nick"
+msgstr "nick"
+
+#: .\dashboard\forms.py:145
 msgid "telephone"
 msgstr "telefono"
 
-#: .\dashboard\forms.py:182
+#: .\dashboard\forms.py:146
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:86
 msgid "cellphone"
 msgstr "celular"
 
-#: .\dashboard\forms.py:183
+#: .\dashboard\forms.py:147
 msgid "document type"
 msgstr "tipo de documento"
 
-#: .\dashboard\forms.py:184
-msgid "document number"
-msgstr "numero de documento"
-
-#: .\dashboard\forms.py:186 .\dashboard\views\actors.py:285
+#: .\dashboard\forms.py:148 .\dashboard\views\actors.py:303
 msgid "business name"
 msgstr "nombre de la empresa"
 
-#: .\dashboard\forms.py:187
+#: .\dashboard\forms.py:149
 msgid "type specialist"
 msgstr "tipo de especialista"
 
-#: .\dashboard\forms.py:188
+#: .\dashboard\forms.py:150
 msgid "payment per answer"
 msgstr "pago por respuesta"
 
-#: .\dashboard\forms.py:215
+#: .\dashboard\forms.py:174
 msgid "from"
 msgstr "desde"
 
-#: .\dashboard\forms.py:216
+#: .\dashboard\forms.py:175
 msgid "until"
 msgstr "hasta"
 
-#: .\dashboard\forms.py:231
-msgid "Show Total"
-msgstr "Mostrar total"
-
-#: .\dashboard\forms.py:232
+#: .\dashboard\forms.py:183
 msgid "seller"
 msgstr "vendedor"
 
-#: .\dashboard\json2table.py:116
+#: .\dashboard\forms.py:184
+msgid "Show Total"
+msgstr "Mostrar total"
+
+#: .\dashboard\json2table.py:110
 msgid "search is empty"
 msgstr "búsqueda esta vacía"
 
-#: .\dashboard\json2table.py:392
+#: .\dashboard\json2table.py:375
 msgid "page"
 msgstr "pagina"
 
-#: .\dashboard\json2table.py:392
+#: .\dashboard\json2table.py:375
 msgid "of"
 msgstr "de"
 
@@ -376,18 +369,18 @@ msgstr "especialistas"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:19
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:34
-#: .\dashboard\views\actors.py:294
+#: .\dashboard\views\actors.py:311
 msgid "clients"
 msgstr "clientes"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:22
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:45
-#: .\dashboard\views\actors.py:345
+#: .\dashboard\views\actors.py:362
 msgid "sellers"
 msgstr "vendedores"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:25
-#: .\dashboard\views\actors.py:417
+#: .\dashboard\views\actors.py:434
 msgid "administrators"
 msgstr "administradores"
 
@@ -436,7 +429,7 @@ msgid "personal"
 msgstr "personal"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:141
-#: .\dashboard\views\actors.py:80 .\dashboard\views\actors.py:414
+#: .\dashboard\views\actors.py:79 .\dashboard\views\actors.py:431
 msgid "specialty"
 msgstr "especialidad"
 
@@ -448,11 +441,11 @@ msgstr "bloqueado"
 msgid "return to list"
 msgstr "retornar al listado"
 
-#: .\dashboard\templates\admin\actor\specialistsForm.html:158
+#: .\dashboard\templates\admin\actor\specialistsForm.html:174
 msgid "save"
 msgstr "guardar"
 
-#: .\dashboard\templates\admin\actor\specialistsForm.html:160
+#: .\dashboard\templates\admin\actor\specialistsForm.html:176
 msgid "go back"
 msgstr "volver atrás"
 
@@ -460,7 +453,7 @@ msgstr "volver atrás"
 msgid "asociate specialists to"
 msgstr "especialistas asociados a"
 
-#: .\dashboard\templates\admin\lib\_cropper.html:61
+#: .\dashboard\templates\admin\lib\_cropper.html:71
 msgid "please choose an image file."
 msgstr "por favor elija una archivo tipo imagen"
 
@@ -469,12 +462,24 @@ msgstr "por favor elija una archivo tipo imagen"
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
+#: .\dashboard\templates\admin\lib\_main_header.html:177
+#, fuzzy
+#| msgid "Remember me"
+msgid "Member since"
+msgstr "Recordarme"
+
+#: .\dashboard\templates\admin\lib\_main_header.html:193
+#, fuzzy
+#| msgid "Sign up"
+msgid "Sign out"
+msgstr "Registrase"
+
 #: .\dashboard\templates\admin\lib\_main_scripts.html:65
 msgid "select"
 msgstr "seleccionar"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:14
-#: .\dashboard\views\account.py:18 .\dashboard\views\actors.py:21
+#: .\dashboard\views\account.py:8 .\dashboard\views\actors.py:21
 msgid "actors"
 msgstr "actores"
 
@@ -521,7 +526,7 @@ msgid "Account statements"
 msgstr "Estados de cuenta"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:101
-#: .\dashboard\views\account_status.py:37
+#: .\dashboard\views\account_status.py:36
 msgid "Seller"
 msgstr "vendedor"
 
@@ -554,146 +559,146 @@ msgid "cancel"
 msgstr "cancelar"
 
 #: .\dashboard\templates\admin\lib\_modals.html:39
-#: .\dashboard\views\actors.py:80
+#: .\dashboard\views\actors.py:79
 msgid "delete"
 msgstr "borrar"
 
-#: .\dashboard\views\account_status.py:19
+#: .\dashboard\views\account_status.py:18
 msgid "Account Status"
 msgstr "Estados de cuenta"
 
-#: .\dashboard\views\account_status.py:100
-#: .\dashboard\views\account_status.py:115
+#: .\dashboard\views\account_status.py:94
+#: .\dashboard\views\account_status.py:114
 msgid "date"
 msgstr "fecha"
 
-#: .\dashboard\views\account_status.py:100
-#: .\dashboard\views\account_status.py:136
+#: .\dashboard\views\account_status.py:94
+#: .\dashboard\views\account_status.py:135
 msgid "type"
 msgstr "tipo"
 
-#: .\dashboard\views\account_status.py:101
-#: .\dashboard\views\account_status.py:137
+#: .\dashboard\views\account_status.py:95
+#: .\dashboard\views\account_status.py:136
 msgid "number"
 msgstr "Número"
 
-#: .\dashboard\views\account_status.py:101
-#: .\dashboard\views\account_status.py:138 .\dashboard\views\actors.py:78
-#: .\dashboard\views\actors.py:286 .\dashboard\views\actors.py:378
-#: .\dashboard\views\actors.py:412
+#: .\dashboard\views\account_status.py:95
+#: .\dashboard\views\account_status.py:137 .\dashboard\views\actors.py:77
+#: .\dashboard\views\actors.py:304 .\dashboard\views\actors.py:395
+#: .\dashboard\views\actors.py:429
 msgid "code"
 msgstr "código"
 
-#: .\dashboard\views\account_status.py:102
-#: .\dashboard\views\account_status.py:140
+#: .\dashboard\views\account_status.py:97
+#: .\dashboard\views\account_status.py:139
 msgid "name"
 msgstr "nombre"
 
-#: .\dashboard\views\account_status.py:102
+#: .\dashboard\views\account_status.py:98
 msgid "query amount"
 msgstr "cantidad de consultas"
 
-#: .\dashboard\views\account_status.py:103
-#: .\dashboard\views\account_status.py:142
+#: .\dashboard\views\account_status.py:99
+#: .\dashboard\views\account_status.py:141
 msgid "mounth of duration"
 msgstr "meses de duración"
 
-#: .\dashboard\views\account_status.py:104
+#: .\dashboard\views\account_status.py:100
 msgid "price"
 msgstr "precio"
 
-#: .\dashboard\views\account_status.py:104
-#: .\dashboard\views\account_status.py:144
+#: .\dashboard\views\account_status.py:100
+#: .\dashboard\views\account_status.py:143
 msgid "Payments Made"
 msgstr "Pagos esfectuados"
 
-#: .\dashboard\views\account_status.py:105
-#: .\dashboard\views\account_status.py:145
+#: .\dashboard\views\account_status.py:102
+#: .\dashboard\views\account_status.py:144
 msgid "Pending payment"
 msgstr "pendiente por pagar"
 
-#: .\dashboard\views\account_status.py:106 .\dashboard\views\actors.py:381
+#: .\dashboard\views\account_status.py:103 .\dashboard\views\actors.py:398
 msgid "advance"
 msgstr "avanzar"
 
-#: .\dashboard\views\account_status.py:116
+#: .\dashboard\views\account_status.py:115
 msgid "reference of sale"
 msgstr "referencia de venta"
 
-#: .\dashboard\views\account_status.py:117
+#: .\dashboard\views\account_status.py:116
 msgid "customer reference"
 msgstr "referencia de cliente"
 
-#: .\dashboard\views\account_status.py:118
+#: .\dashboard\views\account_status.py:117
 msgid "description of plans"
 msgstr "descripción de planes"
 
-#: .\dashboard\views\account_status.py:119
+#: .\dashboard\views\account_status.py:118
 msgid "sales productivity"
 msgstr "productividad de la venta"
 
-#: .\dashboard\views\account_status.py:120
+#: .\dashboard\views\account_status.py:119
 msgid "Composition of the Sale by Form of Payment"
 msgstr "Composición de la Venta por Forma de Pago"
 
-#: .\dashboard\views\account_status.py:123
+#: .\dashboard\views\account_status.py:122
 msgid "Cash"
 msgstr "Efectivo"
 
-#: .\dashboard\views\account_status.py:124
+#: .\dashboard\views\account_status.py:123
 msgid "Credit"
 msgstr "Credito"
 
-#: .\dashboard\views\account_status.py:125
+#: .\dashboard\views\account_status.py:124
 msgid "Totals"
 msgstr "Totales"
+
+#: .\dashboard\views\account_status.py:127
+#: .\dashboard\views\account_status.py:129
+#: .\dashboard\views\account_status.py:131
+msgid "units"
+msgstr "unidades"
 
 #: .\dashboard\views\account_status.py:128
 #: .\dashboard\views\account_status.py:130
 #: .\dashboard\views\account_status.py:132
-msgid "units"
-msgstr "unidades"
-
-#: .\dashboard\views\account_status.py:129
-#: .\dashboard\views\account_status.py:131
-#: .\dashboard\views\account_status.py:133
 msgid "amount"
 msgstr "cantidad"
 
-#: .\dashboard\views\account_status.py:139
+#: .\dashboard\views\account_status.py:138
 msgid "Nick"
 msgstr "Nick"
 
-#: .\dashboard\views\account_status.py:141
+#: .\dashboard\views\account_status.py:140
 msgid "N° of queries"
 msgstr "numero de consultas"
 
-#: .\dashboard\views\account_status.py:143
+#: .\dashboard\views\account_status.py:142
 msgid "Price"
 msgstr "price"
 
-#: .\dashboard\views\account_status.py:146
+#: .\dashboard\views\account_status.py:145
 msgid "reference fee"
 msgstr "referencia de la cuota"
 
-#: .\dashboard\views\account_status.py:147
-#: .\dashboard\views\account_status.py:151
-#: .\dashboard\views\account_status.py:155
+#: .\dashboard\views\account_status.py:146
+#: .\dashboard\views\account_status.py:150
+#: .\dashboard\views\account_status.py:154
 msgid "quantity"
 msgstr "cantidad"
 
-#: .\dashboard\views\account_status.py:148
-#: .\dashboard\views\account_status.py:150
-#: .\dashboard\views\account_status.py:152
-#: .\dashboard\views\account_status.py:154
-#: .\dashboard\views\account_status.py:156
-#: .\dashboard\views\account_status.py:158
+#: .\dashboard\views\account_status.py:147
+#: .\dashboard\views\account_status.py:149
+#: .\dashboard\views\account_status.py:151
+#: .\dashboard\views\account_status.py:153
+#: .\dashboard\views\account_status.py:155
+#: .\dashboard\views\account_status.py:157
 msgid "accumulated"
 msgstr "acumulado"
 
-#: .\dashboard\views\account_status.py:149
-#: .\dashboard\views\account_status.py:153
-#: .\dashboard\views\account_status.py:157
+#: .\dashboard\views\account_status.py:148
+#: .\dashboard\views\account_status.py:152
+#: .\dashboard\views\account_status.py:156
 msgid "paid out"
 msgstr "pagado"
 
@@ -701,88 +706,88 @@ msgstr "pagado"
 msgid "associated specialists"
 msgstr "ver especialistas asociados"
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:376
-#: .\dashboard\views\actors.py:411
+#: .\dashboard\views\actors.py:75 .\dashboard\views\actors.py:393
+#: .\dashboard\views\actors.py:428
 msgid "surnames"
 msgstr "apellidos"
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:376
-#: .\dashboard\views\actors.py:411
+#: .\dashboard\views\actors.py:75 .\dashboard\views\actors.py:393
+#: .\dashboard\views\actors.py:428
 msgid "and"
 msgstr "y"
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:285
-#: .\dashboard\views\actors.py:376 .\dashboard\views\actors.py:411
+#: .\dashboard\views\actors.py:75 .\dashboard\views\actors.py:303
+#: .\dashboard\views\actors.py:393 .\dashboard\views\actors.py:428
 msgid "names"
 msgstr "nombres"
 
-#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:107
-#: .\dashboard\views\actors.py:289 .\dashboard\views\actors.py:310
-#: .\dashboard\views\actors.py:378 .\dashboard\views\actors.py:414
+#: .\dashboard\views\actors.py:77 .\dashboard\views\actors.py:109
+#: .\dashboard\views\actors.py:306 .\dashboard\views\actors.py:327
+#: .\dashboard\views\actors.py:395 .\dashboard\views\actors.py:431
 msgid "detail"
 msgstr "detalle"
 
-#: .\dashboard\views\actors.py:107 .\dashboard\views\actors.py:310
+#: .\dashboard\views\actors.py:109 .\dashboard\views\actors.py:327
 msgid "specialist"
 msgstr "especialista"
 
-#: .\dashboard\views\actors.py:153
+#: .\dashboard\views\actors.py:162
 msgid "create specialist"
 msgstr "crear especialista"
 
-#: .\dashboard\views\actors.py:227
+#: .\dashboard\views\actors.py:245
 msgid "edit specialist"
 msgstr "editar especialista"
 
-#: .\dashboard\views\actors.py:286
+#: .\dashboard\views\actors.py:304
 msgid "alias"
 msgstr "alias"
 
-#: .\dashboard\views\actors.py:288
+#: .\dashboard\views\actors.py:305
 msgid "identification document"
 msgstr "documento de identidad"
 
-#: .\dashboard\views\actors.py:288
+#: .\dashboard\views\actors.py:306
 msgid "querys"
 msgstr "consultas"
 
-#: .\dashboard\views\actors.py:365
+#: .\dashboard\views\actors.py:382
 msgid "see clients"
 msgstr "ver clientes"
 
-#: .\dashboard\views\actors.py:380
+#: .\dashboard\views\actors.py:397
 msgid "see portfolio"
 msgstr "ver cartera"
 
-#: .\dashboard\views\actors.py:380
+#: .\dashboard\views\actors.py:397
 msgid "ubigeo"
 msgstr "ubigeo"
 
-#: .\dashboard\views\actors.py:380
+#: .\dashboard\views\actors.py:397
 msgid "quota"
 msgstr "cuota"
 
-#: .\dashboard\views\actors.py:382
+#: .\dashboard\views\actors.py:399
 msgid "number of plans sold"
 msgstr "números de planes vendidos"
 
-#: .\dashboard\views\actors.py:382
+#: .\dashboard\views\actors.py:399
 msgid "number of queries"
 msgstr "numero de consultas"
 
-#: .\linkup\settings.py:111
+#: .\linkup\settings.py:106
 msgid "Spanish"
 msgstr "Español"
 
-#: .\linkup\settings.py:112
+#: .\linkup\settings.py:107
 msgid "English"
 msgstr "Ingles"
 
-#: .\login\forms.py:5
+#: .\login\forms.py:6
 msgid "User"
 msgstr "Usuario"
 
-#: .\login\forms.py:6
+#: .\login\forms.py:7
 msgid "Password"
 msgstr "Contraseña"
 
@@ -802,888 +807,6 @@ msgstr "Registrase"
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: .\login\views.py:45
+#: .\login\views.py:43
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"
-
-# categorias o especialidades
-#~ msgid "Taxes"
-#~ msgstr "Impuestos"
-
-#~ msgid "Accounting"
-#~ msgstr "Contabilidad"
-
-#~ msgid "Tax Law"
-#~ msgstr "Derecho Tributario"
-
-#~ msgid "Finance"
-#~ msgstr "Finanzas"
-
-#~ msgid "Insurance"
-#~ msgstr "Seguros"
-
-#~ msgid "Foreign trade"
-#~ msgstr "Comercio Exterior"
-
-#~ msgid "Information Technology"
-#~ msgstr "Tecnología de la Información"
-
-#~ msgid "Intellectual property"
-#~ msgstr "Propiedad Intelectual"
-
-#~ msgid "Advertising"
-#~ msgstr "Publicidad"
-
-#~ msgid "Organizational psychology"
-#~ msgstr "Psicología Organizacional"
-
-#~ msgid "Contracting with the State"
-#~ msgstr "Contrataciones con el Estado"
-
-#~ msgid "Marketing"
-#~ msgstr "Marketing"
-
-#~ msgid "Mechanics"
-#~ msgstr "Mecánica"
-
-#~ msgid "Notary and Registry Law"
-#~ msgstr "Derecho Notarial y Registral"
-
-#~ msgid "Project management"
-#~ msgstr "Gestión de Proyectos"
-
-#~ msgid "Electricity"
-#~ msgstr "Electricidad"
-
-#~ msgid "Civil Procedural Law"
-#~ msgstr "Derecho Procesal Civil"
-
-#~ msgid "Agroindustry"
-#~ msgstr "Agroindustria"
-
-#~ msgid "Electronics"
-#~ msgstr "Electrónica"
-
-#~ msgid "Criminal law"
-#~ msgstr "Derecho Penal"
-
-#~ msgid "Food"
-#~ msgstr "Alimentaria"
-
-#~ msgid "Automation"
-#~ msgstr "Automatización"
-
-#~ msgid "Labor Law"
-#~ msgstr "Derecho Laboral"
-
-#~ msgid "Gastronomy"
-#~ msgstr "Gastronomía"
-
-#~ msgid "Plastics"
-#~ msgstr "Plásticos"
-
-#~ msgid "Mining Law"
-#~ msgstr "Derecho Minero"
-
-#~ msgid "Corporate Law"
-#~ msgstr "Derecho Corporativo"
-
-# --------------------
-# Nivel Instruccion
-#~ msgid "No level"
-#~ msgstr "Sin nivel"
-
-#~ msgid "Initial"
-#~ msgstr "Inicial"
-
-#~ msgid "Primary"
-#~ msgstr "Primaria"
-
-#~ msgid "High school"
-#~ msgstr "Secundaria"
-
-#~ msgid "Basic special"
-#~ msgstr "Básica especial"
-
-#~ msgid "Superior non-university incomplete"
-#~ msgstr "Superior no universitaria incompleta"
-
-#~ msgid "Superior non-university full"
-#~ msgstr "Superior no universitaria completa"
-
-#~ msgid "Incomplete university superior"
-#~ msgstr "Superior universitaria incompleta"
-
-#~ msgid "Full university superior"
-#~ msgstr "Superior universitaria completa"
-
-#~ msgid "master's degree"
-#~ msgstr "Maestría"
-
-#~ msgid "Doctorate"
-#~ msgstr "Doctorado"
-
-# ----------------
-# Sector Economico
-#~ msgid "Farming"
-#~ msgstr "Agropecuario"
-
-#~ msgid "Fishing"
-#~ msgstr "Pesca"
-
-#~ msgid "Mining"
-#~ msgstr "Minería"
-
-#~ msgid "Hydrocarbons"
-#~ msgstr "Hidrocarburos"
-
-#~ msgid "Manufacture"
-#~ msgstr "Manufactura"
-
-#~ msgid "Electricity and Water"
-#~ msgstr "Electricidad y Agua"
-
-#~ msgid "Building"
-#~ msgstr "Construcción"
-
-#~ msgid "Commerce"
-#~ msgstr "Comercio"
-
-#~ msgid "Services"
-#~ msgstr "Servicios"
-
-# --- Countries ----------
-#~ msgid "Afghanistan"
-#~ msgstr "Afganistán"
-
-#~ msgid "Albania"
-#~ msgstr "Albania"
-
-#~ msgid "Germany"
-#~ msgstr "Alemania"
-
-#~ msgid "Algeria"
-#~ msgstr "Algeria"
-
-#~ msgid "Andorra"
-#~ msgstr "Andorra"
-
-#~ msgid "Angola"
-#~ msgstr "Angola"
-
-#~ msgid "Anguilla"
-#~ msgstr "Anguila"
-
-#~ msgid "Antarctica"
-#~ msgstr "Antártida"
-
-#~ msgid "Antigua and Barbuda"
-#~ msgstr "Antigua y Barbuda"
-
-#~ msgid "Netherlands Antilles"
-#~ msgstr "Antillas Neerlandesas"
-
-#~ msgid "Saudi Arabia"
-#~ msgstr "Arabia Saudita"
-
-#~ msgid "Argentina"
-#~ msgstr "Argentina"
-
-#~ msgid "Armenia"
-#~ msgstr "Armenia"
-
-#~ msgid "Aruba"
-#~ msgstr "Aruba"
-
-#~ msgid "Australia"
-#~ msgstr "Australia"
-
-#~ msgid "Austria"
-#~ msgstr "Austria"
-
-#~ msgid "Azerbaijan"
-#~ msgstr "Azerbayán"
-
-#~ msgid "Belgium"
-#~ msgstr "Bélgica"
-
-#~ msgid "Bahamas"
-#~ msgstr "Bahamas"
-
-#~ msgid "Bahrain"
-#~ msgstr "Bahrein"
-
-#~ msgid "Bangladesh"
-#~ msgstr "Bangladesh"
-
-#~ msgid "Barbados"
-#~ msgstr "Barbados"
-
-#~ msgid "Belize"
-#~ msgstr "Belice"
-
-#~ msgid "Benin"
-#~ msgstr "Benín"
-
-#~ msgid "Bhutan"
-#~ msgstr "Bhután"
-
-#~ msgid "Belarus"
-#~ msgstr "Bielorrusia"
-
-#~ msgid "Myanmar"
-#~ msgstr "Birmania"
-
-#~ msgid "Bolivia"
-#~ msgstr "Bolivia"
-
-#~ msgid "Bosnia and Herzegovina"
-#~ msgstr "Bosnia y Herzegovina"
-
-#~ msgid "Botswana"
-#~ msgstr "Botsuana"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasil"
-
-#~ msgid "Brunei"
-#~ msgstr "Brunéi"
-
-#~ msgid "Bulgaria"
-#~ msgstr "Bulgaria"
-
-#~ msgid "Burkina Faso"
-#~ msgstr "Burkina Faso"
-
-#~ msgid "Burundi"
-#~ msgstr "Burundi"
-
-#~ msgid "Cape Verde"
-#~ msgstr "Cabo Verde"
-
-#~ msgid "Cambodia"
-#~ msgstr "Camboya"
-
-#~ msgid "Cameroon"
-#~ msgstr "Camerún"
-
-#~ msgid "Canada"
-#~ msgstr "Canadá"
-
-#~ msgid "Chad"
-#~ msgstr "Chad"
-
-#~ msgid "Chile"
-#~ msgstr "Chile"
-
-#~ msgid "China"
-#~ msgstr "China"
-
-#~ msgid "Cyprus"
-#~ msgstr "Chipre"
-
-#~ msgid "Vatican City State"
-#~ msgstr "Ciudad del Vaticano"
-
-#~ msgid "Colombia"
-#~ msgstr "Colombia"
-
-#~ msgid "Comoros"
-#~ msgstr "Comoras"
-
-#~ msgid "Congo"
-#~ msgstr "Congo"
-
-#~ msgid "Democratic Republic of the Congo"
-#~ msgstr "Republica Democratica del Congo"
-
-#~ msgid "North Korea"
-#~ msgstr "Corea del Norte"
-
-#~ msgid "South Korea"
-#~ msgstr "Corea del Sur"
-
-#~ msgid "Ivory Coast"
-#~ msgstr "Costa de Marfil"
-
-#~ msgid "Costa Rica"
-#~ msgstr "Costa Rica"
-
-#~ msgid "Croatia"
-#~ msgstr "Croacia"
-
-#~ msgid "Cuba"
-#~ msgstr "Cuba"
-
-#~ msgid "Denmark"
-#~ msgstr "Dinamarca"
-
-#~ msgid "Dominica"
-#~ msgstr "Dominica"
-
-#~ msgid "Ecuador"
-#~ msgstr "Ecuador"
-
-#~ msgid "Egypt"
-#~ msgstr "Egipto"
-
-#~ msgid "El Salvador"
-#~ msgstr "El Salvador"
-
-#~ msgid "United Arab Emirates"
-#~ msgstr "Emiratos Árabes Unidos"
-
-#~ msgid "Eritrea"
-#~ msgstr "Eritrea"
-
-#~ msgid "Slovakia"
-#~ msgstr "Eslovaquia"
-
-#~ msgid "Slovenia"
-#~ msgstr "Eslovenia"
-
-#~ msgid "Spain"
-#~ msgstr "España"
-
-#~ msgid "United States of America"
-#~ msgstr "Estados Unidos de América"
-
-#~ msgid "Estonia"
-#~ msgstr "Estonia"
-
-#~ msgid "Ethiopia"
-#~ msgstr "Etiopía"
-
-#~ msgid "Philippines"
-#~ msgstr "Filipinas"
-
-#~ msgid "Finland"
-#~ msgstr "Finlandia"
-
-#~ msgid "Fiji"
-#~ msgstr "Fiyi"
-
-#~ msgid "France"
-#~ msgstr "Francia"
-
-#~ msgid "Gabon"
-#~ msgstr "Gabón"
-
-#~ msgid "Gambia"
-#~ msgstr "Gambia"
-
-#~ msgid "Georgia"
-#~ msgstr "Georgia"
-
-#~ msgid "Ghana"
-#~ msgstr "Ghana"
-
-#~ msgid "Gibraltar"
-#~ msgstr "Gibraltar"
-
-#~ msgid "Grenada"
-#~ msgstr "Granada"
-
-#~ msgid "Greece"
-#~ msgstr "Grecia"
-
-#~ msgid "Greenland"
-#~ msgstr "Groenlandia"
-
-#~ msgid "Guadeloupe"
-#~ msgstr "Guadalupe"
-
-#~ msgid "Guam"
-#~ msgstr "Guam"
-
-#~ msgid "Guatemala"
-#~ msgstr "Guatemala"
-
-#~ msgid "French Guiana"
-#~ msgstr "Guayana Francesa"
-
-#~ msgid "Guernsey"
-#~ msgstr "Guernsey"
-
-#~ msgid "Guinea"
-#~ msgstr "Guinea"
-
-#~ msgid "Equatorial Guinea"
-#~ msgstr "Guinea Ecuatorial"
-
-#~ msgid "Guinea-Bissau"
-#~ msgstr "Guinea-Bissau"
-
-#~ msgid "Guyana"
-#~ msgstr "Guyana"
-
-#~ msgid "Haiti"
-#~ msgstr "Haití"
-
-#~ msgid "Honduras"
-#~ msgstr "Honduras"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong kong"
-
-#~ msgid "Hungary"
-#~ msgstr "Hungría"
-
-#~ msgid "India"
-#~ msgstr "India"
-
-#~ msgid "Indonesia"
-#~ msgstr "Indonesia"
-
-#~ msgid "Iran"
-#~ msgstr "Irán"
-
-#~ msgid "Iraq"
-#~ msgstr "Irak"
-
-#~ msgid "Ireland"
-#~ msgstr "Irlanda"
-
-#~ msgid "Bouvet Island"
-#~ msgstr "Isla Bouvet"
-
-#~ msgid "Isle of Man"
-#~ msgstr "Isla de Man"
-
-#~ msgid "Christmas Island"
-#~ msgstr "Isla de Navidad"
-
-#~ msgid "Norfolk Island"
-#~ msgstr "Isla Norfolk"
-
-#~ msgid "Iceland"
-#~ msgstr "Islandia"
-
-#~ msgid "Bermuda Islands"
-#~ msgstr "Islas Bermudas"
-
-#~ msgid "Cayman Islands"
-#~ msgstr "Islas Caimán"
-
-#~ msgid "Cocos (Keeling) Islands"
-#~ msgstr "Islas Cocos (Keeling)"
-
-#~ msgid "Cook Islands"
-#~ msgstr "Islas Cook"
-
-#~ msgid "Åland Islands"
-#~ msgstr "Islas de Åland"
-
-#~ msgid "Faroe Islands"
-#~ msgstr "Islas Feroe"
-
-#~ msgid "South Georgia and the South Sandwich Islands"
-#~ msgstr "Islas Georgias del Sur y Sandwich del Sur"
-
-#~ msgid "Heard Island and McDonald Islands"
-#~ msgstr "Islas Heard y McDonald"
-
-#~ msgid "Maldives"
-#~ msgstr "Islas Maldivas"
-
-#~ msgid "Falkland Islands (Malvinas)"
-#~ msgstr "Islas Malvinas"
-
-#~ msgid "Northern Mariana Islands"
-#~ msgstr "Islas Marianas del Norte"
-
-#~ msgid "Marshall Islands"
-#~ msgstr "Islas Marshall"
-
-#~ msgid "Pitcairn Islands"
-#~ msgstr "Islas Pitcairn"
-
-#~ msgid "Solomon Islands"
-#~ msgstr "Islas Salomón"
-
-#~ msgid "Turks and Caicos Islands"
-#~ msgstr "Islas Turcas y Caicos"
-
-#~ msgid "United States Minor Outlying Islands"
-#~ msgstr "Islas Ultramarinas Menores de Estados Unidos"
-
-#~ msgid "Virgin Islands"
-#~ msgstr "Islas Vírgenes Británicas"
-
-#~ msgid "United States Virgin Islands"
-#~ msgstr "Islas Vírgenes de los Estados Unidos"
-
-#~ msgid "Israel"
-#~ msgstr "Israel"
-
-#~ msgid "Italy"
-#~ msgstr "Italia"
-
-#~ msgid "Jamaica"
-#~ msgstr "Jamaica"
-
-#~ msgid "Japan"
-#~ msgstr "Japón"
-
-#~ msgid "Jersey"
-#~ msgstr "Jersey"
-
-#~ msgid "Jordan"
-#~ msgstr "Jordania"
-
-#~ msgid "Kazakhstan"
-#~ msgstr "Kazajistán"
-
-#~ msgid "Kenya"
-#~ msgstr "Kenia"
-
-#~ msgid "Kyrgyzstan"
-#~ msgstr "Kirgizstán"
-
-#~ msgid "Kiribati"
-#~ msgstr "Kiribati"
-
-#~ msgid "Kuwait"
-#~ msgstr "Kuwait"
-
-#~ msgid "Lebanon"
-#~ msgstr "Líbano"
-
-#~ msgid "Laos"
-#~ msgstr "Laos"
-
-#~ msgid "Lesotho"
-#~ msgstr "Lesoto"
-
-#~ msgid "Latvia"
-#~ msgstr "Letonia"
-
-#~ msgid "Liberia"
-#~ msgstr "Liberia"
-
-#~ msgid "Libya"
-#~ msgstr "Libia"
-
-#~ msgid "Liechtenstein"
-#~ msgstr "Liechtenstein"
-
-#~ msgid "Lithuania"
-#~ msgstr "Lituania"
-
-#~ msgid "Luxembourg"
-#~ msgstr "Luxemburgo"
-
-#~ msgid "Mexico"
-#~ msgstr "México"
-
-#~ msgid "Monaco"
-#~ msgstr "Mónaco"
-
-#~ msgid "Macao"
-#~ msgstr "Macao"
-
-#~ msgid "Macedonia"
-#~ msgstr "Macedônia"
-
-#~ msgid "Madagascar"
-#~ msgstr "Madagascar"
-
-#~ msgid "Malaysia"
-#~ msgstr "Malasia"
-
-#~ msgid "Malawi"
-#~ msgstr "Malawi"
-
-#~ msgid "Mali"
-#~ msgstr "Mali"
-
-#~ msgid "Malta"
-#~ msgstr "Malta"
-
-#~ msgid "Morocco"
-#~ msgstr "Marruecos"
-
-#~ msgid "Martinique"
-#~ msgstr "Martinica"
-
-#~ msgid "Mauritius"
-#~ msgstr "Mauricio"
-
-#~ msgid "Mauritania"
-#~ msgstr "Mauritania"
-
-#~ msgid "Mayotte"
-#~ msgstr "Mayotte"
-
-#~ msgid "Federated States of Micronesia"
-#~ msgstr "Micronesia"
-
-#~ msgid "Moldova"
-#~ msgstr "Moldavia"
-
-#~ msgid "Mongolia"
-#~ msgstr "Mongolia"
-
-#~ msgid "Montenegro"
-#~ msgstr "Montenegro"
-
-#~ msgid "Montserrat"
-#~ msgstr "Montserrat"
-
-#~ msgid "Mozambique"
-#~ msgstr "Mozambique"
-
-#~ msgid "Namibia"
-#~ msgstr "Namibia"
-
-#~ msgid "Nauru"
-#~ msgstr "Nauru"
-
-#~ msgid "Nepal"
-#~ msgstr "Nepal"
-
-#~ msgid "Nicaragua"
-#~ msgstr "Nicaragua"
-
-#~ msgid "Niger"
-#~ msgstr "Niger"
-
-#~ msgid "Nigeria"
-#~ msgstr "Nigeria"
-
-#~ msgid "Niue"
-#~ msgstr "Niue"
-
-#~ msgid "Norway"
-#~ msgstr "Noruega"
-
-#~ msgid "New Caledonia"
-#~ msgstr "Nueva Caledonia"
-
-#~ msgid "New Zealand"
-#~ msgstr "Nueva Zelanda"
-
-#~ msgid "Oman"
-#~ msgstr "Omán"
-
-#~ msgid "Netherlands"
-#~ msgstr "Países Bajos"
-
-#~ msgid "Pakistan"
-#~ msgstr "Pakistán"
-
-#~ msgid "Palau"
-#~ msgstr "Palau"
-
-#~ msgid "Palestine"
-#~ msgstr "Palestina"
-
-#~ msgid "Panama"
-#~ msgstr "Panamá"
-
-#~ msgid "Papua New Guinea"
-#~ msgstr "Papúa Nueva Guinea"
-
-#~ msgid "Paraguay"
-#~ msgstr "Paraguay"
-
-#~ msgid "French Polynesia"
-#~ msgstr "Polinesia Francesa"
-
-#~ msgid "Poland"
-#~ msgstr "Polonia"
-
-#~ msgid "Portugal"
-#~ msgstr "Portugal"
-
-#~ msgid "Puerto Rico"
-#~ msgstr "Puerto Rico"
-
-#~ msgid "Qatar"
-#~ msgstr "Qatar"
-
-#~ msgid "United Kingdom"
-#~ msgstr "Reino Unido"
-
-#~ msgid "Central African Republic"
-#~ msgstr "República Centroafricana"
-
-#~ msgid "Czech Republic"
-#~ msgstr "República Checa"
-
-#~ msgid "Dominican Republic"
-#~ msgstr "República Dominicana"
-
-#~ msgid "Réunion"
-#~ msgstr "Reunión"
-
-#~ msgid "Rwanda"
-#~ msgstr "Ruanda"
-
-#~ msgid "Romania"
-#~ msgstr "Rumanía"
-
-#~ msgid "Russia"
-#~ msgstr "Rusia"
-
-#~ msgid "Western Sahara"
-#~ msgstr "Sahara Occidental"
-
-#~ msgid "Samoa"
-#~ msgstr "Samoa"
-
-#~ msgid "American Samoa"
-#~ msgstr "Samoa Americana"
-
-#~ msgid "Saint Barthélemy"
-#~ msgstr "San Bartolomé"
-
-#~ msgid "Saint Kitts and Nevis"
-#~ msgstr "San Cristóbal y Nieves"
-
-#~ msgid "San Marino"
-#~ msgstr "San Marino"
-
-#~ msgid "Saint Martin (French part)"
-#~ msgstr "San Martín (Francia)"
-
-#~ msgid "Saint Pierre and Miquelon"
-#~ msgstr "San Pedro y Miquelón"
-
-#~ msgid "Saint Vincent and the Grenadines"
-#~ msgstr "San Vicente y las Granadinas"
-
-#~ msgid "Ascensión y Tristán de Acuña"
-#~ msgstr "Santa Elena"
-
-#~ msgid "Saint Lucia"
-#~ msgstr "Santa Lucía"
-
-#~ msgid "Sao Tome and Principe"
-#~ msgstr "Santo Tomé y Príncipe"
-
-#~ msgid "Senegal"
-#~ msgstr "Senegal"
-
-#~ msgid "Serbia"
-#~ msgstr "Serbia"
-
-#~ msgid "Seychelles"
-#~ msgstr "Seychelles"
-
-#~ msgid "Sierra Leone"
-#~ msgstr "Sierra Leona"
-
-#~ msgid "Singapore"
-#~ msgstr "Singapur"
-
-#~ msgid "Syria"
-#~ msgstr "Siria"
-
-#~ msgid "Somalia"
-#~ msgstr "Somalia"
-
-#~ msgid "Sri Lanka"
-#~ msgstr "Sri lanka"
-
-#~ msgid "South Africa"
-#~ msgstr "Sudáfrica"
-
-#~ msgid "Sudan"
-#~ msgstr "Sudán"
-
-#~ msgid "Sweden"
-#~ msgstr "Suecia"
-
-#~ msgid "Switzerland"
-#~ msgstr "Suiza"
-
-#~ msgid "Suriname"
-#~ msgstr "Surinám"
-
-#~ msgid "Svalbard and Jan Mayen"
-#~ msgstr "Svalbard y Jan Mayen"
-
-#~ msgid "Swaziland"
-#~ msgstr "Swazilandia"
-
-#~ msgid "Tajikistan"
-#~ msgstr "Tadjikistán"
-
-#~ msgid "Thailand"
-#~ msgstr "Tailandia"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwán"
-
-#~ msgid "Tanzania"
-#~ msgstr "Tanzania"
-
-#~ msgid "British Indian Ocean Territory"
-#~ msgstr "Territorio Británico del Océano Índico"
-
-#~ msgid "French Southern Territories"
-#~ msgstr "Territorios Australes y Antárticas Franceses"
-
-#~ msgid "East Timor"
-#~ msgstr "Timor Oriental"
-
-#~ msgid "Togo"
-#~ msgstr "Togo"
-
-#~ msgid "Tokelau"
-#~ msgstr "Tokelau"
-
-#~ msgid "Tonga"
-#~ msgstr "Tonga"
-
-#~ msgid "Trinidad and Tobago"
-#~ msgstr "Trinidad y Tobago"
-
-#~ msgid "Tunisia"
-#~ msgstr "Tunez"
-
-#~ msgid "Turkmenistan"
-#~ msgstr "Turkmenistán"
-
-#~ msgid "Turkey"
-#~ msgstr "Turquía"
-
-#~ msgid "Tuvalu"
-#~ msgstr "Tuvalu"
-
-#~ msgid "Ukraine"
-#~ msgstr "Ucrania"
-
-#~ msgid "Uganda"
-#~ msgstr "Uganda"
-
-#~ msgid "Uruguay"
-#~ msgstr "Uruguay"
-
-#~ msgid "Uzbekistan"
-#~ msgstr "Uzbekistán"
-
-#~ msgid "Vanuatu"
-#~ msgstr "Vanuatu"
-
-#~ msgid "Venezuela"
-#~ msgstr "Venezuela"
-
-#~ msgid "Vietnam"
-#~ msgstr "Vietnam"
-
-#~ msgid "Wallis and Futuna"
-#~ msgstr "Wallis y Futuna"
-
-#~ msgid "Yemen"
-#~ msgstr "Yemen"
-
-#~ msgid "Djibouti"
-#~ msgstr "Yibuti"
-
-#~ msgid "Zambia"
-#~ msgstr "Zambia"
-
-#~ msgid "Zimbabwe"
-#~ msgstr "Zimbabue"
