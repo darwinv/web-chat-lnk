@@ -94,8 +94,6 @@ class SpecialistForm(ModelForm):
 
         # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
         if form_edit:
-            self.fields.pop('password')
-            self.fields.pop('confirm_password')
             self.fields['username'].required = False
             self.fields['username'].widget.attrs['readonly'] = True
 

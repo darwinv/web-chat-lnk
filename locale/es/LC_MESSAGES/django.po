@@ -263,10 +263,8 @@ msgid "upload a photo"
 msgstr "subir una foto"
 
 #: .\dashboard\forms.py:61
-#, fuzzy
-#| msgid "upload a photo"
 msgid "upload document"
-msgstr "subir una foto"
+msgstr "subir un documento"
 
 #: .\dashboard\forms.py:67
 msgid "username"
@@ -463,16 +461,12 @@ msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
 #: .\dashboard\templates\admin\lib\_main_header.html:177
-#, fuzzy
-#| msgid "Remember me"
 msgid "Member since"
-msgstr "Recordarme"
+msgstr "Mienbro desde"
 
 #: .\dashboard\templates\admin\lib\_main_header.html:193
-#, fuzzy
-#| msgid "Sign up"
 msgid "Sign out"
-msgstr "Registrase"
+msgstr "desconectarse"
 
 #: .\dashboard\templates\admin\lib\_main_scripts.html:65
 msgid "select"
