@@ -1,6 +1,8 @@
+"""Modelos."""
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from api.api_choices_models import ChoicesAPI as Ch
+from django.utils.translation import ugettext_lazy as _
 
 
 class Countries(models.Model):
@@ -76,31 +78,34 @@ class Role(models.Model):
 # Utilizaremos el metodo de Heredar de AbstractUser
 # para personalizar el modelo de usuarios
 class User(AbstractUser):
-    #  class Meta:
-    #      db_table = 'user'
-    nick = models.CharField(max_length=45, blank=True)
-    email_exact = models.CharField(max_length=150, unique=True)
-    telephone = models.CharField(max_length=14)
-    cellphone = models.CharField(max_length=14)
+    """Modelo de Usuario hereda de AbstractUser."""
+
+    nick = models.CharField(_('nick'), max_length=45, blank=True)
+    email_exact = models.CharField(_('email'), max_length=150, unique=True)
+    telephone = models.CharField(_('telephone'), max_length=14)
+    cellphone = models.CharField(_('cellphone'), max_length=14)
     photo = models.CharField(max_length=250, null=True)
-
-    document_type = models.CharField(max_length=1, choices=Ch.user_document_type)
-    document_number = models.CharField(max_length=45, unique=True)
-    ruc = models.CharField(max_length=40, unique=True, null=True)
-    code = models.CharField(max_length=45, unique=True)
-    anonymous = models.BooleanField(default=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1)
-    role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
-    address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
-
-
+    document_type = models.CharField(_('document type'), max_length=1, choices=Ch.user_document_type)
+    document_number = models.CharField(_('document number'), max_length=45, unique=True)
+    ruc = models.CharField(_('RUC'), max_length=40, unique=True, null=True)
+    code = models.CharField(_('code'), max_length=45, unique=True)
+    anonymous = models.BooleanField(_('anonymous'), default=True)
+    updated_at = models.DateTimeField(_('updated at'), auto_now_add=True)
+    nationality = models.ForeignKey(Countries, verbose_name=_('nationality'), on_delete=models.PROTECT, default=1)
+    role = models.ForeignKey(Role, verbose_name=_('role'), on_delete=models.PROTECT, default=1)
+    address = models.ForeignKey(Address, verbose_name=_('address'), on_delete=models.PROTECT, null=True)
+    residence_country = models.ForeignKey(Countries, verbose_name=_('residence'), on_delete=models.PROTECT,
+                                          null=True, related_name="residence")
 # Aplicamos herencia multi tabla para que
 # Seller herede de User y se vincule 1 a 1
 
+
 class Seller(User):
-    cv = models.CharField(max_length=100, null=True, blank=True)
-    zone = models.ForeignKey(Zone, on_delete=models.PROTECT)
+    """Modelo de Vendedor (hereda de User)."""
+
+    cv = models.CharField("curriculum", max_length=100, null=True, blank=True)
+    zone = models.ForeignKey(Zone, verbose_name=_('zone'), on_delete=models.PROTECT)
+    ciiu = models.CharField(max_length=4, null=True)
 
     class Meta:
         verbose_name = 'Seller'

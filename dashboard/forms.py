@@ -1,7 +1,7 @@
-
+"""Formularios."""
 from django import forms
 from django.forms import ModelForm
-from api.models import Specialist, Category, Department, Province, District
+from api.models import Specialist, Seller, Category, Department, Province, District
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 
@@ -49,7 +49,7 @@ class SellerFormFilters(FilterForm):
     count_queries_seller = forms.IntegerField(label = cap(_('number of queries sold greater than')))
 
 
-class SpecialistForm(ModelForm):   
+class SpecialistForm(ModelForm):
 
     category = forms.CharField(widget=forms.Select(), required=True, label = cap(_('category')))
     department = forms.CharField(widget=forms.Select(), required=True, label = cap(_('department'))  )
@@ -79,7 +79,6 @@ class SpecialistForm(ModelForm):
         if departments:
             self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
 
-
         if department:
             provinces = Province.objects.filter(department_id=department)
             self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
@@ -87,7 +86,6 @@ class SpecialistForm(ModelForm):
         if province:
             districts = District.objects.filter(province_id=province)
             self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
-
 
         # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
         if form_edit:
@@ -116,7 +114,7 @@ class SpecialistForm(ModelForm):
                 _("Password and confirm password does not match")
             )
 
-    def add_error_custom(self, add_errors=None):        
+    def add_error_custom(self, add_errors=None):
         """
         Funcion creada para agregar errores, posteriormente a las validaciones
         hechas por la clase Form
@@ -137,6 +135,7 @@ class SpecialistForm(ModelForm):
                     self.add_error(None, error=key)
 
     class Meta:
+        """Meta."""
         password = forms.CharField(widget=forms.PasswordInput)
         widgets = {
             'password': forms.PasswordInput(),
@@ -163,9 +162,47 @@ class SpecialistForm(ModelForm):
         }
 
 
-"""
-Reportes de estado de cuenta
-"""
+class SellerForm(ModelForm):
+    """Formulario de Vendedores."""
+
+    department = forms.CharField(widget=forms.Select(), required=True, label=cap(_('department')))
+    province = forms.CharField(widget=forms.Select(), required=True, label=cap(_('province')))
+    district = forms.CharField(widget=forms.Select(), required=True, label=cap(_('district')))
+    street = forms.CharField(required=True, label=cap(_('street')))
+
+    def __init__(self, initial=None, department=None, province=None, form_edit=None,
+                 *args, **kwargs):
+        """Init."""
+        super(SellerForm, self).__init__(initial=initial, *args, **kwargs)
+        departments = Department.objects.all()
+        if departments:
+            self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
+
+        if department:
+            provinces = Province.objects.filter(department_id=department)
+            self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
+
+        if province:
+            districts = District.objects.filter(province_id=province)
+            self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
+
+    class Meta:
+        """Meta de Vendedor."""
+
+        model = Seller
+        fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
+                  'telephone', 'cellphone', 'document_type', 'document_number',
+                  'nationality', 'ruc', 'ciiu']
+        labels = {
+            'username': cap(_('username')),
+            'password': cap(_('password')),
+            'first_name': cap(_('first name')),
+            'last_name': cap(_('last name')),
+        }
+
+# """
+# Reportes de estado de cuenta
+# """
 
 class AccountStatus(FilterForm):
     """
@@ -202,8 +239,7 @@ class AccountStatusSellerFormFilters(AccountStatus):
         # Traer vendedores directamente desde la api
         # y actualizamos los options del select
         # "?page_size=0" trae un listado, ignorando la paginacion
-        data = obj_api.get(slug='sellers/?page_size=0', token=token) 
-        
-        if type(data) is list:  
-            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]
+        data = obj_api.get(slug='sellers/?page_size=0', token=token)
 
+        if type(data) is list:
+            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]
