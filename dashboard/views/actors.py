@@ -139,6 +139,13 @@ class Specialist(Actor):
                         photo = {'photo': request.FILES['photo']}
                         obj_api.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
                     # Process success
+
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + str(result['id']), token=token, files=img_document_number)
+                    # Process success
+
+
                     return HttpResponseRedirect(reverse(self._list))
                 else:
                     # Mostrar Errores en Form
@@ -191,6 +198,7 @@ class Specialist(Actor):
             form = self.generate_form_specialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
 
+            
             # check whether it's valid:
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
@@ -204,14 +212,20 @@ class Specialist(Actor):
                         "district": data["district"],
                     }
                 })
-
                 # return JsonResponse(data)
                 result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
 
                 if result:
+                    # Agregando foto del Usuario
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
                         obj_api.put(slug='upload_photo/' + pk, token=token, files=photo)
+
+                    # Se agrega documento del usuario
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + pk, token=token, files=img_document_number)
+                    
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -220,7 +234,9 @@ class Specialist(Actor):
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
 
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
-
+            else:
+                print(form.errors)
+                print("------------------------------------")
         else:
             specilist = obj_api.get(slug='specialists/' + pk, token=token)
 

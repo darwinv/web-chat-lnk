@@ -160,7 +160,8 @@ class api:
                 else:
                     user = User()
 
-                
+                # Se agregan campos necesarios en base de datos local
+                # tomando en cuenta campos requeridos y unicos
                 user.id = id
                 user.username = str(data['results'][0]['username'])
                 user.code = str(data['results'][0]['code'])
@@ -190,11 +191,9 @@ class api:
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url + slug, headers=headers, params=arg)
-            
-            if r.status_code == 200:
-                return r.json()
-            else:
-                return None
+
+            return r.json()
+
         except Exception as e:
             print(e.args)
             print("---------------ERROR GET---------------")
@@ -216,7 +215,8 @@ class api:
     def put(self, token, slug='', arg=None, files=None):
         headers = {'Authorization': 'Bearer ' + token}
         headers = dict(headers, **self._headers)
-
+        print(slug)
+        print("------------------------------------")
         try:
             r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            
             
