@@ -60,11 +60,16 @@ class SpecialistForm(ModelForm):
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
     img_document_number = forms.FileField(required=False, label = cap(_('upload document')), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
-    confirm_password = forms.CharField(widget=forms.PasswordInput, label = cap(_('confirm password')))
 
-    widgets = {
-        'confirm_password': forms.PasswordInput(),
-    }
+
+
+
+    username = forms.CharField(label = cap(_('username')))
+    email_exact = forms.CharField(label = cap(_('email')))
+    document_number = forms.CharField(label = cap(_('document number')))
+    ruc = forms.CharField(label = cap(_('RUC')))
+
+
 
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
@@ -79,7 +84,6 @@ class SpecialistForm(ModelForm):
         if departments:
             self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
 
-
         if department:
             provinces = Province.objects.filter(department_id=department)
             self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
@@ -87,7 +91,6 @@ class SpecialistForm(ModelForm):
         if province:
             districts = District.objects.filter(province_id=province)
             self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
-
 
         # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
         if form_edit:
@@ -105,16 +108,6 @@ class SpecialistForm(ModelForm):
                     for key in initial[item]:
                         if key in self.fields:
                             self.fields[key].initial = initial[item][key]
-
-    def clean(self):
-        cleaned_data = super(SpecialistForm, self).clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
-
-        if password != confirm_password:
-            raise forms.ValidationError(
-                _("Password and confirm password does not match")
-            )
 
     def add_error_custom(self, add_errors=None):        
         """
@@ -142,21 +135,16 @@ class SpecialistForm(ModelForm):
             'password': forms.PasswordInput(),
         }
         model = Specialist
-        fields = ['payment_per_answer', 'username', 'nick', 'password', 'first_name', 'last_name', 'email_exact',
-                  'telephone', 'cellphone', 'document_type', 'document_number', 'ruc', 'business_name',
+        fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
+                  'telephone', 'cellphone', 'document_type',   'business_name',
                   'type_specialist']
         labels = {
-            'username': cap(_('username')),
             'nick': cap(_('nick')),
-            'password': cap(_('password')),
             'first_name': cap(_('first name')),
             'last_name': cap(_('last name')),
-            'email_exact': cap(_('email')),
             'telephone': cap(_('telephone')),
             'cellphone': cap(_('cellphone')),
             'document_type': cap(_('document type')),
-            'document_number': cap(_('document number')),
-            'ruc': cap(_('RUC')),
             'business_name': cap(_('business name')),
             'type_specialist': cap(_('type specialist')),
             'payment_per_answer': cap(_('payment per answer')),

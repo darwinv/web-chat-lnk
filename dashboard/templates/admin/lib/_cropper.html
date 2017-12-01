@@ -61,7 +61,7 @@
               var show_tittle = $(this).data('title');
               
               if (show_tittle) {
-                $(this).siblings('.docs-tooltip').html('<label>'+file.name+'</label>');
+                $(this).siblings('.docs-tooltip').html('<label class="fa" for='+$(this).attr('id')+'>'+file.name+'</label>');
               }else{
                 $imageProf.attr("src", fileTempModal);
               }
