@@ -141,11 +141,18 @@
                 {{ form.street.errors }}
             </div>
         {% endif %}
+        {% if form.ciiu %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.ciiu.label_tag }}
+                {{ form.ciiu }}
+                {{ form.ciiu.errors }}
+            </div>
+        {% endif %}
         <hr>
         <div class="col-xs-12 text-center">
             <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">
 
-            <a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
+            <a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
         </div>
     </form>
 {% endblock main_content_row %}

@@ -411,7 +411,8 @@ class Seller(Actor):
         token = request.session["token"]
         # Si llega envio por POST se valida contra el SpecialistForm
         if request.method == 'POST':
-            form = self.generate_form_specialist(data=request.POST, files=request.FILES)
+
+            form = self.generate_form_seller(data=request.POST, files=request.FILES)
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
@@ -423,6 +424,8 @@ class Seller(Actor):
                         "district": data["district"],
                     }
                 })
+                nationality = data.get("nationality")
+                data["nationality"] = nationality.id
 
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
 

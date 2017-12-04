@@ -105,7 +105,7 @@ class Seller(User):
 
     cv = models.CharField("curriculum", max_length=100, null=True, blank=True)
     zone = models.ForeignKey(Zone, verbose_name=_('zone'), on_delete=models.PROTECT)
-    ciiu = models.CharField(max_length=4, null=True)
+    ciiu = models.CharField(max_length=4, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Seller'

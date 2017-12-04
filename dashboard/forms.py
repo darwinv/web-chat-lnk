@@ -200,6 +200,39 @@ class SellerForm(ModelForm):
             'last_name': cap(_('last name')),
         }
 
+    def add_error_custom(self, add_errors=None):
+        """
+        Funcion creada para agregar errores, posteriormente a las validaciones
+        hechas por la clase Form
+        """
+        # import pdb; pdb.set_trace()
+        print(add_errors)
+
+        print("----------------FORM ERRRORS--------------------")
+        if add_errors:  # errores retornados por terceros
+            if type(add_errors) is dict:
+                for key in add_errors:
+                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
+                        self.add_error(key, add_errors[key])
+                    elif type(key) is list:
+                        for item in key:
+                            if item and item in self.fields:
+                                self.add_error(item, key[item])
+            elif type(add_errors) is list:
+                for key in add_errors:
+                    self.add_error(None, error=key)
+
+    # def clean_nationality(self):
+    #     """Convertimos nacionalidad de tipo objeto al id."""
+    #     data = self.cleaned_data["nationality"]
+    #     return data.id
+    # def clean(self):
+    #     cleaned_data = super(SellerForm, self).clean()
+    #     nationality = cleaned_data.get("nationality")
+    #     self.cleaned_data["nationality"] = nationality.id
+    #     return self.cleaned_data
+        # import pdb; pdb.set_trace()
+
 # """
 # Reportes de estado de cuenta
 # """
