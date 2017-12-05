@@ -107,21 +107,7 @@ class SpecialistForm(ModelForm):
                         if key in self.fields:
                             self.fields[key].initial = initial[item][key]
 
-<<<<<<< HEAD
-    def clean(self):
-        cleaned_data = super(SpecialistForm, self).clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
-
-        if password != confirm_password:
-            raise forms.ValidationError(
-                _("Password and confirm password does not match")
-            )
-
     def add_error_custom(self, add_errors=None):
-=======
-    def add_error_custom(self, add_errors=None):        
->>>>>>> c20e8f312060dc02c93f3ff647d486490ce43640
         """
         Funcion creada para agregar errores, posteriormente a las validaciones
         hechas por la clase Form
