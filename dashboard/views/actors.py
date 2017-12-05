@@ -197,7 +197,7 @@ class Specialist(Actor):
             form = self.generate_form_specialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
 
-            
+
             # check whether it's valid:
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
@@ -432,7 +432,7 @@ class Seller(Actor):
                 data["nationality"] = nationality.id
 
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
-
+                import pdb; pdb.set_trace()
                 if result and 'id' in result:
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
