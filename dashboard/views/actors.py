@@ -424,6 +424,8 @@ class Seller(Actor):
                         "district": data["district"],
                     }
                 })
+                if 'residence_country' in data:
+                    data["residence_country"] = data["residence_country"].id
                 nationality = data.get("nationality")
                 data["nationality"] = nationality.id
 

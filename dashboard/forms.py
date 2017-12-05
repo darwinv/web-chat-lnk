@@ -192,7 +192,7 @@ class SellerForm(ModelForm):
         model = Seller
         fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
-                  'nationality', 'ruc', 'ciiu']
+                  'nationality', 'ruc', 'ciiu', 'residence_country']
         labels = {
             'username': cap(_('username')),
             'password': cap(_('password')),

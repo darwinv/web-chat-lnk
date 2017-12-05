@@ -106,6 +106,13 @@
             </div>
         {% endif %}
 
+        {% if form.residence_country %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.residence_country.label_tag }}
+                {{ form.residence_country }}
+                {{ form.residence_country.errors }}
+            </div>
+        {% endif %}
         {% if form.ruc %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.ruc.label_tag }}
