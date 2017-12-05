@@ -8,7 +8,7 @@ $(function () {
 		console.log(($this.val()==1 || $this.val()==""));
 
 		if ($this.val()==1 || $this.val()=="") { //Si pais es peru, muestra fields address
-			
+
 			$('#id_ruc,#id_department,#id_province,#id_district,#id_street').prop('required',true);
 			$('#id_department,#id_province,#id_district,#id_street').parent('.form-group').show();
 		}else{
