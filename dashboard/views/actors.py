@@ -197,6 +197,7 @@ class Specialist(Actor):
             form = self.generate_form_specialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
 
+            
             # check whether it's valid:
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
@@ -210,7 +211,6 @@ class Specialist(Actor):
                         "district": data["district"],
                     }
                 })
-
                 # return JsonResponse(data)
                 result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
 
@@ -233,7 +233,9 @@ class Specialist(Actor):
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
 
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
-
+            else:
+                print(form.errors)
+                print("------------------------------------")
         else:
             specilist = obj_api.get(slug='specialists/' + pk, token=token)
 
