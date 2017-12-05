@@ -9,7 +9,7 @@ import pdb
 
 # Django
 # from django.contrib.auth.models import User
-from api.models import User
+from api.models import User, Role
 
 
 # noinspection PyPep8Naming
@@ -60,7 +60,7 @@ class api:
             r = requests.post(self._url + 'o/token/', params=arg, headers=self._headers)
 
             print(r.json())
-            print("------------------------------------")
+            print("--------------LOGIN------------------")
             # evaluar respuesta
             if r.status_code == 200:
                 # respuesta correcta
@@ -146,26 +146,33 @@ class api:
             headers = dict(headers, **self._headers)
 
             r = requests.get(self._url + 'users?username=' + username, headers=headers)
-
+            
             data = r.json()
-
             try:
                 # obtener id de la respuesta
 
                 id = int(data['results'][0]['id'])
 
-                user = None
-
+                                    
+                # evaluar si existe el usuario en las sesiones guardadas
                 if User.objects.filter(id=id).count() > 0:
                     user = User.objects.filter(id=id)[0]
-
-                # evaluar si existe el usuario en las sesiones guardadas
-                if user:
-                    user.username = str(data['results'][0]['username'])
                 else:
                     user = User()
-                    user.id = id
-                    user.username = str(data['results'][0]['username'])
+
+                # Se agregan campos necesarios en base de datos local
+                # tomando en cuenta campos requeridos y unicos
+                user.id = id
+                user.username = str(data['results'][0]['username'])
+                user.code = str(data['results'][0]['code'])
+                user.document_number = str(data['results'][0]['document_number'])
+                user.email_exact = str(data['results'][0]['email_exact'])
+
+                role_id = int(data['results'][0]['role'])
+                user.role.id = user.role.pk = role_id
+                role = Role.objects.get(pk=role_id)
+                user.role.name = role.name
+
 
             except Exception as e:
                 print(e)
@@ -184,9 +191,11 @@ class api:
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url + slug, headers=headers, params=arg)
-            print(r.json())
-            print("------------------------------------")
-            return r.json()
+            
+            if r.status_code == 200:
+                return r.json()
+            else:
+                return None
         except Exception as e:
             print(e.args)
             print("---------------ERROR GET---------------")
@@ -197,8 +206,10 @@ class api:
 
         try:
             r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
-            print("---------------POST---------------")
+            
+            
             return r.json()
+            
         except Exception as e:
             print(e.args)
             print("---------------ERROR POST---------------")
@@ -208,11 +219,10 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:
-            r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
-            print(r)
-            print(r.json())
-            print("---------------PUT---------------")
+            r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            
+            
             return r.json()
+            
         except Exception as e:
             print(e)
             print("---------------ERROR PUT---------------")

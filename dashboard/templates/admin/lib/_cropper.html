@@ -6,7 +6,7 @@
       var $modal      = $('#modal-img-profile');
       var $frame      = $('#frame-profile-img');  // Contenedor de foto perfil
       var $imageProf  = $('#frame-profile-img > img');  // imagen dentro del Contenedor de foto perfil
-      var $inputFile  = $('#inputFile');
+      var inputFile  = '.inputFile';
       var btnSave     = '#save-model-imgProfile';  // Boton de guardar desde el modal
       var fileTempModal;
 
@@ -40,7 +40,9 @@
       // Funcion generica para abrir modal despues de seleccionar archivo
       var URL = window.URL || window.webkitURL;  
       if (URL) {
-        $inputFile.change(function () {
+        $(document).on('change',inputFile , function(){  
+         
+          console.log(this); 
           var files = this.files;
           
           if (files && files.length) {
@@ -53,9 +55,17 @@
               fileTempModal = URL.createObjectURL(file);
 
               // $modal.modal('show');  Linea comentada hasta que no este listo envio por ajax de solamente la foto scropeada
-              // $inputFile.val('');
+              // inputFile.val('');
 
-              $imageProf.attr("src", fileTempModal);
+              /** Deside si cargar imagen en html o mostrar nombre del archivo **/
+              var show_tittle = $(this).data('title');
+              
+              if (show_tittle) {
+                $(this).siblings('.docs-tooltip').html('<label>'+file.name+'</label>');
+              }else{
+                $imageProf.attr("src", fileTempModal);
+              }
+              
               
             } else {
               window.alert('{% trans "please choose an image file."|title %}');
@@ -63,7 +73,7 @@
           }
         });
       } else {
-        $inputFile.prop('disabled', true).parent().addClass('disabled');
+        $('inputFile').prop('disabled', true).parent().addClass('disabled');
       }
       // Fin funcion generica
 

@@ -37,3 +37,14 @@ class ToolsBackend(object):
         :return: string format "10000.00"
         """
         return "{:.2f}".format(float(num))
+
+
+def capitalize(line):
+    """
+        Funcion creada como erramienta para capitalizar el primer caracter de una cadena
+        sin modificar el resto de la cadena
+    """
+
+    if len(line) <= 0:
+        return ''
+    return line[0].upper() + line[1:]

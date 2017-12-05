@@ -1,3 +1,4 @@
+"""Vista de Actores (Clientes/Especialistas/Vendedores)."""
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
@@ -8,9 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 
 from dashboard.json2table import convert, get_actual_page
-from dashboard.forms import SpecialistForm, SellerFormFilters
-
-import pdb
+from dashboard.forms import SpecialistForm, SellerForm, SellerFormFilters
 
 
 class Actor:
@@ -90,10 +89,12 @@ class Specialist(Actor):
     @method_decorator(login_required)
     def detail(self, request, pk):
         obj_api = api()
-        data = obj_api.get(slug='specialists/' + pk, token=request.session['token'])
+        token = request.session['token']
+
+        data = obj_api.get(slug='specialists/' + pk, token=token)
 
         # Si la data del usuario no es valida
-        if type(data) is not dict or 'pk' not in data:
+        if not data and type(data) is not dict:
             raise Http404()
 
         # Si esta definido el tipo de especialista que es el usuario
@@ -101,6 +102,7 @@ class Specialist(Actor):
             type_specialist = data['type_specialist']
         else:
             type_specialist = ''
+
 
         # Titulo de la vista y variables de la Clase
         title_page = "{} {} - {}".format(_('specialist').title(), _(type_specialist), _('detail').title())
@@ -136,6 +138,13 @@ class Specialist(Actor):
                         photo = {'photo': request.FILES['photo']}
                         obj_api.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
                     # Process success
+
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + str(result['id']), token=token, files=img_document_number)
+                    # Process success
+
+
                     return HttpResponseRedirect(reverse(self._list))
                 else:
                     # Mostrar Errores en Form
@@ -165,8 +174,8 @@ class Specialist(Actor):
         :return: objeto Form de acuerdo a parametros
         """
         department = province = None
-        
-        
+
+
         # Validamos que el listado este en la respuesta
         # si no cumple las validaciones por Default el valor sera None
         # Si el usuario tiene department, traemos provincia
@@ -180,10 +189,10 @@ class Specialist(Actor):
                               province=province, initial=specilist, form_edit=form_edit)
 
     @method_decorator(login_required)
-    def edit(self, request, id):
+    def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
-        
+
         if request.method == 'POST':
             form = self.generate_form_specialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
@@ -203,12 +212,19 @@ class Specialist(Actor):
                 })
 
                 # return JsonResponse(data)
-                result = obj_api.put(slug='specialists/' + id, token=token, arg=data)
+                result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
 
-                if result and 'id' in result:
+                if result:
+                    # Agregando foto del Usuario
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
-                        obj_api.put(slug='upload_photo/' + id, token=token, files=photo)
+                        obj_api.put(slug='upload_photo/' + pk, token=token, files=photo)
+
+                    # Se agrega documento del usuario
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + pk, token=token, files=img_document_number)
+
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -219,13 +235,13 @@ class Specialist(Actor):
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
 
         else:
-            specilist = obj_api.get(slug='specialists/' + id, token=token)
+            specilist = obj_api.get(slug='specialists/' + pk, token=token)
 
             form = self.generate_form_specialist(specilist=specilist, form_edit=True)
 
         title_page = _('edit specialist').title()
         vars_page = self.generate_header(custom_title=title_page)
-        specialists_form = reverse(self._edit, args=(id,))
+        specialists_form = reverse(self._edit, args=(pk,))
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
@@ -259,7 +275,7 @@ class Client(Actor):
         token = request.session['token']
         filters = {}
 
-        
+
 
         # Traer data para el listado
         data = obj_api.get(slug='clients/', arg=filters, token=token)
@@ -344,11 +360,11 @@ class Seller(Actor):
         filters = {}
 
         form_filters = SellerFormFilters(request.GET)
-        
+
         if form_filters.is_valid():
             filters = form_filters.cleaned_data
 
-        
+
         # Traer data para el listado
         data = obj_api.get(slug='sellers/', arg=filters, token=token)
 
@@ -388,6 +404,85 @@ class Seller(Actor):
         return render(request, 'admin/actor/sellersList.html',
                       {'tabla': tabla, 'vars_page': vars_page, 'form_filters': form_filters})
 
+    @method_decorator(login_required)
+    def create(self, request):
+        """Metodo para crear Vendedores."""
+        obj_api = api()
+        token = request.session["token"]
+        # Si llega envio por POST se valida contra el SpecialistForm
+        if request.method == 'POST':
+
+            form = self.generate_form_seller(data=request.POST, files=request.FILES)
+            if form.is_valid():
+                # Tomamos todo el formulario para enviarlo a la API
+                data = form.cleaned_data
+                data.update({
+                    "address": {
+                        "street": data["street"],
+                        "department": data["department"],
+                        "province": data["province"],
+                        "district": data["district"],
+                    }
+                })
+                if 'residence_country' in data:
+                    data["residence_country"] = data["residence_country"].id
+                nationality = data.get("nationality")
+                data["nationality"] = nationality.id
+
+                result = obj_api.post(slug='sellers/', token=token, arg=data)
+
+                if result and 'id' in result:
+                    if 'photo' in request.FILES:
+                        photo = {'photo': request.FILES['photo']}
+                        obj_api.put(slug='upload_photo/' + str(result['id']), token=token, files=photo)
+                    # Process success
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + str(result['id']), token=token, files=img_document_number)
+                    # Process success
+                    return HttpResponseRedirect(reverse(self._list))
+                else:
+                    # Mostrar Errores en Form
+                    form.add_error_custom(
+                        add_errors=result)  # Agregamos errores retornados por la app para este formulario
+
+                    return render(request, 'admin/actor/sellersForm.html', {'form': form})
+
+        else:
+            # Crear formulario de especialistas vacio, se traeran
+            # datos de selecion como Categorias y Departamentos.
+            form = self.generate_form_seller()
+        # import pdb; pdb.set_trace()
+        form = self.generate_form_seller()
+        title_page = _('create seller').title()
+        vars_page = self.generate_header(custom_title=title_page)
+        sellers_form = reverse(self._create)
+        return render(request, 'admin/actor/sellersForm.html',
+                      {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
+
+    def generate_form_seller(self, data=None, files=None, seller=None, form_edit=None):
+        """
+        Funcion para generar traer formulario de especialistas.
+
+        :param data: objeto POST o dict de valores relacional
+        :param specilist: dict que contiene los valores iniciales del usuario
+        :param form_edit: Bolean para saber si sera un formulario para editar usuario
+        :return: objeto Form de acuerdo a parametros.
+        """
+        department = province = None
+        #
+        #
+        # Validamos que el listado este en la respuesta
+        # # si no cumple las validaciones por Default el valor sera None
+        # # Si el usuario tiene department, traemos provincia
+        # if specilist and 'address' in specilist and 'department' in specilist['address']:
+        #     department = specilist['address']['department']
+        #
+        # if specilist and 'address' in specilist and 'province' in specilist['address']:
+        #     province = specilist['address']['province']
+
+        return SellerForm(data=data, files=files, department=department,
+                          province=province, initial=seller, form_edit=form_edit)
 
 class Administrator(Actor):
     vars_page = {
