@@ -169,9 +169,9 @@ li.language > ul.dropdown-menu {
 
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button,.btn {
-    padding-top: 5px;
+    padding-top: 6px;
     padding-right: 15px;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     padding-left: 15px;
     border-radius: 4px;
     cursor: pointer;    

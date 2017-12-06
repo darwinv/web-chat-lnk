@@ -62,7 +62,7 @@ $(function () {
 		});
 	}
 	function generateOptions(element,data) {
-		element.append('<option>{% trans "select"|title %}</option>')
+		element.append('<option value="">{% trans "select"|title %}</option>')
 		$.each(JSON.parse(data), function(){
 			element.append('<option value="'+ this.pk +'">'+ this.fields.name +'</option>')			
 		});
@@ -86,7 +86,6 @@ $(function () {
     	$.each(dataAttr, function(key, value) {
     		$(btnDelete).data(key,value);
         });
-    	console.log("seee");
     	$modalConfirmDelete.modal('show');
 	});
 
