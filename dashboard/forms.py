@@ -1,7 +1,9 @@
-
+"""Formularios."""
 from django import forms
 from django.forms import ModelForm
-from api.models import Specialist, Category, Department, Province, District, Countries
+
+from api.models import Specialist, Seller, Category, Department, Province, District, Countries
+
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 
@@ -115,7 +117,7 @@ class SpecialistForm(ModelForm):
                         if key in self.fields:
                             self.fields[key].initial = initial[item][key]
 
-    def add_error_custom(self, add_errors=None):        
+    def add_error_custom(self, add_errors=None):
         """
         Funcion creada para agregar errores, posteriormente a las validaciones
         hechas por la clase Form
@@ -136,6 +138,7 @@ class SpecialistForm(ModelForm):
                     self.add_error(None, error=key)
 
     class Meta:
+        """Meta."""
         password = forms.CharField(widget=forms.PasswordInput)
         widgets = {
             'password': forms.PasswordInput(),
@@ -156,9 +159,86 @@ class SpecialistForm(ModelForm):
             'payment_per_answer': cap(_('payment per answer')),
         }
 
+
 """
 Reportes de estado de cuenta
 """
+class SellerForm(ModelForm):
+    """Formulario de Vendedores."""
+
+    department = forms.CharField(widget=forms.Select(), required=True, label=cap(_('department')))
+    province = forms.CharField(widget=forms.Select(), required=True, label=cap(_('province')))
+    district = forms.CharField(widget=forms.Select(), required=True, label=cap(_('district')))
+    street = forms.CharField(required=True, label=cap(_('street')))
+
+    def __init__(self, initial=None, department=None, province=None, form_edit=None,
+                 *args, **kwargs):
+        """Init."""
+        super(SellerForm, self).__init__(initial=initial, *args, **kwargs)
+        departments = Department.objects.all()
+        if departments:
+            self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
+
+        if department:
+            provinces = Province.objects.filter(department_id=department)
+            self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
+
+        if province:
+            districts = District.objects.filter(province_id=province)
+            self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
+
+    class Meta:
+        """Meta de Vendedor."""
+
+        model = Seller
+        fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
+                  'telephone', 'cellphone', 'document_type', 'document_number',
+                  'nationality', 'ruc', 'ciiu', 'residence_country']
+        labels = {
+            'username': cap(_('username')),
+            'password': cap(_('password')),
+            'first_name': cap(_('first name')),
+            'last_name': cap(_('last name')),
+        }
+
+    def add_error_custom(self, add_errors=None):
+        """
+        Funcion creada para agregar errores, posteriormente a las validaciones
+        hechas por la clase Form
+        """
+        # import pdb; pdb.set_trace()
+        print(add_errors)
+
+        print("----------------FORM ERRRORS--------------------")
+        if add_errors:  # errores retornados por terceros
+            if type(add_errors) is dict:
+                for key in add_errors:
+                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
+                        self.add_error(key, add_errors[key])
+                    elif type(key) is list:
+                        for item in key:
+                            if item and item in self.fields:
+                                self.add_error(item, key[item])
+            elif type(add_errors) is list:
+                for key in add_errors:
+                    self.add_error(None, error=key)
+
+    # def clean_nationality(self):
+    #     """Convertimos nacionalidad de tipo objeto al id."""
+    #     data = self.cleaned_data["nationality"]
+    #     return data.id
+    # def clean(self):
+    #     cleaned_data = super(SellerForm, self).clean()
+    #     nationality = cleaned_data.get("nationality")
+    #     self.cleaned_data["nationality"] = nationality.id
+    #     return self.cleaned_data
+        # import pdb; pdb.set_trace()
+
+# """
+# Reportes de estado de cuenta
+# """
+
+
 
 class AccountStatus(FilterForm):
     """
@@ -195,8 +275,7 @@ class AccountStatusSellerFormFilters(AccountStatus):
         # Traer vendedores directamente desde la api
         # y actualizamos los options del select
         # "?page_size=0" trae un listado, ignorando la paginacion
-        data = obj_api.get(slug='sellers/?page_size=0', token=token) 
-        
-        if type(data) is list:  
-            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]
+        data = obj_api.get(slug='sellers/?page_size=0', token=token)
 
+        if type(data) is list:
+            self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]

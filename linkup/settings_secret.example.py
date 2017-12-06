@@ -1,4 +1,4 @@
-
+"""Archivo de ejemplo para configurar la bd en local."""
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 

@@ -211,19 +211,73 @@ msgstr "Moderar"
 msgid "Positive"
 msgstr "Positivo"
 
-#: .\dashboard\forms.py:44 .\dashboard\forms.py:143
+#: .\api\models.py:83 .\dashboard\forms.py:149
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:73
+#: .\dashboard\templates\admin\actor\clientsDetail.html:37
+#: .\dashboard\views\account_status.py:96
+msgid "nick"
+msgstr "nick"
+
+#: .\api\models.py:84 .\dashboard\forms.py:153 .\dashboard\views\actors.py:77
+#: .\dashboard\views\actors.py:302 .\dashboard\views\actors.py:393
+#: .\dashboard\views\actors.py:462
+msgid "email"
+msgstr "correo"
+
+
+#: .\api\models.py:86 .\dashboard\forms.py:155
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:86
+msgid "cellphone"
+msgstr "celular"
+
+#: .\api\models.py:88 .\dashboard\forms.py:156
+msgid "document type"
+msgstr "tipo de documento"
+
+#: .\api\models.py:90 .\dashboard\forms.py:46 .\dashboard\forms.py:158
+#: .\dashboard\views\actors.py:77 .\dashboard\views\actors.py:303
+#: .\dashboard\views\actors.py:394 .\dashboard\views\actors.py:462
+msgid "RUC"
+msgstr "Ruc"
+
+#: .\api\models.py:91 .\dashboard\views\account_status.py:95
+#: .\dashboard\views\account_status.py:137 .\dashboard\views\actors.py:76
+#: .\dashboard\views\actors.py:301 .\dashboard\views\actors.py:392
+#: .\dashboard\views\actors.py:462
+msgid "code"
+msgstr "código"
+
+#: .\api\models.py:92
+msgid "anonymous"
+msgstr "anonimo"
+
+#: .\api\models.py:93
+msgid "updated at"
+msgstr "actualizado en"
+
+#: .\api\models.py:94 .\api\models.py:97
+msgid "nationality"
+msgstr "nacionalidad"
+
+#: .\api\models.py:95
+msgid "role"
+msgstr "rol"
+
+#: .\api\models.py:96
+msgid "address"
+msgstr "dirección"
+
+#: .\api\models.py:107
+msgid "zone"
+msgstr "zona"
+
+#: .\dashboard\forms.py:44 .\dashboard\forms.py:151 .\dashboard\forms.py:199
 msgid "first name"
 msgstr "primer nombre"
 
-#: .\dashboard\forms.py:45 .\dashboard\forms.py:144
+#: .\dashboard\forms.py:45 .\dashboard\forms.py:152 .\dashboard\forms.py:200
 msgid "last name"
 msgstr "apellidos"
-
-#: .\dashboard\forms.py:46 .\dashboard\forms.py:70
-#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:306
-#: .\dashboard\views\actors.py:397 .\dashboard\views\actors.py:429
-msgid "RUC"
-msgstr "RUC"
 
 #: .\dashboard\forms.py:47
 msgid "mail"
@@ -270,35 +324,15 @@ msgstr "subir un documento"
 msgid "username"
 msgstr "nombre de usuario"
 
-#: .\dashboard\forms.py:68 .\dashboard\views\actors.py:78
-#: .\dashboard\views\actors.py:305 .\dashboard\views\actors.py:396
-#: .\dashboard\views\actors.py:429
-msgid "email"
-msgstr "correo"
 
 #: .\dashboard\forms.py:69
 msgid "document number"
 msgstr "numero de documento"
 
-#: .\dashboard\forms.py:142
-#: .\dashboard\templates\admin\account_status\account_status_seller.html:73
-#: .\dashboard\templates\admin\actor\clientsDetail.html:37
-#: .\dashboard\views\account_status.py:96
-msgid "nick"
-msgstr "nick"
 
 #: .\dashboard\forms.py:145
 msgid "telephone"
 msgstr "telefono"
-
-#: .\dashboard\forms.py:146
-#: .\dashboard\templates\admin\account_status\account_status_seller.html:86
-msgid "cellphone"
-msgstr "celular"
-
-#: .\dashboard\forms.py:147
-msgid "document type"
-msgstr "tipo de documento"
 
 #: .\dashboard\forms.py:148 .\dashboard\views\actors.py:303
 msgid "business name"
@@ -361,7 +395,7 @@ msgstr "filtro"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:16
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:21
-#: .\dashboard\views\actors.py:47
+#: .\dashboard\views\actors.py:46
 msgid "specialists"
 msgstr "especialistas"
 
@@ -391,6 +425,14 @@ msgstr "agregar"
 msgid "data"
 msgstr "datos"
 
+#: .\dashboard\forms.py:63
+msgid "confirm password"
+msgstr "confirmar contraseña"
+
+#: .\dashboard\forms.py:114
+msgid "Password and confirm password does not match"
+msgstr "Contraseña y confirmar contraseña no coinciden"
+
 #: .\dashboard\templates\admin\actor\clientsDetail.html:32
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:35
 msgid "edit"
@@ -413,6 +455,17 @@ msgstr "total general"
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:157
 msgid "dashboard"
 msgstr "dashboard"
+
+
+#: .\dashboard\templates\admin\actor\sellersForm.html:146
+#: .\dashboard\templates\admin\actor\specialistsForm.html:174
+msgid "save"
+msgstr "guardar"
+
+#: .\dashboard\templates\admin\actor\sellersForm.html:148
+#: .\dashboard\templates\admin\actor\specialistsForm.html:176
+msgid "go back"
+msgstr "volver atrás"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:67
 msgid "see associate specialists"
@@ -438,14 +491,6 @@ msgstr "bloqueado"
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:169
 msgid "return to list"
 msgstr "retornar al listado"
-
-#: .\dashboard\templates\admin\actor\specialistsForm.html:174
-msgid "save"
-msgstr "guardar"
-
-#: .\dashboard\templates\admin\actor\specialistsForm.html:176
-msgid "go back"
-msgstr "volver atrás"
 
 #: .\dashboard\templates\admin\actor\specialistsList.html:7
 msgid "asociate specialists to"
@@ -576,13 +621,6 @@ msgstr "tipo"
 msgid "number"
 msgstr "Número"
 
-#: .\dashboard\views\account_status.py:95
-#: .\dashboard\views\account_status.py:137 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:304 .\dashboard\views\actors.py:395
-#: .\dashboard\views\actors.py:429
-msgid "code"
-msgstr "código"
-
 #: .\dashboard\views\account_status.py:97
 #: .\dashboard\views\account_status.py:139
 msgid "name"
@@ -611,7 +649,7 @@ msgstr "Pagos esfectuados"
 msgid "Pending payment"
 msgstr "pendiente por pagar"
 
-#: .\dashboard\views\account_status.py:103 .\dashboard\views\actors.py:398
+#: .\dashboard\views\account_status.py:103 .\dashboard\views\actors.py:395
 msgid "advance"
 msgstr "avanzar"
 
@@ -696,7 +734,7 @@ msgstr "acumulado"
 msgid "paid out"
 msgstr "pagado"
 
-#: .\dashboard\views\actors.py:55
+#: .\dashboard\views\actors.py:54
 msgid "associated specialists"
 msgstr "ver especialistas asociados"
 
@@ -768,6 +806,10 @@ msgstr "números de planes vendidos"
 #: .\dashboard\views\actors.py:399
 msgid "number of queries"
 msgstr "numero de consultas"
+
+#: .\dashboard\views\actors.py:414
+msgid "create seller"
+msgstr "crear vendedor"
 
 #: .\linkup\settings.py:106
 msgid "Spanish"

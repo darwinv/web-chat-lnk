@@ -7,7 +7,7 @@
   width: 100%;
  }
 
- /*LANGUAGE*/ 
+ /*LANGUAGE*/
 .main-header .navbar .nav > li.language > a > .label {
     font-size: 16px;
     position: initial;
@@ -425,10 +425,10 @@ input:read-only {
   cursor: no-drop;
   background: #ebebe4;
 }
-input:-moz-read-only{
+/*input:-moz-read-only{
   cursor: no-drop;
   background: #ebebe4;
-}
+}*/
 /** FORM **/
 .input-form-control > input, .input-form-control > select{
   width: 100%;
@@ -454,7 +454,7 @@ input:-moz-read-only{
 #frame-profile-img, #frame-profile-img img, #frame-profile-img canvas {
     border-radius: 50%;
     width: 200px;
-}    
+}
 canvas {
     margin: 0px 0px -6px 0px;
 }
