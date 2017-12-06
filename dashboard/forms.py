@@ -64,7 +64,7 @@ class SpecialistForm(ModelForm):
     username = forms.CharField(label = cap(_('username')))
     email_exact = forms.CharField(label = cap(_('email')))
     document_number = forms.CharField(label = cap(_('document number')))
-    ruc = forms.CharField(label = cap(_('RUC')))
+    ruc = forms.CharField(label = cap(_('RUC')), required=False)
     nationality = forms.CharField(widget=forms.Select(), required=True, label=cap(_('nationality')))
     residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
 
@@ -88,6 +88,10 @@ class SpecialistForm(ModelForm):
         if countries:
             self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
 
+
+        print(department)
+        print("------------------------------------")
+            
         if department:
             provinces = Province.objects.filter(department_id=department)
             self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
@@ -151,51 +155,6 @@ class SpecialistForm(ModelForm):
             'type_specialist': cap(_('type specialist')),
             'payment_per_answer': cap(_('payment per answer')),
         }
-
-
-    def clena_ruc(self):
-        data = self.cleaned_data['ruc']
-        country = self.cleaned_data['residence_country']
-        if country=='1' and not data:
-            raise forms.ValidationError(_("required"))
-
-        return data
-
-    
-    def clena_department(self):
-        data = self.cleaned_data['department']
-        country = self.cleaned_data['residence_country']
-        if country=='1' and not data:
-            raise forms.ValidationError(_("required"))
-
-        return data
-
-    
-    def clena_province(self):
-        data = self.cleaned_data['province']
-        country = self.cleaned_data['residence_country']
-        if country=='1' and not data:
-            raise forms.ValidationError(_("required"))
-
-        return data
-
-    
-    def clena_district(self):
-        data = self.cleaned_data['district']
-        country = self.cleaned_data['residence_country']
-        if country=='1' and not data:
-            raise forms.ValidationError(_("required"))
-
-        return data
-
-    
-    def clena_street(self):
-        data = self.cleaned_data['street']
-        country = self.cleaned_data['residence_country']
-        if country=='1' and not data:
-            raise forms.ValidationError(_("required"))
-
-        return data
 
 """
 Reportes de estado de cuenta
