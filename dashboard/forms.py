@@ -107,6 +107,7 @@ class SpecialistForm(ModelForm):
                         if key in self.fields:
                             self.fields[key].initial = initial[item][key]
 
+    # cambiar a clase generica
     def add_error_custom(self, add_errors=None):
         """
         Funcion creada para agregar errores, posteriormente a las validaciones
@@ -153,10 +154,10 @@ class SpecialistForm(ModelForm):
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
 
-    department = forms.CharField(widget=forms.Select(), required=True, label=cap(_('department')))
-    province = forms.CharField(widget=forms.Select(), required=True, label=cap(_('province')))
-    district = forms.CharField(widget=forms.Select(), required=True, label=cap(_('district')))
-    street = forms.CharField(required=True, label=cap(_('street')))
+    department = forms.CharField(widget=forms.Select(), required=False, label=cap(_('department')))
+    province = forms.CharField(widget=forms.Select(), required=False, label=cap(_('province')))
+    district = forms.CharField(widget=forms.Select(), required=False, label=cap(_('district')))
+    street = forms.CharField(required=False, label=cap(_('street')))
 
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
