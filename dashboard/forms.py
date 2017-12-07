@@ -90,7 +90,7 @@ class SpecialistForm(ModelForm):
 
         if countries:
             self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
-           
+
         if department:
             provinces = Province.objects.filter(department_id=department)
             self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
@@ -158,9 +158,6 @@ class SpecialistForm(ModelForm):
         }
 
 
-"""
-Reportes de estado de cuenta
-"""
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
 
