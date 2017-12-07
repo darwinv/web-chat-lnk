@@ -60,7 +60,7 @@ class SpecialistForm(ModelForm):
     street = forms.CharField(required=False, label = cap(_('street')))
     photo = forms.FileField(required=False, label = cap(_('upload a photo')), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
-    img_document_number = forms.FileField(required=False, label = cap(_('upload document')), widget=forms.TextInput(
+    img_document_number = forms.FileField(required=False, label=cap(_('upload document')), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
 
     username = forms.CharField(label = cap(_('username')))
@@ -70,7 +70,7 @@ class SpecialistForm(ModelForm):
     nationality = forms.CharField(widget=forms.Select(), required=True, label=cap(_('nationality')))
     residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
 
-    foreign_address = forms.CharField(label = cap(_('adress')), required=False)
+    foreign_address = forms.CharField(label = cap(_('address')), required=False)
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
@@ -165,6 +165,7 @@ class SellerForm(ModelForm):
     province = forms.CharField(widget=forms.Select(), required=False, label=cap(_('province')))
     district = forms.CharField(widget=forms.Select(), required=False, label=cap(_('district')))
     street = forms.CharField(required=False, label=cap(_('street')))
+    foreign_address = forms.CharField(label=cap(_('address')), required=False)
 
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):

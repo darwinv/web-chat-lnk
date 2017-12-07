@@ -1,7 +1,8 @@
+"""Modelos."""
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from api.api_choices_models import ChoicesAPI as Ch
-
+from django.utils.translation import ugettext_lazy as _
 
 class Countries(models.Model):
     name = models.CharField(max_length=90, unique=True)
@@ -81,14 +82,14 @@ class User(AbstractUser):
     #  class Meta:
     #      db_table = 'user'
     nick = models.CharField(max_length=45, blank=True)
-    email_exact = models.CharField(max_length=150, unique=True)
-    telephone = models.CharField(max_length=14, null=True)
-    cellphone = models.CharField(max_length=14, null=True)
+    email_exact = models.CharField(_('email'), max_length=150, unique=True)
+    telephone = models.CharField(max_length=14, null=False, blank=True)
+    cellphone = models.CharField(max_length=14, null=False, blank=True)
     photo = models.CharField(max_length=250, null=True)
     document_type = models.CharField(max_length=1, choices=Ch.user_document_type)
     document_number = models.CharField(max_length=45, unique=True)
     img_document_number = models.CharField(max_length=250, null=True)
-    ruc = models.CharField(max_length=40, unique=True, null=True,blank=True)
+    ruc = models.CharField(max_length=40, unique=True, null=True, blank=True)
     code = models.CharField(max_length=45, unique=True)
     anonymous = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now_add=True)

@@ -432,7 +432,7 @@ class Seller(Actor):
                     data["residence_country"] = data["residence_country"].id
                 nationality = data.get("nationality")
                 data["nationality"] = nationality.id
-
+                import pdb; pdb.set_trace()
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
                 if result and 'id' in result:
                     if 'photo' in request.FILES:
@@ -456,7 +456,6 @@ class Seller(Actor):
             # datos de selecion como Categorias y Departamentos.
             form = self.generate_form_seller()
 
-        # import pdb; pdb.set_trace(
         title_page = _('create seller').title()
         vars_page = self.generate_header(custom_title=title_page)
         sellers_form = reverse(self._create)
