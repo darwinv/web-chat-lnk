@@ -164,30 +164,6 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
-    def generate_form_specialist(self, data=None, files=None, specilist=None, form_edit=None):
-        """
-        Funcion para generar traer formulario de especialistas
-
-        :param data: objeto POST o dict de valores relacional
-        :param specilist: dict que contiene los valores iniciales del usuario
-        :param form_edit: Bolean para saber si sera un formulario para editar usuario
-        :return: objeto Form de acuerdo a parametros
-        """
-        department = province = None
-
-
-        # Validamos que el listado este en la respuesta
-        # si no cumple las validaciones por Default el valor sera None
-        # Si el usuario tiene department, traemos provincia
-        if specilist and 'address' in specilist and 'department' in specilist['address']:
-            department = specilist['address']['department']
-
-        if specilist and 'address' in specilist and 'province' in specilist['address']:
-            province = specilist['address']['province']
-
-        return SpecialistForm(data=data, files=files, department=department,
-                              province=province, initial=specilist, form_edit=form_edit)
-
     @method_decorator(login_required)
     def edit(self, request, pk):
         obj_api = api()
@@ -246,6 +222,32 @@ class Specialist(Actor):
         specialists_form = reverse(self._edit, args=(pk,))
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
+
+
+    def generate_form_specialist(self, data=None, files=None, specilist=None, form_edit=None):
+        """
+        Funcion para generar traer formulario de especialistas
+
+        :param data: objeto POST o dict de valores relacional
+        :param specilist: dict que contiene los valores iniciales del usuario
+        :param form_edit: Bolean para saber si sera un formulario para editar usuario
+        :return: objeto Form de acuerdo a parametros
+        """
+        department = province = None
+
+
+        # Validamos que el listado este en la respuesta
+        # si no cumple las validaciones por Default el valor sera None
+        # Si el usuario tiene department, traemos provincia
+        if specilist and 'address' in specilist and type(specilist['address']) is dict and 'department' in specilist['address']:
+            department = specilist['address']['department']
+
+        if specilist and 'address' in specilist and type(specilist['address']) is dict and 'province' in specilist['address']:
+            province = specilist['address']['province']
+
+        return SpecialistForm(data=data, files=files, department=department,
+                              province=province, initial=specilist, form_edit=form_edit)
+
 
     @method_decorator(login_required)
     def delete(self, request):
@@ -432,7 +434,6 @@ class Seller(Actor):
                 data["nationality"] = nationality.id
 
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
-                import pdb; pdb.set_trace()
                 if result and 'id' in result:
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
@@ -454,8 +455,8 @@ class Seller(Actor):
             # Crear formulario de especialistas vacio, se traeran
             # datos de selecion como Categorias y Departamentos.
             form = self.generate_form_seller()
-        # import pdb; pdb.set_trace()
-        form = self.generate_form_seller()
+
+        # import pdb; pdb.set_trace(
         title_page = _('create seller').title()
         vars_page = self.generate_header(custom_title=title_page)
         sellers_form = reverse(self._create)

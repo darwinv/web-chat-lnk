@@ -1,7 +1,9 @@
 """Formularios."""
 from django import forms
 from django.forms import ModelForm
-from api.models import Specialist, Seller, Category, Department, Province, District
+
+from api.models import Specialist, Seller, Category, Department, Province, District, Countries
+
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 
@@ -52,37 +54,42 @@ class SellerFormFilters(FilterForm):
 class SpecialistForm(ModelForm):
 
     category = forms.CharField(widget=forms.Select(), required=True, label = cap(_('category')))
-    department = forms.CharField(widget=forms.Select(), required=True, label = cap(_('department'))  )
-    province = forms.CharField(widget=forms.Select(), required=True, label = cap(_('province'))  )
-    district = forms.CharField(widget=forms.Select(), required=True, label = cap(_('district'))  )
-    street = forms.CharField(required=True, label = cap(_('street')))
+    department = forms.CharField(widget=forms.Select(), required=False, label = cap(_('department')))
+    province = forms.CharField(widget=forms.Select(), required=False, label = cap(_('province')))
+    district = forms.CharField(widget=forms.Select(), required=False, label = cap(_('district')))
+    street = forms.CharField(required=False, label = cap(_('street')))
     photo = forms.FileField(required=False, label = cap(_('upload a photo')), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
     img_document_number = forms.FileField(required=False, label = cap(_('upload document')), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
 
-
-
-
     username = forms.CharField(label = cap(_('username')))
     email_exact = forms.CharField(label = cap(_('email')))
     document_number = forms.CharField(label = cap(_('document number')))
-    ruc = forms.CharField(label = cap(_('RUC')))
+    ruc = forms.CharField(label = cap(_('RUC')), required=False)
+    nationality = forms.CharField(widget=forms.Select(), required=True, label=cap(_('nationality')))
+    residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
 
-
-
+    foreign_address = forms.CharField(label = cap(_('adress')), required=False)
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
 
         categories = Category.objects.all()
         departments = Department.objects.all()
+        countries = Countries.objects.all()
 
         if categories:
             self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
 
         if departments:
             self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
+
+        if countries:
+            self.fields['nationality'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+        if countries:
+            self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
 
         if department:
             provinces = Province.objects.filter(department_id=department)
@@ -107,6 +114,7 @@ class SpecialistForm(ModelForm):
                         if key in self.fields:
                             self.fields[key].initial = initial[item][key]
 
+    # cambiar a clase generica
     def add_error_custom(self, add_errors=None):
         """
         Funcion creada para agregar errores, posteriormente a las validaciones
@@ -153,10 +161,10 @@ class SpecialistForm(ModelForm):
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
 
-    department = forms.CharField(widget=forms.Select(), required=True, label=cap(_('department')))
-    province = forms.CharField(widget=forms.Select(), required=True, label=cap(_('province')))
-    district = forms.CharField(widget=forms.Select(), required=True, label=cap(_('district')))
-    street = forms.CharField(required=True, label=cap(_('street')))
+    department = forms.CharField(widget=forms.Select(), required=False, label=cap(_('department')))
+    province = forms.CharField(widget=forms.Select(), required=False, label=cap(_('province')))
+    district = forms.CharField(widget=forms.Select(), required=False, label=cap(_('district')))
+    street = forms.CharField(required=False, label=cap(_('street')))
 
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
@@ -224,6 +232,8 @@ class SellerForm(ModelForm):
 # """
 # Reportes de estado de cuenta
 # """
+
+
 
 class AccountStatus(FilterForm):
     """
