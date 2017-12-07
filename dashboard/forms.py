@@ -70,6 +70,7 @@ class SpecialistForm(ModelForm):
     nationality = forms.CharField(widget=forms.Select(), required=True, label=cap(_('nationality')))
     residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
 
+    foreign_address = forms.CharField(label = cap(_('adress')), required=False)
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
@@ -89,11 +90,7 @@ class SpecialistForm(ModelForm):
 
         if countries:
             self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
-
-
-        print(department)
-        print("------------------------------------")
-            
+           
         if department:
             provinces = Province.objects.filter(department_id=department)
             self.fields['province'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in provinces]
