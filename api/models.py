@@ -81,22 +81,24 @@ class User(AbstractUser):
 
     #  class Meta:
     #      db_table = 'user'
-    nick = models.CharField(max_length=45, blank=True)
+    nick = models.CharField(_('nick'), max_length=45)
     email_exact = models.CharField(_('email'), max_length=150, unique=True)
-    telephone = models.CharField(max_length=14, null=False, blank=True)
-    cellphone = models.CharField(max_length=14, null=False, blank=True)
-    photo = models.CharField(max_length=250, null=True)
-    document_type = models.CharField(max_length=1, choices=Ch.user_document_type)
-    document_number = models.CharField(max_length=45, unique=True)
-    img_document_number = models.CharField(max_length=250, null=True)
+    telephone = models.CharField(_('telephone'), max_length=14, null=False, blank=True)
+    cellphone = models.CharField(_('cellphone'), max_length=14, null=False, blank=True)
+    photo = models.CharField(_('photo'), max_length=250, null=True)
+    document_type = models.CharField(_('document type'), max_length=1, choices=Ch.user_document_type)
+    document_number = models.CharField(_('document number'), max_length=45, unique=True)
+    img_document_number = models.CharField(_('upload document'), max_length=250, null=True)
     ruc = models.CharField(max_length=40, unique=True, null=True, blank=True)
-    code = models.CharField(max_length=45, unique=True)
-    anonymous = models.BooleanField(default=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1)
-    role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1)
-    address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
-    residence_country = models.ForeignKey(Countries, on_delete=models.PROTECT, null=True, related_name="residence")
+    code = models.CharField(_('code'), max_length=45, unique=True)
+    anonymous = models.BooleanField(_('anonymous'), default=True)
+    updated_at = models.DateTimeField(_('updated at'), auto_now_add=True)
+    nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1, verbose_name=_('nationality'))
+    role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1,  verbose_name=_('role'))
+    address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True, verbose_name=_('address'))
+    residence_country = models.ForeignKey(Countries, on_delete=models.PROTECT,
+                                          null=True, related_name="residence", verbose_name=_('residence country'))
+    foreign_address = models.CharField(_('foreign address'), max_length=200, blank=True, null=True)
     key = models.CharField(max_length=90, blank=True, null=True)
 
 
@@ -108,7 +110,7 @@ class Seller(User):
 
     cv = models.CharField(max_length=100, null=True, blank=True)
     zone = models.ForeignKey(Zone, on_delete=models.PROTECT, null=True)
-    ciiu = models.CharField(max_length=4, null=True)
+    ciiu = models.CharField(max_length=4, blank=True)
 
     class Meta:
         """Meta."""
@@ -201,12 +203,12 @@ class Category(models.Model):
 class Specialist(User):
     """Modelo de Especialista (herede de user)."""
 
-    business_name = models.CharField(max_length=55)
-    type_specialist = models.CharField(max_length=1, choices=Ch.specialist_type_specialist)
-    star_rating = models.IntegerField(null=True)
+    business_name = models.CharField(_('business name'), max_length=55)
+    type_specialist = models.CharField(_('type specialist'), max_length=1, choices=Ch.specialist_type_specialist)
+    star_rating = models.IntegerField(_('star rating'), null=True)
     cv = models.CharField(max_length=150, null=True)
-    payment_per_answer = models.FloatField()
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    payment_per_answer = models.FloatField(_('payment per answer'))
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name=_('speciality'))
 
     class Meta:
         """Meta datos."""

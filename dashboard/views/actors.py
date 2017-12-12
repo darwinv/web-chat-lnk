@@ -432,7 +432,6 @@ class Seller(Actor):
                     data["residence_country"] = data["residence_country"].id
                 nationality = data.get("nationality")
                 data["nationality"] = nationality.id
-                import pdb; pdb.set_trace()
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
                 if result and 'id' in result:
                     if 'photo' in request.FILES:

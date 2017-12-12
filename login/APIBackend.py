@@ -20,7 +20,7 @@ class APIBackend(object):
 
         # crear objeto api
         obj_api = api()
-        
+
         # validar datos por medio de una consulta del token del usuario
         token = obj_api.token(request.POST['user'], request.POST['password'])
 
@@ -33,6 +33,7 @@ class APIBackend(object):
 
             try:
                 # se debe pasar user y token para obtener los datos del usuario
+
                 user = obj_api.getUsuario(token, username)
                 # guardar usuario unicamete para que el framework acepte el objeto
                 user.save()

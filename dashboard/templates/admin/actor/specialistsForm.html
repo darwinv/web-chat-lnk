@@ -109,21 +109,6 @@
             </div>
         {% endif %}
 
-        {% if form.img_document_number %}
-            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-                {{ form.img_document_number.label_tag }}
-                <label class="btn btn-primary btn-upload col-xs-12" for="{{ form.img_document_number.auto_id }}" title="Upload image file">
-                    {{ form.img_document_number }}
-                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
-                        <span class="fa fa-upload">&nbsp;{{ form.img_document_number.label_tag }}</span>
-                    </span>
-                </label>
-                {{ form.img_document_number.errors }}
-            </div>
-        {% endif %}
-
-
-
         {% if form.ruc %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.ruc.label_tag }}

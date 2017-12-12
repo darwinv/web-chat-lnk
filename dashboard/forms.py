@@ -52,25 +52,23 @@ class SellerFormFilters(FilterForm):
 
 
 class SpecialistForm(ModelForm):
+    """Formulario de Especialista."""
 
-    category = forms.CharField(widget=forms.Select(), required=True, label = cap(_('category')))
-    department = forms.CharField(widget=forms.Select(), required=False, label = cap(_('department')))
-    province = forms.CharField(widget=forms.Select(), required=False, label = cap(_('province')))
-    district = forms.CharField(widget=forms.Select(), required=False, label = cap(_('district')))
-    street = forms.CharField(required=False, label = cap(_('street')))
-    photo = forms.FileField(required=False, label = cap(_('upload a photo')), widget=forms.TextInput(
+    first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
+    last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
+    department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
+    province = forms.CharField(widget=forms.Select(), required=False, label=_('province'))
+    district = forms.CharField(widget=forms.Select(), required=False, label=_('district'))
+    street = forms.CharField(required=False, label=_('street'))
+    photo = forms.FileField(required=False, label=_('upload a photo'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
-    img_document_number = forms.FileField(required=False, label=cap(_('upload document')), widget=forms.TextInput(
+    img_document_number = forms.FileField(required=False, label=_('upload document'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
+    nationality = forms.CharField(widget=forms.Select(), required=True, label=_('nationality'))
+    # residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
 
-    username = forms.CharField(label = cap(_('username')))
-    email_exact = forms.CharField(label = cap(_('email')))
-    document_number = forms.CharField(label = cap(_('document number')))
-    ruc = forms.CharField(label = cap(_('RUC')), required=False)
-    nationality = forms.CharField(widget=forms.Select(), required=True, label=cap(_('nationality')))
-    residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
+    foreign_address = forms.CharField(label=_('address'), required=False)
 
-    foreign_address = forms.CharField(label = cap(_('address')), required=False)
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
@@ -137,35 +135,42 @@ class SpecialistForm(ModelForm):
 
     class Meta:
         """Meta."""
+
         password = forms.CharField(widget=forms.PasswordInput)
         widgets = {
             'password': forms.PasswordInput(),
         }
         model = Specialist
-        fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
-                  'telephone', 'cellphone', 'document_type',   'business_name',
-                  'type_specialist']
-        labels = {
-            'nick': cap(_('nick')),
-            'first_name': cap(_('first name')),
-            'last_name': cap(_('last name')),
-            'telephone': cap(_('telephone')),
-            'cellphone': cap(_('cellphone')),
-            'document_type': cap(_('document type')),
-            'business_name': cap(_('business name')),
-            'type_specialist': cap(_('type specialist')),
-            'payment_per_answer': cap(_('payment per answer')),
-        }
+        fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
+                  'telephone', 'cellphone', 'document_type', 'email_exact',
+                  'business_name', 'type_specialist', 'document_number',
+                  'category', 'residence_country']
+        # labels = {
+        #     'nick': cap(_('nick')),
+        #     'first_name': cap(_('first name')),
+        #     'last_name': cap(_('last name')),
+        #     'telephone': cap(_('telephone')),
+        #     'cellphone': cap(_('cellphone')),
+        #     'document_type': cap(_('document type')),
+        #     'business_name': cap(_('business name')),
+        #     'type_specialist': cap(_('type specialist')),
+        #     'payment_per_answer': cap(_('payment per answer')),
+        # }
 
 
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
 
-    department = forms.CharField(widget=forms.Select(), required=False, label=cap(_('department')))
-    province = forms.CharField(widget=forms.Select(), required=False, label=cap(_('province')))
-    district = forms.CharField(widget=forms.Select(), required=False, label=cap(_('district')))
-    street = forms.CharField(required=False, label=cap(_('street')))
-    foreign_address = forms.CharField(label=cap(_('address')), required=False)
+    first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
+    last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
+    department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
+    province = forms.CharField(widget=forms.Select(), required=False, label=_('province'))
+    district = forms.CharField(widget=forms.Select(), required=False, label=_('district'))
+    street = forms.CharField(required=False, label=_('street'))
+    foreign_address = forms.CharField(label=_('address'), required=False)
+    photo = forms.FileField(required=False, label=_('upload a photo'), widget=forms.TextInput(
+        attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff',
+               'type': 'file'}, ))
 
     def __init__(self, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
@@ -190,18 +195,9 @@ class SellerForm(ModelForm):
         fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
                   'nationality', 'ruc', 'ciiu', 'residence_country']
-        labels = {
-            'username': cap(_('username')),
-            'password': cap(_('password')),
-            'first_name': cap(_('first name')),
-            'last_name': cap(_('last name')),
-        }
 
     def add_error_custom(self, add_errors=None):
-        """
-        Funcion creada para agregar errores, posteriormente a las validaciones
-        hechas por la clase Form
-        """
+        """Funcion para agregar errores."""
         # import pdb; pdb.set_trace()
         print(add_errors)
 

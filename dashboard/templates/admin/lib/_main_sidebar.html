@@ -7,7 +7,7 @@
         {% block nav_links_ul %}
         <ul class="sidebar-menu">
             {% block nav_links_outer %}
-            
+
             {% block nav_links %}
                 <li class="">
                     <a href="#">
@@ -50,6 +50,8 @@
                             <ul class="treeview-menu">
                                 <li><a href="{% url 'dashboard:actor-sellers-list' %}"><i class="fa fa-circle-o"></i> {% trans "list"|title %}</a>
                                 </li>
+                                <li><a href="{% url 'dashboard:actor-sellers-create' %}"><i class="fa fa-circle-o"></i> {% trans "create"|title %}</a>
+                                </li>
                             </ul>
                         </li>
                   </ul>
@@ -91,7 +93,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>                        
+                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -109,7 +111,7 @@
 
                 </li>
             {% endblock nav_links %}
-            
+
             {% endblock nav_links_outer %}
         </ul>
         {% endblock nav_links_ul %}
