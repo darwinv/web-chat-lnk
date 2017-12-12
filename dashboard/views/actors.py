@@ -173,7 +173,7 @@ class Specialist(Actor):
             form = self.generate_form_specialist(data=request.POST, form_edit=True,
                                                files=request.FILES)
 
-            
+
             # check whether it's valid:
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
@@ -434,7 +434,6 @@ class Seller(Actor):
                 data["nationality"] = nationality.id
 
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
-
                 if result and 'id' in result:
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
@@ -456,8 +455,8 @@ class Seller(Actor):
             # Crear formulario de especialistas vacio, se traeran
             # datos de selecion como Categorias y Departamentos.
             form = self.generate_form_seller()
-        # import pdb; pdb.set_trace()
-        form = self.generate_form_seller()
+
+        # import pdb; pdb.set_trace(
         title_page = _('create seller').title()
         vars_page = self.generate_header(custom_title=title_page)
         sellers_form = reverse(self._create)
