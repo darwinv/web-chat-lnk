@@ -2,7 +2,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from api.models import Specialist, Seller, Category, Department, Province, District, Countries
+from api.models import Specialist, Seller, Category, Department, Province, District, Countries, Ciiu
 
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
@@ -52,7 +52,7 @@ class SellerFormFilters(FilterForm):
 
 
 class SpecialistForm(ModelForm):
-
+    select_search = {'data-live-search':'true','class':'selectpicker'}
     category = forms.CharField(widget=forms.Select(), required=True, label = cap(_('category')))
     department = forms.CharField(widget=forms.Select(), required=False, label = cap(_('department')))
     province = forms.CharField(widget=forms.Select(), required=False, label = cap(_('province')))
@@ -67,13 +67,13 @@ class SpecialistForm(ModelForm):
     email_exact = forms.CharField(label = cap(_('email')))
     document_number = forms.CharField(label = cap(_('document number')))
     ruc = forms.CharField(label = cap(_('RUC')), required=False)
-    nationality = forms.CharField(widget=forms.Select(), required=True, label=cap(_('nationality')))
-    residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
+    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('nationality')))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('residence country')))
 
-    foreign_address = forms.CharField(label = cap(_('adress')), required=False)
-    def __init__(self, initial=None, department=None, province=None, form_edit=None,
+    foreign_address = forms.CharField(label = cap(_('address')), required=False)
+    def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
-        super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
+        super(SpecialistForm, self).__init__(data=data, initial=initial, *args, **kwargs)
 
         categories = Category.objects.all()
         departments = Department.objects.all()
@@ -90,6 +90,11 @@ class SpecialistForm(ModelForm):
 
         if countries:
             self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+        if data and 'department' in data and data['department']:
+            department = data['department']
+        if data and 'province' in data and data['province']:
+            province = data['province']
 
         if department:
             provinces = Province.objects.filter(department_id=department)
@@ -160,19 +165,44 @@ class SpecialistForm(ModelForm):
 
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
-
+    select_search = {'data-live-search':'true','class':'selectpicker'}
     department = forms.CharField(widget=forms.Select(), required=False, label=cap(_('department')))
     province = forms.CharField(widget=forms.Select(), required=False, label=cap(_('province')))
     district = forms.CharField(widget=forms.Select(), required=False, label=cap(_('district')))
     street = forms.CharField(required=False, label=cap(_('street')))
+    ciiu = forms.CharField(widget=forms.Select(attrs=select_search),
+                           required=False, label=cap(_('CIIU')))
+    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('nationality')))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('residence country')))
 
-    def __init__(self, initial=None, department=None, province=None, form_edit=None,
+
+    def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         """Init."""
-        super(SellerForm, self).__init__(initial=initial, *args, **kwargs)
+        super(SellerForm, self).__init__(data=data, initial=initial, *args, **kwargs)
         departments = Department.objects.all()
+        ciius = Ciiu.objects.all()
+        countries = Countries.objects.all()
+
         if departments:
             self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
+
+        if ciius:
+            self.fields['ciiu'].widget.choices = [('', '')] + [(l.id, _(l.description)) for l in ciius]
+
+
+        
+        if countries:
+            self.fields['nationality'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+        if countries:
+            self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+
+        if data and 'department' in data and data['department']:
+            department = data['department']
+        if data and 'province' in data and data['province']:
+            province = data['province']
 
         if department:
             provinces = Province.objects.filter(department_id=department)
@@ -188,7 +218,7 @@ class SellerForm(ModelForm):
         model = Seller
         fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
-                  'nationality', 'ruc', 'ciiu', 'residence_country']
+                  'ruc']
         labels = {
             'username': cap(_('username')),
             'password': cap(_('password')),
@@ -203,7 +233,6 @@ class SellerForm(ModelForm):
         """
         # import pdb; pdb.set_trace()
         print(add_errors)
-
         print("----------------FORM ERRRORS--------------------")
         if add_errors:  # errores retornados por terceros
             if type(add_errors) is dict:
