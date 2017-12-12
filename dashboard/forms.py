@@ -43,12 +43,12 @@ class SellerFormFilters(FilterForm):
     """
     Clase creada para filtrar el listado de vendedores
     """
-    first_name = forms.CharField(label = cap(_('first name')))
-    last_name = forms.CharField(label = cap(_('last name')))
-    ruc = forms.CharField(label = cap(_('RUC')))
-    email_exact = forms.CharField(label = cap(_('mail')))
-    count_plans_seller = forms.IntegerField(label = cap(_('number of plans sold greater than')))
-    count_queries_seller = forms.IntegerField(label = cap(_('number of queries sold greater than')))
+    first_name = forms.CharField(label=_('first name'))
+    last_name = forms.CharField(label=_('last name'))
+    ruc = forms.CharField(label=_('RUC'))
+    email_exact = forms.CharField(label=_('mail'))
+    count_plans_seller = forms.IntegerField(label=_('number of plans sold greater than'))
+    count_queries_seller = forms.IntegerField(label=_('number of queries sold greater than'))
 
 
 class SpecialistForm(ModelForm):
@@ -65,7 +65,7 @@ class SpecialistForm(ModelForm):
     img_document_number = forms.FileField(required=False, label=_('upload document'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
     nationality = forms.CharField(widget=forms.Select(), required=True, label=_('nationality'))
-    # residence_country = forms.CharField(widget=forms.Select(), required=True, label=cap(_('residence country')))
+
 
     foreign_address = forms.CharField(label=_('address'), required=False)
 
@@ -145,18 +145,6 @@ class SpecialistForm(ModelForm):
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number',
                   'category', 'residence_country']
-        # labels = {
-        #     'nick': cap(_('nick')),
-        #     'first_name': cap(_('first name')),
-        #     'last_name': cap(_('last name')),
-        #     'telephone': cap(_('telephone')),
-        #     'cellphone': cap(_('cellphone')),
-        #     'document_type': cap(_('document type')),
-        #     'business_name': cap(_('business name')),
-        #     'type_specialist': cap(_('type specialist')),
-        #     'payment_per_answer': cap(_('payment per answer')),
-        # }
-
 
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
@@ -248,8 +236,8 @@ class AccountStatus(FilterForm):
     def __init__(self, *args, **kwargs):
         super(AccountStatus, self).__init__(*args, **kwargs)
 
-        self.fields['from_date'].label = cap(_('from'))
-        self.fields['until_date'].label = cap(_('until'))
+        self.fields['from_date'].label = _('from')
+        self.fields['until_date'].label = _('until')
 
 
 
@@ -257,8 +245,8 @@ class AccountStatusSellerFormFilters(AccountStatus):
     """
     Formulario para filtrar estados de cuenta por vendedor
     """
-    seller = forms.CharField(widget=forms.Select(), required=True, label=cap(_('seller')))
-    show_sum_column = forms.BooleanField(label=cap(_('Show Total')))
+    seller = forms.CharField(widget=forms.Select(), required=True, label=_('seller'))
+    show_sum_column = forms.BooleanField(label=_('Show Total'))
 
     def __init__(self,initial=None, token=None, *args, **kwargs):
         super(AccountStatusSellerFormFilters, self).__init__(initial, token, *args, **kwargs)
