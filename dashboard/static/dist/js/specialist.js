@@ -17,7 +17,7 @@ $(function () {
 			$('#id_department,#id_province,#id_district,#id_street').parent('.form-group').hide();
 			$('#id_foreign_address').parent('.form-group').show();
 		}
-		
+
 	}
 
 });

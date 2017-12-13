@@ -190,7 +190,7 @@ class Specialist(Actor):
                 # return JsonResponse(data)
                 result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
 
-                if result:
+                if result and 'id' in result:
                     # Agregando foto del Usuario
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
@@ -200,7 +200,6 @@ class Specialist(Actor):
                     if 'img_document_number' in request.FILES:
                         img_document_number = {'img_document_number': request.FILES['img_document_number']}
                         obj_api.put(slug='upload_document/' + pk, token=token, files=img_document_number)
-
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
@@ -234,8 +233,8 @@ class Specialist(Actor):
         :return: objeto Form de acuerdo a parametros
         """
         department = province = None
-        
-        
+
+
         # Validamos que el listado este en la respuesta
         # si no cumple las validaciones por Default el valor sera None
         # Si el usuario tiene department, traemos provincia
@@ -248,7 +247,7 @@ class Specialist(Actor):
         return SpecialistForm(data=data, files=files, department=department,
                               province=province, initial=specilist, form_edit=form_edit)
 
-    
+
     @method_decorator(login_required)
     def delete(self, request):
         if request.method == 'POST':
@@ -432,7 +431,6 @@ class Seller(Actor):
                     data["residence_country"] = data["residence_country"].id
                 nationality = data.get("nationality")
                 data["nationality"] = nationality.id
-
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
                 if result and 'id' in result:
                     if 'photo' in request.FILES:
@@ -456,7 +454,6 @@ class Seller(Actor):
             # datos de selecion como Categorias y Departamentos.
             form = self.generate_form_seller()
 
-        # import pdb; pdb.set_trace(
         title_page = _('create seller').title()
         vars_page = self.generate_header(custom_title=title_page)
         sellers_form = reverse(self._create)

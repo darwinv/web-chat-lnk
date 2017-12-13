@@ -43,36 +43,37 @@ class SellerFormFilters(FilterForm):
     """
     Clase creada para filtrar el listado de vendedores
     """
-    first_name = forms.CharField(label = cap(_('first name')))
-    last_name = forms.CharField(label = cap(_('last name')))
-    ruc = forms.CharField(label = cap(_('RUC')))
-    email_exact = forms.CharField(label = cap(_('mail')))
-    count_plans_seller = forms.IntegerField(label = cap(_('number of plans sold greater than')))
-    count_queries_seller = forms.IntegerField(label = cap(_('number of queries sold greater than')))
+    first_name = forms.CharField(label = _('first name'))
+    last_name = forms.CharField(label = _('last name'))
+    ruc = forms.CharField(label = _('RUC'))
+    email_exact = forms.CharField(label = _('mail'))
+    count_plans_seller = forms.IntegerField(label = _('number of plans sold greater than'))
+    count_queries_seller = forms.IntegerField(label = _('number of queries sold greater than'))
 
 
 class SpecialistForm(ModelForm):
+
     select_search = {'data-live-search':'true','class':'selectpicker'}
-    category = forms.CharField(widget=forms.Select(), required=True, label = cap(_('category')))
-    department = forms.CharField(widget=forms.Select(), required=False, label = cap(_('department')))
-    province = forms.CharField(widget=forms.Select(), required=False, label = cap(_('province')))
-    district = forms.CharField(widget=forms.Select(), required=False, label = cap(_('district')))
-    street = forms.CharField(required=False, label = cap(_('street')))
-    photo = forms.FileField(required=False, label = cap(_('upload a photo')), widget=forms.TextInput(
+    """Formulario de Especialista."""
+    first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
+    last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
+    category = forms.CharField(widget=forms.Select(), required=False, label=_('category'))
+    department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
+    province = forms.CharField(widget=forms.Select(), required=False, label=_('province'))
+    district = forms.CharField(widget=forms.Select(), required=False, label=_('district'))
+    street = forms.CharField(required=False, label=_('street'))
+    photo = forms.FileField(required=False, label=_('upload a photo'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
-    img_document_number = forms.FileField(required=False, label = cap(_('upload document')), widget=forms.TextInput(
+    img_document_number = forms.FileField(required=False, label=_('upload document'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
 
-    username = forms.CharField(label = cap(_('username')))
-    email_exact = forms.CharField(label = cap(_('email')))
-    document_number = forms.CharField(label = cap(_('document number')))
-    ruc = forms.CharField(label = cap(_('RUC')), required=False)
-    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('nationality')))
-    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('residence country')))
+    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('residence country'))
 
-    foreign_address = forms.CharField(label = cap(_('address')), required=False)
+    foreign_address = forms.CharField(label = _('address'), required=False)
+    ruc = forms.CharField(label = _('ruc'), required=False)
     def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
-                 *args, **kwargs):
+            *args, **kwargs):
         super(SpecialistForm, self).__init__(data=data, initial=initial, *args, **kwargs)
 
         categories = Category.objects.all()
@@ -142,38 +143,46 @@ class SpecialistForm(ModelForm):
 
     class Meta:
         """Meta."""
+
         password = forms.CharField(widget=forms.PasswordInput)
         widgets = {
             'password': forms.PasswordInput(),
         }
         model = Specialist
-        fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
-                  'telephone', 'cellphone', 'document_type',   'business_name',
-                  'type_specialist']
-        labels = {
-            'nick': cap(_('nick')),
-            'first_name': cap(_('first name')),
-            'last_name': cap(_('last name')),
-            'telephone': cap(_('telephone')),
-            'cellphone': cap(_('cellphone')),
-            'document_type': cap(_('document type')),
-            'business_name': cap(_('business name')),
-            'type_specialist': cap(_('type specialist')),
-            'payment_per_answer': cap(_('payment per answer')),
-        }
+        fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
+                  'telephone', 'cellphone', 'document_type', 'email_exact',
+                  'business_name', 'type_specialist', 'document_number']
+        # labels = {
+        #     'nick': cap(_('nick')),
+        #     'first_name': cap(_('first name')),
+        #     'last_name': cap(_('last name')),
+        #     'telephone': cap(_('telephone')),
+        #     'cellphone': cap(_('cellphone')),
+        #     'document_type': cap(_('document type')),
+        #     'business_name': cap(_('business name')),
+        #     'type_specialist': cap(_('type specialist')),
+        #     'payment_per_answer': cap(_('payment per answer')),
+        # }
 
 
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
+
     select_search = {'data-live-search':'true','class':'selectpicker'}
-    department = forms.CharField(widget=forms.Select(), required=False, label=cap(_('department')))
-    province = forms.CharField(widget=forms.Select(), required=False, label=cap(_('province')))
-    district = forms.CharField(widget=forms.Select(), required=False, label=cap(_('district')))
-    street = forms.CharField(required=False, label=cap(_('street')))
     ciiu = forms.CharField(widget=forms.Select(attrs=select_search),
-                           required=False, label=cap(_('CIIU')))
-    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('nationality')))
-    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=cap(_('residence country')))
+                           required=False, label=_('CIIU'))
+    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('residence country'))
+    first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
+    last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
+    department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
+    province = forms.CharField(widget=forms.Select(), required=False, label=_('province'))
+    district = forms.CharField(widget=forms.Select(), required=False, label=_('district'))
+    street = forms.CharField(required=False, label=_('street'))
+    foreign_address = forms.CharField(label=_('address'), required=False)
+    photo = forms.FileField(required=False, label=_('upload a photo'), widget=forms.TextInput(
+        attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff',
+               'type': 'file'}, ))
 
 
     def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
@@ -218,19 +227,10 @@ class SellerForm(ModelForm):
         model = Seller
         fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
-                  'ruc']
-        labels = {
-            'username': cap(_('username')),
-            'password': cap(_('password')),
-            'first_name': cap(_('first name')),
-            'last_name': cap(_('last name')),
-        }
+                   'ruc' ]
 
     def add_error_custom(self, add_errors=None):
-        """
-        Funcion creada para agregar errores, posteriormente a las validaciones
-        hechas por la clase Form
-        """
+        """Funcion para agregar errores."""
         # import pdb; pdb.set_trace()
         print(add_errors)
         print("----------------FORM ERRRORS--------------------")
@@ -289,8 +289,8 @@ class AccountStatusSellerFormFilters(AccountStatus):
     """
     Formulario para filtrar estados de cuenta por vendedor
     """
-    seller = forms.CharField(widget=forms.Select(), required=True, label=cap(_('seller')))
-    show_sum_column = forms.BooleanField(label=cap(_('Show Total')))
+    seller = forms.CharField(widget=forms.Select(), required=True, label=_('seller'))
+    show_sum_column = forms.BooleanField(label=_('Show Total'))
 
     def __init__(self,initial=None, token=None, *args, **kwargs):
         super(AccountStatusSellerFormFilters, self).__init__(initial, token, *args, **kwargs)
