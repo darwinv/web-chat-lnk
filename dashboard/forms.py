@@ -7,8 +7,7 @@ from api.models import Specialist, Seller, Category, Department, Province, Distr
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 
-from dashboard.tools import capitalize as cap
-
+# from dashboard.tools import capitalize as cap
 
 class FilterForm(forms.Form):
     """
