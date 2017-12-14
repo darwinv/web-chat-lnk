@@ -436,6 +436,10 @@ input:read-only {
 .form-group.input-form-control .btn-group.bootstrap-select {
   width: 100%;
 }
+.form-group.input-form-control label:first-letter {
+  text-transform: capitalize;
+  font-size: 16px;
+}
 /* Cropper para generar imagenes recortadas*/
 .cropper-view-box,
 .cropper-face {
