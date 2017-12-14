@@ -41,7 +41,6 @@ def change_lang(context, lang=None, default_arg=True, *args, **kwargs):
     :param default_arg: permite reenviar valores GET
     :return: string con la ruta para cambiar el lenguaje
     """
-    defaul_arg_data = {}
     path = context['request'].path
 
     url_parts = resolve(path)
