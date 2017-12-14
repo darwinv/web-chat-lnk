@@ -571,7 +571,7 @@ msgstr "vendedor"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:107
 msgid "reports"
-msgstr "retorntes"
+msgstr "reportes"
 
 #: .\dashboard\templates\admin\lib\_modals.html:7
 msgid "crop the image"
