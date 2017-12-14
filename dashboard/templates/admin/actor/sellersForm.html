@@ -148,6 +148,13 @@
                 {{ form.street.errors }}
             </div>
         {% endif %}
+        {% if form.foreign_address %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.foreign_address.label_tag }}
+                {{ form.foreign_address }}
+                {{ form.foreign_address.errors }}
+            </div>
+        {% endif %}
         {% if form.ciiu %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.ciiu.label_tag }}
@@ -188,4 +195,5 @@
 {% block extra_foot %}
   <script src='{% static "cropper/dist/cropper.min.js" %}' ></script>
   {% include 'admin/lib/_cropper.html' %}
+  <script src='{% static "dist/js/seller.js" %}' ></script>
 {% endblock extra_foot %}

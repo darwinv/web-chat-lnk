@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^actor/clients/(?P<pk>[0-9]+)$', actors.Client().detail, name='actor-clients-detail'),
     url(r'^actor/clients/edit/(?P<pk>[0-9]+)$', actors.Client().edit, name='actor-clients-edit'),
     url(r'^actor/clients/create/$', actors.Client().create, name='actor-clients-create'),
-    url(r'^actor/clients/delete/$', actors.Client().delete, name='actor-specialists-delete'),
+    url(r'^actor/clients/delete/$', actors.Client().delete, name='actor-clients-delete'),
 
     # sellers
     url(r'^actor/sellers/$', actors.Seller().list, name='actor-sellers-list'),
@@ -33,7 +33,6 @@ urlpatterns = [
     url(r'^actor/administrators/(?P<pk>[0-9]+)$', actors.Administrator().list, name='actor-administrators-detail'),
     url(r'^actor/administrators/edit/(?P<pk>[0-9]+)$', actors.Administrator().list, name='actor-administrators-edit'),
     url(r'^actor/administrators/create/$', actors.Administrator().list, name='actor-administrators-create'),
-
 
     # Estados de cuenta
     url(r'^account_status/sellers/$', account_status.AccountStatusSeller().list, name='account-status-seller'),

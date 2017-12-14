@@ -24,7 +24,6 @@ def avatar_url(context, size=None):
         size=size or '',
     )
 
-
 @register.filter()
 def upfirstletter(value):
     first = value[0] if len(value) > 0 else ''

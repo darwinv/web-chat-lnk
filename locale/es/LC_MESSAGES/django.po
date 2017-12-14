@@ -267,6 +267,9 @@ msgstr "rol"
 msgid "address"
 msgstr "dirección"
 
+msgid "residence country"
+msgstr "país de residencia"
+
 #: .\api\models.py:107
 msgid "zone"
 msgstr "zona"
