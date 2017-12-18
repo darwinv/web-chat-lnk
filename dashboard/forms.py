@@ -3,7 +3,7 @@ from django import forms
 from django.forms import ModelForm
 
 from api.models import Specialist, Seller, Category, Department, Province, District, Countries, Ciiu
-from api.models import User
+
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 from api.api_choices_models import ChoicesAPI as Ch
@@ -56,7 +56,6 @@ class SpecialistForm(ModelForm):
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
     img_document_number = forms.FileField(required=False, label=_('upload document'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
-
     nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
     residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('residence country'))
 
@@ -179,7 +178,7 @@ class SellerForm(ModelForm):
             self.fields['ciiu'].widget.choices = [('', '')] + [(l.id, _(l.description)) for l in ciius]
 
 
-        
+
         if countries:
             self.fields['nationality'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
 
