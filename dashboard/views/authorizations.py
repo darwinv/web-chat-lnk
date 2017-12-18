@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 from django.utils.decorators import method_decorator
-from dashboard.tools import capitalize as cap
+from dashboard.tools import capitalize as cap, ToolsBackend as Tools
 from dashboard.forms import AuthorizationClientFilter
 class Autorization:
     logo_content_header = "fa fa-key"
@@ -44,6 +44,10 @@ class AutorizationClient(Autorization):
         form_filters = AuthorizationClientFilter(request.GET)
 
         if form_filters.is_valid():  # Agregamos filtros de encontrarse alguno
+            filters = form_filters.cleaned_data
+            tools = Tools()
+            filters['from_date'] = tools.date_format_to_db(date=filters['from_date'])
+            filters['until_date'] = tools.date_format_to_db(date=filters['until_date'])
             filters = form_filters.cleaned_data
         
         if request.method == 'GET':
