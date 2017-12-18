@@ -205,6 +205,29 @@ class GenerateTableList(object):
             value += '<i class="fa fa-trash pointer color-red ico-delete-row" data-url="{}" data-id="{id}"></i>'.format(
                 reverse(data['url']), id=row_data[data['key']])
 
+        if type_colum == 'submit':
+            #  Columna estandar para mostrar boton sutmit personalizado
+            if 'name' in data:
+                name = data['name']
+            else:
+                name = ""
+            if 'key' in data and data['key'] in row_data :
+                key = row_data[data['key']]  # Key debe ser el id que identifica la fila
+            else:
+                key = ""
+            if 'cls' in data:
+                cls = data['cls']
+            else:
+                cls = ""
+            if 'text' in data:
+                text = data['text']
+            else:
+                text = ""
+                
+            value += '<button name="{name}" type="submit" value="{val}" class="{cl}">{text}</button>'\
+                    .format(name=name, val=key, cl=cls, text=text)
+
+
         if type_colum == 'link':
             """"
             Caso para crear links personalizados, con parametros y argumentos

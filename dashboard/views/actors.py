@@ -73,18 +73,18 @@ class Specialist(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_tabla = [(_("detail"), "detail"),(lastnames_title, "last_name"),( _("code"), "code"),(
+        header_table = [(_("detail"), "detail"),(lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),( _("RUC"), "ruc"),( _("category"), "category_name"),(
                         _("specialty"), "type_specialist_name"),( _("delete"), "delete")]
 
-        tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
+        table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)
 
         # Titulo de la vista y variables de la Clase
         vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/specialistsList.html',
-                      {'tabla': tabla, 'vars_page': vars_page, 'filters': filters})
+                      {'table': table, 'vars_page': vars_page, 'filters': filters})
 
     @method_decorator(login_required)
     def detail(self, request, pk):
@@ -301,10 +301,10 @@ class Client(Actor):
 
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} / {}".format(_("names"), _("business name"))
-        header_tabla = [(lastnames_title, "business_name"),( _("alias"), "nick"),( _("code"), "code"),(
+        header_table = [(lastnames_title, "business_name"),( _("alias"), "nick"),( _("code"), "code"),(
                         _("email"), "email_exact"),(_("identification document"), "document_number"),(
                         _("RUC"), "ruc"),( _("querys"), ""),(_("detail"), "detail")]
-        tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
+        table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)
 
         # Titulo de la vista y variables de la Clase
@@ -312,7 +312,7 @@ class Client(Actor):
         vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/clientsList.html',
-                      {'tabla': tabla, 'vars_page': vars_page})
+                      {'table': table, 'vars_page': vars_page})
 
     @method_decorator(login_required)
     def detail(self, request, id):
@@ -392,20 +392,20 @@ class Seller(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_tabla = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
+        header_table = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),(
                         _("RUC"), "ruc"),( _('see portfolio'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
                         _("advance"), "advance"),(
                         _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
 
-        tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column,
+        table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)
 
         # Titulo de la vista y variables de la Clase
         vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/sellersList.html',
-                      {'tabla': tabla, 'vars_page': vars_page, 'form_filters': form_filters})
+                      {'table': table, 'vars_page': vars_page, 'form_filters': form_filters})
 
     @method_decorator(login_required)
     def create(self, request):
@@ -502,10 +502,10 @@ class Administrator(Actor):
             "detail": {'type': 'detail', 'data': {'href': 'dashboard:actor-administrators-detail', 'key': 'id'}}
         }
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
-        header_tabla = {lastnames_title: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc",
+        header_table = {lastnames_title: "last_name", _("code"): "code", _("email"): "email_exact", _("RUC"): "ruc",
                         _("category"): "",
                         _("specialty"): "", _("detail"): "detail"}
-        tabla = convert(data, header=header_tabla, actual_page=actual_page, custom_column=custom_column)
+        table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column)
 
         vars_page = self.generate_header(custom_title=_('administrators').title())
-        return render(request, 'admin/actor/administratorsList.html', {'tabla': tabla, 'vars_page': vars_page})
+        return render(request, 'admin/actor/administratorsList.html', {'table': table, 'vars_page': vars_page})

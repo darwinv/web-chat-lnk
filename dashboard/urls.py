@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from dashboard.views import actors, account, account_status
+from dashboard.views import actors, account, account_status, authorizations
 
 app_name = 'dashboard'
 
@@ -33,6 +33,9 @@ urlpatterns = [
     url(r'^actor/administrators/(?P<pk>[0-9]+)$', actors.Administrator().list, name='actor-administrators-detail'),
     url(r'^actor/administrators/edit/(?P<pk>[0-9]+)$', actors.Administrator().list, name='actor-administrators-edit'),
     url(r'^actor/administrators/create/$', actors.Administrator().list, name='actor-administrators-create'),
+
+    # Autorizaciones
+    url(r'^authorizations/clients$', authorizations.AutorizationClient().list, name='authorizations-clients'),
 
     # Estados de cuenta
     url(r'^account_status/sellers/$', account_status.AccountStatusSeller().list, name='account-status-seller'),

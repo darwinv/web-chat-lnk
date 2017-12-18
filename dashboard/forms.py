@@ -3,9 +3,10 @@ from django import forms
 from django.forms import ModelForm
 
 from api.models import Specialist, Seller, Category, Department, Province, District, Countries, Ciiu
-
+from api.models import User
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
+from api.api_choices_models import ChoicesAPI as Ch
 
 # from dashboard.tools import capitalize as cap
 
@@ -38,22 +39,12 @@ class FilterForm(forms.Form):
         return self.cleaned_data
 
 
-class SellerFormFilters(FilterForm):
-    """
-    Clase creada para filtrar el listado de vendedores
-    """
-    first_name = forms.CharField(label = _('first name'))
-    last_name = forms.CharField(label = _('last name'))
-    ruc = forms.CharField(label = _('RUC'))
-    email_exact = forms.CharField(label = _('mail'))
-    count_plans_seller = forms.IntegerField(label = _('number of plans sold greater than'))
-    count_queries_seller = forms.IntegerField(label = _('number of queries sold greater than'))
-
 
 class SpecialistForm(ModelForm):
-
+    """
+        Formulario para crear especialistas
+    """
     select_search = {'data-live-search':'true','class':'selectpicker'}
-    """Formulario de Especialista."""
     first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
     last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
     category = forms.CharField(widget=forms.Select(), required=False, label=_('category'))
@@ -151,17 +142,6 @@ class SpecialistForm(ModelForm):
         fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number']
-        # labels = {
-        #     'nick': cap(_('nick')),
-        #     'first_name': cap(_('first name')),
-        #     'last_name': cap(_('last name')),
-        #     'telephone': cap(_('telephone')),
-        #     'cellphone': cap(_('cellphone')),
-        #     'document_type': cap(_('document type')),
-        #     'business_name': cap(_('business name')),
-        #     'type_specialist': cap(_('type specialist')),
-        #     'payment_per_answer': cap(_('payment per answer')),
-        # }
 
 
 class SellerForm(ModelForm):
@@ -246,45 +226,39 @@ class SellerForm(ModelForm):
                 for key in add_errors:
                     self.add_error(None, error=key)
 
-    # def clean_nationality(self):
-    #     """Convertimos nacionalidad de tipo objeto al id."""
-    #     data = self.cleaned_data["nationality"]
-    #     return data.id
-    # def clean(self):
-    #     cleaned_data = super(SellerForm, self).clean()
-    #     nationality = cleaned_data.get("nationality")
-    #     self.cleaned_data["nationality"] = nationality.id
-    #     return self.cleaned_data
-        # import pdb; pdb.set_trace()
-
-# """
-# Reportes de estado de cuenta
-# """
 
 
-
-class AccountStatus(FilterForm):
+class SellerFormFilters(FilterForm):
     """
-    Clase creada para filtrar estados de cuenta
+    Filtrar el listado de vendedores
+    """
+    first_name = forms.CharField(label = _('first name'))
+    last_name = forms.CharField(label = _('last name'))
+    ruc = forms.CharField(label = _('RUC'))
+    email_exact = forms.CharField(label = _('mail'))
+    count_plans_seller = forms.IntegerField(label = _('number of plans sold greater than'))
+    count_queries_seller = forms.IntegerField(label = _('number of queries sold greater than'))
+
+
+
+
+class FromUntilFilters(FilterForm):
+    """
+    Filtrar estados de cuenta
     """
     from_date = forms.DateField(widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
-                                }))
+                                }), label = _('from'))
     until_date = forms.DateField(widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
-                                }))
+                                }), label = _('until'))
 
-    def __init__(self, *args, **kwargs):
-        super(AccountStatus, self).__init__(*args, **kwargs)
-
-        self.fields['from_date'].label = cap(_('from'))
-        self.fields['until_date'].label = cap(_('until'))
-
-
-
-class AccountStatusSellerFormFilters(AccountStatus):
+"""
+    Reportes de estado de cuenta
+"""
+class AccountStatusSellerFormFilters(FromUntilFilters):
     """
     Formulario para filtrar estados de cuenta por vendedor
     """
@@ -302,3 +276,25 @@ class AccountStatusSellerFormFilters(AccountStatus):
 
         if type(data) is list:
             self.fields['seller'].widget.choices = [('', '')] + [(l['id'], l['first_name']+' '+l['last_name']) for l in data]
+
+"""
+    Reporte de Autorizacion de clientes
+"""
+class AuthorizationClientFilter(FromUntilFilters):
+    """
+        Formulario para filtrar el listado de autorizacion de clientes
+    """
+    status = forms.CharField(widget=forms.Select(), label=_('status'))
+
+    def __init__(self, *args, **kwargs):
+        super(AuthorizationClientFilter, self).__init__(*args, **kwargs)
+
+        status = Ch.user_status
+
+        if type(status) is tuple:
+            status = list(status)
+            del status[3]  # Eliminamos el atributo desactivado
+            status = tuple(status)
+            self.fields['status'].widget.choices = [('', '')]
+            self.fields['status'].widget.choices += status
+

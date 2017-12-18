@@ -7,7 +7,7 @@ class ChoicesAPI:
         cada atributo de la clase es una opcion de modelo
         la estructura en los nombres de los choises es la siguiente
         nombre del modelo + piso + nombre de atributo
-        e.g: "client_type_client" o "client_sex" 
+        e.g: "client_type_client" o "client_sex"
     """
 
     # User Model
@@ -15,6 +15,12 @@ class ChoicesAPI:
         ('0', _('DNI')),
         ('1', _('Passport')),
         ('2', _('Foreign Card')),
+    )
+    user_status = (
+        ('0', _('pending')),
+        ('1', _('activated')),
+        ('2', _('rejected')),
+        ('3', _('deactivated')),
     )
 
     # Client Model
@@ -24,8 +30,8 @@ class ChoicesAPI:
     )
 
     client_sex = (
-        ('n', _('Male')),
-        ('b', _('Female')),
+        ('m', _('Male')),
+        ('f', _('Female')),
     )
     client_civil_state = (
         ('c', _('cohabiting')),
