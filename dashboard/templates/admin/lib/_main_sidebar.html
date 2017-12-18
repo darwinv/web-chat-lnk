@@ -89,6 +89,14 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-key"></i> <span>{% trans "authorizations"|title %}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="{% url 'dashboard:authorizations-clients' %}"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}</a>
+                        </li>
+                    </ul>
                     </a>
                 </li>
                 <li>
@@ -100,7 +108,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="treeview">
-                            <a href="{% url 'dashboard:account-status-seller' %}"><i class="fa fa-circle-o"></i> {% trans "Seller"|title %}</a>
+                            <a href="{% url 'dashboard:account-status-seller' %}"><i class="fa fa-circle-o"></i> {% trans "seller"|title %}</a>
                         </li>
                     </ul>
                 </li>
