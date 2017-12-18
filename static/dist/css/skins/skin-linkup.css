@@ -169,9 +169,9 @@ li.language > ul.dropdown-menu {
 
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button,.btn {
-    padding-top: 5px;
+    padding-top: 6px;
     padding-right: 15px;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     padding-left: 15px;
     border-radius: 4px;
     cursor: pointer;    
@@ -433,7 +433,13 @@ input:read-only {
 .input-form-control > input, .input-form-control > select{
   width: 100%;
 }
-
+.form-group.input-form-control .btn-group.bootstrap-select {
+  width: 100%;
+}
+.form-group.input-form-control label:first-letter {
+  text-transform: capitalize;
+  font-size: 16px;
+}
 /* Cropper para generar imagenes recortadas*/
 .cropper-view-box,
 .cropper-face {

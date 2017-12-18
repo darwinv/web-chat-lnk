@@ -2,13 +2,12 @@
 from django import forms
 from django.forms import ModelForm
 
-from api.models import Specialist, Seller, Category, Department, Province, District, Countries
+from api.models import Specialist, Seller, Category, Department, Province, District, Countries, Ciiu
 
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 
-from dashboard.tools import capitalize as cap
-
+# from dashboard.tools import capitalize as cap
 
 class FilterForm(forms.Form):
     """
@@ -52,10 +51,12 @@ class SellerFormFilters(FilterForm):
 
 
 class SpecialistForm(ModelForm):
-    """Formulario de Especialista."""
 
+    select_search = {'data-live-search':'true','class':'selectpicker'}
+    """Formulario de Especialista."""
     first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
     last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
+    category = forms.CharField(widget=forms.Select(), required=False, label=_('category'))
     department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
     province = forms.CharField(widget=forms.Select(), required=False, label=_('province'))
     district = forms.CharField(widget=forms.Select(), required=False, label=_('district'))
@@ -64,14 +65,14 @@ class SpecialistForm(ModelForm):
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
     img_document_number = forms.FileField(required=False, label=_('upload document'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file', 'data-title':'True'}, ))
-    nationality = forms.CharField(widget=forms.Select(), required=True, label=_('nationality'))
+    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('residence country'))
 
-
-    foreign_address = forms.CharField(label=_('address'), required=False)
-
-    def __init__(self, initial=None, department=None, province=None, form_edit=None,
-                 *args, **kwargs):
-        super(SpecialistForm, self).__init__(initial=initial, *args, **kwargs)
+    foreign_address = forms.CharField(label = _('address'), required=False)
+    ruc = forms.CharField(label = _('ruc'), required=False)
+    def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
+            *args, **kwargs):
+        super(SpecialistForm, self).__init__(data=data, initial=initial, *args, **kwargs)
 
         categories = Category.objects.all()
         departments = Department.objects.all()
@@ -88,6 +89,11 @@ class SpecialistForm(ModelForm):
 
         if countries:
             self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+        if data and 'department' in data and data['department']:
+            department = data['department']
+        if data and 'province' in data and data['province']:
+            province = data['province']
 
         if department:
             provinces = Province.objects.filter(department_id=department)
@@ -143,12 +149,28 @@ class SpecialistForm(ModelForm):
         model = Specialist
         fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
-                  'business_name', 'type_specialist', 'document_number',
-                  'category', 'residence_country']
+                  'business_name', 'type_specialist', 'document_number']
+        # labels = {
+        #     'nick': cap(_('nick')),
+        #     'first_name': cap(_('first name')),
+        #     'last_name': cap(_('last name')),
+        #     'telephone': cap(_('telephone')),
+        #     'cellphone': cap(_('cellphone')),
+        #     'document_type': cap(_('document type')),
+        #     'business_name': cap(_('business name')),
+        #     'type_specialist': cap(_('type specialist')),
+        #     'payment_per_answer': cap(_('payment per answer')),
+        # }
+
 
 class SellerForm(ModelForm):
     """Formulario de Vendedores."""
 
+    select_search = {'data-live-search':'true','class':'selectpicker'}
+    ciiu = forms.CharField(widget=forms.Select(attrs=select_search),
+                           required=False, label=_('CIIU'))
+    nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('residence country'))
     first_name = forms.CharField(required=True, max_length=30, label=_('first name'))
     last_name = forms.CharField(required=True, max_length=30, label=_('last name'))
     department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
@@ -160,13 +182,34 @@ class SellerForm(ModelForm):
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff',
                'type': 'file'}, ))
 
-    def __init__(self, initial=None, department=None, province=None, form_edit=None,
+
+    def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
                  *args, **kwargs):
         """Init."""
-        super(SellerForm, self).__init__(initial=initial, *args, **kwargs)
+        super(SellerForm, self).__init__(data=data, initial=initial, *args, **kwargs)
         departments = Department.objects.all()
+        ciius = Ciiu.objects.all()
+        countries = Countries.objects.all()
+
         if departments:
             self.fields['department'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in departments]
+
+        if ciius:
+            self.fields['ciiu'].widget.choices = [('', '')] + [(l.id, _(l.description)) for l in ciius]
+
+
+
+        if countries:
+            self.fields['nationality'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+        if countries:
+            self.fields['residence_country'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
+
+
+        if data and 'department' in data and data['department']:
+            department = data['department']
+        if data and 'province' in data and data['province']:
+            province = data['province']
 
         if department:
             provinces = Province.objects.filter(department_id=department)
@@ -182,13 +225,12 @@ class SellerForm(ModelForm):
         model = Seller
         fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
-                  'nationality', 'ruc', 'ciiu', 'residence_country']
+                   'ruc' ]
 
     def add_error_custom(self, add_errors=None):
         """Funcion para agregar errores."""
         # import pdb; pdb.set_trace()
         print(add_errors)
-
         print("----------------FORM ERRRORS--------------------")
         if add_errors:  # errores retornados por terceros
             if type(add_errors) is dict:

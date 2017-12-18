@@ -190,7 +190,7 @@ class Specialist(Actor):
                 # return JsonResponse(data)
                 result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
 
-                if result:
+                if result and 'id' in result:
                     # Agregando foto del Usuario
                     if 'photo' in request.FILES:
                         photo = {'photo': request.FILES['photo']}
@@ -200,7 +200,6 @@ class Specialist(Actor):
                     if 'img_document_number' in request.FILES:
                         img_document_number = {'img_document_number': request.FILES['img_document_number']}
                         obj_api.put(slug='upload_document/' + pk, token=token, files=img_document_number)
-
 
                     return HttpResponseRedirect(reverse(self._list))
                 else:
