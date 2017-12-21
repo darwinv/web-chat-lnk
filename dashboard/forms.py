@@ -207,9 +207,12 @@ class SellerForm(ModelForm):
                   'telephone', 'cellphone', 'document_type', 'document_number',
                    'ruc' ]
 
+    # cambiar a clase generica
     def add_error_custom(self, add_errors=None):
-        """Funcion para agregar errores."""
-        # import pdb; pdb.set_trace()
+        """
+        Funcion creada para agregar errores, posteriormente a las validaciones
+        hechas por la clase Form
+        """
         print(add_errors)
         print("----------------FORM ERRRORS--------------------")
         if add_errors:  # errores retornados por terceros
@@ -221,6 +224,8 @@ class SellerForm(ModelForm):
                         for item in key:
                             if item and item in self.fields:
                                 self.add_error(item, key[item])
+                    elif key == "non_field_errors":
+                        self.add_error(None, error=add_errors[key])
             elif type(add_errors) is list:
                 for key in add_errors:
                     self.add_error(None, error=key)
