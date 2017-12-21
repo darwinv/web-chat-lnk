@@ -4,9 +4,9 @@
 from api.config import API_URL, API_CLIENT_ID, API_CLIENT_SECRET, API_HEADERS
 import requests
 from django.utils import translation
-
+from django.urls import reverse
 import pdb
-
+from django.http import HttpResponseRedirect
 # Django
 # from django.contrib.auth.models import User
 from api.models import User, Role
@@ -84,7 +84,7 @@ class api:
 
         Usa un identificador unico de usuario para obtener sus datos basicos
         el api debe exponer un servicio para la lista de usuarios
-        :param username: username
+        :param user_id: user_id
         :return: usuario
         """
 
@@ -95,7 +95,6 @@ class api:
             # headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
 
             # self._headers.extend(headers)
-            # TODO
             # Ubicar el uso del token estatico en la configuracion
             # Esta metodo requerido por el framework siempre debe poder
             # acceder a los usuarios, siempre usa el mismo token
@@ -183,6 +182,23 @@ class api:
         except Exception as e:
             pass
 
+    def logout(self, token):
+        headers = {'Authorization': 'Bearer ' + token, 'Accept-Language': self._language}
+        headers = dict(headers, **self._headers)
+        slug = 'o/revoke_token/'
+        arg = {
+            "token": token,
+            "client_id": self._client_id,
+            "client_secret": self._client_secret,
+            }
+
+        try:
+            return requests.post(self._url + slug, headers=headers, params=arg)
+        except Exception as e:
+            print(e.args)
+            print("---------------ERROR LOGOUT---------------")
+
+
     def get(self, token, slug='', arg=None, ):
 
         try:
@@ -192,7 +208,11 @@ class api:
             headers = dict(headers, **self._headers)
             r = requests.get(self._url + slug, headers=headers, params=arg)
 
-            return r.json()
+            if r.status_code == 401:
+                logout = requests.get(reverse('login:logout'))
+                logout.url
+            else:                
+                return r.json()
 
         except Exception as e:
             print(e.args)
@@ -204,8 +224,6 @@ class api:
 
         try:
             r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
-            
-            
             return r.json()
             
         except Exception as e:

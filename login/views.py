@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from .forms import Login
-
+from api.connection import api
 
 def weblogin(request):
     """
@@ -47,8 +47,12 @@ def weblogin(request):
     return render(request, 'public/login.html', {'form': form, 'error_message': error_message})
 
 
-def logout_view(request):
-    logout(request)
+def logout_view(request):    
+    if 'token' in request.session:        
+        obj_api = api()
+        token = request.session['token']
+        obj_api.logout(token)
+        logout(request)
     return HttpResponseRedirect(reverse('login:login'))
 
 
