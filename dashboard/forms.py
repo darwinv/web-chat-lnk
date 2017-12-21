@@ -109,7 +109,8 @@ class SpecialistForm(ModelForm):
                         if key in self.fields:
                             self.fields[key].initial = initial[item][key]
 
-    # cambiar a clase generica
+                            # cambiar a clase generica
+
     def add_error_custom(self, add_errors=None):
         """
         Funcion creada para agregar errores, posteriormente a las validaciones
@@ -126,6 +127,8 @@ class SpecialistForm(ModelForm):
                         for item in key:
                             if item and item in self.fields:
                                 self.add_error(item, key[item])
+                    elif key == "non_field_errors":
+                        self.add_error(None, error=add_errors[key])
             elif type(add_errors) is list:
                 for key in add_errors:
                     self.add_error(None, error=key)
