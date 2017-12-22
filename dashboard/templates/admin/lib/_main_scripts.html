@@ -10,30 +10,30 @@
 $(function () {
 	// get globar api var traidas desde api_tools
 	{% autoescape off %}
-		var urlBase   		= '{% get_api_url %}';	
+		var urlBase   		= 'http://{{ request.get_host }}/';	
 		var headers  		= {% get_api_header %}; //Retorna un Objeto
 	{% endautoescape %}	
 
     $(document).on('change', '#id_department', function() {
-    	url 	= urlBase+'provinces'
+    	url 	= urlBase+'api/provinces'
     	id 		= $(this).val();
-    	element = $('#id_province');
-    	elementB= $('#id_district');
-
-    	clearOptions(element)
-    	clearOptions(elementB)
+    	province = $('#id_province');
+    	district = $('#id_district');
+    	console.log(urlBase);
+    	clearOptions(province)
+    	clearOptions(district )
     	data = {'department': id}
-    	msg  = sendAjaxGeo(url,data,element);
+    	msg  = sendAjaxGeo(url,data,province);
 	});
 
 	$(document).on('change', '#id_province', function() {
-    	url 	= urlBase+'districts'
+    	url 	= urlBase+'api/districts'
     	id 		= $(this).val();
-    	element = $('#id_district');
+    	district = $('#id_district');
 
-    	clearOptions(element)
+    	clearOptions(district)
     	data = {'province': id}
-    	msg  = sendAjaxGeo(url,data,element);
+    	msg  = sendAjaxGeo(url,data,district);
 	});
     
 	function sendAjaxGeo(url,data,element,type="GET"){
@@ -44,26 +44,28 @@ $(function () {
 		  	if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
 	            request.setRequestHeader("X-CSRFToken", csrftoken);
 	        }
-	        // Recorremos cabeceras
+
+	        // Recorre cabeceras por clave y valor
 		    for (var key in headers){
 			    if (headers.hasOwnProperty(key)) {
 			         request.setRequestHeader(key, headers[key]);
 			    }
 			}
+
 		  },
 		  url: url,
 		  data:data,
 		  dataType: "json",
 		  success: function(msg) {
-			generateOptions(element,msg.results);
+			generateOptions(element,msg);
 		  }
 		});
 	}
 	function generateOptions(element,data) {
-			element.append('<option>{% trans "select"|title %}</option>')
-			$.each(data, function(){
-				element.append('<option value="'+ this.name +'">'+ this.name +'</option>')			
-			});
+		element.append('<option value="">{% trans "select"|title %}</option>')
+		$.each(JSON.parse(data), function(){
+			element.append('<option value="'+ this.pk +'">'+ this.fields.name +'</option>')			
+		});
 	}
 
 	function clearOptions(element){
@@ -84,7 +86,6 @@ $(function () {
     	$.each(dataAttr, function(key, value) {
     		$(btnDelete).data(key,value);
         });
-    	console.log("seee");
     	$modalConfirmDelete.modal('show');
 	});
 
@@ -93,7 +94,6 @@ $(function () {
 		id 		= $(this).data('id');
     	url 	= $(this).data('url');
     	data 	= {'id': id}
-    	console.log(data);
     	sendAjaxDelete(url,data,'POST');
 	});
 

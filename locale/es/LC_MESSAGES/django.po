@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 16:09-0500\n"
+"POT-Creation-Date: 2017-12-18 15:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,179 +18,415 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\dashboard\forms.py:22 .\dashboard\views\actors.py:75
-#: .\dashboard\views\actors.py:374
+#: .\api\api_choices_models.py:15
+msgid "DNI"
+msgstr "DNI"
+
+#: .\api\api_choices_models.py:16
+msgid "Passport"
+msgstr "Pasaporte"
+
+#: .\api\api_choices_models.py:17
+msgid "Foreign Card"
+msgstr "Tarjeta extranjera"
+
+#: .\api\api_choices_models.py:20
+msgid "Pending"
+msgstr "Pendiente"
+
+#: .\api\api_choices_models.py:21
+msgid "Activate"
+msgstr "Activar"
+
+#: .\api\api_choices_models.py:22
+msgid "Reject"
+msgstr "Rechazar"
+
+#: .\api\api_choices_models.py:23
+msgid "Deactivated"
+msgstr "Desactivado"
+
+#: .\api\api_choices_models.py:28
+msgid "Natural"
+msgstr "Natural"
+
+#: .\api\api_choices_models.py:29
+msgid "Business"
+msgstr "Juridico"
+
+#: .\api\api_choices_models.py:33
+msgid "Male"
+msgstr "Masculino"
+
+#: .\api\api_choices_models.py:34
+msgid "Female"
+msgstr "Mujer"
+
+#: .\api\api_choices_models.py:37
+msgid "cohabiting"
+msgstr "cohabitando"
+
+#: .\api\api_choices_models.py:38
+msgid "separated"
+msgstr "apartado"
+
+#: .\api\api_choices_models.py:39
+msgid "married"
+msgstr "casado"
+
+#: .\api\api_choices_models.py:40
+msgid "widower"
+msgstr "viudo"
+
+#: .\api\api_choices_models.py:41
+msgid "divorced"
+msgstr "divorciado"
+
+#: .\api\api_choices_models.py:42
+msgid "single"
+msgstr "soltero"
+
+#: .\api\api_choices_models.py:46
+msgid "Employer"
+msgstr "Empleador"
+
+#: .\api\api_choices_models.py:47
+msgid "Independent worker"
+msgstr "Trabajador independiente"
+
+#: .\api\api_choices_models.py:48
+msgid "Employee"
+msgstr "Empleado"
+
+#: .\api\api_choices_models.py:49
+msgid "Worker"
+msgstr "Obrero"
+
+#: .\api\api_choices_models.py:50
+msgid "Worker in a family business"
+msgstr "Trabajador en una empresa familiar"
+
+#: .\api\api_choices_models.py:51
+msgid "Home worker"
+msgstr "Trabajador a domicilio"
+
+#: .\api\api_choices_models.py:52
+msgid "Other"
+msgstr "Otro"
+
+#: .\api\api_choices_models.py:57
+msgid "Main"
+msgstr "Principal"
+
+#: .\api\api_choices_models.py:58
+msgid "Associate"
+msgstr "Asociado"
+
+#: .\api\api_choices_models.py:63 .\api\api_choices_models.py:96
+msgid "Requested"
+msgstr "Preguntada"
+
+#: .\api\api_choices_models.py:64
+msgid "Accepted"
+msgstr "Aceptado"
+
+#: .\api\api_choices_models.py:65
+msgid "Declined"
+msgstr "Rechazado"
+
+#: .\api\api_choices_models.py:70
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#: .\api\api_choices_models.py:71
+msgid "Number"
+msgstr "Número"
+
+#: .\api\api_choices_models.py:77 .\api\api_choices_models.py:83
+#: .\api\api_choices_models.py:91
+msgid "Paid"
+msgstr "Pagado"
+
+#: .\api\api_choices_models.py:88
+msgid "Wait"
+msgstr "Espera"
+
+#: .\api\api_choices_models.py:89
+msgid "Denied"
+msgstr "Negado"
+
+#: .\api\api_choices_models.py:90
+msgid "Exhaled"
+msgstr "Exhalado"
+
+#: .\api\api_choices_models.py:97
+msgid "Requested Derived"
+msgstr "Pregunta derivado"
+
+#: .\api\api_choices_models.py:98
+msgid "Pending Response"
+msgstr "Respuesta pendiente"
+
+#: .\api\api_choices_models.py:99
+msgid "Pending Main Response"
+msgstr "Respuesta principal pendiente"
+
+#: .\api\api_choices_models.py:100
+msgid "Answered Main"
+msgstr "Respondido Principal"
+
+#: .\api\api_choices_models.py:101
+msgid "Answered"
+msgstr "Contestada"
+
+#: .\api\api_choices_models.py:102
+msgid "Absolved Main"
+msgstr "Absuelto Principal"
+
+#: .\api\api_choices_models.py:103
+msgid "Absolved"
+msgstr "Absuelto"
+
+#: .\api\api_choices_models.py:108
+msgid "query"
+msgstr "consulta"
+
+#: .\api\api_choices_models.py:109
+msgid "requery"
+msgstr "reconsulta"
+
+#: .\api\api_choices_models.py:110
+msgid "answer"
+msgstr "responder"
+
+#: .\api\api_choices_models.py:115
+msgid "Image"
+msgstr "Imagen"
+
+#: .\api\api_choices_models.py:116
+msgid "Voice"
+msgstr "Voz"
+
+#: .\api\api_choices_models.py:117
+msgid "Document"
+msgstr "Documento"
+
+#: .\api\api_choices_models.py:122
+msgid "Critic"
+msgstr "Crítico"
+
+#: .\api\api_choices_models.py:123
+msgid "Moderate"
+msgstr "Moderar"
+
+#: .\api\api_choices_models.py:124
+msgid "Positive"
+msgstr "Positivo"
+
+#: .\dashboard\forms.py:48 .\dashboard\forms.py:154 .\dashboard\forms.py:234
+msgid "first name"
+msgstr "primer nombre"
+
+#: .\dashboard\forms.py:49 .\dashboard\forms.py:155 .\dashboard\forms.py:235
+msgid "last name"
+msgstr "apellidos"
+
+#: .\dashboard\forms.py:50 .\dashboard\views\actors.py:77
+#: .\dashboard\views\actors.py:506
 msgid "category"
 msgstr "categoría"
 
-#: .\dashboard\forms.py:23
+#: .\dashboard\forms.py:51 .\dashboard\forms.py:156
 msgid "department"
 msgstr "departamento"
 
-#: .\dashboard\forms.py:24
+#: .\dashboard\forms.py:52 .\dashboard\forms.py:157
 msgid "province"
 msgstr "provincia"
 
-#: .\dashboard\forms.py:25
+#: .\dashboard\forms.py:53 .\dashboard\forms.py:158
 msgid "district"
 msgstr "distrito"
 
-#: .\dashboard\forms.py:26
+#: .\dashboard\forms.py:54 .\dashboard\forms.py:159
 msgid "street"
 msgstr "calle"
 
-#: .\dashboard\forms.py:28
-msgid "confirm password"
-msgstr "confirmar contraseña"
+#: .\dashboard\forms.py:55 .\dashboard\forms.py:161
+msgid "upload a photo"
+msgstr "subir una foto"
 
-#: .\dashboard\forms.py:76
-msgid "Password and confirm password does not match"
-msgstr "Contraseña y confirmar contraseña no coinciden"
+#: .\dashboard\forms.py:57
+msgid "upload document"
+msgstr "subir un documento"
 
-#: .\dashboard\forms.py:103
-msgid "username"
-msgstr "nombre de usuario"
+#: .\dashboard\forms.py:59 .\dashboard\forms.py:152
+msgid "nationality"
+msgstr "nacionalidad"
 
-#: .\dashboard\forms.py:104
-#: .\dashboard\templates\admin\actor\clientsDetail.html:41
-msgid "nick"
-msgstr "nick"
+#: .\dashboard\forms.py:60 .\dashboard\forms.py:153
+msgid "residence country"
+msgstr "país de residencia"
 
-#: .\dashboard\forms.py:105
-msgid "password"
-msgstr "Contraseña"
+#: .\dashboard\forms.py:62 .\dashboard\forms.py:160
+msgid "address"
+msgstr "dirección"
 
-#: .\dashboard\forms.py:106
-msgid "firstname"
-msgstr "primer nombre"
-
-#: .\dashboard\forms.py:107
-msgid "lastname"
-msgstr "apellidos"
-
-#: .\dashboard\forms.py:108 .\dashboard\views\actors.py:75
-#: .\dashboard\views\actors.py:283 .\dashboard\views\actors.py:347
-#: .\dashboard\views\actors.py:374
-msgid "email"
-msgstr "correo"
-
-#: .\dashboard\forms.py:109
-msgid "telephone"
-msgstr "telefono"
-
-#: .\dashboard\forms.py:110
-msgid "cellphone"
-msgstr "celular"
-
-#: .\dashboard\forms.py:111
-msgid "document type"
-msgstr "tipo de documento"
-
-#: .\dashboard\forms.py:112
-msgid "document number"
-msgstr "numero de documento"
-
-#: .\dashboard\forms.py:113 .\dashboard\views\actors.py:75
-#: .\dashboard\views\actors.py:283 .\dashboard\views\actors.py:284
-#: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:374
-msgid "RUC"
+#: .\dashboard\forms.py:63
+msgid "ruc"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:114 .\dashboard\views\actors.py:282
-msgid "business name"
-msgstr "nombre de la empresa"
+#: .\dashboard\forms.py:151
+msgid "CIIU"
+msgstr "CIIU"
 
-#: .\dashboard\forms.py:115
-msgid "type specialist"
-msgstr "tipo de especialista"
+#: .\dashboard\forms.py:236 .\dashboard\views\actors.py:77
+#: .\dashboard\views\actors.py:306 .\dashboard\views\actors.py:397
+#: .\dashboard\views\actors.py:505
+msgid "RUC"
+msgstr "Ruc"
 
-#: .\dashboard\forms.py:116
-msgid "payment per answer"
-msgstr "pago por respuesta"
+#: .\dashboard\forms.py:237
+msgid "mail"
+msgstr "correo"
 
-#: .\dashboard\json2table.py:90
+#: .\dashboard\forms.py:238
+msgid "number of plans sold greater than"
+msgstr "números de planes vendidos mas de"
+
+#: .\dashboard\forms.py:239
+msgid "number of queries sold greater than"
+msgstr "numero de consultas vendidas mas de"
+
+#: .\dashboard\forms.py:251
+msgid "from"
+msgstr "desde"
+
+#: .\dashboard\forms.py:255
+msgid "until"
+msgstr "hasta"
+
+#: .\dashboard\forms.py:264
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:111
+msgid "seller"
+msgstr "vendedor"
+
+#: .\dashboard\forms.py:265
+msgid "Show Total"
+msgstr "Mostrar total"
+
+#: .\dashboard\forms.py:286
+msgid "status"
+msgstr "estatus"
+
+#: .\dashboard\json2table.py:110
 msgid "search is empty"
 msgstr "búsqueda esta vacía"
 
-#: .\dashboard\json2table.py:183
+#: .\dashboard\json2table.py:398
 msgid "page"
 msgstr "pagina"
 
-#: .\dashboard\json2table.py:183
+#: .\dashboard\json2table.py:398
 msgid "of"
 msgstr "de"
 
-#: .\dashboard\templates\admin\actor\actorsList.html:10
-#: .\dashboard\templates\admin\actor\clientsDetail.html:8
-#: .\dashboard\templates\admin\actor\specialistsDetail.html:6
-msgid "search"
-msgstr "buscar"
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:48
+#: .\dashboard\templates\admin\actor\sellersList.html:60
+#: .\dashboard\templates\admin\authorization\clients.html:42
+msgid "send"
+msgstr "enviar"
 
-#: .\dashboard\templates\admin\actor\actorsList.html:17
-#: .\dashboard\views\actors.py:81
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:49
+#: .\dashboard\templates\admin\actor\sellersList.html:61
+#: .\dashboard\templates\admin\authorization\clients.html:43
+msgid "clear"
+msgstr "Limpiar"
+
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:73
+#: .\dashboard\templates\admin\actor\clientsDetail.html:37
+#: .\dashboard\views\account_status.py:96
+msgid "nick"
+msgstr "nick"
+
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:86
+msgid "cellphone"
+msgstr "celular"
+
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:89
+msgid "phone"
+msgstr "telefono"
+
+#: .\dashboard\templates\admin\account_status\account_status_seller.html:103
+#: .\dashboard\templates\admin\actor\actorsList.html:30
+msgid "filter"
+msgstr "filtro"
+
+#: .\dashboard\templates\admin\actor\actorsList.html:16
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:21
+#: .\dashboard\views\actors.py:46
 msgid "specialists"
 msgstr "especialistas"
 
-#: .\dashboard\templates\admin\actor\actorsList.html:20
-#: .\dashboard\views\actors.py:288 .\dashboard\views\actors.py:346
+#: .\dashboard\templates\admin\actor\actorsList.html:19
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:34
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:97
+#: .\dashboard\views\actors.py:311
 msgid "clients"
 msgstr "clientes"
 
-#: .\dashboard\templates\admin\actor\actorsList.html:23
-#: .\dashboard\views\actors.py:352
+#: .\dashboard\templates\admin\actor\actorsList.html:22
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:45
+#: .\dashboard\views\actors.py:362
 msgid "sellers"
 msgstr "vendedores"
 
-#: .\dashboard\templates\admin\actor\actorsList.html:26
-#: .\dashboard\views\actors.py:379
+#: .\dashboard\templates\admin\actor\actorsList.html:25
+#: .\dashboard\views\actors.py:510
 msgid "administrators"
 msgstr "administradores"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:31
-msgid "filter"
-msgstr "filtro"
-
-#: .\dashboard\templates\admin\actor\actorsList.html:32
 msgid "add"
 msgstr "agregar"
 
-#: .\dashboard\templates\admin\actor\clientsDetail.html:9
-#, fuzzy
-#| msgid "Search by any criteria (Name, Nick, Ubigeo, Etc)"
-msgid "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"
-msgstr "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"
-
-#: .\dashboard\templates\admin\actor\clientsDetail.html:35
+#: .\dashboard\templates\admin\actor\clientsDetail.html:31
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:34
 msgid "data"
 msgstr "datos"
 
-#: .\dashboard\templates\admin\actor\clientsDetail.html:36
+#: .\dashboard\templates\admin\actor\clientsDetail.html:32
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:35
 msgid "edit"
 msgstr "editar"
 
-#: .\dashboard\templates\admin\actor\clientsDetail.html:44
+#: .\dashboard\templates\admin\actor\clientsDetail.html:40
 msgid "person"
 msgstr "persona"
 
-#: .\dashboard\templates\admin\actor\clientsDetail.html:78
+#: .\dashboard\templates\admin\actor\clientsDetail.html:74
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:114
 msgid "send a message"
 msgstr "enviar un mensaje"
 
-#: .\dashboard\templates\admin\actor\clientsDetail.html:88
+#: .\dashboard\templates\admin\actor\clientsDetail.html:84
 msgid "grand Total"
 msgstr "total general"
 
-#: .\dashboard\templates\admin\actor\clientsDetail.html:107
+#: .\dashboard\templates\admin\actor\clientsDetail.html:103
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:157
 msgid "dashboard"
 msgstr "dashboard"
 
-#: .\dashboard\templates\admin\actor\specialistsDetail.html:7
-msgid "Search by any criteria (Name, Nick, Ubigeo, Etc)"
-msgstr "Busca por cualquier criterio (Nombre, Nick, Ubigeo,Etc)"
+#: .\dashboard\templates\admin\actor\sellersForm.html:167
+#: .\dashboard\templates\admin\actor\specialistsForm.html:197
+msgid "save"
+msgstr "guardar"
+
+#: .\dashboard\templates\admin\actor\sellersForm.html:169
+#: .\dashboard\templates\admin\actor\specialistsForm.html:199
+msgid "go back"
+msgstr "volver atrás"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:67
 msgid "see associate specialists"
@@ -205,79 +441,95 @@ msgid "personal"
 msgstr "personal"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:141
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:375
+#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:507
 msgid "specialty"
 msgstr "especialidad"
 
-#: .\dashboard\templates\admin\actor\specialistsForm.html:158
-msgid "save"
-msgstr "guardar"
+#: .\dashboard\templates\admin\actor\specialistsDetail.html:167
+msgid "bloked"
+msgstr "bloqueado"
 
-#: .\dashboard\templates\admin\actor\specialistsForm.html:160
-msgid "go back"
-msgstr "volver atrás"
+#: .\dashboard\templates\admin\actor\specialistsDetail.html:169
+msgid "return to list"
+msgstr "retornar al listado"
 
 #: .\dashboard\templates\admin\actor\specialistsList.html:7
 msgid "asociate specialists to"
 msgstr "especialistas asociados a"
 
-#: .\dashboard\templates\admin\lib\_cropper.html:53
+#: .\dashboard\templates\admin\lib\_cropper.html:71
 msgid "please choose an image file."
 msgstr "por favor elija una archivo tipo imagen"
-
-#: .\dashboard\templates\admin\lib\_frame_profile_img.html:17
-msgid "upload a photo"
-msgstr "subir una foto"
 
 #: .\dashboard\templates\admin\lib\_main_footer.html:11
 #: .\login\templates\public\lib\footer.html:4
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
-#: .\dashboard\templates\admin\lib\_main_scripts.html:58
+#: .\dashboard\templates\admin\lib\_main_header.html:177
+msgid "Member since"
+msgstr "Mienbro desde"
+
+#: .\dashboard\templates\admin\lib\_main_header.html:193
+msgid "Sign out"
+msgstr "desconectarse"
+
+#: .\dashboard\templates\admin\lib\_main_scripts.html:65
 msgid "select"
 msgstr "seleccionar"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:14
-#: .\dashboard\views\actors.py:21
+#: .\dashboard\views\account.py:8 .\dashboard\views\actors.py:20
 msgid "actors"
 msgstr "actores"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:19
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:27
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:40
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:51
+msgid "list"
+msgstr "lista"
+
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:29
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:53
+msgid "create"
+msgstr "crear"
+
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:61
 msgid "Data base"
 msgstr "Base de datos"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:24
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:66
 msgid "coin"
 msgstr "moneda"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:29
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:71
 msgid "products"
 msgstr "productos"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:34
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:76
 msgid "alerts"
 msgstr "alertas"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:39
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:81
 msgid "general"
 msgstr "general"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:44
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:86
 msgid "inventory"
 msgstr "inventario"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:49
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:91
+#: .\dashboard\views\authorizations.py:15
 msgid "authorizations"
 msgstr "autorizaciones"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:54
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:104
 msgid "Account statements"
 msgstr "Estados de cuenta"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:59
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:117
 msgid "reports"
-msgstr "retorntes"
+msgstr "reportes"
 
 #: .\dashboard\templates\admin\lib\_modals.html:7
 msgid "crop the image"
@@ -304,97 +556,310 @@ msgid "cancel"
 msgstr "cancelar"
 
 #: .\dashboard\templates\admin\lib\_modals.html:39
-#: .\dashboard\views\actors.py:76
+#: .\dashboard\views\actors.py:78
 msgid "delete"
 msgstr "borrar"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:345
-#: .\dashboard\views\actors.py:373
-msgid "surnames"
-msgstr "apellidos"
+#: .\dashboard\views\account_status.py:18
+msgid "Account Status"
+msgstr "Estados de cuenta"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:345
-#: .\dashboard\views\actors.py:373
-msgid "and"
-msgstr "y"
+#: .\dashboard\views\account_status.py:36
+msgid "Seller"
+msgstr "vendedor"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:282
-#: .\dashboard\views\actors.py:345 .\dashboard\views\actors.py:373
-msgid "names"
-msgstr "nombres"
+#: .\dashboard\views\account_status.py:94
+#: .\dashboard\views\account_status.py:114
+#: .\dashboard\views\authorizations.py:83
+msgid "date"
+msgstr "fecha"
 
-#: .\dashboard\views\actors.py:75 .\dashboard\views\actors.py:283
-#: .\dashboard\views\actors.py:347 .\dashboard\views\actors.py:374
+#: .\dashboard\views\account_status.py:94
+#: .\dashboard\views\account_status.py:135
+msgid "type"
+msgstr "tipo"
+
+#: .\dashboard\views\account_status.py:95
+#: .\dashboard\views\account_status.py:136
+msgid "number"
+msgstr "Número"
+
+#: .\dashboard\views\account_status.py:95
+#: .\dashboard\views\account_status.py:137 .\dashboard\views\actors.py:76
+#: .\dashboard\views\actors.py:304 .\dashboard\views\actors.py:395
+#: .\dashboard\views\actors.py:505
 msgid "code"
 msgstr "código"
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:103
-#: .\dashboard\views\actors.py:284 .\dashboard\views\actors.py:305
-#: .\dashboard\views\actors.py:348 .\dashboard\views\actors.py:375
-msgid "detail"
-msgstr "detalle"
+#: .\dashboard\views\account_status.py:97
+#: .\dashboard\views\account_status.py:139
+msgid "name"
+msgstr "nombre"
 
-#: .\dashboard\views\actors.py:103 .\dashboard\views\actors.py:305
-msgid "specialist"
-msgstr "especialista"
+#: .\dashboard\views\account_status.py:98
+msgid "query amount"
+msgstr "cantidad de consultas"
 
-#: .\dashboard\views\actors.py:147
-msgid "create specialist"
-msgstr "crear especialista"
+#: .\dashboard\views\account_status.py:99
+#: .\dashboard\views\account_status.py:141
+msgid "mounth of duration"
+msgstr "meses de duración"
 
-#: .\dashboard\views\actors.py:233
-msgid "edit specialist"
-msgstr "editar especialista"
+#: .\dashboard\views\account_status.py:100
+msgid "price"
+msgstr "precio"
 
-#: .\dashboard\views\actors.py:283
-msgid "alias"
-msgstr "alias"
+#: .\dashboard\views\account_status.py:100
+#: .\dashboard\views\account_status.py:143
+msgid "Payments Made"
+msgstr "Pagos esfectuados"
 
-#: .\dashboard\views\actors.py:284
-msgid "identification document"
-msgstr "documento de identidad"
+#: .\dashboard\views\account_status.py:102
+#: .\dashboard\views\account_status.py:144
+msgid "Pending payment"
+msgstr "pendiente por pagar"
 
-#: .\dashboard\views\actors.py:284
-msgid "querys"
-msgstr "consultas"
-
-#: .\dashboard\views\actors.py:346
-msgid "see"
-msgstr "cuota"
-
-#: .\dashboard\views\actors.py:347
-msgid "ubigeo"
-msgstr "ubigeo"
-
-#: .\dashboard\views\actors.py:348
-msgid "fee"
-msgstr "cuota"
-
-#: .\dashboard\views\actors.py:348
+#: .\dashboard\views\account_status.py:103 .\dashboard\views\actors.py:398
 msgid "advance"
 msgstr "avanzar"
 
-#: .\dashboard\views\actors.py:348
+#: .\dashboard\views\account_status.py:115
+msgid "reference of sale"
+msgstr "referencia de venta"
+
+#: .\dashboard\views\account_status.py:116
+msgid "customer reference"
+msgstr "referencia de cliente"
+
+#: .\dashboard\views\account_status.py:117
+msgid "description of plans"
+msgstr "descripción de planes"
+
+#: .\dashboard\views\account_status.py:118
+msgid "sales productivity"
+msgstr "productividad de la venta"
+
+#: .\dashboard\views\account_status.py:119
+msgid "Composition of the Sale by Form of Payment"
+msgstr "Composición de la Venta por Forma de Pago"
+
+#: .\dashboard\views\account_status.py:122
+msgid "Cash"
+msgstr "Efectivo"
+
+#: .\dashboard\views\account_status.py:123
+msgid "Credit"
+msgstr "Credito"
+
+#: .\dashboard\views\account_status.py:124
+msgid "Totals"
+msgstr "Totales"
+
+#: .\dashboard\views\account_status.py:127
+#: .\dashboard\views\account_status.py:129
+#: .\dashboard\views\account_status.py:131
+msgid "units"
+msgstr "unidades"
+
+#: .\dashboard\views\account_status.py:128
+#: .\dashboard\views\account_status.py:130
+#: .\dashboard\views\account_status.py:132
+msgid "amount"
+msgstr "cantidad"
+
+#: .\dashboard\views\account_status.py:138
+msgid "Nick"
+msgstr "Nick"
+
+#: .\dashboard\views\account_status.py:140
+msgid "N° of queries"
+msgstr "numero de consultas"
+
+#: .\dashboard\views\account_status.py:142
+msgid "Price"
+msgstr "price"
+
+#: .\dashboard\views\account_status.py:145
+msgid "reference fee"
+msgstr "referencia de la cuota"
+
+#: .\dashboard\views\account_status.py:146
+#: .\dashboard\views\account_status.py:150
+#: .\dashboard\views\account_status.py:154
+msgid "quantity"
+msgstr "cantidad"
+
+#: .\dashboard\views\account_status.py:147
+#: .\dashboard\views\account_status.py:149
+#: .\dashboard\views\account_status.py:151
+#: .\dashboard\views\account_status.py:153
+#: .\dashboard\views\account_status.py:155
+#: .\dashboard\views\account_status.py:157
+msgid "accumulated"
+msgstr "acumulado"
+
+#: .\dashboard\views\account_status.py:148
+#: .\dashboard\views\account_status.py:152
+#: .\dashboard\views\account_status.py:156
+msgid "paid out"
+msgstr "pagado"
+
+#: .\dashboard\views\actors.py:54
+msgid "associated specialists"
+msgstr "ver especialistas asociados"
+
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:393
+#: .\dashboard\views\actors.py:504
+msgid "surnames"
+msgstr "apellidos"
+
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:393
+#: .\dashboard\views\actors.py:504
+msgid "and"
+msgstr "y"
+
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:303
+#: .\dashboard\views\actors.py:393 .\dashboard\views\actors.py:504
+msgid "names"
+msgstr "nombres"
+
+#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:108
+#: .\dashboard\views\actors.py:306 .\dashboard\views\actors.py:327
+#: .\dashboard\views\actors.py:395 .\dashboard\views\actors.py:507
+msgid "detail"
+msgstr "detalle"
+
+#: .\dashboard\views\actors.py:77 .\dashboard\views\actors.py:305
+#: .\dashboard\views\actors.py:396 .\dashboard\views\actors.py:505
+msgid "email"
+msgstr "correo"
+
+#: .\dashboard\views\actors.py:108 .\dashboard\views\actors.py:327
+msgid "specialist"
+msgstr "especialista"
+
+#: .\dashboard\views\actors.py:161
+msgid "create specialist"
+msgstr "crear especialista"
+
+#: .\dashboard\views\actors.py:219
+msgid "edit specialist"
+msgstr "editar especialista"
+
+#: .\dashboard\views\actors.py:303
+msgid "business name"
+msgstr "nombre de la empresa"
+
+#: .\dashboard\views\actors.py:304
+msgid "alias"
+msgstr "alias"
+
+#: .\dashboard\views\actors.py:305
+msgid "identification document"
+msgstr "documento de identidad"
+
+#: .\dashboard\views\actors.py:306
+msgid "querys"
+msgstr "consultas"
+
+#: .\dashboard\views\actors.py:382
+msgid "see clients"
+msgstr "ver clientes"
+
+#: .\dashboard\views\actors.py:397
+msgid "see portfolio"
+msgstr "ver cartera"
+
+#: .\dashboard\views\actors.py:397
+msgid "ubigeo"
+msgstr "ubigeo"
+
+#: .\dashboard\views\actors.py:397
+msgid "quota"
+msgstr "cuota"
+
+#: .\dashboard\views\actors.py:399
 msgid "number of plans sold"
 msgstr "números de planes vendidos"
 
-#: .\dashboard\views\actors.py:348
+#: .\dashboard\views\actors.py:399
 msgid "number of queries"
 msgstr "numero de consultas"
 
-#: .\linkup\settings.py:120
+#: .\dashboard\views\actors.py:457
+msgid "create seller"
+msgstr "crear vendedor"
+
+#: .\dashboard\views\authorizations.py:41
+msgid "User - User Affiliation"
+msgstr "Usuario - Afiliación de Usuario"
+
+#: .\dashboard\views\authorizations.py:78
+msgid "seller code"
+msgstr "codigo de vendedor"
+
+#: .\dashboard\views\authorizations.py:79
+msgid "user"
+msgstr "usuario"
+
+#: .\dashboard\views\authorizations.py:80
+msgid "product"
+msgstr "producto"
+
+#: .\dashboard\views\authorizations.py:81
+msgid "user code"
+msgstr "código de usuario"
+
+#: .\dashboard\views\authorizations.py:82
+msgid "validation"
+msgstr "validación"
+
+#: .\dashboard\views\authorizations.py:86
+msgid "name or Social reason"
+msgstr "nombre de la razon social"
+
+#: .\dashboard\views\authorizations.py:87
+msgid "type document"
+msgstr "tipo de documento"
+
+#: .\dashboard\views\authorizations.py:88
+msgid "document number"
+msgstr "numero de documento"
+
+#: .\dashboard\views\authorizations.py:89
+msgid "description"
+msgstr "descripción"
+
+#: .\dashboard\views\authorizations.py:90
+msgid "Query Numbers"
+msgstr "Número de consultas"
+
+#: .\dashboard\views\authorizations.py:91
+#: .\dashboard\views\authorizations.py:97
+msgid "approve"
+msgstr "aprobar"
+
+#: .\dashboard\views\authorizations.py:92
+msgid "deneis"
+msgstr "denegar"
+
+#: .\dashboard\views\authorizations.py:99
+msgid "rejected"
+msgstr "rechazar"
+
+#: .\linkup\settings.py:106
 msgid "Spanish"
 msgstr "Español"
 
-#: .\linkup\settings.py:121
+#: .\linkup\settings.py:107
 msgid "English"
 msgstr "Ingles"
 
-#: .\login\forms.py:5
+#: .\login\forms.py:6
 msgid "User"
 msgstr "Usuario"
 
-#: .\login\forms.py:6
+#: .\login\forms.py:7
 msgid "Password"
 msgstr "Contraseña"
 
@@ -414,9 +879,6 @@ msgstr "Registrase"
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: .\login\views.py:45
+#: .\login\views.py:43
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"
-
-#~ msgid "user"
-#~ msgstr "usuario"

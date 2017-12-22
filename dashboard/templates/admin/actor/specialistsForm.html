@@ -6,7 +6,7 @@
 
     <form class="" action="{{specialists_form}}" method="POST" enctype="multipart/form-data" >
         {% csrf_token %}
-        
+
         {{ form.non_field_errors }}
         <div class="form-group input-form-control col-xs-12">
             {% include 'admin/lib/_frame_profile_img.html' %}
@@ -76,6 +76,24 @@
                 {{ form.cellphone.errors }}
             </div>
         {% endif %}
+
+        {% if form.nationality %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.nationality.label_tag }}
+                {{ form.nationality }}
+                {{ form.nationality.errors }}
+            </div>
+        {% endif %}
+        {% if form.residence_country %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.residence_country.label_tag }}
+                {{ form.residence_country }}
+                {{ form.residence_country.errors }}
+            </div>
+        {% endif %}
+
+
+
         {% if form.document_type %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.document_type.label_tag }}
@@ -90,13 +108,14 @@
                 {{ form.document_number.errors }}
             </div>
         {% endif %}
+
         {% if form.ruc %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.ruc.label_tag }}
                 {{ form.ruc }}
                 {{ form.ruc.errors }}
             </div>
-        {% endif %}        
+        {% endif %}
         {% if form.category %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.category.label_tag }}
@@ -132,6 +151,13 @@
                 {{ form.street.errors }}
             </div>
         {% endif %}
+        {% if form.foreign_address %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.foreign_address.label_tag }}
+                {{ form.foreign_address }}
+                {{ form.foreign_address.errors }}
+            </div>
+        {% endif %}
         {% if form.business_name %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.business_name.label_tag }}
@@ -153,6 +179,19 @@
                 {{ form.payment_per_answer.errors }}
             </div>
         {% endif %}
+
+        {% if form.img_document_number %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.img_document_number.label_tag }}
+                <label class="btn btn-primary btn-upload col-xs-12" for="{{ form.img_document_number.auto_id }}" title="Upload image file">
+                    {{ form.img_document_number }}
+                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
+                        <span class="fa fa-upload">&nbsp;{{ form.img_document_number.label_tag }}</span>
+                    </span>
+                </label>
+                {{ form.img_document_number.errors }}
+            </div>
+        {% endif %}
         <hr>
         <div class="col-xs-12 text-center">
             <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">
@@ -162,22 +201,6 @@
     </form>
 {% endblock main_content_row %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% block extra_head %}
   <link rel="stylesheet" href='{% static "cropper/dist/cropper.css" %}' >
 {% endblock extra_head %}
@@ -185,5 +208,6 @@
 
 {% block extra_foot %}
   <script src='{% static "cropper/dist/cropper.min.js" %}' ></script>
-  {% include 'admin/lib/_cropper.html' %}  
+  {% include 'admin/lib/_cropper.html' %}
+  <script src='{% static "dist/js/specialist.js" %}' ></script>
 {% endblock extra_foot %}

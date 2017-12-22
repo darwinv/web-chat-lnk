@@ -1,0 +1,48 @@
+{% extends 'admin/authorization/authorization.html' %}
+{% load i18n %}
+
+{% block extrahead %}{{ block.super }}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+{% endblock %}
+
+
+{% block filters_table %}
+	<div class="col-xs-12 marB10">
+			
+			<div class="filters">
+
+			    {% if form_filters.status %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.status.label_tag }}
+			            {{ form_filters.status }}
+			            {{ form_filters.status.errors }}
+			        </div>
+			    {% endif %}
+				{% if form_filters.from_date %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.from_date.label_tag }}
+			            {{ form_filters.from_date }}
+			            {{ form_filters.from_date.errors }}
+			        </div>
+			    {% endif %}
+			    {% if form_filters.until_date %}
+			        <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+			            {{ form_filters.until_date.label_tag }}
+			            {{ form_filters.until_date }}
+			            {{ form_filters.until_date.errors }}
+			        </div>
+			    {% endif %}   
+			    
+
+				<div class="col-xs-12 text-center">
+					<button type="submit" class="btn btn-flat btn-black">{% trans "send"|title %}</button>
+					<button type="button" class="btn btn-flat btn-default cleatFilter">{% trans "clear"|title %}</button>
+				</div>
+			</div>
+
+	</div>
+{% endblock filters_table %}

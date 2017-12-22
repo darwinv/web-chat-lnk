@@ -1,9 +1,8 @@
-from django.conf import settings
-from django.contrib.auth.hashers import check_password
-#from django.contrib.auth.models import User
-from dashboard.models import User
+from api.models import User
 from api.connection import api
 import pdb
+
+
 class APIBackend(object):
     """
     """
@@ -19,28 +18,24 @@ class APIBackend(object):
         :return: objeto User si existe el usuario o None si no existe o el password es incorrecto
         """
 
-        #print "authenticate"
-        #print request.POST
+        # crear objeto api
+        obj_api = api()
 
-        #crear objeto api
-        apiObj = api()
-        
-        #validar datos por medio de una consulta del token del usuario
-        token = apiObj.token(request.POST['user'], request.POST['password'])
+        # validar datos por medio de una consulta del token del usuario
+        token = obj_api.token(request.POST['user'], request.POST['password'])
 
-        #validar respuesta
+        # validar respuesta
         if token:
-            #existe token
-
-            #print "if token " + token
+            # existe token
 
             # guardar token en la sesion
             request.session['token'] = token
 
             try:
-                #se debe pasar user y token para obtener los datos del usuario
-                user = apiObj.getUsuario(token, username)
-                #guardar usuario unicamete para que el framework acepte el objeto
+                # se debe pasar user y token para obtener los datos del usuario
+
+                user = obj_api.getUsuario(token, username)
+                # guardar usuario unicamete para que el framework acepte el objeto
                 user.save()
 
             except User.DoesNotExist:
@@ -57,13 +52,11 @@ class APIBackend(object):
         :param user_id: identificador unico del usuario
         :return: objeto User o None
         """
-        #print "APIBackend get_user"
-        #print user_id
 
         try:
-            apiObj = api()
-            #consultar un usuario por el identificador unico
-            return apiObj.getuserById(user_id)
+            obj_api = api()
+            # consultar un usuario por el identificador unico
+            return obj_api.getuserById(user_id)
 
         except User.DoesNotExist:
             return None

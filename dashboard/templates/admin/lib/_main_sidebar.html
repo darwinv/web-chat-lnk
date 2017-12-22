@@ -7,7 +7,7 @@
         {% block nav_links_ul %}
         <ul class="sidebar-menu">
             {% block nav_links_outer %}
-            
+
             {% block nav_links %}
                 <li class="">
                     <a href="#">
@@ -50,6 +50,8 @@
                             <ul class="treeview-menu">
                                 <li><a href="{% url 'dashboard:actor-sellers-list' %}"><i class="fa fa-circle-o"></i> {% trans "list"|title %}</a>
                                 </li>
+                                <li><a href="{% url 'dashboard:actor-sellers-create' %}"><i class="fa fa-circle-o"></i> {% trans "create"|title %}</a>
+                                </li>
                             </ul>
                         </li>
                   </ul>
@@ -87,18 +89,26 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-key"></i> <span>{% trans "authorizations"|title %}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="{% url 'dashboard:authorizations-clients' %}"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}</a>
+                        </li>
+                    </ul>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>                        
+                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="treeview">
-                            <a href="{% url 'dashboard:account-status-seller' %}"><i class="fa fa-circle-o"></i> {% trans "Seller"|title %}</a>
+                            <a href="{% url 'dashboard:account-status-seller' %}"><i class="fa fa-circle-o"></i> {% trans "seller"|title %}</a>
                         </li>
                     </ul>
                 </li>
@@ -109,7 +119,7 @@
 
                 </li>
             {% endblock nav_links %}
-            
+
             {% endblock nav_links_outer %}
         </ul>
         {% endblock nav_links_ul %}
