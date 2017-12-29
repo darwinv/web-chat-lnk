@@ -209,8 +209,10 @@ class api:
             r = requests.get(self._url + slug, headers=headers, params=arg)
 
             if r.status_code == 401:
-                logout = requests.get(reverse('login:logout'))
-                logout.url
+                #logout = requests.get(reverse('login:logout'))
+                #return HttpResponseRedirect(reverse('login:logout'))
+                print("Location:http://newurl.com/foobar")
+                print("---------------401resp---------------------")
             else:                
                 return r.json()
 
