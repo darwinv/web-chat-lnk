@@ -188,12 +188,12 @@
 
 
 {% block extra_head %}
-  <link rel="stylesheet" href='{% static "cropper/dist/cropper.css" %}' >
+  <link rel="stylesheet" href='{% static "dashboard/cropper/dist/cropper.css" %}' >
 {% endblock extra_head %}
 
 
 {% block extra_foot %}
-  <script src='{% static "cropper/dist/cropper.min.js" %}' ></script>
+  <script src='{% static "dashboard/cropper/dist/cropper.min.js" %}' ></script>
   {% include 'admin/lib/_cropper.html' %}
-  <script src='{% static "dist/js/seller.js" %}' ></script>
+  <script src='{% static "dashboard/dist/js/seller.js" %}' ></script>
 {% endblock extra_foot %}

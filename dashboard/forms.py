@@ -38,7 +38,29 @@ class FilterForm(forms.Form):
 
         return self.cleaned_data
 
+class ErrorsFieldsApi(forms.Form):
 
+    def add_error_custom(self, add_errors=None):
+        """
+        Funcion creada para agregar errores, posteriormente a las validaciones
+        hechas por la clase Form
+        """
+        print(add_errors)
+        print("----------------FORM ERRRORS--------------------")
+        if add_errors:  # errores retornados por terceros
+            if type(add_errors) is dict:
+                for key in add_errors:
+                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
+                        self.add_error(key, add_errors[key])
+                    elif type(key) is list:
+                        for item in key:
+                            if item and item in self.fields:
+                                self.add_error(item, key[item])
+                    elif key == "non_field_errors":
+                        self.add_error(None, error=add_errors[key])
+            elif type(add_errors) is list:
+                for key in add_errors:
+                    self.add_error(None, error=key)
 
 class SpecialistForm(ModelForm):
     """
@@ -83,6 +105,7 @@ class SpecialistForm(ModelForm):
 
         if data and 'department' in data and data['department']:
             department = data['department']
+            
         if data and 'province' in data and data['province']:
             province = data['province']
 
@@ -179,8 +202,6 @@ class SellerForm(ModelForm):
 
         if ciius:
             self.fields['ciiu'].widget.choices = [('', '')] + [(l.id, _(l.description)) for l in ciius]
-
-
 
         if countries:
             self.fields['nationality'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]

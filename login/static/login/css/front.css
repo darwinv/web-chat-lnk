@@ -1,0 +1,104 @@
+/*
+ * Estilos para Vista de Front Linkup
+ * -------------------------
+ */
+
+ body.body-front {
+  background-color: #0A0B22;
+  color:white;
+
+  display: table;
+  width: 100%;
+  padding-bottom: 20px;
+ }
+
+.login-form{
+  padding: 20px;
+  border-top: 0;
+  font-size: 18px;
+}
+
+.login-form a{
+  color: white;
+  font-size: 15px;
+}
+.foo-links{
+  line-height: 1.2;
+}
+.checkbox.icheck {
+    font-size: 13px;
+}
+.login-form input[type="text"],
+.login-form input[type="password"]{
+  border-radius: 50px;
+}
+
+.login-form a:hover, .login-form a:active, .login-form a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #72afd2;
+}
+footer small{
+  color:white;
+}
+footer{
+  display: table-row-group;
+}
+.log-user input[type="text"]::-moz-placeholder,
+.log-user input[type="password"]::-moz-placeholder{
+	text-align:center;
+	color:black;
+  font-size: 18px;
+}
+.log-user input[type="text"]::-webkit-input-placeholder,
+.log-user input[type="password"]::-webkit-input-placeholder{
+	text-align:center;
+	color:black;
+  font-size: 18px;
+}
+.has-feedback .form-control {
+  padding-right: initial;
+  padding-left: initial;
+}
+
+
+/********************/
+.form-group input {
+    text-align: center;
+}
+.login-box, .register-box {
+    width: 360px;
+    margin: auto;
+    text-align: center;
+}
+.login-logo, .register-logo {
+    margin-bottom: 0px;
+}
+.log-user .form-group.has-feedback {
+    padding: 0px 40px;
+}
+.vertical-aling {
+    display: table-cell;
+    vertical-align: middle;
+}
+.btn.btn-lightBlue {
+    background-color: #00afc5;
+    color: white;
+    font-size: 17px;
+    padding: 5px 20px;
+    text-decoration: none;
+}
+.checkbox{
+  margin-top: 7px;
+}
+.btn {
+  border-radius: 7px;
+}
+/*mensaje sin campo de texto*/
+ul.errorlist.nonfield li {
+    width: 500px;
+    margin: auto;
+}
+ul.errorlist.nonfield {
+    margin-bottom: 20px;
+}

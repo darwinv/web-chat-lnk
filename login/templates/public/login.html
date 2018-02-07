@@ -1,11 +1,11 @@
 {% extends 'public/base.html' %}
 {% load i18n static %}
-{% block login %}
+{% block content %}
 <div class="vertical-aling" >
   <div class="login-box">
 
     <div class="login-logo">
-      {% block logo_text %}<img src="{% static "dist/img/logo.png" %}" >{% endblock %}
+      {% block logo_text %}<img src="{% static "dashboard/dist/img/logo.png" %}" >{% endblock %}
     </div>
     <!-- /.login-logo -->
     <div class="login-form">
@@ -26,7 +26,7 @@
         </div>
         <div class="foo-links">
           <a href="#">{% trans "Recover your password" %}</a><br>
-          <a href="#" class="text-center">{% trans "Sign up" %}</a>
+          <a href="{% url 'login:register' %}" class="text-center">{% trans "Sign up" %}</a>
         </div>
         <div class="marT20">
           <button type="submit" class="btn btn-lightBlue">{% trans "Log in" %}</button>

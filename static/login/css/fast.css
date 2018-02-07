@@ -1,0 +1,64 @@
+/*
+	Put in this file short css standard code
+    Example:
+        .padT10{
+			padding-top:10px;
+        }
+		.marB15{
+			margin-bottom: 15px
+		}
+		.pad5{
+			padding:5px;
+		}
+		.inline-block{
+			display:inline-block;
+		}
+	end Exmaple
+*/
+
+.flat {
+    margin-right: 10px;
+    border-radius: 0px;
+    border-width: 1px;
+}
+.responsive-img{
+    max-width: 100%;
+    height: auto;
+}
+.pointer{
+	cursor: pointer;
+}
+.mar10{
+	margin: 10px;
+}
+.marT20{
+	margin-top: 20px;
+}
+.marR15{
+	margin-right: 15px;
+}
+.marB25{
+	margin-bottom: 25px;
+}
+.padL40{
+	padding-left: 40px;
+}
+
+.padR40{
+	padding-right: 40px;
+}
+
+.padL20{
+	padding-left: 20px;
+}
+
+.padR20{
+	padding-right: 20px;
+}
+
+.size17{
+	font-size: 17px;
+}
+.size16{
+	font-size: 16px;
+}
