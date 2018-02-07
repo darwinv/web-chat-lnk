@@ -2,10 +2,6 @@
 <!-- Este archivo es llamado por toda la App para cumplir funciones  -->
 <!-- personalizadas para 2 o mas vistas -->
 
-<!-- Definicion de lenguaje formato 'ES' -->
-{% get_current_language as LANGUAGE_CODE %}
-{% get_language_info for LANGUAGE_CODE as LANG %}
-
 <script>
 $(function () {
 	// get globar api var traidas desde api_tools
@@ -60,14 +56,13 @@ $(function () {
 			generateOptions(element,msg);
 		  }
 		});
-	}
+	}	
 	function generateOptions(element,data) {
 		element.append('<option value="">{% trans "select"|title %}</option>')
 		$.each(JSON.parse(data), function(){
 			element.append('<option value="'+ this.pk +'">'+ this.fields.name +'</option>')			
 		});
 	}
-
 	function clearOptions(element){
 		element.find('option').remove();
 	}
@@ -168,14 +163,6 @@ $(function () {
     	form.find('input[type=checkbox]').attr('checked', false);
 	});
 
-    $.datepicker.setDefaults(
-	  $.extend(
-	    $.datepicker.regional['{{LANG.code}}'],
-	    {'dateFormat':'dd/mm/yy'}
-	  )
-	);
-    // Generate datepciker by class
-    $( ".datepicker" ).datepicker();
 
 	
 });

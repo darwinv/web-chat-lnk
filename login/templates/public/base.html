@@ -1,9 +1,10 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		{% block title_outer %}
-	        <title>{% block title %}LinkUp | Log in{% endblock %}</title>
+	        <title>{% block title %}LinkUp | {% trans "Log in"|title %} {% endblock %}</title>
 	    {% endblock %}
 		{% block meta %}
 	        <meta charset="utf-8">
@@ -21,7 +22,7 @@
 
 	<body class="body-front">
 
-		{% block login %}
+		{% block content %}
 		{% endblock %}
 
 

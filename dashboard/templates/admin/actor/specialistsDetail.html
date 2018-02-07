@@ -10,7 +10,7 @@
           {% if data.photo and data.photo != "preview.png" %}
             <img src="{{data.photo}}" class="img-circle">
           {% else %}
-            <img src="{% static "dist/img/profile.png" %}" class="img-circle">
+            <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle">
           {% endif %}
           <p>
             {% if data.first_name or data.last_name %}
@@ -78,7 +78,7 @@
 
         <div class="text-center pull-left" >
             <div>                
-                <img src="{% static "dist/img/automatizacion.png" %}" class="img-circle">
+                <img src="{% static "dashboard/dist/img/automatizacion.png" %}" class="img-circle">
                 <p>
                   {% if data.category_name %}
                     <span>{{data.category_name}}</span>            

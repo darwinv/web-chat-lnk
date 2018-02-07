@@ -16,6 +16,7 @@ class ChoicesAPI:
         ('1', _('Passport')),
         ('2', _('Foreign Card')),
     )
+    
     user_status = (
         ('0', _('Pending')),
         ('1', _('Activate')),
@@ -28,11 +29,16 @@ class ChoicesAPI:
         ('n', _('Natural')),
         ('b', _('Business')),
     )
+    client_full_type_client = (
+        ('n', _('Natural Person')),
+        ('b', _('Business Person')),
+    )
 
     client_sex = (
         ('m', _('Male')),
         ('f', _('Female')),
     )
+
     client_civil_state = (
         ('c', _('cohabiting')),
         ('e', _('separated')),

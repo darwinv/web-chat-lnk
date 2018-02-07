@@ -3,18 +3,16 @@
 
 {% block frame_profile_img %}
 	<!-- HTML que muestra imagen de usuario y boton de subir archivo -->
-	
-
-	<div class="content-frame-profile-img">
+	<div class="content-frame-profile-img text-center">
 	  	<div id="frame-profile-img" >
 	  		
 	  	  {% if form.photo.value and form.photo.value != "preview.png" %}
             <img src="{{form.photo.value}}" class="img img-responsive foto-perfil" >
           {% else %}
-            <img src="{% static "dist/img/profile.png" %}" class="img img-responsive foto-perfil" >
+            <img src="{% static "dashboard/dist/img/profile.png" %}" class="img img-responsive foto-perfil pointer" title="{{ form.photo.label }}" >
           {% endif %}
 	    </div>
-	    <label class="btn btn-primary btn-upload" for="{{ form.photo.auto_id }}" title="Upload image file">
+	    <label class="btn btn-primary btn-upload hide" id="photo-cont-hide" for="{{ form.photo.auto_id }}" title="Upload image file">
 			
 			{{ form.photo }}
 			<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
