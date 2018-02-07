@@ -79,7 +79,10 @@ def get_app_by_user(role):
 
 
 
-def register(request):    
+def register(request):
+    """
+    Vista para generar formulario de Registro perona Nutaral o Juridica
+    """
     obj_api = api()
     type_client = 'n'
 
@@ -111,18 +114,19 @@ def register(request):
             })
 
             data['username'] = data['email_exact']
-            tools = Tools()
 
+            tools = Tools()
             if 'birthdate' in data:
                 data['birthdate'] = tools.date_format_to_db(date=data['birthdate'])
 
 
             result = obj_api.post(slug='clients/', arg=data)
 
-            if result and 'id' in result:
+            if result and 'id' in result:  # Si la respuesta de la API fue exitosa
+
                 if 'photo' in request.FILES:
                     photo = {'photo': request.FILES['photo']}
-                    obj_api.put(slug='upload_photo/' + str(result['id']), files=photo)
+                    obj_api.put(slug='upload_photo/' + str(result['id']), files=photo)  # Envio de foto del Cliente
 
                 # Process success
                 template = 'public/register_success.html'

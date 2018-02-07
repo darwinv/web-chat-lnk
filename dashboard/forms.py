@@ -62,7 +62,7 @@ class ErrorsFieldsApi(forms.Form):
                 for key in add_errors:
                     self.add_error(None, error=key)
 
-class SpecialistForm(ModelForm):
+class SpecialistForm(ModelForm, ErrorsFieldsApi):
     """
         Formulario para crear especialistas
     """
@@ -134,27 +134,7 @@ class SpecialistForm(ModelForm):
 
                             # cambiar a clase generica
 
-    def add_error_custom(self, add_errors=None):
-        """
-        Funcion creada para agregar errores, posteriormente a las validaciones
-        hechas por la clase Form
-        """
-        print(add_errors)
-        print("----------------FORM ERRRORS--------------------")
-        if add_errors:  # errores retornados por terceros
-            if type(add_errors) is dict:
-                for key in add_errors:
-                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
-                        self.add_error(key, add_errors[key])
-                    elif type(key) is list:
-                        for item in key:
-                            if item and item in self.fields:
-                                self.add_error(item, key[item])
-                    elif key == "non_field_errors":
-                        self.add_error(None, error=add_errors[key])
-            elif type(add_errors) is list:
-                for key in add_errors:
-                    self.add_error(None, error=key)
+   
 
     class Meta:
         """Meta."""
@@ -169,7 +149,7 @@ class SpecialistForm(ModelForm):
                   'business_name', 'type_specialist', 'document_number']
 
 
-class SellerForm(ModelForm):
+class SellerForm(ModelForm, ErrorsFieldsApi):
     """Formulario de Vendedores."""
 
     select_search = {'data-live-search':'true','class':'selectpicker'}
@@ -231,28 +211,7 @@ class SellerForm(ModelForm):
                   'telephone', 'cellphone', 'document_type', 'document_number',
                    'ruc' ]
 
-    # cambiar a clase generica
-    def add_error_custom(self, add_errors=None):
-        """
-        Funcion creada para agregar errores, posteriormente a las validaciones
-        hechas por la clase Form
-        """
-        print(add_errors)
-        print("----------------FORM ERRRORS--------------------")
-        if add_errors:  # errores retornados por terceros
-            if type(add_errors) is dict:
-                for key in add_errors:
-                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
-                        self.add_error(key, add_errors[key])
-                    elif type(key) is list:
-                        for item in key:
-                            if item and item in self.fields:
-                                self.add_error(item, key[item])
-                    elif key == "non_field_errors":
-                        self.add_error(None, error=add_errors[key])
-            elif type(add_errors) is list:
-                for key in add_errors:
-                    self.add_error(None, error=key)
+    
 
 
 

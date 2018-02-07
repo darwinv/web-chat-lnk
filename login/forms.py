@@ -120,7 +120,7 @@ class RegisterClientFormBusiness(RegisterClientForm, ErrorField):
     agent_firstname = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('agent firstname')}))
     agent_lastname = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('agent lastname')}))
     position = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Position in the company')}))
-    economic_sector = forms.CharField(widget=forms.Select(), required=False)
+    economic_sector = forms.CharField(widget=forms.Select())
     ciiu = forms.CharField(widget=forms.Select())
 
     def __init__(self, data=None, *args, **kwargs):
