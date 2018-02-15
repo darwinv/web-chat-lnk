@@ -8,9 +8,9 @@
 
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
           {% if data.photo and data.photo != "preview.png" %}
-            <img src="{{data.photo}}" class="img-circle">
+            <img src="{{data.photo}}" class="img-circle img-circle-linkup">
           {% else %}
-            <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle">
+            <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle img-circle-linkup">
           {% endif %}
           <p>
             {% if data.first_name or data.last_name %}

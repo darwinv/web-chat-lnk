@@ -24,8 +24,8 @@ urlpatterns = [
 
     # sellers
     url(r'^actor/sellers/$', actors.Seller().list, name='actor-sellers-list'),
-    url(r'^actor/sellers/(?P<pk>[0-9]+)$', actors.Seller().list, name='actor-sellers-detail'),
-    url(r'^actor/sellers/edit/(?P<pk>[0-9]+)$', actors.Seller().list, name='actor-sellers-edit'),
+    url(r'^actor/sellers/(?P<pk>[0-9]+)$', actors.Seller().detail, name='actor-sellers-detail'),
+    url(r'^actor/sellers/edit/(?P<pk>[0-9]+)$', actors.Seller().edit, name='actor-sellers-edit'),
     url(r'^actor/sellers/create/$', actors.Seller().create, name='actor-sellers-create'),
 
     # administrators

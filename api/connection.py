@@ -270,6 +270,7 @@ class api:
         headers = {'Authorization': 'Bearer ' + token}
         headers = dict(headers, **self._headers)
         print(slug)
+        print (headers)
         print("------------------------------------")
         try:
             r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            

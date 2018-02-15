@@ -38,6 +38,20 @@ class FilterForm(forms.Form):
 
         return self.cleaned_data
 
+class Operations():
+    def setAdress(self, initial, fields):
+        # Algoritmo para poder extraer subitem en el initial del form
+        # este algoritmo se realiza mas que todo para solventar el envio
+        # de data anidada desde la API RESTFULL
+        if initial:
+            for item in initial:
+                if type(initial[item]) is dict:
+                    for key in initial[item]:
+                        if key in fields:
+                            fields[key].initial = initial[item][key]
+        return fields
+
+
 class ErrorsFieldsApi(forms.Form):
 
     def add_error_custom(self, add_errors=None):
@@ -122,19 +136,9 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
             self.fields['username'].required = False
             self.fields['username'].widget.attrs['readonly'] = True
 
-        # Algoritmo para poder extraer subitem en el initial del form
-        # este algoritmo se realiza mas que todo para solventar el envio
-        # de data anidada desde la API RESTFULL
-        if initial:
-            for item in initial:
-                if type(initial[item]) is dict:
-                    for key in initial[item]:
-                        if key in self.fields:
-                            self.fields[key].initial = initial[item][key]
-
+        self.fields = Operations.setAdress(self, initial, self.fields)
+ 
                             # cambiar a clase generica
-
-   
 
     class Meta:
         """Meta."""
@@ -202,6 +206,8 @@ class SellerForm(ModelForm, ErrorsFieldsApi):
         if province:
             districts = District.objects.filter(province_id=province)
             self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
+
+        self.fields = Operations.setAdress(self, initial, self.fields)
 
     class Meta:
         """Meta de Vendedor."""

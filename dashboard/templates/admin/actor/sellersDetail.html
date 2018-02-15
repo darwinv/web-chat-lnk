@@ -8,7 +8,13 @@
     <div class="col-xs-12">
 
         <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
-          <img src="{% static "dashboard/dist/img/lte/user2-160x160.jpg" %}" class="img-circle">
+          {% if data.photo and data.photo != "preview.png" %}
+            <img src="{{data.photo}}" class="img-circle img-circle-linkup">
+          {% else %}
+          <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle img-circle-linkup">
+          {% endif %}
+
+          <!--<img src="{% static "dashboard/dist/img/lte/user2-160x160.jpg" %}" class="img-circle">-->
           <p>
             {% if data.first_name or data.last_name %}
               <span class="size18">{{data.first_name}} {{data.last_name}}</span>
@@ -29,7 +35,7 @@
         <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
           <div class="cont-user-title">              
             <span class="">{% trans "data"|title %}</span>
-            <!--<a href="{% url 'dashboard:actor-clients-edit' data.id %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>-->
+            <a href="{% url 'dashboard:actor-sellers-edit' data.id %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
           </div>
           <p>
 
@@ -42,8 +48,8 @@
             {% if data.user_transfer %}
               <span><i class="fa fa-star"></i> {{data.user_transfer}}</span>
             {% endif %}
-            {% if data.ciiu %}
-              <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu}}</span>
+            {% if data.ciiu_name %}
+              <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu_name}}</span>
             {% endif %}
             {% if data.nationality_name %}
               <span><i class="fa fa-globe"></i> {{data.nationality_name}}</span>

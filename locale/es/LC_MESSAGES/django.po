@@ -664,7 +664,7 @@ msgstr "pendiente por pagar"
 
 #: .\dashboard\views\account_status.py:103 .\dashboard\views\actors.py:398
 msgid "advance"
-msgstr "avanzar"
+msgstr "avance"
 
 #: .\dashboard\views\account_status.py:115
 msgid "reference of sale"

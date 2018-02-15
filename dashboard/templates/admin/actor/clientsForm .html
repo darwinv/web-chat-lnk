@@ -4,8 +4,9 @@
 
 {% block main_content_row %}
 
-    <form class="" action="{{sellers_form}}" method="POST" enctype="multipart/form-data" >
+    <form class="" action="{{specialists_form}}" method="POST" enctype="multipart/form-data" >
         {% csrf_token %}
+
         {{ form.non_field_errors }}
         <div class="form-group input-form-control col-xs-12">
             {% include 'admin/lib/_frame_profile_img.html' %}
@@ -33,7 +34,13 @@
                 {{ form.password.errors }}
             </div>
         {% endif %}
-
+        {% if form.confirm_password %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.confirm_password.label_tag }}
+                {{ form.confirm_password }}
+                {{ form.confirm_password.errors }}
+            </div>
+        {% endif %}
         {% if form.first_name %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.first_name.label_tag }}
@@ -69,6 +76,24 @@
                 {{ form.cellphone.errors }}
             </div>
         {% endif %}
+
+        {% if form.nationality %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.nationality.label_tag }}
+                {{ form.nationality }}
+                {{ form.nationality.errors }}
+            </div>
+        {% endif %}
+        {% if form.residence_country %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.residence_country.label_tag }}
+                {{ form.residence_country }}
+                {{ form.residence_country.errors }}
+            </div>
+        {% endif %}
+
+
+
         {% if form.document_type %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.document_type.label_tag }}
@@ -84,39 +109,18 @@
             </div>
         {% endif %}
 
-        {% if form.img_document_number %}
-            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-                {{ form.img_document_number.label_tag }}
-                <label class="btn btn-primary btn-upload col-xs-12" for="{{ form.img_document_number.auto_id }}" title="Upload image file">
-                    {{ form.img_document_number }}
-                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
-                        <span class="fa fa-upload">&nbsp;{{ form.img_document_number.label_tag }}</span>
-                    </span>
-                </label>
-                {{ form.img_document_number.errors }}
-            </div>
-        {% endif %}
-
-        {% if form.nationality %}
-            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-                {{ form.nationality.label_tag }}
-                {{ form.nationality }}
-                {{ form.nationality.errors }}
-            </div>
-        {% endif %}
-
-        {% if form.residence_country %}
-            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-                {{ form.residence_country.label_tag }}
-                {{ form.residence_country }}
-                {{ form.residence_country.errors }}
-            </div>
-        {% endif %}
         {% if form.ruc %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.ruc.label_tag }}
                 {{ form.ruc }}
-                {{ form.ruc.errors }}
+                {{ form.ruc.errors }}s
+            </div>
+        {% endif %}
+        {% if form.category %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+                {{ form.category.errors }}
             </div>
         {% endif %}
         {% if form.department %}
@@ -148,44 +152,54 @@
             </div>
         {% endif %}
         {% if form.foreign_address %}
-            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">                
-
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.foreign_address.label_tag }}
                 {{ form.foreign_address }}
                 {{ form.foreign_address.errors }}
             </div>
         {% endif %}
-        {% if form.ciiu %}
+        {% if form.business_name %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-                <label for="id_ciiu" class="no-cap">{{ form.ciiu.label }}:</label>                
-                {{ form.ciiu }}
-                {{ form.ciiu.errors }}
+                {{ form.business_name.label_tag }}
+                {{ form.business_name }}
+                {{ form.business_name.errors }}
+            </div>
+        {% endif %}
+        {% if form.type_specialist %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.type_specialist.label_tag }}
+                {{ form.type_specialist }}
+                {{ form.type_specialist.errors }}
+            </div>
+        {% endif %}
+        {% if form.payment_per_answer %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.payment_per_answer.label_tag }}
+                {{ form.payment_per_answer }}
+                {{ form.payment_per_answer.errors }}
+            </div>
+        {% endif %}
+
+        {% if form.img_document_number %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.img_document_number.label_tag }}
+                <label class="btn btn-primary btn-upload col-xs-12" for="{{ form.img_document_number.auto_id }}" title="Upload image file">
+                    {{ form.img_document_number }}
+                    <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
+                        <span class="fa fa-upload">&nbsp;{{ form.img_document_number.label_tag }}</span>
+                    </span>
+                </label>
+                {{ form.img_document_number.errors }}
             </div>
         {% endif %}
         <hr>
         <div class="col-xs-12 text-center">
             <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">
 
-            <a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
+            <a href="{% url 'dashboard:actor-specialists-list' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
         </div>
     </form>
 {% endblock main_content_row %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% block extra_head %}
   <link rel="stylesheet" href='{% static "dashboard/cropper/dist/cropper.css" %}' >
@@ -195,5 +209,5 @@
 {% block extra_foot %}
   <script src='{% static "dashboard/cropper/dist/cropper.min.js" %}' ></script>
   {% include 'admin/lib/_cropper.html' %}
-  <script src='{% static "dashboard/dist/js/seller.js" %}' ></script>
+  <script src='{% static "dashboard/dist/js/specialist.js" %}' ></script>
 {% endblock extra_foot %}
