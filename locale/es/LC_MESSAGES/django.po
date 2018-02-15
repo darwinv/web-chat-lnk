@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 16:26-0500\n"
+"POT-Creation-Date: 2018-02-12 10:33-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,7 +267,7 @@ msgstr "tipo de documento"
 msgid "document number"
 msgstr "numero de documento"
 
-#: .\api\models.py:94 .\dashboard\forms.py:57
+#: .\api\models.py:94 .\dashboard\forms.py:79
 msgid "upload document"
 msgstr "subir un documento"
 
@@ -286,7 +286,8 @@ msgstr "anonimo"
 msgid "updated at"
 msgstr "actualizado en"
 
-#: .\api\models.py:99 .\dashboard\forms.py:59 .\dashboard\forms.py:155
+#: .\api\models.py:99 .\dashboard\forms.py:81 .\dashboard\forms.py:158
+#: .\login\forms.py:23
 msgid "nationality"
 msgstr "nacionalidad"
 
@@ -294,92 +295,93 @@ msgstr "nacionalidad"
 msgid "role"
 msgstr "rol"
 
-#: .\api\models.py:101 .\api\models.py:104 .\dashboard\forms.py:62
-#: .\dashboard\forms.py:163
+#: .\api\models.py:101 .\api\models.py:104 .\dashboard\forms.py:84
+#: .\dashboard\forms.py:166
 msgid "address"
 msgstr "dirección"
 
-#: .\api\models.py:103 .\dashboard\forms.py:60 .\dashboard\forms.py:156
+#: .\api\models.py:103 .\dashboard\forms.py:82 .\dashboard\forms.py:159
+#: .\login\forms.py:22
 msgid "residence country"
 msgstr "país de residencia"
 
-#: .\dashboard\forms.py:48 .\dashboard\forms.py:157 .\dashboard\forms.py:240
+#: .\dashboard\forms.py:70 .\dashboard\forms.py:160 .\dashboard\forms.py:222
 msgid "first name"
 msgstr "primer nombre"
 
-#: .\dashboard\forms.py:49 .\dashboard\forms.py:158 .\dashboard\forms.py:241
+#: .\dashboard\forms.py:71 .\dashboard\forms.py:161 .\dashboard\forms.py:223
 msgid "last name"
 msgstr "apellidos"
 
-#: .\dashboard\forms.py:50 .\dashboard\views\actors.py:77
+#: .\dashboard\forms.py:72 .\dashboard\views\actors.py:77
 #: .\dashboard\views\actors.py:502
 msgid "category"
 msgstr "categoría"
 
-#: .\dashboard\forms.py:51 .\dashboard\forms.py:159
+#: .\dashboard\forms.py:73 .\dashboard\forms.py:162
 msgid "department"
 msgstr "departamento"
 
-#: .\dashboard\forms.py:52 .\dashboard\forms.py:160
+#: .\dashboard\forms.py:74 .\dashboard\forms.py:163
 msgid "province"
 msgstr "provincia"
 
-#: .\dashboard\forms.py:53 .\dashboard\forms.py:161
+#: .\dashboard\forms.py:75 .\dashboard\forms.py:164
 msgid "district"
 msgstr "distrito"
 
-#: .\dashboard\forms.py:54 .\dashboard\forms.py:162
+#: .\dashboard\forms.py:76 .\dashboard\forms.py:165
 msgid "street"
 msgstr "calle"
 
-#: .\dashboard\forms.py:55 .\dashboard\forms.py:164 .\login\forms.py:31
+#: .\dashboard\forms.py:77 .\dashboard\forms.py:167 .\login\forms.py:32
 msgid "upload a photo"
 msgstr "subir una foto"
 
-#: .\dashboard\forms.py:63
+#: .\dashboard\forms.py:85
 msgid "ruc"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:154 .\login\forms.py:50
+#: .\dashboard\forms.py:157 .\login\forms.py:100 .\login\forms.py:137
 msgid "CIIU"
 msgstr "CIIU"
 
-#: .\dashboard\forms.py:242 .\dashboard\views\actors.py:77
+#: .\dashboard\forms.py:224 .\dashboard\views\actors.py:77
 #: .\dashboard\views\actors.py:306 .\dashboard\views\actors.py:397
 #: .\dashboard\views\actors.py:501
 msgid "RUC"
 msgstr "Ruc"
 
-#: .\dashboard\forms.py:243
+#: .\dashboard\forms.py:225
 msgid "mail"
 msgstr "correo"
 
-#: .\dashboard\forms.py:244
+#: .\dashboard\forms.py:226
 msgid "number of plans sold greater than"
 msgstr "números de planes vendidos mas de"
 
-#: .\dashboard\forms.py:245
+#: .\dashboard\forms.py:227
 msgid "number of queries sold greater than"
 msgstr "numero de consultas vendidas mas de"
 
-#: .\dashboard\forms.py:257
+#: .\dashboard\forms.py:239
 msgid "from"
 msgstr "desde"
 
-#: .\dashboard\forms.py:261
+#: .\dashboard\forms.py:243
 msgid "until"
 msgstr "hasta"
 
-#: .\dashboard\forms.py:270
+#: .\dashboard\forms.py:252
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:111
 msgid "seller"
 msgstr "vendedor"
 
-#: .\dashboard\forms.py:271
+#: .\dashboard\forms.py:253
 msgid "Show Total"
 msgstr "Mostrar total"
 
-#: .\dashboard\forms.py:292
+#: .\dashboard\forms.py:274
 msgid "status"
 msgstr "estatus"
 
@@ -710,7 +712,7 @@ msgstr "unidades"
 msgid "amount"
 msgstr "cantidad"
 
-#: .\dashboard\views\account_status.py:138 .\login\forms.py:17
+#: .\dashboard\views\account_status.py:138 .\login\forms.py:18
 msgid "Nick"
 msgstr "Nick"
 
@@ -784,7 +786,7 @@ msgstr "crear especialista"
 msgid "edit specialist"
 msgstr "editar especialista"
 
-#: .\dashboard\views\actors.py:303 .\login\forms.py:90
+#: .\dashboard\views\actors.py:303 .\login\forms.py:117
 msgid "business name"
 msgstr "nombre de la empresa"
 
@@ -885,115 +887,115 @@ msgstr "Español"
 msgid "English"
 msgstr "Ingles"
 
-#: .\login\forms.py:9
+#: .\login\forms.py:10
 msgid "User"
 msgstr "Usuario"
 
-#: .\login\forms.py:10 .\login\forms.py:18
+#: .\login\forms.py:11 .\login\forms.py:19
 msgid "Password"
 msgstr "Contraseña"
 
-#: .\login\forms.py:19
+#: .\login\forms.py:20
 msgid "Repeat Password"
 msgstr "Repite Contraseña"
 
-#: .\login\forms.py:20
+#: .\login\forms.py:21
 msgid "Identification document"
 msgstr "Documento de identidad"
 
-#: .\login\forms.py:26 .\login\forms.py:27
+#: .\login\forms.py:27 .\login\forms.py:28
 msgid "Address"
 msgstr "Dirección"
 
-#: .\login\forms.py:28
+#: .\login\forms.py:29
 msgid "Email"
 msgstr "Correo Electronico"
 
-#: .\login\forms.py:29
+#: .\login\forms.py:30
 msgid "Telephone"
 msgstr "Teléfono"
 
-#: .\login\forms.py:30
+#: .\login\forms.py:31
 msgid "Cellphone"
 msgstr "Celular"
 
-#: .\login\forms.py:33
+#: .\login\forms.py:34
 msgid "Describe your activity"
 msgstr "Describe tu actividad"
 
-#: .\login\forms.py:34
+#: .\login\forms.py:35
 msgid "Tell us what you do to know more about yourself."
 msgstr "Cuéntanos a que te dedicas para conocer algo más acerca de tí."
 
-#: .\login\forms.py:44
+#: .\login\forms.py:45
 msgid "Department"
 msgstr "Departamento"
 
-#: .\login\forms.py:46
+#: .\login\forms.py:47 .\login\forms.py:58
 msgid "Province"
 msgstr "Provincia"
 
-#: .\login\forms.py:47
+#: .\login\forms.py:48 .\login\forms.py:62
 msgid "District"
 msgstr "Distrito"
 
-#: .\login\forms.py:53
+#: .\login\forms.py:65 .\login\forms.py:66
 msgid "Country"
 msgstr "País"
 
-#: .\login\forms.py:60
+#: .\login\forms.py:82
 msgid "Last name"
 msgstr "Apellidos"
 
-#: .\login\forms.py:61
+#: .\login\forms.py:83
 msgid "First name"
 msgstr "Nombres"
 
-#: .\login\forms.py:62
+#: .\login\forms.py:84
 msgid "civil state"
 msgstr "estado civil"
 
-#: .\login\forms.py:63
+#: .\login\forms.py:85
 msgid "birthdate"
 msgstr "Fecha de nacimiento"
 
-#: .\login\forms.py:64
+#: .\login\forms.py:86
 msgid "Degree of instruction"
 msgstr "Grado de instrucción"
 
-#: .\login\forms.py:65
+#: .\login\forms.py:87
 msgid "Institute"
 msgstr "Instituto"
 
-#: .\login\forms.py:66
+#: .\login\forms.py:88
 msgid "Profession"
 msgstr "Profesión"
 
-#: .\login\forms.py:67
+#: .\login\forms.py:89
 msgid "Ocupation"
 msgstr "Ocupación"
 
-#: .\login\forms.py:76
+#: .\login\forms.py:103
 msgid "Level instruction"
 msgstr "Nivel de instrucción"
 
-#: .\login\forms.py:91
+#: .\login\forms.py:118
 msgid "commercial reason"
 msgstr "razon comercial"
 
-#: .\login\forms.py:93
+#: .\login\forms.py:120
 msgid "agent firstname"
 msgstr "Nombres de representante"
 
-#: .\login\forms.py:94
+#: .\login\forms.py:121
 msgid "agent lastname"
 msgstr "Apellidos de representante"
 
-#: .\login\forms.py:95
+#: .\login\forms.py:122
 msgid "Position in the company"
 msgstr "Cargo en la compañia"
 
-#: .\login\forms.py:104
+#: .\login\forms.py:134
 msgid "economic sector"
 msgstr "sector economico"
 
@@ -1018,11 +1020,25 @@ msgstr "Registrate"
 msgid "register"
 msgstr "registrar"
 
-#: .\login\templates\public\register_business.html:79
-#: .\login\templates\public\register_natural.html:99
+#: .\login\templates\public\register_business.html:159
+#: .\login\templates\public\register_natural.html:180
 msgid "Sing In"
 msgstr "Registrarte"
 
-#: .\login\views.py:44
+#: .\login\templates\public\register_success.html:15
+msgid "success"
+msgstr "éxito"
+
+#: .\login\templates\public\register_success.html:16
+msgid ""
+"Thank you for registering in Linkup, a message will be sent to your mailbox "
+"when your account is verified by us."
+msgstr "Gracias por registrarse en Linkup, se enviará un mensaje a su buzón cuando su cuenta sea verificada por nosotros."
+
+#: .\login\templates\public\register_success.html:19
+msgid "continue"
+msgstr "continue"
+
+#: .\login\views.py:45
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"

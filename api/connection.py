@@ -211,9 +211,8 @@ class api:
             if r.status_code == 401:
                 #logout = requests.get(reverse('login:logout'))
                 #return HttpResponseRedirect(reverse('login:logout'))
-                print("Location:http://newurl.com/foobar")
                 print("---------------401resp---------------------")
-            else:                
+            else:
                 return r.json()
 
         except Exception as e:
