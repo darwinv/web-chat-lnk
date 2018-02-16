@@ -1,0 +1,22 @@
+{% load static i18n %}
+<!-- Definicion de lenguaje formato 'ES' -->
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as LANG %}
+<script>
+$(function () {
+
+	//CONFIGURACION DE DATE PICKER GENERICO
+    $.datepicker.setDefaults(
+	  $.extend(
+	    $.datepicker.regional['{{LANG.code}}'],
+	    {'dateFormat':'dd/mm/yy'}
+	  )
+	);
+    // Generate datepciker by class
+    $( ".datepicker" ).datepicker({ shortYearCutoff: 1,
+        changeYear: true,
+        maxDate: 0,
+        yearRange: "-90Y:-0Y" });
+
+});
+</script>

@@ -34,6 +34,7 @@ class Specialist(Actor):
     vars_page = {
         'btn_specialists_class': 'active',
         'name_create_URL': _create,
+        'add_actor': True
     }
 
     @method_decorator(login_required)
@@ -150,6 +151,8 @@ class Specialist(Actor):
                     # Mostrar Errores en Form
                     form.add_error_custom(
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
+                    print("=======  form error  =========")
+                    print(form)
 
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
 
@@ -175,6 +178,8 @@ class Specialist(Actor):
 
 
             # check whether it's valid:
+            print("===========  edit specialist post form pre  ===========")
+            print(form)
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
@@ -188,7 +193,9 @@ class Specialist(Actor):
                     }
                 })
                 # return JsonResponse(data)
+
                 result = obj_api.put(slug='specialists/' + pk, token=token, arg=data)
+
 
                 if result and 'id' in result:
                     # Agregando foto del Usuario
@@ -206,29 +213,34 @@ class Specialist(Actor):
                     # Mostrar Errores en Form
                     form.add_error_custom(
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
-
+                    print("--------------------else--------------------------")
+                    #print(form)
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
             else:
                 print(form.errors)
                 print("------------------------------------")
         else:
-            specilist = obj_api.get(slug='specialists/' + pk, token=token)
-
-            form = self.generate_form_specialist(specilist=specilist, form_edit=True)
+            specialist = obj_api.get(slug='specialists/' + pk, token=token)
+            print ("================= marko =====================================================")
+            print (specialist)
+            form = self.generate_form_specialist(specialist=specialist, form_edit=True)
 
         title_page = _('edit specialist').title()
         vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._edit, args=(pk,))
+#        print (form)
+#        print (vars_page) 
+#        print (specialists_form)
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
 
-    def generate_form_specialist(self, data=None, files=None, specilist=None, form_edit=None):
+    def generate_form_specialist(self, data=None, files=None, specialist=None, form_edit=None):
         """
         Funcion para generar traer formulario de especialistas
 
         :param data: objeto POST o dict de valores relacional
-        :param specilist: dict que contiene los valores iniciales del usuario
+        :param specialist: dict que contiene los valores iniciales del usuario
         :param form_edit: Bolean para saber si sera un formulario para editar usuario
         :return: objeto Form de acuerdo a parametros
         """
@@ -238,14 +250,14 @@ class Specialist(Actor):
         # Validamos que el listado este en la respuesta
         # si no cumple las validaciones por Default el valor sera None
         # Si el usuario tiene department, traemos provincia
-        if specilist and 'address' in specilist and type(specilist['address']) is dict and 'department' in specilist['address']:
-            department = specilist['address']['department']
+        if specialist and 'address' in specialist and type(specialist['address']) is dict and 'department' in specialist['address']:
+            department = specialist['address']['department']
 
-        if specilist and 'address' in specilist and type(specilist['address']) is dict and 'province' in specilist['address']:
-            province = specilist['address']['province']
+        if specialist and 'address' in specialist and type(specialist['address']) is dict and 'province' in specialist['address']:
+            province = specialist['address']['province']
 
         return SpecialistForm(data=data, files=files, department=department,
-                              province=province, initial=specilist, form_edit=form_edit)
+                              province=province, initial=specialist, form_edit=form_edit)
 
 
     @method_decorator(login_required)
@@ -269,6 +281,7 @@ class Client(Actor):
     vars_page = {
         'btn_clients_class': 'active',
         'name_create_URL': _create,
+        'add_actor': False
     }
 
     @method_decorator(login_required)
@@ -310,32 +323,113 @@ class Client(Actor):
         # Titulo de la vista y variables de la Clase
         title_page = _('clients').title()
         vars_page = self.generate_header(custom_title=title_page)
-
         return render(request, 'admin/actor/clientsList.html',
                       {'table': table, 'vars_page': vars_page})
 
     @method_decorator(login_required)
-    def detail(self, request, id):
+    def detail(self, request, pk):
         obj_api = api()
-        data = obj_api.get(slug='clients/' + id, token=request.session['token'])
-
+        data = obj_api.get(slug='clients/' + pk, token=request.session['token'])
         # Si la data del usuario no es valida
         if type(data) is not dict or 'id' not in data:
             raise Http404()
 
         # Titulo de la vista y variables de la Clase
-        title_page = "{} - {}".format(_('specialist').title(), _('detail').title())
+        title_page = "{} - {}".format(_('Cliente').title(), _('detail').title())
         vars_page = self.generate_header(custom_title=title_page)
 
         return render(request, 'admin/actor/clientsDetail.html', {'data': data, 'vars_page': vars_page})
+   
 
     @method_decorator(login_required)
     def create(self, request):
         pass
 
     @method_decorator(login_required)
-    def edit(self, request, id):
-        pass
+    def edit(self, request, pk):
+        obj_api = api()
+        token = request.session['token']
+
+        if request.method == 'POST':
+            form = self.generate_form_client(data=request.POST, form_edit=True,
+                                               files=request.FILES)
+
+
+            # check whether it's valid:
+            if form.is_valid():
+                # Tomamos todo el formulario para enviarlo a la API
+                data = form.cleaned_data
+
+                data.update({
+                    "address": {
+                        "street": data["street"],
+                        "department": data["department"],
+                        "province": data["province"],
+                        "district": data["district"],
+                    }
+                })
+                # return JsonResponse(data)
+                result = obj_api.put(slug='clients/' + pk, token=token, arg=data)
+
+                if result and 'id' in result:
+                    # Agregando foto del Usuario
+                    if 'photo' in request.FILES:
+                        photo = {'photo': request.FILES['photo']}
+                        obj_api.put(slug='upload_photo/' + pk, token=token, files=photo)
+
+                    # Se agrega documento del usuario
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + pk, token=token, files=img_document_number)
+
+                    return HttpResponseRedirect(reverse(self._list))
+                else:
+                    # Mostrar Errores en Form
+                    form.add_error_custom(
+                        add_errors=result)  # Agregamos errores retornados por la app para este formulario
+
+                    return render(request, 'admin/actor/clientsForm.html', {'form': form})
+            else:
+                print(form.errors)
+                print("------------------------------------")
+        else:
+            specilist = obj_api.get(slug='clients/' + pk, token=token)
+
+            form = self.generate_form_client(specilist=specilist, form_edit=True)
+        title_page = _('edit client').title()
+        vars_page = self.generate_header(custom_title=title_page)
+        specialists_form = reverse(self._edit, args=(pk,))
+#        print (form)
+#        print (vars_page) 
+#        print (specialists_form)
+        return render(request, 'admin/actor/clientsForm.html',
+                      {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
+
+
+    def generate_form_client(self, data=None, files=None, specilist=None, form_edit=None):
+        """
+        Funcion para generar traer formulario de especialistas
+
+        :param data: objeto POST o dict de valores relacional
+        :param specilist: dict que contiene los valores iniciales del usuario
+        :param form_edit: Bolean para saber si sera un formulario para editar usuario
+        :return: objeto Form de acuerdo a parametros
+        """
+        department = province = None
+
+
+        # Validamos que el listado este en la respuesta
+        # si no cumple las validaciones por Default el valor sera None
+        # Si el usuario tiene department, traemos provincia
+        if specilist and 'address' in specilist and type(specilist['address']) is dict and 'department' in specilist['address']:
+            department = specilist['address']['department']
+
+        if specilist and 'address' in specilist and type(specilist['address']) is dict and 'province' in specilist['address']:
+            province = specilist['address']['province']
+
+        return SpecialistForm(data=data, files=files, department=department,
+                              province=province, initial=specilist, form_edit=form_edit)
+
 
     @method_decorator(login_required)
     def delete(self, request):
@@ -352,6 +446,7 @@ class Seller(Actor):
     vars_page = {
         'btn_sellers_class': 'active',
         'name_create_URL': _create,
+        'add_actor' : True
     }
 
     @method_decorator(login_required)
@@ -370,12 +465,14 @@ class Seller(Actor):
 
         # Traer data para el listado
         data = obj_api.get(slug='sellers/', arg=filters, token=token)
-
+        #print ("=======dataaaaaaaaaaaa======================")
+#        print (data)
         # Definimos columnas adicionales/personalizadas
         custom_column = {
             "last_name": {'type': 'concat', 'data': ('last_name', 'first_name'), 'separator': ' '},
             "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
-            "advance": {'type': 'concat', 'data': ('count_plans_seller','quota'), 'separator': '/'},
+            "advance": {'type': 'concat', 'data': ('',''), 'separator': ''},
+            #"advance": {'type': 'concat', 'data': ('count_plans_seller','quota'), 'separator': '/'},
             "ubigeo": {'type': 'concat', 'data': {'address': ('department_name', 'province_name', 'district_name')},
                        'separator': '/'},
             "seeclients": {'type': 'link', 'data': {'url': self._list_clients, 'arguments': {'seller': 'id'},
@@ -404,8 +501,24 @@ class Seller(Actor):
         # Titulo de la vista y variables de la Clase
         vars_page = self.generate_header(custom_title=title_page)
 
+
         return render(request, 'admin/actor/sellersList.html',
                       {'table': table, 'vars_page': vars_page, 'form_filters': form_filters})
+
+    @method_decorator(login_required)
+    def detail(self, request, pk):
+        obj_api = api()
+        data = obj_api.get(slug='sellers/' + pk, token=request.session['token'])
+        # Si la data del usuario no es valida
+
+        if type(data) is not dict or 'id' not in data:
+            raise Http404()
+
+        # Titulo de la vista y variables de la Clase
+        title_page = "{} - {}".format(_('Seller').title(), _('detail').title())
+        vars_page = self.generate_header(custom_title=title_page)
+
+        return render(request, 'admin/actor/sellersDetail.html', {'data': data, 'vars_page': vars_page})
 
     @method_decorator(login_required)
     def create(self, request):
@@ -456,29 +569,86 @@ class Seller(Actor):
         return render(request, 'admin/actor/sellersForm.html',
                       {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
 
+
     def generate_form_seller(self, data=None, files=None, seller=None, form_edit=None):
         """
-        Funcion para generar traer formulario de especialistas.
+        Funcion para generar traer formulario de especialistas
 
         :param data: objeto POST o dict de valores relacional
         :param specilist: dict que contiene los valores iniciales del usuario
         :param form_edit: Bolean para saber si sera un formulario para editar usuario
-        :return: objeto Form de acuerdo a parametros.
+        :return: objeto Form de acuerdo a parametros
         """
         department = province = None
-        #
-        #
-        # Validamos que el listado este en la respuesta
-        # # si no cumple las validaciones por Default el valor sera None
-        # # Si el usuario tiene department, traemos provincia
-        # if specilist and 'address' in specilist and 'department' in specilist['address']:
-        #     department = specilist['address']['department']
-        #
-        # if specilist and 'address' in specilist and 'province' in specilist['address']:
-        #     province = specilist['address']['province']
 
+
+        # Validamos que el listado este en la respuesta
+        # si no cumple las validaciones por Default el valor sera None
+        # Si el usuario tiene department, traemos provincia
+        if seller and 'address' in seller and type(seller['address']) is dict and 'department' in seller['address']:
+            department = seller['address']['department']
+
+        if seller and 'address' in seller and type(seller['address']) is dict and 'province' in seller['address']:
+            province = seller['address']['province']
+      
         return SellerForm(data=data, files=files, department=department,
-                          province=province, initial=seller, form_edit=form_edit)
+                              province=province, initial=seller, form_edit=form_edit)
+
+    @method_decorator(login_required)
+    def edit(self, request, pk):
+        obj_api = api()
+        token = request.session['token']
+        if request.method == 'POST':
+            form = self.generate_form_seller(data=request.POST, form_edit=True,
+                                               files=request.FILES)
+            # check whether it's valid:
+            if form.is_valid():
+                # Tomamos todo el formulario para enviarlo a la API
+                data = form.cleaned_data
+                data.update({
+                    "address": {
+                        "street": data["street"],
+                        "department": data["department"],
+                        "province": data["province"],
+                        "district": data["district"],
+                    }
+                })
+            
+                # return JsonResponse(data)
+
+                result = obj_api.put(slug='sellers/' + pk, token=token, arg=data)
+
+                if result and 'id' in result:
+                    # Agregando foto del Usuario
+                    if 'photo' in request.FILES:
+                        photo = {'photo': request.FILES['photo']}
+                        obj_api.put(slug='upload_photo/' + pk, token=token, files=photo)
+
+                    # Se agrega documento del usuario
+                    if 'img_document_number' in request.FILES:
+                        img_document_number = {'img_document_number': request.FILES['img_document_number']}
+                        obj_api.put(slug='upload_document/' + pk, token=token, files=img_document_number)
+
+                    return HttpResponseRedirect(reverse(self._list))
+                else:
+                    # Mostrar Errores en Form
+                    form.add_error_custom(
+                        add_errors=result)  # Agregamos errores retornados por la app para este formulario
+
+                    return render(request, 'admin/actor/sellersForm.html', {'form': form})
+            
+        else:
+            seller = obj_api.get(slug='sellers/' + pk, token=token)
+            form = self.generate_form_seller(seller=seller, form_edit=True)
+            
+        title_page = _('edit seller').title()
+        vars_page = self.generate_header(custom_title=title_page)
+        sellers_form = reverse(self._edit, args=(pk,))
+#        print (form)
+#        print (vars_page) 
+#        print (specialists_form)
+        return render(request, 'admin/actor/sellersForm.html',
+                      {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
 
 class Administrator(Actor):
     vars_page = {

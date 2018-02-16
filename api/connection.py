@@ -209,20 +209,55 @@ class api:
             r = requests.get(self._url + slug, headers=headers, params=arg)
 
             if r.status_code == 401:
-                logout = requests.get(reverse('login:logout'))
-                logout.url
-            else:                
+                #logout = requests.get(reverse('login:logout'))
+                #return HttpResponseRedirect(reverse('login:logout'))
+                print("---------------401resp---------------------")
+            else:
                 return r.json()
 
         except Exception as e:
             print(e.args)
             print("---------------ERROR GET---------------")
 
-    def post(self, token, slug='', arg=None, files=None):
-        headers = {'Authorization': 'Bearer ' + token, 'Accept-Language': self._language}
-        headers = dict(headers, **self._headers)
+    def post(self, token='', slug='', arg=None, files=None):
+        headers = {'Accept-Language': self._language}
+
+        if token:
+            headers['Authorization'] = 'Bearer {}'.format(token)
+            headers = dict(headers, **self._headers)
 
         try:
+            # arg2 = {
+            #     "username": "darwinjesus",
+            #     "password": "intel12345",
+            #     "nick": "dar",
+            #     "type_client": "n",
+            #     "first_name": "darwin",
+            #     "last_name": "vasquez",
+            #     "civil_state": "s",
+            #     "birthdate": "2017-09-19",
+            #     "address": {
+            #         "street": "esteban camere",
+            #         "department": 1,
+            #         "province": 1,
+            #         "district": 1
+            #     },
+            #     "sex": "m",
+            #     "document_type": "2",
+            #     "document_number": "20122984",
+            #     "email_exact": "darwinio_vasqz@gmail.com",
+            #     "telephone": "921471559",
+            #     "cellphone": "921471559",
+            #     "activity_description": "Loremp iptsum",
+            #     "level_instruction": 1,
+            #     "institute": "UNEFA",
+            #     "profession": "Administrador",
+            #     "ocupation": "0",
+            #     "about": "iptsum aabout",
+            #     "ciiu": "10",
+            #     "nationality": 1,
+            #     "residence_country": 1
+            # }
             r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
             return r.json()
             
@@ -234,6 +269,7 @@ class api:
         headers = {'Authorization': 'Bearer ' + token}
         headers = dict(headers, **self._headers)
         print(slug)
+        print (headers)
         print("------------------------------------")
         try:
             r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            

@@ -1,0 +1,182 @@
+{% extends 'public/base.html' %}
+{% load i18n static %}
+
+{% block title %}LinkUp | {% trans "register"|title %}{% endblock %}
+
+{% block content %}
+	<div class="login-logo">
+      {% block logo_text %}<img src="{% static "dashboard/dist/img/logo.png" %}" class="responsive-img"> {% endblock %}
+    </div>
+	<form class="register-client-form" action="{{sellers_form}}" method="POST" enctype="multipart/form-data" >
+		{% csrf_token %}		
+		
+		<div class="container">
+  			<div class="row">
+				{{ form.non_field_errors }}
+
+				<div class="col-xs-12 col-md-3">
+					<div class="form-group input-form-control col-xs-12">
+			            {% include 'admin/lib/_frame_profile_img.html' %}
+			        </div>
+
+			        <div class="col-xs-12">
+			        	<div class="input-form-control">
+			        		{{form.type_client}}
+			        		{{form.type_client.errors }}
+		            	</div>
+			        </div>
+
+				</div>
+				<div class="col-xs-12 col-md-3">
+
+					<div class="input-form-control">
+						{{form.ruc}}
+						{{form.ruc.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.business_name}}
+						{{form.business_name.errors }}
+		            </div>
+		            <div class="input-form-control">
+						{{form.commercial_reason}}
+						{{form.commercial_reason.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.nick}}
+						{{form.nick.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.password}}
+						{{form.password.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.repassword}}
+						{{form.repassword.errors }}
+		            </div>
+					<label class="first-cap">
+							{{form.residence_country.label}}
+					</label>
+					<div class="input-form-control">
+						{{form.residence_country}}
+						{{form.residence_country.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.street}}
+						{{form.street.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.department}}
+						{{form.department.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.province}}
+						{{form.province.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.district}}
+						{{form.district.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.foreign_address}}
+						{{form.foreign_address.errors }}
+		            </div>
+
+				</div>
+				<div class="col-xs-12 col-md-3">
+
+					<div class="input-form-control">
+						{{form.email_exact}}
+						{{form.email_exact.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.telephone}}
+						{{form.telephone.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.cellphone}}
+						{{form.cellphone.errors }}
+		            </div>
+
+					<div class="input-form-control">
+						{{form.economic_sector}}					
+						{{form.economic_sector.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.ciiu}}
+						{{form.ciiu.errors }}
+		            </div>
+					<label class="first-cap">
+							{{form.activity_description.label}}
+					</label>
+					<div class="input-form-control">
+						{{form.activity_description}}
+						{{form.activity_description.errors }}
+		            </div>
+
+				</div>
+				<div class="col-xs-12 col-md-3">				
+					
+					<div class="input-form-control">
+						{{form.agent_firstname}}
+						{{form.agent_firstname.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.agent_lastname}}
+						{{form.agent_lastname.errors }}
+		            </div>
+
+					<label class="first-cap">
+							{{form.nationality.label}}
+					</label>
+
+					<div class="input-form-control">
+						{{form.nationality}}
+						{{form.nationality.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.document_type}}
+						{{form.document_type.errors }}
+		            </div>
+					<div class="input-form-control">
+						{{form.document_number}}
+						{{form.document_number.errors }}
+		            </div>
+					
+					<div class="input-form-control">
+						{{form.position}}	
+						{{form.position.errors }}
+		            </div>
+					<label class="first-cap">
+							{{form.about.label}}
+					</label>
+					<div class="input-form-control">
+						{{form.about}}
+						{{form.about.errors }}
+		            </div>
+				</div>
+
+				<div class="text-center col-xs-12 marT20">
+					<button type="submit" class="btn btn-lightBlue">{% trans "Sing In"|title %}</button>
+				</div>
+			</div>
+		</div>
+		
+
+        
+
+	</form>
+{% endblock %}
+
+
+{% block extra_head %}
+  <link rel="stylesheet" href='{% static "dashboard/cropper/dist/cropper.css" %}' >
+{% endblock extra_head %}
+
+
+{% block extra_foot %}
+  <script src='{% static "dashboard/cropper/dist/cropper.min.js" %}' ></script>
+  {% include 'admin/lib/_cropper.html' %}
+  {% include 'admin/lib/_main_scripts.html' %}
+  {% include 'public/lib/_register_script.html' %}  
+  <script src='{% static "login/js/client.js" %}' ></script>
+{% endblock extra_foot %}

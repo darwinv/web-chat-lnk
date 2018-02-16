@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n %}
 
 <script>
     $(function () {
@@ -7,6 +7,7 @@
       var $frame      = $('#frame-profile-img');  // Contenedor de foto perfil
       var $imageProf  = $('#frame-profile-img > img');  // imagen dentro del Contenedor de foto perfil
       var inputFile  = '.inputFile';
+      var $photo_cont = $('#photo-cont-hide');
       var btnSave     = '#save-model-imgProfile';  // Boton de guardar desde el modal
       var fileTempModal;
 
@@ -77,5 +78,10 @@
       }
       // Fin funcion generica
 
+      //click image
+      $frame.click(function() {
+        console.log($photo_cont.find(inputFile));
+        $photo_cont.find(inputFile).click();
+      });
     });
-  </script>
+</script>

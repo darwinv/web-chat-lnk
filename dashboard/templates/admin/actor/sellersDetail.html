@@ -1,0 +1,142 @@
+{% extends 'admin/base.html' %}
+{% load static i18n %}
+
+
+
+{% block main_content_row %}
+
+    <div class="col-xs-12">
+
+        <div class="cont-info-user text-center padL40 padR40 pull-left marR15" >
+          {% if data.photo and data.photo != "preview.png" %}
+            <img src="{{data.photo}}" class="img-circle img-circle-linkup">
+          {% else %}
+          <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle img-circle-linkup">
+          {% endif %}
+
+          <!--<img src="{% static "dashboard/dist/img/lte/user2-160x160.jpg" %}" class="img-circle">-->
+          <p>
+            {% if data.first_name or data.last_name %}
+              <span class="size18">{{data.first_name}} {{data.last_name}}</span>
+            {% endif %}
+            {% if data.email_exact %}
+              <span>{{data.email_exact}}</span>
+            {% endif %}
+            {% if data.telephone %}
+              <span>{{data.telephone}}</span>
+            {% endif %}
+            {% if data.cellphone %}
+              <span>{{data.cellphone}}</span>
+            {% endif %}
+          </p>
+        </div>
+
+
+        <div class="cont-info-user text-left padL20 padR20 pull-left marR15" >
+          <div class="cont-user-title">              
+            <span class="">{% trans "data"|title %}</span>
+            <a href="{% url 'dashboard:actor-sellers-edit' data.id %}" class="btn btn-flat btn-black pull-right">{% trans "edit"|title %}</a>
+          </div>
+          <p>
+
+            {% if data.nick %}
+              <span>{% trans "nick"|title %}: {{data.nick}}</span>
+            {% endif %}
+            {% if data.type_client %}
+              <span><i class="fa fa-star yellow"></i> {% trans "person"|title %} {{data.type_client}}</span>
+            {% endif %}
+            {% if data.user_transfer %}
+              <span><i class="fa fa-star"></i> {{data.user_transfer}}</span>
+            {% endif %}
+            {% if data.ciiu_name %}
+              <span><i class="fa fa-circle-o-notch"></i> CIIU: {{data.ciiu_name}}</span>
+            {% endif %}
+            {% if data.nationality_name %}
+              <span><i class="fa fa-globe"></i> {{data.nationality_name}}</span>
+            {% endif %}
+            {% if data.address %}
+              <span>
+                <i class="fa fa-home"></i>                
+                {{data.address.street}} - 
+                {{data.address.department_name}} |
+                {{data.address.province_name}} | 
+                {{data.address.district_name}}
+              </span>
+            {% endif %}
+            {% if data.profession_name %}
+              <span><i class="fa fa-briefcase"></i> {{data.profession_name}}</span>
+            {% endif %}
+            {% if data.business_name %}
+              <span><i class="fa fa-building"></i> {{data.business_name}}</span>
+            {% endif %}
+            
+          </p>
+        </div>
+
+
+        <div class="text-center pull-left" >            
+            <div class="send-mail-backend">
+              <div>
+                <span><i class="fa fa-envelope-o"></i> {% trans "send a message"|title %}</span>              
+              </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+  {% if data.general_totals %}
+    <div class="col-xs-12 col-md-6">
+      <div class="tg-head">
+        <div class="tg-title pull-left">{% trans "grand Total"|title %}</div>
+      </div>
+      <div class="tg-history">
+        {% for total in data.general_totals %}
+          <div class="block-center-flat {{total.type}}">
+            <div class="bcf-body">
+              <span class="bcf-title">{{total.amount}}</span>
+              <span class="bcf-desc">{{total.name|title}}</span>
+            </div>
+          </div>
+        {% endfor %}           
+      </div>
+    </div>
+  {% endif %}
+
+
+  
+  {% if data.alerts %}
+    <div class="block-alert-user col-xs-12 marB25">
+      <h3>{% trans "dashboard"|title %}</h3>
+      {% for alert in data.alerts %}
+        <span class="{{alert.type}}">{{alert.text}}</span>
+      {% endfor %} 
+    </div>
+  {% endif %}
+
+  {% if data.products %}
+    <div class="col-xs-12 col-md-6">
+      
+      <div class="tg-history">
+        {% for total in data.products %}
+          <div class="tg-head">
+            <div class="tg-title pull-left">{% trans data.name_plan|title %}</div>
+          </div>
+          <div class="block-center-flat {{total.type}}">
+            <div class="bcf-body">
+              <span class="bcf-title">{{total.amount}}</span>
+              <span class="bcf-desc">{{total.name|title}}</span>
+            </div>
+          </div>
+        {% endfor %}     
+      </div>
+    </div>
+  {% endif %}
+
+
+  {% if data.bloked %}
+    <div class="col-xs-12 text-center">
+        <button type="button" class="btn btn-flat btn-black">{% trans data.bloked|title %}</button>
+    </div>
+  {% endif %} 
+{% endblock main_content_row %}
+

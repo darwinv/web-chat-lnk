@@ -1,0 +1,24 @@
+{% extends 'public/base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+	<div class="content vertical-aling">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<div class="login-logo">
+      {% block logo_text %}<img src="{% static "dashboard/dist/img/logo.png" %}" class="responsive-img"> {% endblock %}
+    </div>
+				<div class="alert alert-success fade in alert-dismissable inline-block">
+
+					<div style="max-width: 500px">
+					    <strong>{% trans "success"|title %}!</strong> 
+					   {% trans "Thank you for registering in Linkup, a message will be sent to your mailbox when your account is verified by us." %}
+					</div>
+				   <hr>
+				   <a href="{% url 'login:login' %}" class="btn btn-lightBlue" >{% trans "continue"|title %}</a>				
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

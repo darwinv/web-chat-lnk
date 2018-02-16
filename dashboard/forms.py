@@ -38,9 +38,45 @@ class FilterForm(forms.Form):
 
         return self.cleaned_data
 
+class Operations():
+    def setAdress(self, initial, fields):
+        # Algoritmo para poder extraer subitem en el initial del form
+        # este algoritmo se realiza mas que todo para solventar el envio
+        # de data anidada desde la API RESTFULL
+        if initial:
+            for item in initial:
+                if type(initial[item]) is dict:
+                    for key in initial[item]:
+                        if key in fields:
+                            fields[key].initial = initial[item][key]
+        return fields
 
 
-class SpecialistForm(ModelForm):
+class ErrorsFieldsApi(forms.Form):
+
+    def add_error_custom(self, add_errors=None):
+        """
+        Funcion creada para agregar errores, posteriormente a las validaciones
+        hechas por la clase Form
+        """
+        print(add_errors)
+        print("----------------FORM ERRRORS--------------------")
+        if add_errors:  # errores retornados por terceros
+            if type(add_errors) is dict:
+                for key in add_errors:
+                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
+                        self.add_error(key, add_errors[key])
+                    elif type(key) is list:
+                        for item in key:
+                            if item and item in self.fields:
+                                self.add_error(item, key[item])
+                    elif key == "non_field_errors":
+                        self.add_error(None, error=add_errors[key])
+            elif type(add_errors) is list:
+                for key in add_errors:
+                    self.add_error(None, error=key)
+
+class SpecialistForm(ModelForm, ErrorsFieldsApi):
     """
         Formulario para crear especialistas
     """
@@ -83,6 +119,7 @@ class SpecialistForm(ModelForm):
 
         if data and 'department' in data and data['department']:
             department = data['department']
+            
         if data and 'province' in data and data['province']:
             province = data['province']
 
@@ -99,39 +136,9 @@ class SpecialistForm(ModelForm):
             self.fields['username'].required = False
             self.fields['username'].widget.attrs['readonly'] = True
 
-        # Algoritmo para poder extraer subitem en el initial del form
-        # este algoritmo se realiza mas que todo para solventar el envio
-        # de data anidada desde la API RESTFULL
-        if initial:
-            for item in initial:
-                if type(initial[item]) is dict:
-                    for key in initial[item]:
-                        if key in self.fields:
-                            self.fields[key].initial = initial[item][key]
-
+        self.fields = Operations.setAdress(self, initial, self.fields)
+ 
                             # cambiar a clase generica
-
-    def add_error_custom(self, add_errors=None):
-        """
-        Funcion creada para agregar errores, posteriormente a las validaciones
-        hechas por la clase Form
-        """
-        print(add_errors)
-        print("----------------FORM ERRRORS--------------------")
-        if add_errors:  # errores retornados por terceros
-            if type(add_errors) is dict:
-                for key in add_errors:
-                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
-                        self.add_error(key, add_errors[key])
-                    elif type(key) is list:
-                        for item in key:
-                            if item and item in self.fields:
-                                self.add_error(item, key[item])
-                    elif key == "non_field_errors":
-                        self.add_error(None, error=add_errors[key])
-            elif type(add_errors) is list:
-                for key in add_errors:
-                    self.add_error(None, error=key)
 
     class Meta:
         """Meta."""
@@ -146,7 +153,7 @@ class SpecialistForm(ModelForm):
                   'business_name', 'type_specialist', 'document_number']
 
 
-class SellerForm(ModelForm):
+class SellerForm(ModelForm, ErrorsFieldsApi):
     """Formulario de Vendedores."""
 
     select_search = {'data-live-search':'true','class':'selectpicker'}
@@ -180,8 +187,6 @@ class SellerForm(ModelForm):
         if ciius:
             self.fields['ciiu'].widget.choices = [('', '')] + [(l.id, _(l.description)) for l in ciius]
 
-
-
         if countries:
             self.fields['nationality'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in countries]
 
@@ -202,6 +207,8 @@ class SellerForm(ModelForm):
             districts = District.objects.filter(province_id=province)
             self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
 
+        self.fields = Operations.setAdress(self, initial, self.fields)
+
     class Meta:
         """Meta de Vendedor."""
 
@@ -210,28 +217,7 @@ class SellerForm(ModelForm):
                   'telephone', 'cellphone', 'document_type', 'document_number',
                    'ruc' ]
 
-    # cambiar a clase generica
-    def add_error_custom(self, add_errors=None):
-        """
-        Funcion creada para agregar errores, posteriormente a las validaciones
-        hechas por la clase Form
-        """
-        print(add_errors)
-        print("----------------FORM ERRRORS--------------------")
-        if add_errors:  # errores retornados por terceros
-            if type(add_errors) is dict:
-                for key in add_errors:
-                    if key in self.fields and add_errors[key] and type(add_errors[key]) is list:
-                        self.add_error(key, add_errors[key])
-                    elif type(key) is list:
-                        for item in key:
-                            if item and item in self.fields:
-                                self.add_error(item, key[item])
-                    elif key == "non_field_errors":
-                        self.add_error(None, error=add_errors[key])
-            elif type(add_errors) is list:
-                for key in add_errors:
-                    self.add_error(None, error=key)
+    
 
 
 

@@ -21,14 +21,18 @@
         		<a href="{% url 'dashboard:actor-sellers-list' %}" class="btn btn-flat btn-gray {{vars_page.btn_sellers_class}}">
                     {% trans "sellers"|title %}
                 </a>
-        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray {{vars_page.btn_administrators_class}}">
+        		<a href="{% url 'dashboard:actor-administrators-list' %}" class="btn btn-flat btn-gray disabled {{vars_page.btn_administrators_class}}">
                     {% trans "administrators"|title %}
                 </a>
         	</div>
 
         	<div class="pull-right">
         		<button type="button" class="btn btn-flat btn-black toggleFilter">{% trans "filter"|title %}</button>
+
+                {% if vars_page.add_actor %}
                 <a href="{% url vars_page.name_create_URL %}" class="btn btn-flat btn-black" >{% trans "add"|title %}</a>
+                {% endif %}
+
         	</div>
         </div>
         {% block filters_actor %}
