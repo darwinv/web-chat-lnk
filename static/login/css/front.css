@@ -86,10 +86,19 @@ footer{
     color: white;
     font-size: 17px;
     padding: 5px 20px;
+    text-decoration: none;
 }
 .checkbox{
   margin-top: 7px;
 }
 .btn {
   border-radius: 7px;
+}
+/*mensaje sin campo de texto*/
+ul.errorlist.nonfield li {
+    width: 500px;
+    margin: auto;
+}
+ul.errorlist.nonfield {
+    margin-bottom: 20px;
 }
