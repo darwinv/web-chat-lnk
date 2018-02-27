@@ -1,6 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
 
-
 class ChoicesAPI:
     """
         Clase Choices para manejo de opciones en los modelos
@@ -16,7 +15,6 @@ class ChoicesAPI:
         ('1', _('Passport')),
         ('2', _('Foreign Card')),
     )
-    
     user_status = (
         ('0', _('Pending')),
         ('1', _('Activate')),
@@ -29,6 +27,7 @@ class ChoicesAPI:
         ('n', _('Natural')),
         ('b', _('Business')),
     )
+    
     client_full_type_client = (
         ('n', _('Natural Person')),
         ('b', _('Business Person')),
@@ -38,7 +37,7 @@ class ChoicesAPI:
         ('m', _('Male')),
         ('f', _('Female')),
     )
-
+    
     client_civil_state = (
         ('c', _('cohabiting')),
         ('e', _('separated')),
@@ -109,6 +108,7 @@ class ChoicesAPI:
         ('1', _('Accepted')),
         ('2', _('Declined')),
     )
+    
     # Query Model
     query_status = (
         ('0', _('Requested')),  # Preguntada, pendiente de derivar o responder
@@ -140,6 +140,7 @@ class ChoicesAPI:
         ('0', _('Image')),
         ('1', _('Voice')),
         ('2', _('Document')),
+        ('3', _('Video')),
     )
 
     # AlertCategory Model
