@@ -97,6 +97,9 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
 
     foreign_address = forms.CharField(label = _('address'), required=False)
     ruc = forms.CharField(label = _('ruc'), required=False)
+
+    payment_per_answer = forms.FloatField(min_value=0) 
+
     def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
             *args, **kwargs):
         super(SpecialistForm, self).__init__(data=data, initial=initial, *args, **kwargs)
@@ -148,7 +151,8 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
             'password': forms.PasswordInput(),
         }
         model = Specialist
-        fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
+        fields = ['username', 'nick', 'first_name', 'last_name',
+        # fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number']
 

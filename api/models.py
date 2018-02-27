@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from api.api_choices_models import ChoicesAPI as Ch
 from django.utils.translation import ugettext_lazy as _
 
+
 class Countries(models.Model):
     """Paises."""
 
@@ -125,7 +126,7 @@ class User(AbstractUser):
     address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True, verbose_name=_('address'))
     residence_country = models.ForeignKey(Countries, on_delete=models.PROTECT, null=True,
                                           related_name="residence", verbose_name=_('residence country'))
-    foreign_address = models.CharField(_('address'), max_length=200, blank=True, null=True)
+    foreign_address = models.CharField(_('foreign address'), max_length=200, blank=True, null=True)
     key = models.CharField(max_length=90, blank=True, null=True)
     status = models.CharField(max_length=1, choices=Ch.user_status, default='0')
 # Aplicamos herencia multi tabla para que
@@ -137,7 +138,7 @@ class Seller(User):
 
     cv = models.CharField(max_length=100, null=True, blank=True)
     zone = models.ForeignKey(Zone, on_delete=models.PROTECT, null=True)
-    ciiu = models.CharField(max_length=4, null=True)
+    ciiu = models.ForeignKey(Ciiu, null=True, blank=True)
 
     class Meta:
         """Meta."""
@@ -226,7 +227,8 @@ class Client(User):
     commercial_reason = models.CharField(max_length=45, null=True)
     civil_state = models.CharField(max_length=1, choices=Ch.client_civil_state, null=True)
     birthdate = models.DateField(null=True)
-    ciiu = models.CharField(max_length=4, blank=True)
+    # ciiu = models.CharField(max_length=4, blank=True)
+    ciiu = models.ForeignKey(Ciiu, null=True)
     activity_description = models.CharField(max_length=255, null=True, blank=True)
     institute = models.CharField(max_length=100, null=True, blank=True)
     ocupation = models.CharField(max_length=1, choices=Ch.client_ocupation)
@@ -395,17 +397,24 @@ class SaleDetail(models.Model):
 class QueryPlansAcquired(models.Model):
     """Planes de Consultas (Adquirido)."""
 
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True)
     validity_months = models.PositiveIntegerField()
     available_queries = models.PositiveIntegerField()
-    activation_date = models.DateField()
+    query_quantity = models.PositiveIntegerField()
+    activation_date = models.DateField(null=True)
     is_active = models.BooleanField(default=False)
+    is_chosen = models.BooleanField(default=False)
     available_requeries = models.PositiveIntegerField()
     maximum_response_time = models.PositiveIntegerField()  # En Horas
     acquired_at = models.DateTimeField(auto_now_add=True)
-    cliente = models.ForeignKey(Client, on_delete=models.PROTECT)
+    plan_name = models.CharField(max_length=50)
+    client = models.ForeignKey(Client, on_delete=models.PROTECT)
     query_plans = models.ForeignKey(QueryPlans, on_delete=models.PROTECT)
     sale_detail = models.ForeignKey(SaleDetail, on_delete=models.PROTECT)
+
+    def __str__(self):
+        """String."""
+        return self.plan_name
 
 
 class PaymentType(models.Model):
@@ -499,8 +508,10 @@ class LogPaymentsCreditCard(models.Model):
 # Cuando se reconsulta pasa a Requested Derived y se asigna
 # al especialista que respondio previamente,
 # la reconsulta tiene precedente y no se descuenta del plan
+
 class Query(models.Model):
     """Consultas."""
+
     title = models.CharField(max_length=100)
     status = models.CharField(max_length=1, choices=Ch.query_status)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -508,8 +519,9 @@ class Query(models.Model):
     calification = models.PositiveSmallIntegerField(null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     client = models.ForeignKey(Client, on_delete=models.PROTECT)
-    specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT)
-    acquired_plan = models.ForeignKey(QueryPlansAcquired, on_delete=models.PROTECT)
+    specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT, null=True)
+    acquired_plan = models.ForeignKey(QueryPlansAcquired, on_delete=models.PROTECT, null=True)  # El blank es Temporal
+    changed_on = models.DateTimeField(auto_now=True, null=True) # Fecha en la que adjudicada la consulta
 
     def __str__(self):
         """Titulo."""
@@ -530,10 +542,6 @@ class QueryLogs(models.Model):
     from_specialist = models.ForeignKey(Specialist, related_name="al_especialista", on_delete=models.PROTECT, null=True)
     query = models.ForeignKey(Query, on_delete=models.PROTECT)
 
-# Cuando se reconsulta pasa a Requested Derived y se asigna
-# al especialista que respondio previamente,
-# la reconsulta tiene precedente y no se descuenta del plan
-
 
 # Para traerse el historico de mensajes de consultas de un especialista que ya ha respondido
 # se hace la consulta de traerse todos los mensajes anteriories pertenecientes a una consulta donde ya he
@@ -544,10 +552,11 @@ class Message(models.Model):
     message = models.TextField()
     msg_type = models.CharField(max_length=1, choices=Ch.message_msg_type)
     created_at = models.DateTimeField(auto_now_add=True)
-    specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT)
+    specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT, null=True)
     query = models.ForeignKey(Query, on_delete=models.PROTECT)
     viewed = models.BooleanField(default=False)
-
+    nick = models.CharField(_('nick'), max_length=45, blank=True)
+    code = models.CharField(_('code'), max_length=45)
     def __str__(self):
         """Str."""
         return self.message
