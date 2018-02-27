@@ -178,8 +178,6 @@ class Specialist(Actor):
 
 
             # check whether it's valid:
-            print("===========  edit specialist post form pre  ===========")
-            print(form)
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
@@ -221,8 +219,6 @@ class Specialist(Actor):
                 print("------------------------------------")
         else:
             specialist = obj_api.get(slug='specialists/' + pk, token=token)
-            print ("================= marko =====================================================")
-            print (specialist)
             form = self.generate_form_specialist(specialist=specialist, form_edit=True)
 
         title_page = _('edit specialist').title()

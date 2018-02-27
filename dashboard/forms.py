@@ -149,6 +149,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
         }
         model = Specialist
         fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
+        # fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number']
 
@@ -213,7 +214,7 @@ class SellerForm(ModelForm, ErrorsFieldsApi):
         """Meta de Vendedor."""
 
         model = Seller
-        fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
+        fields = ['nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
                    'ruc' ]
 
