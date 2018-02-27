@@ -149,7 +149,6 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
         }
         model = Specialist
         fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
-        # fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number']
 
