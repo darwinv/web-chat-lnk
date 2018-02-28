@@ -152,7 +152,6 @@ class Specialist(Actor):
                     form.add_error_custom(
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
                     print("=======  form error  =========")
-                    print(form)
 
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
 
@@ -212,7 +211,7 @@ class Specialist(Actor):
                     form.add_error_custom(
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
                     print("--------------------else--------------------------")
-                    #print(form)
+
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
             else:
                 print(form.errors)
@@ -224,9 +223,7 @@ class Specialist(Actor):
         title_page = _('edit specialist').title()
         vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._edit, args=(pk,))
-#        print (form)
-#        print (vars_page) 
-#        print (specialists_form)
+
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
@@ -395,9 +392,7 @@ class Client(Actor):
         title_page = _('edit client').title()
         vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._edit, args=(pk,))
-#        print (form)
-#        print (vars_page) 
-#        print (specialists_form)
+
         return render(request, 'admin/actor/clientsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
@@ -461,8 +456,7 @@ class Seller(Actor):
 
         # Traer data para el listado
         data = obj_api.get(slug='sellers/', arg=filters, token=token)
-        #print ("=======dataaaaaaaaaaaa======================")
-#        print (data)
+
         # Definimos columnas adicionales/personalizadas
         custom_column = {
             "last_name": {'type': 'concat', 'data': ('last_name', 'first_name'), 'separator': ' '},
@@ -640,9 +634,7 @@ class Seller(Actor):
         title_page = _('edit seller').title()
         vars_page = self.generate_header(custom_title=title_page)
         sellers_form = reverse(self._edit, args=(pk,))
-#        print (form)
-#        print (vars_page) 
-#        print (specialists_form)
+
         return render(request, 'admin/actor/sellersForm.html',
                       {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
 
