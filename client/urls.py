@@ -1,10 +1,10 @@
 from django.conf.urls import url
 
 from dashboard.views import actors
+from client.views import views
+
 app_name = 'client'
 
 urlpatterns = [
-
-    url(r'^$', actors.Client().list, name='index'),
-    
+    url(r'^$', views.tempPage, name='index'),
 ]
