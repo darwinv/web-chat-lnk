@@ -135,9 +135,10 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
             self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
 
         # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
-        if form_edit:
-            self.fields['username'].required = False
-            self.fields['username'].widget.attrs['readonly'] = True
+        # se comento porque se quito el campo username del form y de las plantillas
+        # if form_edit:
+        #     self.fields['username'].required = False
+        #     self.fields['username'].widget.attrs['readonly'] = True
 
         self.fields = Operations.setAdress(self, initial, self.fields)
  
@@ -151,7 +152,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
             'password': forms.PasswordInput(),
         }
         model = Specialist
-        fields = ['username', 'nick', 'first_name', 'last_name',
+        fields = ['nick', 'first_name', 'last_name',
         # fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number']
