@@ -233,9 +233,12 @@ class api:
             print(e.args)
             print("---------------ERROR POST---------------")
 
-    def put(self, token, slug='', arg=None, files=None):
+    def put(self, token='', slug='', arg=None, files=None):
         headers = {'Authorization': 'Bearer ' + token}
-        headers = dict(headers, **self._headers)
+        
+        if token:
+            headers['Authorization'] = 'Bearer {}'.format(token)
+            headers = dict(headers, **self._headers)
 
         try:
             r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            
