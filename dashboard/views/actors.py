@@ -282,11 +282,15 @@ class Client(Actor):
         obj_api = api()
         actual_page = get_actual_page(request)
         token = request.session['token']
-        filters = {}
-
-
+        if 'page' in request.GET:
+            filters = {
+                'page' : request.GET['page']
+            }
+        else:
+            filters = {}
 
         # Traer data para el listado
+        # data = obj_api.get(slug='clients/?page=2', arg=filters, token=token)
         data = obj_api.get(slug='clients/', arg=filters, token=token)
 
         # Definimos columnas adicionales/personalizadas
