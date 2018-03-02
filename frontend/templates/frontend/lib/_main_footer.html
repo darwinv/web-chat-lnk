@@ -1,0 +1,14 @@
+{% load i18n %}
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        {% block footer_right %}
+            <b></b>
+        {% endblock %}
+    </div>
+
+    {% block footer_center %}
+        {% block legal %}
+            <strong>&copy;</strong> {% trans "All rights reserved" %}
+        {% endblock %}
+    {% endblock %}
+</footer>

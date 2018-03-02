@@ -1,0 +1,43 @@
+{% load static i18n %}
+  <!-- Modal -->
+  <div class="modal fade" id="modal-img-profile" aria-labelledby="modalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">{% trans "crop the image"|title %}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <img id="image" src="{% static 'dashboard/dist/img/profile.png' %}" style="display: none;" >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "close"|title %}</button>
+          <button class="btn btn-success" id="save-model-imgProfile">{% trans "save changes"|title %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Delete -->
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans "confirm delete"|title %}</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>{% trans "Are you sure to delete this item?" %}</p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "cancel"|title %}</button>
+                    <a class="btn btn-danger btn-delete-ok">{% trans "delete"|title %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
