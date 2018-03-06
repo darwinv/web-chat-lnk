@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="frontend-html">
+
+<head>
+    {% block title_outer %}
+        <title>{% block title %}{{ site.name }}{% endblock %}</title>
+    {% endblock %}
+
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="shortcut icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
+        <link rel="icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
+    {% endblock %}
+
+    {% block stylesheets %}
+        {% include 'frontend/lib/_styles.html' %}
+    {% endblock %}
+
+    {% block extra_head %}{% endblock %}
+
+</head>
+<body>
+    {% block body %}
+        <div class="page-wrap">
+            <div class="content-wrap">
+                <div class="head-split">
+                    <div class="content-logo">
+                        <!-- LOGO -->
+                        {% block content_logo %}
+                            <div class="content-img-logo">
+                                <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
+                            </div>
+                        {% endblock content_logo %}
+                    </div>
+                    <div class="content-right-head">
+                        <!-- menu y opciones -->
+                        {% block content_right_head %}
+                        {% endblock content_right_head %}
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div class="left-slide">
+                        <!-- Left Slide -->
+                        {% block left_slide %}
+                            <div class="content-left-slide">
+                                {% block content_left_slide %}
+                                {% endblock content_left_slide %}
+                            </div>
+                        {% endblock left_slide %}
+                    </div>
+                    <div class="main-content">
+                        <!-- Main Content -->
+                        {% block main_content %}
+                        {% endblock main_content %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock body %}
+
+</body>
