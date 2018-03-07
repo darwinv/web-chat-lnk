@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^actor/clients/edit/(?P<pk>[0-9]+)$', actors.Client().edit, name='actor-clients-edit'),
     url(r'^actor/clients/create/$', actors.Client().create, name='actor-clients-create'),
     url(r'^actor/clients/delete/$', actors.Client().delete, name='actor-clients-delete'),
+    #chat del cliente
+    url(r'^actor/clients/chat/$', actors.Client().chat, name='actor-chat'),
 
     # sellers
     url(r'^actor/sellers/$', actors.Seller().list, name='actor-sellers-list'),
