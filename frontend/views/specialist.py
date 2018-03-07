@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
 class Specialist:
-	def tempPage(request):
-		return render(request, 'frontend/tempPage.html')
+	
+	def index(self, request):
+		return render(request, 'frontend/actors/specialist/index.html')
