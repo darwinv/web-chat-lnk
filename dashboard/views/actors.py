@@ -430,6 +430,10 @@ class Client(Actor):
     def delete(self, request):
         pass
 
+    #metodo temporal para acceder al chat del cliente
+    # @method_decorator(login_required)
+    def chat(self, request):
+        return render(request, 'chat/clientChatList.html',{})
 
 class Seller(Actor):
     _list = 'dashboard:actor-sellers-list'
