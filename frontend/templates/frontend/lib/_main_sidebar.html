@@ -1,0 +1,128 @@
+{% load adminlte_helpers i18n %}
+<!-- Left side column. contains the sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        {% block nav_links_ul %}
+        <ul class="sidebar-menu">
+            {% block nav_links_outer %}
+
+            {% block nav_links %}
+                <li class="">
+                    <a href="#">
+                        <i class="fa fa-users"></i> <span>{% trans "actors"|title %}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i> {% trans "specialists"|title %}
+                                <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{% url 'dashboard:actor-specialists-list' %}"><i class="fa fa-circle-o"></i> {% trans "list"|title %}</a>
+                                </li>
+                                <li><a href="{% url 'dashboard:actor-specialists-create' %}"><i class="fa fa-circle-o"></i> {% trans "create"|title %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}
+                                <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{% url 'dashboard:actor-clients-list' %}"><i class="fa fa-circle-o"></i> {% trans "list"|title %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i> {% trans "sellers"|title %}
+                                <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{% url 'dashboard:actor-sellers-list' %}"><i class="fa fa-circle-o"></i> {% trans "list"|title %}</a>
+                                </li>
+                                <li><a href="{% url 'dashboard:actor-sellers-create' %}"><i class="fa fa-circle-o"></i> {% trans "create"|title %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                  </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-table"></i> <span>{% trans "Data base" %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-money"></i> <span>{% trans "coin"|title %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-diamond"></i> <span>{% trans "products"|title %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-comments-o"></i> <span>{% trans "alerts"|title %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-cog"></i> <span>{% trans "general"|title %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>{% trans "inventory"|title %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-key"></i> <span>{% trans "authorizations"|title %}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="{% url 'dashboard:authorizations-clients' %}"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}</a>
+                        </li>
+                    </ul>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="{% url 'dashboard:account-status-seller' %}"><i class="fa fa-circle-o"></i> {% trans "seller"|title %}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-list-ol"></i> <span>{% trans "reports"|title %}</span>
+                    </a>
+
+                </li>
+            {% endblock nav_links %}
+
+            {% endblock nav_links_outer %}
+        </ul>
+        {% endblock nav_links_ul %}
+    </section>
+    <!-- /.sidebar -->
+</aside>

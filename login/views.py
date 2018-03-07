@@ -22,8 +22,8 @@ def weblogin(request):
         app = get_app_by_user(request.user.role.name)
 
         if app:
-            return HttpResponseRedirect(reverse('{app}:index'.format(app=app)))
-    
+            return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
+            
     if request.method == 'POST':
 
         form = Login(request.POST)
@@ -40,7 +40,7 @@ def weblogin(request):
                 app = get_app_by_user(user.role.name)
 
                 if app:
-                    return HttpResponseRedirect(reverse('{app}:index'.format(app=app)))
+                    return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
             else:
                 error_message = _("Wrong Credentials")
     else:
@@ -64,17 +64,17 @@ def get_app_by_user(role):
     :param role: String con le nombre del rol
     :return: nombre de la Django App Correspondiente al Rol
     """
+    app = None
+
     if role== 'admin':
-        app = 'dashboard'
+        app = {'name':'dashboard', 'url_name':'index'}
     elif role== 'client':
-        app = 'client'
+        app = {'name':'frontend', 'url_name':'temp-page-client'}
     elif role== 'specialist':
-        app = 'specialist'
+        app = {'name':'frontend', 'url_name':'temp-page-specialist'}
     elif role== 'seller':
-        app = 'seller'
-    else:
-        app = None
-        
+        app = {'name':'frontend', 'url_name':'temp-page-seller'}
+            
     return app
 
 
