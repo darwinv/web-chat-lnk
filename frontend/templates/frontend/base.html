@@ -11,7 +11,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static "frontend/dist/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
         <link rel="shortcut icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
         <link rel="icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
 
@@ -25,53 +26,48 @@
 
 </head>
 <body>
-    {% block body %}
-        <div class="page-wrap">
-            <div class="content-wrap">
-                <div class="head-split">
-                    <div class="content-logo">
-                        <!-- LOGO -->
-                        {% block content_logo %}
-                            <div class="content-img-logo">
-                                <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
-                            </div>
-                        {% endblock content_logo %}
-                    </div>
-                    <div class="content-right-head">
-                        <!-- menu y opciones -->
-                        {% block content_right_head %}
-                        {% endblock content_right_head %}
-                    </div>
+{% block body %}
+    <div class="page-wrap">
+        <div class="content-wrap">
+            <div class="head-split">
+                <div class="content-logo">
+                    <!-- LOGO -->
+                    {% block content_logo %}
+                        <div class="content-img-logo">
+                            <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
+                        </div>
+                    {% endblock content_logo %}
                 </div>
-                <div class="body-content">
-                    <div class="left-slide">
-                        <!-- Left Slide -->
-                    <div class="list-group" id="lista_cats">
-  <!--print categories-->
-</div>
+                <div class="content-right-head">
+                    <!-- menu y opciones -->
+                    {% block content_right_head %}
+                    {% endblock content_right_head %}
+                </div>
+            </div>
+            <div class="body-content">
+                <div class="left-slide">
+                    <!-- Left Slide -->
+                    {% block left_slide %}
+                        <div class="content-left-slide">
+                            {% block content_left_slide %}
 
-
-                        {% block left_slide %}
-                            <div class="content-left-slide">
-                                {% block content_left_slide %}
-                                {% endblock content_left_slide %}
-                            </div>
-                        {% endblock left_slide %}
-                    </div>
-                    <div class="main-content">
-                        <!-- Main Content -->
-                        {% block main_content %}
-                        {% endblock main_content %}
-                    </div>
+                            {% endblock content_left_slide %}
+                        </div>
+                    {% endblock left_slide %}
+                </div>
+                <div class="main-content">
+                    <!-- Main Content -->
+                    {% block main_content %}
+                    {% endblock main_content %}
                 </div>
             </div>
         </div>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-        <script src="{% static "dashboard/chat/js/chat.js" %}"></script>
-
-    {% endblock body %}
+    </div>
+    <script src="{% static "frontend/dist/js/jquery-3.1.1.slim.min.js" %}"></script>
+    <script src="{% static "frontend/dist/js/tether.min.js" %}"></script>
+    <script src="{% static "frontend/dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "frontend/dist/js/firebase.js" %}"></script>
+    <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+{% endblock body %}
 
 </body>
