@@ -27,9 +27,7 @@ $(document).ready(function () {
     var client_id = $('#client_id').text();
     console.log("id: "+client_id);
     if (!client_id == "None") {
-        console.log("id: "+client_id);
-        var starCountRef = firebase.database().ref('categories/clients/u' + cli).orderByChild('datetime');
-        var l = [];
+        var starCountRef = firebase.database().ref('categories/clients/u' + client_id).orderByChild('datetime');
         starCountRef.on('value', function (snapshot) {
             $("#list_categories").empty();
             // $("#lista_cats").remove();
