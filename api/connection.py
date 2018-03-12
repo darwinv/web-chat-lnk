@@ -150,18 +150,18 @@ class api:
             try:
                 # obtener id de la respuesta
 
-                id = int(data['results'][0]['id'])
+                pk = int(data['results'][0]['id'])
 
                                     
                 # evaluar si existe el usuario en las sesiones guardadas
-                if User.objects.filter(id=id).count() > 0:
-                    user = User.objects.filter(id=id)[0]
+                if User.objects.filter(id=pk).count() > 0:
+                    user = User.objects.filter(id=pk)[0]
                 else:
                     user = User()
 
                 # Se agregan campos necesarios en base de datos local
                 # tomando en cuenta campos requeridos y unicos
-                user.id = id
+                user.id = pk
                 user.username = str(data['results'][0]['username'])
                 user.code = str(data['results'][0]['code'])
                 user.document_number = str(data['results'][0]['document_number'])

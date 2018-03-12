@@ -12,6 +12,7 @@ local_settings.py
 settings_secret.py
 manage_bkp.py
 media
+.idea/workspace.xml
 *.idea
 venv/
 settings_secret.py

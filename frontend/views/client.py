@@ -6,7 +6,7 @@ from api.connection import api
 class Client:
 
     def index(self, request):
-        return render(request, 'frontend/actors/client/index.html')
+        return render(request, 'frontend/actors/client/categories.html')
 
     def chat(self, request, pk):
         """Chat por Especialidad."""
