@@ -66,4 +66,7 @@ html.frontend-html {
     display: inline-flex;
     border-top: 7px solid #141428;
 }
+.page-wrap {
+    background: #00000d;
+}
 /*FIN ESTRUCTURA TEMPLATE*/
