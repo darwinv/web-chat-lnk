@@ -71,9 +71,9 @@ def get_app_by_user(role):
     elif role== 'client':
         app = {'name':'frontend', 'url_name':'index-client'}
     elif role== 'specialist':
-        app = {'name':'frontend', 'url_name':'temp-page-specialist'}
+        app = {'name':'frontend', 'url_name':'index-specialist'}
     elif role== 'seller':
-        app = {'name':'frontend', 'url_name':'temp-page-seller'}
+        app = {'name':'frontend', 'url_name':'index-seller'}
 
     return app
 
