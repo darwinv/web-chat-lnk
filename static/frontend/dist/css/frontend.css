@@ -1,0 +1,72 @@
+/*ESTILOS GENERALES PARA FRONTEND*/
+
+/*ESTRUCTURA TEMPLATE*/
+.content-wrap {
+    width: 84%;
+    max-width:  1400px;
+    margin: auto;
+    margin-top: 50px;
+}
+.content-logo {
+    float: left;
+}
+.content-logo, .left-slide {
+	width: 21%;
+}
+.main-content, .content-right-head {
+    width: 79%;
+}
+.content-right-head {
+    float: left;
+    white-space: nowrap;
+}
+img.front-logo {
+    width: auto;
+    display:  table-cell;
+    margin:  auto;
+    max-height: 85%;
+    max-width:  100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.head-split {
+    margin: 0 auto;
+    background: #141428;
+}
+
+.head-split, .content-img-logo {
+    height: 90px;
+}
+
+.content-img-logo {
+    background-color:  white;
+    text-align:  center;
+}
+
+html.frontend-html {
+    background: #00000d;
+}
+.left-slide {
+    float: left;
+    min-height: 100px;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+    border-right: 7px solid #141428;
+}
+
+.main-content {
+    float: left;
+    padding-bottom: 10px;
+    background-color: #eaeaea;
+}
+.body-content {
+    width: 100%;
+    display: inline-flex;
+    border-top: 7px solid #141428;
+}
+.page-wrap {
+    background: #00000d;
+}
+/*FIN ESTRUCTURA TEMPLATE*/
