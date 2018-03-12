@@ -1,7 +1,7 @@
 """Vista para el cliente."""
 from django.shortcuts import render
 from api.connection import api
-
+from operator import itemgetter
 
 class Client:
 
@@ -12,8 +12,8 @@ class Client:
         """Chat por Especialidad."""
         obj_api = api()
         token = request.session['token']
-        # request.user.id
         data_messages = obj_api.get(slug='queries/categories/' + pk, token=token)
-        # import pdb; pdb.set_trace()
-        return render(request, 'frontend/chat.html', {'messages': data_messages["results"],
+        # Ordenamos el listado de mensajes para que los mas recientes salgan abajo.
+        newlist = sorted(data_messages["results"], key=itemgetter('id'))
+        return render(request, 'frontend/chat.html', {'messages': newlist,
                                                       'user_id': request.user.id})

@@ -10,6 +10,10 @@ $(".message").each(function(){
     if (msg.data("sender") != user_id){
         msg.removeClass("col-sm-offset-6 message")
         msg.addClass("message-answer")
+        var bloq = msg.parent()
+        // console.log("exito")
+        bloq.after("<div class='arrow-down'>  </div>")
     }
+
   });
 });

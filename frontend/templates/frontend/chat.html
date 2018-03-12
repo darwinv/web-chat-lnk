@@ -6,31 +6,42 @@
 {% endblock %}
 
 
+<!-- Aca incluyo el listado de categorias -->
+
+
+
+
 {% block main_content %}
 <div id="user-id" data-user="{{user_id}}">
 
 </div>
 <div class="container-fluid">
 {% for message in messages %}
-  <div class="row">
+  <div class="row globe-chat">
     <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}">
         <div class="row">
-        <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <p class="code-user">{{ message.code }}</p>
+            <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
             </div>
-            <div class="col-sm-6">
-                <p><small class="time">{{ message.time_message }}</small></p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="code-user">{{ message.code }}</p>
+                </div>
+                <div class="col-sm-6">
+                    <p><small class="time">{{ message.time_message }}</small></p>
+                </div>
             </div>
-        </div>
-
-
     </div>
+</div>
+<!-- <div class="arrow-down">
+    </div> -->
+{% endfor %}
 
 </div>
-{% endfor %}
+<div class="box-send-message">
+    <div class="form-group col-xs-10">
+        <input type="text" class="form-control" id="text_message" placeholder="Envia tu mensaje">
+      </div>
+      <button type="submit" class="btn btn-default">Enviar</button>
 </div>
 {% endblock main_content %}
 
