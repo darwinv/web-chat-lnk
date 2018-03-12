@@ -43,8 +43,8 @@ img.front-logo {
 .content-img-logo {
     background-color:  white;
     text-align:  center;
+    border-right: 6px solid #141428;
 }
-
 html.frontend-html {
     background: #00000d;
 }
@@ -53,7 +53,6 @@ html.frontend-html {
     min-height: 100px;
     padding-bottom: 10px;
     background-color: #ffffff;
-    border-right: 7px solid #141428;
 }
 
 .main-content {
