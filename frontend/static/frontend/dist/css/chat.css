@@ -1,0 +1,30 @@
+/* Estilos para el Chat */
+
+.message{
+    background-color: #00ACC5;
+    margin-top: 5px;
+    border-radius: 21px;
+    padding: 1% 3%;
+    width: 41%;
+    color:white;
+    /* display: flex;     */
+    }
+
+.message-answer{
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 21px;
+    padding: 1% 3%;
+    width: 41%;
+    margin-left: 6%;
+    color:black;
+    border: 3px solid #00ACC5;
+}
+small.time{
+    float: right;
+    font-weight: bold;
+}
+
+.code-user{
+    font-weight: bold;
+}

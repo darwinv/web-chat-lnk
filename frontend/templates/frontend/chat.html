@@ -1,11 +1,40 @@
 {% extends 'frontend/base.html' %}
+{% load static %}
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/chat.css" %}">
+{% endblock %}
+
 
 {% block main_content %}
-{% for message in data.messages %}
-  <div>
-    <div>{{ message.formatted_timestamp }}</div>
-    <div>{{ message.handle }}</div>
-    <div>{{ message.message }}</div>
+<div id="user-id" data-user="{{user_id}}">
+
+</div>
+<div class="container-fluid">
+{% for message in messages %}
+  <div class="row">
+    <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}">
+        <div class="row">
+        <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p class="code-user">{{ message.code }}</p>
+            </div>
+            <div class="col-sm-6">
+                <p><small class="time">{{ message.time_message }}</small></p>
+            </div>
+        </div>
+
+
+    </div>
+
 </div>
 {% endfor %}
+</div>
 {% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static "frontend/dist/js/chat.js" %}"></script>
+{% endblock %}
