@@ -1,5 +1,8 @@
 $(function() {
 
+changeMessage(); //se llama a la funcion change message
+
+function changeMessage(){
     $(".message").each(function(){
         var msg = $(this);
         var user_id = $('#user-id').data('user')
@@ -12,6 +15,8 @@ $(function() {
         }
 
     });
+}
+
 
  var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
@@ -32,14 +37,15 @@ $(function() {
  chatsock.onmessage = function(message) {
      var data = JSON.parse(message.data);
      // alert(message.data)
-
+     console.log(data)
      var box_chat = $("#chat_box");
      $.each(data, function(key,value){
          var msg = value.message;
          var time = value.timeMessage;
          var codeUser = value.codeUser;
 
-
+// Se crea el div del globo para renderizarlo
+// debe validarse el tema de si soy el q cree el mensaje o al contrario
          var divMessage = "<div class='row globe-chat'>"+
                                 "<div class='message col-sm-6 col-sm-offset-6' data-sender='"+value.user_id+"'>"+
                                     "<div class='row'>"+
@@ -55,36 +61,28 @@ $(function() {
                                     "</div>"+
                                 "</div>"+
                             "</div>";
-             console.log(divMessage)
         box_chat.append(divMessage)
 
      });
-     // console.log(data);
-     // var chat = $("#chat")
-     // var ele = $('<tr></tr>')
-     //
-     // ele.append(
-     //     $("<td></td>").text(data.timestamp)
-     // )
-     // ele.append(s
-     //     $("<td></td>").text(data.handle)
-     // )
-     // ele.append(
-     //     $("<td></td>").text(data.message)
-     // )
-     //
-     // chat.append(ele)
+
+    changeMessage();
  };
 
 
- $("#chatform").on("submit", function(event) {
+ $("#send-query").on("click", function(event) {
      var message = {
-         title: $('#handle').val(),
-         message: $('#message').val(),
-         category: $("#chatform").data("category")
+         token : token,
+         title: $('#title_query').val(),
+         message:[{
+            message: $('#text_message').val(),
+            msg_type: "q",
+            content_type: "0",
+            file_url: ""}],
+         category: category
      }
      chatsock.send(JSON.stringify(message));
-     $("#message").val('').focus();
+     $("#title_query").val('')
+     $("#text_message").val('').focus();
      return false;
  });
 

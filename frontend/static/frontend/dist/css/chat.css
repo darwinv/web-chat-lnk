@@ -46,11 +46,15 @@
 
 div.box-send-message{
     background-color: #D0D0D0;
-    height: 4%;
+    height: 3%;
     padding-top: 2%;
-    margin-top: 4%;
 }
 
+div.title-box{
+    background-color: #00000D;
+    margin-top: 3%;
+    padding: 1% 9%;
+}
 /* div.box-send-message > .form-group{
     margin: 0;
 } */

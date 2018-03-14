@@ -17,4 +17,5 @@ class Client:
         # import pdb; pdb.set_trace()
         newlist = sorted(data_messages["results"], key=itemgetter('id'))
         return render(request, 'frontend/chat.html', {'messages': newlist,
-                                                      'user_id': request.user.id})
+                                                      'user_id': request.user.id,
+                                                      'token_user': token})

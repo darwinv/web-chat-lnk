@@ -14,3 +14,8 @@ def get_api_url(context):
 @register.simple_tag(takes_context=True)
 def get_api_header(context):
     return API_HEADERS
+
+# 
+# @register.simple_tag(takes_context=True)
+# def get_api_url(context):
+#     return API_URL

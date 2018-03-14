@@ -32,21 +32,25 @@
             </div>
     </div>
 </div>
-<!-- <div class="arrow-down">
-    </div> -->
 {% endfor %}
 
+</div>
+<div class="title-box">
+    <input type="text" class="form-control" id="title_query" placeholder="Ponle Titulo a Tu Consulta">
 </div>
 <div class="box-send-message">
     <div class="form-group col-xs-10">
         <input type="text" class="form-control" id="text_message" placeholder="Envia tu mensaje">
       </div>
-      <button type="submit" class="btn btn-default">Enviar</button>
+      <button type="submit" id="send-query" class="btn btn-default">Enviar</button>
 </div>
 {% endblock main_content %}
 
 {% block javascript %}
   {{ block.super }}
   <script src="{% static "frontend/dist/js/reconnecting-websocket.min.js" %}"></script>
+  <script type="text/javascript">
+      var token= '{{token_user}}';
+  </script>
   <script src="{% static "frontend/dist/js/chat.js" %}"></script>
 {% endblock %}
