@@ -31,20 +31,49 @@ $(function() {
 
  chatsock.onmessage = function(message) {
      var data = JSON.parse(message.data);
-     var chat = $("#chat")
-     var ele = $('<tr></tr>')
+     // alert(message.data)
 
-     ele.append(
-         $("<td></td>").text(data.timestamp)
-     )
-     ele.append(
-         $("<td></td>").text(data.handle)
-     )
-     ele.append(
-         $("<td></td>").text(data.message)
-     )
+     var box_chat = $("#chat_box");
+     $.each(data, function(key,value){
+         var msg = value.message;
+         var time = value.timeMessage;
+         var codeUser = value.codeUser;
 
-     chat.append(ele)
+
+         var divMessage = "<div class='row globe-chat'>"+
+                                "<div class='message col-sm-6 col-sm-offset-6' data-sender='"+value.user_id+"'>"+
+                                    "<div class='row'>"+
+                                        "<div class='col-sm-12'><p class='text'>"+value.message+"</p></div>"+
+                                    "</div>"+
+                                    "<div class='row'>"+
+                                        "<div class='col-sm-6'>"+
+                                            "<p class='code-user'>"+value.codeUser+"</p>"+
+                                        "</div>"+
+                                        "<div class='col-sm-6'>"+
+                                            "<p><small class='time'>"+value.timeMessage+"</small></p>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>";
+             console.log(divMessage)
+        box_chat.append(divMessage)
+
+     });
+     // console.log(data);
+     // var chat = $("#chat")
+     // var ele = $('<tr></tr>')
+     //
+     // ele.append(
+     //     $("<td></td>").text(data.timestamp)
+     // )
+     // ele.append(s
+     //     $("<td></td>").text(data.handle)
+     // )
+     // ele.append(
+     //     $("<td></td>").text(data.message)
+     // )
+     //
+     // chat.append(ele)
  };
 
 
