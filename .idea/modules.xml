@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/linkup_adminlte.iml" filepath="$PROJECT_DIR$/.idea/linkup_adminlte.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/linkupbackedweb.iml" filepath="$PROJECT_DIR$/.idea/linkupbackedweb.iml" />
     </modules>
   </component>

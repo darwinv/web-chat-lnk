@@ -8,6 +8,7 @@ from .forms import Login
 from api.connection import api
 from login.forms import RegisterClientFormNatural, RegisterClientFormBusiness
 from dashboard.tools import ToolsBackend as Tools
+from login.utils.tools import get_app_by_user
 
 def weblogin(request):
     """
@@ -19,7 +20,7 @@ def weblogin(request):
     error_message = ''
 
     if request.user.is_authenticated():
-        app = get_app_by_user(request.user.role.name)
+        app = get_app_by_user(request.user.role.id)
 
         if app:
             return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
@@ -37,7 +38,7 @@ def weblogin(request):
                 login(request, user)
 
                 # redirect according to user type
-                app = get_app_by_user(user.role.name)
+                app = get_app_by_user(user.role.id)
 
                 if app:
                     return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
