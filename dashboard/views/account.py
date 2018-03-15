@@ -1,5 +1,6 @@
-from django.contrib.auth.decorators import login_required
+from login.utils.tools import role_admin_check
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -18,7 +19,7 @@ class Account:
 
 class Specialist(Account):
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self,request,specialist_id):
         api = api()
 
