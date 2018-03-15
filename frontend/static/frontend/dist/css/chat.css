@@ -11,6 +11,11 @@ div.bar-grey i{
     font-size: 55px;
     margin-left: 2%;
 }
+.img-category div{
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
 .message{
     background-color: #00ACC5;
     margin-top: 5px;
@@ -37,23 +42,23 @@ div.bar-grey i{
     margin: 5%;
 }
 
-.arrow-down {
+/* .arrow-down {
   width: 0;
   height: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-top: 20px solid white;
   margin-left: 4%;
-}
+} */
 
-.message-answer:after{
+/* .message-answer:after{
  content:'';
  width:42px;
  height:4px;
  background:white;
  position:absolute;
  bottom:-4px;
-}
+} */
 
 div.box-send-message{
     background-color: #D0D0D0;

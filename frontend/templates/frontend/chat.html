@@ -31,6 +31,7 @@
 {% for message in messages %}
   <div class="row globe-chat">
     <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}">
+        Consulta: {{message.query.title}}
         <div class="row">
             <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
             </div>
@@ -48,6 +49,7 @@
 
 </div>
 <div class="title-box">
+    <label for="title_query" style="color: white;">TITULO</label>
     <input type="text" class="form-control" id="title_query" placeholder="Ponle Titulo a Tu Consulta">
 </div>
 <div class="box-send-message">
