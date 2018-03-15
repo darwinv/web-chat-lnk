@@ -58,28 +58,6 @@ def logout_view(request):
         logout(request)
     return HttpResponseRedirect(reverse('login:login'))
 
-
-def get_app_by_user(role):
-    """
-    Funcion creada para retornar a que aplicacion debe redirigir cada rol de usuario
-    :param role: String con le nombre del rol
-    :return: nombre de la Django App Correspondiente al Rol
-    """
-    app = None
-
-    if role== 'admin':
-        app = {'name':'dashboard', 'url_name':'index'}
-    elif role== 'client':
-        app = {'name':'frontend', 'url_name':'index-client'}
-    elif role== 'specialist':
-        app = {'name':'frontend', 'url_name':'index-specialist'}
-    elif role== 'seller':
-        app = {'name':'frontend', 'url_name':'index-seller'}
-
-    return app
-
-
-
 def register(request):
     """
     Vista para generar formulario de Registro perona Nutaral o Juridica
