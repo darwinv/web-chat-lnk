@@ -69,4 +69,26 @@ html.frontend-html {
 .page-wrap {
     background: #00000d;
 }
+
+/* Cabecera de frontend */
+.content-right-head {
+font-size: 24px;
+color: white;
+font-weight: bold;
+line-height: 90px;
+}
+.content-right-head i{
+	font-size: 40px;
+    margin: 0% 3%;
+}
+
+
+/* Footer */
+footer small{
+  color:white;
+}
+footer{
+  font-size: 20px;
+}
+
 /*FIN ESTRUCTURA TEMPLATE*/

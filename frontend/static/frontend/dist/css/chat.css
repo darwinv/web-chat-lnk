@@ -1,5 +1,16 @@
 /* Estilos para el Chat */
+div.bar-grey{
+    height: 2.7%;
+    background-color: #06060680;
+    line-height: 54px;
+    vertical-align: middle;
+}
 
+div.bar-grey i{
+    color: #00B5CB;
+    font-size: 55px;
+    margin-left: 2%;
+}
 .message{
     background-color: #00ACC5;
     margin-top: 5px;
