@@ -3,13 +3,13 @@
 <!-- personalizadas para 2 o mas vistas -->
 
 <script>
+{% autoescape off %}
+var window.urlBase   		= 'http://{{ request.get_host }}/';
+var window.headers  		= {% get_api_header %}; //Retorna un Objeto
+{% endautoescape %}
 $(function () {
-	// get globar api var traidas desde api_tools
-	{% autoescape off %}
-		var urlBase   		= 'http://{{ request.get_host }}/';	
-		var headers  		= {% get_api_header %}; //Retorna un Objeto
-	{% endautoescape %}	
-
+	// get globsdasdar api var traidas desde api_tools
+	console.log(urlBase)
     $(document).on('change', '#id_department', function() {
     	url 	= urlBase+'api/provinces'
     	id 		= $(this).val();
@@ -31,7 +31,7 @@ $(function () {
     	data = {'province': id}
     	msg  = sendAjaxGeo(url,data,district);
 	});
-    
+
 	function sendAjaxGeo(url,data,element,type="GET"){
 		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 		$.ajax({
@@ -56,11 +56,11 @@ $(function () {
 			generateOptions(element,msg);
 		  }
 		});
-	}	
+	}
 	function generateOptions(element,data) {
 		element.append('<option value="">{% trans "select"|title %}</option>')
 		$.each(JSON.parse(data), function(){
-			element.append('<option value="'+ this.pk +'">'+ this.fields.name +'</option>')			
+			element.append('<option value="'+ this.pk +'">'+ this.fields.name +'</option>')
 		});
 	}
 	function clearOptions(element){
@@ -85,7 +85,7 @@ $(function () {
 	});
 
 	$(document).on('click',btnDelete,function(){
-		event.preventDefault();		
+		event.preventDefault();
 		id 		= $(this).data('id');
     	url 	= $(this).data('url');
     	data 	= {'id': id}
@@ -137,7 +137,7 @@ $(function () {
 	}
 
 
- 
+
     // Show dropdown
     $('.selected').click(function () {
         $('.custom-sel').addClass('show-sel');
@@ -157,14 +157,14 @@ $(function () {
     $(document).on('click', '.toggleFilter', function() {
 		$(".filters").fadeToggle();
 	});
-	$(document).on('click', '.cleatFilter', function() {		
+	$(document).on('click', '.cleatFilter', function() {
     	var form = $(this).parents('form:first');
     	form.find('input,select').val('');
     	form.find('input[type=checkbox]').attr('checked', false);
 	});
 
 
-	
+
 });
-	
+
 </script>

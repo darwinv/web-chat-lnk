@@ -54,8 +54,9 @@ function inject_items(list_items) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
+        // console.log(item)
         $("#list_categories").append("\
-                        <a href='#' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
+                        <a href='chat/"+item.id+"' class='list-group-item list-group-item-action cont'  id='" + "cat" + item.id + "'>\
                             <div class='row'>\
                                 <div class='col-10'>\
                                     <div class='row'>\
