@@ -155,7 +155,7 @@ class api:
                                     
                 # evaluar si existe el usuario en las sesiones guardadas
                 if User.objects.filter(id=pk).count() > 0:
-                    user = User.objects.filter(id=pk)[0]
+                    user = User.objects.get(id=pk)
                 else:
                     user = User()
 
@@ -168,10 +168,8 @@ class api:
                 user.email_exact = str(data['results'][0]['email_exact'])
 
                 role_id = int(data['results'][0]['role'])
-                user.role.id = user.role.pk = role_id
-                role = Role.objects.get(pk=role_id)
-                user.role.name = role.name
-
+                
+                user.role = Role.objects.get(pk=role_id)
 
             except Exception as e:
                 print(e)

@@ -8,6 +8,7 @@ from .forms import Login
 from api.connection import api
 from login.forms import RegisterClientFormNatural, RegisterClientFormBusiness
 from dashboard.tools import ToolsBackend as Tools
+from login.utils.tools import get_app_by_user
 
 def weblogin(request):
     """
@@ -19,7 +20,7 @@ def weblogin(request):
     error_message = ''
     
     if request.user.is_authenticated():        
-        app = get_app_by_user(request.user.role.name)
+        app = get_app_by_user(request.user.role.id)
 
         if app:
             return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
@@ -37,7 +38,7 @@ def weblogin(request):
                 login(request, user)
 
                 # redirect according to user type
-                app = get_app_by_user(user.role.name)
+                app = get_app_by_user(user.role.id)
 
                 if app:
                     return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
@@ -56,28 +57,6 @@ def logout_view(request):
         obj_api.logout(token)
         logout(request)
     return HttpResponseRedirect(reverse('login:login'))
-
-
-def get_app_by_user(role):
-    """
-    Funcion creada para retornar a que aplicacion debe redirigir cada rol de usuario
-    :param role: String con le nombre del rol
-    :return: nombre de la Django App Correspondiente al Rol
-    """
-    app = None
-
-    if role== 'admin':
-        app = {'name':'dashboard', 'url_name':'index'}
-    elif role== 'client':
-        app = {'name':'frontend', 'url_name':'index-client'}
-    elif role== 'specialist':
-        app = {'name':'frontend', 'url_name':'index-specialist'}
-    elif role== 'seller':
-        app = {'name':'frontend', 'url_name':'index-seller'}
-            
-    return app
-
-
 
 def register(request):
     """

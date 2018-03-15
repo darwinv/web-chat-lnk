@@ -1,5 +1,6 @@
-from django.contrib.auth.decorators import login_required
+from login.utils.tools import role_admin_check
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 from dashboard.json2table import convert, get_actual_page
@@ -24,7 +25,7 @@ class AccountStatus:
 
 
 class AccountStatusSeller(AccountStatus):
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         """
         Listado de estado de cuenta de vendedores, donde se debera filtrar para buscar

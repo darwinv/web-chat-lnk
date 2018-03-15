@@ -2,15 +2,15 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 
 from api.connection import api
-
 from dashboard.json2table import convert, get_actual_page
 from dashboard.forms import SpecialistForm, SellerForm, SellerFormFilters
 
+from login.utils.tools import role_admin_check
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 
 class Actor:
     logo_content_header = "fa fa-users"
@@ -36,8 +36,7 @@ class Specialist(Actor):
         'name_create_URL': _create,
         'add_actor': True
     }
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         obj_api = api()
         filters = {}
@@ -87,7 +86,7 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsList.html',
                       {'table': table, 'vars_page': vars_page, 'filters': filters})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -111,7 +110,7 @@ class Specialist(Actor):
 
         return render(request, 'admin/actor/specialistsDetail.html', {'data': data, 'vars_page': vars_page})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def create(self, request):
         obj_api = api()
         token = request.session['token']
@@ -166,7 +165,7 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -252,8 +251,7 @@ class Specialist(Actor):
         return SpecialistForm(data=data, files=files, department=department,
                               province=province, initial=specialist, form_edit=form_edit)
 
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def delete(self, request):
         if request.method == 'POST':
             id = request.POST['id']
@@ -277,7 +275,7 @@ class Client(Actor):
         'add_actor': False
     }
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         obj_api = api()
         actual_page = get_actual_page(request)
@@ -323,7 +321,7 @@ class Client(Actor):
         return render(request, 'admin/actor/clientsList.html',
                       {'table': table, 'vars_page': vars_page})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
         data = obj_api.get(slug='clients/' + pk, token=request.session['token'])
@@ -337,12 +335,11 @@ class Client(Actor):
 
         return render(request, 'admin/actor/clientsDetail.html', {'data': data, 'vars_page': vars_page})
    
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def create(self, request):
         pass
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -425,15 +422,9 @@ class Client(Actor):
         return SpecialistForm(data=data, files=files, department=department,
                               province=province, initial=specilist, form_edit=form_edit)
 
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def delete(self, request):
         pass
-
-    #metodo temporal para acceder al chat del cliente
-    # @method_decorator(login_required)
-    def chat(self, request):
-        return render(request, 'chat/clientChatList.html',{})
 
 class Seller(Actor):
     _list = 'dashboard:actor-sellers-list'
@@ -448,7 +439,7 @@ class Seller(Actor):
         'add_actor' : True
     }
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         obj_api = api()
         actual_page = get_actual_page(request)
@@ -503,7 +494,7 @@ class Seller(Actor):
         return render(request, 'admin/actor/sellersList.html',
                       {'table': table, 'vars_page': vars_page, 'form_filters': form_filters})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
         data = obj_api.get(slug='sellers/' + pk, token=request.session['token'])
@@ -518,7 +509,7 @@ class Seller(Actor):
 
         return render(request, 'admin/actor/sellersDetail.html', {'data': data, 'vars_page': vars_page})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def create(self, request):
         """Metodo para crear Vendedores."""
         obj_api = api()
@@ -567,7 +558,6 @@ class Seller(Actor):
         return render(request, 'admin/actor/sellersForm.html',
                       {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
 
-
     def generate_form_seller(self, data=None, files=None, seller=None, form_edit=None):
         """
         Funcion para generar traer formulario de especialistas
@@ -592,7 +582,7 @@ class Seller(Actor):
         return SellerForm(data=data, files=files, department=department,
                               province=province, initial=seller, form_edit=form_edit)
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -652,7 +642,7 @@ class Administrator(Actor):
         'name_create_URL': 'dashboard:actor-administrators-create',
     }
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         actual_page = get_actual_page(request)
         arg = {"page": actual_page}
