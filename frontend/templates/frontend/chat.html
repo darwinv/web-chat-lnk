@@ -1,18 +1,9 @@
-{% if request.user.role.id == 3 %}
-   {% extends 'frontend/actors/specialist/base_specialist.html' %}
-{% elif request.user.role.id == 2 %}
-   {% extends 'frontend/actors/client/base_client.html' %}
-{% endif %}
-
 {% load static %}
 
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/chat.css" %}">
 {% endblock %}
-
-
-<!-- Aca incluyo el listado de categorias -->
 
 {% block main_content %}
 <div class="bar-grey">
