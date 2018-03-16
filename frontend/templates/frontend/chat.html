@@ -37,10 +37,13 @@
 {% endfor %}
 
 </div>
+{% if request.user.role.id == ROLES.ROLE_CLIENT  %}
 <div class="title-box">
     <label for="title_query" style="color: white;">TITULO</label>
     <input type="text" class="form-control" id="title_query" placeholder="Ponle Titulo a Tu Consulta">
 </div>
+{% endif %}
+
 <div class="box-send-message">
     <div class="form-group col-xs-10">
         <input type="text" class="form-control" id="text_message" placeholder="Envia tu mensaje">
