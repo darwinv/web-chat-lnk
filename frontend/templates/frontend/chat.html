@@ -1,10 +1,4 @@
-{% load static %}
-{% block stylesheets %}
-    {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/chat.css" %}">
-{% endblock %}
 
-{% block main_content %}
 <div class="bar-grey">
     <div class="row">
         <div class="col-md-6">
@@ -53,13 +47,3 @@
       </div>
       <button type="submit" id="send-query" class="btn btn-default">Enviar</button>
 </div>
-{% endblock main_content %}
-
-{% block javascript %}
-  {{ block.super }}
-  <script src="{% static "frontend/dist/js/reconnecting-websocket.min.js" %}"></script>
-  <script type="text/javascript">
-      var token= '{{token_user}}';
-  </script>
-  <script src="{% static "frontend/dist/js/chat.js" %}"></script>
-{% endblock %}
