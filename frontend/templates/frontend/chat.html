@@ -1,5 +1,11 @@
-{% extends 'frontend/base.html' %}
+{% if request.user.role.id == 3 %}
+   {% extends 'frontend/actors/specialist/base_specialist.html' %}
+{% elif request.user.role.id == 2 %}
+   {% extends 'frontend/actors/client/base_client.html' %}
+{% endif %}
+
 {% load static %}
+
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/chat.css" %}">
@@ -23,7 +29,6 @@
         </div>
     </div>
 </div>
-
 <div id="user-id" data-user="{{user_id}}">
 
 </div>

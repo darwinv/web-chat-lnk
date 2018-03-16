@@ -7,6 +7,7 @@
 var urlBase   		= 'http://{{ request.get_host }}/';
 var headers  		= {% get_api_header %}; //Retorna un Objeto
 var apiUrl          = '{% get_api_url %}';
+var user_id         = {{request.user.id}}
 {% endautoescape %}
 $(function () {
 	// get globsdasdar api var traidas desde api_tools

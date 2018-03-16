@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import user_passes_test
 class Client:
     @method_decorator(user_passes_test(role_client_check()))
     def index(self, request):
-        return render(request, 'frontend/actors/client/categories.html')
+        return render(request, 'frontend/actors/client/base_client.html')
 
     def chat(self, request, pk):
         """Chat por Especialidad."""

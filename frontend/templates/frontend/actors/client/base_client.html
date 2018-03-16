@@ -1,8 +1,9 @@
 {% extends 'frontend/base.html' %}
 
-{% block content_left_slide %}
 
-    <div id="client_id" hidden><!---
+{% block content_left_slide %}
+    {% url 'frontend:chat-client' pk=0 as urlchat%}
+    <div id="client_id" hidden data-urlchat='{{urlchat}}'><!---
         -->{{ request.user.id }}<!--
     --></div>
     <div class="info-div">
