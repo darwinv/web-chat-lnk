@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^client/chat/(?P<pk>[0-9]+)/$', client.Client().chat, name='chat-client'),
     # Urls de Especialista
     url(r'^specialist/$', specialist.Specialist().index, name='index-specialist'),
-
+    url(r'^specialist/chat/(?P<pk>[0-9]+)/$', specialist.Specialist().chat, name='chat-specialist'),
     url(r'^seller/$', seller.Seller().index, name='index-seller'),
 ]

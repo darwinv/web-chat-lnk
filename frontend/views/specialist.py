@@ -1,9 +1,25 @@
 from django.shortcuts import render
+from operator import itemgetter
 from login.utils.tools import role_specialist_check
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
+from api.connection import api
+
 
 class Specialist:
     @method_decorator(user_passes_test(role_specialist_check()))
     def index(self, request):
         return render(request, 'frontend/actors/specialist/index.html')
+
+    @method_decorator(user_passes_test(role_specialist_check()))
+    def chat(self, request, pk):
+        """Chat por Cliente."""
+        obj_api = api()
+        token = request.session['token']
+        data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
+        # Ordenamos el listado de mensajes para que los mas recientes salgan abajo.
+        import pdb; pdb.set_trace()
+        newlist = sorted(data_messages["results"], key=itemgetter('id'))
+        return render(request, 'frontend/actors/specialist/chat.html', {'messages': newlist,
+                                                                        'user_id': request.user.id,
+                                                                        'token_user': token})

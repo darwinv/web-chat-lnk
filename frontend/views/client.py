@@ -6,8 +6,6 @@ from login.utils.tools import role_client_check
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 
-
-
 class Client:
     @method_decorator(user_passes_test(role_client_check()))
     def index(self, request):
@@ -23,5 +21,5 @@ class Client:
         # import pdb; pdb.set_trace()
         newlist = sorted(data_messages["results"], key=itemgetter('id'))
         return render(request, 'frontend/actors/client/chat.html', {'messages': newlist,
-                                                      'user_id': request.user.id,
-                                                      'token_user': token})
+                                                                    'user_id': request.user.id,
+                                                                    'token_user': token})
