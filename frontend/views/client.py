@@ -13,6 +13,7 @@ class Client:
     def index(self, request):
         return render(request, 'frontend/actors/client/base_client.html')
 
+    @method_decorator(user_passes_test(role_client_check()))
     def chat(self, request, pk):
         """Chat por Especialidad."""
         obj_api = api()
@@ -21,6 +22,6 @@ class Client:
         # Ordenamos el listado de mensajes para que los mas recientes salgan abajo.
         # import pdb; pdb.set_trace()
         newlist = sorted(data_messages["results"], key=itemgetter('id'))
-        return render(request, 'frontend/chat.html', {'messages': newlist,
+        return render(request, 'frontend/actors/client/chat.html', {'messages': newlist,
                                                       'user_id': request.user.id,
                                                       'token_user': token})

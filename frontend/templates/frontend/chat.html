@@ -1,14 +1,10 @@
-{% extends "frontend/actors/client/base_client.html" %}
-
+{% load static %}
 
 {% load static %}
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/chat.css" %}">
 {% endblock %}
-
-
-<!-- Aca incluyo el listado de categorias -->
 
 {% block main_content %}
 <div class="bar-grey">
