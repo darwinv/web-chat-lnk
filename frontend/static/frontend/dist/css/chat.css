@@ -42,6 +42,9 @@ div.bar-grey i{
     margin: 5%;
 }
 
+.globe-chat{
+    margin-bottom: 3px;
+}
 /* .arrow-down {
   width: 0;
   height: 0;
@@ -68,7 +71,6 @@ div.box-send-message{
 
 div.title-box{
     background-color: #00000D;
-    margin-top: 3%;
     padding: 1% 9%;
 }
 /* div.box-send-message > .form-group{
