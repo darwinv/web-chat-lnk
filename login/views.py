@@ -49,7 +49,6 @@ def weblogin(request):
 
     return render(request, 'public/login.html', {'form': form, 'error_message': error_message})
 
-
 def logout_view(request):
     if 'token' in request.session:
         obj_api = api()
