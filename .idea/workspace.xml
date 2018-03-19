@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="556172f3-03e2-4284-a1be-0ce1cdd9b34d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/static/frontend/dist/css/chat.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/static/frontend/dist/js/chat.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/static/frontend/dist/js/reconnecting-websocket.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/templates/frontend/actors/client/chat.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/templates/frontend/actors/specialist/base_specialist.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/templates/frontend/actors/specialist/chat.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/templates/frontend/chat.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/templatetags/api_tools.py" afterPath="$PROJECT_DIR$/api/templatetags/api_tools.py" />
-      <change beforePath="$PROJECT_DIR$/dashboard/templates/admin/lib/_main_scripts.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/lib/_main_scripts.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/apps.py" afterPath="$PROJECT_DIR$/frontend/apps.py" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/client/css/client.css" afterPath="$PROJECT_DIR$/frontend/static/frontend/client/css/client.css" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/client/js/categories-ref.js" afterPath="$PROJECT_DIR$/frontend/static/frontend/client/js/categories-ref.js" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/dist/css/frontend.css" afterPath="$PROJECT_DIR$/frontend/static/frontend/dist/css/frontend.css" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/actors/client/categories.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/actors/client/base_client.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/base.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/base.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/lib/_main_footer.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/lib/_main_footer.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/lib/_main_scripts.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/lib/_main_scripts.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/lib/_scripts.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/lib/_scripts.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/lib/_styles.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/lib/_styles.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/urls.py" afterPath="$PROJECT_DIR$/frontend/urls.py" />
-      <change beforePath="$PROJECT_DIR$/frontend/views.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/client.py" afterPath="$PROJECT_DIR$/frontend/views/client.py" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/specialist.py" afterPath="$PROJECT_DIR$/frontend/views/specialist.py" />
-      <change beforePath="$PROJECT_DIR$/linkup/settings.py" afterPath="$PROJECT_DIR$/linkup/settings.py" />
-      <change beforePath="$PROJECT_DIR$/linkup/urls.py" afterPath="$PROJECT_DIR$/linkup/urls.py" />
-      <change beforePath="$PROJECT_DIR$/login/views.py" afterPath="$PROJECT_DIR$/login/views.py" />
-    </list>
+    <list default="true" id="556172f3-03e2-4284-a1be-0ce1cdd9b34d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +110,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="431" />
     <option name="y" value="150" />
     <option name="width" value="697" />
@@ -314,8 +286,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27960527" sideWeight="0.5060514" order="0" side_tool="true" content_ui="tabs" />
