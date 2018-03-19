@@ -51,13 +51,11 @@ html.frontend-html {
 .left-slide {
     float: left;
     min-height: 100px;
-    padding-bottom: 10px;
     background-color: #ffffff;
 }
 
 .main-content {
     float: left;
-    padding-bottom: 10px;
     background-color: #eaeaea;
 }
 .body-content {
@@ -68,7 +66,9 @@ html.frontend-html {
 .page-wrap {
     background: #00000d;
 }
-
+.cont-input-send-text-message{
+    margin-bottom: 10px;
+}
 /* Cabecera de frontend */
 .content-right-head {
 font-size: 24px;
