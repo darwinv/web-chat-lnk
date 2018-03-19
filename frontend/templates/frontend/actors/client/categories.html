@@ -1,5 +1,5 @@
 {% extends 'frontend/base.html' %}
-
+{% load static %}
 {% block content_left_slide %}
 
     <div id="client_id" hidden><!---
@@ -11,3 +11,6 @@
         </div>
     </div>
 {% endblock content_left_slide %}
+{% block scripts_custom %}
+    <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+{% endblock scripts_custom %}

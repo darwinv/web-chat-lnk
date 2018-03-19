@@ -74,7 +74,9 @@
 }
 
 .cont {
-    margin-left: -14px;
+    /*margin-left: -14px;*/
+    padding-left: 11px;
+    /*padding-right: 0px;*/
 }
 
 /*.cont-2{*/
@@ -87,6 +89,6 @@
 /*.c{*/
 /*padding-right: -14px;*/
 /*}*/
-.r {
-    float: right;
-}
+/*.r {*/
+    /*float: right;*/
+/*}*/
