@@ -1,0 +1,68 @@
+{% load static i18n %}
+<!-- MOVER ESTA VARIABLE A SOLO JS -->
+<div id="user-id" data-user="{{user_id}}">
+
+</div>
+
+
+
+
+
+<div id="content-chat" >
+
+    <!-- HEADER CHAT CLIENT -->
+    <div class="bar-grey">
+        <div class="row">
+            <div class="col-xs-12">
+                <i class="fas fa-angle-left"></i>
+                <div class="img-category" style="float:right">
+                    <div style="display:inline-block">Impuestos</div>
+                    <img src="http://www.linkup.com.pe/wp-content/uploads/2017/05/Especialidades-02.png"
+                    style="height: 45px;" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="chat_box" class="container-fluid">
+    {% for message in messages %}
+      <div class="row globe-chat">
+        <div class="cont-title-query" style="display: none">
+            <div class="title-query">
+                {{message.query.title}}
+            </div>
+        </div>
+        <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}" data-query="{{message.query.query_id}}">
+
+            <div class="row">
+                <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="code-user">{{ message.code }}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><small class="time">{{ message.time_message }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+
+    <div class="box-send-message">
+        <div class="title-box">
+            <label for="title_query" style="color: white;">{% trans "title"|title %}</label>
+            <input type="text" class="form-control" id="title_query" placeholder="Ponle Titulo a Tu Consulta">
+        </div>
+        <div class="send-message-cont">
+            <div class="cont-input-send-text-message col-xs-10">
+                <input type="text" class="form-control" id="text_message" placeholder="Envia tu mensaje">
+            </div>
+            <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
+        </div>
+
+    </div>
+</div>

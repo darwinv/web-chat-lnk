@@ -18,20 +18,20 @@ def weblogin(request):
     :return: formulario de login o listado de especialistas
     """
     error_message = ''
-    
-    if request.user.is_authenticated():        
+
+    if request.user.is_authenticated():
         app = get_app_by_user(request.user.role.id)
 
         if app:
             return HttpResponseRedirect(reverse('{app}:{url}'.format(app=app['name'],url=app['url_name'])))
-            
+
     if request.method == 'POST':
 
         form = Login(request.POST)
         if form.is_valid():
 
             # Autenticamos datos de usuario del backend
-            
+
             user = authenticate(request, username=request.POST['user'], password=request.POST['password'])
 
             if user is not None:
@@ -49,9 +49,8 @@ def weblogin(request):
 
     return render(request, 'public/login.html', {'form': form, 'error_message': error_message})
 
-
-def logout_view(request):    
-    if 'token' in request.session:        
+def logout_view(request):
+    if 'token' in request.session:
         obj_api = api()
         token = request.session['token']
         obj_api.logout(token)
@@ -112,7 +111,7 @@ def register(request):
             else:
                 # Mostrar Errores en Form
                 form.add_error_custom(add_errors=result)  # Agregamos errores retornados por la app para este formulario
-            
+
     else:
 
         if type_client == 'n':
