@@ -3,6 +3,7 @@ $(function() {
 changeMessage(); //se llama a la funcion change message
 
 function changeMessage(){
+    query_id = null;
     $(".message").each(function(){
         var msg = $(this);
         var user_id = $('#user-id').data('user')
@@ -12,6 +13,13 @@ function changeMessage(){
             var bloq = msg.parent()
             // console.log("exito")
             bloq.after("<div class='arrow-down'>  </div>")
+        }
+
+        if (msg.data("query") != query_id){
+            msg.siblings(".cont-title-query").show()
+            query_id = msg.data("query");
+        }else{
+            msg.siblings(".cont-title-query").remove()
         }
 
     });
@@ -28,7 +36,7 @@ function changeMessage(){
  var category = cadena[5];
  // Nuestra sala, sera id usuario y id de especialidad
  var sala = user_id + '-' + category;
- var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + sala);
+ var chatsock = new ReconnectingWebSocket(api_url + "/chat/" + sala);
 
   chatsock.onopen = function open() {
   console.log('WebSockets connection created.');

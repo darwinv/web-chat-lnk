@@ -42,6 +42,26 @@ div.bar-grey i{
     margin: 5%;
 }
 
+.title-query{
+    border: 1px solid #dfdfdf;
+    border-radius: 15px;
+    background-color: #a3ffdd;
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    padding: 5px 15px;
+    vertical-align: middle;
+    margin: 0px 20px;
+    box-shadow: 1px 1px #8888887d;
+    max-width: 70%;
+}
+.cont-title-query{
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
 /* .arrow-down {
   width: 0;
   height: 0;
@@ -71,10 +91,6 @@ div.title-box{
     margin-top: 3%;
     padding: 1% 9%;
 }
-/* div.box-send-message > .form-group{
-    margin: 0;
-} */
-
 
 small.time{
     float: right;

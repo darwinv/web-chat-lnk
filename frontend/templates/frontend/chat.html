@@ -1,4 +1,4 @@
-
+{% load static i18n %}
 <div class="bar-grey">
     <div class="row">
         <div class="col-md-6">
@@ -19,8 +19,13 @@
 <div id="chat_box" class="container-fluid">
 {% for message in messages %}
   <div class="row globe-chat">
-    <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}">
-        Consulta: {{message.query.title}}
+    <div class="cont-title-query" style="display: none">
+        <div class="title-query">
+            {{message.query.title}}
+        </div>
+    </div>
+    <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}" data-query="{{message.query.query_id}}">
+        
         <div class="row">
             <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
             </div>
@@ -38,13 +43,13 @@
 
 </div>
 <div class="title-box">
-    <label for="title_query" style="color: white;">TITULO</label>
+    <label for="title_query" style="color: white;">{% trans "title"|title %}</label>
     <input type="text" class="form-control" id="title_query" placeholder="Ponle Titulo a Tu Consulta">
 </div>
 <div class="box-send-message">
     <div class="form-group col-xs-10">
         <input type="text" class="form-control" id="text_message" placeholder="Envia tu mensaje">
       </div>
-      <button type="submit" id="send-query" class="btn btn-default">Enviar</button>
+      <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
 </div>
   
