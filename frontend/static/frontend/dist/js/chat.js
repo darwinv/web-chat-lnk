@@ -5,34 +5,31 @@ changeMessage(); //se llama a la funcion change message
 function changeMessage(){
     $(".message").each(function(){
         var msg = $(this);
-        var user_id = $('#user-id').data('user')
+        var user_id = userID
         if (msg.data("sender") != user_id){
             msg.removeClass("col-sm-offset-6 message")
             msg.addClass("message-answer")
             var bloq = msg.parent()
-            // console.log("exito")
-            // bloq.after("<div class='arrow-down'>  </div>")
         }
-
     });
 }
 
 
- var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
+var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
 api_url = apiUrl.replace("http","ws");
 // Comparamos los roles para que se conecten a la sala como corresponde
-role_id = $('#user-id').data('role');
+role_id = roleID;
 var cadena = window.location.pathname.split("/");
  if (role_id == 2){
      //extraemos el id actual de usuario
-     var user_id = $('#user-id').data('user');
+     var user_id = userID
      //extraemos la categoria
      var category = cadena[5];
  }
  else{
      var user_id = cadena[5];
-     var category = $('.message').data("category")
+     var category = $('.message').data("category");
  }
  // Nuestra sala, sera id usuario y id de especialidad
  var sala = user_id + '-' + category;
@@ -75,10 +72,14 @@ var cadena = window.location.pathname.split("/");
      });
 
     changeMessage();
+    if (!$("#animacion").hasClass('hidden')){
+        $("#animacion").addClass("hidden");
+    }
  };
 
 
  $("#send-query").on("click", function(event) {
+     $("#animacion").toggleClass("hidden")
      message_type = 'q';
      title_query = $('#title_query').val();
      query_id = "";
@@ -102,8 +103,10 @@ var cadena = window.location.pathname.split("/");
      }
 
      chatsock.send(JSON.stringify(message));
+
      $("#title_query").val('')
      $("#text_message").val('').focus();
+
      return false;
  });
 

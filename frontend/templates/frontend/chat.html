@@ -13,9 +13,6 @@
         </div>
     </div>
 </div>
-<div id="user-id" data-user="{{user_id}}" data-role="{{request.user.role.id}}">
-
-</div>
 <div id="chat_box" class="container-fluid">
 {% for message in messages %}
   <div class="row globe-chat">
@@ -38,13 +35,16 @@
 {% endfor %}
 
 </div>
+<div id="animacion" class="hidden">
+    <div class="ball"></div>
+    <div class="ball1"></div>
+</div>
 {% if request.user.role.id == ROLES.ROLE_CLIENT  %}
 <div class="title-box">
     <label for="title_query" style="color: white;">TITULO</label>
     <input type="text" class="form-control" id="title_query" placeholder="Ponle Titulo a Tu Consulta">
 </div>
 {% endif %}
-
 <div class="box-send-message">
     <div class="form-group col-xs-10">
         <input type="text" class="form-control" id="text_message" placeholder="Envia tu mensaje">
