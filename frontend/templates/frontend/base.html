@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="stylesheet" href="{% static "frontend/dist/css/bootstrap.min.css" %}">
-        <link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
+        <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
         <link rel="shortcut icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
         <link rel="icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
 
@@ -67,7 +67,7 @@
     <script src="{% static "frontend/dist/js/tether.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/bootstrap.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/firebase.js" %}"></script>
-    <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+    {% block scripts_custom %}{% endblock scripts_custom %}
 {% endblock body %}
 
 </body>
