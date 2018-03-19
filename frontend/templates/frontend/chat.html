@@ -13,13 +13,14 @@
         </div>
     </div>
 </div>
-<div id="user-id" data-user="{{user_id}}">
+<div id="user-id" data-user="{{user_id}}" data-role="{{request.user.role.id}}">
 
 </div>
 <div id="chat_box" class="container-fluid">
 {% for message in messages %}
   <div class="row globe-chat">
-    <div class="message col-sm-6 col-sm-offset-6" data-sender="{{message.user_id}}">
+    <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
+    data-sender="{{message.user_id}}">
         Consulta: {{message.query.title}}
         <div class="row">
             <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>

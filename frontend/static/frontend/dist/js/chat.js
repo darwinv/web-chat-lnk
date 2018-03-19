@@ -11,7 +11,7 @@ function changeMessage(){
             msg.addClass("message-answer")
             var bloq = msg.parent()
             // console.log("exito")
-            bloq.after("<div class='arrow-down'>  </div>")
+            // bloq.after("<div class='arrow-down'>  </div>")
         }
 
     });
@@ -21,13 +21,21 @@ function changeMessage(){
  var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
  api_url = apiUrl.replace("http","ws");
- //extraemos el id actual de usuario
- var user_id = $('#user-id').data('user');
- //extraemos la categoria
- var cadena = window.location.pathname.split("/");
- var category = cadena[5];
+var role_id = $('#user-id').data('role');
+var cadena = window.location.pathname.split("/");
+ if (role_id == 2){
+     //extraemos el id actual de usuario
+     var user_id = $('#user-id').data('user');
+     //extraemos la categoria
+     var category = cadena[5];
+ }
+ else{
+     var user_id = cadena[5];
+     var category = $('.message').data("category")
+ }
  // Nuestra sala, sera id usuario y id de especialidad
  var sala = user_id + '-' + category;
+console.log(sala)
  var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + sala);
 
   chatsock.onopen = function open() {
