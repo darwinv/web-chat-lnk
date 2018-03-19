@@ -1,3 +1,5 @@
+"""Vista Especialista."""
+
 from django.shortcuts import render
 from operator import itemgetter
 from login.utils.tools import role_specialist_check
@@ -17,9 +19,9 @@ class Specialist:
         obj_api = api()
         token = request.session['token']
         data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
-        # Ordenamos el listado de mensajes para que los mas recientes salgan abajo.
-        import pdb; pdb.set_trace()
+        # Ordenamos el listado de mensajes
+        # para que los mas recientes salgan abajo.
         newlist = sorted(data_messages["results"], key=itemgetter('id'))
-        return render(request, 'frontend/actors/specialist/chat.html', {'messages': newlist,
-                                                                        'user_id': request.user.id,
-                                                                        'token_user': token})
+        return render(request, 'frontend/actors/specialist/chat.html',
+                      {'messages': newlist, 'user_id': request.user.id,
+                       'token_user': token})
