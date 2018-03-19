@@ -20,7 +20,7 @@
 {% for message in messages %}
   <div class="row globe-chat">
     <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
-    data-sender="{{message.user_id}}">
+    data-sender="{{message.user_id}}" data-query="{{message.query.query_id}}">
         Consulta: {{message.query.title}}
         <div class="row">
             <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>

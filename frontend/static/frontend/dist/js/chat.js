@@ -20,8 +20,9 @@ function changeMessage(){
 
  var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
- api_url = apiUrl.replace("http","ws");
-var role_id = $('#user-id').data('role');
+api_url = apiUrl.replace("http","ws");
+// Comparamos los roles para que se conecten a la sala como corresponde
+role_id = $('#user-id').data('role');
 var cadena = window.location.pathname.split("/");
  if (role_id == 2){
      //extraemos el id actual de usuario
@@ -35,7 +36,6 @@ var cadena = window.location.pathname.split("/");
  }
  // Nuestra sala, sera id usuario y id de especialidad
  var sala = user_id + '-' + category;
-console.log(sala)
  var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + sala);
 
   chatsock.onopen = function open() {
@@ -55,7 +55,8 @@ console.log(sala)
 // Se crea el div del globo para renderizarlo
 // debe validarse el tema de si soy el q cree el mensaje o al contrario
          var divMessage = "<div class='row globe-chat'>"+
-                                "<div class='message col-sm-6 col-sm-offset-6' data-sender='"+value.user_id+"'>"+
+                                "<div class='message col-sm-6 col-sm-offset-6'"+
+                                "data-sender='"+value.user_id+"' data-query='"+value.query.id+"'>"+
                                     "<div class='row'>"+
                                         "<div class='col-sm-12'><p class='text'>"+value.message+"</p></div>"+
                                     "</div>"+
@@ -78,16 +79,28 @@ console.log(sala)
 
 
  $("#send-query").on("click", function(event) {
+     message_type = 'q';
+     title_query = $('#title_query').val();
+     query_id = "";
+    if (role_id == 3) {
+        message_type = 'a';
+        title_query = "";
+        category = "";
+        query_id = $("#chat_box div.message:last").data("query");
+    }
+    console.log(query_id)
      var message = {
          token : token,
-         title: $('#title_query').val(),
+         title: title_query,
          message:[{
             message: $('#text_message').val(),
-            msg_type: "q",
+            msg_type: message_type,
             content_type: "0",
             file_url: ""}],
-         category: category
+         category: category,
+         query: query_id
      }
+
      chatsock.send(JSON.stringify(message));
      $("#title_query").val('')
      $("#text_message").val('').focus();
