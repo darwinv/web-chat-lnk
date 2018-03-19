@@ -13,7 +13,7 @@ settings_secret.py
 manage_bkp.py
 media
 .idea/workspace.xml
-idea/
+.idea/
 venv/
 settings_secret.py
 
