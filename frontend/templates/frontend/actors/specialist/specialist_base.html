@@ -1,0 +1,18 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block content_left_slide %}
+
+    <div id="client_id" hidden><!---
+        -->{{ request.user.id }}<!--
+    --></div>
+    <div class="info-div">
+        <div class="list-group" id="list_categories">
+            <!--print categories-->
+        </div>
+    </div>
+{% endblock content_left_slide %}
+{% block scripts_custom %}
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone.js"></script>
+    <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
+{% endblock scripts_custom %}
