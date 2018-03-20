@@ -11,6 +11,13 @@ function changeMessage(){
             msg.addClass("message-answer")
             var bloq = msg.parent()
         }
+
+        if (msg.data("query") != query_id){
+            msg.siblings(".cont-title-query").show()
+            query_id = msg.data("query");
+        }else{
+            msg.siblings(".cont-title-query").remove()
+        }
     });
 }
 

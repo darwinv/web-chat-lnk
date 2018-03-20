@@ -63,6 +63,7 @@ $(document).ready(function () {
     // }
 });
 
+
 function inject_items(list_items) {
     var cont = 0;
     list_items.forEach(function (item) {
@@ -77,7 +78,7 @@ function inject_items(list_items) {
                                     <div class='row'>\
                                         <div class='cont-item'>\
                                             <img src='" + itemVal.image + "'class='rounded-circle itemp' id='img_cat'>\
-                                            <span class='itemp'>" + itemVal.name + "</span>\
+                                            <span class='itemp'>" + itemVal.title + "</span>\
                                         </div>\
                                      </div>\
                                 </div>\
@@ -89,7 +90,6 @@ function inject_items(list_items) {
         cont += 1;
     });
 }
-
 function reverse_list(snapshot) {
     var l = new Array();
     snapshot.forEach(function (item) {
