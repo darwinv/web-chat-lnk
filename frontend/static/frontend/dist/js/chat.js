@@ -3,6 +3,7 @@ $(function() {
 changeMessage(); //se llama a la funcion change message
 
 function changeMessage(){
+    var query_id = null
     $(".message").each(function(){
         var msg = $(this);
         var user_id = userID
