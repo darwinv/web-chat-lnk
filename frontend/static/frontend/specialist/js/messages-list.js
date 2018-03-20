@@ -69,8 +69,9 @@ function inject_items(list_items) {
     list_items.forEach(function (item) {
         var itemVal = item;
         console.log(item);
+        var url_chat = $('.info-div').data('urlchat').replace('0',item.client)
         $("#list_categories").append("\
-                        <a href='#' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
+                        <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
                             <div class='row '>\
                                 <div class='col-10 cont'>\
                                         <div class='cont-item'>\
