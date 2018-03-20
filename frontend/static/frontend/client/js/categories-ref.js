@@ -24,7 +24,7 @@ $(document).ready(function () {
     //     var errorMessage = error.message;
     //     // ...
     // });
-    var client_id = $('#client_id').text();
+    var client_id = userID;
     console.log("id: "+client_id);
     // if (!client_id == "None") {
         var starCountRef = firebase.database().ref('categories/clients/u' + client_id).orderByChild('datetime');
@@ -70,7 +70,7 @@ function inject_items(list_items) {
         var itemVal = item;
         // console.log(item)/
         // chat = 'es/web/client/chat/'
-        var url_chat = $('#client_id').data('urlchat').replace('0',item.id)
+        var url_chat = $('.info-div').data('urlchat').replace('0',item.id)
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont'  id='" + "cat" + item.id + "'>\
                             <div class='row'>\
