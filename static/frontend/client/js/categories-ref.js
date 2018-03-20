@@ -24,7 +24,7 @@ $(document).ready(function () {
     //     var errorMessage = error.message;
     //     // ...
     // });
-    var client_id = $('#client_id').text();
+    var client_id = userID;
     console.log("id: "+client_id);
     // if (!client_id == "None") {
         var starCountRef = firebase.database().ref('categories/clients/u' + client_id).orderByChild('datetime');
@@ -63,12 +63,17 @@ $(document).ready(function () {
     // }
 });
 
+
 function inject_items(list_items) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
+        // console.log(item)/
+        // chat = 'es/web/client/chat/'
+        var url_chat = $('.info-div').data('urlchat').replace('0',item.id);
+
         $("#list_categories").append("\
-                        <a href='#' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
+                        <a href='"+url_chat+"' class='list-group-item list-group-item-action cont'  id='" + "cat" + item.id + "'>\
                             <div class='row'>\
                                 <div class='col-10'>\
                                     <div class='row'>\
@@ -86,7 +91,6 @@ function inject_items(list_items) {
         cont += 1;
     });
 }
-
 function reverse_list(snapshot) {
     var l = new Array();
     snapshot.forEach(function (item) {
