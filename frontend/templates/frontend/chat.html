@@ -46,17 +46,19 @@
 
     </div>
 
-<div id="animacion" class="hidden">
-    <div class="ball"></div>
-    <div class="ball1"></div>
-</div>
-{% if request.user.role.id == ROLES.ROLE_CLIENT  %}
-<div class="title-box">
-    <label for="title_query" style="color: white;">{% trans "title"|title %}</label>
-    <input type="text" class="form-control" id="title_query" placeholder='{% trans "Name your query" %}'>
-</div>
-{% endif %}
+
+
 <div class="box-send-message">
+    <div id="animacion" class="hidden">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    {% if request.user.role.id == ROLES.ROLE_CLIENT  %}
+    <div class="title-box">
+        <label for="title_query" style="color: white;">{% trans "title"|title %}</label>
+        <input type="text" class="form-control" id="title_query" placeholder='{% trans "Name your query" %}'>
+    </div>
+    {% endif %}
     <div class="send-message-cont">
         <div class="cont-input-send-text-message col-xs-10">
             <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'>
