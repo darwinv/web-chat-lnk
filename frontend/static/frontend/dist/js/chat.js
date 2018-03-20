@@ -23,6 +23,7 @@ function changeMessage(){
     });
 }
 
+
 var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
 api_url = apiUrl.replace("http","ws");
@@ -100,7 +101,7 @@ $("#send-query").on("click", function(event) {
         category = "";
         query_id = $("#chat_box div.message-answer:last").data("query");
     }
-    
+
     var message = {
         token : token,
         title: title_query,
