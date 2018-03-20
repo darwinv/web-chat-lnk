@@ -24,7 +24,7 @@ $(document).ready(function () {
     //     var errorMessage = error.message;
     //     // ...
     // });
-    var client_id = $('#client_id').text();
+    var client_id = userID;
     console.log("id: " + client_id);
     // if (!client_id == "None") {
     var starCountRef = firebase.database().ref('messageslist/specialist/s'+client_id).orderByChild('date');
@@ -68,9 +68,10 @@ function inject_items(list_items) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
-        // console.log(item);
+        console.log(item);
+        var url_chat = $('.info-div').data('urlchat').replace('0',item.client)
         $("#list_categories").append("\
-                        <a href='#' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
+                        <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
                             <div class='row '>\
                                 <div class='col-10 cont'>\
                                         <div class='cont-item'>\

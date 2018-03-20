@@ -23,31 +23,29 @@ function changeMessage(){
     });
 }
 
+var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
+//conformamos la url para conectar via ws
+api_url = apiUrl.replace("http","ws");
+// Comparamos los roles para que se conecten a la sala como corresponde
+role_id = roleID;
+var cadena = window.location.pathname.split("/");
+if (role_id == 2){
+    //extraemos el id actual de usuario
+    var user_id = userID
+    //extraemos la categoria
+    var category = cadena[5];
+}
+else{
+    var user_id = cadena[5];
+    var category = $('#category').data("id");
+}
+// Nuestra sala, sera id usuario y id de especialidad
+var room = user_id + '-' + category;
+var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + room);
 
-    var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
-    //conformamos la url para conectar via ws
-    api_url = apiUrl.replace("http","ws");
-    // Comparamos los roles para que se conecten a la sala como corresponde
-    role_id = roleID;
-    var cadena = window.location.pathname.split("/");
-    if (role_id == 2){
-        //extraemos el id actual de usuario
-        var user_id = userID
-        //extraemos la categoria
-        var category = cadena[5];
-    }
-    else{
-        var user_id = cadena[5];
-        var category = $('.message').data("category");
-    }
-    // Nuestra sala, sera id usuario y id de especialidad
-    var sala = user_id + '-' + category;
-    console.log(sala)
-    var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + sala);
-
-    chatsock.onopen = function open() {
-        console.log('WebSockets connection created.');
-    };
+chatsock.onopen = function open() {
+    console.log('WebSockets connection created.');
+};
 
 chatsock.onmessage = function(message) {
     var data = JSON.parse(message.data);
@@ -100,9 +98,9 @@ $("#send-query").on("click", function(event) {
         message_type = 'a';
         title_query = "";
         category = "";
-        query_id = $("#chat_box div.message:last").data("query");
+        query_id = $("#chat_box div.message-answer:last").data("query");
     }
-    console.log(query_id)
+    
     var message = {
         token : token,
         title: title_query,
