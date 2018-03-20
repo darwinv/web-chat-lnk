@@ -16,13 +16,10 @@ class Client:
         """Chat por Especialidad."""
         obj_api = api()
         token = request.session['token']
-        # messages = None
         data_messages = obj_api.get(slug='queries/categories/' + pk, token=token)
         # Ordenamos el listado de mensajes para que los mas recientes salgan abajo.
-
-        # if data_messages:
-        messages = sorted(data_messages["results"], key=itemgetter('id'))
-
-        return render(request, 'frontend/actors/client/chat.html', {'messages': messages,
-                                                      'user_id': request.user.id,
-                                                      'token_user': token})
+        # import pdb; pdb.set_trace()
+        newlist = sorted(data_messages["results"], key=itemgetter('id'))
+        return render(request, 'frontend/actors/client/chat.html', {'messages': newlist,
+                                                                    'user_id': request.user.id,
+                                                                    'token_user': token})
