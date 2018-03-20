@@ -70,7 +70,8 @@ function inject_items(list_items) {
         var itemVal = item;
         // console.log(item)/
         // chat = 'es/web/client/chat/'
-        var url_chat = $('.info-div').data('urlchat').replace('0',item.id)
+        var url_chat = $('.info-div').data('urlchat').replace('0',item.id);
+
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont'  id='" + "cat" + item.id + "'>\
                             <div class='row'>\
@@ -78,7 +79,7 @@ function inject_items(list_items) {
                                     <div class='row'>\
                                         <div class='cont-item'>\
                                             <img src='" + itemVal.image + "'class='rounded-circle itemp' id='img_cat'>\
-                                            <span class='itemp'>" + itemVal.title + "</span>\
+                                            <span class='itemp'>" + itemVal.name + "</span>\
                                         </div>\
                                      </div>\
                                 </div>\

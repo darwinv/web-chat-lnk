@@ -68,7 +68,7 @@ function inject_items(list_items) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
-        console.log(item);
+        // console.log(item);
         var url_chat = $('.info-div').data('urlchat').replace('0',item.client)
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
@@ -92,27 +92,50 @@ function reverse_list(snapshot) {
     var l = new Array();
     snapshot.forEach(function (item) {
         var aux = item.val();
-        var fecha2 = moment(aux.date).utc();
-        var date_utc = moment().add(5, 'hours');
-        var diff = date_utc.diff(fecha2, 'hours');
-        var color = "green";
-        diff = 24 - diff;
-        if (diff < 4) {
-            color = "red";
-            // console.log(diff,"red");
-        }
-        else if (diff >= 4 && diff < 12) {
-            color = "orange";
-            // console.log(diff,"orange");
-        }
-        else if (diff >= 13 && diff <= 24) {
-            color = "green";
-            // console.log(diff,"green");
-        }
+        // var fecha2 = moment(aux.date);
+        // var fecha2 = ;
+        // console.log("utc",moment(aux.date));
+        // console.log("utc-5",fecha2.format('YYYYMMDD HHmmss'));
+        // console.log("utc-5",moment(fecha2).tz("America/Toronto").format('Z'));
+        // var fecha2 = moment(aux.date);
+        // fecha de firebase en UTC-5
+        // fecha2 = moment(fecha2).utcOffset("05:00");
+        // var b = moment.duration(5, 'h');
+        // console.log("test",fecha4.subtract(b));
+        // fecha4 = fecha4.add(5, 'hours');
+        // var fecha3 = moment(fecha2).add(-5, 'hours');
+        // var date_utc = fecha2.add(5, 'hours');
+        // var date_utc = moment().add(5, 'hours');
+        // console.log("pre",fecha2);
+        // var date_local = moment();
+        // var diff = date_utc.diff(fecha2, 'hours');
+        // var color = "green";
+        // diff = 24 - diff;
+        // if (diff < 4) {
+        //     color = "red";
+        //     // console.log(diff,"red");
+        // }
+        // else if (diff >= 4 && diff < 12) {
+        //     color = "orange";
+        //     // console.log(diff,"orange");
+        // }
+        // else if (diff >= 13 && diff <= 24) {
+        //     color = "green";
+        //     // console.log(diff,"green");
+        // }
         // aux.clase = color;
         aux.message = aux.message.slice(0, 20) + ' ...';
-        aux.diff = diff;
-        aux.date = moment(fecha2).format('LT');
+        // aux.diff = diff;
+        aux.date = dateTextCustom(moment.utc(aux.date), "-05:00");
+        // aux.date = moment(fecha2).format('LT');
+
+        //ver cuantos minutos pasaron desdedesde la ultima hora punta
+        // var auxx = moment().startOf('hour').fromNow();
+        // //obtener la hora de utc-5
+        // var timestamp_utc_minus_5 = moment().utcOffset("-05:00");
+        // var datetime = moment();
+        // var aux5 = moment().diff(today12am, 'hours');
+
 
 //
 //         }
