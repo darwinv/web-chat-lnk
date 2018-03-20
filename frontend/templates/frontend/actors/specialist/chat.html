@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block main_content %}
+    <div id="category" data-id="{{messages.0.query.category_id}}">
+    </div>
     {% include 'frontend/chat.html' %}
 {% endblock main_content %}
 

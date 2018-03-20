@@ -73,8 +73,9 @@ div.bar-grey i{
 div.box-send-message {
     background-color: #D0D0D0;
     width: 100%;
-    position: absolute;
-    bottom: 0px;
+    float:  left;
+    margin-top:  10px;
+    position:  relative;
 }
 
 div.title-box {
@@ -93,13 +94,21 @@ small.time{
 }
 
 .send-message-cont {
-    float: left;
-    width: 100%;
     margin-top: 10px;
 }
 
 
 /* Animacion para efecto cargando */
+#animacion {
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    right: 0;
+}
 .ball {
     background-color: rgba(0,0,0,0);
     border: 3px solid rgba(0,183,229,0.9);
