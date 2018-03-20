@@ -3,7 +3,6 @@ $(function() {
 changeMessage(); //se llama a la funcion change message
 
 function changeMessage(){
-    query_id = null;
     $(".message").each(function(){
         var msg = $(this);
         var user_id = userID
@@ -34,7 +33,7 @@ var cadena = window.location.pathname.split("/");
  }
  // Nuestra sala, sera id usuario y id de especialidad
  var sala = user_id + '-' + category;
- var chatsock = new ReconnectingWebSocket(api_url + "/chat/" + sala);
+ var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + sala);
 
   chatsock.onopen = function open() {
   console.log('WebSockets connection created.');
