@@ -9,7 +9,7 @@ from api.connection import api
 class Specialist:
     @method_decorator(user_passes_test(role_specialist_check()))
     def index(self, request):
-        return render(request, 'frontend/actors/specialist/index.html')
+        return render(request, 'frontend/actors/specialist/specialist_base.html')
 
     @method_decorator(user_passes_test(role_specialist_check()))
     def chat(self, request, pk):

@@ -27,7 +27,7 @@ $(document).ready(function () {
     var client_id = $('#client_id').text();
     console.log("id: " + client_id);
     // if (!client_id == "None") {
-    var starCountRef = firebase.database().ref('messageslist/specialist/s20').orderByChild('date');
+    var starCountRef = firebase.database().ref('messageslist/specialist/s'+client_id).orderByChild('date');
     starCountRef.on('value', function (snapshot) {
         $("#list_categories").empty();
         // $("#lista_cats").remove();
