@@ -37,7 +37,7 @@ var cadena = window.location.pathname.split("/");
  }
  else{
      var user_id = cadena[5];
-     var category = $('.message').data("category");
+     var category = $('#category').data("id");
  }
  // Nuestra sala, sera id usuario y id de especialidad
  var sala = user_id + '-' + category;
@@ -95,11 +95,11 @@ var cadena = window.location.pathname.split("/");
         message_type = 'a';
         title_query = "";
         category = "";
-        query_id = $("#chat_box div.message:last").data("query");
+        query_id = $("#chat_box div.message-answer:last").data("query");
     }
     console.log(query_id)
      var message = {
-         token : token,
+         token: token,
          title: title_query,
          message:[{
             message: $('#text_message').val(),
