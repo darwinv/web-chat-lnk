@@ -1,0 +1,182 @@
+/* Estilos para el Chat */
+div.bar-grey{
+    height: 60px;
+    background-color: #06060680;
+    line-height: 54px;
+}
+
+div.bar-grey i{
+    color: #00B5CB;
+    font-size: 55px;
+    margin-left: 2%;
+}
+.img-category div{
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+.message{
+    background-color: #00ACC5;
+    margin-top: 5px;
+    border-radius: 21px;
+    padding: 1% 3%;
+    width: 41%;
+    color:white;
+    right: 3%;
+    /* display: flex;     */
+    }
+
+.message-answer{
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 21px;
+    padding: 10px 20px;
+    width: 41%;
+    left: 10px;
+    color:black;
+    border: 3px solid #00ACC5;
+}
+
+.globe-chat p.text{
+    margin: 10px 0px;
+}
+
+.title-query{
+    border: 1px solid #dfdfdf;
+    border-radius: 15px;
+    background-color: #a3ffdd;
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    padding: 5px 15px;
+    vertical-align: middle;
+    margin: 0px 20px;
+    box-shadow: 1px 1px #8888887d;
+    max-width: 70%;
+}
+.cont-title-query{
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+#chat_box {
+    overflow-x: hidden;
+    height: 550px;
+}
+#content-chat {
+    position: relative;
+    background-color: #f5f5f5;
+    height: 100%
+}
+
+div.box-send-message {
+    background-color: #D0D0D0;
+    width: 100%;
+    float:  left;
+    margin-top:  10px;
+    position:  relative;
+}
+
+div.title-box {
+    background-color: #00000D;
+    margin-top: 0px;
+    padding: 5px 20px 10px 20px;
+}
+
+small.time{
+    float: right;
+    font-weight: bold;
+}
+
+.code-user{
+    font-weight: bold;
+}
+
+.send-message-cont {
+    margin-top: 10px;
+}
+
+
+/* Animacion para efecto cargando */
+#animacion {
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    right: 0;
+}
+.ball {
+    background-color: rgba(0,0,0,0);
+    border: 3px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px #141428;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    -moz-animation: spin .5s infinite linear;
+    -webkit-animation: spin .5s infinite linear;
+}
+
+.ball1 {
+    background-color: rgba(0,0,0,0);
+    border: 3px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    /* box-shadow: 0 0 15px #2187e7; */
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+    top: -40px;
+    -moz-animation: spinoff .5s infinite linear;
+    -webkit-animation: spinoff .5s infinite linear;
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-moz-keyframes spinoff {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(-360deg);
+    };
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes spinoff {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(-360deg);
+    };
+}
