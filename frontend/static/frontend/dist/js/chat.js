@@ -90,7 +90,8 @@ chatsock.onmessage = function(message) {
     }
 };
 
-$("#send-query").on("click", function(event) {
+$("#send-query").submit(function(event) {
+    event.preventDefault();
     $("#animacion").toggleClass("hidden")
     message_type = 'q';
     title_query = $('#title_query').val();

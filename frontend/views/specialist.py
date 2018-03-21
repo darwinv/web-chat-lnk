@@ -6,7 +6,7 @@ from login.utils.tools import role_specialist_check
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 from api.connection import api
-
+from frontend.forms import QueryForm
 
 class Specialist:
     @method_decorator(user_passes_test(role_specialist_check()))
@@ -21,6 +21,7 @@ class Specialist:
         data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
         # Ordenamos el listado de mensajes
         # para que los mas recientes salgan abajo.
+        form = QueryForm()
         newlist = sorted(data_messages["results"], key=itemgetter('id'))
         return render(request, 'frontend/actors/specialist/chat.html',
-                      {'messages': newlist})
+                      {'messages': newlist, 'form': form})

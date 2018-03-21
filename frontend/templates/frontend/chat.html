@@ -53,16 +53,21 @@
         <div class="ball"></div>
         <div class="ball1"></div>
     </div>
-    {% if request.user.role.id == ROLES.client  %}
-    <div class="title-box">
-        <label for="title_query" style="color: white;">{% trans "title"|title %}</label>
-        <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'>
-    </div>
-    {% endif %}
-    <div class="send-message-cont">
-        <div class="cont-input-send-text-message col-xs-10">
-            <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'>
+  <form id="send-query" action="" method="post">
+        {% if request.user.role.id == ROLES.client  %}
+         <div class="title-box">
+             {{ form.title.label_tag }}
+             {{ form.title }}
+            <!-- <label for="title_query" style="color: white;">{% trans "title"|title %}</label> -->
+            <!-- <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'> -->
         </div>
-        <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
-    </div>
+        {% endif %}
+        <div class="send-message-cont">
+            <div class="cont-input-send-text-message col-xs-10">
+                {{ form.message }}
+                <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
+            </div>
+            <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
+        </div>
+    </form>
 </div>

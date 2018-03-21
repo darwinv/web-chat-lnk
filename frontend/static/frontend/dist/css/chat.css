@@ -84,6 +84,11 @@ div.title-box {
     padding: 5px 20px 10px 20px;
 }
 
+div.title-box label{
+    color: white;
+    text-transform: capitalize;
+}
+
 small.time{
     float: right;
     font-weight: bold;
