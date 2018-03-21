@@ -23,6 +23,7 @@ function changeMessage(){
     });
 }
 
+
 var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
 api_url = apiUrl.replace("http","ws");
@@ -89,23 +90,40 @@ chatsock.onmessage = function(message) {
     }
 };
 
+$("#form-chat").submit(function(e){
+    e.preventDefault();
+    sendQueryMessage()
+});
+
+
 $("#send-query").on("click", function(event) {
-    $("#animacion").toggleClass("hidden")
+    sendQueryMessage()
+});
+
+function sendQueryMessage(){
+    text_message = $('#text_message').val();
     message_type = 'q';
     title_query = $('#title_query').val();
     query_id = "";
+
+    // Validations
+    if (text_message == "")
+        return false;
+
+    $("#animacion").toggleClass("hidden")
+    
     if (role_id == 3) {
         message_type = 'a';
         title_query = "";
         category = "";
         query_id = $("#chat_box div.message-answer:last").data("query");
     }
-    
+
     var message = {
         token : token,
         title: title_query,
         message:[{
-            message: $('#text_message').val(),
+            message: text_message,
             msg_type: message_type,
             content_type: "0",
             file_url: ""}],
@@ -119,7 +137,7 @@ $("#send-query").on("click", function(event) {
     $("#text_message").val('').focus();
 
     return false;
-});
+}
 
 if (chatsock.readyState == WebSocket.OPEN) {
     chatsock.onopen();
