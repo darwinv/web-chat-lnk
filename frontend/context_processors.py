@@ -3,4 +3,4 @@
 
 def roles(request):
     """Lista de Roles de usuarios."""
-    return {'ROLES': {'ROLE_ADMIN': 1, 'ROLE_CLIENT': 2, 'ROLE_SPECIALIST': 3, 'ROLE_SELLER': 4}}
+    return {'ROLES': {'admin': 1, 'client': 2, 'specialist': 3, 'seller': 4}}

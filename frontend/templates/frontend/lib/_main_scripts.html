@@ -7,8 +7,10 @@
 var urlBase   		= 'http://{{ request.get_host }}/';
 var headers  		= {% get_api_header %}; //Retorna un Objeto
 var apiUrl          = '{% get_api_url %}';
-var userID         = {{request.user.id}}
-var roleID = {{request.user.role.id}}
+var userID         = {{request.user.id}};
+var roleID = {{request.user.role.id}};
+const ROLES = {{ ROLES }};
+console.log(ROLES)
 {% endautoescape %}
 
 </script>

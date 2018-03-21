@@ -53,7 +53,7 @@
         <div class="ball"></div>
         <div class="ball1"></div>
     </div>
-    {% if request.user.role.id == ROLES.ROLE_CLIENT  %}
+    {% if request.user.role.id == ROLES.client  %}
     <div class="title-box">
         <label for="title_query" style="color: white;">{% trans "title"|title %}</label>
         <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'>

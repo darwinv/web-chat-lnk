@@ -30,7 +30,7 @@ api_url = apiUrl.replace("http","ws");
 // Comparamos los roles para que se conecten a la sala como corresponde
 role_id = roleID;
 var cadena = window.location.pathname.split("/");
-if (role_id == 2){
+if (role_id == ROLES.client){
     //extraemos el id actual de usuario
     var user_id = userID
     //extraemos la categoria
@@ -95,7 +95,7 @@ $("#send-query").on("click", function(event) {
     message_type = 'q';
     title_query = $('#title_query').val();
     query_id = "";
-    if (role_id == 3) {
+    if (role_id == ROLES.specialist) {
         message_type = 'a';
         title_query = "";
         category = "";
