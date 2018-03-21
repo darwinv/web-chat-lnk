@@ -23,5 +23,4 @@ class Specialist:
         # para que los mas recientes salgan abajo.
         newlist = sorted(data_messages["results"], key=itemgetter('id'))
         return render(request, 'frontend/actors/specialist/chat.html',
-                      {'messages': newlist, 'user_id': request.user.id,
-                       'token_user': token})
+                      {'messages': newlist})
