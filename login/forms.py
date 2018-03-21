@@ -29,7 +29,7 @@ class RegisterClientForm(forms.Form):
     email_exact = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Email')}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Telephone')}), required=False)
     cellphone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Cellphone')}), required=False)
-    photo = forms.FileField(required=False, label=_('upload a photo'), widget=forms.TextInput(
+    photo = forms.FileField(required=True, label=_('upload a photo'), widget=forms.TextInput(
         attrs={'class': 'sr-only inputFile', 'id': 'inputFile', 'accept': '.jpg,.jpeg,.png,.gif,.bmp,.tiff', 'type': 'file'}, ))
     activity_description = forms.CharField(label=_('Describe your activity'), widget=forms.Textarea(), required=False)
     about = forms.CharField(label=_('Tell us what you do to know more about yourself.'), widget=forms.Textarea(), required=False)
