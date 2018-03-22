@@ -3,7 +3,7 @@
     height: 3em;
 }
 /*SCROLL LEFT*/
-.info-div::-webkit-scrollbar-thumb {
+/*.info-div::-webkit-scrollbar-thumb {
     background-color: #141428;
 }
 .info-div {
@@ -18,7 +18,7 @@
 .info-div::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     background-color: #F5F5F5;
-}
+}*/
 /*FIN SCROLL*/
 div.info-div .cont {
     border: none;
