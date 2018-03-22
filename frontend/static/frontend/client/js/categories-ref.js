@@ -1,4 +1,18 @@
 $(document).ready(function () {
+
+//     $(".e").on("click", function(){
+//         console.log("pasee1");
+// }); $(".e img").on("click", function(){
+//         console.log("pasee2");
+// }); $(".cont-item").on("click", function(){
+//         console.log("pasee3");
+// }); $(".itemp").on("click", function(){
+//         console.log("pasee4");
+// }); $(".info-div").on("click", function(){
+//         console.log("pasee5");
+// });
+
+
     //credenciales db marko
     // var config = {
     //     apiKey: "AIzaSyB804F8eGGoUg_HThtuJT9o80gAapjNV0k",
@@ -31,8 +45,9 @@ $(document).ready(function () {
         starCountRef.on('value', function (snapshot) {
             $("#list_categories").empty();
             // $("#lista_cats").remove();
-            inject_items(reverse_list(snapshot));
-
+            var id_user = snapshot.key;
+            // console.log(id_user);
+            inject_items(reverse_list(snapshot),id_user);
             // snapshot.forEach(function (item) {
             //     var itemVal = item.val();
             //     if ($("#cat" + item.key).length) {
@@ -62,24 +77,36 @@ $(document).ready(function () {
         });
     // }
 });
+function putViewToApi(p_1, p_2) {
+    console.log(p_1,p_2);
+    $.ajax({
+    url: "http://192.168.1.8:9000/message-view/",
+    type: 'PUT',
+        success: function(data) {
+        console.log(data);
+    },
+    data: {
+	"id_user": 11,
+	"category":8
+}
+  });
+    return "ddd";
+}
 
-
-function inject_items(list_items) {
+function inject_items(list_items,  id_user) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
-        // console.log(item)/
         // chat = 'es/web/client/chat/'
         var url_chat = $('.info-div').data('urlchat').replace('0',item.id);
-
         $("#list_categories").append("\
-                        <a href='"+url_chat+"' class='list-group-item list-group-item-action cont'  id='" + "cat" + item.id + "'>\
+                        <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' onclick=\"return putViewToApi('"+id_user+"',"+item.id+");\"id='" + "cat" + item.id + "'>\
                             <div class='row'>\
                                 <div class='col-10'>\
                                     <div class='row'>\
                                         <div class='cont-item'>\
                                             <img src='" + itemVal.image + "'class='rounded-circle itemp' id='img_cat'>\
-                                            <span class='itemp'>" + itemVal.name + "</span>\
+                                            <div class='itemp'><strong>" + itemVal.name +"</strong><br>"+itemVal.datetime+"</div>\
                                         </div>\
                                      </div>\
                                 </div>\
@@ -94,7 +121,14 @@ function inject_items(list_items) {
 function reverse_list(snapshot) {
     var l = new Array();
     snapshot.forEach(function (item) {
-        l.push(item.val());
+        if(item.val().datetime){
+            var aux = item.val();
+            aux.datetime = dateTextCustom(moment.utc(item.val().datetime), "-05:00");
+            l.push(aux);
+        }
+        else{
+            l.push(item.val());
+        }
     });
     return l.reverse();
 }

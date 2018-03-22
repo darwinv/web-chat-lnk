@@ -3,14 +3,13 @@
  * -------------------------
  */
 
- body.body-front {
+body.body-front {
   background-color: #0A0B22;
   color:white;
-
   display: table;
   width: 100%;
   padding-bottom: 20px;
- }
+}
 
 .login-form{
   padding: 20px;

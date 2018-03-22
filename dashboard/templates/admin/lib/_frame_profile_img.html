@@ -12,8 +12,7 @@
             <img src="{% static "dashboard/dist/img/profile.png" %}" class="img img-responsive foto-perfil pointer" title="{{ form.photo.label }}" >
           {% endif %}
 	    </div>
-	    <label class="btn btn-primary btn-upload hide" id="photo-cont-hide" for="{{ form.photo.auto_id }}" title="Upload image file">
-			
+	    <label class="btn btn-primary btn-upload photo_required" id="photo-cont-hide" for="{{ form.photo.auto_id }}" title="Upload image file">
 			{{ form.photo }}
 			<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
 				<span class="fa fa-upload">&nbsp;{{ form.photo.label_tag }}</span>
