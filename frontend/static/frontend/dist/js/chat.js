@@ -48,7 +48,7 @@ else{
 }
 // Nuestra sala, sera id usuario y id de especialidad
 var room = user_id + '-' + category;
-var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + room);
+var chatsock = new ReconnectingWebSocket(api_url + "chat" + "/" + room);
 
 chatsock.onopen = function open() {
     console.log('WebSockets connection created.');
