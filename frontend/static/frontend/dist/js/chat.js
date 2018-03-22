@@ -50,7 +50,7 @@ chatsock.onopen = function open() {
 
 chatsock.onmessage = function(message) {
     var data = JSON.parse(message.data);
-    // alert(message.data)
+    var audio = new Audio(audioNotification);
     var box_chat = $("#chat_box");
     $.each(data, function(key,value){
         var msg = value.message;
@@ -81,23 +81,38 @@ chatsock.onmessage = function(message) {
                                 "</div>"+
                             "</div>";
         box_chat.append(divMessage)
-
+        // console.log("sender: "+ value.user_id + " conected: "+ userID);
+        if (value.user_id != userID){
+            audio.play();
+        }
      });
 
     changeMessage();
     if (!$("#animacion").hasClass('hidden')){
         $("#animacion").addClass("hidden");
     }
-    var audio = new Audio(audioNotification);
-    audio.play();
+
+
 };
 
-$("#send-query").submit(function(event) {
-    event.preventDefault();
-    $("#animacion").toggleClass("hidden")
+$("#form-chat").submit(function(e){
+    e.preventDefault();
+    sendQueryMessage()
+});
+
+
+function sendQueryMessage(){
+    text_message = $('#text_message').val();
     message_type = 'q';
     title_query = $('#title_query').val();
     query_id = "";
+
+    // Validations
+    if (text_message == "")
+        return false;
+
+    $("#animacion").toggleClass("hidden")
+
     if (role_id == ROLES.specialist) {
         message_type = 'a';
         title_query = "";
@@ -109,21 +124,19 @@ $("#send-query").submit(function(event) {
         token : token,
         title: title_query,
         message:[{
-            message: $('#text_message').val(),
+            message: text_message,
             msg_type: message_type,
             content_type: "0",
             file_url: ""}],
         category: category,
         query: query_id
     }
-
     chatsock.send(JSON.stringify(message));
 
     $("#title_query").val('')
     $("#text_message").val('').focus();
-
     return false;
-});
+}
 
 if (chatsock.readyState == WebSocket.OPEN) {
     chatsock.onopen();
