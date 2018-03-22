@@ -30,7 +30,7 @@ api_url = apiUrl.replace("http","ws");
 // Comparamos los roles para que se conecten a la sala como corresponde
 role_id = roleID;
 var cadena = window.location.pathname.split("/");
-if (role_id == 2){
+if (role_id == ROLES.client){
     //extraemos el id actual de usuario
     var user_id = userID
     //extraemos la categoria
@@ -50,7 +50,7 @@ chatsock.onopen = function open() {
 
 chatsock.onmessage = function(message) {
     var data = JSON.parse(message.data);
-    // alert(message.data)
+    var audio = new Audio(audioNotification);
     var box_chat = $("#chat_box");
     $.each(data, function(key,value){
         var msg = value.message;
@@ -81,13 +81,18 @@ chatsock.onmessage = function(message) {
                                 "</div>"+
                             "</div>";
         box_chat.append(divMessage)
-
+        // console.log("sender: "+ value.user_id + " conected: "+ userID);
+        if (value.user_id != userID){
+            audio.play();
+        }
      });
 
     changeMessage();
     if (!$("#animacion").hasClass('hidden')){
         $("#animacion").addClass("hidden");
     }
+
+
 };
 
 $("#form-chat").submit(function(e){
@@ -95,10 +100,6 @@ $("#form-chat").submit(function(e){
     sendQueryMessage()
 });
 
-
-$("#send-query").on("click", function(event) {
-    sendQueryMessage()
-});
 
 function sendQueryMessage(){
     text_message = $('#text_message').val();
@@ -111,8 +112,8 @@ function sendQueryMessage(){
         return false;
 
     $("#animacion").toggleClass("hidden")
-    
-    if (role_id == 3) {
+
+    if (role_id == ROLES.specialist) {
         message_type = 'a';
         title_query = "";
         category = "";
@@ -130,12 +131,10 @@ function sendQueryMessage(){
         category: category,
         query: query_id
     }
-
     chatsock.send(JSON.stringify(message));
 
     $("#title_query").val('')
     $("#text_message").val('').focus();
-
     return false;
 }
 
