@@ -29,7 +29,7 @@
 {% block body %}
     <div class="page-wrap">
         <div class="first-spacing" >
-            
+            <!-- SPACING HERE -->
         </div>
         <div class="content-wrap">
 
@@ -93,12 +93,12 @@
 
         </div>
 
-
-        </div>
         {% block nav_footer %}
             {% include 'frontend/lib/_main_footer.html' %}
         {% endblock %}
     </div>
+        
+    
 
     <script src="{% static "frontend/dist/js/jquery-3.1.1.slim.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/tether.min.js" %}"></script>
@@ -110,6 +110,5 @@
 
     {% block javascript %}
       {% include 'frontend/lib/_scripts.html' %}
-
     {% endblock %}
 </body>

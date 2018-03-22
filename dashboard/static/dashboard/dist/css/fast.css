@@ -1,12 +1,12 @@
-body {
-    /*Border imagen Photo*/
-  --black: #01000e;
-
-  --dark-blue: #0a0b22;
-
-  --white: #ffffff;
-
-  --turquoise: #40b6d2;
+:root {
+    /*Color palette*/
+    --white: #ffffff;
+    --turquoise-opaque: #6FABC4;
+    --turquoise: #44ABC4;
+    --orange: #BF512D;
+    --blue: #232155;    
+    --dark-blue: #14162E;
+    --black: #131520;
 }
 
 /*
