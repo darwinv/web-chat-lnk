@@ -1,6 +1,6 @@
 function dateTextCustom(p_datetime, p_tz) {
     p_datetime.utcOffset(p_tz);
-    console.log(p_datetime.format('YYYY-MM-DD HH:mm:ss'));
+    //console.log(p_datetime.format('YYYY-MM-DD HH:mm:ss'));
     var today12am = moment().startOf('day');
     var yesterday12am = moment().startOf('day').add(-1, 'day');
     var custom_text = "";

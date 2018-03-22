@@ -7,8 +7,8 @@
 .info-div {
     border: none;
     display:  flex;
-    background-color: whitesmoke;
     width:  100%;
+    flex-direction: column;
 }
 
 /*FIN SCROLL*/
@@ -64,4 +64,5 @@ div.list-group {
     margin-bottom:  0px;
     overflow-y: scroll;
     width: 100%;
+    flex: 1 1 0;
 }

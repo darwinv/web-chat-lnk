@@ -73,7 +73,7 @@ $(document).ready(function () {
             //     }
             // });
 
-
+      console.log("starCountRef");
         });
     // }
 });
@@ -90,6 +90,7 @@ function putViewToApi(p_1, p_2) {
 	"category":8
 }
   });
+   console.log("putViewToApi");
     return "ddd";
 }
 
@@ -117,6 +118,7 @@ function inject_items(list_items,  id_user) {
                         </a>");
         cont += 1;
     });
+     console.log("inject_items client");
 }
 function reverse_list(snapshot) {
     var l = new Array();
@@ -130,5 +132,6 @@ function reverse_list(snapshot) {
             l.push(item.val());
         }
     });
+     console.log("reverse_list client");
     return l.reverse();
 }
