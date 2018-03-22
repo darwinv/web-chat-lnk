@@ -10,6 +10,7 @@ var apiUrl          = '{% get_api_url %}';
 var userID         = {{request.user.id}};
 var roleID = {{request.user.role.id}};
 const ROLES = {{ ROLES }};
+var audioNotification =  "{% static 'frontend/dist/audio/beep.wav' %}";
 {% endautoescape %}
 
 </script>

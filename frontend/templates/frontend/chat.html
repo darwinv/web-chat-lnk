@@ -1,8 +1,4 @@
 {% load static i18n %}
-<!-- MOVER ESTA VARIABLE A SOLO JS -->
-<div id="user-id" data-user="{{user_id}}">
-
-</div>
 
 <div id="content-chat" >
 
@@ -19,55 +15,55 @@
             </div>
         </div>
     </div>
-<div id="chat_box" class="container-fluid">
-{% for message in messages %}
-<div class="row globe-chat">
-    <div class="cont-title-query" style="display: none">
-        <div class="title-query">
-            {{message.query.title}}
-        </div>
-    </div>
-    <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
-    data-sender="{{message.user_id}}" data-query="{{message.query.query_id}}">
-        <div class="row">
-            <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <p class="code-user">{{ message.code }}</p>
+    <div id="chat_box" class="container-fluid">
+        {% for message in messages %}
+        <div class="row globe-chat">
+            <div class="cont-title-query" style="display: none">
+                <div class="title-query">
+                    {{message.query.title}}
+                </div>
             </div>
-            <div class="col-sm-6">
-                <p><small class="time">{{ message.time_message }}</small></p>
+            <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
+            data-sender="{{message.user_id}}" data-query="{{message.query.query_id}}">
+                <div class="row">
+                    <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="code-user">{{ message.code }}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><small class="time">{{ message.time_message }}</small></p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-{% endfor %}
-
+        {% endfor %}
     </div>
 
 
 
-<div class="box-send-message">
-    <div id="animacion" class="hidden">
-        <div class="ball"></div>
-        <div class="ball1"></div>
-    </div>
-  <form id="send-query" action="" method="post">
-        {% if request.user.role.id == ROLES.client  %}
-         <div class="title-box">
-             {{ form.title.label_tag }}
-             {{ form.title }}
-            <!-- <label for="title_query" style="color: white;">{% trans "title"|title %}</label> -->
-            <!-- <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'> -->
+    <div class="box-send-message">
+        <div id="animacion" class="hidden">
+            <div class="ball"></div>
+            <div class="ball1"></div>
         </div>
-        {% endif %}
-        <div class="send-message-cont">
-            <div class="cont-input-send-text-message col-xs-10">
-                {{ form.message }}
-                <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
+      <form id="send-query" action="" method="post">
+            {% if request.user.role.id == ROLES.client  %}
+             <div class="title-box">
+                 {{ form.title.label_tag }}
+                 {{ form.title }}
+                <!-- <label for="title_query" style="color: white;">{% trans "title"|title %}</label> -->
+                <!-- <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'> -->
             </div>
-            <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
-        </div>
-    </form>
+            {% endif %}
+            <div class="send-message-cont">
+                <div class="cont-input-send-text-message col-xs-10">
+                    {{ form.message }}
+                    <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
+                </div>
+                <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
+            </div>
+        </form>
+    </div>
 </div>

@@ -88,6 +88,8 @@ chatsock.onmessage = function(message) {
     if (!$("#animacion").hasClass('hidden')){
         $("#animacion").addClass("hidden");
     }
+    var audio = new Audio(audioNotification);
+    audio.play();
 };
 
 $("#send-query").submit(function(event) {
