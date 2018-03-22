@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+     $( "a" ).click(function() {
+         console.log("llamado");
+});
     //credenciales db marko
     // var config = {
     //     apiKey: "AIzaSyB804F8eGGoUg_HThtuJT9o80gAapjNV0k",
@@ -79,7 +83,7 @@ function inject_items(list_items) {
                                     <div class='row'>\
                                         <div class='cont-item'>\
                                             <img src='" + itemVal.image + "'class='rounded-circle itemp' id='img_cat'>\
-                                            <span class='itemp'>" + itemVal.name + "</span>\
+                                            <div class='itemp'><strong>" + itemVal.name +"</strong><br>"+itemVal.datetime+"</div>\
                                         </div>\
                                      </div>\
                                 </div>\
@@ -94,7 +98,14 @@ function inject_items(list_items) {
 function reverse_list(snapshot) {
     var l = new Array();
     snapshot.forEach(function (item) {
-        l.push(item.val());
+        if(item.val().datetime){
+            var aux = item.val();
+            aux.datetime = dateTextCustom(moment.utc(item.val().datetime), "-05:00");
+            l.push(aux);
+        }
+        else{
+            l.push(item.val());
+        }
     });
     return l.reverse();
 }

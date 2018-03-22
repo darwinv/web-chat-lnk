@@ -111,7 +111,7 @@ function sendQueryMessage(){
         return false;
 
     $("#animacion").toggleClass("hidden")
-
+    
     if (role_id == 3) {
         message_type = 'a';
         title_query = "";
