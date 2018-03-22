@@ -56,10 +56,13 @@ chatsock.onopen = function open() {
 };
 
 chatsock.onmessage = function(message) {
-    const LIMIT_SCROLL = 1260;
     var audio = new Audio(audioNotification);
     var data = JSON.parse(message.data);
-    var box_chat = $("#chat_box");
+    var boxChat = $("#chat_box");
+    var chat_box = document.getElementById("chat_box");
+       var positionScroll = chat_box.scrollTop;
+       var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
+       var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
         var time = value.timeMessage;
@@ -88,7 +91,7 @@ chatsock.onmessage = function(message) {
                                     "</div>"+
                                 "</div>"+
                             "</div>";
-        box_chat.append(divMessage)
+        boxChat.append(divMessage)
         // console.log("sender: "+ value.user_id + " conected: "+ userID);
         if (value.user_id != userID){
             audio.play();
@@ -97,8 +100,8 @@ chatsock.onmessage = function(message) {
 
     changeMessage();
     // Calculo la diferencia de pixeles entre el ultimo msj y el scroll
-    var resta = $("#chat_box").scrollTop() - $("#chat_box .globe-chat:last").position().top;
-    if (resta > LIMIT_SCROLL){
+    // var resta = $("#chat_box").scrollTop() - $("#chat_box .globe-chat:last").position().top;
+    if (resScroll >= 0.9){
         scrollDown();
     }
     if (!$("#animacion").hasClass('hidden')){
