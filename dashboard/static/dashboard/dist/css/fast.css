@@ -1,3 +1,14 @@
+body {
+    /*Border imagen Photo*/
+  --black: #01000e;
+
+  --dark-blue: #0a0b22;
+
+  --white: #ffffff;
+
+  --turquoise: #40b6d2;
+}
+
 /*
 	Put in this file short css standard code
     Example:
@@ -91,7 +102,8 @@
     color: red;
 }
 
-/*errorlist*/
+
+/*global .errorlist*/
 ul.errorlist:not(.nonfield) {
     position: absolute;
     width: 100%;
