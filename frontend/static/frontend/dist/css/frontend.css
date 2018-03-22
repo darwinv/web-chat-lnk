@@ -119,6 +119,7 @@ html, body, page-wrap {
     flex:  1 1 0;
     display: flex;
     overflow-y: auto;
+    background-color: var(--white);
 }
 .content-right > div {
     width:  100%;
