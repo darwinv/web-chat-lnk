@@ -28,48 +28,61 @@
 <body>
 {% block body %}
     <div class="page-wrap">
+        <div class="first-spacing" >
+            
+        </div>
         <div class="content-wrap">
-            <div class="head-split">
-                <div class="content-logo">
-                    <!-- LOGO -->
-                    {% block content_logo %}
-                        <div class="content-img-logo">
-                            <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
-                        </div>
-                    {% endblock content_logo %}
+
+            <div class="left_slide">
+
+                
+                <div class="head-split">
+                    <div class="content-logo">
+                        <!-- LOGO -->
+                        {% block content_logo %}
+                            <div class="content-img-logo">
+                                <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
+                            </div>
+                        {% endblock content_logo %}
+                    </div>
                 </div>
+
+                <!-- Left Slide -->
+                {% block left_slide %}
+                    <div class="content-left-slide">
+                        {% block content_left_slide %}
+
+                        {% endblock content_left_slide %}
+                    </div>
+                {% endblock left_slide %}
+                    
+            </div>
+            
+            <div class="content-right">
+                
+                
                 <div class="content-right-head">
-                    <!-- menu y opciones -->
-                    <div class="row">
-                        <div class="col-md-offset-3">
-                        </div>
-                        <div class="col-md-6">
-                            <i class="fas fa-comments"></i>
-                            <span>Consultas</span>
-                            <i class="fas fa-cog"></i>
-                            <span>Configuración</span>
-                        </div>
-                        <div class="col-md-3">
-                            <div style="float: right; margin-right: 17%;">
-                                <i class="fas fa-home"></i>
-                                <i class="fas fa-bars"></i>
+
+                    {% block content_right_head %}
+                        <!-- menu y opciones -->
+                        <div class="row">
+                            <div class="col-md-offset-3">
+                            </div>
+                            <div class="col-md-6">
+                                <i class="fas fa-comments"></i>
+                                <span>Consultas</span>
+                                <i class="fas fa-cog"></i>
+                                <span>Configuración</span>
+                            </div>
+                            <div class="col-md-3">
+                                <div style="float: right; margin-right: 17%;">
+                                    <i class="fas fa-home"></i>
+                                    <i class="fas fa-bars"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {% block content_right_head %}
-                    {% endblock content_right_head %}
-                </div>
-            </div>
-            <div class="body-content">
-                <div class="left-slide">
-                    <!-- Left Slide -->
-                    {% block left_slide %}
-                        <div class="content-left-slide">
-                            {% block content_left_slide %}
 
-                            {% endblock content_left_slide %}
-                        </div>
-                    {% endblock left_slide %}
+                    {% endblock content_right_head %}
                 </div>
                 <div class="main-content">
                     <!-- Main Content -->
@@ -77,10 +90,14 @@
                     {% endblock main_content %}
                 </div>
             </div>
+
         </div>
-    {% block nav_footer %}
-        {% include 'frontend/lib/_main_footer.html' %}
-    {% endblock %}
+
+
+        </div>
+        {% block nav_footer %}
+            {% include 'frontend/lib/_main_footer.html' %}
+        {% endblock %}
     </div>
 
     <script src="{% static "frontend/dist/js/jquery-3.1.1.slim.min.js" %}"></script>

@@ -14,7 +14,7 @@
   {{ block.super }}
   <script src="{% static "frontend/dist/js/reconnecting-websocket.min.js" %}"></script>
   <script type="text/javascript">
-      var token= '{{token_user}}';
+      var token = '{{request.session.token}}';
   </script>
   <script src="{% static "frontend/dist/js/chat.js" %}"></script>
 {% endblock %}
