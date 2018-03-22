@@ -33,7 +33,9 @@ $(document).ready(function () {
     starCountRef.on('value', function (snapshot) {
         $("#list_categories").empty();
         // $("#lista_cats").remove();
-
+        // var audio = new Audio(audioNotification);
+        // audio.play();
+        // console.log("Aqui sonara el audio");
         inject_items(reverse_list(snapshot));
 
         // snapshot.forEach(function (item) {
@@ -60,8 +62,6 @@ $(document).ready(function () {
         //         // $("#list_categories").append("<a href='#' class='list-group-item justify-content-between list-group-item-action' id='" + "cat" + item.key + "'>" + "<img src='" + itemVal.image + "' class='rounded-circle'>" + itemVal.name + "<img src='https://s3.amazonaws.com/linkup-photos/82cffad1-e6f8-4f75-a711-a33c3f272131.png' class=''></a>");
         //     }
         // });
-
-console.log("starCountRef");
     });
     // }
 });
@@ -88,7 +88,6 @@ function inject_items(list_items) {
                         </a>");
         cont += 1;
     });
-    console.log("on inject items");
 }
 
 
@@ -159,8 +158,9 @@ function reverse_list(snapshot) {
         // console.log(item.val());
         // console.log(aux);
         l.push(aux);
-        console.log("on reverselist")
+
         // l.push(item.val());
     });
+
     return l;
 }

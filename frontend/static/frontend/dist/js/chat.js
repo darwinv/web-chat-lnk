@@ -48,7 +48,7 @@ else{
 }
 // Nuestra sala, sera id usuario y id de especialidad
 var room = user_id + '-' + category;
-var chatsock = new ReconnectingWebSocket(api_url + "chat" + "/" + room);
+var chatsock = new ReconnectingWebSocket(api_url + "/chat" + "/" + room);
 
 chatsock.onopen = function open() {
     console.log('WebSockets connection created.');
@@ -57,7 +57,6 @@ chatsock.onopen = function open() {
 chatsock.onmessage = function(message) {
     const LIMIT_SCROLL = 1260;
     var data = JSON.parse(message.data);
-    var audio = new Audio(audioNotification); //Inicializacion de audio
     var box_chat = $("#chat_box");
     $.each(data, function(key,value){
         var msg = value.message;
@@ -88,10 +87,10 @@ chatsock.onmessage = function(message) {
                                 "</div>"+
                             "</div>";
         box_chat.append(divMessage)
-        // console.log("sender: "+ value.user_id + " conected: "+ userID);
-        if (value.user_id != userID){
-            audio.play();
-        }
+        console.log("sender: "+ value.user_id + " conected: "+ userID);
+        // if (value.user_id != userID){
+        //     audio.play();
+        // }
      });
 
     changeMessage();
