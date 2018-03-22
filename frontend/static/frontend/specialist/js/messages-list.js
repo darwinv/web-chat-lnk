@@ -33,9 +33,6 @@ $(document).ready(function () {
     starCountRef.on('value', function (snapshot) {
         $("#list_categories").empty();
         // $("#lista_cats").remove();
-        // var audio = new Audio(audioNotification);
-        // audio.play();
-        // console.log("Aqui sonara el audio");
         inject_items(reverse_list(snapshot));
 
         // snapshot.forEach(function (item) {

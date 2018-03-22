@@ -56,6 +56,7 @@ chatsock.onopen = function open() {
 
 chatsock.onmessage = function(message) {
     const LIMIT_SCROLL = 1260;
+    var audio = new Audio(audioNotification);
     var data = JSON.parse(message.data);
     var box_chat = $("#chat_box");
     $.each(data, function(key,value){
@@ -87,10 +88,10 @@ chatsock.onmessage = function(message) {
                                 "</div>"+
                             "</div>";
         box_chat.append(divMessage)
-        console.log("sender: "+ value.user_id + " conected: "+ userID);
-        // if (value.user_id != userID){
-        //     audio.play();
-        // }
+        // console.log("sender: "+ value.user_id + " conected: "+ userID);
+        if (value.user_id != userID){
+            audio.play();
+        }
      });
 
     changeMessage();
