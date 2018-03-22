@@ -118,7 +118,7 @@ html, body, page-wrap {
 .content-left-slide {
     flex:  1 1 0;
     display: flex;
-    overflow-y: auto;
+   /* overflow-y: auto;*/
     background-color: var(--white);
 }
 .content-right > div {

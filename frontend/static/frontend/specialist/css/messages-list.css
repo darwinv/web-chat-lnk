@@ -8,6 +8,7 @@
     border: none;
     display:  flex;
     width:  100%;
+    flex-direction: column;
 }
 
 /*FIN SCROLL*/
@@ -63,4 +64,5 @@ div.list-group {
     margin-bottom:  0px;
     overflow-y: scroll;
     width: 100%;
+    flex: 1 1 0;
 }

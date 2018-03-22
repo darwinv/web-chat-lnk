@@ -4,6 +4,7 @@ changeMessage(); //se llama a la funcion change message
 scrollDown(); // Scrolleamos hasta abajo
 function changeMessage(){
     var previus_query_id = null
+
     $(".message").each(function(){
         var msg = $(this);
         var user_id = userID
