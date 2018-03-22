@@ -40,16 +40,12 @@
         </div>
         {% endfor %}
     </div>
-
-
-
-<form id="form-chat">
-    <div class="box-send-message">
+<div class="box-send-message">
         <div id="animacion" class="hidden">
             <div class="ball"></div>
             <div class="ball1"></div>
         </div>
-      <form id="send-query" action="" method="post">
+      <form id="form-chat" action="" method="post">
             {% if request.user.role.id == ROLES.client  %}
              <div class="title-box">
                  {{ form.title.label_tag }}
@@ -67,4 +63,4 @@
             </div>
         </form>
     </div>
-</form>
+</div>
