@@ -1,7 +1,7 @@
 $(function() {
 
 changeMessage(); //se llama a la funcion change message
-
+scrollDown(); // Scrolleamos hasta abajo
 function changeMessage(){
     var previus_query_id = null
     $(".message").each(function(){
@@ -23,6 +23,11 @@ function changeMessage(){
     });
 }
 
+function scrollDown(){
+    var ultimo = $("#chat_box .globe-chat:last").position().top;
+    var scrollchat = $("#chat_box").scrollTop();
+    $("#chat_box").animate({scrollTop:ultimo+scrollchat});
+}
 
 var ws_scheme = window.location.protocol == "http:" ? "wss" : "ws";
 //conformamos la url para conectar via ws
@@ -49,8 +54,9 @@ chatsock.onopen = function open() {
 };
 
 chatsock.onmessage = function(message) {
+    const LIMIT_SCROLL = 1260;
     var data = JSON.parse(message.data);
-    var audio = new Audio(audioNotification);
+    var audio = new Audio(audioNotification); //Inicializacion de audio
     var box_chat = $("#chat_box");
     $.each(data, function(key,value){
         var msg = value.message;
@@ -88,11 +94,14 @@ chatsock.onmessage = function(message) {
      });
 
     changeMessage();
+    // Calculo la diferencia de pixeles entre el ultimo msj y el scroll
+    var resta = $("#chat_box").scrollTop() - $("#chat_box .globe-chat:last").position().top;
+    if (resta > LIMIT_SCROLL){
+        scrollDown();
+    }
     if (!$("#animacion").hasClass('hidden')){
         $("#animacion").addClass("hidden");
     }
-
-
 };
 
 $("#form-chat").submit(function(e){

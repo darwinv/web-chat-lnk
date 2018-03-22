@@ -4638,6 +4638,13 @@ table.text-center th {
 .hide {
   display: none !important;
 }
+
+.photo_required{
+  position: absolute;
+  top: 50%;
+  z-index: -1;
+  font-size: 1px;
+}
 .no-border {
   border: 0 !important;
 }

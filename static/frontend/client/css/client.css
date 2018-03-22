@@ -26,6 +26,10 @@ div.info-div .cont {
 }
 .cont-item{
     display:table;
+    /*width: 100%;*/
+}
+.item-right{
+    /*align-items: right;*/
 }
 .itemp {
     display:table-cell;

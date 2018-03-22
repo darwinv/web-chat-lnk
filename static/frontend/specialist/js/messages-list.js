@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+
     //credenciales db marko
     // var config = {
     //     apiKey: "AIzaSyB804F8eGGoUg_HThtuJT9o80gAapjNV0k",
@@ -87,6 +89,9 @@ function inject_items(list_items) {
         cont += 1;
     });
 }
+
+
+
 
 function reverse_list(snapshot) {
     var l = new Array();
