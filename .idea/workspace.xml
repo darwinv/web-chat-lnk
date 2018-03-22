@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64378e63-f570-4f54-bcce-9d776d04091c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dashboard/static/dashboard/admin-lte/dist/css/AdminLTE.css" afterPath="$PROJECT_DIR$/dashboard/static/dashboard/admin-lte/dist/css/AdminLTE.css" />
-      <change beforePath="$PROJECT_DIR$/dashboard/templates/admin/lib/_frame_profile_img.html" afterPath="$PROJECT_DIR$/dashboard/templates/admin/lib/_frame_profile_img.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/client/css/client.css" afterPath="$PROJECT_DIR$/frontend/static/frontend/client/css/client.css" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/client/js/categories-ref.js" afterPath="$PROJECT_DIR$/frontend/static/frontend/client/js/categories-ref.js" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/frontend/specialist/js/messages-list.js" afterPath="$PROJECT_DIR$/frontend/static/frontend/specialist/js/messages-list.js" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/actors/client/base_client.html" afterPath="$PROJECT_DIR$/frontend/templates/frontend/actors/client/base_client.html" />
-      <change beforePath="$PROJECT_DIR$/login/forms.py" afterPath="$PROJECT_DIR$/login/forms.py" />
-      <change beforePath="$PROJECT_DIR$/login/static/login/css/AdminLTE.css" afterPath="$PROJECT_DIR$/login/static/login/css/AdminLTE.css" />
-      <change beforePath="$PROJECT_DIR$/login/static/login/js/client.js" afterPath="$PROJECT_DIR$/login/static/login/js/client.js" />
-      <change beforePath="$PROJECT_DIR$/static/dashboard/admin-lte/dist/css/AdminLTE.css" afterPath="$PROJECT_DIR$/static/dashboard/admin-lte/dist/css/AdminLTE.css" />
-      <change beforePath="$PROJECT_DIR$/static/frontend/client/css/client.css" afterPath="$PROJECT_DIR$/static/frontend/client/css/client.css" />
-      <change beforePath="$PROJECT_DIR$/static/frontend/client/js/categories-ref.js" afterPath="$PROJECT_DIR$/static/frontend/client/js/categories-ref.js" />
-      <change beforePath="$PROJECT_DIR$/static/frontend/dist/js/chat.js" afterPath="$PROJECT_DIR$/static/frontend/dist/js/chat.js" />
-      <change beforePath="$PROJECT_DIR$/static/frontend/specialist/js/messages-list.js" afterPath="$PROJECT_DIR$/static/frontend/specialist/js/messages-list.js" />
-      <change beforePath="$PROJECT_DIR$/static/login/css/AdminLTE.css" afterPath="$PROJECT_DIR$/static/login/css/AdminLTE.css" />
-      <change beforePath="$PROJECT_DIR$/static/login/js/client.js" afterPath="$PROJECT_DIR$/static/login/js/client.js" />
-    </list>
+    <list default="true" id="64378e63-f570-4f54-bcce-9d776d04091c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/static/frontend/specialist/js/messages-list.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="628">
-              <caret line="95" column="33" lean-forward="true" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="33" />
+              <caret line="95" column="33" lean-forward="false" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="33" />
               <folding>
                 <marker date="1521674901615" expanded="true" signature="3639:4590" ph="..." />
                 <marker date="1521674901615" expanded="true" signature="3687:4560" ph="..." />
@@ -82,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/login/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="169">
-              <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -328,7 +310,7 @@
         <state relative-caret-position="493">
           <caret line="34" column="46" lean-forward="false" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -483,7 +465,7 @@
         <state relative-caret-position="-22">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -517,7 +499,7 @@
         <state relative-caret-position="136">
           <caret line="32" column="61" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="61" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -541,7 +523,7 @@
     <entry file="file://$PROJECT_DIR$/login/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
-          <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -557,7 +539,7 @@
     <entry file="file://$PROJECT_DIR$/frontend/static/frontend/specialist/js/messages-list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="628">
-          <caret line="95" column="33" lean-forward="true" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="33" />
+          <caret line="95" column="33" lean-forward="false" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="33" />
           <folding>
             <marker date="1521674901615" expanded="true" signature="3639:4590" ph="..." />
             <marker date="1521674901615" expanded="true" signature="3687:4560" ph="..." />

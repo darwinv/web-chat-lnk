@@ -1,7 +1,4 @@
-body {
-    /*Border imagen Photo*/
-  --img-border-color: rgb(111, 111, 111);
-}
+
 
 #frame-profile-img, #frame-profile-img img, #frame-profile-img canvas {
     border-radius: 50%;
@@ -10,7 +7,7 @@ body {
     height: 230px;
 }
 #frame-profile-img {
-    border: 1px solid var(--img-border-color);
+    border: 1px solid rgb(111, 111, 111);
     border-radius: 50%;
     background: #fffffffa;
 }

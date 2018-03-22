@@ -1,17 +1,15 @@
 /*ESTILOS GENERALES PARA FRONTEND*/
 
+/* PALETA DE COLORES */
+
+
 /*ESTRUCTURA TEMPLATE*/
 .content-wrap {
-    width: 84%;
+    width: 90%;
     max-width:  1400px;
     margin: auto;
-    margin-top: 50px;
-}
-.content-logo {
-    float: left;
-}
-.content-logo, .left-slide {
-	width: 21%;
+    flex:  1 1 0;
+    display:  flex;
 }
 .main-content, .content-right-head {
     width: 79%;
@@ -33,11 +31,12 @@ img.front-logo {
 
 .head-split {
     margin: 0 auto;
-    background: #141428;
+    background: #ffffff;
 }
 
 .head-split, .content-img-logo {
     height: 90px;
+    width:  100%;
 }
 
 .content-img-logo {
@@ -57,6 +56,9 @@ html.frontend-html {
 .main-content {
     float: left;
     background-color: #eaeaea;
+    flex:  1 1 0;
+    display:  flex;
+    flex-direction:  column;
 }
 .body-content {
     width: 100%;
@@ -65,19 +67,23 @@ html.frontend-html {
 }
 .page-wrap {
     background: #00000d;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .cont-input-send-text-message{
     margin-bottom: 10px;
 }
 /* Cabecera de frontend */
 .content-right-head {
-font-size: 24px;
-color: white;
-font-weight: bold;
-line-height: 90px;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    line-height: 90px;
+    background-color: #0a0c1c;
 }
 .content-right-head i{
-	font-size: 40px;
+    font-size: 35px;
     margin: 0% 3%;
 }
 
@@ -88,6 +94,48 @@ footer small{
 }
 footer{
   font-size: 20px;
+  height: 30px;
+}
+html, body, page-wrap {
+    height:  100%;
+}
+
+.first-spacing {
+    padding: 15px;
+}
+
+.left_slide {
+    flex: 0 0 22%;
+    display:  flex;
+    flex-direction:  column;
+}
+
+.content-right {
+    flex: 0 0 78%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-left-slide {
+    flex:  1 1 0;
+    display: flex;
+    overflow-y: auto;
+}
+.content-right > div {
+    width:  100%;
+}
+
+
+div::-webkit-scrollbar-thumb {
+    background-color: #141428;
+}
+div::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+div::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
 }
 
 /*FIN ESTRUCTURA TEMPLATE*/
