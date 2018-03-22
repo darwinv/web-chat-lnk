@@ -6,18 +6,19 @@ function changeMessage(){
     var previus_query_id = null
     $(".message").each(function(){
         var msg = $(this);
-        var user_id = userID
+        var user_id = userID;
         if (msg.data("sender") != user_id){
-            msg.removeClass("col-sm-offset-6 message")
-            msg.addClass("message-answer")
-            var bloq = msg.parent()
+            msg.removeClass("col-sm-offset-6");
+            msg.addClass("message-left");
+        }else{
+            msg.addClass("message-right");
         }
 
         if (msg.data("query") != previus_query_id){
-            msg.siblings(".cont-title-query").show()
+            msg.siblings(".cont-title-query").show();
             previus_query_id = msg.data("query");
         }else{
-            msg.siblings(".cont-title-query").remove()
+            msg.siblings(".cont-title-query").remove();
         }
 
     });
@@ -126,7 +127,7 @@ function sendQueryMessage(){
         message_type = 'a';
         title_query = "";
         category = "";
-        query_id = $("#chat_box div.message-answer:last").data("query");
+        query_id = $("#chat_box div.message-left:last").data("query");
     }
 
     var message = {

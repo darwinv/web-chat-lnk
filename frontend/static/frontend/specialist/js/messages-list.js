@@ -61,7 +61,7 @@ $(document).ready(function () {
         //     }
         // });
 
-
+console.log("starCountRef");
     });
     // }
 });
@@ -88,6 +88,7 @@ function inject_items(list_items) {
                         </a>");
         cont += 1;
     });
+    console.log("on inject items");
 }
 
 
@@ -158,6 +159,7 @@ function reverse_list(snapshot) {
         // console.log(item.val());
         // console.log(aux);
         l.push(aux);
+        console.log("on reverselist")
         // l.push(item.val());
     });
     return l;

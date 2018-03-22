@@ -16,16 +16,19 @@ div.bar-grey i{
     font-weight: bold;
 }
 .message{
-    background-color: #00ACC5;
     margin-top: 5px;
     border-radius: 21px;
-    padding: 1% 3%;
+    padding: 10px 20px;
     width: 41%;
+}
+
+.message-right{
+    background-color: #00ACC5;
     color:white;
     right: 3%;
 }
 
-.message-answer{
+.message-left{
     background-color: white;
     margin-top: 5px;
     border-radius: 21px;
