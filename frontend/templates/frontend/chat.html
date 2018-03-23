@@ -46,6 +46,7 @@
             <div class="ball1"></div>
         </div>
       <form id="form-chat" action="" method="post">
+        
             {% if request.user.role.id == ROLES.client  %}
              <div class="title-box">
                  {{ form.title.label_tag }}

@@ -1,7 +1,11 @@
 $(function() {
 
 changeMessage(); //se llama a la funcion change message
-scrollDown(); // Scrolleamos hasta abajo
+if ($('#chat_box .globe-chat').length) {
+  scrollDown(); // si existe al menos uno  Scrolleamos hasta abajo
+}
+
+
 function changeMessage(){
     var previus_query_id = null
 
