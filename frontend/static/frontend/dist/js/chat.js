@@ -5,7 +5,6 @@ if ($('#chat_box .globe-chat').length) {
   scrollDown(); // si existe al menos uno  Scrolleamos hasta abajo
 }
 
-
 function changeMessage(){
     var previus_query_id = null
 
@@ -149,7 +148,7 @@ function sendQueryMessage(){
         category: category,
         query: query_id
     }
-    chatsock.send(JSON.stringify(message));
+    console.log(chatsock.send(JSON.stringify(message)));
 
     $("#title_query").val('')
     $("#text_message").val('').focus();
