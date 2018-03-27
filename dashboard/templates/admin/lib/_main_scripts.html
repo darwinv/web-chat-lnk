@@ -1,23 +1,11 @@
-{% load static i18n api_tools %}
+{% load i18n %}
 <!-- Este archivo es llamado por toda la App para cumplir funciones  -->
 <!-- personalizadas para 2 o mas vistas -->
 
 <script>
-{% autoescape off %}
-    var urlBase = 'http://{{ request.get_host }}/';
-    var headers = {% get_api_header %}; //Retorna un Objeto
-    var apiUrl  = '{% get_api_url %}';
-
-    {% if request.user.id %}
-        var user_id = {{request.user.id}}
-    {% else %}
-        var user_id = null
-    {% endif %}
-{% endautoescape %}
 
 $(function () {
-	// get globsdasdar api var traidas desde api_tools
-	// console.log(urlBase)
+    
     $(document).on('change', '#id_department', function() {
     	url 	= urlBase+'api/provinces'
     	id 		= $(this).val();

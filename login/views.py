@@ -54,7 +54,7 @@ def logout_view(request):
         obj_api = api()
         token = request.session['token']
         obj_api.logout(token)
-        logout(request)
+    logout(request)
     return HttpResponseRedirect(reverse('login:login'))
 
 def register(request):
