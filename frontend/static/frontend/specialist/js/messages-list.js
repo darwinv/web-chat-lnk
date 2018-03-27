@@ -13,12 +13,13 @@ $(document).ready(function () {
 
     //credenciales db linkup
     config = {
-        "apiKey": "AIzaSyDoYMhNo1RP1JYrQN1pX84w4YL82N7MURM",
-        "authDomain": "linkup-5b6f4.firebaseapp.com",
-        "databaseURL": "https://linkup-5b6f4.firebaseio.com",
-        "projectId": "linkup-5b6f4",
-        "storageBucket": "linkup-5b6f4.appspot.com"
-    };
+    apiKey: "AIzaSyDFLaQvnBi43cAYnbbIJYM5d8HhjlWuMFw",
+    authDomain: "linkup-local.firebaseapp.com",
+    databaseURL: "https://linkup-local.firebaseio.com",
+    projectId: "linkup-local",
+    storageBucket: "linkup-local.appspot.com",
+    messagingSenderId: "901859853311"
+}
     firebase.initializeApp(config);
 
     // firebase.auth().signInAnonymously().catch(function (error) {
