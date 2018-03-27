@@ -7,7 +7,7 @@
         var urlBase = 'http://{{ request.get_host }}/';
         var headers = {% get_api_header %}; //Retorna un Objeto
         var apiUrl = '{% get_api_url %}';
-        
+        var apiEnvFirebase = '{% get_api_enviroment_firebase %}';
         const ROLES = {{ ROLES }};
         var audioNotification =  "{% static 'frontend/dist/audio/beep.wav' %}";
 

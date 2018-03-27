@@ -30,22 +30,6 @@
     float: right;
 }
 
-.orange {
-    color: #dd4b39;
-}
-
-.green {
-    color: #00a65a;
-}
-
-.red {
-    color: #dd4b39;
-}
-
-.black {
-    color: #0f0f0f;
-}
-
 .w {
     width: auto;
     display: table-cell;
