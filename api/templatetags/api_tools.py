@@ -1,5 +1,5 @@
 from django import template
-from linkup.settings import CONFIG_ENVIROMENT
+from linkup.settings_secret import CONFIG_ENVIROMENT
 from api.config import API_URL, API_HEADERS
 from django.http import JsonResponse
 import json

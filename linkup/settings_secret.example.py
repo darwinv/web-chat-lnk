@@ -12,6 +12,16 @@ DATABASES = {
     }
 }
 
+# CONFIG_LOCAL
+CONFIG_ENVIROMENT = {
+    "apiKey": "AIzaSyDFLaQvnBi43cAYnbbIJYM5d8HhjlWuMFw",
+    "authDomain": "linkup-local.firebaseapp.com",
+    "databaseURL": "https://linkup-local.firebaseio.com",
+    "projectId": "linkup-local",
+    "storageBucket": "linkup-local.appspot.com",
+    "messagingSenderId": "901859853311"
+}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
