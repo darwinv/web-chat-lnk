@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    firebase.initializeApp(JSON.parse(apiEnvFirebase));
+    firebase.initializeApp(JSON.parse(item));
     var itemVal = item;
     var client_id = userID;
     console.log("id: " + client_id);
