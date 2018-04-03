@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
-            data-sender="{{message.user_id}}" data-query="{{message.query.query_id}}">
+            data-sender="{{message.user_id}}" data-timemessage="{{ message.time_message}}" data-query="{{message.query.query_id}}">
                 <div class="row">
                     <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
                 </div>
@@ -33,7 +33,7 @@
                         <p class="code-user">{{ message.code }}</p>
                     </div>
                     <div class="col-sm-6">
-                        <p><small class="time">{{ message.time_message }}</small></p>
+                        <p><small class="time"> </small></p>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
             <div class="ball1"></div>
         </div>
       <form id="form-chat" action="" method="post">
-        
+
             {% if request.user.role.id == ROLES.client  %}
              <div class="title-box">
                  {{ form.title.label_tag }}

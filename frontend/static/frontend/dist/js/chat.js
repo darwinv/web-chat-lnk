@@ -5,13 +5,16 @@ if ($('#chat_box .globe-chat').length) {
   scrollDown(); // si existe al menos uno  Scrolleamos hasta abajo
 }
 
-
 function changeMessage(){
     var previus_query_id = null
 
     $(".message").each(function(){
         var msg = $(this);
         var user_id = userID;
+        // Renderizamos el time en el listado
+        var timeMessage = msg.data("timemessage");
+        timeMessage = toLocalTime(timeMessage);
+        msg.find("small.time").text(timeMessage)
         if (msg.data("sender") != user_id){
             msg.removeClass("col-sm-offset-6");
             msg.addClass("message-left");
@@ -59,6 +62,25 @@ chatsock.onopen = function open() {
     console.log('WebSockets connection created.');
 };
 
+// Funcion para devolver la fecha actual del mensaje
+// segun la zona horaria
+function toLocalTime(date){
+    console.log(date);
+    var dateMsj = new Date(date);
+    var hoy = new Date();
+    var ayer = new Date(hoy.getTime() - 24*60*60*1000);
+    if (hoy.getDate() === dateMsj.getDate()){
+      return String(dateMsj.getHours()) + ':' + String(dateMsj.getMinutes());
+    }
+    else if (dateMsj.getDate() === ayer.getDate()) {
+      return "Ayer";
+    }
+    else {
+      console.log(dateMsj);
+      return dateMsj.toLocaleDateString();
+    }
+}
+
 chatsock.onmessage = function(message) {
     var audio = new Audio(audioNotification);
     var data = JSON.parse(message.data);
@@ -69,11 +91,11 @@ chatsock.onmessage = function(message) {
        var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
-        var time = value.timeMessage;
+        // var time = toLocalTime(value.timeMessage);
         var codeUser = value.codeUser;
 
         // Se crea el div del globo para renderizarlo
-        // debe validarse el tema de si soy el q cree el mensaje o al contrario
+        // se valida el tema de si soy el q cree el mensaje o al contrario
         var divMessage =   "<div class='row globe-chat'>"+
                                 "<div class='cont-title-query' style='display: none'>"+
                                     "<div class='title-query'>"+
@@ -81,7 +103,7 @@ chatsock.onmessage = function(message) {
                                     "</div>"+
                                 "</div>"+
                                 "<div class='message col-sm-6 col-sm-offset-6'"+
-                                "data-sender='"+value.user_id+"' data-query='"+value.query.id+"'>"+
+                                "data-sender='"+value.user_id+"' data-timemessage='"+value.timeMessage+"' data-query='"+value.query.id+"'>"+
                                     "<div class='row'>"+
                                         "<div class='col-sm-12'><p class='text'>"+value.message+"</p></div>"+
                                     "</div>"+
@@ -90,7 +112,7 @@ chatsock.onmessage = function(message) {
                                             "<p class='code-user'>"+value.codeUser+"</p>"+
                                         "</div>"+
                                         "<div class='col-sm-6'>"+
-                                            "<p><small class='time'>"+value.timeMessage+"</small></p>"+
+                                            "<p><small class='time'></small></p>"+
                                         "</div>"+
                                     "</div>"+
                                 "</div>"+
