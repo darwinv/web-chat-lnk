@@ -59,6 +59,13 @@ chatsock.onopen = function open() {
     console.log('WebSockets connection created.');
 };
 
+// Funcion para devolver la fecha actual del mensaje
+// segun la zona horaria
+function toLocalTime(date){
+    var dateMsj = new Date(date);
+    return String(dateMsj.getHours()) + ':' + String(dateMsj.getMinutes());
+}
+
 chatsock.onmessage = function(message) {
     var audio = new Audio(audioNotification);
     var data = JSON.parse(message.data);
@@ -69,11 +76,11 @@ chatsock.onmessage = function(message) {
        var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
-        var time = value.timeMessage;
+        var time = toLocalTime(value.timeMessage);
         var codeUser = value.codeUser;
 
         // Se crea el div del globo para renderizarlo
-        // debe validarse el tema de si soy el q cree el mensaje o al contrario
+        // se valida el tema de si soy el q cree el mensaje o al contrario
         var divMessage =   "<div class='row globe-chat'>"+
                                 "<div class='cont-title-query' style='display: none'>"+
                                     "<div class='title-query'>"+
@@ -90,7 +97,7 @@ chatsock.onmessage = function(message) {
                                             "<p class='code-user'>"+value.codeUser+"</p>"+
                                         "</div>"+
                                         "<div class='col-sm-6'>"+
-                                            "<p><small class='time'>"+value.timeMessage+"</small></p>"+
+                                            "<p><small class='time'>"+time+"</small></p>"+
                                         "</div>"+
                                     "</div>"+
                                 "</div>"+
