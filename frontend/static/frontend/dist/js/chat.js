@@ -68,11 +68,11 @@ function toLocalTime(date){
     console.log(date);
     var dateMsj = new Date(date);
     var hoy = new Date();
-    var ayer = new Date(hoy.getTime() - 24*60*60*1000);
+    // var ayer = new Date(hoy.getTime() - 24*60*60*1000);
     if (hoy.getDate() === dateMsj.getDate()){
       return String(dateMsj.getHours()) + ':' + String(dateMsj.getMinutes());
     }
-    else if (dateMsj.getDate() === ayer.getDate()) {
+    else if (dateMsj.getDate() === hoy.getDate() - 1) {
       return "Ayer";
     }
     else {
