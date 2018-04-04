@@ -18,10 +18,13 @@ class Specialist:
         """Chat por Cliente."""
         obj_api = api()
         token = request.session['token']
+        messages = None
+
         data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
         # Ordenamos el listado de mensajes
         # para que los mas recientes salgan abajo.
         form = QueryForm()
-        newlist = sorted(data_messages["results"], key=itemgetter('id'))
+        if data_messages:
+            messages = sorted(data_messages["results"], key=itemgetter('id'))
         return render(request, 'frontend/actors/specialist/chat.html',
-                      {'messages': newlist, 'form': form})
+                      {'messages': messages, 'form': form})

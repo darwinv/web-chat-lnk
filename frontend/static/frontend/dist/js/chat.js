@@ -171,7 +171,7 @@ function sendQueryMessage(){
         category: category,
         query: query_id
     }
-    chatsock.send(JSON.stringify(message));
+    console.log(chatsock.send(JSON.stringify(message)));
 
     $("#title_query").val('')
     $("#text_message").val('').focus();

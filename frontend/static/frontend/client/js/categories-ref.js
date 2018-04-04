@@ -12,27 +12,8 @@ $(document).ready(function () {
 //         console.log("pasee5");
 // });
 
-
-    //credenciales db marko
-    // var config = {
-    //     apiKey: "AIzaSyB804F8eGGoUg_HThtuJT9o80gAapjNV0k",
-    //     authDomain: "test-72ce0.firebaseapp.com",
-    //     databaseURL: "https://test-72ce0.firebaseio.com",
-    //     projectId: "test-72ce0",
-    //     storageBucket: "test-72ce0.appspot.com",
-    //     messagingSenderId: "781009340958"
-    // };
-
-    //credenciales db linkup
-    config = {
-        "apiKey": "AIzaSyDoYMhNo1RP1JYrQN1pX84w4YL82N7MURM",
-        "authDomain": "linkup-5b6f4.firebaseapp.com",
-        "databaseURL": "https://linkup-5b6f4.firebaseio.com",
-        "projectId": "linkup-5b6f4",
-        "storageBucket": "linkup-5b6f4.appspot.com"
-    };
-    firebase.initializeApp(config);
-
+    firebase.initializeApp(JSON.parse(apiEnvFirebase));
+    console.log(apiEnvFirebase);
     // firebase.auth().signInAnonymously().catch(function (error) {
     //     var errorCode = error.code;
     //     var errorMessage = error.message;

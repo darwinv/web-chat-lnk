@@ -1,4 +1,4 @@
-{% load static %}
+{% load static adminlte_helpers i18n %}
 {% load i18n %}
 <!DOCTYPE html>
 <html class="frontend-html">
@@ -75,13 +75,24 @@
                                 <span>Configuración</span>
                             </div>
                             <div class="col-md-3">
-                                <div style="float: right; margin-right: 17%;">
+
+                                <div class="text-right" style="margin-right: 17%;">
+                                    <div class="btn-group float-right">
+                                        <i class="fas fa-bars dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                        <div class="dropdown-menu dropdown-menu-right text-center">
+                                            <button class="dropdown-item" type="button"><a href="#">{% trans "Account status" %}</a></button>
+                                            <button class="dropdown-item" type="button"><a href="#">{% trans "My acount" %}</a></button>
+                                            
+                                            <button class="dropdown-item" type="button">
+                                                <a href="{% block logout_url %}{% logout_url %}{% endblock %}" >{% trans "Sign out"|title %}</a>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <i class="fas fa-home"></i>
-                                    <i class="fas fa-bars"></i>
                                 </div>
                             </div>
                         </div>
-
                     {% endblock content_right_head %}
                 </div>
                 <div class="main-content">
@@ -104,6 +115,7 @@
     <script src="{% static "frontend/dist/js/tether.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/bootstrap.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/firebase.js" %}"></script>
+    <script src="{% static "frontend/dist/js/moment.js" %}"></script>
     <script src="{% static "frontend/dist/js/custom_date_show.js" %}"></script>
     {% block scripts_custom %}{% endblock scripts_custom %}
 {% endblock body %}
