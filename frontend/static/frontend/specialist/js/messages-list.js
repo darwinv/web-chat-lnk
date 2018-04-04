@@ -4,7 +4,7 @@ $(document).ready(function () {
     
     var client_id = userID;
     console.log("id: " + client_id);
-    var starCountRef = firebase.database().ref('messageslist/specialist/s'+client_id).orderByChild('date');
+    var starCountRef = firebase.database().ref('messagesList/specialist/s'+client_id).orderByChild('date');
     starCountRef.on('value', function (snapshot) {
         $("#list_categories").empty();
         inject_items(reverse_list(snapshot));
