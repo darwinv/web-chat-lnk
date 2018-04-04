@@ -30,16 +30,6 @@
     float: right;
 }
 
-.w {
-    width: auto;
-    display: table-cell;
-    margin: auto;
-    height: auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 #img_cat {
     margin-right: 5px;
 }
@@ -49,4 +39,14 @@ div.list-group {
     overflow-y: scroll;
     width: 100%;
     flex: 1 1 0;
+}
+
+.image-cell {
+    width: auto;
+    display: table-cell;
+    margin: auto;
+    height: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
