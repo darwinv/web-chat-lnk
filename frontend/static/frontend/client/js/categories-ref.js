@@ -77,6 +77,7 @@ function inject_items(list_items,  id_user) {
     list_items.forEach(function (item) {
         var itemVal = item;
         // chat = 'es/web/client/chat/'
+        console.log(itemVal.datetime);
         var url_chat = $('.info-div').data('urlchat').replace('0',item.id);
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' onclick=\"return putViewToApi('"+id_user+"',"+item.id+");\"id='" + "cat" + item.id + "'>\
