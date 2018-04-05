@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import user_passes_test
 from api.connection import api
 from frontend.forms import QueryForm
 
-from api.logger import manager
-
 class Specialist:
     @method_decorator(user_passes_test(role_specialist_check()))
     def index(self, request):
@@ -23,10 +21,6 @@ class Specialist:
         messages = None
 
         data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
-        
-
-        logger = manager.setup_log(__name__)
-        logger.info("id de categoria: ")
         # Ordenamos el listado de mensajes
         # para que los mas recientes salgan abajo.
         form = QueryForm()
