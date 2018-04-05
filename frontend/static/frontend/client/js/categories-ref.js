@@ -91,7 +91,7 @@ function inject_items(list_items,  id_user) {
                                      </div>\
                                 </div>\
                                 <div class='col-2 e'>\
-                                        <img src='https://s3-sa-east-1.amazonaws.com/linkup-statics/arrows.png' class='w'>\
+                                        <img src='https://s3-sa-east-1.amazonaws.com/linkup-statics/arrows.png' class='image-cell'>\
                                 </div>\
                             </div>\
                         </a>");

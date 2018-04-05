@@ -8,6 +8,14 @@
         </div>
     </div>
 {% endblock content_left_slide %}
+
+        
+
+{% block meta %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+{% endblock %}
+
 {% block scripts_custom %}
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
 {% endblock scripts_custom %}
