@@ -65,7 +65,6 @@ chatsock.onopen = function open() {
 // Funcion para devolver la fecha actual del mensaje
 // segun la zona horaria
 function toLocalTime(date){
-    console.log(date);
     var dateMsj = new Date(date);
     var hoy = new Date();
     // var ayer = new Date(hoy.getTime() - 24*60*60*1000);
@@ -76,7 +75,6 @@ function toLocalTime(date){
       return "Ayer";
     }
     else {
-      console.log(dateMsj);
       return dateMsj.toLocaleDateString();
     }
 }

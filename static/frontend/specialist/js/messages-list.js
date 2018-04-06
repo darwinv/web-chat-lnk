@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     firebase.initializeApp(JSON.parse(apiEnvFirebase));
-    
+
     var client_id = userID;
     console.log("id: " + client_id);
     var starCountRef = firebase.database().ref('messagesList/specialist/s'+client_id).orderByChild('date');
