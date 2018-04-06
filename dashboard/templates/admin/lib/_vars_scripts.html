@@ -1,7 +1,7 @@
 {% load static api_tools %}
 <!-- Este archivo es llamado por toda la App para cumplir funciones  -->
 <!-- personalizadas para 2 o mas vistas -->
-
+<script src="https://unpkg.com/compress.js@1.1.2/index.js"></script>
 <script>
     {% autoescape off %}
         var urlBase = 'http://{{ request.get_host }}/';
