@@ -92,7 +92,7 @@ class api:
             # solo para este metodo se va usar un token fijo
             # Django requiere que la clase de autenticacion siempre le devuelva
             # cualquier usuario por id
-            # headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+            # headers = {'Authorization': 'Bearer EGsnU4Cz3Mx50UCuLrc20mup10s0Gz'}
 
             # self._headers.extend(headers)
             # Ubicar el uso del token estatico en la configuracion
@@ -100,7 +100,7 @@ class api:
             # acceder a los usuarios, siempre usa el mismo token
             # usar git diff para ver diferencias y encontra los bugs
 
-            headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+            headers = {'Authorization': 'Bearer EGsnU4Cz3Mx50UCuLrc20mup10s0Gz'}
 
             headers = dict(headers, **self._headers)
 

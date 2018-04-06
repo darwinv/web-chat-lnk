@@ -21,8 +21,6 @@ class Specialist:
         messages = None
 
         data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
-        import pdb
-        pdb.set_trace()
         # Ordenamos el listado de mensajes
         # para que los mas recientes salgan abajo.
         form = QueryForm()
