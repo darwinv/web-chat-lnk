@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 from api.api_choices_models import ChoicesAPI as Ch
 from django.utils.translation import ugettext_lazy as _
 
-
 class Countries(models.Model):
     """Paises."""
 
@@ -109,26 +108,46 @@ class User(AbstractUser):
     #      db_table = 'user'
     nick = models.CharField(_('nick'), max_length=45, blank=True)
     email_exact = models.CharField(_('email'), max_length=150, unique=True)
-    telephone = models.CharField(_('phone'), max_length=14, blank=True, null=True)
-    cellphone = models.CharField(_('cellphone'), max_length=14, blank=True, null=True)
-    code_telephone = models.ForeignKey(Countries, on_delete=models.PROTECT, null=True, related_name="prefix_telephone")
-    code_cellphone = models.ForeignKey(Countries, on_delete=models.PROTECT, null=True, related_name="prefix_cellphone")
+    telephone = models.CharField(_('phone'), max_length=14,
+                                 blank=True, null=True)
+    cellphone = models.CharField(_('cellphone'), max_length=14,
+                                 blank=True, null=True)
+    code_telephone = models.ForeignKey(Countries, null=True,
+                                       on_delete=models.PROTECT,
+                                       related_name="prefix_telephone")
+    code_cellphone = models.ForeignKey(Countries, null=True,
+                                       on_delete=models.PROTECT,
+                                       related_name="prefix_cellphone")
     photo = models.CharField(_('photo'), max_length=250, null=True)
-    document_type = models.CharField(_('type document'), max_length=1, choices=Ch.user_document_type)
-    document_number = models.CharField(_('document number'), max_length=45, unique=True)
-    img_document_number = models.CharField(_('upload document'), max_length=250, null=True)
-    ruc = models.CharField(max_length=40, unique=True, null=True, blank=True)
+    document_type = models.CharField(_('type document'), max_length=1,
+                                     choices=Ch.user_document_type)
+    document_number = models.CharField(_('document number'), max_length=45)
+    img_document_number = models.CharField(_('upload document'),
+                                           max_length=250, null=True)
+    ruc = models.CharField(max_length=40, null=True, blank=True)
     code = models.CharField(_('code'), max_length=45)
     anonymous = models.BooleanField(_('anonymous'), default=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now_add=True)
-    nationality = models.ForeignKey(Countries, on_delete=models.PROTECT, default=1, verbose_name=_('nationality'))
-    role = models.ForeignKey(Role, on_delete=models.PROTECT, default=1, verbose_name=_('role'))
-    address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True, verbose_name=_('address'))
-    residence_country = models.ForeignKey(Countries, on_delete=models.PROTECT, null=True,
-                                          related_name="residence", verbose_name=_('residence country'))
-    foreign_address = models.CharField(_('foreign address'), max_length=200, blank=True, null=True)
+    nationality = models.ForeignKey(Countries, default=1,
+                                    on_delete=models.PROTECT,
+                                    verbose_name=_('nationality'))
+    role = models.ForeignKey(Role, default=1,
+                             on_delete=models.PROTECT,
+                             verbose_name=_('role'))
+    address = models.ForeignKey(Address, null=True,
+                                on_delete=models.PROTECT,
+                                verbose_name=_('address'))
+    residence_country = models.ForeignKey(Countries, null=True,
+                                          on_delete=models.PROTECT,
+                                          related_name="residence",
+                                          verbose_name=_('residence country'))
+    foreign_address = models.CharField(_('foreign address'), max_length=200,
+                                       blank=True, null=True)
     key = models.CharField(max_length=90, blank=True, null=True)
-    status = models.CharField(max_length=1, choices=Ch.user_status, default='0')
+    status = models.CharField(max_length=1, choices=Ch.user_status,
+                              default='0')
+
+
 # Aplicamos herencia multi tabla para que
 # Seller herede de User y se vincule 1 a 1
 
@@ -206,7 +225,7 @@ class SellerContactNoEfective(models.Model):
     longitude = models.CharField(max_length=45, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     position = models.CharField(max_length=45, null=True)
-    ruc = models.CharField(max_length=40, unique=True, null=True)
+    ruc = models.CharField(max_length=40, null=True, blank=True)
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
     economic_sector = models.ForeignKey(EconomicSector, on_delete=models.PROTECT, null=True)
     objection = models.ForeignKey(Objection, on_delete=models.PROTECT)
@@ -348,6 +367,10 @@ class QueryPlans(models.Model):
     clasification = models.ForeignKey(Clasification, on_delete=models.PROTECT)
     non_billable = models.ManyToManyField(Seller, through='SellerNonBillablePlans')
 
+    def __str__(self):
+        """String."""
+        return self.name
+
 
 class SellerNonBillablePlans(models.Model):
     """Planes no Facturables Asignados a Vendedores."""
@@ -416,7 +439,6 @@ class QueryPlansAcquired(models.Model):
         """String."""
         return self.plan_name
 
-
 class PaymentType(models.Model):
     """Tipos de Pago."""
 
@@ -467,7 +489,7 @@ class MatchAcquiredFiles(models.Model):
     """Archivos Adjuntos del Match."""
 
     file_url = models.CharField(max_length=100)
-    type_file = models.CharField(max_length=1, choices=Ch.messagefile_type_file)
+    type_file = models.CharField(max_length=1, choices=Ch.match_type_file)
     match_acquired = models.ForeignKey(MatchAcquired)
 
 
@@ -520,8 +542,8 @@ class Query(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     client = models.ForeignKey(Client, on_delete=models.PROTECT)
     specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT, null=True)
-    acquired_plan = models.ForeignKey(QueryPlansAcquired, on_delete=models.PROTECT, null=True)  # El blank es Temporal
-    changed_on = models.DateTimeField(auto_now=True, null=True) # Fecha en la que adjudicada la consulta
+    acquired_plan = models.ForeignKey(QueryPlansAcquired, on_delete=models.PROTECT)
+    changed_on = models.DateTimeField(auto_now=True, null=True)  # Fecha en la que adjudicada la consulta
 
     def __str__(self):
         """Titulo."""
@@ -549,26 +571,41 @@ class QueryLogs(models.Model):
 class Message(models.Model):
     """Mensaje."""
 
-    message = models.TextField()
-    msg_type = models.CharField(max_length=1, choices=Ch.message_msg_type)
+    message = models.TextField(blank=True)
+    msg_type = models.CharField(max_length=1, choices=Ch.message_msg_type,
+                                blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT, null=True)
-    query = models.ForeignKey(Query, on_delete=models.PROTECT)
+    content_type = models.CharField(max_length=1,
+                                    choices=Ch.message_content_type)
+    specialist = models.ForeignKey(Specialist,
+                                   on_delete=models.PROTECT, null=True)
     viewed = models.BooleanField(default=False)
-    nick = models.CharField(_('nick'), max_length=45, blank=True)
+    file_url = models.CharField(max_length=100, blank=True)
     code = models.CharField(_('code'), max_length=45)
+    room = models.CharField(max_length=200)  # Sala de chat
+    query = models.ForeignKey(Query, on_delete=models.PROTECT)
+    message_reference = models.ForeignKey('self', on_delete=models.PROTECT,
+                                          related_name="ref", null=True)
+
     def __str__(self):
         """Str."""
         return self.message
 
 
-class MessageFile(models.Model):
-    """Archivos de Mensajes."""
+#Modelo para usar con una vista existente en la base de datos
+class SpecialistMessageList(models.Model):
+    id = models.IntegerField(primary_key=True)
+    photo = models.CharField(max_length=240, blank=True)
+    nick = models.CharField(max_length=40, blank=True)
+    date = models.DateField(blank=True)
+    title = models.CharField(max_length=240, blank=True)
+    total = models.IntegerField(blank=True)
+    client = models.IntegerField(blank=True)
+    specialist = models.IntegerField(blank=True)
 
-    url_file = models.CharField(max_length=100)
-    type_file = models.CharField(max_length=1, choices=Ch.messagefile_type_file)
-    message = models.ForeignKey(Message, on_delete=models.PROTECT)
-
+    class Meta:
+        db_table = u'specialist_message_list'
+        managed = False
 
 class FeeMonthSeller(models.Model):
     """Cuotas Mensuales del Vendedor."""
