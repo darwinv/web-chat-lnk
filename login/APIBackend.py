@@ -1,7 +1,5 @@
 from api.models import User
 from api.connection import api
-import pdb
-
 
 class APIBackend(object):
     """

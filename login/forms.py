@@ -15,7 +15,7 @@ class RegisterClientForm(forms.Form):
     # Campos Generales para Cliente
     type_client = forms.ChoiceField(choices=Ch.client_full_type_client, widget=forms.RadioSelect(attrs={'class': 'radio-input radio-type-client'}))    
     document_type = forms.ChoiceField(choices=Ch.user_document_type, widget=forms.RadioSelect(attrs={'class': 'radio-input'}))
-    nick = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Nick')}))
+    nick = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Nick')}), required=False)
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': _('Password')}))
     repassword = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': _('Repeat Password')}))
     document_number = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Identification document')}))
