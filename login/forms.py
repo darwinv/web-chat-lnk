@@ -79,7 +79,10 @@ class RegisterClientForm(forms.Form):
     def __init__(self, data=None, *args, **kwargs):
         """Init."""
         super(RegisterClientForm, self).__init__(data=data, *args, **kwargs)
+        # default_country = Countries.objects.get(name="Peru")
         departments = Department.objects.all()
+        # self.fields['nationality'].initial = default_country
+        # self.fields['residence_country'].initial = default_country
         countries = Countries.objects.all()
         department = province = None
 
@@ -104,9 +107,10 @@ class RegisterClientForm(forms.Form):
             self.fields['district'].widget.choices = [('', _('District'))] + [(l.id, _(l.name)) for l in districts]
 
         if countries:
-            self.fields['residence_country'].widget.choices = [('', _('Country'))] + [(l.id, _(l.name)) for l in countries]
+            self.fields['residence_country'].widget.choices = [(countries[0].id, _(countries[0].name))] + [(countries[index].id, _(countries[index].name)) for index in range(1, len(countries))]
 
-            self.fields['nationality'].widget.choices = [('', _('Country'))] + [(l.id, _(l.name)) for l in countries]
+            self.fields['nationality'].widget.choices = [(countries[0].id, _(countries[0].name))] + [(countries[index].id, _(countries[index].name)) for index in range(1, len(countries))]
+
 
     def clean(self):
         """Clean Validation."""
