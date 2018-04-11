@@ -18,5 +18,14 @@ $(function () {
         maxDate: 0,
         yearRange: "-90Y:-0Y" });
 
+// Usado para el registro, debe posicionarse en la fecha 25 años antes
+// a partir de la fecha actual, y solo permitir personas con 18 años cumplidos
+    $( ".datepicker-register" ).datepicker({
+       shortYearCutoff: 1,
+       changeYear: true,
+       maxDate: "-18y",
+       defaultDate: "-25y",
+       });
+
 });
 </script>

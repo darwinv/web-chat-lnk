@@ -1,10 +1,11 @@
+"""Modulo para herramientas Globales."""
 from datetime import datetime
-
+from dateutil.relativedelta import relativedelta
 
 class ToolsBackend(object):
     """Esta clase es creada para gestionar de manera global, diferentes procesos
     de forma generica, como el formateo de valores y fechas"""
-    
+
     def date_format_to_db(self, date):
         formats = ("%d/%m/%Y", "%Y-%m-%d")
         return self.set_date_format(date, formats)
@@ -25,10 +26,21 @@ class ToolsBackend(object):
             return None
         if type(date) is str:
             date = datetime.strptime(date, formats[0])  # Convertimos string a Datetime
-        
+
         date_modified = date.strftime(formats[1])  # Convertimos Datetime to String dado
 
         return date_modified
+
+    def initial_register_birthdate(self):
+        """Se devuelve la fecha inicial del registro.
+
+        -Para el registro de fecha de nacimiento se calcula para hace 25 años
+         tomando como referencia la fecha actual
+        """
+        today = datetime.now()
+        initial_date = today - relativedelta(years=25)
+        return initial_date
+
 
     def format_to_decimal(self, num):
         """
