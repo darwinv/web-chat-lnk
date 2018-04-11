@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from api.api_choices_models import ChoicesAPI as Ch
 from api.models import Department, Countries, Ciiu
 from api.models import LevelInstruction, EconomicSector, Province, District
-from dashboard.tools import ToolsBackend
+from dashboard.tools import Validations
 from dashboard.forms import ErrorsFieldsApi as ErrorField
 
 
@@ -101,8 +101,7 @@ class RegisterClientForm(forms.Form):
 
         if province:
             districts = District.objects.filter(province_id=province)
-            self.fields['district'].widget.choices = [('', _('District'))]
-            + [(l.id, _(l.name)) for l in districts]
+            self.fields['district'].widget.choices = [('', _('District'))] + [(l.id, _(l.name)) for l in districts]
 
         if countries:
             self.fields['residence_country'].widget.choices = [('', _('Country'))] + [(l.id, _(l.name)) for l in countries]
@@ -135,7 +134,8 @@ class RegisterClientFormNatural(RegisterClientForm, ErrorField):
                                   label=_('civil state'))
     birthdate = forms.DateField(label=_('birthdate'),
                                 widget=forms.TextInput(
-                                    attrs={'class': 'datepicker-register'}))
+                                    attrs={'class': 'datepicker-register'}),
+                                validators=[Validations.valid_legal_age])
 
     level_instruction = forms.CharField(widget=forms.Select(),
                                         label=_('Degree of instruction'))

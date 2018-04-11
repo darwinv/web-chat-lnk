@@ -1,6 +1,20 @@
 """Modulo para herramientas Globales."""
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
+
+class Validations(object):
+    """Clase para validaciones Generales."""
+
+    def valid_legal_age(date):
+        """Se valida la fecha para un menor de 18 años no pueda registrarse."""
+        today = datetime.today().date()
+        min_date = today - relativedelta(years=18)
+        if date > min_date:
+            raise ValidationError(_("You must be of legal age"))
+
 
 class ToolsBackend(object):
     """Esta clase es creada para gestionar de manera global, diferentes procesos
@@ -30,17 +44,6 @@ class ToolsBackend(object):
         date_modified = date.strftime(formats[1])  # Convertimos Datetime to String dado
 
         return date_modified
-
-    def initial_register_birthdate(self):
-        """Se devuelve la fecha inicial del registro.
-
-        -Para el registro de fecha de nacimiento se calcula para hace 25 años
-         tomando como referencia la fecha actual
-        """
-        today = datetime.now()
-        initial_date = today - relativedelta(years=25)
-        return initial_date
-
 
     def format_to_decimal(self, num):
         """
