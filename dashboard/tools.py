@@ -1,10 +1,25 @@
+"""Modulo para herramientas Globales."""
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
+
+class Validations(object):
+    """Clase para validaciones Generales."""
+
+    def valid_legal_age(date):
+        """Se valida la fecha para un menor de 18 años no pueda registrarse."""
+        today = datetime.today().date()
+        min_date = today - relativedelta(years=18)
+        if date > min_date:
+            raise ValidationError(_("You must be of legal age"))
 
 
 class ToolsBackend(object):
     """Esta clase es creada para gestionar de manera global, diferentes procesos
     de forma generica, como el formateo de valores y fechas"""
-    
+
     def date_format_to_db(self, date):
         formats = ("%d/%m/%Y", "%Y-%m-%d")
         return self.set_date_format(date, formats)
@@ -25,7 +40,7 @@ class ToolsBackend(object):
             return None
         if type(date) is str:
             date = datetime.strptime(date, formats[0])  # Convertimos string a Datetime
-        
+
         date_modified = date.strftime(formats[1])  # Convertimos Datetime to String dado
 
         return date_modified
