@@ -4,6 +4,12 @@
 	<script src="{% static "dashboard/jquery/dist/js/jquery.min.js" %}"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 	<script src="{% static "dashboard/jquery/dist/js/jquery-ui-i18n.min.js" %}"></script>
+	<script>
+			$.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<script src="{% static "dashboard/bootstrap/dist/js/bootstrap.min.js" %} "></script>
+	<script src="{% static "dashboard/admin-lte/dist/js/app.min.js" %}"></script>
+	<script src="{% static "dashboard/bootstrap-select/bootstrap-select.js" %}"></script>
 	{% include 'admin/lib/_inputs_scripts.html' %}
 	{% include 'admin/lib/_vars_scripts.html' %}
 {% endblock %}

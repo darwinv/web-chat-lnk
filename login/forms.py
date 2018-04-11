@@ -127,6 +127,7 @@ class RegisterClientFormNatural(RegisterClientForm, ErrorField):
     """Formulario de Registro de Cliente Natural."""
 
     # Campos para Cliente Natural
+    select_search = {'data-live-search': 'true', 'class': 'selectpicker'}
     sex = forms.ChoiceField(choices=Ch.client_sex,
                             widget=forms.RadioSelect(
                                 attrs={'class': 'radio-input'}))
@@ -143,10 +144,13 @@ class RegisterClientFormNatural(RegisterClientForm, ErrorField):
 
     level_instruction = forms.CharField(widget=forms.Select(),
                                         label=_('Degree of instruction'))
-    institute = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Institute')}), required=False)
+    institute = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': _('Institute')}),
+        required=False)
     profession = forms.CharField(label=_('Profession'))
     ocupation = forms.CharField(widget=forms.Select(), label=_('Ocupation'))
-    ciiu = forms.CharField(widget=forms.Select(), required=False)
+    ciiu = forms.CharField(widget=forms.Select(attrs=select_search),
+                           required=False)
 
     def __init__(self, data=None, *args, **kwargs):
         """Init."""

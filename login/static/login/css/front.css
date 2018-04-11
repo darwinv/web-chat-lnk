@@ -61,6 +61,21 @@ footer{
 }
 
 
+/* ************ */
+/* Registro  */
+/* ******** */
+
+/* Live Search  */
+/* Ciuu */
+#id_ciiu{
+  width: 250px !important;
+}
+.register-client-form .dropdown-menu{
+  max-width: 250px;
+}
+
+/* Fin de registro */
+
 /********************/
 .form-group input {
     text-align: center;
