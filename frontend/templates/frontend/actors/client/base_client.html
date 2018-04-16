@@ -1,20 +1,33 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
+{% block meta %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+<link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
+{% endblock %}
+
+
 {% block content_left_slide %}
     {% url 'frontend:chat-client' pk=0 as urlchat%}
-    <div class="info-div" data-urlchat='{{urlchat}}'>
+<div class="info-div" data-urlchat='{{urlchat}}'>
         <div class="list-group" id="list_categories">
             <!--print categories-->
         </div>
-    </div>
+
+  <div id="chosen-plan" data-id="">
+        <h4> Plan de Consultas </h4>
+        <p id="plan_name"></p>
+      <p>Disponibles:
+        <span id="queries"></span>
+      </p>
+      <p>Vencimiento:
+        <span id="expiration_date"></span>
+       </p>
+  </div>
+</div>
 {% endblock content_left_slide %}
 
-        
 
-{% block meta %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
-{% endblock %}
 
 {% block scripts_custom %}
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
