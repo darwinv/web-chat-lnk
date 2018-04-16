@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 12:41-0500\n"
+"POT-Creation-Date: 2018-04-16 12:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -371,7 +371,7 @@ msgstr "subir una foto"
 msgid "ruc"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:166 .\login\forms.py:156 .\login\forms.py:193
+#: .\dashboard\forms.py:166 .\login\forms.py:164 .\login\forms.py:201
 msgid "CIIU"
 msgstr "CIIU"
 
@@ -835,7 +835,7 @@ msgstr "crear especialista"
 msgid "edit specialist"
 msgstr "editar especialista"
 
-#: .\dashboard\views\actors.py:311 .\login\forms.py:173
+#: .\dashboard\views\actors.py:311 .\login\forms.py:181
 msgid "business name"
 msgstr "nombre de la empresa"
 
@@ -944,6 +944,22 @@ msgstr "rechazar"
 msgid "title"
 msgstr "título"
 
+#: .\frontend\templates\frontend\actors\client\base_client.html:21
+msgid "query plans"
+msgstr "planes de consulta"
+
+#: .\frontend\templates\frontend\actors\client\base_client.html:24
+msgid "change plan"
+msgstr "cambiar plan"
+
+#: .\frontend\templates\frontend\actors\client\base_client.html:27
+msgid "availables"
+msgstr "disponibles"
+
+#: .\frontend\templates\frontend\actors\client\base_client.html:30
+msgid "expiration date"
+msgstr "fecha de vencimiento"
+
 #: .\frontend\templates\frontend\base.html:78
 msgid "Account status"
 msgstr "Estados de cuenta"
@@ -1008,79 +1024,75 @@ msgstr "Describe tu actividad"
 msgid "Tell us what you do to know more about yourself."
 msgstr "Cuéntanos a que te dedicas para conocer algo más acerca de tí."
 
-#: .\login\forms.py:87
+#: .\login\forms.py:90
 msgid "Department"
 msgstr "Departamento"
 
-#: .\login\forms.py:89 .\login\forms.py:100
+#: .\login\forms.py:92 .\login\forms.py:103
 msgid "Province"
 msgstr "Provincia"
 
-#: .\login\forms.py:90 .\login\forms.py:104
+#: .\login\forms.py:93 .\login\forms.py:107
 msgid "District"
 msgstr "Distrito"
 
-#: .\login\forms.py:107 .\login\forms.py:109
-msgid "Country"
-msgstr "País"
-
-#: .\login\forms.py:117
+#: .\login\forms.py:121
 msgid "Passwords don't match"
 msgstr ""
 
-#: .\login\forms.py:130
+#: .\login\forms.py:135
 msgid "Last name"
 msgstr "Apellidos"
 
-#: .\login\forms.py:132
+#: .\login\forms.py:137
 msgid "First name"
 msgstr "Nombres"
 
-#: .\login\forms.py:134
+#: .\login\forms.py:139
 msgid "civil state"
 msgstr "estado civil"
 
-#: .\login\forms.py:135
+#: .\login\forms.py:140
 msgid "birthdate"
 msgstr "Fecha de nacimiento"
 
-#: .\login\forms.py:141
+#: .\login\forms.py:146
 msgid "Degree of instruction"
 msgstr "Grado de instrucción"
 
-#: .\login\forms.py:142
+#: .\login\forms.py:148
 msgid "Institute"
 msgstr "Instituto"
 
-#: .\login\forms.py:143
+#: .\login\forms.py:150
 msgid "Profession"
 msgstr "Profesión"
 
-#: .\login\forms.py:144
+#: .\login\forms.py:151
 msgid "Ocupation"
 msgstr "Ocupación"
 
-#: .\login\forms.py:159
+#: .\login\forms.py:167
 msgid "Level instruction"
 msgstr "Nivel de instrucción"
 
-#: .\login\forms.py:174
+#: .\login\forms.py:182
 msgid "commercial reason"
 msgstr "razon comercial"
 
-#: .\login\forms.py:176
+#: .\login\forms.py:184
 msgid "agent firstname"
 msgstr "Nombres de representante"
 
-#: .\login\forms.py:177
+#: .\login\forms.py:185
 msgid "agent lastname"
 msgstr "Apellidos de representante"
 
-#: .\login\forms.py:178
+#: .\login\forms.py:186
 msgid "Position in the company"
 msgstr "Cargo en la compañia"
 
-#: .\login\forms.py:190
+#: .\login\forms.py:198
 msgid "economic sector"
 msgstr "sector economico"
 
@@ -1129,3 +1141,6 @@ msgstr "continue"
 #: .\login\views.py:50
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"
+
+#~ msgid "Country"
+#~ msgstr "País"
