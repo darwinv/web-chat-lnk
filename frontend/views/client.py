@@ -5,14 +5,24 @@ from operator import itemgetter
 from login.utils.tools import role_client_check
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
-from frontend.forms import QueryForm
+from frontend.forms import QueryForm, ActivePlansForm
 from api.models import Category
 
 
 class Client:
+    """Vista del Cliente."""
+
     @method_decorator(user_passes_test(role_client_check()))
     def index(self, request):
-        return render(request, 'frontend/actors/client/base_client.html')
+        """Inicio Cliente."""
+        token = request.session['token']
+        # import pdb; pdb.set_trace()
+        obj_api = api()
+        data_plans = obj_api.get(slug='clients/plans/', token=token)
+        form = ActivePlansForm(plans=data_plans["results"])
+        return render(request,
+                      'frontend/actors/client/base_client.html',
+                      {'form': form})
 
     @method_decorator(user_passes_test(role_client_check()))
     def chat(self, request, pk):
