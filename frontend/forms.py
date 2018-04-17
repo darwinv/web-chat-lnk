@@ -19,8 +19,7 @@ class QueryForm(forms.Form):
 class ActivePlansForm(forms.Form):
     """Formulario para listar y actualizar el plan elegido."""
 
-    active_plans = forms.ChoiceField(label=_('Choose Plan'),
-                                     widget=forms.RadioSelect)
+    active_plans = forms.ChoiceField(widget=forms.RadioSelect)
 
     def __init__(self, plans, *args, **kwargs):
         """Init."""
@@ -38,8 +37,8 @@ def format_choices(plans):
         # del newplan[l]['query_quantity']
         # import pdb; pdb.set_trace()
         newplan[l]['id'] = plans[l]['id']
-        newplan[l]['value'] = plans[l]['plan_name'] + ' - ' +\
+        newplan[l]['value'] = plans[l]['plan_name'] + ' | ' +\
             _('availables') + ': ' + str(plans[l]['available_queries']) +\
-            '/' + str(plans[l]['query_quantity']) + ' - ' +\
+            '/' + str(plans[l]['query_quantity']) + ' | ' +\
             _('expiration date') + ': ' + plans[l]['expiration_date']
     return newplan

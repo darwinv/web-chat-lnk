@@ -1,8 +1,13 @@
+/* Formulario cambiar plan elegido */
 #chosen-plan{
   padding: 2px 18px;
   font-weight:400;
 }
 
+button.btn-ligth-blue{
+  background-color: var(--turquoise);
+  color: white;
+}
 #plan_name{
   text-transform: capitalize;
 }

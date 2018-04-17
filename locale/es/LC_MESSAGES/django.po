@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 12:32-0500\n"
+"POT-Creation-Date: 2018-04-17 14:11-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -511,6 +511,7 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\actor\sellersForm.html:169
 #: .\dashboard\templates\admin\actor\sellersForm_.html:197
 #: .\dashboard\templates\admin\actor\specialistsForm.html:197
+#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:16
 msgid "save"
 msgstr "guardar"
 
@@ -648,6 +649,7 @@ msgid "Are you sure to delete this item?"
 msgstr "¿Esta seguro que desea borrar este ítem?"
 
 #: .\dashboard\templates\admin\lib\_modals.html:38
+#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:23
 msgid "cancel"
 msgstr "cancelar"
 
@@ -944,21 +946,28 @@ msgstr "rechazar"
 msgid "title"
 msgstr "título"
 
+#: .\frontend\forms.py:22
+msgid "choose one of your plans"
+msgstr "selecciona uno de tus planes"
+
+#: .\frontend\forms.py:42
+#: .\frontend\templates\frontend\actors\client\base_client.html:23
+msgid "availables"
+msgstr "disponibles"
+
+#: .\frontend\forms.py:44
+#: .\frontend\templates\frontend\actors\client\base_client.html:26
+msgid "expiration date"
+msgstr "fecha de vencimiento"
+
 #: .\frontend\templates\frontend\actors\client\base_client.html:21
 msgid "query plans"
 msgstr "planes de consulta"
 
-#: .\frontend\templates\frontend\actors\client\base_client.html:24
+#: .\frontend\templates\frontend\actors\client\base_client.html:32
+#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:8
 msgid "change plan"
 msgstr "cambiar plan"
-
-#: .\frontend\templates\frontend\actors\client\base_client.html:27
-msgid "availables"
-msgstr "disponibles"
-
-#: .\frontend\templates\frontend\actors\client\base_client.html:30
-msgid "expiration date"
-msgstr "fecha de vencimiento"
 
 #: .\frontend\templates\frontend\base.html:78
 msgid "Account status"

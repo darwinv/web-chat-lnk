@@ -4,11 +4,29 @@
     --turquoise-opaque: #6FABC4;
     --turquoise: #44ABC4;
     --orange: #BF512D;
-    --blue: #232155;    
+    --blue: #232155;
     --dark-blue: #14162E;
     --black: #131520;
 }
 
+.modal-dialog .modal-content {
+   background-color: #04050c;
+   color:white;
+   text-transform: capitalize;
+   border: 1px solid #999;
+}
+.modal-dialog .modal-header {
+ border-bottom: none;
+}
+
+.modal-dialog .modal-content .close{
+  opacity: 1;
+  color:white;
+}
+
+ul{
+  list-style: none;
+}
 /*
 	Put in this file short css standard code
     Example:

@@ -1,25 +1,31 @@
 {% load i18n %}
+
 <!-- Modal -->
 <div class="modal fade" id="changePlan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
+      <center>
+        <h4 class="modal-title" id="myModalLabel">{% trans "choose one of your plans"|title %}</h4>
+      </center>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
           <form id="change-chosen" action="" method="post">
             {% csrf_token %}
-            {{ form.active_plans.label_tag }}
             {{ form.active_plans }}
-            <button type="submit" id="change-plan" class="btn btn-default">{% trans "save"|title %}</button>
+             <center>
+               <button type="submit" id="change-plan" class="btn btn-ligth-blue">{% trans "save"|title %}
+               </button>
+             </center>
           </form>
+      </div>
+      <div id="animacion1" class="hidden">
+          <div class="ball"></div>
+          <div class="ball1"></div>
       </div>
       <div id="message">
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "cancel"|title %}</button>
       </div>
     </div>
   </div>

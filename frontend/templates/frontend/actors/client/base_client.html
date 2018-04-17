@@ -19,10 +19,6 @@
 
   <div id="chosen-plan" data-id="">
         <h4> {% trans "query plans"|title %} </h4>
-        <button type="button" class="btn btn-primary" data-toggle="modal"
-         data-target="#changePlan">
-          {% trans "change plan"|title %}
-        </button>
         <p id="plan_name"></p>
       <p>{% trans "availables"|title %}:
         <span id="queries"></span>
@@ -30,6 +26,12 @@
       <p>{% trans "expiration date"|title %}:
         <span id="expiration_date"></span>
        </p>
+  <center>
+    <button type="button" class="btn btn-xs btn-ligth-blue" data-toggle="modal"
+       data-target="#changePlan">
+       {% trans "change plan"|title %}
+     </button>
+  </center>
   </div>
 </div>
 
@@ -44,6 +46,7 @@
     var url = "{% url 'frontend:set-chosen-plan' pk=0 %}"
     console.log(url);
     $("#change-chosen").submit(function(e){
+      $("#animacion1").toggleClass("hidden");
         e.preventDefault();
       var plan = $('input[name=active_plans]:checked', '#change-chosen').val();
       var url_plan = url.replace('0', plan);
@@ -57,7 +60,8 @@
                  'is_chosen': 1
                  },
           success: function(data){
-              $('#message').html(data.message)
+            $("#animacion1").toggleClass("hidden");
+              $('#message').html(data.message);
           }
      });
     });
