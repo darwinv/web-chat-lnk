@@ -1,5 +1,6 @@
 """Vista para el cliente."""
 from django.shortcuts import render
+from django.http import JsonResponse
 from api.connection import api
 from operator import itemgetter
 from login.utils.tools import role_client_check
@@ -42,3 +43,14 @@ class Client:
 
         return render(request, 'frontend/actors/client/chat.html',
                       {'messages': messages, 'form': form, 'speciality': esp})
+
+
+def set_chosen_plan(request, pk):
+    """Elegir plan para consultar."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.put(slug='chosens-plans/' + pk, token=token)
+    if 'id' in resp:
+        return JsonResponse({'message': 'Tu plan se ha elegido correctamente'})
+    else:
+        return JsonResponse({'message': 'Ha habido un error'})

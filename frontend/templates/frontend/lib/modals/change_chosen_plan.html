@@ -5,18 +5,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
       <div class="modal-body">
           <form id="change-chosen" action="" method="post">
+            {% csrf_token %}
             {{ form.active_plans.label_tag }}
             {{ form.active_plans }}
-
+            <button type="submit" id="change-plan" class="btn btn-default">{% trans "save"|title %}</button>
           </form>
       </div>
+      <div id="message">
+
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="submit" id="change-plan" class="btn btn-default">{% trans "save"|title %}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "cancel"|title %}</button>
       </div>
     </div>
   </div>

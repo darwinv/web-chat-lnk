@@ -40,4 +40,26 @@
 
 {% block scripts_custom %}
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+    <script>
+    var url = "{% url 'frontend:set-chosen-plan' pk=0 %}"
+    console.log(url);
+    $("#change-chosen").submit(function(e){
+        e.preventDefault();
+      var plan = $('input[name=active_plans]:checked', '#change-chosen').val();
+      var url_plan = url.replace('0', plan);
+      var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+      // url_plan = $("#change-chosen").data("url");
+      $.ajax({
+          type:"POST",
+          url:url_plan,
+          data: {
+            csrfmiddlewaretoken: csrfToken,
+                 'is_chosen': 1
+                 },
+          success: function(data){
+              $('#message').html(data.message)
+          }
+     });
+    });
+   </script>
 {% endblock scripts_custom %}

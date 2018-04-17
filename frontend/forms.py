@@ -1,7 +1,7 @@
 """Formularios."""
 from django import forms
-from django.utils.translation import ugettext_lazy as _
-from api.connection import api
+from django.utils.translation import ugettext as _
+
 
 class QueryForm(forms.Form):
     """Formulario de Consulta Cliente."""
@@ -38,8 +38,8 @@ def format_choices(plans):
         # del newplan[l]['query_quantity']
         # import pdb; pdb.set_trace()
         newplan[l]['id'] = plans[l]['id']
-        newplan[l]['value'] = plans[l]['plan_name'] + ' -- ' +\
-            'Available queries: ' + str(plans[l]['available_queries']) +\
-            '/' + str(plans[l]['query_quantity']) + ' -- ' + 'Expiration Date:' +\
-            plans[l]['expiration_date']
+        newplan[l]['value'] = plans[l]['plan_name'] + ' - ' +\
+            _('availables') + ': ' + str(plans[l]['available_queries']) +\
+            '/' + str(plans[l]['query_quantity']) + ' - ' +\
+            _('expiration date') + ': ' + plans[l]['expiration_date']
     return newplan

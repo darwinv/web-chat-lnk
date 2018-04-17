@@ -11,9 +11,16 @@ urlpatterns = [
     # -------------------------------------------------
     # Urls de Cliente
     url(r'^client/$', client.Client().index, name='index-client'),
-    url(r'^client/chat/(?P<pk>[0-9]+)/$', client.Client().chat, name='chat-client'),
+    url(r'^client/chat/(?P<pk>[0-9]+)/$', client.Client().chat,
+        name='chat-client'),
+    # cambiar plan elegido
+    url(r'^client/chosenplan/(?P<pk>[0-9]+)/$', client.set_chosen_plan,
+        name='set-chosen-plan'),
     # Urls de Especialista
-    url(r'^specialist/$', specialist.Specialist().index, name='index-specialist'),
-    url(r'^specialist/chat/(?P<pk>[0-9]+)/$', specialist.Specialist().chat, name='chat-specialist'),
+    url(r'^specialist/$', specialist.Specialist().index,
+        name='index-specialist'),
+    url(r'^specialist/chat/(?P<pk>[0-9]+)/$', specialist.Specialist().chat,
+        name='chat-specialist'),
+    # Urls del Vendedor
     url(r'^seller/$', seller.Seller().index, name='index-seller'),
 ]
