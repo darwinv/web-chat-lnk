@@ -1,21 +1,72 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
+{% load i18n %}
+
+{% block meta %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+<link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
+{% endblock %}
+
+
+
 {% block content_left_slide %}
     {% url 'frontend:chat-client' pk=0 as urlchat%}
-    <div class="info-div" data-urlchat='{{urlchat}}'>
+<div class="info-div" data-urlchat='{{urlchat}}'>
         <div class="list-group" id="list_categories">
             <!--print categories-->
         </div>
-    </div>
+
+<div id="chosen-plan" class="hidden" data-id="">
+        <h4> {% trans "query plans"|title %} </h4>
+        <p id="plan_name"></p>
+      <p>{% trans "availables"|title %}:
+        <span id="queries"></span>
+      </p>
+      <p>{% trans "expiration date"|title %}:
+        <span id="expiration_date"></span>
+       </p>
+  <center>
+    <button id="change_plan" data-url="{% url 'frontend:active-plans' %}" type="button" class="btn btn-xs btn-ligth-blue" data-toggle="modal"
+       data-target="#changePlan">
+       {% trans "change plan"|title %}
+     </button>
+  </center>
+  </div>
+</div>
+
+{% include 'frontend/lib/modals/change_chosen_plan.html' %}
 {% endblock content_left_slide %}
 
-        
 
-{% block meta %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
-{% endblock %}
 
 {% block scripts_custom %}
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+    <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
+    <script>
+    var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
+    $("#change-chosen").submit(function(e){
+      $("#animacion1").toggleClass("hidden");
+        e.preventDefault();
+      var plan = $('input[name=active_plans]:checked', '#change-chosen').val();
+      var url_plan = url_p.replace('0', plan);
+      var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+      // url_plan = $("#change-chosen").data("url");
+      console.log(url_p);
+      $.ajax({
+          type:"POST",
+          url:url_plan,
+          data: {
+            csrfmiddlewaretoken: csrfToken,
+                 'is_chosen': 1
+                 },
+          success: function(data){
+            console.log(data);
+            $("#animacion1").toggleClass("hidden");
+            $('#message').addClass(data.class);
+              $('#message').html(data.message);
+          }
+     });
+    });
+   </script>
 {% endblock scripts_custom %}
