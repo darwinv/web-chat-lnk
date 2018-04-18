@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-17 14:11-0500\n"
+"POT-Creation-Date: 2018-04-18 15:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -511,7 +511,7 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\actor\sellersForm.html:169
 #: .\dashboard\templates\admin\actor\sellersForm_.html:197
 #: .\dashboard\templates\admin\actor\specialistsForm.html:197
-#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:16
+#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:17
 msgid "save"
 msgstr "guardar"
 
@@ -649,7 +649,6 @@ msgid "Are you sure to delete this item?"
 msgstr "¿Esta seguro que desea borrar este ítem?"
 
 #: .\dashboard\templates\admin\lib\_modals.html:38
-#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:23
 msgid "cancel"
 msgstr "cancelar"
 
@@ -657,6 +656,14 @@ msgstr "cancelar"
 #: .\dashboard\views\actors.py:78
 msgid "delete"
 msgstr "borrar"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:14
+msgid "queries"
+msgstr "consultas"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:15
+msgid "validity months"
+msgstr "meses de vigencia"
 
 #: .\dashboard\tools.py:16
 msgid "You must be of legal age"
@@ -850,8 +857,10 @@ msgid "identification document"
 msgstr "documento de identidad"
 
 #: .\dashboard\views\actors.py:314
+#, fuzzy
+#| msgid "query"
 msgid "querys"
-msgstr "consultas"
+msgstr "consulta"
 
 #: .\dashboard\views\actors.py:333
 msgid "Cliente"
@@ -946,16 +955,12 @@ msgstr "rechazar"
 msgid "title"
 msgstr "título"
 
-#: .\frontend\forms.py:22
-msgid "choose one of your plans"
-msgstr "selecciona uno de tus planes"
-
-#: .\frontend\forms.py:42
+#: .\frontend\forms.py:41
 #: .\frontend\templates\frontend\actors\client\base_client.html:23
 msgid "availables"
 msgstr "disponibles"
 
-#: .\frontend\forms.py:44
+#: .\frontend\forms.py:43
 #: .\frontend\templates\frontend\actors\client\base_client.html:26
 msgid "expiration date"
 msgstr "fecha de vencimiento"
@@ -965,7 +970,6 @@ msgid "query plans"
 msgstr "planes de consulta"
 
 #: .\frontend\templates\frontend\actors\client\base_client.html:32
-#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:8
 msgid "change plan"
 msgstr "cambiar plan"
 
@@ -984,6 +988,18 @@ msgstr "Escriba tu consulta"
 #: .\frontend\templates\frontend\chat.html:61
 msgid "Send your message"
 msgstr "Envia un mensaje"
+
+#: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:9
+msgid "choose one of your plans"
+msgstr "selecciona uno de tus planes"
+
+#: .\frontend\views\client.py:56
+msgid "your plan has been chosen correctly"
+msgstr "tu plan se he elegido correctamente"
+
+#: .\frontend\views\client.py:59
+msgid "there is an error"
+msgstr "hay un error"
 
 #: .\linkup\settings.py:108
 msgid "Spanish"

@@ -4,10 +4,6 @@
   font-weight:400;
 }
 
-button.btn-ligth-blue{
-  background-color: var(--turquoise);
-  color: white;
-}
 #plan_name{
   text-transform: capitalize;
 }

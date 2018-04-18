@@ -13,20 +13,17 @@
       <div class="modal-body">
           <form id="change-chosen" action="" method="post">
             {% csrf_token %}
-            
              <center>
                <button type="submit" id="change-plan" class="btn btn-ligth-blue">{% trans "save"|title %}
                </button>
              </center>
           </form>
+          <div id="animacion1" class="hidden">
+              <div class="ball"></div>
+              <div class="ball1"></div>
+          </div>
       </div>
-      <div id="animacion1" class="hidden">
-          <div class="ball"></div>
-          <div class="ball1"></div>
-      </div>
-      <div id="message">
-
-      </div>
+      <center> <div id="message"> </div></center>
     </div>
   </div>
 </div>

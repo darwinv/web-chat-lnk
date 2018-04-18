@@ -44,15 +44,15 @@
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
     <script>
-    var url = "{% url 'frontend:set-chosen-plan' pk=0 %}"
-    console.log(url);
+    var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
     $("#change-chosen").submit(function(e){
       $("#animacion1").toggleClass("hidden");
         e.preventDefault();
       var plan = $('input[name=active_plans]:checked', '#change-chosen').val();
-      var url_plan = url.replace('0', plan);
+      var url_plan = url_p.replace('0', plan);
       var csrfToken = $('[name=csrfmiddlewaretoken]').val();
       // url_plan = $("#change-chosen").data("url");
+      console.log(url_p);
       $.ajax({
           type:"POST",
           url:url_plan,
@@ -61,7 +61,9 @@
                  'is_chosen': 1
                  },
           success: function(data){
+            console.log(data);
             $("#animacion1").toggleClass("hidden");
+            $('#message').addClass(data.class);
               $('#message').html(data.message);
           }
      });

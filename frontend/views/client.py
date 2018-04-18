@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 from frontend.forms import QueryForm, ActivePlansForm
 from api.models import Category
+from django.utils.translation import ugettext_lazy as _
 
 
 class Client:
@@ -49,11 +50,15 @@ def set_chosen_plan(request, pk):
     """Elegir plan para consultar."""
     obj_api = api()
     token = request.session['token']
-    resp = obj_api.put(slug='chosens-plans/' + pk, token=token)
+    resp = obj_api.put(slug='chosens-plans/' + pk, token=token,
+                       arg=request.POST)
     if 'id' in resp:
-        return JsonResponse({'message': 'Tu plan se ha elegido correctamente'})
+        return JsonResponse({'message': _('your plan has been chosen correctly'),
+                             'class': 'successful'})
     else:
-        return JsonResponse({'message': 'Ha habido un error'})
+        return JsonResponse({'message': _('there is an error'),
+                             'class': 'error'})
+
 
 def plans(request):
     """Planes Activos."""

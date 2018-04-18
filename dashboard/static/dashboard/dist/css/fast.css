@@ -12,6 +12,19 @@
 ul{
   list-style: none;
 }
+/* Exitoso */
+.successful{
+  background-color: green;
+}
+/* Error */
+.error{
+  background-color: red;
+}
+
+.container-modal-inputs{
+  padding-left: 35px;
+  margin-bottom: 12px;
+}
 /*
 	Put in this file short css standard code
     Example:
@@ -80,6 +93,10 @@ ul{
 .marB10 {
     margin-bottom: 10px;
 }
+.marB-5 {
+    margin-bottom: -5px;
+}
+
 .padT10{
 	padding-top: 10px;
 }
