@@ -9,21 +9,6 @@
     --black: #131520;
 }
 
-.modal-dialog .modal-content {
-   background-color: #04050c;
-   color:white;
-   text-transform: capitalize;
-   border: 1px solid #999;
-}
-.modal-dialog .modal-header {
- border-bottom: none;
-}
-
-.modal-dialog .modal-content .close{
-  opacity: 1;
-  color:white;
-}
-
 ul{
   list-style: none;
 }
@@ -80,6 +65,12 @@ ul{
 .marT20{
 	margin-top: 20px;
 }
+.marL5{
+  margin-left: 5px;
+}
+.marL20{
+  margin-left: 20px;
+}
 .marR15{
 	margin-right: 15px;
 }
@@ -115,6 +106,9 @@ ul{
 }
 .size16{
 	font-size: 16px;
+}
+.font-size25{
+  font-size: 25px;
 }
 .color-red {
     color: red;

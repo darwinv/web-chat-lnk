@@ -16,6 +16,9 @@ urlpatterns = [
     # cambiar plan elegido
     url(r'^client/chosenplan/(?P<pk>[0-9]+)/$', client.set_chosen_plan,
         name='set-chosen-plan'),
+    # Lista de Planes activos
+    url(r'^client/plans/$', client.plans,
+        name='active-plans'),
     # Urls de Especialista
     url(r'^specialist/$', specialist.Specialist().index,
         name='index-specialist'),

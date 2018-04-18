@@ -17,7 +17,7 @@
             <!--print categories-->
         </div>
 
-  <div id="chosen-plan" data-id="">
+<div id="chosen-plan" data-id="">
         <h4> {% trans "query plans"|title %} </h4>
         <p id="plan_name"></p>
       <p>{% trans "availables"|title %}:
@@ -27,7 +27,7 @@
         <span id="expiration_date"></span>
        </p>
   <center>
-    <button type="button" class="btn btn-xs btn-ligth-blue" data-toggle="modal"
+    <button id="change_plan" data-url="{% url 'frontend:active-plans' %}" type="button" class="btn btn-xs btn-ligth-blue" data-toggle="modal"
        data-target="#changePlan">
        {% trans "change plan"|title %}
      </button>
@@ -42,6 +42,7 @@
 
 {% block scripts_custom %}
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+    <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
     <script>
     var url = "{% url 'frontend:set-chosen-plan' pk=0 %}"
     console.log(url);

@@ -54,3 +54,11 @@ def set_chosen_plan(request, pk):
         return JsonResponse({'message': 'Tu plan se ha elegido correctamente'})
     else:
         return JsonResponse({'message': 'Ha habido un error'})
+
+def plans(request):
+    """Planes Activos."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.get(slug='clients/plans/', token=token)
+    if resp['count'] > 0:
+        return JsonResponse(resp)
