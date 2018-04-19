@@ -28,7 +28,7 @@ $(document).ready(function () {
     else{
       $("#chosen-plan").html(
         "<center> <button type='button' class='btn btn-md btn-ligth-blue' data-toggle='modal'"+
-          "data-target='#'>Recarga </button> </center>");
+          "data-target='#reload'>Recarga </button> </center>");
     }
     $("#chosen-plan").toggleClass("hidden");
 
