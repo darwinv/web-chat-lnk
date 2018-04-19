@@ -53,12 +53,17 @@ def set_chosen_plan(request, pk):
     resp = obj_api.put(slug='chosens-plans/' + pk, token=token,
                        arg=request.POST)
     if 'id' in resp:
-        return JsonResponse({'message': _('your plan has been chosen correctly'),
-                             'class': 'successful'})
+        return JsonResponse(
+            {'message': _('your plan has been chosen correctly'),
+             'class': 'successful'})
     else:
         return JsonResponse({'message': _('there is an error'),
                              'class': 'error'})
 
+
+def activate_plan(request, pk):
+    """Activar Plan por codigo PIN."""
+    pass
 
 def plans(request):
     """Planes Activos."""

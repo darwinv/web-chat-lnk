@@ -16,6 +16,9 @@ urlpatterns = [
     # cambiar plan elegido
     url(r'^client/chosenplan/(?P<pk>[0-9]+)/$', client.set_chosen_plan,
         name='set-chosen-plan'),
+    # Activar plan
+    url(r'^client/plans/activate/(?P<pin>[0-9]+)/$', client.activate_plan,
+        name='activate-plan'),
     # Lista de Planes activos
     url(r'^client/plans/$', client.plans,
         name='active-plans'),

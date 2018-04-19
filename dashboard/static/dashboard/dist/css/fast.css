@@ -84,6 +84,9 @@ ul{
 .marT20{
 	margin-top: 20px;
 }
+.marT10{
+  margin-top: 10px;
+}
 .marL5{
   margin-left: 5px;
 }
@@ -140,7 +143,10 @@ ul{
     color: red;
 }
 
-
+/* anchura auto */
+.width-auto{
+  width: auto;
+}
 /*global .errorlist*/
 ul.errorlist:not(.nonfield) {
     position: absolute;

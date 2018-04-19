@@ -21,18 +21,26 @@
           </button>
         </div>
       <div class="">
-        <button type="button" id="purchase" class="btn btn-ligth-blue">
+        <button type="button" id="activate_pin" class="btn btn-ligth-blue">
           {% trans "insert the pin of your card"|title %}
         </button>
       </div>
-
-          <!--   <form id="change-chosen" action="" method="post">
+      <div id="pincode" class="hidden marT20">
+          <form id="activate_plan" action="" method="post">
             {% csrf_token %}
-             <center>
-               <button type="submit" id="change-plan" class="btn btn-ligth-blue">{% trans "save"|title %}
-               </button>
-             </center>
-          </form>  -->
+              <div class="col-xs-12 ">
+                  <center>
+                    <input type="text" style="width:auto;"
+                    class="form-control" name="pincode" placeholder="pin code">
+                  </center>
+                  <button type="submit" class="btn btn-ligth-blue marT10">
+                    {% trans "save"|title %}
+                  </button>
+             </div>
+          </form>
+      </div>
+
+
           <div id="animacion1" class="hidden">
               <div class="ball"></div>
               <div class="ball1"></div>

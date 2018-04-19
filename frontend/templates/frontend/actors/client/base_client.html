@@ -44,8 +44,10 @@
 {% block scripts_custom %}
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
+    <script src="{% static "frontend/client/js/activate_plan.js" %}"></script>
     <script>
     var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
+    // Cambiar plan elegido de los adquiridos y activos
     $("#change-chosen").submit(function(e){
       $("#animacion1").toggleClass("hidden");
         e.preventDefault();
@@ -53,7 +55,6 @@
       var url_plan = url_p.replace('0', plan);
       var csrfToken = $('[name=csrfmiddlewaretoken]').val();
       // url_plan = $("#change-chosen").data("url");
-      console.log(url_p);
       $.ajax({
           type:"POST",
           url:url_plan,
@@ -62,12 +63,12 @@
                  'is_chosen': 1
                  },
           success: function(data){
-            console.log(data);
             $("#animacion1").toggleClass("hidden");
             $('#message').addClass(data.class);
-              $('#message').html(data.message);
+            $('#message').html(data.message);
           }
      });
+     // Activar plan  con codigo pin a traves de ajax
     });
    </script>
 {% endblock scripts_custom %}

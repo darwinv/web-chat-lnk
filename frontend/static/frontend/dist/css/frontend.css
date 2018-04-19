@@ -113,6 +113,11 @@ button.btn-ligth-blue:active{
    text-transform: capitalize;
    border: 1px solid #999;
 }
+
+.modal-dialog .modal-content input {
+   color:black;
+}
+
 .modal-dialog .modal-header {
  border-bottom: none;
 }
