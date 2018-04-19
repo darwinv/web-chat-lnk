@@ -90,6 +90,7 @@ html.frontend-html {
 button.btn-ligth-blue{
   background-color: var(--turquoise);
   color: white;
+  font-weight: bold;
 }
 
 button.btn-ligth-blue:hover{

@@ -27,8 +27,8 @@ $(document).ready(function () {
     }
     else{
       $("#chosen-plan").html(
-        "<center> <button type='button' class='btn btn-md btn-ligth-blue' data-toggle='modal'"+
-          "data-target='#reload'>Recarga </button> </center>");
+        "<center> <button type='button' class='btn btn-md btn-ligth-blue cap' data-toggle='modal'"+
+          "data-target='#reload'>"+ trans_reload+"</button> </center>");
     }
     $("#chosen-plan").toggleClass("hidden");
 

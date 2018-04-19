@@ -11,8 +11,10 @@
         var apiEnvFirebase = '{% get_api_enviroment_firebase %}';
         const ROLES = {{ ROLES }};
         var audioNotification =  "{% static 'frontend/dist/audio/beep.wav' %}";
+        // Variables para traduccion
         const trans_queries = "{% trans 'queries'%}";
         const trans_validity_months = "{% trans 'validity months'%}";
+        const trans_reload = "{% trans 'reload' %}";
 
         {% if request.user.id %}
             var userID = {{request.user.id}};

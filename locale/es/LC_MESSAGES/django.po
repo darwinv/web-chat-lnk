@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 15:40-0500\n"
+"POT-Creation-Date: 2018-04-19 09:59-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -512,6 +512,7 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\actor\sellersForm_.html:197
 #: .\dashboard\templates\admin\actor\specialistsForm.html:197
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:17
+#: .\frontend\templates\frontend\lib\modals\reload.html:32
 msgid "save"
 msgstr "guardar"
 
@@ -992,6 +993,18 @@ msgstr "Envia un mensaje"
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:9
 msgid "choose one of your plans"
 msgstr "selecciona uno de tus planes"
+
+#: .\frontend\templates\frontend\lib\modals\reload.html:16
+msgid "you don't have an active plan"
+msgstr "no tienes plan de consultas activo"
+
+#: .\frontend\templates\frontend\lib\modals\reload.html:20
+msgid "reload"
+msgstr "recarga"
+
+#: .\frontend\templates\frontend\lib\modals\reload.html:25
+msgid "insert the pin of your card"
+msgstr "ingresa el pin de tu tarjeta"
 
 #: .\frontend\views\client.py:56
 msgid "your plan has been chosen correctly"
