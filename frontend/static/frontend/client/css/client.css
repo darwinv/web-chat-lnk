@@ -1,0 +1,9 @@
+/* Formulario cambiar plan elegido */
+#chosen-plan{
+  padding: 2px 18px;
+  font-weight:400;
+}
+
+#plan_name{
+  text-transform: capitalize;
+}

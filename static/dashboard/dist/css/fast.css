@@ -4,11 +4,27 @@
     --turquoise-opaque: #6FABC4;
     --turquoise: #44ABC4;
     --orange: #BF512D;
-    --blue: #232155;    
+    --blue: #232155;
     --dark-blue: #14162E;
     --black: #131520;
 }
 
+ul{
+  list-style: none;
+}
+/* Exitoso */
+.successful{
+  background-color: green;
+}
+/* Error */
+.error{
+  background-color: red;
+}
+
+.container-modal-inputs{
+  padding-left: 35px;
+  margin-bottom: 12px;
+}
 /*
 	Put in this file short css standard code
     Example:
@@ -62,6 +78,12 @@
 .marT20{
 	margin-top: 20px;
 }
+.marL5{
+  margin-left: 5px;
+}
+.marL20{
+  margin-left: 20px;
+}
 .marR15{
 	margin-right: 15px;
 }
@@ -71,6 +93,10 @@
 .marB10 {
     margin-bottom: 10px;
 }
+.marB-5 {
+    margin-bottom: -5px;
+}
+
 .padT10{
 	padding-top: 10px;
 }
@@ -97,6 +123,9 @@
 }
 .size16{
 	font-size: 16px;
+}
+.font-size25{
+  font-size: 25px;
 }
 .color-red {
     color: red;
