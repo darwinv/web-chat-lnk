@@ -1,4 +1,4 @@
-{% load static %}
+{% load static adminlte_helpers i18n %}
 {% load i18n %}
 <!DOCTYPE html>
 <html class="frontend-html">
@@ -13,10 +13,8 @@
         <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="stylesheet" href="{% static "frontend/dist/css/bootstrap.min.css" %}">
-        <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
         <link rel="shortcut icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
         <link rel="icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
-
     {% endblock %}
 
     {% block stylesheets %}
@@ -32,10 +30,7 @@
             <!-- SPACING HERE -->
         </div>
         <div class="content-wrap">
-
             <div class="left_slide">
-
-                
                 <div class="head-split">
                     <div class="content-logo">
                         <!-- LOGO -->
@@ -55,12 +50,12 @@
                         {% endblock content_left_slide %}
                     </div>
                 {% endblock left_slide %}
-                    
+
             </div>
-            
+
             <div class="content-right">
-                
-                
+
+
                 <div class="content-right-head">
 
                     {% block content_right_head %}
@@ -75,13 +70,24 @@
                                 <span>Configuración</span>
                             </div>
                             <div class="col-md-3">
-                                <div style="float: right; margin-right: 17%;">
+
+                                <div class="text-right" style="margin-right: 17%;">
+                                    <div class="btn-group float-right">
+                                        <i class="fas fa-bars dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                        <div class="dropdown-menu dropdown-menu-right text-center">
+                                            <button class="dropdown-item" type="button"><a href="#">{% trans "Account status" %}</a></button>
+                                            <button class="dropdown-item" type="button"><a href="#">{% trans "My acount" %}</a></button>
+
+                                            <button class="dropdown-item" type="button">
+                                                <a href="{% block logout_url %}{% logout_url %}{% endblock %}" >{% trans "Sign out"|title %}</a>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <i class="fas fa-home"></i>
-                                    <i class="fas fa-bars"></i>
                                 </div>
                             </div>
                         </div>
-
                     {% endblock content_right_head %}
                 </div>
                 <div class="main-content">
@@ -97,13 +103,14 @@
             {% include 'frontend/lib/_main_footer.html' %}
         {% endblock %}
     </div>
-        
-    
+
+
 
     <script src="{% static "frontend/dist/js/jquery-3.1.1.slim.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/tether.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/bootstrap.min.js" %}"></script>
     <script src="{% static "frontend/dist/js/firebase.js" %}"></script>
+    <script src="{% static "frontend/dist/js/moment.js" %}"></script>
     <script src="{% static "frontend/dist/js/custom_date_show.js" %}"></script>
     {% block scripts_custom %}{% endblock scripts_custom %}
 {% endblock body %}

@@ -98,7 +98,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
     foreign_address = forms.CharField(label = _('address'), required=False)
     ruc = forms.CharField(label = _('ruc'), required=False)
 
-    payment_per_answer = forms.FloatField(min_value=0) 
+    payment_per_answer = forms.FloatField(min_value=0)
 
     def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
             *args, **kwargs):
@@ -122,7 +122,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
 
         if data and 'department' in data and data['department']:
             department = data['department']
-            
+
         if data and 'province' in data and data['province']:
             province = data['province']
 
@@ -141,7 +141,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
         #     self.fields['username'].widget.attrs['readonly'] = True
 
         self.fields = Operations.setAdress(self, initial, self.fields)
- 
+
                             # cambiar a clase generica
 
     class Meta:
@@ -161,7 +161,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
 class SellerForm(ModelForm, ErrorsFieldsApi):
     """Formulario de Vendedores."""
 
-    select_search = {'data-live-search':'true','class':'selectpicker'}
+    select_search = {'data-live-search': 'true', 'class': 'selectpicker'}
     ciiu = forms.CharField(widget=forms.Select(attrs=select_search),
                            required=False, label=_('CIIU'))
     nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
@@ -222,7 +222,7 @@ class SellerForm(ModelForm, ErrorsFieldsApi):
                   'telephone', 'cellphone', 'document_type', 'document_number',
                    'ruc' ]
 
-    
+
 
 
 
@@ -295,4 +295,3 @@ class AuthorizationClientFilter(FromUntilFilters):
             status = tuple(status)
             self.fields['status'].widget.choices = [('', '')]
             self.fields['status'].widget.choices += status
-

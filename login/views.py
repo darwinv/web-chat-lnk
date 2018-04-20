@@ -1,3 +1,5 @@
+"""Vistas Login."""
+import os
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
@@ -9,6 +11,8 @@ from api.connection import api
 from login.forms import RegisterClientFormNatural, RegisterClientFormBusiness
 from dashboard.tools import ToolsBackend as Tools
 from login.utils.tools import get_app_by_user
+from PIL import Image
+from linkup.settings import BASE_DIR
 
 def weblogin(request):
     """
@@ -54,7 +58,7 @@ def logout_view(request):
         obj_api = api()
         token = request.session['token']
         obj_api.logout(token)
-        logout(request)
+    logout(request)
     return HttpResponseRedirect(reverse('login:login'))
 
 def register(request):
@@ -67,16 +71,21 @@ def register(request):
     if 'type_client' in request.GET:
         type_client = request.GET['type_client']
 
-
     if request.method == 'POST':
 
         if type_client == 'n':
             # Crear formulario de registro para persona Natural
-            form = RegisterClientFormNatural(data=request.POST, files=request.FILES, initial={'type_client': type_client})
+            form = RegisterClientFormNatural(data=request.POST,
+                                             files=request.FILES,
+                                             initial={
+                                                 'type_client': type_client})
             template = 'public/register_natural.html'
         else:
             # Crear formulario de registro para persona Juridica
-            form = RegisterClientFormBusiness(data=request.POST, files=request.FILES, initial={'type_client': type_client})
+            form = RegisterClientFormBusiness(data=request.POST,
+                                              files=request.FILES,
+                                              initial={
+                                                  'type_client': type_client})
             template = 'public/register_business.html'
 
         if form.is_valid():
@@ -95,32 +104,48 @@ def register(request):
 
             tools = Tools()
             if 'birthdate' in data:
-                data['birthdate'] = tools.date_format_to_db(date=data['birthdate'])
-
+                data['birthdate'] = tools.date_format_to_db(
+                                                     date=data['birthdate'])
 
             result = obj_api.post(slug='clients/', arg=data)
-
-            if result and 'id' in result:  # Si la respuesta de la API fue exitosa
-
+            # Si la respuesta de la API fue exitosa
+            if result and 'id' in result:
                 if 'photo' in request.FILES:
                     photo = {'photo': request.FILES['photo']}
-                    obj_api.put(slug='upload_photo/' + str(result['id']), files=photo)  # Envio de foto del Cliente
-
+                    image = Image.open(
+                        os.path.join(
+                            BASE_DIR,
+                            request.FILES['photo'].file.name))
+                    width, height = image.size
+                    if width > height:
+                        factor = 512 / width
+                    else:
+                        factor = 512 / height
+                    img = image.resize(
+                                (int(width * factor), int(height * factor)))
+                    # image.size
+                    img.save(request.FILES['photo'].file.name, "JPEG",
+                             quality=95)
+                    obj_api.put(slug='upload_photo/' + str(result['id']),
+                                files=photo)  # Envio de foto del Cliente
                 # Process success
                 template = 'public/register_success.html'
             else:
                 # Mostrar Errores en Form
-                form.add_error_custom(add_errors=result)  # Agregamos errores retornados por la app para este formulario
+                # Agregamos errores retornados por la app para este formulario
+                form.add_error_custom(add_errors=result)
 
     else:
 
         if type_client == 'n':
             # Crear formulario de registro para persona Natural
-            form = RegisterClientFormNatural(initial={'type_client': type_client})
+            form = RegisterClientFormNatural(
+                                        initial={'type_client': type_client})
             template = 'public/register_natural.html'
         else:
             # Crear formulario de registro para persona Juridica
-            form = RegisterClientFormBusiness(initial={'type_client': type_client})
+            form = RegisterClientFormBusiness(
+                                    initial={'type_client': type_client})
             template = 'public/register_business.html'
 
     return render(request, template, {'form': form})

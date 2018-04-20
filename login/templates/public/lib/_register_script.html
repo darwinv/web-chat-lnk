@@ -2,19 +2,39 @@
 
 <script>
 
+// const compress = new Compress();
+// var upload = document.getElementById('inputFile');
+// upload.addEventListener('change', function (evt) {
+//   const files = [...evt.target.files]
+//   compress.compress(files, {
+//     size: 4, // the max size in MB, defaults to 2MB
+//     quality: .75, // the quality of the image, max is 1,
+//     maxWidth: 1920, // the max width of the output image, defaults to 1920px
+//     maxHeight: 1920, // the max height of the output image, defaults to 1920px
+//     resize: true, // defaults to true, set false if you do not want to resize the image width and height
+//   }).then((data) => {
+//     // returns an array of compressed images
+// 		console.log(data);
+// 		const output = data[0]
+// 		const file = Compress.convertBase64ToFile(output.data, output.ext)
+// 		console.log(file)
+// 		upload.value = file;
+//   })
+// }, false)
+
 $(function () {
 
 	$(document).on('change', 'input[name=type_client]', function() {
 		load_by_client_type($(this));
 	});
-	
+
 	function load_by_client_type($this){
 		// redirecciona segun el tipo de cliente que se registra
-		type_client = $this.val();		
-		window.location.href = "{% url 'login:register' %}?type_client="+type_client;		
+		type_client = $this.val();
+		window.location.href = "{% url 'login:register' %}?type_client="+type_client;
 	}
 
 
 });
-	
+
 </script>

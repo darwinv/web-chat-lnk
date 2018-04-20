@@ -1,54 +1,9 @@
-#img_cat {
-    width: 3em;
-    height: 3em;
+/* Formulario cambiar plan elegido */
+#chosen-plan{
+  padding: 2px 18px;
+  font-weight:400;
 }
-/*SCROLL LEFT*/
-/*.info-div::-webkit-scrollbar-thumb {
-    background-color: #141428;
-}
-.info-div {
-    border: none;
-    height: 668px;
-    overflow-y: scroll;
-}
-.info-div::-webkit-scrollbar {
-    width: 6px;
-    background-color: #F5F5F5;
-}
-.info-div::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
-}*/
-/*FIN SCROLL*/
-div.info-div .cont {
-    border: none;
-    margin-left: 0px;
-}
-.cont-item{
-    display:table;
-    /*width: 100%;*/
-}
-.item-right{
-    /*align-items: right;*/
-}
-.itemp {
-    display:table-cell;
-    vertical-align:middle;
-}
-.arrow-list {
-    position: absolute;
-    top: 50%;
-    right: 5px;
-}
-.w{
-    width: auto;
-    display: table-cell;
-    margin: auto;
-    height: auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-#img_cat{
-    margin-right: 5px;
+
+#plan_name{
+  text-transform: capitalize;
 }
