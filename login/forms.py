@@ -33,8 +33,9 @@ class RegisterClientForm(forms.Form):
     nick = forms.CharField(
         widget=forms.TextInput(
             attrs={'placeholder': _('Nick')}), required=False)
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': _('Password')}))
+    password = forms.CharField(min_length=6,
+                               widget=forms.PasswordInput(
+                                   attrs={'placeholder': _('Password')}))
     repassword = forms.CharField(
         widget=forms.PasswordInput(
             attrs={'placeholder': _('Repeat Password')}))
