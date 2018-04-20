@@ -68,7 +68,11 @@
             $('#message').html(data.message);
           }
      });
+ });
      // Activar plan  con codigo pin a traves de ajax
-    });
+     $("#activate_plan").submit(function(e)){
+       e.preventDefault();
+     });
+
    </script>
 {% endblock scripts_custom %}
