@@ -87,6 +87,44 @@ html.frontend-html {
     margin: 0% 3%;
 }
 
+button.btn-ligth-blue{
+  background-color: var(--turquoise);
+  color: white;
+}
+
+button.btn-ligth-blue:hover{
+  background-color: var(--turquoise);
+  color: white;
+}
+
+button.btn-ligth-blue:active{
+  background-color: var(--turquoise);
+  color: white;
+}
+
+
+
+/* Para Modales  en el Front */
+
+.modal-dialog .modal-content {
+   background-color: #04050c;
+   color:white;
+   text-transform: capitalize;
+   border: 1px solid #999;
+}
+.modal-dialog .modal-header {
+ border-bottom: none;
+}
+
+.modal-dialog .modal-content .close{
+  opacity: 1;
+  color:white;
+}
+
+.cont-check{
+  padding-left: 35px;
+  margin-bottom: 12px;
+}
 
 /* Footer */
 footer small{
@@ -139,3 +177,94 @@ div::-webkit-scrollbar-track {
 }
 
 /*FIN ESTRUCTURA TEMPLATE*/
+
+/* Animacion para efecto cargando */
+#animacion {
+    height: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    right: 0;
+}
+#animacion1 {
+    height: 50%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    right: 0;
+}
+.ball {
+    background-color: rgba(0,0,0,0);
+    border: 3px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px #141428;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    -moz-animation: spin .5s infinite linear;
+    -webkit-animation: spin .5s infinite linear;
+}
+
+.ball1 {
+    background-color: rgba(0,0,0,0);
+    border: 3px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+    top: -40px;
+    -moz-animation: spinoff .5s infinite linear;
+    -webkit-animation: spinoff .5s infinite linear;
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-moz-keyframes spinoff {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(-360deg);
+    };
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes spinoff {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(-360deg);
+    };
+}

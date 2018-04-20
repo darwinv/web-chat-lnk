@@ -149,7 +149,7 @@ function sendQueryMessage(){
     if (text_message == "")
         return false;
 
-    $("#animacion").toggleClass("hidden")
+    $("#animacion").toggleClass("hidden");
 
     if (role_id == ROLES.specialist) {
         message_type = 'a';
