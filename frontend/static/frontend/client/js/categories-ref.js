@@ -30,10 +30,10 @@ $(document).ready(function () {
         "<center> <button type='button' class='btn btn-md btn-ligth-blue cap' data-toggle='modal'"+
           "data-target='#reload'>"+ trans_reload+"</button> </center>");
     }
-    $("#chosen-plan").toggleClass("hidden");
 
       // console.log(snap.val());
     });
+    $("#chosen-plan").toggleClass("hidden");
 }); // cierra document ready
 
 

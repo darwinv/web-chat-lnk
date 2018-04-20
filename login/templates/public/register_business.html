@@ -5,7 +5,11 @@
 
 {% block content %}
 	<div class="login-logo">
-      {% block logo_text %}<img src="{% static "dashboard/dist/img/logo.png" %}" class="responsive-img"> {% endblock %}
+      {% block logo_text %}
+      	<a href="{% url 'login:indexlogin'%}">
+      			<img src="{% static "dashboard/dist/img/logo.png" %}" class="responsive-img">
+      	</a>
+      {% endblock %}
     </div>
 	<form class="register-client-form" action="{{sellers_form}}" method="POST" enctype="multipart/form-data" >
 		{% csrf_token %}		
