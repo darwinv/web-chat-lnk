@@ -14,9 +14,10 @@ from login.utils.tools import get_app_by_user
 from PIL import Image
 from linkup.settings import BASE_DIR
 
+
 def weblogin(request):
     """
-    Vista para mostrar el formulario de login y autenticar al usuario
+    Vista para mostrar el formulario de login y autenticar al usuario.
 
     :param request:
     :return: formulario de login o listado de especialistas
@@ -124,7 +125,9 @@ def register(request):
                     img = image.resize(
                                 (int(width * factor), int(height * factor)))
                     # image.size
-                    img.save(request.FILES['photo'].file.name, "JPEG",
+                    # import pdb; pdb.set_trace()
+                    img.save(request.FILES['photo'].file.name,
+                             image.format,
                              quality=95)
                     obj_api.put(slug='upload_photo/' + str(result['id']),
                                 files=photo)  # Envio de foto del Cliente
