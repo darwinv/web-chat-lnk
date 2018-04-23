@@ -20,11 +20,12 @@ class Client:
         token = request.session['token']
         # import pdb; pdb.set_trace()
         obj_api = api()
-        data_plans = obj_api.get(slug='clients/plans/', token=token)
-        form = ActivePlansForm(plans=data_plans["results"])
+        data_plans = obj_api.get(slug='clients/plans/', token=token,
+                                 request=request)
+        print(data_plans)
+        # form = ActivePlansForm()
         return render(request,
-                      'frontend/actors/client/base_client.html',
-                      {'form': form})
+                      'frontend/actors/client/base_client.html')
 
     @method_decorator(user_passes_test(role_client_check()))
     def chat(self, request, pk):

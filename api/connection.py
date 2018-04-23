@@ -4,8 +4,9 @@
 from api.config import API_URL, API_CLIENT_ID, API_CLIENT_SECRET, API_HEADERS
 import requests
 from django.utils import translation
+from django.contrib.auth import logout
 from django.urls import reverse
-import pdb
+from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 # Django
 # from django.contrib.auth.models import User
@@ -22,7 +23,8 @@ class api:
 
     _language = 'es'
 
-    def __init__(self, cliente_id=None, client_secret=None, url=None, language=None):
+    def __init__(self, cliente_id=None, client_secret=None, url=None,
+                 language=None):
         if url:
             self._url = url
         if cliente_id:
@@ -145,14 +147,14 @@ class api:
             headers = dict(headers, **self._headers)
 
             r = requests.get(self._url + 'users?username=' + username, headers=headers)
-            
+
             data = r.json()
             try:
                 # obtener id de la respuesta
 
                 pk = int(data['results'][0]['id'])
 
-                                    
+
                 # evaluar si existe el usuario en las sesiones guardadas
                 if User.objects.filter(id=pk).count() > 0:
                     user = User.objects.get(id=pk)
@@ -168,7 +170,7 @@ class api:
                 user.email_exact = str(data['results'][0]['email_exact'])
 
                 role_id = int(data['results'][0]['role'])
-                
+
                 user.role = Role.objects.get(pk=role_id)
 
             except Exception as e:
@@ -197,7 +199,7 @@ class api:
             print("---------------ERROR LOGOUT---------------")
 
 
-    def get(self, token, slug='', arg=None, ):
+    def get(self, token, slug='', arg=None, request=None):
 
         try:
 
@@ -205,11 +207,15 @@ class api:
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url + slug, headers=headers, params=arg)
+            # import pdb; pdb.set_trace()
 
             if r.status_code == 401:
-                #logout = requests.get(reverse('login:logout'))
-                #return HttpResponseRedirect(reverse('login:logout'))
                 print("---------------401resp---------------------")
+                # obj_api = api()
+                # token = request.session['token']
+                # self.logout(token)
+                # logout(request)
+                # HttpResponseRedirect(reverse('login:login'))
             else:
                 return r.json()
 
@@ -219,30 +225,30 @@ class api:
 
     def post(self, token='', slug='', arg=None, files=None):
         headers = {'Accept-Language': self._language}
-        
+
         if token:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
         try:
             r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
             return r.json()
-            
+
         except Exception as e:
             print(e.args)
             print("---------------ERROR POST---------------")
 
     def put(self, token='', slug='', arg=None, files=None):
         headers = {'Authorization': 'Bearer ' + token}
-        
+
         if token:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
 
         try:
-            r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            
-            
+            r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
+
             return r.json()
-            
+
         except Exception as e:
             print(e)
             print("---------------ERROR PUT---------------")
