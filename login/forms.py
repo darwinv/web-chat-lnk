@@ -162,7 +162,7 @@ class RegisterClientFormNatural(RegisterClientForm, ErrorField):
         # self.fields['birthdate'].initial = tool.initial_register_birthdate()
 
         if ciius:
-            self.fields['ciiu'].widget.choices = [('', _('CIIU'))] + [(l.id, _(l.description)) for l in ciius]
+            self.fields['ciiu'].widget.choices = [('', _('CIIU'))] + [(l.id, '{} - {}'.format(str(l.code),_(l.description))) for l in ciius]
 
         if level_instructions:
             self.fields['level_instruction'].widget.choices = [('', _('Level instruction'))] + [(l.id, _(l.name))
@@ -179,6 +179,7 @@ class RegisterClientFormNatural(RegisterClientForm, ErrorField):
 class RegisterClientFormBusiness(RegisterClientForm, ErrorField):
 
     # Campos para Cliente Juridico
+    select_search = {'data-live-search': 'true', 'class': 'selectpicker'}
     business_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('business name')}))
     commercial_reason = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('commercial reason')}))
     ruc = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'RUC'}))
@@ -186,7 +187,7 @@ class RegisterClientFormBusiness(RegisterClientForm, ErrorField):
     agent_lastname = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('agent lastname')}))
     position = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Position in the company')}))
     economic_sector = forms.CharField(widget=forms.Select())
-    ciiu = forms.CharField(widget=forms.Select())
+    ciiu = forms.CharField(widget=forms.Select(attrs=select_search))
 
     def __init__(self, data=None, *args, **kwargs):
         """Init."""
@@ -199,4 +200,4 @@ class RegisterClientFormBusiness(RegisterClientForm, ErrorField):
             self.fields['economic_sector'].widget.choices = [('', _('economic sector'))] + [(l.id, _(l.name)) for l in
                                                                                   economic_sectors]
         if ciius:
-            self.fields['ciiu'].widget.choices = [('', _('CIIU'))] + [(l.id, _(l.description)) for l in ciius]
+            self.fields['ciiu'].widget.choices = [('', _('CIIU'))] + [(l.id, '{} - {}'.format(str(l.code),_(l.description))) for l in ciius]
