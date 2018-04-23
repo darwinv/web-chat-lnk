@@ -20,9 +20,8 @@ class Client:
         token = request.session['token']
         # import pdb; pdb.set_trace()
         obj_api = api()
-        data_plans = obj_api.get(slug='clients/plans/', token=token,
-                                 request=request)
-        print(data_plans)
+        data_plans = obj_api.get(slug='clients/plans/', token=token, request=request)
+        # print(data_plans)
         # form = ActivePlansForm()
         return render(request,
                       'frontend/actors/client/base_client.html')

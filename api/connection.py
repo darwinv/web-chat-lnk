@@ -6,7 +6,7 @@ import requests
 from django.utils import translation
 from django.contrib.auth import logout
 from django.urls import reverse
-from django.http import HttpRequest
+import pdb
 from django.http import HttpResponseRedirect
 # Django
 # from django.contrib.auth.models import User
@@ -23,8 +23,7 @@ class api:
 
     _language = 'es'
 
-    def __init__(self, cliente_id=None, client_secret=None, url=None,
-                 language=None):
+    def __init__(self, cliente_id=None, client_secret=None, url=None, language=None):
         if url:
             self._url = url
         if cliente_id:
@@ -207,15 +206,14 @@ class api:
 
             headers = dict(headers, **self._headers)
             r = requests.get(self._url + slug, headers=headers, params=arg)
-            # import pdb; pdb.set_trace()
 
             if r.status_code == 401:
+                token = request.session['token']
+                self.logout(token)
+                logout(request)
+                # logout = requests.get(reverse('login:logout'))
+                # return HttpResponseRedirect(reverse('login:logout'))
                 print("---------------401resp---------------------")
-                # obj_api = api()
-                # token = request.session['token']
-                # self.logout(token)
-                # logout(request)
-                # HttpResponseRedirect(reverse('login:login'))
             else:
                 return r.json()
 
