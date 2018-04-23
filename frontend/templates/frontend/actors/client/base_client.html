@@ -66,6 +66,11 @@
             $("#animacion1").toggleClass("hidden");
             $('#message').addClass(data.class);
               $('#message').html(data.message);
+            // $('#changePlan').modal('hide');
+            setTimeout(function(){
+              $("#changePlan .close").click();
+              $("#changePlan").removeClass('show');
+            }, 2000);
           }
      });
     });
