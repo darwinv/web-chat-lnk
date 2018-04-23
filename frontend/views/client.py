@@ -61,8 +61,11 @@ def set_chosen_plan(request, pk):
                              'class': 'error'})
 
 
-def activate_plan(request, pk):
+def activate_plan(request, pin):
     """Activar Plan por codigo PIN."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.put(slug='activations/plans/' + pin, token=token)
     pass
 
 def plans(request):
