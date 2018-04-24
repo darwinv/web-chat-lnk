@@ -17,8 +17,9 @@
             <!--print categories-->
         </div>
 
-<div id="chosen-plan" class="hidden" data-id="">
-        <h4> {% trans "query plans"|title %} </h4>
+<div id="chosen-plan" class="hidden" data-url="{% url 'frontend:active-plans' %}">
+  <!-- print footer real time -->
+        <!-- <h4> {% trans "query plans"|title %} </h4>
         <p id="plan_name"></p>
       <p>{% trans "availables"|title %}:
         <span id="queries"></span>
@@ -31,7 +32,7 @@
        data-target="#changePlan">
        {% trans "change plan"|title %}
      </button>
-  </center>
+  </center> -->
   </div>
 </div>
 
@@ -42,10 +43,15 @@
 
 
 {% block scripts_custom %}
+<script type="text/javascript">
+ url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
+</script>
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
+    <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
     <script>
     var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
+    // Cambiar plan elegido de los adquiridos y activos
     $("#change-chosen").submit(function(e){
       $("#animacion1").toggleClass("hidden");
         e.preventDefault();
@@ -53,7 +59,6 @@
       var url_plan = url_p.replace('0', plan);
       var csrfToken = $('[name=csrfmiddlewaretoken]').val();
       // url_plan = $("#change-chosen").data("url");
-      console.log(url_p);
       $.ajax({
           type:"POST",
           url:url_plan,
@@ -62,17 +67,42 @@
                  'is_chosen': 1
                  },
           success: function(data){
-            console.log(data);
             $("#animacion1").toggleClass("hidden");
             $('#message').addClass(data.class);
               $('#message').html(data.message);
             // $('#changePlan').modal('hide');
             setTimeout(function(){
+              $("#changePlan").modal('hide');
               $("#changePlan .close").click();
-              $("#changePlan").removeClass('show');
             }, 2000);
           }
      });
-    });
+ });
+  // Activar plan  con codigo pin a traves de ajax
+  var url_code= "{% url 'frontend:activate-plan' code=0 %}"
+   $("#activate_plan").submit(function(e){
+     e.preventDefault();
+     var code = $("#pinCode").val();
+     var url_pin = url_code.replace('0', code);
+     console.log(url_pin);
+     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+     $.ajax({
+         type:"POST",
+         url:url_pin,
+         data: {
+           csrfmiddlewaretoken: csrfToken
+                },
+         success: function(data){
+           $('.resp-message').addClass(data.class);
+           $('.resp-message').html(data.message);
+           setTimeout(function(){
+             $("#reload").modal('hide');
+             $("#reload .close").click();
+             // $("#reload").removeClass('show');
+           }, 2000);
+         }
+       });
+   });
+
    </script>
 {% endblock scripts_custom %}

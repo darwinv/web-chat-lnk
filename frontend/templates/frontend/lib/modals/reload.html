@@ -1,29 +1,59 @@
 {% load i18n %}
 
 <!-- Modal -->
-<div class="modal fade" id="reload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" aria-hidden="true" id="reload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
       <center>
-        <h4 class="modal-title" id="myModalLabel">{% trans "You don't have an active plan"|title %}</h4>
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </center>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <!-- <div class="modal-body">
-          <form id="change-chosen" action="" method="post">
+    <div class="modal-body text-center">
+        <i class="fas fa-exclamation-circle" style="font-size:118px;"></i>
+        <div class="title-modal-linkup marB20">
+          {% trans "you don't have an active plan"|title %}
+        </div>
+        <div class="marB10">
+          <button type="button" id="purchase" class="btn btn-ligth-blue">
+            {% trans "reload"|title %}
+          </button>
+        </div>
+      <div class="">
+        <button type="button" id="activate_pin" class="btn btn-ligth-blue">
+          {% trans "insert the pin of your card"|title %}
+        </button>
+      </div>
+      <div id="pincode" class="hidden marT20">
+          <form id="activate_plan" action="" method="post">
             {% csrf_token %}
-             <center>
-               <button type="submit" id="change-plan" class="btn btn-ligth-blue">{% trans "save"|title %}
-               </button>
-             </center>
+              <div class="col-xs-6 col-xs-offset-3 marB10">
+                <center>
+                <div class="input-group">
+                  <input type="text" id="pinCode"style="width:auto;"
+                  class="form-control" name="pincode" placeholder="{% trans 'pin code' %}">
+                      <span class="input-group-btn">
+                    <button class="btn btn-default" id="getPlansByPin" type="button">
+                      <i class="far fa-arrow-alt-circle-down"></i>
+                    </button>
+                    </span>
+                </div>
+                <!-- <button type="submit" class="btn btn-ligth-blue marT10">
+                  {% trans "save"|title %}
+                </button> -->
+              </center>
+             </div>
           </form>
+      </div>
+
+
           <div id="animacion1" class="hidden">
               <div class="ball"></div>
               <div class="ball1"></div>
           </div>
-      </div> -->
-      <center> <div id="message"> </div></center>
+      </div>
+      <center> <div class="resp-message"> </div></center>
     </div>
   </div>
 </div>

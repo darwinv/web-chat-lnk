@@ -53,11 +53,35 @@ def set_chosen_plan(request, pk):
     resp = obj_api.put(slug='chosens-plans/' + pk, token=token,
                        arg=request.POST)
     if 'id' in resp:
-        return JsonResponse({'message': _('your plan has been chosen correctly'),
-                             'class': 'successful'})
+        return JsonResponse(
+            {'message': _('your plan has been chosen correctly'),
+             'class': 'successful'})
     else:
         return JsonResponse({'message': _('there is an error'),
                              'class': 'error'})
+
+
+def activate_plan(request, code):
+    """Activar Plan por codigo PIN."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.put(slug='activations/plans/' + code, token=token)
+    if 'id' in resp:
+        return JsonResponse(
+            {'message': _('your plan has been activated'),
+             'class': 'successful'})
+    else:
+        return JsonResponse({'message': _('there is an error'),
+                             'class': 'error'})
+    return JsonResponse(resp)
+
+
+def get_plans_code(request, code):
+    """Traer Planes sin activar por Pin."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.get(slug='activations/plans/' + code, token=token)
+    return JsonResponse(resp)
 
 
 def plans(request):
