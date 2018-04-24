@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-24 12:13-0500\n"
+"POT-Creation-Date: 2018-04-24 12:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -692,10 +692,8 @@ msgid "change plan"
 msgstr "cambiar plan"
 
 #: .\dashboard\templates\admin\lib\_vars_scripts.html:22
-#, fuzzy
-#| msgid "Activate"
 msgid "activate"
-msgstr "Activar"
+msgstr "activar"
 
 #: .\dashboard\tools.py:16
 msgid "You must be of legal age"
@@ -1014,6 +1012,10 @@ msgstr "no tienes plan de consultas activo"
 #: .\frontend\templates\frontend\lib\modals\reload.html:25
 msgid "insert the pin of your card"
 msgstr "ingresa el pin de tu tarjeta"
+
+#: .\frontend\templates\frontend\lib\modals\reload.html:35
+msgid "pin code"
+msgstr "código pin"
 
 #: .\frontend\views\client.py:57
 msgid "your plan has been chosen correctly"

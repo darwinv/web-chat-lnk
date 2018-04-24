@@ -46,7 +46,7 @@ $('#getPlansByPin').click(function (e) {
       <small >${TRANS_QUERIES}: ${data.available_queries} / ${data.query_quantity} </small>
       <br><small>${TRANS_VALIDITY_MONTHS}: ${data.validity_months} </small> `;
       var btnActivar = `<button type="submit"
-       class="btn btn-ligth-blue marT10"> ${TRANS_ACTIVATE}</button></div> `;
+       class="btn btn-ligth-blue marT10">${TRANS_ACTIVATE}</button></div> `;
       $('#activate_plan').append(plan_detail+btnActivar);
     });
   });
