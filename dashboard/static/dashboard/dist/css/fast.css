@@ -139,6 +139,9 @@ ul{
 .font-size25{
   font-size: 25px;
 }
+.font-sizeLarge{
+  font-size: large;
+}
 .color-red {
     color: red;
 }

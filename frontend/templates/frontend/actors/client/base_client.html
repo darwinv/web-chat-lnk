@@ -42,9 +42,12 @@
 
 
 {% block scripts_custom %}
+<script type="text/javascript">
+ url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
+</script>
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
-    <script src="{% static "frontend/client/js/activate_plan.js" %}"></script>
+    <!-- <script src="{% static "frontend/client/js/activate_plan.js" %}"></script> -->
     <script>
     var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
     // Cambiar plan elegido de los adquiridos y activos
@@ -69,10 +72,26 @@
           }
      });
  });
-     // Activar plan  con codigo pin a traves de ajax
-     // $("#activate_plan").submit(function(e){
-     //   e.preventDefault();
-     // });
+  // Activar plan  con codigo pin a traves de ajax
+  var url_code= "{% url 'frontend:activate-plan' code=0 %}"
+   $("#activate_plan").submit(function(e){
+     e.preventDefault();
+     var code = $("#pinCode").val();
+     var url_pin = url_code.replace('0', code);
+     console.log(url_pin);
+     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+     $.ajax({
+         type:"POST",
+         url:url_pin,
+         data: {
+           csrfmiddlewaretoken: csrfToken
+                },
+         success: function(data){
+           $('.resp-message').addClass(data.class);
+           $('.resp-message').html(data.message);
+         }
+       });
+   });
 
    </script>
 {% endblock scripts_custom %}
