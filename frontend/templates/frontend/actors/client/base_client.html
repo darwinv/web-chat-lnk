@@ -17,8 +17,9 @@
             <!--print categories-->
         </div>
 
-<div id="chosen-plan" class="hidden" data-id="">
-        <h4> {% trans "query plans"|title %} </h4>
+<div id="chosen-plan" class="hidden" data-url="{% url 'frontend:active-plans' %}">
+  <!-- print footer real time -->
+        <!-- <h4> {% trans "query plans"|title %} </h4>
         <p id="plan_name"></p>
       <p>{% trans "availables"|title %}:
         <span id="queries"></span>
@@ -31,7 +32,7 @@
        data-target="#changePlan">
        {% trans "change plan"|title %}
      </button>
-  </center>
+  </center> -->
   </div>
 </div>
 
@@ -47,7 +48,7 @@
 </script>
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
-    <!-- <script src="{% static "frontend/client/js/activate_plan.js" %}"></script> -->
+    <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
     <script>
     var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
     // Cambiar plan elegido de los adquiridos y activos
@@ -94,6 +95,10 @@
          success: function(data){
            $('.resp-message').addClass(data.class);
            $('.resp-message').html(data.message);
+           setTimeout(function(){
+             $("#reload .close").click();
+             $("#reload").removeClass('show');
+           }, 2000);
          }
        });
    });

@@ -12,9 +12,13 @@
         const ROLES = {{ ROLES }};
         var audioNotification =  "{% static 'frontend/dist/audio/beep.wav' %}";
         // Variables para traduccion
-        const trans_queries = "{% trans 'queries'%}";
-        const trans_validity_months = "{% trans 'validity months'%}";
-        const trans_reload = "{% trans 'reload' %}";
+        const TRANS_QUERIES = "{% trans 'queries'%}";
+        const TRANS_QUERY_PLANS = "{% trans 'query plans' %}";
+        const TRANS_AVAILABLES = "{% trans 'availables' %}";
+        const TRANS_EXPIRATION_DATE = "{% trans 'expiration date' %}";
+        const TRANS_VALIDITY_MONTHS = "{% trans 'validity months'%}";
+        const TRANS_RELOAD = "{% trans 'reload' %}";
+        const TRANS_CHANGE_PLAN  = "{% trans 'change plan' %}";
 
         {% if request.user.id %}
             var userID = {{request.user.id}};

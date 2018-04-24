@@ -13,30 +13,8 @@ $(document).ready(function () {
         });
 
    // cargamos el plan elegido
-    var planObject = firebase.database().ref('chosenPlans/u' + client_id);
-    planObject.on('value', function (snap){
-      if (snap.exists()) {
-        var plan = snap.val().plan_name;
-        var available_queries = snap.val().available_queries;
-        var query_quantity = snap.val().query_quantity;
-        var expiration_date = snap.val().expiration_date;
-        $("#chosen-plan").data("id", snap.val().id);
-        $("#plan_name").text(plan);
-        $("#queries").text(available_queries + '/'+ query_quantity);
-        $("#expiration_date").text(expiration_date);
-    }
-    else{
-      $("#chosen-plan").html(
-        "<center> <button type='button' class='btn btn-md btn-ligth-blue cap' data-toggle='modal'"+
-          "data-target='#reload'>"+ trans_reload+"</button> </center>");
-    }
 
-      // console.log(snap.val());
-    });
-    $("#chosen-plan").toggleClass("hidden");
 }); // cierra document ready
-
-
 
 
 function putViewToApi(p_1, p_2) {
