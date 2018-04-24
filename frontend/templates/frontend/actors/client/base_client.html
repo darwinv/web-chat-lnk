@@ -72,8 +72,8 @@
               $('#message').html(data.message);
             // $('#changePlan').modal('hide');
             setTimeout(function(){
+              $("#changePlan").modal('hide');
               $("#changePlan .close").click();
-              $("#changePlan").removeClass('show');
             }, 2000);
           }
      });
@@ -96,8 +96,9 @@
            $('.resp-message').addClass(data.class);
            $('.resp-message').html(data.message);
            setTimeout(function(){
+             $("#reload").modal('hide');
              $("#reload .close").click();
-             $("#reload").removeClass('show');
+             // $("#reload").removeClass('show');
            }, 2000);
          }
        });
