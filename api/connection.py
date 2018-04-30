@@ -197,6 +197,16 @@ class api:
             print(e.args)
             print("---------------ERROR LOGOUT---------------")
 
+    def check_token(self, token, slug='', arg=None):
+        headers = {'Authorization': 'Bearer ' + token}
+        headers = dict(headers, **self._headers)
+
+        r = requests.get(self._url + slug, headers=headers, params=arg)
+        
+        if r.status_code == 401:
+            return False
+        else:
+            return True
 
     def get(self, token, slug='', arg=None, request=None):
 
