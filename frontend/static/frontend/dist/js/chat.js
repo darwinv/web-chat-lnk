@@ -84,9 +84,9 @@ chatsock.onmessage = function(message) {
     var data = JSON.parse(message.data);
     var boxChat = $("#chat_box");
     var chat_box = document.getElementById("chat_box");
-       var positionScroll = chat_box.scrollTop;
-       var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
-       var resScroll = positionScroll / diffScroll;
+    var positionScroll = chat_box.scrollTop;
+    var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
+    var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
         // var time = toLocalTime(value.timeMessage);

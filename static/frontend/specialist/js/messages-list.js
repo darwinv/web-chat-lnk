@@ -23,7 +23,7 @@ function inject_items(list_items) {
                                 <div class='col-10 cont'>\
                                         <div class='cont-item'>\
                                             <img src='" + itemVal.photo + "'class='rounded-circle itemp' id='img_cat'>\
-                                            <p class='itemp'><strong class='nick'>" + itemVal.nick + "</strong>   <span class='date'>" + itemVal.date + "</span><br><span class='title'>" + itemVal.title + "</span><br><span class='" + itemVal.clase + "'>" + itemVal.message + "</span></p>\
+                                            <p class='itemp'><strong class='nick'>" + itemVal.displayName + "</strong>   <span class='date'>" + itemVal.date + "</span><br><span class='title'>" + itemVal.title + "</span><br><span class='" + itemVal.clase + "'>" + itemVal.message + "</span></p>\
                                         </div>\
                                 </div>\
                                 <div class='coll-2'>\

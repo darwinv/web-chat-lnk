@@ -2,8 +2,9 @@
 #chosen-plan{
   padding: 2px 18px;
   font-weight:400;
-}
-
-#plan_name{
   text-transform: capitalize;
+}
+#change-chosen-list {
+    overflow-y: auto;
+    height: 70vh;
 }
