@@ -11,7 +11,13 @@
 	<script src="{% static "dashboard/bootstrap/dist/js/bootstrap.min.js" %} "></script>
 	<script src="{% static "dashboard/admin-lte/dist/js/app.min.js" %}"></script>
 	<script src="{% static "dashboard/bootstrap-select/bootstrap-select.js" %}"></script>
+    
+    <script src="{% static "frontend/dist/js/firebase.js" %}"></script>    
+    <script src="{% static "frontend/dist/js/moment.js" %}"></script>
+    <script src="{% static "frontend/dist/js/custom_date_show.js" %}"></script>
+
 	<!-- Archivo de sentencias personalizadas -->
 	{% include 'admin/lib/_vars_scripts.html' %}
 	{% include 'frontend/lib/_main_scripts.html' %}
+	<script src="{% static "dashboard/dist/js/utils.js" %}"></script>
 {% endblock %}

@@ -87,23 +87,11 @@ html.frontend-html {
     margin: 0% 3%;
 }
 
-button.btn-ligth-blue{
+button.btn-ligth-blue, button.btn-ligth-blue:hover, button.btn-ligth-blue:active, button.btn-ligth-blue:focus{
   background-color: var(--turquoise);
   color: white;
   font-weight: bold;
 }
-
-button.btn-ligth-blue:hover{
-  background-color: var(--turquoise);
-  color: white;
-}
-
-button.btn-ligth-blue:active{
-  background-color: var(--turquoise);
-  color: white;
-}
-
-
 
 /* Para Modales  en el Front */
 

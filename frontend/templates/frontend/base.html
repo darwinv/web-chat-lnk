@@ -103,19 +103,11 @@
             {% include 'frontend/lib/_main_footer.html' %}
         {% endblock %}
     </div>
-
-
-
-    <script src="{% static "frontend/dist/js/jquery-3.1.1.slim.min.js" %}"></script>
-    <script src="{% static "frontend/dist/js/tether.min.js" %}"></script>
-    <script src="{% static "frontend/dist/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "frontend/dist/js/firebase.js" %}"></script>
-    <script src="{% static "frontend/dist/js/moment.js" %}"></script>
-    <script src="{% static "frontend/dist/js/custom_date_show.js" %}"></script>
-    {% block scripts_custom %}{% endblock scripts_custom %}
+    
 {% endblock body %}
 
-    {% block javascript %}
-      {% include 'frontend/lib/_scripts.html' %}
-    {% endblock %}
+{% block javascript %}
+  {% include 'frontend/lib/_scripts.html' %}
+{% endblock %}
+{% block scripts_custom %}{% endblock scripts_custom %}
 </body>

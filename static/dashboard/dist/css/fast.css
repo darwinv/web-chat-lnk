@@ -25,6 +25,11 @@ ul{
   padding-left: 35px;
   margin-bottom: 12px;
 }
+
+.title-modal-linkup{
+  font-size: x-large;
+  font-weight: bolder;
+}
 /*
 	Put in this file short css standard code
     Example:
@@ -72,11 +77,15 @@ ul{
 .without-border {
     border: none !important;
 }
+/* Margins rapidos */
 .mar10{
 	margin: 10px;
 }
 .marT20{
 	margin-top: 20px;
+}
+.marT10{
+  margin-top: 10px;
 }
 .marL5{
   margin-left: 5px;
@@ -89,6 +98,9 @@ ul{
 }
 .marB25{
 	margin-bottom: 25px;
+}
+.marB20{
+	margin-bottom: 20px;
 }
 .marB10 {
     margin-bottom: 10px;
@@ -127,11 +139,17 @@ ul{
 .font-size25{
   font-size: 25px;
 }
+.font-sizeLarge{
+  font-size: large;
+}
 .color-red {
     color: red;
 }
 
-
+/* anchura auto */
+.width-auto{
+  width: auto;
+}
 /*global .errorlist*/
 ul.errorlist:not(.nonfield) {
     position: absolute;

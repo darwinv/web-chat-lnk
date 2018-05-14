@@ -17,22 +17,8 @@
             <!--print categories-->
         </div>
 
-<div id="chosen-plan" class="hidden" data-url="{% url 'frontend:active-plans' %}">
-  <!-- print footer real time -->
-        <!-- <h4> {% trans "query plans"|title %} </h4>
-        <p id="plan_name"></p>
-      <p>{% trans "availables"|title %}:
-        <span id="queries"></span>
-      </p>
-      <p>{% trans "expiration date"|title %}:
-        <span id="expiration_date"></span>
-       </p>
-  <center>
-    <button id="change_plan" data-url="{% url 'frontend:active-plans' %}" type="button" class="btn btn-xs btn-ligth-blue" data-toggle="modal"
-       data-target="#changePlan">
-       {% trans "change plan"|title %}
-     </button>
-  </center> -->
+  <div id="chosen-plan" class="hidden" data-url="{% url 'frontend:active-plans' %}">
+  
   </div>
 </div>
 
@@ -43,9 +29,9 @@
 
 
 {% block scripts_custom %}
-<script type="text/javascript">
- url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
-</script>
+    <script type="text/javascript">
+     url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
+    </script>
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
     <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
