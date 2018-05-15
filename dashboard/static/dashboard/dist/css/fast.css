@@ -150,6 +150,12 @@ ul{
 .width-auto{
   width: auto;
 }
+button.paperclip{
+  font-size: 22px;
+  margin: 5px 7px;
+  border-radius: 30px;
+}
+
 /*global .errorlist*/
 ul.errorlist:not(.nonfield) {
     position: absolute;

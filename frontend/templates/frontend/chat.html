@@ -46,7 +46,12 @@
             <div class="ball1"></div>
         </div>
       <form id="form-chat" action="" method="post">
-
+        <div id="upload-div" class="hidden">
+           <div class="file-loading">
+            <label>Preview File Icon</label>
+            <input id="file-upload" type="file" multiple>
+        </div>
+      </div>
             {% if request.user.role.id == ROLES.client  %}
              <div class="title-box">
                  {{ form.title.label_tag }}
@@ -60,7 +65,10 @@
                     {{ form.message }}
                     <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
                 </div>
-                <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
+      <button type="button" class="btn paperclip">
+        <i class="fas fa-paperclip"></i>
+       </button>
+          <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
             </div>
         </form>
     </div>
