@@ -145,6 +145,9 @@ $("button.paperclip").click(function(){
    $("#upload-div").toggleClass('hidden');
    $("#file-upload").fileinput({
       language: 'es',
+      showRemove: false,
+      uploadUrl: '#',
+      showUpload: false,
    });
  // }
 });

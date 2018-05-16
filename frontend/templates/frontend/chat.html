@@ -49,7 +49,7 @@
         <div id="upload-div" class="hidden">
            <div class="file-loading">
             <label>Preview File Icon</label>
-            <input id="file-upload" type="file" multiple>
+            <input id="file-upload"  name="file-upload[]" type="file" multiple>
         </div>
       </div>
             {% if request.user.role.id == ROLES.client  %}
