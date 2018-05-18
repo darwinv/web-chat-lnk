@@ -139,24 +139,6 @@ $("#form-chat").submit(function(e){
 });
 
 
-//Despliega carga de archivos
-$("button.paperclip").click(function(){
- // if($("#upload-div").hasClass('hidden')){
-   $("#upload-div").toggleClass('hidden');
-   $("#file-upload").fileinput({
-      language: 'es',
-      showRemove: false,
-      uploadUrl: '#',
-      showUpload: false,
-   });
- // }
-});
-// File Input JS
-// Script para cargar archivos
-// upload-div
-// $("#file-upload").fileinput();
-
-
 function sendQueryMessage(){
     text_message = $('#text_message').val();
     message_type = 'q';

@@ -49,7 +49,7 @@
         <div id="upload-div" class="hidden">
            <div class="file-loading">
             <label>Preview File Icon</label>
-            <input id="file-upload"  name="file-upload[]" type="file" multiple>
+            <input id="file-linkup"  name="file-linkup[]" type="file" multiple>
         </div>
       </div>
             {% if request.user.role.id == ROLES.client  %}
@@ -60,11 +60,25 @@
                 <!-- <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'> -->
             </div>
             {% endif %}
+
             <div class="send-message-cont">
                 <div class="cont-input-send-text-message col-xs-10">
                     {{ form.message }}
                     <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
                 </div>
+ 
+             <ul id="atachment" class="hidden">
+                <li>
+                    <button id="img" class="btn pick">
+                    <i class="far fa-image"></i>
+                    </button>
+                </li>
+                <li>
+                    <button id="doc" class="btn pick">
+                    <i class="fas fa-file"></i>
+                    </button>
+                </li>
+             </ul>
       <button type="button" class="btn paperclip">
         <i class="fas fa-paperclip"></i>
        </button>

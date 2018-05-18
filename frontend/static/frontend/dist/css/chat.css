@@ -104,4 +104,26 @@ small.time{
 
 .send-message-cont {
     margin-top: 10px;
+    position: relative;
+}
+
+.pick{
+    border-radius: 30px;
+    margin-bottom: 2px;
+    font-size: 28px; 
+}
+
+#atachment{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    margin-right: 8%;
+    margin-bottom: 5%;
+}
+
+ul#atachment > li {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+    zoom:1;
 }
