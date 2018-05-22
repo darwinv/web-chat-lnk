@@ -135,9 +135,62 @@ chatsock.onmessage = function(message) {
 
 $("#form-chat").submit(function(e){
     e.preventDefault();
-    sendQueryMessage()
+    //sendQueryMessage()
+    $("#animacion").toggleClass("hidden");
+    var text_message = $('#text_message').val();
+    var message_type = 'q';
+    var title_query = $('#title_query').val();
+    var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+    var files = $('#file-linkup').fileinput('getFileStack');
+    var url_send_query = $(this).data('queryurl');
+    // message_file:{
+    //   name: name_file,
+    //   type: mimetype,
+    // }
+    var message = {
+      title: title_query,
+      message_text: {
+            message: text_message,
+            msg_type: message_type,
+            content_type: "0",
+            file_url: ''
+          },
+        files: files,
+        category: category
+    };
+
+    console.log(message)
+    $.ajax({
+      beforeSend: function(request, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          request.setRequestHeader("X-CSRFToken", csrfToken);
+        }
+        // Recorre cabeceras por clave y valor
+        for (var key in headers){
+          if (headers.hasOwnProperty(key)) {
+            request.setRequestHeader(key, headers[key]);
+          }
+        }
+      },
+        type:"POST",
+        url:url_send_query,
+        data: {
+          query_data:JSON.stringify(message)
+        },
+        success: function(data){
+          console.log(data)
+          $("#animacion").toggleClass("hidden");
+          $("#title_query").val('')
+          $("#text_message").val('').focus();
+        }
+   });
+
 });
 
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
 
 function sendQueryMessage(){
     text_message = $('#text_message').val();

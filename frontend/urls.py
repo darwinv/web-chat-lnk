@@ -27,6 +27,10 @@ urlpatterns = [
     url(r'^client/pincode/plans/(?P<code>[0-9a-zA-Z]+)/$',
         client.get_plans_code,
         name='pincode-plans'),
+    # Enviar consulta cliente
+    url(r'^client/query/$',
+        client.send_query,
+        name='send-query'),
     # Urls de Especialista
     url(r'^specialist/$', specialist.Specialist().index,
         name='index-specialist'),

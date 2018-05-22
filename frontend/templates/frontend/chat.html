@@ -45,13 +45,17 @@
             <div class="ball"></div>
             <div class="ball1"></div>
         </div>
-      <form id="form-chat" action="" method="post">
+
+        <!-- Plugin File Input -->
+
         <div id="upload-div" class="hidden">
-           <div class="file-loading">
+          <div class="file-loading">
             <label>Preview File Icon</label>
             <input id="file-linkup"  name="file-linkup[]" type="file" multiple>
+          </div>
         </div>
-      </div>
+
+      <form id="form-chat" action="" method="post" data-queryurl="{% url 'frontend:send-query' %}" >
             {% if request.user.role.id == ROLES.client  %}
              <div class="title-box">
                  {{ form.title.label_tag }}
@@ -66,7 +70,7 @@
                     {{ form.message }}
                     <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
                 </div>
- 
+
              <ul id="atachment" class="hidden">
                 <li>
                     <button id="img" class="btn pick">

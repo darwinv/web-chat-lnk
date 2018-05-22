@@ -3,6 +3,8 @@ $(function() {
     $('#file-linkup').fileinput({
         language: 'es',
         showCaption: false,
+        showUpload: false,
+        //showBrowse: false,
         uploadUrl: '#',
     });
 
