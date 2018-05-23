@@ -129,6 +129,7 @@ chatsock.onmessage = function(message) {
         scrollDown();
     }
     if (!$("#animacion").hasClass('hidden')){
+      console.log("en scrollwdown");
         $("#animacion").addClass("hidden");
     }
 };
@@ -143,10 +144,15 @@ $("#form-chat").submit(function(e){
     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
     var files = $('#file-linkup').fileinput('getFileStack');
     var url_send_query = $(this).data('queryurl');
-    // message_file:{
-    //   name: name_file,
-    //   type: mimetype,
-    // }
+    var arr_files = []
+
+    for (i = 0; i < files.length; i++) {
+        arr_files[i] = {
+          name: files[i].name,
+          type: files[i].type
+        }
+     }
+
     var message = {
       title: title_query,
       message_text: {
@@ -155,7 +161,6 @@ $("#form-chat").submit(function(e){
             content_type: "0",
             file_url: ''
           },
-        files: files,
         category: category
     };
 
@@ -175,11 +180,11 @@ $("#form-chat").submit(function(e){
         type:"POST",
         url:url_send_query,
         data: {
-          query_data:JSON.stringify(message)
+          query_data:JSON.stringify(message),
+          files:JSON.stringify(arr_files)
         },
         success: function(data){
-          console.log(data)
-          $("#animacion").toggleClass("hidden");
+          console.log("en callback");
           $("#title_query").val('')
           $("#text_message").val('').focus();
         }
@@ -201,7 +206,7 @@ function sendQueryMessage(){
     // Validations
     if (text_message == "")
         return false;
-
+    console.log("send query message")
     $("#animacion").toggleClass("hidden");
 
     if (role_id == ROLES.specialist) {

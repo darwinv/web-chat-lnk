@@ -64,12 +64,21 @@ def set_chosen_plan(request, pk):
 
 def send_query(request):
     """Enviar data de consulta."""
-    import pdb; pdb.set_trace()
     data = json.loads(request.POST.get('query_data'))
-    obj_api = api()
-    # import pdb; pdb.set_trace()
-    token = request.session["token"]
+    files = json.loads(request.POST.get('files'))
     messages_list = [data['message_text']]
+    message_file = {
+        "message": "",
+        "msg_type": "q"
+        }
+
+    for n_file in files:
+        message_file.update({"content_type": 1, "file_url": n_file["name"]})
+        messages_list.append(message_file)
+
+    obj_api = api()
+
+    token = request.session["token"]
     query_payload = {
         "title": data["title"],
         "category": data["category"],
