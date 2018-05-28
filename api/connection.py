@@ -148,38 +148,34 @@ class api:
             r = requests.get(self._url + 'users?username=' + username, headers=headers)
 
             data = r.json()
-            try:
-                # obtener id de la respuesta
+            
+            # obtener id de la respuesta
+            pk = int(data['results'][0]['id'])
 
-                pk = int(data['results'][0]['id'])
 
+            # evaluar si existe el usuario en las sesiones guardadas
+            if User.objects.filter(id=pk).count() > 0:
+                user = User.objects.get(id=pk)
+            else:
+                user = User()
 
-                # evaluar si existe el usuario en las sesiones guardadas
-                if User.objects.filter(id=pk).count() > 0:
-                    user = User.objects.get(id=pk)
-                else:
-                    user = User()
+            # Se agregan campos necesarios en base de datos local
+            # tomando en cuenta campos requeridos y unicos
+            user.id = pk
+            user.username = str(data['results'][0]['username'])
+            user.code = str(data['results'][0]['code'])
+            user.document_number = str(data['results'][0]['document_number'])
+            user.email_exact = str(data['results'][0]['email_exact'])
 
-                # Se agregan campos necesarios en base de datos local
-                # tomando en cuenta campos requeridos y unicos
-                user.id = pk
-                user.username = str(data['results'][0]['username'])
-                user.code = str(data['results'][0]['code'])
-                user.document_number = str(data['results'][0]['document_number'])
-                user.email_exact = str(data['results'][0]['email_exact'])
+            role_id = int(data['results'][0]['role'])
 
-                role_id = int(data['results'][0]['role'])
-
-                user.role = Role.objects.get(pk=role_id)
-
-            except Exception as e:
-                print(e)
-                print("---------------ERROR GETUSER---------------")
+            user.role = Role.objects.get(pk=role_id)
 
             return user
 
         except Exception as e:
-            pass
+            print(e.args)
+            print("---------------ERROR LOGOUT---------------")
 
     def logout(self, token):
         headers = {'Authorization': 'Bearer ' + token, 'Accept-Language': self._language}

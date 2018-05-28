@@ -164,7 +164,7 @@ function sendQueryMessage(){
         message:[{
             message: text_message,
             msg_type: message_type,
-            content_type: "0",
+            content_type: "1",
             file_url: ""}],
         category: category,
         query: query_id
