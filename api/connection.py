@@ -158,12 +158,13 @@ class api:
                 user = User.objects.get(id=pk)
             else:
                 user = User()
-
+                
             # Se agregan campos necesarios en base de datos local
             # tomando en cuenta campos requeridos y unicos
             user.id = pk
             user.username = str(data['results'][0]['username'])
             user.code = str(data['results'][0]['code'])
+            user.document_type = 1 # str(data['results'][0]['document_type'])
             user.document_number = str(data['results'][0]['document_number'])
             user.email_exact = str(data['results'][0]['email_exact'])
 
