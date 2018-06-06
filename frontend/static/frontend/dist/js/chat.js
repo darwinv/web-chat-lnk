@@ -84,17 +84,16 @@ chatsock.onmessage = function(message) {
     var data = JSON.parse(message.data);
     var boxChat = $("#chat_box");
     var chat_box = document.getElementById("chat_box");
-       var positionScroll = chat_box.scrollTop;
-       var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
-       var resScroll = positionScroll / diffScroll;
+    var positionScroll = chat_box.scrollTop;
+    var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
+    var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
-        // var time = toLocalTime(value.timeMessage);
+        console.log(value.id);
         var codeUser = value.codeUser;
-
         // Se crea el div del globo para renderizarlo
         // se valida el tema de si soy el q cree el mensaje o al contrario
-        var divMessage =   "<div class='row globe-chat'>"+
+        var divMessage = "<div id='message_'"+value.id+"' class='row globe-chat'>"+
                                 "<div class='cont-title-query' style='display: none'>"+
                                     "<div class='title-query'>"+
                                         value.query.title+

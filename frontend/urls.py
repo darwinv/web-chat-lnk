@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import client, specialist, seller
+from frontend.views import client, specialist, seller, query
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -38,4 +38,8 @@ urlpatterns = [
         name='chat-specialist'),
     # Urls del Vendedor
     url(r'^seller/$', seller.Seller().index, name='index-seller'),
+
+    # Upload files to query
+    url(r'^query/upload_file/$',
+        query.upload_file, name='upload_file'),
 ]
