@@ -28,14 +28,12 @@ class APIBackend(object):
 
             # guardar token en la sesion
             request.session['token'] = token
-
+            
             try:
                 # se debe pasar user y token para obtener los datos del usuario
-
                 user = obj_api.getUsuario(token, username)
                 # guardar usuario unicamete para que el framework acepte el objeto
                 user.save()
-
             except User.DoesNotExist:
                 return None
 
