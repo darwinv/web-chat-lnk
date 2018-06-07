@@ -7,4 +7,8 @@ from api.connection import api
 
 def upload_file(request):
     """Vista para adjuntar archivo a una consulta"""
-    pass
+    print(request.POST)
+    print(request.FILES)
+    return JsonResponse(
+        {'message': 'exito',
+         'class': 'successful'})

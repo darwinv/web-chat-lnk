@@ -5,7 +5,7 @@ $(function() {
         showCaption: false,
         showUpload: false,
         showBrowse: true,
-        uploadUrl: $('form-chat').data('upload'),
+        uploadUrl: $('#form-chat').data('upload'),
     });
 
 //Despliega carga de archivos

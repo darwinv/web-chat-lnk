@@ -184,8 +184,9 @@ $("#form-chat").submit(function(e){
         },
         success: function(data){
           console.log("en callback");
-          $("#title_query").val('')
+          $("#title_query").val('');
           $("#text_message").val('').focus();
+          // $('#file-linkup').fileinput('upload');
         }
    });
 
@@ -221,7 +222,7 @@ function sendQueryMessage(){
         message:[{
             message: text_message,
             msg_type: message_type,
-            content_type: "0",
+            content_type: 1,
             file_url: ""}],
         category: category,
         query: query_id
