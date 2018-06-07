@@ -4,3 +4,7 @@
   font-weight:400;
   text-transform: capitalize;
 }
+#change-chosen-list {
+    overflow-y: auto;
+    height: 70vh;
+}

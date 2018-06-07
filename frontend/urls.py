@@ -8,7 +8,7 @@ app_name = 'frontend'
 urlpatterns = [
     # frontend
     # aplicacion para visualizar el front de usuarios
-    # -------------------------------------------------
+    # -----------------------------------------------
     # Urls de Cliente
     url(r'^client/$', client.Client().index, name='index-client'),
     url(r'^client/chat/(?P<pk>[0-9]+)/$', client.Client().chat,
@@ -21,8 +21,7 @@ urlpatterns = [
         client.activate_plan,
         name='activate-plan'),
     # Lista de Planes activos
-    url(r'^client/plans/$', client.plans,
-        name='active-plans'),
+    url(r'^client/plans/$', client.plans, name='active-plans'),
     # Lista de planes por activar por codigo PIN
     url(r'^client/pincode/plans/(?P<code>[0-9a-zA-Z]+)/$',
         client.get_plans_code,
