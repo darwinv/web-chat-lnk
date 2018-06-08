@@ -73,7 +73,7 @@ def send_query(request):
         }
 
     for n_file in files:
-        message_file.update({"content_type": 1, "file_url": n_file["name"]})
+        message_file.update({"content_type": 2, "file_url": n_file["name"]})
         messages_list.append(message_file)
 
     obj_api = api()
@@ -84,11 +84,10 @@ def send_query(request):
         "category": data["category"],
         "message": messages_list
     }
-
     resp = obj_api.post(slug='client/queries/', token=token, arg=query_payload)
     # data = json.loads(request.POST)
     print(resp)
-    return JsonResponse({'message': 'llego'})
+    return JsonResponse(resp)
 
 def activate_plan(request, code):
     """Activar Plan por codigo PIN."""

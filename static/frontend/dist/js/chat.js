@@ -14,7 +14,7 @@ function changeMessage(){
         // Renderizamos el time en el listado
         var timeMessage = msg.data("timemessage");
         timeMessage = toLocalTime(timeMessage);
-        msg.find("small.time").text(timeMessage)
+        msg.find("small.time").text(timeMessage);
         if (msg.data("sender") != user_id){
             msg.removeClass("col-sm-offset-6");
             msg.addClass("message-left");

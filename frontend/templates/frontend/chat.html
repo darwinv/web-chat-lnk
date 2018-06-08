@@ -50,8 +50,9 @@
 
         <div id="upload-div" class="hidden">
           <div class="file-loading">
-            <label>Preview File Icon</label>
+          <form enctype="multipart/form-data">  <label>Preview File Icon</label>
             <input id="file-linkup"  name="file-linkup[]" type="file" multiple>
+            </form>
           </div>
         </div>
 
@@ -80,7 +81,8 @@
                     <i class="fas fa-file"></i>
                     </button>
 
-          <button type="submit" id="send-query" class="btn btn-default">{% trans "send"|title %}</button>
+          <button type="submit" id="send-query" class="btn btn-default">
+            {% trans "send"|title %}</button>
             </div>
         </form>
     </div>

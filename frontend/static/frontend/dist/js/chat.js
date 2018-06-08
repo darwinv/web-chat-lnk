@@ -157,13 +157,12 @@ $("#form-chat").submit(function(e){
       message_text: {
             message: text_message,
             msg_type: message_type,
-            content_type: "0",
+            content_type: 1,
             file_url: ''
           },
         category: category
     };
 
-    console.log(message)
     $.ajax({
       beforeSend: function(request, settings) {
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -186,11 +185,22 @@ $("#form-chat").submit(function(e){
           console.log("en callback");
           $("#title_query").val('');
           $("#text_message").val('').focus();
-          // $('#file-linkup').fileinput('upload');
+          console.log(data);
+          fetchData(data.query_id, data.message_files_id)
+          $('#file-linkup').fileinput('upload');
         }
    });
 
 });
+
+function fetchData(query_id, msgs){
+
+  $('#file-filepreajax').on('filepreupload', function(event, data, previewId, index) {
+    data.extra = { 'query': query_id, 'messages':msgs }
+    console.log(data);
+    // return data;
+  });
+}
 
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection

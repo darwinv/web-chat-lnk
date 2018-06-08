@@ -8,6 +8,12 @@ $(function() {
         uploadUrl: $('#form-chat').data('upload'),
     });
 
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
 //Despliega carga de archivos
     $(".pick").click(function(){
           $('#file-linkup').click()
