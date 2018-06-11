@@ -15,7 +15,7 @@ function inject_items(list_items) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
-        // console.log(item);
+        console.log(item);
         var url_chat = $('.info-div').data('urlchat').replace('0',item.client)
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' id='" + "cat" + item.key + "'>\
@@ -23,7 +23,7 @@ function inject_items(list_items) {
                                 <div class='col-10 cont'>\
                                         <div class='cont-item'>\
                                             <img src='" + itemVal.photo + "'class='rounded-circle itemp' id='img_cat'>\
-                                            <p class='itemp'><strong class='nick'>" + itemVal.displayName + "</strong>   <span class='date'>" + itemVal.date + "</span><br><span class='title'>" + itemVal.title + "</span><br><span class='" + itemVal.clase + "'>" + itemVal.message + "</span></p>\
+                                            <p class='itemp'><strong class='nick'>" + itemVal.displayName + "</strong>   <span class='date'>" + itemVal.queryCurrent.date + "</span><br><span class='title'>" + itemVal.queryCurrent.title + "</span><br><span class='" + itemVal.clase + "'>" + itemVal.queryCurrent.message + "</span></p>\
                                         </div>\
                                 </div>\
                                 <div class='coll-2'>\
@@ -37,10 +37,13 @@ function inject_items(list_items) {
 
 function reverse_list(snapshot) {
     var l = new Array();
+    // console.log(snapshot)
     snapshot.forEach(function (item) {
+      // console.log(item.val());
         var aux = item.val();
-        aux.message = aux.message.slice(0, 20) + ' ...';
-        aux.date = dateTextCustom(moment.utc(aux.date), "-05:00");
+        // console.log(aux.queryCurrent.message);
+        aux.queryCurrent.message = aux.queryCurrent.message.slice(0, 20) + ' ...';
+        aux.queryCurrent.date = dateTextCustom(moment.utc(aux.queryCurrent.date), "-05:00");
 
         l.push(aux);
 
