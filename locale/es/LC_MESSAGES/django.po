@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 15:40-0500\n"
+"POT-Creation-Date: 2018-04-24 12:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,7 +301,7 @@ msgid "updated at"
 msgstr "actualizado en"
 
 #: .\api\models.py:133 .\dashboard\forms.py:95 .\dashboard\forms.py:167
-#: .\login\forms.py:47
+#: .\login\forms.py:48
 msgid "nationality"
 msgstr "nacionalidad"
 
@@ -314,7 +314,7 @@ msgid "address"
 msgstr "dirección"
 
 #: .\api\models.py:143 .\dashboard\forms.py:96 .\dashboard\forms.py:168
-#: .\login\forms.py:45
+#: .\login\forms.py:46
 msgid "residence country"
 msgstr "país de residencia"
 
@@ -363,7 +363,7 @@ msgstr "distrito"
 msgid "street"
 msgstr "calle"
 
-#: .\dashboard\forms.py:91 .\dashboard\forms.py:176 .\login\forms.py:66
+#: .\dashboard\forms.py:91 .\dashboard\forms.py:176 .\login\forms.py:67
 msgid "upload a photo"
 msgstr "subir una foto"
 
@@ -371,7 +371,7 @@ msgstr "subir una foto"
 msgid "ruc"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:166 .\login\forms.py:164 .\login\forms.py:201
+#: .\dashboard\forms.py:166 .\login\forms.py:165 .\login\forms.py:203
 msgid "CIIU"
 msgstr "CIIU"
 
@@ -512,6 +512,7 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\actor\sellersForm_.html:197
 #: .\dashboard\templates\admin\actor\specialistsForm.html:197
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:17
+#: .\frontend\templates\frontend\lib\modals\reload.html:43
 msgid "save"
 msgstr "guardar"
 
@@ -657,13 +658,42 @@ msgstr "cancelar"
 msgid "delete"
 msgstr "borrar"
 
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:14
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:15
 msgid "queries"
 msgstr "consultas"
 
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:15
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:16
+#: .\frontend\templates\frontend\actors\client\base_client.html:22
+msgid "query plans"
+msgstr "planes de consulta"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:17 .\frontend\forms.py:41
+#: .\frontend\templates\frontend\actors\client\base_client.html:24
+msgid "availables"
+msgstr "disponibles"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:18 .\frontend\forms.py:43
+#: .\frontend\templates\frontend\actors\client\base_client.html:27
+msgid "expiration date"
+msgstr "fecha de vencimiento"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:19
 msgid "validity months"
 msgstr "meses de vigencia"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:20
+#: .\frontend\templates\frontend\lib\modals\reload.html:20
+msgid "reload"
+msgstr "recarga"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:21
+#: .\frontend\templates\frontend\actors\client\base_client.html:33
+msgid "change plan"
+msgstr "cambiar plan"
+
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:22
+msgid "activate"
+msgstr "activar"
 
 #: .\dashboard\tools.py:16
 msgid "You must be of legal age"
@@ -844,7 +874,7 @@ msgstr "crear especialista"
 msgid "edit specialist"
 msgstr "editar especialista"
 
-#: .\dashboard\views\actors.py:311 .\login\forms.py:181
+#: .\dashboard\views\actors.py:311 .\login\forms.py:183
 msgid "business name"
 msgstr "nombre de la empresa"
 
@@ -955,24 +985,6 @@ msgstr "rechazar"
 msgid "title"
 msgstr "título"
 
-#: .\frontend\forms.py:41
-#: .\frontend\templates\frontend\actors\client\base_client.html:23
-msgid "availables"
-msgstr "disponibles"
-
-#: .\frontend\forms.py:43
-#: .\frontend\templates\frontend\actors\client\base_client.html:26
-msgid "expiration date"
-msgstr "fecha de vencimiento"
-
-#: .\frontend\templates\frontend\actors\client\base_client.html:21
-msgid "query plans"
-msgstr "planes de consulta"
-
-#: .\frontend\templates\frontend\actors\client\base_client.html:32
-msgid "change plan"
-msgstr "cambiar plan"
-
 #: .\frontend\templates\frontend\base.html:78
 msgid "Account status"
 msgstr "Estados de cuenta"
@@ -993,13 +1005,31 @@ msgstr "Envia un mensaje"
 msgid "choose one of your plans"
 msgstr "selecciona uno de tus planes"
 
-#: .\frontend\views\client.py:56
+#: .\frontend\templates\frontend\lib\modals\reload.html:16
+msgid "you don't have an active plan"
+msgstr "no tienes plan de consultas activo"
+
+#: .\frontend\templates\frontend\lib\modals\reload.html:25
+msgid "insert the pin of your card"
+msgstr "ingresa el pin de tu tarjeta"
+
+#: .\frontend\templates\frontend\lib\modals\reload.html:35
+msgid "pin code"
+msgstr "código pin"
+
+#: .\frontend\views\client.py:57
 msgid "your plan has been chosen correctly"
 msgstr "tu plan se he elegido correctamente"
 
-#: .\frontend\views\client.py:59
+#: .\frontend\views\client.py:60 .\frontend\views\client.py:74
 msgid "there is an error"
 msgstr "hay un error"
+
+#: .\frontend\views\client.py:71
+#, fuzzy
+#| msgid "your plan has been chosen correctly"
+msgid "your plan has been activated"
+msgstr "tu plan se he elegido correctamente"
 
 #: .\linkup\settings.py:108
 msgid "Spanish"
@@ -1013,111 +1043,111 @@ msgstr "Ingles"
 msgid "User"
 msgstr "Usuario"
 
-#: .\login\forms.py:19 .\login\forms.py:37
+#: .\login\forms.py:19 .\login\forms.py:38
 msgid "Password"
 msgstr "Contraseña"
 
-#: .\login\forms.py:40
+#: .\login\forms.py:41
 msgid "Repeat Password"
 msgstr "Repite Contraseña"
 
-#: .\login\forms.py:43
+#: .\login\forms.py:44
 msgid "Identification document"
 msgstr "Documento de identidad"
 
-#: .\login\forms.py:53 .\login\forms.py:56
+#: .\login\forms.py:54 .\login\forms.py:57
 msgid "Address"
 msgstr "Dirección"
 
-#: .\login\forms.py:58
+#: .\login\forms.py:59
 msgid "Email"
 msgstr "Correo Electronico"
 
-#: .\login\forms.py:61
+#: .\login\forms.py:62
 msgid "Telephone"
 msgstr "Teléfono"
 
-#: .\login\forms.py:64
+#: .\login\forms.py:65
 msgid "Cellphone"
 msgstr "Celular"
 
-#: .\login\forms.py:73
+#: .\login\forms.py:74
 msgid "Describe your activity"
 msgstr "Describe tu actividad"
 
-#: .\login\forms.py:76
+#: .\login\forms.py:77
 msgid "Tell us what you do to know more about yourself."
 msgstr "Cuéntanos a que te dedicas para conocer algo más acerca de tí."
 
-#: .\login\forms.py:90
+#: .\login\forms.py:91
 msgid "Department"
 msgstr "Departamento"
 
-#: .\login\forms.py:92 .\login\forms.py:103
+#: .\login\forms.py:93 .\login\forms.py:104
 msgid "Province"
 msgstr "Provincia"
 
-#: .\login\forms.py:93 .\login\forms.py:107
+#: .\login\forms.py:94 .\login\forms.py:108
 msgid "District"
 msgstr "Distrito"
 
-#: .\login\forms.py:121
+#: .\login\forms.py:122
 msgid "Passwords don't match"
 msgstr ""
 
-#: .\login\forms.py:135
+#: .\login\forms.py:136
 msgid "Last name"
 msgstr "Apellidos"
 
-#: .\login\forms.py:137
+#: .\login\forms.py:138
 msgid "First name"
 msgstr "Nombres"
 
-#: .\login\forms.py:139
+#: .\login\forms.py:140
 msgid "civil state"
 msgstr "estado civil"
 
-#: .\login\forms.py:140
+#: .\login\forms.py:141
 msgid "birthdate"
 msgstr "Fecha de nacimiento"
 
-#: .\login\forms.py:146
+#: .\login\forms.py:147
 msgid "Degree of instruction"
 msgstr "Grado de instrucción"
 
-#: .\login\forms.py:148
+#: .\login\forms.py:149
 msgid "Institute"
 msgstr "Instituto"
 
-#: .\login\forms.py:150
+#: .\login\forms.py:151
 msgid "Profession"
 msgstr "Profesión"
 
-#: .\login\forms.py:151
+#: .\login\forms.py:152
 msgid "Ocupation"
 msgstr "Ocupación"
 
-#: .\login\forms.py:167
+#: .\login\forms.py:168
 msgid "Level instruction"
 msgstr "Nivel de instrucción"
 
-#: .\login\forms.py:182
+#: .\login\forms.py:184
 msgid "commercial reason"
 msgstr "razon comercial"
 
-#: .\login\forms.py:184
+#: .\login\forms.py:186
 msgid "agent firstname"
 msgstr "Nombres de representante"
 
-#: .\login\forms.py:185
+#: .\login\forms.py:187
 msgid "agent lastname"
 msgstr "Apellidos de representante"
 
-#: .\login\forms.py:186
+#: .\login\forms.py:188
 msgid "Position in the company"
 msgstr "Cargo en la compañia"
 
-#: .\login\forms.py:198
+#: .\login\forms.py:200
 msgid "economic sector"
 msgstr "sector economico"
 
@@ -1142,8 +1172,8 @@ msgstr "Registrate"
 msgid "register"
 msgstr "registrar"
 
-#: .\login\templates\public\register_business.html:159
-#: .\login\templates\public\register_natural.html:180
+#: .\login\templates\public\register_business.html:163
+#: .\login\templates\public\register_natural.html:184
 msgid "Sing In"
 msgstr "Registrarte"
 
@@ -1163,7 +1193,7 @@ msgstr ""
 msgid "continue"
 msgstr "continue"
 
-#: .\login\views.py:50
+#: .\login\views.py:51
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"
 

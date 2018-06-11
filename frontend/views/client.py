@@ -20,11 +20,11 @@ class Client:
         token = request.session['token']
         # import pdb; pdb.set_trace()
         obj_api = api()
-        data_plans = obj_api.get(slug='clients/plans/', token=token)
-        form = ActivePlansForm(plans=data_plans["results"])
+        data_plans = obj_api.get(slug='clients/plans/', token=token, request=request)
+        # print(data_plans)
+        # form = ActivePlansForm()
         return render(request,
-                      'frontend/actors/client/base_client.html',
-                      {'form': form})
+                      'frontend/actors/client/base_client.html')
 
     @method_decorator(user_passes_test(role_client_check()))
     def chat(self, request, pk):
@@ -53,11 +53,35 @@ def set_chosen_plan(request, pk):
     resp = obj_api.put(slug='chosens-plans/' + pk, token=token,
                        arg=request.POST)
     if 'id' in resp:
-        return JsonResponse({'message': _('your plan has been chosen correctly'),
-                             'class': 'successful'})
+        return JsonResponse(
+            {'message': _('your plan has been chosen correctly'),
+             'class': 'successful'})
     else:
         return JsonResponse({'message': _('there is an error'),
                              'class': 'error'})
+
+
+def activate_plan(request, code):
+    """Activar Plan por codigo PIN."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.put(slug='activations/plans/' + code, token=token)
+    if 'id' in resp:
+        return JsonResponse(
+            {'message': _('your plan has been activated'),
+             'class': 'successful'})
+    else:
+        return JsonResponse({'message': _('there is an error'),
+                             'class': 'error'})
+    return JsonResponse(resp)
+
+
+def get_plans_code(request, code):
+    """Traer Planes sin activar por Pin."""
+    obj_api = api()
+    token = request.session['token']
+    resp = obj_api.get(slug='activations/plans/' + code, token=token)
+    return JsonResponse(resp)
 
 
 def plans(request):
