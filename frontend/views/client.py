@@ -1,4 +1,5 @@
 """Vista para el cliente."""
+import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from api.connection import api
@@ -60,6 +61,33 @@ def set_chosen_plan(request, pk):
         return JsonResponse({'message': _('there is an error'),
                              'class': 'error'})
 
+
+def send_query(request):
+    """Enviar data de consulta."""
+    data = json.loads(request.POST.get('query_data'))
+    files = json.loads(request.POST.get('files'))
+    messages_list = [data['message_text']]
+    message_file = {
+        "message": "",
+        "msg_type": "q"
+        }
+
+    for n_file in files:
+        message_file.update({"content_type": 2, "file_url": n_file["name"]})
+        messages_list.append(message_file)
+
+    obj_api = api()
+
+    token = request.session["token"]
+    query_payload = {
+        "title": data["title"],
+        "category": data["category"],
+        "message": messages_list
+    }
+    resp = obj_api.post(slug='client/queries/', token=token, arg=query_payload)
+    # data = json.loads(request.POST)
+    print(resp)
+    return JsonResponse(resp)
 
 def activate_plan(request, code):
     """Activar Plan por codigo PIN."""

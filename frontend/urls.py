@@ -1,7 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import client, specialist, seller
-
+from frontend.views import client, specialist, seller, query
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -27,6 +26,10 @@ urlpatterns = [
     url(r'^client/pincode/plans/(?P<code>[0-9a-zA-Z]+)/$',
         client.get_plans_code,
         name='pincode-plans'),
+    # Enviar consulta cliente
+    url(r'^client/query/$',
+        client.send_query,
+        name='send-query'),
     # Urls de Especialista
     url(r'^specialist/$', specialist.Specialist().index,
         name='index-specialist'),
@@ -34,4 +37,8 @@ urlpatterns = [
         name='chat-specialist'),
     # Urls del Vendedor
     url(r'^seller/$', seller.Seller().index, name='index-seller'),
+
+    # Upload files to query
+    url(r'^query/upload_file/$',
+        query.upload_file, name='upload_file'),
 ]
