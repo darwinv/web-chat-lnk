@@ -40,7 +40,7 @@
         </div>
         {% endfor %}
     </div>
-<div class="box-send-message">
+    <div class="box-send-message">
         <div id="animacion" class="hidden">
             <div class="ball"></div>
             <div class="ball1"></div>
@@ -49,14 +49,14 @@
         <!-- Plugin File Input -->
 
         <div id="upload-div" class="hidden">
-          <div class="file-loading">
-          <form enctype="multipart/form-data">  <label>Preview File Icon</label>
-            <input id="file-linkup"  name="file-linkup[]" type="file" multiple>
-            </form>
-          </div>
+            <!-- <div class="file-loading"> -->
+                <form enctype="multipart/form-data">  <label>Preview File Icon</label>
+                    <input id="file-linkup"  name="file-linkup[]" type="file" multiple>
+                </form>
+            <!-- </div> -->
         </div>
 
-      <form id="form-chat" action="" method="post" data-queryurl="{% url 'frontend:send-query' %}"
+        <form id="form-chat" action="" method="post" data-queryurl="{% url 'frontend:send-query' %}"
       data-upload="{% url 'frontend:upload_file' %}">
             {% if request.user.role.id == ROLES.client  %}
              <div class="title-box">
@@ -73,16 +73,18 @@
                     <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
                 </div>
 
-                    <button id="img" class="btn pick">
-                    <i class="far fa-image"></i>
+                    <button id="img" class="btn pick pick-file">
+                        <i class="far fa-image"></i>
                     </button>
 
-                    <button id="doc" class="btn pick">
-                    <i class="fas fa-file"></i>
+                    <button id="doc" class="btn pick pick-file">
+                        <i class="fas fa-file"></i>
                     </button>
 
-          <button type="submit" id="send-query" class="btn btn-default">
-            {% trans "send"|title %}</button>
+                    <button id="send-query" class="btn pick">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
             </div>
         </form>
     </div>

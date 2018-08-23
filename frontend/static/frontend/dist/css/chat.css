@@ -105,12 +105,15 @@ small.time{
 .send-message-cont {
     margin-top: 10px;
     position: relative;
+    display: flex;
 }
 
 .pick{
     border-radius: 30px;
-    margin-bottom: 2px;
-    font-size: 28px; 
+    margin-bottom: 7px;
+    font-size: 22px;
+    background: whitesmoke;
+    margin-right: 5px;
 }
 
 #atachment{
