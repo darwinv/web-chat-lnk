@@ -127,9 +127,10 @@ class Specialist(Actor):
                         "department": data["department"],
                         "province": data["province"],
                         "district": data["district"],
-                    }
+                    },
+                    "username": data["email_exact"]
                 })
-
+                
                 result = obj_api.post(slug='specialists/', token=token, arg=data)
 
                 if result and 'id' in result:
@@ -290,10 +291,16 @@ class Client(Actor):
         # Traer data para el listado
         # data = obj_api.get(slug='clients/?page=2', arg=filters, token=token)
         data = obj_api.get(slug='clients/', arg=filters, token=token)
-
+        
         # Definimos columnas adicionales/personalizadas
         custom_column = {
-            "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}}
+            "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
+            "business_name": {
+                'type': 'if_eval',
+                'data': ('r["business_name"]',),
+                'next': {'type': 'concat', 'data': ('business_name',)},
+                'next_elif': {'type': 'concat', 'data': ('last_name', ' ', 'first_name')},
+            }
         }
         # Atributos para aplicar a la columna RUC
         attributes_column = {
@@ -527,7 +534,8 @@ class Seller(Actor):
                         "department": data["department"],
                         "province": data["province"],
                         "district": data["district"],
-                    }
+                    },
+                    "username": data["email_exact"]
                 })
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
                 if result and 'id' in result:

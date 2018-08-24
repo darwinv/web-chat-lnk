@@ -14,7 +14,7 @@ function changeMessage(){
         // Renderizamos el time en el listado
         var timeMessage = msg.data("timemessage");
         timeMessage = toLocalTime(timeMessage);
-        msg.find("small.time").text(timeMessage);
+        msg.find("small.time").text(timeMessage)
         if (msg.data("sender") != user_id){
             msg.removeClass("col-sm-offset-6");
             msg.addClass("message-left");
@@ -89,12 +89,11 @@ chatsock.onmessage = function(message) {
     var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
-        // var time = toLocalTime(value.timeMessage);
+        console.log(value.id);
         var codeUser = value.codeUser;
-
         // Se crea el div del globo para renderizarlo
         // se valida el tema de si soy el q cree el mensaje o al contrario
-        var divMessage =   "<div class='row globe-chat'>"+
+        var divMessage = "<div id='message_'"+value.id+"' class='row globe-chat'>"+
                                 "<div class='cont-title-query' style='display: none'>"+
                                     "<div class='title-query'>"+
                                         value.query.title+
@@ -129,15 +128,84 @@ chatsock.onmessage = function(message) {
         scrollDown();
     }
     if (!$("#animacion").hasClass('hidden')){
+      console.log("en scrollwdown");
         $("#animacion").addClass("hidden");
     }
 };
 
 $("#form-chat").submit(function(e){
     e.preventDefault();
-    sendQueryMessage()
+    //sendQueryMessage()
+    $("#animacion").toggleClass("hidden");
+    var text_message = $('#text_message').val();
+    var message_type = 'q';
+    var title_query = $('#title_query').val();
+    var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+    var files = $('#file-linkup').fileinput('getFileStack');
+    var url_send_query = $(this).data('queryurl');
+    var arr_files = []
+
+    for (i = 0; i < files.length; i++) {
+        arr_files[i] = {
+          name: files[i].name,
+          type: files[i].type
+        }
+     }
+
+    var message = {
+      title: title_query,
+      message_text: {
+            message: text_message,
+            msg_type: message_type,
+            content_type: 1,
+            file_url: ''
+          },
+        category: category
+    };
+
+    $.ajax({
+      beforeSend: function(request, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          request.setRequestHeader("X-CSRFToken", csrfToken);
+        }
+        // Recorre cabeceras por clave y valor
+        for (var key in headers){
+          if (headers.hasOwnProperty(key)) {
+            request.setRequestHeader(key, headers[key]);
+          }
+        }
+      },
+        type:"POST",
+        url:url_send_query,
+        data: {
+          query_data:JSON.stringify(message),
+          files:JSON.stringify(arr_files)
+        },
+        success: function(data){
+          console.log("en callback");
+          $("#title_query").val('');
+          $("#text_message").val('').focus();
+          console.log(data);
+          fetchData(data.query_id, data.message_files_id)
+          $('#file-linkup').fileinput('upload');
+        }
+   });
+
 });
 
+function fetchData(query_id, msgs){
+
+  $('#file-filepreajax').on('filepreupload', function(event, data, previewId, index) {
+    data.extra = { 'query': query_id, 'messages':msgs }
+    console.log(data);
+    // return data;
+  });
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
 
 function sendQueryMessage(){
     text_message = $('#text_message').val();
@@ -148,7 +216,7 @@ function sendQueryMessage(){
     // Validations
     if (text_message == "")
         return false;
-
+    console.log("send query message")
     $("#animacion").toggleClass("hidden");
 
     if (role_id == ROLES.specialist) {

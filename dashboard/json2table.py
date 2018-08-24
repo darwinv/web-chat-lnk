@@ -283,11 +283,14 @@ class GenerateTableList(object):
         if type_colum == 'if_eval':
             r = row_data
             condition = eval(data[0])  # Esto debe ser string como "int(r['num'])>1"
-
+            
             if not condition:  # Eval retorna string
                 custom_column_data = dict(
                     custom_column_data)  # Se crea una copia de si mismo para no afectar otras columnas
                 custom_column_data.pop('next', None)  # Eliminamos next por no cumplir con la condicion
+                
+                if 'next_elif' in custom_column_data: # en caso quiera hacer algo sino cumplio condicion
+                    custom_column_data['next'] = custom_column_data['next_elif']
 
         if 'next' in custom_column_data:
             next_custom_colum = custom_column_data['next']

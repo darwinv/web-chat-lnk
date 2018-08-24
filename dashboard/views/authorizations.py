@@ -102,8 +102,11 @@ class AutorizationClient(Autorization):
             "date_join": {'type': 'date', 'data': ('date_join',)},
             "approve": {'type': 'if_eval', 'data': ('r["status"]=="0"',),
                                          'next': approve_column},
-            "rejected": {'type': 'if_eval', 'data': ('r["status"]=="0"',),
-                                         'next': rejected_column},
+            "rejected": {
+                'type': 'if_eval',
+                'data': ('r["status"]=="0"',),
+                'next': rejected_column
+            },
         }
 
         table = convert(data, header=header_table, multi_header=multi_header, custom_column=custom_column)

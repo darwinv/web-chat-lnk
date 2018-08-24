@@ -158,19 +158,21 @@ button.paperclip{
 
 /*global .errorlist*/
 ul.errorlist:not(.nonfield) {
-    position: absolute;
-    width: 100%;
+  position: absolute;
+  width: 100%;
+  bottom: -10px;
 }
 
-.input-form-control input:hover ~ ul.errorlist li,
-.input-form-control select:hover ~ ul.errorlist li
+.input-form-control:hover ul.errorlist li
 {
     display: block;
 }
-.input-form-control input + ul.errorlist li,
-.input-form-control select + ul.errorlist li
+.input-form-control ul.errorlist li
 {
     display: none;
+}
+.input-form-control{
+  position: relative;
 }
 ul.errorlist li {
     list-style: none;
@@ -186,13 +188,17 @@ ul.errorlist li {
 ul.errorlist:not(.nonfield) li {
     position: absolute;
 }
-ul.errorlist:not(.nonfield):before {
+.input-form-control .errorlist + select,
+.input-form-control .errorlist + input{
+  border: 2px solid #ff00009e
+}
+/*ul.errorlist:not(.nonfield):before {
     content: "X";
     position: absolute;
     top: -29px;
     right: 43px;
     color: red;
-}
+}*/
 /*fin errorlist*/
 
 /*Boostrap Search Select*/
