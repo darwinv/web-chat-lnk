@@ -7,8 +7,6 @@ from dashboard.json2table import convert, get_actual_page
 from dashboard.tools import ToolsBackend as Tools
 from dashboard.forms import AccountStatusSellerFormFilters
 from django.shortcuts import render
-import pdb
-
 
 class AccountStatus:
     vars_page = {}
@@ -42,7 +40,6 @@ class AccountStatusSeller(AccountStatus):
             pk = filters['seller']
 
             if pk:
-
                 actual_page = None
                 tools = Tools()
                 filters['from_date'] = tools.date_format_to_db(date=filters['from_date'])

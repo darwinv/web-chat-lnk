@@ -101,6 +101,19 @@
                 </li>
                 <li>
                     <a href="#">
+                        <i class="fa fa-credit-card"></i> <span>{% trans "payments"|title %}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="{% url 'dashboard:payments-pending' %}"><i class="fa fa-circle-o"></i> {% trans "pending payments"|title %}</a>
+                        </li>
+                    </ul>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
                         <i class="fa fa-calculator"></i> <span>{% trans "Account statements"|title %}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>

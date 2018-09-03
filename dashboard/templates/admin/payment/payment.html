@@ -1,0 +1,22 @@
+{% extends 'admin/base.html' %}
+
+{% block main_content_row %}
+    
+    {% csrf_token %}  <!-- Token fuera del GET para evitar envios CRF desde el listado -->
+    <form action="" method="GET">
+
+        {% block filters_table %}
+            
+        {% endblock filters_table %}
+        
+        <!-- Listado actores -->
+        <div class="col-xs-12 marB10">
+            <div>{{table|safe}}</div>
+        </div>
+    </form>
+
+{% endblock main_content_row %}
+
+
+
+<button name="aproved" type="submit" value="123" >Aprobar</button>

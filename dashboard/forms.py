@@ -17,14 +17,14 @@ class FilterForm(forms.Form):
     por defecto ningun valor sera requerido, si hereda de esta clase
     a menos que sea definido como requerido
     """
-    page = forms.CharField()
+    page = forms.CharField(required=False)
     showFilters = False
 
     def __init__(self, *args):
         super(FilterForm, self).__init__(*args)
 
-        for field in self.fields:
-            self.fields[field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
+        # for field in self.fields:
+        #     self.fields[field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
 
     def clean(self):
         super(FilterForm, self).clean()
@@ -230,25 +230,27 @@ class SellerFormFilters(FilterForm):
     """
     Filtrar el listado de vendedores
     """
-    first_name = forms.CharField(label = _('first name'))
-    last_name = forms.CharField(label = _('last name'))
-    ruc = forms.CharField(label = _('RUC'))
-    email_exact = forms.CharField(label = _('mail'))
-    count_plans_seller = forms.IntegerField(label = _('number of plans sold greater than'))
-    count_queries_seller = forms.IntegerField(label = _('number of queries sold greater than'))
+    first_name = forms.CharField(required=False, label = _('first name'))
+    last_name = forms.CharField(required=False, label = _('last name'))
+    ruc = forms.CharField(required=False, label = _('RUC'))
+    email_exact = forms.CharField(required=False, label = _('mail'))
+    count_plans_seller = forms.IntegerField(required=False, label = _('number of plans sold greater than'))
+    count_queries_seller = forms.IntegerField(required=False, label = _('number of queries sold greater than'))
 
 
 
 
 class FromUntilFilters(FilterForm):
     """
-    Filtrar estados de cuenta
+    Filtrar por Fecha Picker
     """
-    from_date = forms.DateField(widget=forms.TextInput(attrs=
+    from_date = forms.DateField(required=False,
+                                widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
                                 }), label = _('from'))
-    until_date = forms.DateField(widget=forms.TextInput(attrs=
+    until_date = forms.DateField(required=False,
+                                widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
                                 }), label = _('until'))
@@ -295,3 +297,15 @@ class AuthorizationClientFilter(FromUntilFilters):
             status = tuple(status)
             self.fields['status'].widget.choices = [('', '')]
             self.fields['status'].widget.choices += status
+
+"""
+    Reporte de Pagos Pendientes
+"""
+class PendingPaymentFilter(FilterForm, ErrorsFieldsApi):
+    """
+        Formulario para filtrar el listado de pagos pendientes
+    """
+    document_number = forms.CharField(required=True, label = _('Document Client'))
+
+    def __init__(self, *args, **kwargs):
+        super(PendingPaymentFilter, self).__init__(*args, **kwargs)

@@ -205,28 +205,28 @@ class api:
         else:
             return True
 
-    def get(self, token, slug='', arg=None, request=None):
+
+    def get_all(self, token, slug='', arg=None):
 
         try:
-
             headers = {'Authorization': 'Bearer ' + token}
-
             headers = dict(headers, **self._headers)
             r = requests.get(self._url + slug, headers=headers, params=arg)
-
-            if r.status_code == 401:
-                token = request.session['token']
-                self.logout(token)
-                logout(request)
-                # logout = requests.get(reverse('login:logout'))
-                # return HttpResponseRedirect(reverse('login:logout'))
-                print("---------------401resp---------------------")
-            else:
-                return r.json()
+            return r
 
         except Exception as e:
             print(e.args)
             print("---------------ERROR GET---------------")
+            return None
+
+    def get(self, token, slug='', arg=None, request=None):
+
+        r = self.get_all(token, slug, arg)
+
+        if r:
+            return r.json()
+        else:
+            return r
 
     def post(self, token='', slug='', arg=None, files=None):
         headers = {'Accept-Language': self._language}

@@ -267,6 +267,15 @@ class GenerateTableList(object):
 
             value = tools.date_format_to_view(date=date)
 
+        if type_colum == 'datetime':
+            tools = Tools()
+
+            date = data[0]
+            if row_data and date in row_data:
+                date = row_data[data[0]]
+
+            value = tools.date_format_full_to_view(date=date)
+
         if type_colum == 'format_price':
             tools = Tools()
 

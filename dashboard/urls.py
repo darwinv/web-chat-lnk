@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from dashboard.views import actors, account, account_status, authorizations
+from dashboard.views import actors, account, account_status, authorizations, payments
 from dashboard import ajax
 
 app_name = 'dashboard'
@@ -40,6 +40,10 @@ urlpatterns = [
 
     # Estados de cuenta
     url(r'^account_status/sellers/$', account_status.AccountStatusSeller().list, name='account-status-seller'),
+
+    # Pagos
+    url(r'^payments/pending$', payments.PaymentsPending().list, name='payments-pending'),
+
 
     # Ajax Service
     url(r'^ajax_service/$', ajax.ajax_service, name='ajax-service'),

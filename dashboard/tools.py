@@ -28,6 +28,10 @@ class ToolsBackend(object):
         formats = ("%Y-%m-%d", "%d/%m/%Y")
         return self.set_date_format(date, formats)
 
+    def date_format_full_to_view(self, date):
+        formats = ("%Y-%m-%d %H:%M:%S+00:00", "%d/%m/%Y %H:%M")
+        return self.set_date_format(date, formats)
+
     def set_date_format(self, date, formats):
         """
         Funcion para cambiar formato de las fechas
