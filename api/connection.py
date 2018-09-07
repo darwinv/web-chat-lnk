@@ -6,7 +6,6 @@ import requests
 from django.utils import translation
 from django.contrib.auth import logout
 from django.urls import reverse
-import pdb
 from django.http import HttpResponseRedirect
 # Django
 # from django.contrib.auth.models import User
@@ -228,7 +227,7 @@ class api:
         else:
             return r
 
-    def post(self, token='', slug='', arg=None, files=None):
+    def post_all(self, token='', slug='', arg=None, files=None):
         headers = {'Accept-Language': self._language}
 
         if token:
@@ -236,11 +235,20 @@ class api:
             headers = dict(headers, **self._headers)
         try:
             r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
-            return r.json()
+            return r
 
         except Exception as e:
             print(e.args)
             print("---------------ERROR POST---------------")
+            return None
+
+    def post(self, token='', slug='', arg=None, files=None):
+        r = self.post_all(token, slug, arg, files)
+
+        if r:
+            return r.json()
+        else:
+            return r
 
     def put(self, token='', slug='', arg=None, files=None):
         headers = {'Authorization': 'Bearer ' + token}

@@ -42,8 +42,9 @@ urlpatterns = [
     url(r'^account_status/sellers/$', account_status.AccountStatusSeller().list, name='account-status-seller'),
 
     # Pagos
-    url(r'^payments/pending$', payments.PaymentsPending().list, name='payments-pending'),
+    url(r'^payments/pending/$', payments.PaymentsPending().list, name='payments-pending'),
 
+    url(r'^payments/pending/(?P<pk>[0-9]+)$', payments.PaymentsPending().detail, name='payments-pending-detail'),
 
     # Ajax Service
     url(r'^ajax_service/$', ajax.ajax_service, name='ajax-service'),

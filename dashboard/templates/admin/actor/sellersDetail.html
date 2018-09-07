@@ -11,7 +11,7 @@
           {% if data.photo and data.photo != "preview.png" %}
             <img src="{{data.photo}}" class="img-circle img-circle-linkup">
           {% else %}
-          <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle img-circle-linkup">
+            <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle img-circle-linkup">
           {% endif %}
 
           <!--<img src="{% static "dashboard/dist/img/lte/user2-160x160.jpg" %}" class="img-circle">-->
@@ -73,7 +73,6 @@
           </p>
         </div>
 
-
         <div class="text-center pull-left" >            
             <div class="send-mail-backend">
               <div>
@@ -81,7 +80,6 @@
               </div>
             </div>
         </div>
-
     </div>
     <hr>
   {% if data.general_totals %}

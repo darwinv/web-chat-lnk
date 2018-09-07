@@ -239,7 +239,6 @@ class Specialist(Actor):
         """
         department = province = None
 
-
         # Validamos que el listado este en la respuesta
         # si no cumple las validaciones por Default el valor sera None
         # Si el usuario tiene department, traemos provincia

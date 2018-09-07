@@ -29,8 +29,10 @@ class ToolsBackend(object):
         return self.set_date_format(date, formats)
 
     def date_format_full_to_view(self, date):
-        formats = ("%Y-%m-%d %H:%M:%S+00:00", "%d/%m/%Y %H:%M")
-        return self.set_date_format(date, formats)
+        """Formatear string para mostrar, no toma en cuenta zona horaria"""
+        date_split = date.split(".")
+        formats = ("%Y-%m-%d %H:%M:%S", "%d/%m/%Y %H:%M")
+        return self.set_date_format(date_split[0], formats)
 
     def set_date_format(self, date, formats):
         """
@@ -67,3 +69,4 @@ def capitalize(line):
     if len(line) <= 0:
         return ''
     return line[0].upper() + line[1:]
+
