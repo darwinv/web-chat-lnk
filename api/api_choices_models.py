@@ -15,6 +15,7 @@ class ChoicesAPI:
         (2, _('Passport')),
         (3, _('Foreign Card')),
     )
+
     user_status = (
         (1, _('Pending')),
         (2, _('Activate')),
@@ -29,8 +30,8 @@ class ChoicesAPI:
     )
 
     client_full_type_client = (
-        ('n', _('Natural Person')),     
-        ('b', _('Business Person')),        
+        ('n', _('Natural Person')),
+        ('b', _('Business Person')),
     )
 
     client_sex = (
@@ -86,6 +87,12 @@ class ChoicesAPI:
     fee_status = (
         (1, _('Pending')),
         (2, _('Paid')),
+    )
+    # venta estado
+    sale_status = (
+        (1, _('Unpaid')),  # no se ha pagado
+        (2, _('Progress')),  # al menos una cuota la pagaron
+        (3, _('Paid')),  # ya se pago
     )
 
     # Sale Model
@@ -152,4 +159,28 @@ class ChoicesAPI:
         ('c', _('Critic')),
         ('m', _('Moderate')),
         ('p', _('Positive')),
+    )
+
+    # Query Plan Client
+    queryplansclient_status = (
+        (1, _('Active')),
+        (2, _('Deactivated')),
+    )
+
+    # Query Plan Manage
+    queryplansmanage_type_operation = (
+        (1, _('Transfer')),
+        (2, _('Share')),
+        (3, _('Empower')),
+    )
+    queryplansmanage_status = (
+        (1, _('Active')),
+        (2, _('Deactivated')),
+        (3, _('Processing')),
+    )
+    # tipo de Contacto
+    type_seller_contact = (
+        (1, _('Effective')),
+        (2, _('Non Effective')),
+        (3, _('Effective paid')),  # efectivo que ya ha pagado.
     )

@@ -58,6 +58,9 @@ ul{
 .cap{
 	text-transform: capitalize;
 }
+.bold {
+  font-weight: bold;
+}
 .inline-block {
     display: inline-block;
 }
@@ -79,7 +82,10 @@ ul{
 }
 /* Margins rapidos */
 .mar10{
-	margin: 10px;
+  margin: 10px;
+}
+.mar15{
+  margin: 15px;
 }
 .marT20{
 	margin-top: 20px;

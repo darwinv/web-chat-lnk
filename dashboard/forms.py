@@ -2,8 +2,9 @@
 from django import forms
 from django.forms import ModelForm
 
-from api.models import Specialist, Seller, Category, Department, Province, District, Countries, Ciiu
-
+from api.models import Department, Province, District, Countries, Ciiu
+from api.models import Payment, Specialist, Seller, Category, Bank
+from api.models import PaymentType
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 from api.api_choices_models import ChoicesAPI as Ch
@@ -223,9 +224,6 @@ class SellerForm(ModelForm, ErrorsFieldsApi):
                    'ruc' ]
 
 
-
-
-
 class SellerFormFilters(FilterForm):
     """
     Filtrar el listado de vendedores
@@ -236,8 +234,6 @@ class SellerFormFilters(FilterForm):
     email_exact = forms.CharField(required=False, label = _('mail'))
     count_plans_seller = forms.IntegerField(required=False, label = _('number of plans sold greater than'))
     count_queries_seller = forms.IntegerField(required=False, label = _('number of queries sold greater than'))
-
-
 
 
 class FromUntilFilters(FilterForm):
@@ -309,3 +305,32 @@ class PendingPaymentFilter(FilterForm, ErrorsFieldsApi):
 
     def __init__(self, *args, **kwargs):
         super(PendingPaymentFilter, self).__init__(*args, **kwargs)
+
+
+class PendingPaymentForm(ModelForm, ErrorsFieldsApi):
+    """Formulario de Vendedores."""    
+    monthly_fee = forms.CharField(required=False)
+    bank = forms.CharField(widget=forms.Select(), required=False,
+     label=_('bank'))
+    payment_type = forms.CharField(widget=forms.Select(), required=False,
+     label=_('payment_type'))
+
+    def __init__(self, *args, **kwargs):
+        super(PendingPaymentForm, self).__init__(*args, **kwargs)
+        
+        banks = Bank.objects.all()
+        if banks:
+            self.fields['bank'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in banks]
+
+        payment_types = PaymentType.objects.all()
+        if payment_types:
+            self.fields['payment_type'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in payment_types]
+
+        self.fields['monthly_fee'].widget = forms.HiddenInput()
+
+    class Meta:
+        """Meta de Vendedor."""
+
+        model = Payment
+        fields = ['amount', 'operation_number', 'observations']
+        

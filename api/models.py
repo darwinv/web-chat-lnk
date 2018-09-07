@@ -170,7 +170,7 @@ class Seller(User):
 class Objection(models.Model):
     """Objecion."""
 
-    name = models.CharField(max_length=65)
+    name = models.CharField(max_length=300)
 
     def __str__(self):
         """Nombre."""
@@ -197,14 +197,16 @@ class LevelInstruction(models.Model):
         return self.name
 
 
-class SellerContactNoEfective(models.Model):
-    """Contacto No Efectivo."""
+class SellerContact(models.Model):
+    """Contacto de Vendedor."""
 
     first_name = models.CharField(max_length=45, null=True)
     last_name = models.CharField(max_length=55, null=True)
-    # si es efectivo o no efectivo
-    type_contact = models.CharField(max_length=1,
-                                    choices=Ch.client_type_client)
+    # tipo de contacto
+    type_contact = models.PositiveIntegerField(choices=Ch.type_seller_contact)
+    # tipo de cliente
+    type_client = models.CharField(max_length=1,
+                                   choices=Ch.client_type_client)
     document_type = models.PositiveIntegerField(choices=Ch.user_document_type)
     document_number = models.CharField(max_length=45)
     email = models.CharField(max_length=150, null=True)
@@ -213,10 +215,10 @@ class SellerContactNoEfective(models.Model):
     birthdate = models.DateField(null=True)
     institute = models.CharField(max_length=100, null=True, blank=True)
     ciiu = models.ForeignKey(Ciiu, null=True)
-    activity_description = models.CharField(max_length=255, null=True,
+    activity_description = models.CharField(max_length=250, null=True,
                                             blank=True)
     photo = models.CharField(max_length=250, null=True)
-    about = models.CharField(max_length=255, null=True, blank=True)
+    about = models.CharField(max_length=250, null=True, blank=True)
     cellphone = models.CharField(max_length=14, blank=True, null=True)
     telephone = models.CharField(max_length=14, blank=True, null=True)
 
@@ -234,19 +236,30 @@ class SellerContactNoEfective(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     position = models.CharField(max_length=45, null=True)
     ruc = models.CharField(max_length=40, null=True, blank=True)
+    other_objection = models.CharField(max_length=120, null=True, blank=True)
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
     economic_sector = models.ForeignKey(EconomicSector,
                                         on_delete=models.PROTECT, null=True)
-    objection = models.ForeignKey(Objection, on_delete=models.PROTECT)
     address = models.ForeignKey(Address, on_delete=models.PROTECT, null=True)
     level_instruction = models.ForeignKey(LevelInstruction,
                                           on_delete=models.PROTECT, null=True)
-    nationality = models.ForeignKey(Countries,
-                                    on_delete=models.PROTECT, default=1)
+    nationality = models.ForeignKey(Countries, on_delete=models.PROTECT,
+                                    default=1)
+    foreign_address = models.CharField(max_length=200, blank=True, null=True)
+    residence_country = models.ForeignKey(Countries, null=True,
+                                          on_delete=models.PROTECT,
+                                          related_name="residence_contact",
+                                          verbose_name=_('residence country contact'))
 
     def __str__(self):
         """Nombre del Contacto."""
         return self.first_name
+
+
+class ObjectionsList(models.Model):
+    """Lista de objeciones."""
+    objection = models.ForeignKey(Objection, on_delete=models.PROTECT)
+    contact = models.ForeignKey(SellerContact, on_delete=models.PROTECT)
 
 
 class Client(User):
@@ -323,13 +336,12 @@ class Category(models.Model):
 
 class Bank(models.Model):
     """Bancos del Peru."""
-
     name = models.CharField(_('Bank'), max_length=200)
-    code = models.CharField(max_length=10)
 
     def __str__(self):
         """Representacion String."""
         return self.name
+
 
 
 class Specialist(User):
@@ -414,14 +426,14 @@ class Sale(models.Model):
     """Venta."""
 
     created_at = models.DateTimeField(auto_now_add=True)
-    place = models.CharField(max_length=100)
+    place = models.CharField(max_length=100, default='por definir')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     reference_number = models.CharField(max_length=20)
     description = models.TextField()
     is_fee = models.BooleanField(default=False)
     client = models.ForeignKey(Client, on_delete=models.PROTECT)
     seller = models.ForeignKey(Seller, null=True, on_delete=models.PROTECT)
-    # status = models.IntegerField()
+    status = models.PositiveIntegerField(choices=Ch.sale_status, default=1)
 
 
 class SaleDetail(models.Model):
@@ -446,18 +458,43 @@ class QueryPlansAcquired(models.Model):
     query_quantity = models.PositiveIntegerField()
     activation_date = models.DateField(null=True)
     is_active = models.BooleanField(default=False)
-    is_chosen = models.BooleanField(default=False)
     available_requeries = models.PositiveIntegerField()
     maximum_response_time = models.PositiveIntegerField()  # En Horas
     acquired_at = models.DateTimeField(auto_now_add=True)
     plan_name = models.CharField(max_length=50)
-    client = models.ForeignKey(Client, on_delete=models.PROTECT)
     query_plans = models.ForeignKey(QueryPlans, on_delete=models.PROTECT)
     sale_detail = models.ForeignKey(SaleDetail, on_delete=models.PROTECT)
 
     def __str__(self):
         """String."""
         return self.plan_name
+
+
+class QueryPlansClient(models.Model):
+    """Planes asociados a clientes"""
+    acquired_plan = models.ForeignKey(QueryPlansAcquired,
+                                      on_delete=models.PROTECT)
+    client = models.ForeignKey(Client, on_delete=models.PROTECT)
+    owner = models.BooleanField(default=True)
+    transfer = models.BooleanField(default=True)
+    share = models.BooleanField(default=True)
+    empower = models.BooleanField(default=True)
+    status = models.PositiveIntegerField(choices=Ch.queryplansclient_status)
+    is_chosen = models.BooleanField(default=False)
+
+class QueryPlansManage(models.Model):
+    """Manejador de Planes"""
+    sender = models.ForeignKey(Client, on_delete=models.PROTECT, related_name="plan_sender")
+    receiver = models.ForeignKey(Client, on_delete=models.PROTECT, null=True)
+    email_receiver = models.CharField(max_length=150, null=True)
+    acquired_plan = models.ForeignKey(QueryPlansAcquired,
+                                      on_delete=models.PROTECT, related_name="plan_acquired_plan")
+    new_acquired_plan = models.ForeignKey(QueryPlansAcquired,
+                                      on_delete=models.PROTECT, null=True)
+    type_operation = models.PositiveIntegerField(choices=Ch.queryplansmanage_type_operation)
+    status = models.PositiveIntegerField(choices=Ch.queryplansmanage_status)
+    count_queries = models.PositiveIntegerField(null=True, default=None)
+
 
 class PaymentType(models.Model):
     """Tipos de Pago."""
@@ -471,24 +508,31 @@ class PaymentType(models.Model):
         return self.name
 
 
+class MonthlyFee(models.Model):
+    """Cuota Mensual."""
+
+    fee_amount = models.DecimalField(max_digits=10, decimal_places=2)  # total pagado para esta cuota
+    fee_order_number = models.PositiveIntegerField()  # El numero de cuota que se esta pagando
+    fee_quantity = models.PositiveIntegerField()  # numero total de cuotas
+    sale = models.ForeignKey(Sale, on_delete=models.PROTECT)
+    pay_before = models.DateField(null=True)
+    status = models.PositiveIntegerField(choices=Ch.fee_status)
+
+
 class Payment(models.Model):
     """Pagos."""
 
     amount = models.FloatField()
     operation_number = models.CharField(max_length=12)
-    agency_code = models.CharField(max_length=10)
-    account_number_drawer = models.CharField(max_length=50)
-    check_number = models.CharField(max_length=50)
-    credit_cart_number = models.CharField(max_length=30)
-    credit_card_cvc = models.CharField(max_length=3)
-    credit_card_exp_date = models.DateField()
-    authorized_by = models.ForeignKey(User, on_delete=models.PROTECT)
-    authorization_date = models.DateTimeField()
+    authorized_by = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    authorization_date = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.PositiveIntegerField(choices=Ch.payment_status)
-    observations = models.CharField(max_length=255)
+    status = models.PositiveIntegerField(choices=Ch.payment_status, default=1)
+    observations = models.CharField(max_length=255, null=True)
     bank = models.ForeignKey(Bank, on_delete=models.PROTECT)
     payment_type = models.ForeignKey(PaymentType, on_delete=models.PROTECT)
+    monthly_fee = models.ForeignKey(MonthlyFee, on_delete=models.PROTECT,
+                                    null=True)
 
 
 class MatchAcquired(models.Model):
@@ -523,20 +567,6 @@ class MatchAcquiredLog(models.Model):
     declined_motive = models.CharField(max_length=255, null=True)
     match_acquired = models.ForeignKey(MatchAcquired, on_delete=models.PROTECT)
 
-
-class MonthlyFee(models.Model):
-    """Cuota Mensual."""
-
-    fee_amount = models.DecimalField(max_digits=10, decimal_places=2)  # total pagado para esta cuota
-    fee_order_number = models.PositiveIntegerField()  # El numero de cuota que se esta pagando
-    fee_quantity = models.PositiveIntegerField()  # numero total de cuotas
-    reference_number = models.CharField(max_length=20)
-    sale_detail = models.ForeignKey(SaleDetail, on_delete=models.PROTECT)
-    pay_before = models.DateField()
-    status = models.PositiveIntegerField(choices=Ch.fee_status)
-    payment = models.ForeignKey(Payment, null=True)
-
-
 class LogPaymentsCreditCard(models.Model):
     """Log Pagos Pasarela."""
 
@@ -558,7 +588,8 @@ class Query(models.Model):
     status = models.PositiveIntegerField(choices=Ch.query_status)
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    calification = models.PositiveSmallIntegerField(null=True)
+    qualification = models.PositiveSmallIntegerField(null=True)
+    available_requeries = models.PositiveIntegerField()
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     client = models.ForeignKey(Client, on_delete=models.PROTECT)
     specialist = models.ForeignKey(Specialist, on_delete=models.PROTECT,
@@ -611,7 +642,8 @@ class Message(models.Model):
     specialist = models.ForeignKey(Specialist,
                                    on_delete=models.PROTECT, null=True)
     viewed = models.BooleanField(default=False)
-    file_url = models.CharField(max_length=100, blank=True)
+    file_url = models.CharField(max_length=500, blank=True)
+    file_preview_url = models.CharField(max_length=500, blank=True)
     code = models.CharField(_('code'), max_length=45)
     # uploaded = models.NullBooleanField(null=True)
     room = models.CharField(max_length=200)  # Sala de chat
@@ -627,6 +659,15 @@ class Message(models.Model):
         return self.message
 
 
+class Declinator(models.Model):
+    message = models.TextField(blank=True)
+    specialist = models.ForeignKey(Specialist,
+                                   on_delete=models.PROTECT)
+    query = models.ForeignKey(Query, on_delete=models.PROTECT)
+
+    def __str__(self):
+        """Str."""
+        return self.message
 
 #Modelo para usar con una vista existente en la base de datos
 class SpecialistMessageList(models.Model):
@@ -672,6 +713,15 @@ class RecoveryPassword(models.Model):
     code = models.CharField(max_length=6)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
+
+class ParameterSeller(models.Model):
+    """Parametro mensuales de Vendedores."""
+    number_month = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    contacts_goal = models.PositiveIntegerField()
+    new_clients_goal = models.PositiveIntegerField()
+    seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
+
 # Ingresar en parametros number_requery
 # language
 # tax
@@ -682,6 +732,9 @@ class RecoveryPassword(models.Model):
 # available_requeries
 # medium_payment
 # place_payment
+# next_month_seller_promotionals
+# next_month_seller_contacts
+# next_month_seller_new_client
 
 class Parameter(models.Model):
     """Parametros Generales."""

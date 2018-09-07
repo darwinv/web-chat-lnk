@@ -6,6 +6,8 @@ from django.conf import settings
 from django.template import Library
 from django.core.urlresolvers import resolve, reverse
 from django.utils.translation import activate, get_language
+from django.utils.translation import ugettext_lazy as _
+from dashboard.tools import ToolsBackend as Tools
 
 register = template.Library()
 
@@ -64,3 +66,19 @@ def change_lang(context, lang=None, default_arg=True, *args, **kwargs):
             url = "{}?{get_values}".format(url, get_values=get_values)
 
     return "%s" % url
+
+@register.filter()
+def date_format_full_to_view(date):
+    """date: str 2018-02-08 14:28:25+00:00"""
+    tools = Tools()
+    return tools.date_format_full_to_view(date=date)
+
+@register.filter()
+def bolean_translate(bolean):
+    """bolean: bolean"""
+    if bolean:
+        return _("yes").title()
+    else:
+        return _("no").title()
+
+    
