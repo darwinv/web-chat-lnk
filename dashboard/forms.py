@@ -313,7 +313,7 @@ class PendingPaymentForm(ModelForm, ErrorsFieldsApi):
     bank = forms.CharField(widget=forms.Select(), required=False,
      label=_('bank'))
     payment_type = forms.CharField(widget=forms.Select(), required=False,
-     label=_('payment_type'))
+     label=_('payment type'))
 
     def __init__(self, *args, **kwargs):
         super(PendingPaymentForm, self).__init__(*args, **kwargs)
