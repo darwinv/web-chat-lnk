@@ -676,7 +676,7 @@ msgstr "Pagos"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:110
 msgid "pending payments"
-msgstr "pagos pendientess"
+msgstr "pagos pendientes"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:117
 msgid "Account statements"
@@ -792,7 +792,7 @@ msgstr "información de pago"
 
 #: .\dashboard\templates\admin\payment\pending_detail.html:137
 msgid "single fee"
-msgstr "tarifa única"
+msgstr "cuota única"
 
 #: .\dashboard\templates\admin\payment\pending_detail.html:143
 msgid "fee quantity"
