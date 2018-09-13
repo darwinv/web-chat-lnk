@@ -145,7 +145,6 @@ class Specialist(Actor):
                         obj_api.put(slug='upload_document/' + str(result['id']), token=token, files=img_document_number)
                     # Process success
 
-
                     return HttpResponseRedirect(reverse(self._list))
                 else:
                     # Mostrar Errores en Form

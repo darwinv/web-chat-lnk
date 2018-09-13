@@ -222,10 +222,8 @@ class api:
 
         r = self.get_all(token, slug, arg)
 
-        if r:
-            return r.json()
-        else:
-            return r
+        return r.json()
+        
 
     def post_all(self, token='', slug='', arg=None, files=None):
         headers = {'Accept-Language': self._language}
@@ -244,11 +242,9 @@ class api:
 
     def post(self, token='', slug='', arg=None, files=None):
         r = self.post_all(token, slug, arg, files)
-
-        if r:
-            return r.json()
-        else:
-            return r
+        
+        return r.json()
+        
 
     def put(self, token='', slug='', arg=None, files=None):
         headers = {'Authorization': 'Bearer ' + token}
