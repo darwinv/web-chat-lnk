@@ -219,10 +219,12 @@ class api:
             return None
 
     def get(self, token, slug='', arg=None, request=None):
+        result = self.get_all(token, slug, arg)
 
-        r = self.get_all(token, slug, arg)
-
-        return r.json()
+        if hasattr(result, 'status_code'):
+            return result.json()
+         
+        return None
         
 
     def post_all(self, token='', slug='', arg=None, files=None):
@@ -232,8 +234,8 @@ class api:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
         try:
-            r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
-            return r
+            result = requests.post(self._url + slug, headers=headers, json=arg, files=files)
+            return result
 
         except Exception as e:
             print(e.args)
@@ -241,9 +243,12 @@ class api:
             return None
 
     def post(self, token='', slug='', arg=None, files=None):
-        r = self.post_all(token, slug, arg, files)
+        result = self.post_all(token, slug, arg, files)
         
-        return r.json()
+        if hasattr(result, 'status_code'):
+            return result.json()
+         
+        return None
         
 
     def put(self, token='', slug='', arg=None, files=None):
@@ -254,9 +259,9 @@ class api:
             headers = dict(headers, **self._headers)
 
         try:
-            r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
+            result = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
 
-            return r.json()
+            return result.json()
 
         except Exception as e:
             print(e)
@@ -267,9 +272,9 @@ class api:
         headers = dict(headers, **self._headers)
 
         try:
-            r = requests.delete(self._url + slug, headers=headers, params=arg)
+            result = requests.delete(self._url + slug, headers=headers, params=arg)
 
-            return r.json()
+            return result.json()
         except Exception as e:
             print(e)
             print("---------------ERROR DELETE---------------")
