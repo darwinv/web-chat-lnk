@@ -222,7 +222,8 @@ class api:
         result = self.get_all(token, slug, arg)
 
         if hasattr(result, 'status_code'):
-            return result.json()
+            if result.status_code != 500:
+                return result.json()
          
         return None
         
@@ -246,9 +247,8 @@ class api:
         result = self.post_all(token, slug, arg, files)
         
         if hasattr(result, 'status_code'):
-            import pdb
-            pdb.set_trace()
-            return result.json()
+            if result.status_code != 500:
+                return result.json()
          
         return None
         
