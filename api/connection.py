@@ -246,6 +246,8 @@ class api:
         result = self.post_all(token, slug, arg, files)
         
         if hasattr(result, 'status_code'):
+            import pdb
+            pdb.set_trace()
             return result.json()
          
         return None
