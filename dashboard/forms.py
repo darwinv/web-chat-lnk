@@ -108,7 +108,6 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
         categories = Category.objects.all()
         departments = Department.objects.all()
         countries = Countries.objects.all()
-
         if categories:
             self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
 

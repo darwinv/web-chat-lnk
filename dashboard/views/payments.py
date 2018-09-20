@@ -119,7 +119,7 @@ class PaymentsPending(Payment):
                         # Mostrar Errores en Form
                         # Agregamos errores retornados por la app para este formulario
                         form.add_error_custom(
-                                add_errors=result.json())  
+                                add_errors=result.json())
             else:
                 payment = {}
                 payment['bank'] = 1
