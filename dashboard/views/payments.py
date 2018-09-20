@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from dashboard.json2table import convert
+from dashboard.json2table import convert, get_actual_page
 from django.utils.translation import ugettext_lazy as _
 from dashboard.forms import PendingPaymentFilter, PendingPaymentForm
 from login.utils.tools import role_admin_check
@@ -41,7 +41,8 @@ class PaymentsPending(Payment):
         """
 
         obj_api = api()
-        # actual_page = get_actual_page(request)
+        actual_page = get_actual_page(request)
+
         token = request.session['token']
         title_page = _('payments').title()+" - "+ _('pending').title()
         filters = {}
@@ -82,7 +83,8 @@ class PaymentsPending(Payment):
                     },
                 }
                 
-                table = convert(data.json(), header=header_table, custom_column=custom_column)
+                table = convert(data.json(), header=header_table, custom_column=custom_column,
+                                actual_page=actual_page)
 
         
 

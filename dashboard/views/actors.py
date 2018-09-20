@@ -86,6 +86,8 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsList.html',
                       {'table': table, 'vars_page': vars_page, 'filters': filters})
 
+
+
     @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
