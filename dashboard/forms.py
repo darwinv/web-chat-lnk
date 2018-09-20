@@ -300,7 +300,7 @@ class PendingPaymentFilter(FilterForm, ErrorsFieldsApi):
     """
         Formulario para filtrar el listado de pagos pendientes
     """
-    document_number = forms.CharField(required=True, label = _('Document Client'))
+    document_number = forms.CharField(required=False, label = _('Document Client'))
 
     def __init__(self, *args, **kwargs):
         super(PendingPaymentFilter, self).__init__(*args, **kwargs)
