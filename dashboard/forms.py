@@ -332,4 +332,3 @@ class PendingPaymentForm(ModelForm, ErrorsFieldsApi):
 
         model = Payment
         fields = ['amount', 'operation_number', 'observations']
-        
