@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from api.api_choices_models import ChoicesAPI as Ch
 from django.utils.translation import ugettext_lazy as _
 
+
 class Countries(models.Model):
     """Paises."""
 
@@ -200,8 +201,8 @@ class LevelInstruction(models.Model):
 class SellerContact(models.Model):
     """Contacto de Vendedor."""
 
-    first_name = models.CharField(max_length=45, null=True)
-    last_name = models.CharField(max_length=55, null=True)
+    first_name = models.CharField(max_length=150, null=True)
+    last_name = models.CharField(max_length=150, null=True)
     # tipo de contacto
     type_contact = models.PositiveIntegerField(choices=Ch.type_seller_contact)
     # tipo de cliente
@@ -209,7 +210,7 @@ class SellerContact(models.Model):
                                    choices=Ch.client_type_client)
     document_type = models.PositiveIntegerField(choices=Ch.user_document_type)
     document_number = models.CharField(max_length=45)
-    email = models.CharField(max_length=150, null=True)
+    email_exact = models.CharField(max_length=150, null=True)
     civil_state = models.CharField(max_length=1,
                                    choices=Ch.client_civil_state, null=True)
     birthdate = models.DateField(null=True)
@@ -224,19 +225,18 @@ class SellerContact(models.Model):
 
     ocupation = models.PositiveIntegerField(choices=Ch.client_ocupation,
                                             null=True, default=7)
-
-    profession = models.CharField(max_length=45, null=True)
-    business_name = models.CharField(max_length=45, null=True)
-    commercial_reason = models.CharField(max_length=45, null=True)
-    agent_firstname = models.CharField(max_length=45, null=True)
-    agent_lastname = models.CharField(max_length=45, null=True)
+    profession = models.CharField(max_length=150, null=True)
+    business_name = models.CharField(max_length=150, null=True)
+    commercial_reason = models.CharField(max_length=150, null=True)
+    agent_firstname = models.CharField(max_length=150, null=True)
+    agent_lastname = models.CharField(max_length=150, null=True)
     sex = models.CharField(max_length=1, choices=Ch.client_sex, blank=True)
     latitude = models.CharField(max_length=45, blank=True)
     longitude = models.CharField(max_length=45, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    position = models.CharField(max_length=45, null=True)
+    position = models.CharField(max_length=150, null=True)
     ruc = models.CharField(max_length=40, null=True, blank=True)
-    other_objection = models.CharField(max_length=120, null=True, blank=True)
+    other_objection = models.CharField(max_length=150, null=True, blank=True)
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
     economic_sector = models.ForeignKey(EconomicSector,
                                         on_delete=models.PROTECT, null=True)
@@ -245,15 +245,15 @@ class SellerContact(models.Model):
                                           on_delete=models.PROTECT, null=True)
     nationality = models.ForeignKey(Countries, on_delete=models.PROTECT,
                                     default=1)
-    foreign_address = models.CharField(max_length=200, blank=True, null=True)
+    foreign_address = models.CharField(max_length=250, blank=True, null=True)
     residence_country = models.ForeignKey(Countries, null=True,
                                           on_delete=models.PROTECT,
                                           related_name="residence_contact",
                                           verbose_name=_('residence country contact'))
 
-    def __str__(self):
-        """Nombre del Contacto."""
-        return self.first_name
+    # def __str__(self):
+    #     """Nombre del Contacto."""
+    #     return self.first_name
 
 
 class ObjectionsList(models.Model):
@@ -267,7 +267,7 @@ class Client(User):
 
     type_client = models.CharField(max_length=1, choices=Ch.client_type_client)
     sex = models.CharField(max_length=1, choices=Ch.client_sex, blank=True)
-    commercial_reason = models.CharField(max_length=45, null=True)
+    commercial_reason = models.CharField(max_length=100, null=True)
     civil_state = models.CharField(max_length=1, choices=Ch.client_civil_state,
                                    null=True)
     birthdate = models.DateField(null=True)
@@ -279,16 +279,16 @@ class Client(User):
     ocupation = models.PositiveIntegerField(null=True,
                                             choices=Ch.client_ocupation)
     about = models.CharField(max_length=255, null=True, blank=True)
-    business_name = models.CharField(max_length=45, null=True)
-    agent_firstname = models.CharField(max_length=45, null=True)
-    agent_lastname = models.CharField(max_length=45, null=True)
-    position = models.CharField(max_length=45, null=True)
-    profession = models.CharField(max_length=45, null=True)
+    business_name = models.CharField(max_length=100, null=True)
+    agent_firstname = models.CharField(max_length=100, null=True)
+    agent_lastname = models.CharField(max_length=100, null=True)
+    position = models.CharField(max_length=100, null=True)
+    profession = models.CharField(max_length=100, null=True)
     economic_sector = models.ForeignKey(EconomicSector,
                                         on_delete=models.PROTECT, null=True)
     level_instruction = models.ForeignKey(LevelInstruction,
                                           on_delete=models.PROTECT, null=True)
-    seller_asigned = models.ForeignKey(Seller, on_delete=models.PROTECT,
+    seller_assigned = models.ForeignKey(Seller, on_delete=models.PROTECT,
                                        null=True)
 
     class Meta:
@@ -341,7 +341,6 @@ class Bank(models.Model):
     def __str__(self):
         """Representacion String."""
         return self.name
-
 
 
 class Specialist(User):
@@ -411,6 +410,7 @@ class SellerNonBillablePlans(models.Model):
     query_plans = models.ForeignKey(QueryPlans, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField()
     number_month = models.PositiveIntegerField()
+    number_year = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -424,7 +424,6 @@ class Match(models.Model):
 
 class Sale(models.Model):
     """Venta."""
-
     created_at = models.DateTimeField(auto_now_add=True)
     place = models.CharField(max_length=100, default='por definir')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -455,6 +454,7 @@ class QueryPlansAcquired(models.Model):
     expiration_date = models.DateField(null=True)
     validity_months = models.PositiveIntegerField()
     available_queries = models.PositiveIntegerField()
+    queries_to_pay = models.PositiveIntegerField()
     query_quantity = models.PositiveIntegerField()
     activation_date = models.DateField(null=True)
     is_active = models.BooleanField(default=False)
@@ -669,7 +669,8 @@ class Declinator(models.Model):
         """Str."""
         return self.message
 
-#Modelo para usar con una vista existente en la base de datos
+
+# Modelo para usar con una vista existente en la base de datos
 class SpecialistMessageList(models.Model):
     id = models.IntegerField(primary_key=True)
     photo = models.CharField(max_length=240, blank=True)
@@ -705,6 +706,7 @@ class NotificationsBack(models.Model):
     code = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
+
 class RecoveryPassword(models.Model):
     """Modelo Token para Recuperacion de Contraseñas"""
 
@@ -717,9 +719,11 @@ class RecoveryPassword(models.Model):
 class ParameterSeller(models.Model):
     """Parametro mensuales de Vendedores."""
     number_month = models.PositiveIntegerField()
+    number_year = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     contacts_goal = models.PositiveIntegerField()
     new_clients_goal = models.PositiveIntegerField()
+    people_purchase_goal = models.PositiveIntegerField()
     seller = models.ForeignKey(Seller, on_delete=models.PROTECT)
 
 # Ingresar en parametros number_requery
