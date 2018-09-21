@@ -365,7 +365,7 @@ msgstr "cantidad"
 
 #: .\api\models.py:526
 msgid "operation number"
-msgstr "numero de operacion"
+msgstr "número de operación"
 
 #: .\api\models.py:527
 msgid "observations"
