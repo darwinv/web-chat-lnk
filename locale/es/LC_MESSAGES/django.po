@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 09:40-0500\n"
+"POT-Creation-Date: 2018-09-21 14:53-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,8 +31,7 @@ msgid "Foreign Card"
 msgstr "C. de Extranjeria"
 
 #: .\api\api_choices_models.py:20 .\api\api_choices_models.py:82
-#: .\api\api_choices_models.py:88 .\api\api_choices_models.py:100
-#: .\api\api_choices_models.py:114
+#: .\api\api_choices_models.py:102
 msgid "Pending"
 msgstr "Pendiente"
 
@@ -44,8 +43,8 @@ msgstr "Activar"
 msgid "Reject"
 msgstr "Rechazar"
 
-#: .\api\api_choices_models.py:23 .\api\api_choices_models.py:167
-#: .\api\api_choices_models.py:178
+#: .\api\api_choices_models.py:23 .\api\api_choices_models.py:155
+#: .\api\api_choices_models.py:166
 msgid "Deactivated"
 msgstr "Desactivado"
 
@@ -133,18 +132,18 @@ msgstr "Principal"
 msgid "Associate"
 msgstr "Asociado"
 
-#: .\api\api_choices_models.py:69 .\api\api_choices_models.py:121
-#: .\api\api_choices_models.py:130
+#: .\api\api_choices_models.py:69 .\api\api_choices_models.py:109
+#: .\api\api_choices_models.py:118
 msgid "Requested"
 msgstr "Preguntada"
 
-#: .\api\api_choices_models.py:70 .\api\api_choices_models.py:115
-#: .\api\api_choices_models.py:122 .\api\api_choices_models.py:131
+#: .\api\api_choices_models.py:70 .\api\api_choices_models.py:103
+#: .\api\api_choices_models.py:110 .\api\api_choices_models.py:119
 msgid "Accepted"
 msgstr "Aceptado"
 
-#: .\api\api_choices_models.py:71 .\api\api_choices_models.py:116
-#: .\api\api_choices_models.py:132
+#: .\api\api_choices_models.py:71 .\api\api_choices_models.py:104
+#: .\api\api_choices_models.py:120
 msgid "Declined"
 msgstr "Rechazado"
 
@@ -157,120 +156,119 @@ msgid "Number"
 msgstr "Número"
 
 #: .\api\api_choices_models.py:83 .\api\api_choices_models.py:89
-#: .\api\api_choices_models.py:95 .\api\api_choices_models.py:101
-#: .\api\api_choices_models.py:109
+#: .\api\api_choices_models.py:97
 msgid "Paid"
 msgstr "Pagado"
 
-#: .\api\api_choices_models.py:93
+#: .\api\api_choices_models.py:87
 msgid "Unpaid"
 msgstr "No pagado"
 
-#: .\api\api_choices_models.py:94
+#: .\api\api_choices_models.py:88
 msgid "Progress"
 msgstr "Progreso"
 
-#: .\api\api_choices_models.py:106
+#: .\api\api_choices_models.py:94
 msgid "Wait"
 msgstr "Espera"
 
-#: .\api\api_choices_models.py:107
+#: .\api\api_choices_models.py:95
 msgid "Denied"
 msgstr "Negado"
 
-#: .\api\api_choices_models.py:108
+#: .\api\api_choices_models.py:96
 msgid "Exhaled"
 msgstr "Exhalado"
 
-#: .\api\api_choices_models.py:123
+#: .\api\api_choices_models.py:111
 msgid "Answered"
 msgstr "Contestada"
 
-#: .\api\api_choices_models.py:124
+#: .\api\api_choices_models.py:112
 msgid "To score"
 msgstr "Por calificar"
 
-#: .\api\api_choices_models.py:125
+#: .\api\api_choices_models.py:113
 msgid "Absolved"
 msgstr "Absuelto"
 
-#: .\api\api_choices_models.py:137
+#: .\api\api_choices_models.py:125
 msgid "query"
 msgstr "consulta"
 
-#: .\api\api_choices_models.py:138
+#: .\api\api_choices_models.py:126
 msgid "requery"
 msgstr "reconsulta"
 
-#: .\api\api_choices_models.py:139
+#: .\api\api_choices_models.py:127
 msgid "answer"
 msgstr "responder"
 
-#: .\api\api_choices_models.py:143
+#: .\api\api_choices_models.py:131
 msgid "Text"
 msgstr "Texto"
 
-#: .\api\api_choices_models.py:144 .\api\api_choices_models.py:152
+#: .\api\api_choices_models.py:132 .\api\api_choices_models.py:140
 msgid "Image"
 msgstr "Imagen"
 
-#: .\api\api_choices_models.py:145
+#: .\api\api_choices_models.py:133
 msgid "Video"
 msgstr "Video"
 
-#: .\api\api_choices_models.py:146 .\api\api_choices_models.py:153
+#: .\api\api_choices_models.py:134 .\api\api_choices_models.py:141
 msgid "Voice"
 msgstr "Voz"
 
-#: .\api\api_choices_models.py:147 .\api\api_choices_models.py:154
+#: .\api\api_choices_models.py:135 .\api\api_choices_models.py:142
 msgid "Document"
 msgstr "Documento"
 
-#: .\api\api_choices_models.py:159
+#: .\api\api_choices_models.py:147
 msgid "Critic"
 msgstr "Crítico"
 
-#: .\api\api_choices_models.py:160
+#: .\api\api_choices_models.py:148
 msgid "Moderate"
 msgstr "Moderar"
 
-#: .\api\api_choices_models.py:161
+#: .\api\api_choices_models.py:149
 msgid "Positive"
 msgstr "Positivo"
 
-#: .\api\api_choices_models.py:166 .\api\api_choices_models.py:177
+#: .\api\api_choices_models.py:154 .\api\api_choices_models.py:165
 msgid "Active"
 msgstr "Activo"
 
-#: .\api\api_choices_models.py:172
+#: .\api\api_choices_models.py:160
 msgid "Transfer"
 msgstr "Transferir"
 
-#: .\api\api_choices_models.py:173
+#: .\api\api_choices_models.py:161
 msgid "Share"
 msgstr "Compartir"
 
-#: .\api\api_choices_models.py:174
+#: .\api\api_choices_models.py:162
 msgid "Empower"
 msgstr "Facultar"
 
-#: .\api\api_choices_models.py:179
+#: .\api\api_choices_models.py:167
 msgid "Processing"
 msgstr "Procedimiento"
 
-#: .\api\api_choices_models.py:183
+#: .\api\api_choices_models.py:171
 msgid "Effective"
 msgstr "Efectivo"
 
-#: .\api\api_choices_models.py:184
+#: .\api\api_choices_models.py:172
 msgid "Non Effective"
 msgstr "No Efectivo"
 
-#: .\api\api_choices_models.py:185
+#: .\api\api_choices_models.py:173
 msgid "Effective paid"
 msgstr "Efectivo pagado"
 
-#: .\api\models.py:111
+#: .\api\models.py:112
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:73
 #: .\dashboard\templates\admin\actor\clientsDetail.html:37
 #: .\dashboard\templates\admin\actor\sellersDetail.html:43
@@ -279,41 +277,41 @@ msgstr "Efectivo pagado"
 msgid "nick"
 msgstr "nick"
 
-#: .\api\models.py:112 .\dashboard\views\actors.py:77
+#: .\api\models.py:113 .\dashboard\views\actors.py:77
 #: .\dashboard\views\actors.py:320 .\dashboard\views\actors.py:489
 #: .\dashboard\views\actors.py:665
 msgid "email"
 msgstr "correo"
 
-#: .\api\models.py:113
+#: .\api\models.py:114
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:89
 #: .\dashboard\templates\admin\payment\pending_detail.html:43
 msgid "phone"
 msgstr "telefono"
 
-#: .\api\models.py:115
+#: .\api\models.py:116
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:86
 #: .\dashboard\templates\admin\payment\pending_detail.html:40
 msgid "cellphone"
 msgstr "celular"
 
-#: .\api\models.py:123
+#: .\api\models.py:124
 msgid "photo"
 msgstr "foto"
 
-#: .\api\models.py:124 .\dashboard\views\authorizations.py:88
+#: .\api\models.py:125 .\dashboard\views\authorizations.py:88
 msgid "type document"
 msgstr "tipo de documento"
 
-#: .\api\models.py:126 .\dashboard\views\authorizations.py:89
+#: .\api\models.py:127 .\dashboard\views\authorizations.py:89
 msgid "document number"
 msgstr "numero de documento"
 
-#: .\api\models.py:127 .\dashboard\forms.py:94
+#: .\api\models.py:128 .\dashboard\forms.py:94
 msgid "upload document"
 msgstr "subir un documento"
 
-#: .\api\models.py:130 .\api\models.py:647
+#: .\api\models.py:131 .\api\models.py:647
 #: .\dashboard\views\account_status.py:93
 #: .\dashboard\views\account_status.py:135 .\dashboard\views\actors.py:76
 #: .\dashboard\views\actors.py:319 .\dashboard\views\actors.py:488
@@ -321,33 +319,33 @@ msgstr "subir un documento"
 msgid "code"
 msgstr "código"
 
-#: .\api\models.py:131
+#: .\api\models.py:132
 msgid "anonymous"
 msgstr "anonimo"
 
-#: .\api\models.py:132
+#: .\api\models.py:133
 msgid "updated at"
 msgstr "actualizado en"
 
-#: .\api\models.py:135 .\dashboard\forms.py:96 .\dashboard\forms.py:167
+#: .\api\models.py:136 .\dashboard\forms.py:96 .\dashboard\forms.py:167
 #: .\login\forms.py:48
 msgid "nationality"
 msgstr "nacionalidad"
 
-#: .\api\models.py:138
+#: .\api\models.py:139
 msgid "role"
 msgstr "rol"
 
-#: .\api\models.py:141 .\dashboard\forms.py:99 .\dashboard\forms.py:175
+#: .\api\models.py:142 .\dashboard\forms.py:99 .\dashboard\forms.py:175
 msgid "address"
 msgstr "dirección"
 
-#: .\api\models.py:145 .\dashboard\forms.py:97 .\dashboard\forms.py:168
+#: .\api\models.py:146 .\dashboard\forms.py:97 .\dashboard\forms.py:168
 #: .\login\forms.py:46
 msgid "residence country"
 msgstr "país de residencia"
 
-#: .\api\models.py:146
+#: .\api\models.py:147
 msgid "foreign address"
 msgstr "Dirección en el Extranjero"
 
@@ -359,11 +357,25 @@ msgstr "país de residencia del contacto"
 msgid "Bank"
 msgstr "Banco"
 
-#: .\api\models.py:702
+#: .\api\models.py:525 .\dashboard\views\account_status.py:126
+#: .\dashboard\views\account_status.py:128
+#: .\dashboard\views\account_status.py:130
+msgid "amount"
+msgstr "cantidad"
+
+#: .\api\models.py:526
+msgid "operation number"
+msgstr "numero de operacion"
+
+#: .\api\models.py:527
+msgid "observations"
+msgstr "observaciones"
+
+#: .\api\models.py:703
 msgid "message"
 msgstr "mensaje"
 
-#: .\api\models.py:703
+#: .\api\models.py:704
 msgid "viewed"
 msgstr "visto"
 
@@ -903,12 +915,6 @@ msgstr "Totales"
 #: .\dashboard\views\account_status.py:129
 msgid "units"
 msgstr "unidades"
-
-#: .\dashboard\views\account_status.py:126
-#: .\dashboard\views\account_status.py:128
-#: .\dashboard\views\account_status.py:130
-msgid "amount"
-msgstr "cantidad"
 
 #: .\dashboard\views\account_status.py:136 .\login\forms.py:35
 msgid "Nick"
