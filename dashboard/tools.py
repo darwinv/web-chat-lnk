@@ -28,7 +28,7 @@ class ToolsBackend(object):
         formats = ("%Y-%m-%d", "%d/%m/%Y")
         return self.set_date_format(date, formats)
 
-    def date_format_full_to_view(self, date):
+    def datetime_format_to_view(self, date):
         """Formatear string para mostrar, no toma en cuenta zona horaria"""
         date_split = date.split(".")
         date_split = date_split[0].split("+")

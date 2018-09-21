@@ -274,7 +274,7 @@ class GenerateTableList(object):
             if row_data and date in row_data:
                 date = row_data[data[0]]
 
-            value = tools.date_format_full_to_view(date=date)
+            value = tools.datetime_format_to_view(date=date)
 
         if type_colum == 'format_price':
             tools = Tools()

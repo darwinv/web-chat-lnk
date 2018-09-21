@@ -59,7 +59,7 @@ class PaymentsPending(Payment):
                 form_filters.add_error_custom(add_errors=data.json())
             else:
                 lastnames_title = "{} / {}".format(_("names"), _("business name"))
-                header_table = [(_("date"), "created_at"),
+                header_table = [(_("date"), "pay_before"),
                                 (lastnames_title, "business_name"),
                                 ("total", "total_amount"),
                                 (_("fee").title(), "is_fee"),(_("detail"), "detail")]
@@ -74,7 +74,7 @@ class PaymentsPending(Payment):
                         'next': {'type': 'concat', 'data': ('client__business_name',)},
                         'next_elif': {'type': 'concat', 'data': ('client__last_name', ' ', 'client__first_name')},
                     },
-                    "created_at": {'type': 'datetime', 'data': ('created_at',)},
+                    "pay_before": {'type': 'date', 'data': ('pay_before',)},
                     "is_fee": {
                         'type': 'if_eval',
                         'data': ('r["is_fee"]',),

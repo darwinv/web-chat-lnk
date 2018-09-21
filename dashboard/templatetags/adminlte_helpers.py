@@ -68,10 +68,10 @@ def change_lang(context, lang=None, default_arg=True, *args, **kwargs):
     return "%s" % url
 
 @register.filter()
-def date_format_full_to_view(date):
+def datetime_format_to_view(date):
     """date: str 2018-02-08 14:28:25+00:00"""
     tools = Tools()
-    return tools.date_format_full_to_view(date=date)
+    return tools.datetime_format_to_view(date=date)
 
 @register.filter()
 def bolean_translate(bolean):
