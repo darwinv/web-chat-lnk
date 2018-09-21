@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 15:14-0500\n"
+"POT-Creation-Date: 2018-09-21 09:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -280,8 +280,8 @@ msgid "nick"
 msgstr "nick"
 
 #: .\api\models.py:112 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:319 .\dashboard\views\actors.py:488
-#: .\dashboard\views\actors.py:664
+#: .\dashboard\views\actors.py:320 .\dashboard\views\actors.py:489
+#: .\dashboard\views\actors.py:665
 msgid "email"
 msgstr "correo"
 
@@ -316,8 +316,8 @@ msgstr "subir un documento"
 #: .\api\models.py:130 .\api\models.py:647
 #: .\dashboard\views\account_status.py:93
 #: .\dashboard\views\account_status.py:135 .\dashboard\views\actors.py:76
-#: .\dashboard\views\actors.py:318 .\dashboard\views\actors.py:487
-#: .\dashboard\views\actors.py:664
+#: .\dashboard\views\actors.py:319 .\dashboard\views\actors.py:488
+#: .\dashboard\views\actors.py:665
 msgid "code"
 msgstr "código"
 
@@ -329,7 +329,7 @@ msgstr "anonimo"
 msgid "updated at"
 msgstr "actualizado en"
 
-#: .\api\models.py:135 .\dashboard\forms.py:96 .\dashboard\forms.py:168
+#: .\api\models.py:135 .\dashboard\forms.py:96 .\dashboard\forms.py:167
 #: .\login\forms.py:48
 msgid "nationality"
 msgstr "nacionalidad"
@@ -338,11 +338,11 @@ msgstr "nacionalidad"
 msgid "role"
 msgstr "rol"
 
-#: .\api\models.py:141 .\dashboard\forms.py:99 .\dashboard\forms.py:176
+#: .\api\models.py:141 .\dashboard\forms.py:99 .\dashboard\forms.py:175
 msgid "address"
 msgstr "dirección"
 
-#: .\api\models.py:145 .\dashboard\forms.py:97 .\dashboard\forms.py:169
+#: .\api\models.py:145 .\dashboard\forms.py:97 .\dashboard\forms.py:168
 #: .\login\forms.py:46
 msgid "residence country"
 msgstr "país de residencia"
@@ -367,36 +367,36 @@ msgstr "mensaje"
 msgid "viewed"
 msgstr "visto"
 
-#: .\dashboard\forms.py:85 .\dashboard\forms.py:170 .\dashboard\forms.py:231
+#: .\dashboard\forms.py:85 .\dashboard\forms.py:169 .\dashboard\forms.py:230
 msgid "first name"
 msgstr "primer nombre"
 
-#: .\dashboard\forms.py:86 .\dashboard\forms.py:171 .\dashboard\forms.py:232
+#: .\dashboard\forms.py:86 .\dashboard\forms.py:170 .\dashboard\forms.py:231
 msgid "last name"
 msgstr "apellidos"
 
 #: .\dashboard\forms.py:87 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:665
+#: .\dashboard\views\actors.py:666
 msgid "category"
 msgstr "categoría"
 
-#: .\dashboard\forms.py:88 .\dashboard\forms.py:172
+#: .\dashboard\forms.py:88 .\dashboard\forms.py:171
 msgid "department"
 msgstr "departamento"
 
-#: .\dashboard\forms.py:89 .\dashboard\forms.py:173
+#: .\dashboard\forms.py:89 .\dashboard\forms.py:172
 msgid "province"
 msgstr "provincia"
 
-#: .\dashboard\forms.py:90 .\dashboard\forms.py:174
+#: .\dashboard\forms.py:90 .\dashboard\forms.py:173
 msgid "district"
 msgstr "distrito"
 
-#: .\dashboard\forms.py:91 .\dashboard\forms.py:175
+#: .\dashboard\forms.py:91 .\dashboard\forms.py:174
 msgid "street"
 msgstr "calle"
 
-#: .\dashboard\forms.py:92 .\dashboard\forms.py:177 .\login\forms.py:67
+#: .\dashboard\forms.py:92 .\dashboard\forms.py:176 .\login\forms.py:67
 msgid "upload a photo"
 msgstr "subir una foto"
 
@@ -404,59 +404,59 @@ msgstr "subir una foto"
 msgid "ruc"
 msgstr "RUC"
 
-#: .\dashboard\forms.py:167 .\login\forms.py:165 .\login\forms.py:203
+#: .\dashboard\forms.py:166 .\login\forms.py:165 .\login\forms.py:203
 msgid "CIIU"
 msgstr "CIIU"
 
-#: .\dashboard\forms.py:233 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:320 .\dashboard\views\actors.py:489
-#: .\dashboard\views\actors.py:664
+#: .\dashboard\forms.py:232 .\dashboard\views\actors.py:77
+#: .\dashboard\views\actors.py:321 .\dashboard\views\actors.py:490
+#: .\dashboard\views\actors.py:665
 msgid "RUC"
 msgstr "Ruc"
 
-#: .\dashboard\forms.py:234
+#: .\dashboard\forms.py:233
 msgid "mail"
 msgstr "correo"
 
-#: .\dashboard\forms.py:235
+#: .\dashboard\forms.py:234
 msgid "number of plans sold greater than"
 msgstr "números de planes vendidos mas de"
 
-#: .\dashboard\forms.py:236
+#: .\dashboard\forms.py:235
 msgid "number of queries sold greater than"
 msgstr "numero de consultas vendidas mas de"
 
-#: .\dashboard\forms.py:247
+#: .\dashboard\forms.py:246
 msgid "from"
 msgstr "desde"
 
-#: .\dashboard\forms.py:252
+#: .\dashboard\forms.py:251
 msgid "until"
 msgstr "hasta"
 
-#: .\dashboard\forms.py:261
+#: .\dashboard\forms.py:260
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:124
 #: .\dashboard\templates\admin\payment\pending_detail.html:56
 msgid "seller"
 msgstr "vendedor"
 
-#: .\dashboard\forms.py:262
+#: .\dashboard\forms.py:261
 msgid "Show Total"
 msgstr "Mostrar total"
 
-#: .\dashboard\forms.py:283
+#: .\dashboard\forms.py:282
 msgid "status"
 msgstr "estatus"
 
-#: .\dashboard\forms.py:304
+#: .\dashboard\forms.py:303
 msgid "Document Client"
 msgstr "Documento del cliente"
 
-#: .\dashboard\forms.py:314
+#: .\dashboard\forms.py:313
 msgid "bank"
 msgstr "banco"
 
-#: .\dashboard\forms.py:316
+#: .\dashboard\forms.py:315
 msgid "payment type"
 msgstr "tipo de pago"
 
@@ -500,18 +500,18 @@ msgstr "especialistas"
 #: .\dashboard\templates\admin\actor\actorsList.html:19
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:34
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:97
-#: .\dashboard\views\actors.py:325
+#: .\dashboard\views\actors.py:326
 msgid "clients"
 msgstr "clientes"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:22
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:45
-#: .\dashboard\views\actors.py:453
+#: .\dashboard\views\actors.py:454
 msgid "sellers"
 msgstr "vendedores"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:25
-#: .\dashboard\views\actors.py:669
+#: .\dashboard\views\actors.py:670
 msgid "administrators"
 msgstr "administradores"
 
@@ -584,7 +584,7 @@ msgid "personal"
 msgstr "personal"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:141
-#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:666
+#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:667
 msgid "specialty"
 msgstr "especialidad"
 
@@ -669,8 +669,8 @@ msgid "authorizations"
 msgstr "autorizaciones"
 
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:104
-#: .\dashboard\views\payments.py:17 .\dashboard\views\payments.py:46
-#: .\dashboard\views\payments.py:105
+#: .\dashboard\views\payments.py:17 .\dashboard\views\payments.py:47
+#: .\dashboard\views\payments.py:107
 msgid "payments"
 msgstr "Pagos"
 
@@ -756,7 +756,7 @@ msgstr "detalle de venta"
 #: .\dashboard\templates\admin\payment\pending_detail.html:71
 #: .\dashboard\views\account_status.py:92
 #: .\dashboard\views\account_status.py:112
-#: .\dashboard\views\authorizations.py:84 .\dashboard\views\payments.py:61
+#: .\dashboard\views\authorizations.py:84 .\dashboard\views\payments.py:62
 msgid "date"
 msgstr "fecha"
 
@@ -765,7 +765,7 @@ msgid "total"
 msgstr "total"
 
 #: .\dashboard\templates\admin\payment\pending_detail.html:87
-#: .\dashboard\views\payments.py:64
+#: .\dashboard\views\payments.py:65
 msgid "fee"
 msgstr "cuota"
 
@@ -807,12 +807,12 @@ msgid "fee amount"
 msgstr "cantidad de cuotas"
 
 #: .\dashboard\templatetags\adminlte_helpers.py:80
-#: .\dashboard\views\payments.py:80
+#: .\dashboard\views\payments.py:81
 msgid "yes"
 msgstr "si"
 
 #: .\dashboard\templatetags\adminlte_helpers.py:82
-#: .\dashboard\views\payments.py:81
+#: .\dashboard\views\payments.py:82
 msgid "no"
 msgstr "no"
 
@@ -824,7 +824,7 @@ msgstr "Debes ser mayor de edad"
 msgid "Account Status"
 msgstr "Estados de cuenta"
 
-#: .\dashboard\views\account_status.py:35 .\dashboard\views\actors.py:513
+#: .\dashboard\views\account_status.py:35 .\dashboard\views\actors.py:514
 msgid "Seller"
 msgstr "vendedor"
 
@@ -862,7 +862,7 @@ msgstr "Pagos esfectuados"
 msgid "Pending payment"
 msgstr "pendiente por pagar"
 
-#: .\dashboard\views\account_status.py:101 .\dashboard\views\actors.py:490
+#: .\dashboard\views\account_status.py:101 .\dashboard\views\actors.py:491
 msgid "advance"
 msgstr "avance"
 
@@ -951,95 +951,95 @@ msgstr "pagado"
 msgid "associated specialists"
 msgstr "ver especialistas asociados"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:485
-#: .\dashboard\views\actors.py:663
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:486
+#: .\dashboard\views\actors.py:664
 msgid "surnames"
 msgstr "apellidos"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:485
-#: .\dashboard\views\actors.py:663
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:486
+#: .\dashboard\views\actors.py:664
 msgid "and"
 msgstr "y"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:317
-#: .\dashboard\views\actors.py:485 .\dashboard\views\actors.py:663
-#: .\dashboard\views\payments.py:60
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:318
+#: .\dashboard\views\actors.py:486 .\dashboard\views\actors.py:664
+#: .\dashboard\views\payments.py:61
 msgid "names"
 msgstr "nombres"
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:108
-#: .\dashboard\views\actors.py:320 .\dashboard\views\actors.py:339
-#: .\dashboard\views\actors.py:487 .\dashboard\views\actors.py:513
-#: .\dashboard\views\actors.py:666 .\dashboard\views\payments.py:64
+#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:110
+#: .\dashboard\views\actors.py:321 .\dashboard\views\actors.py:340
+#: .\dashboard\views\actors.py:488 .\dashboard\views\actors.py:514
+#: .\dashboard\views\actors.py:667 .\dashboard\views\payments.py:65
 msgid "detail"
 msgstr "detalle"
 
-#: .\dashboard\views\actors.py:108
+#: .\dashboard\views\actors.py:110
 msgid "specialist"
 msgstr "especialista"
 
-#: .\dashboard\views\actors.py:163
+#: .\dashboard\views\actors.py:164
 msgid "create specialist"
 msgstr "crear especialista"
 
-#: .\dashboard\views\actors.py:223
+#: .\dashboard\views\actors.py:224
 msgid "edit specialist"
 msgstr "editar especialista"
 
-#: .\dashboard\views\actors.py:317 .\dashboard\views\payments.py:60
+#: .\dashboard\views\actors.py:318 .\dashboard\views\payments.py:61
 #: .\login\forms.py:183
 msgid "business name"
 msgstr "nombre de la empresa"
 
-#: .\dashboard\views\actors.py:318
+#: .\dashboard\views\actors.py:319
 msgid "alias"
 msgstr "alias"
 
-#: .\dashboard\views\actors.py:319
+#: .\dashboard\views\actors.py:320
 msgid "identification document"
 msgstr "documento de identidad"
 
-#: .\dashboard\views\actors.py:320
+#: .\dashboard\views\actors.py:321
 msgid "querys"
 msgstr "consultas"
 
-#: .\dashboard\views\actors.py:339
+#: .\dashboard\views\actors.py:340
 msgid "Cliente"
 msgstr "Cliente"
 
-#: .\dashboard\views\actors.py:399
+#: .\dashboard\views\actors.py:400
 msgid "edit client"
 msgstr "editar cliente"
 
-#: .\dashboard\views\actors.py:474
+#: .\dashboard\views\actors.py:475
 msgid "see clients"
 msgstr "ver clientes"
 
-#: .\dashboard\views\actors.py:489
+#: .\dashboard\views\actors.py:490
 msgid "see portfolio"
 msgstr "ver cartera"
 
-#: .\dashboard\views\actors.py:489
+#: .\dashboard\views\actors.py:490
 msgid "ubigeo"
 msgstr "ubigeo"
 
-#: .\dashboard\views\actors.py:489
+#: .\dashboard\views\actors.py:490
 msgid "quota"
 msgstr "cuota"
 
-#: .\dashboard\views\actors.py:491
+#: .\dashboard\views\actors.py:492
 msgid "number of plans sold"
 msgstr "números de planes vendidos"
 
-#: .\dashboard\views\actors.py:491
+#: .\dashboard\views\actors.py:492
 msgid "number of queries"
 msgstr "numero de consultas"
 
-#: .\dashboard\views\actors.py:562
+#: .\dashboard\views\actors.py:563
 msgid "create seller"
 msgstr "crear vendedor"
 
-#: .\dashboard\views\actors.py:639
+#: .\dashboard\views\actors.py:640
 msgid "edit seller"
 msgstr "editar vendedor"
 
@@ -1092,7 +1092,7 @@ msgstr "denegar"
 msgid "rejected"
 msgstr "rechazar"
 
-#: .\dashboard\views\payments.py:46 .\dashboard\views\payments.py:105
+#: .\dashboard\views\payments.py:47 .\dashboard\views\payments.py:107
 msgid "pending"
 msgstr "pendiente"
 
