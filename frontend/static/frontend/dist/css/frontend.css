@@ -139,7 +139,7 @@ html, body, page-wrap {
 }
 
 .left_slide {
-    flex: 0 0 22%;
+    flex: 0 0 23%;
     display:  flex;
     flex-direction:  column;
 }
@@ -263,4 +263,19 @@ div::-webkit-scrollbar-track {
     100% {
         -webkit-transform: rotate(-360deg);
     };
+}
+.dropdown-menu.dropdown-menu-right {
+    line-height: 25px;
+    top: 60px;
+    padding-bottom: 0px;
+}
+button.dropdown-item {
+    border-bottom: 1px solid #ababab;
+}
+button.dropdown-item.active, button.dropdown-item:active {
+    background-color: white;
+    color: black;
+}
+button.dropdown-item a {
+    color: #1d2350;
 }

@@ -50,3 +50,13 @@ div.list-group {
     top: 50%;
     transform: translateY(-50%);
 }
+
+.fa-angle-right{
+    font-size: 28px;
+}
+.turquoise{
+    color: var(--turquoise);
+}
+.pink{
+    color: var(--pink);
+}

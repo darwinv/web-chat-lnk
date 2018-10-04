@@ -7,6 +7,9 @@
     --blue: #232155;
     --dark-blue: #14162E;
     --black: #131520;
+
+    /*Extra Colors*/
+    --pink: #D81B60;
 }
 
 ul{
@@ -79,6 +82,9 @@ ul{
 }
 .without-border {
     border: none !important;
+}
+.mar-auto {
+  margin: auto;
 }
 /* Margins rapidos */
 .mar10{

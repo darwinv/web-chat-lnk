@@ -1,0 +1,30 @@
+{% load static adminlte_helpers i18n %}
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "my acount"|upfirstletter %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "specialties"|title %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "products"|title %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "my plans"|upfirstletter %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "account status"|upfirstletter %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "customer support"|upfirstletter %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "activation"|title %}</button>
+</a>
+<a href="#">
+    <button class="dropdown-item" type="button">{% trans "take me to the website"|upfirstletter %}</button>
+</a>
+<a href="{% block logout_url %}{% logout_url %}{% endblock %}" >
+    <button class="dropdown-item" type="button">
+        {% trans "Sign out"|title %}
+    </button>
+</a>
