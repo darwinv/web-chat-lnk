@@ -93,24 +93,61 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                         <ul class="treeview-menu">
-                        <li class="treeview">
-                            <a href="{% url 'dashboard:authorizations-clients' %}"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}</a>
-                        </li>
-                    </ul>
+                            <li class="treeview">
+                                <a href="{% url 'dashboard:authorizations-clients' %}"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}</a>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-circle-o"></i> {% trans "specialists"|title %}
+                                    <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{% url 'dashboard:payments-pending' %}"><i class="fa fa-circle-o"></i> {% trans "matchs"|title %}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        
+                        </ul>
                     </a>
                 </li>
                 <li>
+
+
                     <a href="#">
                         <i class="fa fa-credit-card"></i> <span>{% trans "payments"|title %}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
-                        <ul class="treeview-menu">
-                        <li class="treeview">
-                            <a href="{% url 'dashboard:payments-pending' %}"><i class="fa fa-circle-o"></i> {% trans "pending payments"|title %}</a>
-                        </li>
-                    </ul>
                     </a>
+                    <ul class="treeview-menu">
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i> {% trans "clients"|title %}
+                                <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{% url 'dashboard:payments-pending' %}"><i class="fa fa-circle-o"></i> {% trans "query plans"|title %}</a>
+                                </li>
+                                <li><a href="{% url 'dashboard:payments-pending' %}"><i class="fa fa-circle-o"></i> {% trans "matchs"|title %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-circle-o"></i> {% trans "specialists"|title %}
+                                <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{% url 'dashboard:payments-pending' %}"><i class="fa fa-circle-o"></i> {% trans "matchs"|title %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                  </ul>
+
                 </li>
                 <li>
                     <a href="#">
