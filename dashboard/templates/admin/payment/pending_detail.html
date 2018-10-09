@@ -140,7 +140,7 @@
 
       
         <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-            <label>{% trans "fee quantity"|upfirstletter %}:</label>
+            <label>{% trans "fee quantities"|upfirstletter %}:</label>
             <input type="text" disabled value="{{data.fee_quantity}}">
         </div>
     
@@ -157,6 +157,13 @@
 
       <form action="{{sellers_form}}" method="POST" >
         {% csrf_token %}
+        {% if form.payment_type %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.payment_type.label_tag }}
+                {{ form.payment_type.errors }}
+                {{ form.payment_type }}
+            </div>
+        {% endif %}
         {% if form.amount %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.amount.label_tag }}
@@ -179,13 +186,7 @@
             </div>
         {% endif %}
 
-        {% if form.payment_type %}
-            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
-                {{ form.payment_type.label_tag }}
-                {{ form.payment_type.errors }}
-                {{ form.payment_type }}
-            </div>
-        {% endif %}
+        
         {% if form.bank %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
                 {{ form.bank.label_tag }}

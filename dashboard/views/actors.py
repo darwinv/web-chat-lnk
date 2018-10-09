@@ -73,9 +73,10 @@ class Specialist(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_table = [(_("detail"), "detail"),(lastnames_title, "last_name"),( _("code"), "code"),(
+        header_table = [(lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),( _("RUC"), "ruc"),( _("category"), "category_name"),(
-                        _("specialty"), "type_specialist_name"),( _("delete"), "delete")]
+                        _("specialty"), "type_specialist_name"),( _("delete"), "delete"),
+                        (_("detail"), "detail"),]
 
         table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)
@@ -485,11 +486,12 @@ class Seller(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_table = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
+        header_table = [( lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),(
                         _("RUC"), "ruc"),( _('see portfolio'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
                         _("advance"), "advance"),(
-                        _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
+                        _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries"),
+                        (_("detail"), "detail")]
 
         table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)

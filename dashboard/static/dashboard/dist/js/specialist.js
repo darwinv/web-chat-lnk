@@ -20,7 +20,3 @@ $(function () {
 		}
 	}
 });
-$(document).ready(function () {
-	$("#inputFile").attr('required',true);
-    console.log("pase");
-});

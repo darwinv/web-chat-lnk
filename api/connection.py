@@ -230,7 +230,7 @@ class api:
 
     def post_all(self, token='', slug='', arg=None, files=None):
         headers = {'Accept-Language': self._language}
-
+        
         if token:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
@@ -254,20 +254,28 @@ class api:
         
 
     def put(self, token='', slug='', arg=None, files=None):
-        headers = {'Authorization': 'Bearer ' + token}
+        result = self.put_all(token, slug, arg, files)
 
+        if hasattr(result, 'status_code'):
+            if result.status_code != 500:
+                return result.json()
+         
+        return None
+
+    def put_all(self, token='', slug='', arg=None, files=None):
+        headers = {'Accept-Language': self._language}
+        
         if token:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
-
         try:
             result = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
-
-            return result.json()
+            return result
 
         except Exception as e:
-            print(e)
+            print(e.args)
             print("---------------ERROR PUT---------------")
+            return None
 
     def delete(self, token, slug='', arg=None):
         headers = {'Authorization': 'Bearer ' + token}

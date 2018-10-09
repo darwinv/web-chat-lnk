@@ -226,4 +226,14 @@
   <script src='{% static "dashboard/cropper/dist/cropper.min.js" %}' ></script>
   {% include 'admin/lib/_cropper.html' %}
   <script src='{% static "dashboard/dist/js/specialist.js" %}' ></script>
+
+  {% if form.photo.value and form.photo.value != "preview.png" %}
+    
+  {% else %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#inputFile").attr('required',true);
+        });
+    </script>
+  {% endif %}
 {% endblock extra_foot %}

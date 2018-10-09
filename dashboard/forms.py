@@ -311,8 +311,7 @@ class PendingPaymentForm(ModelForm, ErrorsFieldsApi):
     monthly_fee = forms.CharField(required=False)
     bank = forms.CharField(widget=forms.Select(), required=False,
      label=_('bank'))
-    payment_type = forms.CharField(widget=forms.Select(), required=False,
-     label=_('payment type'))
+    payment_type = forms.CharField(widget=forms.Select(), label=_('payment type'))
 
     def __init__(self, *args, **kwargs):
         super(PendingPaymentForm, self).__init__(*args, **kwargs)
@@ -327,8 +326,22 @@ class PendingPaymentForm(ModelForm, ErrorsFieldsApi):
 
         self.fields['monthly_fee'].widget = forms.HiddenInput()
 
+        self.fields['observations'].required = False
+        
+        self.fields['operation_number'].required = False
+        self.fields['operation_number'].label = _("operation code")
+
     class Meta:
         """Meta de Vendedor."""
 
         model = Payment
         fields = ['amount', 'operation_number', 'observations']
+
+class PaymentMatch(PendingPaymentForm):
+    match = forms.IntegerField()
+
+    fields = ['match']
+
+    def __init__(self, *args, **kwargs):
+        super(PaymentMatch, self).__init__(*args, **kwargs)
+        self.fields['match'].widget = forms.HiddenInput()

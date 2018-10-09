@@ -153,15 +153,15 @@
       <h2>{% trans "autorization"|upfirstletter %} 
       </h2>
       <div>
-        <form action="{{sellers_form}}" method="POST" >
+        <form action="{{action}}" method="POST">
           {% csrf_token %}
           <div class="form-group input-form-control col-xs-12 col-sm-6 col-sm-offset-3">
-              <input type="checkbox" name="checkbox" value="checkbox"> {% trans "I authorize the platform that reveals the identities of the users involved in the specialist contracting, and the platform is waiting for the subsequent payment by the specialist."|title %}<br>
+              <input required="required" type="checkbox" name="checkbox" value="checkbox"> {% trans "I authorize the platform that reveals the identities of the users involved in the specialist contracting, and the platform is waiting for the subsequent payment by the specialist."|title %}<br>
           </div>
           <div class="col-xs-12 text-center">
             <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">
 
-            <a href="{% url 'dashboard:payments-pending' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
+            <a href="{% url 'dashboard:authorization-specialist-match' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
           </div>
         </form>
       </div>    

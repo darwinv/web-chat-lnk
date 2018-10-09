@@ -51,7 +51,6 @@ urlpatterns = [
 
     url(r'^payments/clients/matchs/$', payments.PaymentsClientMatch().list, name='payments-client-match'),
     url(r'^payments/clients/matchs/(?P<pk>[0-9]+)$', payments.PaymentsClientMatch().detail, name='payments-client-match-detail'),
-
     
 
     # Ajax Service

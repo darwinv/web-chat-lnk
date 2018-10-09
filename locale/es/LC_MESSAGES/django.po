@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 14:53-0500\n"
+"POT-Creation-Date: 2018-10-09 15:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -272,25 +272,36 @@ msgstr "Efectivo pagado"
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:73
 #: .\dashboard\templates\admin\actor\clientsDetail.html:37
 #: .\dashboard\templates\admin\actor\sellersDetail.html:43
+#: .\dashboard\templates\admin\payment\client_match.html:27
 #: .\dashboard\templates\admin\payment\pending_detail.html:27
 #: .\dashboard\views\account_status.py:94
 msgid "nick"
 msgstr "nick"
 
 #: .\api\models.py:113 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:320 .\dashboard\views\actors.py:489
-#: .\dashboard\views\actors.py:665
+#: .\dashboard\views\actors.py:321 .\dashboard\views\actors.py:490
+#: .\dashboard\views\actors.py:667
 msgid "email"
 msgstr "correo"
 
 #: .\api\models.py:114
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:89
+#: .\dashboard\templates\admin\authorization\specialist_match.html:42
+#: .\dashboard\templates\admin\authorization\specialist_match.html:93
+#: .\dashboard\templates\admin\payment\client_match.html:43
+#: .\dashboard\templates\admin\payment\match.html:42
+#: .\dashboard\templates\admin\payment\match.html:93
 #: .\dashboard\templates\admin\payment\pending_detail.html:43
 msgid "phone"
 msgstr "telefono"
 
 #: .\api\models.py:116
 #: .\dashboard\templates\admin\account_status\account_status_seller.html:86
+#: .\dashboard\templates\admin\authorization\specialist_match.html:39
+#: .\dashboard\templates\admin\authorization\specialist_match.html:90
+#: .\dashboard\templates\admin\payment\client_match.html:40
+#: .\dashboard\templates\admin\payment\match.html:39
+#: .\dashboard\templates\admin\payment\match.html:90
 #: .\dashboard\templates\admin\payment\pending_detail.html:40
 msgid "cellphone"
 msgstr "celular"
@@ -314,8 +325,8 @@ msgstr "subir un documento"
 #: .\api\models.py:131 .\api\models.py:647
 #: .\dashboard\views\account_status.py:93
 #: .\dashboard\views\account_status.py:135 .\dashboard\views\actors.py:76
-#: .\dashboard\views\actors.py:319 .\dashboard\views\actors.py:488
-#: .\dashboard\views\actors.py:665
+#: .\dashboard\views\actors.py:320 .\dashboard\views\actors.py:489
+#: .\dashboard\views\actors.py:667
 msgid "code"
 msgstr "código"
 
@@ -361,7 +372,7 @@ msgstr "Banco"
 #: .\dashboard\views\account_status.py:128
 #: .\dashboard\views\account_status.py:130
 msgid "amount"
-msgstr "cantidad"
+msgstr "monto"
 
 #: .\api\models.py:526
 msgid "operation number"
@@ -388,7 +399,8 @@ msgid "last name"
 msgstr "apellidos"
 
 #: .\dashboard\forms.py:87 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:666
+#: .\dashboard\views\actors.py:668 .\dashboard\views\payments.py:180
+#: .\dashboard\views\payments.py:293 .\dashboard\views\payments.py:406
 msgid "category"
 msgstr "categoría"
 
@@ -421,8 +433,8 @@ msgid "CIIU"
 msgstr "CIIU"
 
 #: .\dashboard\forms.py:232 .\dashboard\views\actors.py:77
-#: .\dashboard\views\actors.py:321 .\dashboard\views\actors.py:490
-#: .\dashboard\views\actors.py:665
+#: .\dashboard\views\actors.py:322 .\dashboard\views\actors.py:491
+#: .\dashboard\views\actors.py:667
 msgid "RUC"
 msgstr "Ruc"
 
@@ -447,7 +459,12 @@ msgid "until"
 msgstr "hasta"
 
 #: .\dashboard\forms.py:260
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:124
+#: .\dashboard\templates\admin\authorization\specialist_match.html:55
+#: .\dashboard\templates\admin\authorization\specialist_match.html:106
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:161
+#: .\dashboard\templates\admin\payment\client_match.html:56
+#: .\dashboard\templates\admin\payment\match.html:55
+#: .\dashboard\templates\admin\payment\match.html:106
 #: .\dashboard\templates\admin\payment\pending_detail.html:56
 msgid "seller"
 msgstr "vendedor"
@@ -468,9 +485,15 @@ msgstr "Documento del cliente"
 msgid "bank"
 msgstr "banco"
 
-#: .\dashboard\forms.py:315
+#: .\dashboard\forms.py:314
 msgid "payment type"
 msgstr "tipo de pago"
+
+#: .\dashboard\forms.py:332
+#, fuzzy
+#| msgid "operation number"
+msgid "operation code"
+msgstr "número de operación"
 
 #: .\dashboard\json2table.py:110
 msgid "search is empty"
@@ -505,6 +528,8 @@ msgstr "filtro"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:16
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:21
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:101
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:139
 #: .\dashboard\views\actors.py:46
 msgid "specialists"
 msgstr "especialistas"
@@ -512,18 +537,19 @@ msgstr "especialistas"
 #: .\dashboard\templates\admin\actor\actorsList.html:19
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:34
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:97
-#: .\dashboard\views\actors.py:326
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:126
+#: .\dashboard\views\actors.py:327
 msgid "clients"
 msgstr "clientes"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:22
 #: .\dashboard\templates\admin\lib\_main_sidebar.html:45
-#: .\dashboard\views\actors.py:454
+#: .\dashboard\views\actors.py:455
 msgid "sellers"
 msgstr "vendedores"
 
 #: .\dashboard\templates\admin\actor\actorsList.html:25
-#: .\dashboard\views\actors.py:670
+#: .\dashboard\views\actors.py:672
 msgid "administrators"
 msgstr "administradores"
 
@@ -569,7 +595,10 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\actor\clientsForm.html:197
 #: .\dashboard\templates\admin\actor\sellersForm.html:177
 #: .\dashboard\templates\admin\actor\specialistsForm.html:213
-#: .\dashboard\templates\admin\payment\pending_detail.html:201
+#: .\dashboard\templates\admin\authorization\specialist_match.html:162
+#: .\dashboard\templates\admin\payment\client_match.html:201
+#: .\dashboard\templates\admin\payment\match.html:201
+#: .\dashboard\templates\admin\payment\pending_detail.html:202
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:20
 #: .\frontend\templates\frontend\lib\modals\reload.html:43
 msgid "save"
@@ -579,7 +608,10 @@ msgstr "guardar"
 #: .\dashboard\templates\admin\actor\clientsForm.html:199
 #: .\dashboard\templates\admin\actor\sellersForm.html:179
 #: .\dashboard\templates\admin\actor\specialistsForm.html:215
-#: .\dashboard\templates\admin\payment\pending_detail.html:203
+#: .\dashboard\templates\admin\authorization\specialist_match.html:164
+#: .\dashboard\templates\admin\payment\client_match.html:203
+#: .\dashboard\templates\admin\payment\match.html:203
+#: .\dashboard\templates\admin\payment\pending_detail.html:204
 msgid "go back"
 msgstr "volver atrás"
 
@@ -596,7 +628,7 @@ msgid "personal"
 msgstr "personal"
 
 #: .\dashboard\templates\admin\actor\specialistsDetail.html:141
-#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:667
+#: .\dashboard\views\actors.py:78 .\dashboard\views\actors.py:669
 msgid "specialty"
 msgstr "especialidad"
 
@@ -611,6 +643,61 @@ msgstr "retornar al listado"
 #: .\dashboard\templates\admin\actor\specialistsList.html:7
 msgid "asociate specialists to"
 msgstr "especialistas asociados a"
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:116
+#: .\dashboard\templates\admin\payment\client_match.html:66
+#: .\dashboard\templates\admin\payment\match.html:116
+#: .\dashboard\templates\admin\payment\pending_detail.html:66
+msgid "sale detail"
+msgstr "detalle de venta"
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:121
+#: .\dashboard\templates\admin\payment\client_match.html:71
+#: .\dashboard\templates\admin\payment\match.html:121
+#: .\dashboard\templates\admin\payment\pending_detail.html:71
+#: .\dashboard\views\account_status.py:92
+#: .\dashboard\views\account_status.py:112
+#: .\dashboard\views\authorizations.py:84 .\dashboard\views\payments.py:63
+#: .\dashboard\views\payments.py:177 .\dashboard\views\payments.py:290
+#: .\dashboard\views\payments.py:403
+msgid "date"
+msgstr "fecha"
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:129
+#: .\dashboard\templates\admin\payment\client_match.html:99
+#: .\dashboard\templates\admin\payment\match.html:129
+#: .\dashboard\templates\admin\payment\pending_detail.html:99
+msgid "product type"
+msgstr "tipo de producto"
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:132
+#: .\dashboard\templates\admin\payment\match.html:132
+msgid "match"
+msgstr ""
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:137
+#: .\dashboard\templates\admin\payment\client_match.html:122
+#: .\dashboard\templates\admin\payment\match.html:137
+#: .\dashboard\templates\admin\payment\pending_detail.html:122
+#: .\dashboard\views\account_status.py:98
+msgid "price"
+msgstr "precio"
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:153
+#, fuzzy
+#| msgid "authorizations"
+msgid "autorization"
+msgstr "autorizaciones"
+
+#: .\dashboard\templates\admin\authorization\specialist_match.html:159
+msgid ""
+"I authorize the platform that reveals the identities of the users involved "
+"in the specialist contracting, and the platform is waiting for the "
+"subsequent payment by the specialist."
+msgstr ""
+"Autorizo la plataforma que revela las identidades de los usuarios involucrados."
+"en la contratación especializada, y la plataforma está a la espera de la"
+"Pago posterior por parte del especialista."
 
 #: .\dashboard\templates\admin\lib\_cropper.html:72
 msgid "please choose an image file."
@@ -680,21 +767,31 @@ msgstr "inventario"
 msgid "authorizations"
 msgstr "autorizaciones"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:104
-#: .\dashboard\views\payments.py:17 .\dashboard\views\payments.py:47
-#: .\dashboard\views\payments.py:107
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:107
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:134
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:145
+msgid "matchs"
+msgstr ""
+
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:119
+#: .\dashboard\views\payments.py:18 .\dashboard\views\payments.py:48
+#: .\dashboard\views\payments.py:108 .\dashboard\views\payments.py:161
+#: .\dashboard\views\payments.py:221 .\dashboard\views\payments.py:273
+#: .\dashboard\views\payments.py:333 .\dashboard\views\payments.py:386
+#: .\dashboard\views\payments.py:446
 msgid "payments"
 msgstr "Pagos"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:110
-msgid "pending payments"
-msgstr "pagos pendientes"
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:132
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:21
+msgid "query plans"
+msgstr "planes de consulta"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:117
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:154
 msgid "Account statements"
 msgstr "Estados de cuenta"
 
-#: .\dashboard\templates\admin\lib\_main_sidebar.html:130
+#: .\dashboard\templates\admin\lib\_main_sidebar.html:167
 msgid "reports"
 msgstr "reportes"
 
@@ -728,13 +825,10 @@ msgid "delete"
 msgstr "borrar"
 
 #: .\dashboard\templates\admin\lib\_vars_scripts.html:20
+#: .\dashboard\templates\admin\payment\client_match.html:117
 #: .\dashboard\templates\admin\payment\pending_detail.html:117
 msgid "queries"
 msgstr "consultas"
-
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:21
-msgid "query plans"
-msgstr "planes de consulta"
 
 #: .\dashboard\templates\admin\lib\_vars_scripts.html:22 .\frontend\forms.py:40
 msgid "availables"
@@ -761,70 +855,65 @@ msgstr "cambiar plan"
 msgid "activate"
 msgstr "activar"
 
-#: .\dashboard\templates\admin\payment\pending_detail.html:66
-msgid "sale detail"
-msgstr "detalle de venta"
-
-#: .\dashboard\templates\admin\payment\pending_detail.html:71
-#: .\dashboard\views\account_status.py:92
-#: .\dashboard\views\account_status.py:112
-#: .\dashboard\views\authorizations.py:84 .\dashboard\views\payments.py:62
-msgid "date"
-msgstr "fecha"
-
+#: .\dashboard\templates\admin\payment\client_match.html:79
 #: .\dashboard\templates\admin\payment\pending_detail.html:79
 msgid "total"
 msgstr "total"
 
+#: .\dashboard\templates\admin\payment\client_match.html:87
 #: .\dashboard\templates\admin\payment\pending_detail.html:87
-#: .\dashboard\views\payments.py:65
+#: .\dashboard\views\payments.py:66
 msgid "fee"
 msgstr "cuota"
 
-#: .\dashboard\templates\admin\payment\pending_detail.html:99
-msgid "product type"
-msgstr "tipo de producto"
-
+#: .\dashboard\templates\admin\payment\client_match.html:110
 #: .\dashboard\templates\admin\payment\pending_detail.html:110
 msgid "validity"
 msgstr "validez"
 
+#: .\dashboard\templates\admin\payment\client_match.html:114
 #: .\dashboard\templates\admin\payment\pending_detail.html:114
 msgid "months"
 msgstr "meses"
 
-#: .\dashboard\templates\admin\payment\pending_detail.html:122
-#: .\dashboard\views\account_status.py:98
-msgid "price"
-msgstr "precio"
-
+#: .\dashboard\templates\admin\payment\client_match.html:135
+#: .\dashboard\templates\admin\payment\match.html:153
 #: .\dashboard\templates\admin\payment\pending_detail.html:135
 msgid "payment information"
 msgstr "información de pago"
 
+#: .\dashboard\templates\admin\payment\client_match.html:137
 #: .\dashboard\templates\admin\payment\pending_detail.html:137
 msgid "single fee"
 msgstr "cuota única"
 
-#: .\dashboard\templates\admin\payment\pending_detail.html:143
+#: .\dashboard\templates\admin\payment\client_match.html:143
+#, fuzzy
+#| msgid "fee quantities"
 msgid "fee quantity"
-msgstr "cantidad de la cuota"
+msgstr "total de cutas"
 
+#: .\dashboard\templates\admin\payment\client_match.html:148
 #: .\dashboard\templates\admin\payment\pending_detail.html:148
 msgid "fee number"
-msgstr "Número de cuota"
+msgstr "Número de la cuota"
 
+#: .\dashboard\templates\admin\payment\client_match.html:153
 #: .\dashboard\templates\admin\payment\pending_detail.html:153
 msgid "fee amount"
-msgstr "cantidad de cuotas"
+msgstr "monto a pagar"
 
-#: .\dashboard\templatetags\adminlte_helpers.py:80
-#: .\dashboard\views\payments.py:81
+#: .\dashboard\templates\admin\payment\pending_detail.html:143
+msgid "fee quantities"
+msgstr "total de cutas"
+
+#: .\dashboard\templatetags\adminlte_helpers.py:83
+#: .\dashboard\views\payments.py:82
 msgid "yes"
 msgstr "si"
 
-#: .\dashboard\templatetags\adminlte_helpers.py:82
-#: .\dashboard\views\payments.py:82
+#: .\dashboard\templatetags\adminlte_helpers.py:85
+#: .\dashboard\views\payments.py:83
 msgid "no"
 msgstr "no"
 
@@ -836,7 +925,7 @@ msgstr "Debes ser mayor de edad"
 msgid "Account Status"
 msgstr "Estados de cuenta"
 
-#: .\dashboard\views\account_status.py:35 .\dashboard\views\actors.py:514
+#: .\dashboard\views\account_status.py:35 .\dashboard\views\actors.py:516
 msgid "Seller"
 msgstr "vendedor"
 
@@ -874,7 +963,7 @@ msgstr "Pagos esfectuados"
 msgid "Pending payment"
 msgstr "pendiente por pagar"
 
-#: .\dashboard\views\account_status.py:101 .\dashboard\views\actors.py:491
+#: .\dashboard\views\account_status.py:101 .\dashboard\views\actors.py:492
 msgid "advance"
 msgstr "avance"
 
@@ -957,95 +1046,98 @@ msgstr "pagado"
 msgid "associated specialists"
 msgstr "ver especialistas asociados"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:486
-#: .\dashboard\views\actors.py:664
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:487
+#: .\dashboard\views\actors.py:666
 msgid "surnames"
 msgstr "apellidos"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:486
-#: .\dashboard\views\actors.py:664
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:487
+#: .\dashboard\views\actors.py:666
 msgid "and"
 msgstr "y"
 
-#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:318
-#: .\dashboard\views\actors.py:486 .\dashboard\views\actors.py:664
-#: .\dashboard\views\payments.py:61
+#: .\dashboard\views\actors.py:74 .\dashboard\views\actors.py:319
+#: .\dashboard\views\actors.py:487 .\dashboard\views\actors.py:666
+#: .\dashboard\views\payments.py:62
 msgid "names"
 msgstr "nombres"
 
-#: .\dashboard\views\actors.py:76 .\dashboard\views\actors.py:110
-#: .\dashboard\views\actors.py:321 .\dashboard\views\actors.py:340
-#: .\dashboard\views\actors.py:488 .\dashboard\views\actors.py:514
-#: .\dashboard\views\actors.py:667 .\dashboard\views\payments.py:65
+#: .\dashboard\views\actors.py:79 .\dashboard\views\actors.py:111
+#: .\dashboard\views\actors.py:322 .\dashboard\views\actors.py:341
+#: .\dashboard\views\actors.py:494 .\dashboard\views\actors.py:516
+#: .\dashboard\views\actors.py:669 .\dashboard\views\payments.py:66
+#: .\dashboard\views\payments.py:181 .\dashboard\views\payments.py:294
+#: .\dashboard\views\payments.py:407
 msgid "detail"
 msgstr "detalle"
 
-#: .\dashboard\views\actors.py:110
+#: .\dashboard\views\actors.py:111 .\dashboard\views\payments.py:179
+#: .\dashboard\views\payments.py:292 .\dashboard\views\payments.py:405
 msgid "specialist"
 msgstr "especialista"
 
-#: .\dashboard\views\actors.py:164
+#: .\dashboard\views\actors.py:165
 msgid "create specialist"
 msgstr "crear especialista"
 
-#: .\dashboard\views\actors.py:224
+#: .\dashboard\views\actors.py:225
 msgid "edit specialist"
 msgstr "editar especialista"
 
-#: .\dashboard\views\actors.py:318 .\dashboard\views\payments.py:61
+#: .\dashboard\views\actors.py:319 .\dashboard\views\payments.py:62
 #: .\login\forms.py:183
 msgid "business name"
 msgstr "nombre de la empresa"
 
-#: .\dashboard\views\actors.py:319
+#: .\dashboard\views\actors.py:320
 msgid "alias"
 msgstr "alias"
 
-#: .\dashboard\views\actors.py:320
+#: .\dashboard\views\actors.py:321
 msgid "identification document"
 msgstr "documento de identidad"
 
-#: .\dashboard\views\actors.py:321
+#: .\dashboard\views\actors.py:322
 msgid "querys"
 msgstr "consultas"
 
-#: .\dashboard\views\actors.py:340
+#: .\dashboard\views\actors.py:341
 msgid "Cliente"
 msgstr "Cliente"
 
-#: .\dashboard\views\actors.py:400
+#: .\dashboard\views\actors.py:401
 msgid "edit client"
 msgstr "editar cliente"
 
-#: .\dashboard\views\actors.py:475
+#: .\dashboard\views\actors.py:476
 msgid "see clients"
 msgstr "ver clientes"
 
-#: .\dashboard\views\actors.py:490
+#: .\dashboard\views\actors.py:491
 msgid "see portfolio"
 msgstr "ver cartera"
 
-#: .\dashboard\views\actors.py:490
+#: .\dashboard\views\actors.py:491
 msgid "ubigeo"
 msgstr "ubigeo"
 
-#: .\dashboard\views\actors.py:490
+#: .\dashboard\views\actors.py:491
 msgid "quota"
 msgstr "cuota"
 
-#: .\dashboard\views\actors.py:492
+#: .\dashboard\views\actors.py:493
 msgid "number of plans sold"
 msgstr "números de planes vendidos"
 
-#: .\dashboard\views\actors.py:492
+#: .\dashboard\views\actors.py:493
 msgid "number of queries"
 msgstr "numero de consultas"
 
-#: .\dashboard\views\actors.py:563
+#: .\dashboard\views\actors.py:565
 msgid "create seller"
 msgstr "crear vendedor"
 
-#: .\dashboard\views\actors.py:640
+#: .\dashboard\views\actors.py:642
 msgid "edit seller"
 msgstr "editar vendedor"
 
@@ -1098,9 +1190,25 @@ msgstr "denegar"
 msgid "rejected"
 msgstr "rechazar"
 
-#: .\dashboard\views\payments.py:47 .\dashboard\views\payments.py:107
+#: .\dashboard\views\payments.py:48 .\dashboard\views\payments.py:108
+#: .\dashboard\views\payments.py:221 .\dashboard\views\payments.py:333
+#: .\dashboard\views\payments.py:446
 msgid "pending"
 msgstr "pendiente"
+
+#: .\dashboard\views\payments.py:161 .\dashboard\views\payments.py:273
+#: .\dashboard\views\payments.py:386
+#, fuzzy
+#| msgid "create specialist"
+msgid "match specialist"
+msgstr "crear especialista"
+
+#: .\dashboard\views\payments.py:178 .\dashboard\views\payments.py:291
+#: .\dashboard\views\payments.py:404
+#, fuzzy
+#| msgid "clients"
+msgid "client"
+msgstr "clientes"
 
 #: .\frontend\forms.py:9 .\frontend\templates\frontend\chat.html:65
 msgid "title"
@@ -1315,6 +1423,9 @@ msgstr "continue"
 #: .\login\views.py:51
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"
+
+#~ msgid "pending payments"
+#~ msgstr "pagos pendientes"
 
 #~ msgid "Requested Derived"
 #~ msgstr "Pregunta derivado"

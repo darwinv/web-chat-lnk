@@ -153,7 +153,7 @@
       <h2>{% trans "payment information"|upfirstletter %} 
       </h2>
 
-      <form action="{{sellers_form}}" method="POST" >
+      <form action="{{action}}" method="POST" >
         {% csrf_token %}
         {% if form.payment_type %}
             <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
@@ -193,14 +193,14 @@
                 {{ form.bank }}
             </div>
         {% endif %}
-        {% if form.monthly_fee %}
-            {{ form.monthly_fee }}
+        {% if form.match %}
+            {{ form.match }}
         {% endif %}
 
         <div class="col-xs-12 text-center">
             <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">
 
-            <a href="{% url 'dashboard:payments-pending' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
+            <a href="{% url go_back %}" class="btn btn-default">{% trans 'go back'|title %}</a>
         </div>
       </form>
 
