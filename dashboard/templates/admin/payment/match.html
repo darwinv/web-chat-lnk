@@ -1,0 +1,212 @@
+{% extends 'admin/base.html' %}
+{% load i18n static adminlte_helpers %}
+
+{% block main_content_row %}
+   
+      <div class="col-xs-12 marB10">
+
+        <!-- Informacion del usuario -->
+        {% block info_user %}
+            {% if data.client %}
+                <div class="col-xs-12">
+                    <div class="cont-info-user text-center padL40 padR40 pull-left marR15 without-border" >
+                      {% if data.client.photo and data.client.photo != "preview.png" %}
+                        <img src="{{data.client.photo}}" class="img-circle">
+                      {% else %}
+                        <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle">
+                      {% endif %}
+
+                    </div>
+                    <div class="pull-left span-block padT10 marR15" >
+                      
+                        {% if data.client.first_name or data.client.last_name %}
+                          <span class="size18">{{data.client.first_name}} {{data.client.last_name}}</span>
+                        {% endif %}
+                        {% if data.client.nick %}
+                          <span>{{data.client.nick}}</span>
+                        {% endif %}
+                        {% if data.client.code %}
+                          <span>{{data.client.code}}</span>
+                        {% endif %}
+
+                        {% if data.client.email_exact %}
+                          <span>{{data.client.email_exact}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="pull-left span-block padT10 marR15" >
+
+                        {% if data.client.cellphone %}
+                          <span>{% trans "cellphone"|title %}: {{data.client.cellphone}}</span>
+                        {% endif %}
+                        {% if data.client.telephone %}
+                          <span>{% trans "phone"|title %}: {{data.client.telephone}}</span>
+                        {% endif %}
+                     
+                        {% if data.client.address %}
+                          <span>
+                            <i class="fa fa-home"></i>
+                            {{data.client.address.street}} - 
+                            {{data.client.address.department_name}} |
+                            {{data.client.address.province_name}} | 
+                            {{data.client.address.district_name}}
+                          </span>
+                        {% endif %}
+                        {% if data.client.seller_asigned %}
+                          <a href="{% url 'dashboard:actor-sellers-detail' data.client.seller_asigned %}" class="btn btn-flat btn-black pull-right">{% trans "seller"|title %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <hr>
+
+            {% if data.specialist %}
+                <div class="col-xs-12">
+                    <div class="cont-info-user text-center padL40 padR40 pull-left marR15 without-border" >
+                      {% if data.specialist.photo and data.specialist.photo != "preview.png" %}
+                        <img src="{{data.specialist.photo}}" class="img-circle">
+                      {% else %}
+                        <img src="{% static "dashboard/dist/img/profile.png" %}" class="img-circle">
+                      {% endif %}
+
+                    </div>
+                    <div class="pull-left span-block padT10 marR15" >
+                      
+                        {% if data.specialist.first_name or data.specialist.last_name %}
+                          <span class="size18">{{data.specialist.first_name}} {{data.specialist.last_name}}</span>
+                        {% endif %}
+                        
+                        {% if data.specialist.code %}
+                          <span>{{data.specialist.code}}</span>
+                        {% endif %}
+
+                        {% if data.specialist.email_exact %}
+                          <span>{{data.specialist.email_exact}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="pull-left span-block padT10 marR15" >
+
+                        {% if data.specialist.cellphone %}
+                          <span>{% trans "cellphone"|title %}: {{data.specialist.cellphone}}</span>
+                        {% endif %}
+                        {% if data.specialist.telephone %}
+                          <span>{% trans "phone"|title %}: {{data.specialist.telephone}}</span>
+                        {% endif %}
+                     
+                        {% if data.specialist.address %}
+                          <span>
+                            <i class="fa fa-home"></i>
+                            {{data.specialist.address.street}} - 
+                            {{data.specialist.address.department_name}} |
+                            {{data.specialist.address.province_name}} | 
+                            {{data.specialist.address.district_name}}
+                          </span>
+                        {% endif %}
+                        {% if data.specialist.seller_asigned %}
+                          <a href="{% url 'dashboard:actor-sellers-detail' data.client.seller_asigned %}" class="btn btn-flat btn-black pull-right">{% trans "seller"|title %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock info_user %}
+
+        <!-- Detalle de la Venta -->
+        {% block info_sale %}
+        <div class="marT20 pull-left">
+          <h2>{% trans "sale detail"|upfirstletter %}</h2>
+          <div class="col-xs-12">
+            <div class="span-block padT10 mar15" >
+              <div class="pull-left marR15">
+                <span class="bold">
+                  {% trans "date"|title %}: 
+                </span>
+                <span>
+                  {{data.date|datetime_format_to_view}}
+                </span>
+              </div> 
+              <div class="pull-left marR15">
+                <span class="bold">
+                  {% trans "product type"|title %}: 
+                </span>
+                <span>
+                  {% trans "match"|title %}
+                </span>
+              </div> 
+              <div class="pull-left marR15">
+                <span class="bold">
+                  {% trans "price"|title %}: 
+                </span>
+                <span>
+                  {{data.price}}
+                </span>
+              </div> 
+                           
+            </div>
+
+          </div>
+        </div>
+        {% endblock info_sale %}
+      </div>
+
+
+      <!-- Form Payment Fee -->
+      <h2>{% trans "payment information"|upfirstletter %} 
+      </h2>
+
+      <form action="{{sellers_form}}" method="POST" >
+        {% csrf_token %}
+        {% if form.payment_type %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.payment_type.label_tag }}
+                {{ form.payment_type.errors }}
+                {{ form.payment_type }}
+            </div>
+        {% endif %}
+        
+        {% if form.amount %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.amount.label_tag }}
+                {{ form.amount.errors }}
+                {{ form.amount }}
+            </div>
+        {% endif %}
+        {% if form.operation_number %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.operation_number.label_tag }}
+                {{ form.operation_number.errors }}
+                {{ form.operation_number }}
+            </div>
+        {% endif %}
+        {% if form.observations %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.observations.label_tag }}
+                {{ form.observations.errors }}
+                {{ form.observations }}
+            </div>
+        {% endif %}
+
+        
+        {% if form.bank %}
+            <div class="form-group input-form-control col-xs-12 col-sm-6 col-md-3">
+                {{ form.bank.label_tag }}
+                {{ form.bank.errors }}
+                {{ form.bank }}
+            </div>
+        {% endif %}
+        {% if form.monthly_fee %}
+            {{ form.monthly_fee }}
+        {% endif %}
+
+        <div class="col-xs-12 text-center">
+            <input type="submit" name="submit" class="btn btn-lightBlue" value="{% trans 'save'|title %}">
+
+            <a href="{% url 'dashboard:payments-pending' %}" class="btn btn-default">{% trans 'go back'|title %}</a>
+        </div>
+      </form>
+
+{% endblock main_content_row %}
+
+
+{% block extra_foot %}
+  <script src='{% static "dashboard/dist/js/payment.js" %}' ></script>
+{% endblock extra_foot %}

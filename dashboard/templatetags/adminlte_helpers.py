@@ -70,8 +70,11 @@ def change_lang(context, lang=None, default_arg=True, *args, **kwargs):
 @register.filter()
 def datetime_format_to_view(date):
     """date: str 2018-02-08 14:28:25+00:00"""
-    tools = Tools()
-    return tools.datetime_format_to_view(date=date)
+    if date:
+        tools = Tools()
+        return tools.datetime_format_to_view(date=date)
+    else:
+        return date
 
 @register.filter()
 def bolean_translate(bolean):

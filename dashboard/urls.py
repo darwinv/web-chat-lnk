@@ -37,14 +37,22 @@ urlpatterns = [
 
     # Autorizaciones
     url(r'^authorizations/clients$', authorizations.AutorizationClient().list, name='authorizations-clients'),
+    url(r'^authorizations/specialists/matchs/$', payments.AuthorizationSpecialistMatch().list, name='authorization-specialist-match'),
+    url(r'^authorizations/specialists/matchs/(?P<pk>[0-9]+)$', payments.AuthorizationSpecialistMatch().detail, name='authorization-specialist-match-detail'),
 
     # Estados de cuenta
     url(r'^account_status/sellers/$', account_status.AccountStatusSeller().list, name='account-status-seller'),
 
     # Pagos
     url(r'^payments/pending/$', payments.PaymentsPending().list, name='payments-pending'),
-
     url(r'^payments/pending/(?P<pk>[0-9]+)$', payments.PaymentsPending().detail, name='payments-pending-detail'),
+    url(r'^payments/specialists/matchs/$', payments.PaymentsSpecialistMatch().list, name='payments-specialist-match'),
+    url(r'^payments/specialists/matchs/(?P<pk>[0-9]+)$', payments.PaymentsSpecialistMatch().detail, name='payments-specialist-match-detail'),
+
+    url(r'^payments/clients/matchs/$', payments.PaymentsClientMatch().list, name='payments-client-match'),
+    url(r'^payments/clients/matchs/(?P<pk>[0-9]+)$', payments.PaymentsClientMatch().detail, name='payments-client-match-detail'),
+
+    
 
     # Ajax Service
     url(r'^ajax_service/$', ajax.ajax_service, name='ajax-service'),
