@@ -518,12 +518,11 @@ class MonthlyFee(models.Model):
     pay_before = models.DateField(null=True)
     status = models.PositiveIntegerField(choices=Ch.fee_status)
 
-
 class Payment(models.Model):
     """Pagos."""
 
     amount = models.FloatField(_("amount"))
-    operation_number = models.CharField(_("operation number"), max_length=12)
+    operation_number = models.CharField(_("operation number"), max_length=12, null=True, blank=True)
     observations = models.CharField(_("observations"), max_length=255, null=True)
     authorized_by = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     authorization_date = models.DateTimeField(null=True)
@@ -533,7 +532,8 @@ class Payment(models.Model):
     payment_type = models.ForeignKey(PaymentType, on_delete=models.PROTECT)
     monthly_fee = models.ForeignKey(MonthlyFee, on_delete=models.PROTECT,
                                     null=True)
-
+    file_url = models.CharField(max_length=500, blank=True)
+    file_preview_url = models.CharField(max_length=500, blank=True)
 
 class MatchAcquired(models.Model):
     """Match Adquirido."""
