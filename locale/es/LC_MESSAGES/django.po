@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-09 15:47-0500\n"
+"POT-Creation-Date: 2018-10-11 19:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -368,17 +368,17 @@ msgstr "país de residencia del contacto"
 msgid "Bank"
 msgstr "Banco"
 
-#: .\api\models.py:525 .\dashboard\views\account_status.py:126
+#: .\api\models.py:524 .\dashboard\views\account_status.py:126
 #: .\dashboard\views\account_status.py:128
 #: .\dashboard\views\account_status.py:130
 msgid "amount"
 msgstr "monto"
 
-#: .\api\models.py:526
+#: .\api\models.py:525
 msgid "operation number"
 msgstr "número de operación"
 
-#: .\api\models.py:527
+#: .\api\models.py:526
 msgid "observations"
 msgstr "observaciones"
 
@@ -490,10 +490,8 @@ msgid "payment type"
 msgstr "tipo de pago"
 
 #: .\dashboard\forms.py:332
-#, fuzzy
-#| msgid "operation number"
 msgid "operation code"
-msgstr "número de operación"
+msgstr "codigo de operacion"
 
 #: .\dashboard\json2table.py:110
 msgid "search is empty"
@@ -596,9 +594,9 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\actor\sellersForm.html:177
 #: .\dashboard\templates\admin\actor\specialistsForm.html:213
 #: .\dashboard\templates\admin\authorization\specialist_match.html:162
-#: .\dashboard\templates\admin\payment\client_match.html:201
-#: .\dashboard\templates\admin\payment\match.html:201
-#: .\dashboard\templates\admin\payment\pending_detail.html:202
+#: .\dashboard\templates\admin\payment\client_match.html:202
+#: .\dashboard\templates\admin\payment\match.html:202
+#: .\dashboard\templates\admin\payment\pending_detail.html:203
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:20
 #: .\frontend\templates\frontend\lib\modals\reload.html:43
 msgid "save"
@@ -609,9 +607,9 @@ msgstr "guardar"
 #: .\dashboard\templates\admin\actor\sellersForm.html:179
 #: .\dashboard\templates\admin\actor\specialistsForm.html:215
 #: .\dashboard\templates\admin\authorization\specialist_match.html:164
-#: .\dashboard\templates\admin\payment\client_match.html:203
-#: .\dashboard\templates\admin\payment\match.html:203
-#: .\dashboard\templates\admin\payment\pending_detail.html:204
+#: .\dashboard\templates\admin\payment\client_match.html:204
+#: .\dashboard\templates\admin\payment\match.html:204
+#: .\dashboard\templates\admin\payment\pending_detail.html:205
 msgid "go back"
 msgstr "volver atrás"
 
@@ -684,10 +682,8 @@ msgid "price"
 msgstr "precio"
 
 #: .\dashboard\templates\admin\authorization\specialist_match.html:153
-#, fuzzy
-#| msgid "authorizations"
 msgid "autorization"
-msgstr "autorizaciones"
+msgstr "autorizacion"
 
 #: .\dashboard\templates\admin\authorization\specialist_match.html:159
 msgid ""
@@ -695,9 +691,9 @@ msgid ""
 "in the specialist contracting, and the platform is waiting for the "
 "subsequent payment by the specialist."
 msgstr ""
-"Autorizo la plataforma que revela las identidades de los usuarios involucrados."
-"en la contratación especializada, y la plataforma está a la espera de la"
-"Pago posterior por parte del especialista."
+"Autorizo la plataforma que revela las identidades de los usuarios "
+"involucrados.en la contratación especializada, y la plataforma está a la "
+"espera de laPago posterior por parte del especialista."
 
 #: .\dashboard\templates\admin\lib\_cropper.html:72
 msgid "please choose an image file."
@@ -888,10 +884,8 @@ msgid "single fee"
 msgstr "cuota única"
 
 #: .\dashboard\templates\admin\payment\client_match.html:143
-#, fuzzy
-#| msgid "fee quantities"
 msgid "fee quantity"
-msgstr "total de cutas"
+msgstr "cantidad de cuotas"
 
 #: .\dashboard\templates\admin\payment\client_match.html:148
 #: .\dashboard\templates\admin\payment\pending_detail.html:148
@@ -1198,17 +1192,13 @@ msgstr "pendiente"
 
 #: .\dashboard\views\payments.py:161 .\dashboard\views\payments.py:273
 #: .\dashboard\views\payments.py:386
-#, fuzzy
-#| msgid "create specialist"
 msgid "match specialist"
-msgstr "crear especialista"
+msgstr "match especialista"
 
 #: .\dashboard\views\payments.py:178 .\dashboard\views\payments.py:291
 #: .\dashboard\views\payments.py:404
-#, fuzzy
-#| msgid "clients"
 msgid "client"
-msgstr "clientes"
+msgstr "client"
 
 #: .\frontend\forms.py:9 .\frontend\templates\frontend\chat.html:65
 msgid "title"
