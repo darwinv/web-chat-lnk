@@ -106,15 +106,29 @@
                     <div>
                       <span>{{product.attribute_product.plan_name}}</span>
                     </div>
-                    <div> 
+                    <div>
                       <span class="bold">{% trans "validity"|title %}: 
                       </span>
                       <span>
-                        {{product.attribute_product.validity_months}}
-                      {% trans "months"|title %}</span>
+                        {% filter title %}
+                        {% blocktrans trimmed count product.attribute_product.validity_months as months %}
+                        {{ months }} month
+                        {% plural %}
+                        {{ months }} months
+                        {% endblocktrans %}
+                        {% endfilter %}
+                      </span>
                     </div>
                     <div>
-                      <span>{{product.attribute_product.query_quantity}} {% trans "queries"|title %}</span>
+                      <span>
+                        {% filter title %}
+                        {% blocktrans trimmed count product.attribute_product.query_quantity as queries %}
+                        {{ queries }} query
+                        {% plural %}
+                        {{ queries }} queries
+                        {% endblocktrans %}
+                        {% endfilter %}
+                      </span>
                     </div>
                 {% endif %}
 

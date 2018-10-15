@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-09 15:47-0500\n"
+"POT-Creation-Date: 2018-10-12 18:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -598,7 +598,7 @@ msgstr "dashboard"
 #: .\dashboard\templates\admin\authorization\specialist_match.html:162
 #: .\dashboard\templates\admin\payment\client_match.html:201
 #: .\dashboard\templates\admin\payment\match.html:201
-#: .\dashboard\templates\admin\payment\pending_detail.html:202
+#: .\dashboard\templates\admin\payment\pending_detail.html:216
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:20
 #: .\frontend\templates\frontend\lib\modals\reload.html:43
 msgid "save"
@@ -611,7 +611,7 @@ msgstr "guardar"
 #: .\dashboard\templates\admin\authorization\specialist_match.html:164
 #: .\dashboard\templates\admin\payment\client_match.html:203
 #: .\dashboard\templates\admin\payment\match.html:203
-#: .\dashboard\templates\admin\payment\pending_detail.html:204
+#: .\dashboard\templates\admin\payment\pending_detail.html:218
 msgid "go back"
 msgstr "volver atrás"
 
@@ -678,7 +678,7 @@ msgstr ""
 #: .\dashboard\templates\admin\authorization\specialist_match.html:137
 #: .\dashboard\templates\admin\payment\client_match.html:122
 #: .\dashboard\templates\admin\payment\match.html:137
-#: .\dashboard\templates\admin\payment\pending_detail.html:122
+#: .\dashboard\templates\admin\payment\pending_detail.html:136
 #: .\dashboard\views\account_status.py:98
 msgid "price"
 msgstr "precio"
@@ -695,9 +695,9 @@ msgid ""
 "in the specialist contracting, and the platform is waiting for the "
 "subsequent payment by the specialist."
 msgstr ""
-"Autorizo la plataforma que revela las identidades de los usuarios involucrados."
-"en la contratación especializada, y la plataforma está a la espera de la"
-"Pago posterior por parte del especialista."
+"Autorizo la plataforma que revela las identidades de los usuarios "
+"involucrados.en la contratación especializada, y la plataforma está a la "
+"espera de laPago posterior por parte del especialista."
 
 #: .\dashboard\templates\admin\lib\_cropper.html:72
 msgid "please choose an image file."
@@ -826,15 +826,16 @@ msgstr "borrar"
 
 #: .\dashboard\templates\admin\lib\_vars_scripts.html:20
 #: .\dashboard\templates\admin\payment\client_match.html:117
-#: .\dashboard\templates\admin\payment\pending_detail.html:117
 msgid "queries"
 msgstr "consultas"
 
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:22 .\frontend\forms.py:40
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:22
+#: .\frontend\forms.py:40
 msgid "availables"
 msgstr "disponibles"
 
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:23 .\frontend\forms.py:42
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:23
+#: .\frontend\forms.py:42
 msgid "expiration date"
 msgstr "fecha de vencimiento"
 
@@ -872,18 +873,17 @@ msgid "validity"
 msgstr "validez"
 
 #: .\dashboard\templates\admin\payment\client_match.html:114
-#: .\dashboard\templates\admin\payment\pending_detail.html:114
 msgid "months"
 msgstr "meses"
 
 #: .\dashboard\templates\admin\payment\client_match.html:135
 #: .\dashboard\templates\admin\payment\match.html:153
-#: .\dashboard\templates\admin\payment\pending_detail.html:135
+#: .\dashboard\templates\admin\payment\pending_detail.html:149
 msgid "payment information"
 msgstr "información de pago"
 
 #: .\dashboard\templates\admin\payment\client_match.html:137
-#: .\dashboard\templates\admin\payment\pending_detail.html:137
+#: .\dashboard\templates\admin\payment\pending_detail.html:151
 msgid "single fee"
 msgstr "cuota única"
 
@@ -894,16 +894,30 @@ msgid "fee quantity"
 msgstr "total de cutas"
 
 #: .\dashboard\templates\admin\payment\client_match.html:148
-#: .\dashboard\templates\admin\payment\pending_detail.html:148
+#: .\dashboard\templates\admin\payment\pending_detail.html:162
 msgid "fee number"
 msgstr "Número de la cuota"
 
 #: .\dashboard\templates\admin\payment\client_match.html:153
-#: .\dashboard\templates\admin\payment\pending_detail.html:153
+#: .\dashboard\templates\admin\payment\pending_detail.html:167
 msgid "fee amount"
 msgstr "monto a pagar"
 
-#: .\dashboard\templates\admin\payment\pending_detail.html:143
+#: .\dashboard\templates\admin\payment\pending_detail.html:114
+#, python-format
+msgid "%(months)s month"
+msgid_plural "%(months)s months"
+msgstr[0] "%(months)s mes"
+msgstr[1] "%(months)s meses"
+
+#: .\dashboard\templates\admin\payment\pending_detail.html:125
+#, python-format
+msgid "%(queries)s query"
+msgid_plural "%(queries)s queries"
+msgstr[0] "%(queries)s consulta"
+msgstr[1] "%(queries)s consultas"
+
+#: .\dashboard\templates\admin\payment\pending_detail.html:157
 msgid "fee quantities"
 msgstr "total de cutas"
 
@@ -1378,7 +1392,8 @@ msgstr "Cargo en la compañia"
 msgid "economic sector"
 msgstr "sector economico"
 
-#: .\login\templates\public\base.html:7 .\login\templates\public\login.html:32
+#: .\login\templates\public\base.html:7
+#: .\login\templates\public\login.html:32
 msgid "Log in"
 msgstr "Iniciar sesión"
 
