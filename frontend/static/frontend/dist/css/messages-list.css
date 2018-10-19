@@ -60,3 +60,10 @@ div.list-group {
 .pink{
     color: var(--pink);
 }
+ul.tree {
+    padding: 0px 0px 0px 15px;
+    display: none
+}
+span.number-circule.circule-pink {
+    background: var(--pink-basic)
+}

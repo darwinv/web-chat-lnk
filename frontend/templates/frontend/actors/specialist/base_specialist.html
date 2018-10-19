@@ -7,6 +7,8 @@
             <!--print categories-->
         </div>
     </div>
+
+{% include 'frontend/lib/modals/manage_query_specialist.html' %}
 {% endblock content_left_slide %}
 
 {% block meta %}
@@ -16,4 +18,5 @@
 
 {% block scripts_custom %}
     <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
+    <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
 {% endblock scripts_custom %}
