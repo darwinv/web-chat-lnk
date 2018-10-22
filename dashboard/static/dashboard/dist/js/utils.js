@@ -94,4 +94,33 @@ $(document).ready(function () {
     return this;
    }; 
   })( jQuery );
+
+
+
+  String.prototype.format_hard = function () {
+    args = arguments;    
+    a = this
+    for (var key in args[0]) {
+      // skip loop if the property is from prototype
+      if (!args[0].hasOwnProperty(key)) continue; 
+      a = a.replace("{"+key+"}", function () {
+        response = typeof args[0][key] != 'undefined' ? args[0][key] : '';
+        return response
+      });
+
+    }
+    return a
+    
+  };
+
+  String.prototype.format = function () {
+    var i = 0, args = arguments;
+    return this.replace(/{}/g, function () {      
+      response = typeof args[i] != 'undefined' ? args[i] : '';
+      i++
+      return response
+    });
+  };
+
+
 });

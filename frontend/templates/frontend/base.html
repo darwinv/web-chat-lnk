@@ -60,30 +60,24 @@
                     {% block content_right_head %}
                         <!-- menu y opciones -->
                         <div class="row">
-                            <div class="col-md-offset-3">
-                            </div>
-                            <div class="col-md-6">
-                                <i class="fas fa-comments"></i>
-                                <span>Consultas</span>
-                                <i class="fas fa-cog"></i>
-                                <span>Configuración</span>
+                            <div class="col-md-offset-9">
                             </div>
                             <div class="col-md-3">
-
                                 <div class="text-right" style="margin-right: 17%;">
                                     <div class="btn-group float-right">
                                         <i class="fas fa-bars dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                         <div class="dropdown-menu dropdown-menu-right text-center">
-                                            <button class="dropdown-item" type="button"><a href="#">{% trans "Account status" %}</a></button>
-                                            <button class="dropdown-item" type="button"><a href="#">{% trans "My acount" %}</a></button>
+                                            {% if request.user.role.id == ROLES.client  %}
+                                                {% include 'frontend/actors/client/menu.html' %}
 
-                                            <button class="dropdown-item" type="button">
-                                                <a href="{% block logout_url %}{% logout_url %}{% endblock %}" >{% trans "Sign out"|title %}</a>
-                                            </button>
+                                            {% elif request.user.role.id == ROLES.specialist  %}
+                                                {% include 'frontend/actors/specialist/menu.html' %}
+
+                                            {% elif request.user.role.id == ROLES.seller  %}
+                                                {% include 'frontend/actors/seller/menu.html' %}
+                                            {% endif %}
                                         </div>
                                     </div>
-
-                                    <i class="fas fa-home"></i>
                                 </div>
                             </div>
                         </div>

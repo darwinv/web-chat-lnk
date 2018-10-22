@@ -21,8 +21,6 @@ def ajax_service(request):
 
     if 'parameters' in request.GET:
         if type(request.GET['parameters']) is dict:
-            import pdb
-            pdb.set_trace()
             filters = dict(filters, **request.GET['parameters'])
 
     resp = obj_api.get(slug=url, token=token, arg=filters)

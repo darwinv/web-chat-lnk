@@ -29,6 +29,8 @@
 
 
 {% block scripts_custom %}
+  
+  <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
     <script type="text/javascript">
      url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
     </script>
