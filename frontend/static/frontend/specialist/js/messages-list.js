@@ -99,16 +99,14 @@ function reverse_list(snapshot) {
 }
 
 $(document).on('click','.manage-query-specialist',function(){
-
-    // if (tiene_queries_2) {
-    //     // toggle
-    // }else if(tiene_un_queries){
-    //     // show_modal
-    // }else{
-    //     //llevame al chat
-    // }
-
-    $(this).parent().children('ul.tree').toggle();
+    pending_queries = $(this).data("pending-query")
+    if (pending_queries > 1) {
+        $(this).parent().children('ul.tree').toggle();
+    }else if(pending_queries == 1){
+        $('#manage_query_specialist').modal('show');
+    }else{
+        //llevame al chat
+    }    
 });
 
 
