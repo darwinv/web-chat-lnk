@@ -335,7 +335,6 @@ class PaymentsSpecialistMatch(Payment):
             
             data_json = data.json()
             if request.method == 'POST':
-                
                 form = PaymentMatch(data=request.POST)
                 if form.is_valid():
                     data = form.cleaned_data
