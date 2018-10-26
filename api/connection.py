@@ -210,8 +210,8 @@ class api:
         try:
             headers = {'Authorization': 'Bearer ' + token}
             headers = dict(headers, **self._headers)
-            r = requests.get(self._url + slug, headers=headers, params=arg)
-            return r
+            result = requests.get(self._url + slug, headers=headers, params=arg)
+            return result
 
         except Exception as e:
             print(e.args)

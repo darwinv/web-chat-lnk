@@ -83,9 +83,9 @@ $(function () {
 
 	$(document).on('click',btnDelete,function(){
 		event.preventDefault();
-		id 		= $(this).data('id');
-    	url 	= $(this).data('url');
-    	data 	= {'id': id}
+		id = $(this).data('id');
+    	url = $(this).data('url');
+    	data = {'id': id}
     	sendAjaxDelete(url,data,'POST');
 	});
 

@@ -69,12 +69,10 @@ span.number-circule.circule-pink {
 }
 div#list_categories li {
     list-style: none;
+    width: 100%;
 }
 .list-group-item.list-group-item-action {
     padding: 4px;
-}
-li.manage-query-specialist {
-    float: left;
 }
 .list-group-item.list-group-item-action.pull-left > div {
     padding-right: 5px;

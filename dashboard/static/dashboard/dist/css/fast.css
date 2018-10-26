@@ -72,6 +72,10 @@ ul{
     max-width: 100%;
     height: auto;
 }
+.height-70vh{
+  height: 70vh;
+  overflow-y: auto;
+}
 .pointer{
 	cursor: pointer;
 }

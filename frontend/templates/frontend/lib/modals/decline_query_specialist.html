@@ -1,19 +1,20 @@
 {% load i18n %}
 
 <!-- Modal -->
-<div class="modal fade" id="manage_query_specialist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="decline_query_specialist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+      <!-- <i class="fas fa-arrow-left"></i> -->
       <center>
         <h4 class="modal-title title-modal-linkup" id="myModalLabel">{% trans "a new query has arrived"|title %}</h4>
       </center>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-          <form id="manage_query_modal" action="" method="post">
+          <form id="decline_query_modal" action="" method="post">
             {% csrf_token %}
-            <div id="modal_content_list" class="height-70vh" style="display: none;">
+            <div id="modal_content_list" class="height-70vh">
               
               <div class="cont-item user-chat-logo">
                 <img src="https://media.licdn.com/dms/image/C5103AQFqjVq6ZsiRJg/profile-displayphoto-shrink_800_800/0?e=1541635200&amp;v=beta&amp;t=TQM79nWeWi2978c30oIFDCqXDFFcFBLhQeghuZCAoVE" class="rounded-circle itemp" id="img_cat">
@@ -22,27 +23,19 @@
                 </p>
               </div>
 
-              <div class="query-info">
-                <div class="title-modal">
-                  Lorem Itsu Dor
+              <div class="decline" style="display: none;">
+                <div>
+                  {% trans "Indicate the reason why it declines" %}
                 </div>
-                <div class="mensages-list">
-                </div>
+                <textarea></textarea>
               </div>
+
+
             </div>
-            <center class="footer-motal-bottom">
-
-              <button type="button" class="btn btn-orange derive-query" style="display: none;">
-                {% trans "derive"|title %}
-              </button>
-              <button type="button" class="btn btn-orange decline-query" style="display: none;">
-                {% trans "decline"|title %}
-              </button>
-
-              <button type="submit" id="answer-query" class="btn btn-ligth-blue">
-                {% trans "answer"|title %}
-              </button>               
-            </center>
+             <center>
+               <button type="submit" id="decline-query" class="btn btn-orange">{% trans "decline"|title %}
+               </button>              
+             </center>
           </form>
           <div id="animacion1" class="hidden">
               <div class="ball"></div>

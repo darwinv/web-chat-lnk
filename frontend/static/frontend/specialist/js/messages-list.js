@@ -1,144 +1,268 @@
+/*CARGAR DATA EN EL LISTADO DE CLIENTES*/
 $(document).ready(function () {
-
     firebase.initializeApp(JSON.parse(apiEnvFirebase));
-
     var client_id = userID;
-    var starCountRef = firebase.database().ref('messagesList/specialist/s'+client_id).orderByChild('date');
+    var starCountRef = firebase.database().ref(
+        'messagesList/specialist/s'+client_id).orderByChild('date');
     starCountRef.on('value', function (snapshot) {
         $("#list_categories").empty();
         inject_items(reverse_list(snapshot));
     });
 });
-
+function reverse_list(snapshot) {
+    var l = new Array();    
+    snapshot.forEach(function (item) {
+        var aux = item.val();
+        aux.queryCurrent.message = aux.queryCurrent.message.slice(
+                                0, 20) + ' ...';
+        aux.queryCurrent.date = dateTextCustom(
+                                moment.utc(aux.queryCurrent.date), "-05:00");
+        l.push(aux);
+    });
+    return l;
+}
 function inject_items(list_items) {
     var cont = 0;
-
-    cell = "<li \
-             class='manage-query-specialist'\
-              data-pending-query='{pendingQuery}'>\
-                <div class='list-group-item list-group-item-action pull-left'>\
-                    <div class='col-xs-9 cont'>\
-                        <div class='cont-item'>\
-                            <img src='{photo}'class='rounded-circle itemp' id='img_cat'>\
-                            <p class='itemp'><strong class='nick'>{displayName}</strong>\
-                               <span class='title'>{title}</span><br>\
-                               <span>{message}</span>\
-                            </p>\
-                        </div>\
-                    </div>\
-                    <div class='col-xs-3 text-right'>\
-                        <span class='date size10'>{date}</span><br>\
-                        {pending_queries}\
-                        {pending_queries_to_solve}\
-                    </div>\
-                </div>\
-                {ul}\
-            </li>";
-
-                        
+    cell = `<li 
+             class='manage-query-specialist'
+              data-pending-query='{pendingQuery}' data-query-id='{queryId}'>
+                <div class='list-group-item list-group-item-action pull-left'>
+                    <div class='col-xs-9 cont'>
+                        <div class='cont-item'>
+                            <img src='{photo}' class='rounded-circle itemp' 
+                            id='img_cat'>
+                            <p class='itemp'>
+                                <strong class='nick'>{displayName}</strong>
+                                <span class='title'>{title}</span><br>
+                                <span>{message}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class='col-xs-3 text-right'>
+                        <span class='date size10'>{date}</span><br>
+                        {pendingQueries}
+                        {pendingQueriesToSolve}
+                    </div>
+                </div>
+                {ul}
+            </li>`;                        
 
     list_items.forEach(function (item) {
         var itemVal = item;
-        var count_pendings = 0;
-        var toogle_tree = ""
+        var countPendings = 0;
+        var toogleTree = pendingQueries = queryId = pendingQueriesToSolve = ""
         for (var key in itemVal.queries) {
             // skip loop if the property is from prototype
             if (!itemVal.queries.hasOwnProperty(key)) continue;
 
             var obj = itemVal.queries[key];
                        
-            toogle_tree = toogle_tree + cell.format_hard({
+            toogleTree = toogleTree + cell.format_hard({
                         "pendingQuery": "1",
                         "photo": itemVal.photo,
                         "displayName": itemVal.displayName,
                         "date": dateTextCustom(moment.utc(obj.date), "-05:00"),
                         "title": obj.title,
                         "message": obj.message,
-                        "pending_queries": "<span class='number-circule circule-pink'>{}<span>".format(1),
-                        "pending_queries_to_solve": "",
-                        "ul": ""
+                        "pendingQueries": `<span class='number-circule 
+                                            circule-pink'>1<span>`,
+                        "pendingQueriesToSolve": "",
+                        "ul": "",
+                        "queryId": obj.id,
                     });
-            count_pendings++
+            countPendings++
         }
 
-        if (count_pendings > 1) {
-            toogle_tree = "<ul class='tree' style='display:none'>{}</ul>".format(toogle_tree)
-        }else{
-            toogle_tree = ""
-            //toogle_tree = "<ul >{}</ul>".format(toogle_tree)
+        if (countPendings > 1) {
+            // Si se necesita desplegar queries
+            toogleTree = `<ul class='tree' style='display:none'>
+                            ${toogleTree}</ul>`
+            pendingQueries = `<span class='number-circule circule-pink'>
+                            ${countPendings}</span>`
+            queryId = obj.id
+        }else if (countPendings > 0) {
+            // Mostrar los queries pendientes si queries > 0 < 2
+            pendingQueries = `<span class='number-circule circule-pink'>
+                            ${countPendings}</span>`
+            queryId = obj.id
+            toogleTree = ""
         }
 
-        if (count_pendings > 0) {
-            pending_queries = "<span class='number-circule circule-pink'>{}</span>".format(count_pendings)
-        }else{
-            pending_queries = ""
-        }
         if (itemVal.pending_queries_to_solve > 0) {
-            pending_queries_to_solve = "<span class='number-circule circule-turque'>\
-            {}</span>".format(itemVal.pending_queries_to_solve)
-        }else{
-            pending_queries_to_solve = ""
+            pendingQueriesToSolve = `<span 
+                                    class='number-circule circule-turque'>
+                                    ${itemVal.pending_queries_to_solve}</span>`
         }
+
         var t = cell.format_hard({
-                        "pendingQuery": count_pendings,
+                        "pendingQuery": countPendings,
                         "photo": itemVal.photo,
                         "displayName": itemVal.displayName,
                         "date": itemVal.queryCurrent.date,
                         "title": obj.title,
                         "message": obj.message,
-                        "pending_queries": pending_queries,
-                        "pending_queries_to_solve": pending_queries_to_solve,
-                        "ul": toogle_tree
+                        "pendingQueries": pendingQueries,
+                        "pendingQueriesToSolve": pendingQueriesToSolve,
+                        "ul": toogleTree,
+                        "queryId": queryId,
                     });
         
         $("#list_categories").append(t)
     });
 }
 
-function reverse_list(snapshot) {
-    var l = new Array();
-    // console.log(snapshot)
-    snapshot.forEach(function (item) {
-      // console.log(item.val());
-        var aux = item.val();
-        // console.log(aux.queryCurrent.message);
-        aux.queryCurrent.message = aux.queryCurrent.message.slice(0, 20) + ' ...';
-        aux.queryCurrent.date = dateTextCustom(moment.utc(aux.queryCurrent.date), "-05:00");
-        l.push(aux);
-    });
-    return l;
-}
 
 $(document).on('click','.manage-query-specialist',function(){
+    /* Manejar listado de clientes */
     pending_queries = $(this).data("pending-query")
-    console.log(pending_queries)
+    queryId = $(this).data("query-id")
     if (pending_queries > 1) {
+        /*Desplegar consultas*/
         $(this).children('ul.tree').toggle();
     }else if(pending_queries == 1){
-        $('#manage_query_specialist').modal('show');
+        /*Mostrar Modal*/
+        loadModalQueryData(queryId)
+        $('#manage_query_specialist').modal('show'); 
     }else{
-        //llevame al chat
-    }    
+        /*llevame al chat*/
+
+    }
+});
+function loadModalQueryData(queryId){
+    /*gestionar la carga del query en el modal*/
+    // Contenedor listado
+    var win = $("#manage_query_specialist").find('#modal_content_list');
+    win.data("query-id",queryId)
+    win.data("url",'queries-messages/{}/'.format(queryId));  // Url a consumir
+    win.data("lastScrollTop", -1) // Inicializamos variable Top solo Modales
+    DoAjaxToModalQueryData(win);
+}
+
+
+/*ACEPTAR QUERY*/
+$(document).on('submit','#manage_query_modal',function(event){
+    /*Usuario acepta el query*/
+    event.preventDefault();
+     
 });
 
 
-var query = new Object();
-$('#manage_query_specialist').on('shown.bs.modal', function (e) {
-    // Cuando abre vista modal de los planes
-    var win = $('#modal_content_list'); // Contenedor listado   
-    //Inicializando data 
-    win.data("url",'queries-messages/'.concat("25/"));  // Url a consumir
-    loadModalQueryData(win);
+/*BOTONES DE DERIVAR QUERY*/
+$(document).on('click','.derive-query',function(event){
+    /*Usuario le da click boton deriva*/
+    event.preventDefault();
+    showModalDeriveDecline();
+}); 
+$(document).on('click','.derive-associate-list .rounded-circle',function(event){
+    /*Usuario deriba o declina*/
+    if($(this).siblings("input").is(':enabled')) {
+        $(".derive-associate-list").find("associate-radio").prop("checked", true);
+        $(this).siblings("input").prop("checked", true);
+    }
 });
-function loadModalQueryData(win){
-    console.log(win.data("url"))
-    win.sendAjaxPagination(null, function(data) {
-        query = data
-        console.log(query)
+$('#manage_query_specialist').on('hidden.bs.modal', function () {
+    /*al ocultar el modal de derivar*/
+    $(".container-modal-inputs").empty();
+});
+$(document).on('submit','#derive_query_modal',function(event){
+    /*Usuario deriva el query*/
+    event.preventDefault();
+    
+});
+function loadModalAsociateData(queryId){
+    /*gestionar la carga de ASOCIADOS en el modal*/
+    // Contenedor listado
+    var win = $("#derive_query_specialist").find('#modal_content_list');
+    parameters = {'query': queryId}
+    win.data("parameters", parameters);
+    win.data("url",'specialists-asociate/');  // Url a consumir
+    win.data("lastScrollTop", -1); // Inicializamos variable Top solo Modales
+    DoAjaxToModalAsociateSpecialistsData(win);
+}
+
+
+/*BOTONES DE DECLINAR QUERY*/
+$(document).on('click','.decline-query',function(event){
+    /*Usuario le da click boton declina*/
+    event.preventDefault();
+    showModalDeriveDecline();
+});
+$(document).on('submit','#decline_query_modal',function(event){
+    /*Usuario acepta el query*/
+    event.preventDefault();
+     
+});
+
+
+function showModalDeriveDecline(){
+    if (type_specialist=="m") {
+        // Contenedor listado
+        var win = $("#manage_query_specialist").find('#modal_content_list');
+        loadModalAsociateData(win.data("query-id"));
+        $('#manage_query_specialist').modal('hide');
+        $('#derive_query_specialist').modal('show');
+    }else{
+        $('#manage_query_specialist').modal('hide');
+        $('#decline_query_specialist').modal('show');
+    }
+}
+
+/*FUNCIONES GET AJAX*/
+function DoAjaxToModalQueryData(win){
+    win.sendAjaxPagination(function(data) {
+        htmlMessage = ""
+        win.find(".user-chat-logo .rounded-circle").attr("src",data.user.photo)
+        win.find(".user-chat-logo .nick").html(data.user.display_name)
+        win.find(".title-modal").html(data.user.title)
+
+        cell = "<div>{message}</div>"
+        for (var key in data.message) {
+            // skip loop if the property is from prototype
+            if (!data.message.hasOwnProperty(key)) continue;
+
+            var obj = data.message[key];
+            if (obj.content_type == 1) {
+                htmlMessage = htmlMessage + cell.format_hard({
+                    "message":obj.message
+                })
+            }
+        }
+        win.find(".mensages-list").html(htmlMessage)
+
+        win.show();
+        $('#manage_query_specialist').find('.derive-query').show();
     });
 }
-$('#manage_query_specialist').on('hidden.bs.modal', function () {
-    $(".container-modal-inputs").empty();
-    $("#message").empty();
-    $("#message").removeClass();
-});
+function DoAjaxToModalAsociateSpecialistsData(win){
+    win.sendAjaxPagination(function(data) {
+        html_specialist = "";
+        count_associates = 0;
+        cell = `<div class='cont-item user-chat-logo'>
+                    <input {declined} type='radio' name='associate-radio'
+                     value='{id}' />
+                    <img src='{photo}' data-specialist-id='{id}'
+                    class='rounded-circle itemp'  title='{name}'>
+                </div>`;
+
+        for (var key in data) {
+            declined = ""
+            // skip loop if the property is from prototype
+            if (!data.hasOwnProperty(key)) continue;
+            var obj = data[key];
+
+            if (obj.declined) {
+                declined = "disabled"
+            }
+            
+            html_specialist = html_specialist + cell.format_hard({
+                "photo":obj.photo,
+                "id": obj.id,
+                "name": `${obj.last_name} ${obj.first_name}`,
+                "declined": declined
+            })
+            count_associates++;
+        }
+        win.find(".derive-associate-list").html(html_specialist)
+    });
+}
+/*FUNCIONES POST AJAX*/

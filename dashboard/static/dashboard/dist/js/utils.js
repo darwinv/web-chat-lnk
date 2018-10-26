@@ -28,10 +28,9 @@ $(document).ready(function () {
     // win.data("url",'clients/plans/');  Requerido: Url a consumir
     // win.data("page", 0);  Opcional: Inicializacion de pagina en 0 (Modals)
     // win.data("lastScrollTop", -1) Opcional: Inicializamos variable Top (Modals)
-   $.fn.sendAjaxPagination = function(parameters=null, clouserPagination) {
+   $.fn.sendAjaxPagination = function(clouserPagination) {
     // FUNCION GENERICA PARA REALIZAR GET AJAX PARA PAGINACION
     // clouserPagination funcion a ejecutar call back
-    // parameters: objeto con valores filtrables
     
     // Variables externas que necesitan ser definidas    
     //AJAX_SERVICE: url genica para servicios get en el servidor
@@ -66,16 +65,18 @@ $(document).ready(function () {
     // Create loading on footer list Win.loading
     page = $window.data("page");
     url = $window.data("url");
-    
+    parameters = $window.data("parameters");
+
     if (page === undefined){
       page = 1;
     }else{
       page++;
     }
-    var data = {'page':page, 'url':url, 'parameters':parameters}
-
-    // $window.animate({ scrollTop: $window.getScrollHeight() }, 100);
-
+    var data = {'page':page, 'url':url};
+    
+    if (typeof(parameters) == "object"){
+      data = Object.assign({}, data, parameters);
+    }
     $.ajax({
         url: AJAX_SERVICE,
         dataType: 'json',
@@ -87,8 +88,8 @@ $(document).ready(function () {
           }
         },
         complete: function() {
-            $window.data('requestRunning', true);
-            $window.find(".loading-html").remove();
+          $window.data('requestRunning', true);
+          $window.find(".loading-html").remove();
         }
     });
     return this;
@@ -121,6 +122,36 @@ $(document).ready(function () {
       return response
     });
   };
+
+/*AJAX Service*/
+  function sendAjaxService(url,data,type='POST', clouserSuccess){
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    $.ajax({
+      type: type,
+      beforeSend: function(request, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              request.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+          // Recorre cabeceras por clave y valor
+        for (var key in headers){
+          if (headers.hasOwnProperty(key)) {
+               request.setRequestHeader(key, headers[key]);
+          }
+        }
+      },
+      url: url,
+      data:data,
+      dataType: "json",
+      success: function(msg) {
+        clouserSuccess(data);
+      }
+    });
+  }
+  function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
 
 
 });

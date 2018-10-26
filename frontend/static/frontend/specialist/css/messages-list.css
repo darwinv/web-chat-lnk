@@ -1,0 +1,14 @@
+.derive-associate-list img.rounded-circle.itemp {
+    width: 100px;
+    height: 100px;
+}
+
+.derive-associate-list .cont-item.user-chat-logo {
+    display: inline-table;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+li.manage-query-specialist {
+    float: left;
+}
