@@ -43,7 +43,7 @@ class APIBackend(object):
                         data_specialist = specialist.json()
                         request.session['specialist'] = {}
                         request.session['specialist']['type_specialist'] = data_specialist['type_specialist']
-
+                        
             except User.DoesNotExist:
                 return None
 

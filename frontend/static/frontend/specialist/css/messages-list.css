@@ -1,7 +1,7 @@
 .derive-associate-list img.rounded-circle.itemp {
     width: 100px;
     height: 100px;
-    opacity: 0.6;
+    opacity: 0.7;
     display: inline-block;
 }
 input[type="radio"]:checked+img {
@@ -9,7 +9,7 @@ input[type="radio"]:checked+img {
     border: 2px solid var(--turquoise);
 }
 input[type="radio"]:disabled+img {
-    opacity: 0.1 !important;
+    opacity: 0.09 !important;
 }
 .derive-associate-list input[type="radio"] {
     display: none;

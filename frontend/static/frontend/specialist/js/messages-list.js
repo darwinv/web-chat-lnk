@@ -25,7 +25,8 @@ function inject_items(list_items) {
     var cont = 0;
     cell = `<li 
              class='manage-query-specialist'
-              data-pending-query='{pendingQuery}' data-query-id='{queryId}'>
+              data-pending-query='{pendingQuery}' data-query-id='{queryId}'
+                data-client-id='{clientId}'>
                 <div class='list-group-item list-group-item-action pull-left'>
                     <div class='col-xs-9 cont'>
                         <div class='cont-item'>
@@ -69,6 +70,7 @@ function inject_items(list_items) {
                         "pendingQueriesToSolve": "",
                         "ul": "",
                         "queryId": obj.id,
+                        "clientId": itemVal.client
                     });
             countPendings++
         }
@@ -105,6 +107,7 @@ function inject_items(list_items) {
                         "pendingQueriesToSolve": pendingQueriesToSolve,
                         "ul": toogleTree,
                         "queryId": queryId,
+                        "clientId": itemVal.client
                     });
         
         $("#list_categories").append(t)
@@ -116,26 +119,30 @@ $(document).on('click','.manage-query-specialist',function(){
     /* Manejar listado de clientes */
     pending_queries = $(this).data("pending-query")
     queryId = $(this).data("query-id")
+    clientId = $(this).data("client-id")
     if (pending_queries > 1) {
         /*Desplegar consultas*/
         $(this).children('ul.tree').toggle();
     }else if(pending_queries == 1){
         /*Mostrar Modal*/
-        loadModalQueryData(queryId)
+        loadModalQueryData(queryId, clientId)
         $('#manage_query_specialist').modal('show'); 
     }else{
-        /*llevame al chat*/
-
+        /*llevame al chat*/        
+        url = CHAT_SPECIALIST.replace('0', $(this).data("client-id"));
+        window.location.href = url;
     }
 });
-function loadModalQueryData(queryId){
+function loadModalQueryData(queryId, clientId){
     /*gestionar la carga del query en el modal*/
     // Contenedor listado
     var win = $("#manage_query_specialist").find('#modal_content_list');
     win.data("query-id",queryId)
+    win.data("client-id",clientId)
     win.data("url",'queries-messages/{}/'.format(queryId));  // Url a consumir
     win.data("lastScrollTop", -1) // Inicializamos variable Top solo Modales
     DoAjaxToModalQueryData(win);
+    $("#manage_query_specialist").find("button").removeAttr("disabled");
 }
 
 
@@ -143,7 +150,18 @@ function loadModalQueryData(queryId){
 $(document).on('submit','#manage_query_modal',function(event){
     /*Usuario acepta el query*/
     event.preventDefault();
-     
+    var win = $("#manage_query_specialist").find('#modal_content_list');
+    data = {
+        "url": `query-accept/${win.data("query-id")}`,
+    }
+    
+    $("#manage_query_specialist").find("button").attr("disabled", true);
+    sendAjaxService(data, function(response) {
+        // go to chat
+        url = CHAT_SPECIALIST.replace('0', win.data("client-id"));
+        window.location.href = url;
+    }, type="PUT")
+
 });
 
 
@@ -237,9 +255,9 @@ function showModalDeriveDecline(){
 function DoAjaxToModalQueryData(win){
     win.sendAjaxPagination(function(data) {
         htmlMessage = ""
-        win.find(".user-chat-logo .rounded-circle").attr("src",data.user.photo)
-        win.find(".user-chat-logo .nick").html(data.user.display_name)
-        win.find(".title-modal").html(data.user.title)
+        $(".modal-body .header-modal").find(".rounded-circle").attr("src",data.user.photo)
+        $(".modal-body .header-modal").find(".nick").html(data.user.display_name)
+        $(".modal-body").find(".title-modal").html(data.title)
 
         cell = "<div>{message}</div>"
         for (var key in data.message) {

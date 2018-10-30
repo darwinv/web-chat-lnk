@@ -22,6 +22,7 @@
 {% block scripts_custom %}
     <script type="text/javascript">
         var type_specialist = "{{request.session.specialist.type_specialist}}";
+        const CHAT_SPECIALIST = "{% url 'frontend:chat-specialist' pk=0 %}";
     </script>
     <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
     <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
