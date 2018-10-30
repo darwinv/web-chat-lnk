@@ -5,14 +5,8 @@ $(document).ready(function () {
 
     $(document).on('click', testMessage,function(){
     /* Manejar listado de clientes */
-        titleQuery.show();
+
+        contentTitleQuery.show();
     });
-
-
-
-
-
-
-
 
 }); // cierra document ready

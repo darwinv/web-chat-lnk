@@ -205,12 +205,12 @@ class api:
             return True
 
 
-    def get_all(self, token, slug='', arg=None):
+    def get_all(self, token, slug='', arg=None, data=None):
 
         try:
             headers = {'Authorization': 'Bearer ' + token}
             headers = dict(headers, **self._headers)
-            result = requests.get(self._url + slug, headers=headers, params=arg)
+            result = requests.get(self._url + slug, headers=headers, params=arg, data=data)
             return result
 
         except Exception as e:

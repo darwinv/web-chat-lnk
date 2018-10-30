@@ -89,7 +89,7 @@ chatsock.onmessage = function(message) {
     var resScroll = positionScroll / diffScroll;
     $.each(data, function(key,value){
         var msg = value.message;
-        console.log(value.id);
+        //console.log(value.id);
         var codeUser = value.codeUser;
         // Se crea el div del globo para renderizarlo
         // se valida el tema de si soy el q cree el mensaje o al contrario
@@ -115,7 +115,7 @@ chatsock.onmessage = function(message) {
                                 "</div>"+
                             "</div>";
         boxChat.append(divMessage)
-        // console.log("sender: "+ value.user_id + " conected: "+ userID);
+        // //console.log("sender: "+ value.user_id + " conected: "+ userID);
         if (value.user_id != userID){
             audio.play();
         }
@@ -128,7 +128,7 @@ chatsock.onmessage = function(message) {
         scrollDown();
     }
     if (!$("#animacion").hasClass('hidden')){
-      console.log("en scrollwdown");
+      //console.log("en scrollwdown");
         $("#animacion").addClass("hidden");
     }
 };
@@ -182,10 +182,10 @@ $("#form-chat").submit(function(e){
           files:JSON.stringify(arr_files)
         },
         success: function(data){
-          console.log("en callback");
+          //console.log("en callback");
           $("#title_query").val('');
           $("#text_message").val('').focus();
-          console.log(data);
+          //console.log(data);
           fetchData(data.query_id, data.message_files_id)
           $('#file-linkup').fileinput('upload');
         }
@@ -197,7 +197,7 @@ function fetchData(query_id, msgs){
 
   $('#file-filepreajax').on('filepreupload', function(event, data, previewId, index) {
     data.extra = { 'query': query_id, 'messages':msgs }
-    console.log(data);
+    //console.log(data);
     // return data;
   });
 }
@@ -216,7 +216,7 @@ function sendQueryMessage(){
     // Validations
     if (text_message == "")
         return false;
-    console.log("send query message")
+    //console.log("send query message")
     $("#animacion").toggleClass("hidden");
 
     if (role_id == ROLES.specialist) {
@@ -237,7 +237,7 @@ function sendQueryMessage(){
         category: category,
         query: query_id
     }
-    console.log(chatsock.send(JSON.stringify(message)));
+    //console.log(chatsock.send(JSON.stringify(message)));
 
     $("#title_query").val('')
     $("#text_message").val('').focus();
