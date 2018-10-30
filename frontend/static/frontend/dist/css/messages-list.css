@@ -67,3 +67,14 @@ ul.tree {
 span.number-circule.circule-pink {
     background: var(--pink-basic)
 }
+div#list_categories li {
+    list-style: none;
+    width: 100%;
+}
+.list-group-item.list-group-item-action {
+    padding: 4px;
+}
+.list-group-item.list-group-item-action.pull-left > div {
+    padding-right: 5px;
+    padding-left: 5px;
+}

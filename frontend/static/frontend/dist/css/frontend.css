@@ -94,6 +94,11 @@ button.btn-ligth-blue, button.btn-ligth-blue:hover, button.btn-ligth-blue:active
   color: white;
   font-weight: bold;
 }
+button.btn-orange, button.btn-orange:hover, button.btn-orange:active, button.btn-orange:focus{
+  background-color: var(--orange);
+  color: white;
+  font-weight: bold;
+}
 
 /* Para Modales  en el Front */
 
@@ -116,12 +121,19 @@ button.btn-ligth-blue, button.btn-ligth-blue:hover, button.btn-ligth-blue:active
   opacity: 1;
   color:white;
 }
-
+.title-modal {
+    text-align: center;
+    font-weight: bold;
+}
 .cont-check{
   padding-left: 35px;
   margin-bottom: 12px;
 }
-
+.modal-content i.fa-arrow-left {
+    font-size: 26px;
+    margin: auto 10px;
+    color: gray;
+}
 /* Footer */
 footer small{
   color:white;

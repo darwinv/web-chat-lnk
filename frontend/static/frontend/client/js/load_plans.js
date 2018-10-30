@@ -21,7 +21,7 @@ $(document).ready(function () {
   });
 
   function loadPlansChange(win){
-    win.sendAjaxPagination(null, function(data) {
+    win.sendAjaxPagination(function(data) {
       showPlansChange(data.results)
     });
   }
