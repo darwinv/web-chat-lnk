@@ -114,7 +114,6 @@ function inject_items(list_items) {
     });
 }
 
-
 $(document).on('click','.manage-query-specialist',function(){
     /* Manejar listado de clientes */
     pending_queries = $(this).data("pending-query")

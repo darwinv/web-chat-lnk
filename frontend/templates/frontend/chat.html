@@ -59,11 +59,9 @@
         <form id="form-chat" action="" method="post" data-queryurl="{% url 'frontend:send-query' %}"
       data-upload="{% url 'frontend:upload_file' %}">
             {% if request.user.role.id == ROLES.client  %}
-             <div class="title-box" style="display: none;">
+             <div class="title-box" style="display: none;" id="title_query_content">
                  {{ form.title.label_tag }}
                  {{ form.title }}
-                <!-- <label for="title_query" style="color: white;">{% trans "title"|title %}</label> -->
-                <!-- <input type="text" class="form-control" id="title_query" placeholder='{% trans "Write your query" %}'> -->
             </div>
             {% endif %}
 
