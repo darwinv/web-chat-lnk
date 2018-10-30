@@ -22,15 +22,14 @@
                   <strong class="nick">Luis Alejandro Laurente</strong>
                 </p>
               </div>
-
-              <div class="decline" style="display: none;">
-                <div>
+              <hr>
+              <div class="decline" >
+                <div class="marB10 text-center">
                   {% trans "Indicate the reason why it declines" %}
                 </div>
-                <textarea></textarea>
+                <textarea required="required" placeholder="Explica el motivo por el cual no puedes realizar esta consulta!"
+                id="message_decline"></textarea>
               </div>
-
-
             </div>
              <center>
                <button type="submit" id="decline-query" class="btn btn-orange">{% trans "decline"|title %}

@@ -99,8 +99,8 @@ function inject_items(list_items) {
                         "photo": itemVal.photo,
                         "displayName": itemVal.displayName,
                         "date": itemVal.queryCurrent.date,
-                        "title": obj.title,
-                        "message": obj.message,
+                        "title": itemVal.queryCurrent.title,
+                        "message": itemVal.queryCurrent.message,
                         "pendingQueries": pendingQueries,
                         "pendingQueriesToSolve": pendingQueriesToSolve,
                         "ul": toogleTree,
@@ -158,8 +158,11 @@ $(document).on('click','.derive-associate-list .rounded-circle',function(event){
     if($(this).siblings("input").is(':enabled')) {
         $(".derive-associate-list").find("associate-radio").prop("checked", true);
         $(this).siblings("input").prop("checked", true);
+
+        $("#derive-query").removeAttr("disabled");
     }
 });
+
 $('#manage_query_specialist').on('hidden.bs.modal', function () {
     /*al ocultar el modal de derivar*/
     $(".container-modal-inputs").empty();
@@ -167,7 +170,19 @@ $('#manage_query_specialist').on('hidden.bs.modal', function () {
 $(document).on('submit','#derive_query_modal',function(event){
     /*Usuario deriva el query*/
     event.preventDefault();
+    specialist = $('input[name=associate-radio]:checked').val();
+    var win = $("#derive_query_specialist").find('#modal_content_list');
+
+    data = {
+        "url": `query-derive/${win.data("parameters").query}`,
+        "specialist": specialist
+    }
     
+    $("#derive-query").attr("disabled", true);
+    sendAjaxService(data, function(response) {
+        $('#derive_query_specialist').modal('hide');
+        $("#derive-query").removeAttr("disabled");
+    }, type="PUT")
 });
 function loadModalAsociateData(queryId){
     /*gestionar la carga de ASOCIADOS en el modal*/
@@ -190,7 +205,18 @@ $(document).on('click','.decline-query',function(event){
 $(document).on('submit','#decline_query_modal',function(event){
     /*Usuario acepta el query*/
     event.preventDefault();
-     
+    message = $('#message_decline').val();
+    var win = $("#manage_query_specialist").find('#modal_content_list');
+    data = {
+        "url": `query-decline/${win.data("query-id")}`,
+        "message": message
+    }
+    $("#decline-query").attr("disabled", true);
+    sendAjaxService(data, function(response) {       
+        $('#decline_query_specialist').modal('hide');
+        $("#decline-query").removeAttr("disabled");
+    }, type="PUT")
+
 });
 
 
@@ -230,7 +256,11 @@ function DoAjaxToModalQueryData(win){
         win.find(".mensages-list").html(htmlMessage)
 
         win.show();
-        $('#manage_query_specialist').find('.derive-query').show();
+        if (type_specialist=="m") {
+            $('#manage_query_specialist').find('.derive-query').show();
+        }else{
+            $('#manage_query_specialist').find('.decline-query').show();
+        }        
     });
 }
 function DoAjaxToModalAsociateSpecialistsData(win){
@@ -265,4 +295,3 @@ function DoAjaxToModalAsociateSpecialistsData(win){
         win.find(".derive-associate-list").html(html_specialist)
     });
 }
-/*FUNCIONES POST AJAX*/

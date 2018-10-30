@@ -123,35 +123,32 @@ $(document).ready(function () {
     });
   };
 
-/*AJAX Service*/
-  function sendAjaxService(url,data,type='POST', clouserSuccess){
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-    $.ajax({
-      type: type,
-      beforeSend: function(request, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-              request.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-          // Recorre cabeceras por clave y valor
-        for (var key in headers){
-          if (headers.hasOwnProperty(key)) {
-               request.setRequestHeader(key, headers[key]);
-          }
-        }
-      },
-      url: url,
-      data:data,
-      dataType: "json",
-      success: function(msg) {
-        clouserSuccess(data);
-      }
-    });
-  }
-  function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-  }
-
-
-
 });
+/*AJAX Service*/
+function sendAjaxService(data, clouserSuccess, type='POST'){
+  var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+  $.ajax({
+    type: type,
+    beforeSend: function(request, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            request.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+        // Recorre cabeceras por clave y valor
+      for (var key in headers){
+        if (headers.hasOwnProperty(key)) {
+          request.setRequestHeader(key, headers[key]);
+        }
+      }
+    },
+    url:AJAX_SERVICE,
+    data:data,
+    dataType: "json",
+    success: function(response) {
+      clouserSuccess(response);
+    }
+  });
+}
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
