@@ -5,7 +5,7 @@ from api.connection import api
 from django.utils.translation import ugettext_lazy as _
 
 class Client:
-    def set_chosen_plan(request, pk):
+    def set_chosen_plan(self, request, pk):
         """Elegir plan para consultar."""
         obj_api = api()
         token = request.session['token']
@@ -19,7 +19,7 @@ class Client:
             return JsonResponse({'message': _('there is an error'),
                                  'class': 'error'})
 
-    def activate_plan(request, code):
+    def activate_plan(self, request, code):
         """Activar Plan por codigo PIN."""
         obj_api = api()
         token = request.session['token']
@@ -34,7 +34,7 @@ class Client:
         return JsonResponse(resp)
 
 
-    def get_plans_code(request, code):
+    def get_plans_code(self, request, code):
         """Traer Planes sin activar por Pin."""
         obj_api = api()
         token = request.session['token']
@@ -42,7 +42,7 @@ class Client:
         return JsonResponse(resp)
 
 
-    def plans(request):
+    def plans(self, request):
         """Planes Activos."""
         obj_api = api()
         token = request.session['token']
