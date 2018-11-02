@@ -165,7 +165,7 @@ class PaymentsClientMatch(Payment):
         form_filters = PendingPaymentFilter(request.GET)
         if form_filters.is_valid():  # Agregamos filtros de encontrarse alguno
             filters = form_filters.cleaned_data
-            filters["status"] = 4
+            filters["status"] = [4,6]
             
             # Traer data para el listado
             data = obj_api.get_all(slug='backend/matchs/', arg=filters, token=token)
@@ -335,7 +335,6 @@ class PaymentsSpecialistMatch(Payment):
             
             data_json = data.json()
             if request.method == 'POST':
-                
                 form = PaymentMatch(data=request.POST)
                 if form.is_valid():
                     data = form.cleaned_data

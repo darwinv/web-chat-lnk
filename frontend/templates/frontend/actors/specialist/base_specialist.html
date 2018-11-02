@@ -7,13 +7,23 @@
             <!--print categories-->
         </div>
     </div>
+
+{% include 'frontend/lib/modals/manage_query_specialist.html' %}
+{% include 'frontend/lib/modals/derive_query_specialist.html' %}
+{% include 'frontend/lib/modals/decline_query_specialist.html' %}
 {% endblock content_left_slide %}
 
 {% block meta %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+    <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
 {% endblock %}
 
 {% block scripts_custom %}
+    <script type="text/javascript">
+        var type_specialist = "{{request.session.specialist.type_specialist}}";
+        const CHAT_SPECIALIST = "{% url 'frontend:chat-specialist' pk=0 %}";
+    </script>
     <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
+    <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
 {% endblock scripts_custom %}

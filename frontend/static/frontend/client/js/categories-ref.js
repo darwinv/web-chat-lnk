@@ -39,6 +39,12 @@ function inject_items(list_items,  id_user) {
         var itemVal = item;
         // chat = 'es/web/client/chat/'
         console.log(itemVal.datetime);
+
+        if (itemVal.datetime) {
+            icon = "pink"
+        }else{
+            icon = "turquoise"
+        }
         var url_chat = $('.info-div').data('urlchat').replace('0',item.id);
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' onclick=\"return putViewToApi('"+id_user+"',"+item.id+");\"id='" + "cat" + item.id + "'>\
@@ -51,8 +57,8 @@ function inject_items(list_items,  id_user) {
                                         </div>\
                                      </div>\
                                 </div>\
-                                <div class='col-2 e'>\
-                                        <img src='https://s3-sa-east-1.amazonaws.com/linkup-statics/arrows.png' class='image-cell'>\
+                                <div class='col-2'>\
+                                    <i class='fas fa-angle-right "+icon+"'></i>\
                                 </div>\
                             </div>\
                         </a>");

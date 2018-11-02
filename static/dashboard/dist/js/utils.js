@@ -28,7 +28,7 @@ $(document).ready(function () {
     // win.data("url",'clients/plans/');  Requerido: Url a consumir
     // win.data("page", 0);  Opcional: Inicializacion de pagina en 0 (Modals)
     // win.data("lastScrollTop", -1) Opcional: Inicializamos variable Top (Modals)
-   $.fn.sendAjaxPagination = function(parameters=null, clouserPagination) {
+   $.fn.sendAjaxPagination = function(clouserPagination) {
     // FUNCION GENERICA PARA REALIZAR GET AJAX PARA PAGINACION
     // clouserPagination funcion a ejecutar call back
     // parameters: objeto con valores filtrables
