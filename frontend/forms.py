@@ -27,6 +27,17 @@ class ActivePlansForm(forms.Form):
         self.fields['active_plans'].choices = [(l['id'], l['value'])
                                                for l in newplans]
 
+class ContactForm(forms.Form):
+    """Formulario de contacto(Soporte)"""
+
+    title = forms.CharField(label='', max_length=100)
+    message = forms.CharField(label='')
+    message.widget = forms.Textarea()
+    title.widget.attrs.update({'id': 'title_contact', 'class': 'form-control contact-field',
+                              'placeholder': _('Title of your concern')})
+
+    message.widget.attrs.update({'id': 'text_message', 'class': 'form-control contact-field',
+                                'placeholder': _('Write what you want to tell us')})
 
 def format_choices(plans):
     """Formato para opciones."""
@@ -41,3 +52,4 @@ def format_choices(plans):
             '/' + str(plans[l]['query_quantity']) + ' | ' +\
             _('expiration date') + ': ' + plans[l]['expiration_date']
     return newplan
+

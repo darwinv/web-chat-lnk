@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query
+from frontend.views import index, chat, plans, query, contact
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -40,7 +40,8 @@ urlpatterns = [
 
 
     # Contacto
-    #url(r'^client/contact/$', contact.Client().contact, name='contact-client'),
+    url(r'^contact/client/$', contact.Client().contact, name='contact-client'),
+    url(r'^contact/specialist/$', contact.Specialist().contact, name='contact-specialist'),
 
 
     # Upload files to query
