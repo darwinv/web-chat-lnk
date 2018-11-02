@@ -24,9 +24,9 @@ urlpatterns = [
     url(r'^plans/client/activate/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().activate_plan,
         name='activate-plan'),
     # Lista de Planes activos
-    url(r'^plans/client/plans/$', plans.Client().plans, name='active-plans'),
+    url(r'^plans/client/$', plans.Client().plans, name='active-plans'),
     # Lista de planes por activar por codigo PIN
-    url(r'^plans/client/pincode/plans/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
+    url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
 
 
