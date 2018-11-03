@@ -29,8 +29,10 @@
 
 
 {% block scripts_custom %}
-  
-  <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+     <script> 
+     const url_status_plan = "{% url 'frontend:status-footer-plans' %}";
+     </script>  
+<script src="{% static "dashboard/dist/js/utils.js" %}"></script>
     <script type="text/javascript">
      url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
     </script>
@@ -38,7 +40,7 @@
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
     <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
     <script>
-    var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
+    var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}";
     // Cambiar plan elegido de los adquiridos y activos
     $("#change-chosen").submit(function(e){
       $("#animacion1").toggleClass("hidden");

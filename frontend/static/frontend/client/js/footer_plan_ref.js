@@ -5,6 +5,11 @@ $(document).ready(function () {
   // cargamos el plan elegido
   planObject = firebase.database().ref('chosenPlans/u' + client_id);
 
+
+  $.get( url_status_plan, function( data ) {
+  
+  });
+  
 //
 // $('#reload').on('hidden.bs.modal', function () {
  planObject.on('value', function (snap){
