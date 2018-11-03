@@ -50,8 +50,8 @@ class Client:
         if resp['count'] > 0:
             return JsonResponse(resp)
 
-     def get_status_footer(self, request):
-         """Status del footer."""
+    def get_status_footer(self, request):
+        """Status del footer."""
         obj_api = api()
         token = request.session['token']
         resp = obj_api.get(slug='plans/check_status/', token=token)

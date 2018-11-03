@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 
   $.get( url_status_plan, function( data ) {
-  
+  console.log(data);
   });
   
 //
