@@ -80,6 +80,7 @@ function toLocalTime(date){
 }
 
 chatsock.onmessage = function(message) {
+
     var audio = new Audio(audioNotification);
     var data = JSON.parse(message.data);
     var boxChat = $("#chat_box");
@@ -87,20 +88,21 @@ chatsock.onmessage = function(message) {
     var positionScroll = chat_box.scrollTop;
     var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
     var resScroll = positionScroll / diffScroll;
-    $.each(data, function(key,value){
+    
+    $.each(data.messages, function(key,value){
+        console.log("query: "+ data.query + " conected: "+ value.id);
         var msg = value.message;
-        //console.log(value.id);
         var codeUser = value.codeUser;
         // Se crea el div del globo para renderizarlo
         // se valida el tema de si soy el q cree el mensaje o al contrario
         var divMessage = "<div id='message_'"+value.id+"' class='row globe-chat'>"+
                                 "<div class='cont-title-query' style='display: none'>"+
                                     "<div class='title-query'>"+
-                                        value.query.title+
+                                        data.query+
                                     "</div>"+
                                 "</div>"+
                                 "<div class='message col-sm-6 col-sm-offset-6'"+
-                                "data-sender='"+value.user_id+"' data-timemessage='"+value.timeMessage+"' data-query='"+value.query.id+"'>"+
+                                "data-sender='"+value.user_id+"' data-timemessage='"+value.timeMessage+"' data-query='"+value.query_id+"'>"+
                                     "<div class='row'>"+
                                         "<div class='col-sm-12'><p class='text'>"+value.message+"</p></div>"+
                                     "</div>"+
@@ -114,13 +116,10 @@ chatsock.onmessage = function(message) {
                                     "</div>"+
                                 "</div>"+
                             "</div>";
-        boxChat.append(divMessage)
-        // //console.log("sender: "+ value.user_id + " conected: "+ userID);
-        if (value.user_id != userID){
-            audio.play();
-        }
-     });
 
+        boxChat.append(divMessage);        
+     });
+    
     changeMessage();
     // Calculo la diferencia de pixeles entre el ultimo msj y el scroll
     // var resta = $("#chat_box").scrollTop() - $("#chat_box .globe-chat:last").position().top;

@@ -14,8 +14,6 @@ $(document).ready(function () {
      // Manejar listado de clientes 
         
         $(contentTitleQuery).hide();
-        $(textTitleQuery).val("")
-        $(textMessage).val("")
     });
 
 

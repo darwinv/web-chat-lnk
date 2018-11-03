@@ -59,7 +59,9 @@
         <form id="form-chat" action="" method="post" data-queryurl="{% url 'frontend:send-query' %}"
       data-upload="{% url 'frontend:upload_file' %}" autocomplete="off">
             {% if request.user.role.id == ROLES.client  %}
+
              <div class="title-box" style="display: none;" id="title_query_content">
+                <span id="close_query" >X</span>
                  {{ form.title.label_tag }}
                  {{ form.title }}
             </div>
