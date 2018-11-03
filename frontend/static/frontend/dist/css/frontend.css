@@ -184,6 +184,15 @@ div::-webkit-scrollbar-track {
     background-color: #F5F5F5;
 }
 
+.field-wrapper {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.contact-field {
+    resize: none;
+}
+
 /*FIN ESTRUCTURA TEMPLATE*/
 
 /* Animacion para efecto cargando */

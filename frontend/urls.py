@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import client, specialist, seller, query
+from frontend.views import index, chat, plans, query, contact
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -9,34 +9,40 @@ urlpatterns = [
     # frontend
     # aplicacion para visualizar el front de usuarios
     # -----------------------------------------------
-    # Urls de Cliente
-    url(r'^client/$', client.Client().index, name='index-client'),
-    url(r'^client/chat/(?P<pk>[0-9]+)/$', client.Client().chat,
-        name='chat-client'),
+
+    # Indexes
+    url(r'^client/$', index.Client().index, name='index-client'),
+    url(r'^specialist/$', index.Specialist().index, name='index-specialist'),
+    url(r'^seller/$', index.Seller().index, name='index-seller'),
+    
+
+    # Plans
     # cambiar plan elegido
-    url(r'^client/chosenplan/(?P<pk>[0-9]+)/$', client.set_chosen_plan,
+    url(r'^plans/client/chosenplan/(?P<pk>[0-9]+)/$', plans.Client().set_chosen_plan,
         name='set-chosen-plan'),
     # Activar plan
-    url(r'^client/plans/activate/(?P<code>[0-9a-zA-Z]+)/$',
-        client.activate_plan,
+    url(r'^plans/client/activate/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().activate_plan,
         name='activate-plan'),
     # Lista de Planes activos
-    url(r'^client/plans/$', client.plans, name='active-plans'),
+    url(r'^plans/client/$', plans.Client().plans, name='active-plans'),
     # Lista de planes por activar por codigo PIN
-    url(r'^client/pincode/plans/(?P<code>[0-9a-zA-Z]+)/$',
-        client.get_plans_code,
+    url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
-    # Enviar consulta cliente
-    url(r'^client/query/$',
-        client.send_query,
-        name='send-query'),
-    # Urls de Especialista
-    url(r'^specialist/$', specialist.Specialist().index,
-        name='index-specialist'),
-    url(r'^specialist/chat/(?P<pk>[0-9]+)/$', specialist.Specialist().chat,
+
+
+    # Chat
+    url(r'^chat/client/(?P<pk>[0-9]+)/$', chat.Client().chat,
+        name='chat-client'),
+    # Enviar consulta clientec
+    url(r'^chat/client/query/$', chat.Client().send_query, name='send-query'),
+    url(r'^chat/specialist/(?P<pk>[0-9]+)/$', chat.Specialist().chat,
         name='chat-specialist'),
-    # Urls del Vendedor
-    url(r'^seller/$', seller.Seller().index, name='index-seller'),
+
+
+    # Contacto
+    url(r'^contact/client/$', contact.Client().contact, name='contact-client'),
+    url(r'^contact/specialist/$', contact.Specialist().contact, name='contact-specialist'),
+
 
     # Upload files to query
     url(r'^query/upload_file/$',
