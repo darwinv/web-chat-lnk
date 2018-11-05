@@ -8,7 +8,7 @@ from django.core.urlresolvers import resolve, reverse
 from django.utils.translation import activate, get_language
 from django.utils.translation import ugettext_lazy as _
 from dashboard.tools import ToolsBackend as Tools
-
+import re
 register = template.Library()
 
 
@@ -84,4 +84,12 @@ def bolean_translate(bolean):
     else:
         return _("no").title()
 
-    
+@register.simple_tag()
+def is_mobile(request):
+    """Return True if the request comes from a mobile device."""
+
+    MOBILE_AGENT_RE=re.compile(r".*(iphone|mobile|androidtouch)",re.IGNORECASE)
+    if MOBILE_AGENT_RE.match(request.META['HTTP_USER_AGENT']):
+        return True
+    else:
+        return False
