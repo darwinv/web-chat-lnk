@@ -48,7 +48,7 @@ function inject_items(list_items,  id_user) {
         var url_chat = $('.info-div').data('urlchat').replace('0',item.id);
         $("#list_categories").append("\
                         <a href='"+url_chat+"' class='list-group-item list-group-item-action cont' onclick=\"return putViewToApi('"+id_user+"',"+item.id+");\"id='" + "cat" + item.id + "'>\
-                            <div class='row'>\
+                            <div class='row mar0'>\
                                 <div class='col-10'>\
                                     <div class='row'>\
                                         <div class='cont-item'>\

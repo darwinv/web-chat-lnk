@@ -92,6 +92,9 @@ ul{
   margin: auto;
 }
 /* Margins rapidos */
+.mar0{
+  margin: 0px !important;
+}
 .mar10{
   margin: 10px;
 }
