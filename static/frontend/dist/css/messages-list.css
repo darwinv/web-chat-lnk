@@ -4,6 +4,15 @@
 }
 
 /*SCROLL LEFT*/
+@media (max-width: 767px) {
+    /*Version mobil*/
+}
+@media (min-width: 768px) {
+    /*Version escritorio*/
+    div.list-group {
+        flex: 1 1 0;
+    }
+}
 .info-div {
     border: none;
     display:  flex;
@@ -38,7 +47,6 @@ div.list-group {
     margin-bottom:  0px;
     overflow-y: scroll;
     width: 100%;
-    flex: 1 1 0;
 }
 
 .image-cell {
