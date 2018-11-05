@@ -80,6 +80,7 @@ function toLocalTime(date){
 }
 
 chatsock.onmessage = function(message) {
+
     var audio = new Audio(audioNotification);
     var data = JSON.parse(message.data);
     var boxChat = $("#chat_box");
@@ -87,20 +88,21 @@ chatsock.onmessage = function(message) {
     var positionScroll = chat_box.scrollTop;
     var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
     var resScroll = positionScroll / diffScroll;
-    $.each(data, function(key,value){
+    
+    $.each(data.messages, function(key,value){
+        console.log("query: "+ data.query + " conected: "+ value.id);
         var msg = value.message;
-        console.log(value.id);
         var codeUser = value.codeUser;
         // Se crea el div del globo para renderizarlo
         // se valida el tema de si soy el q cree el mensaje o al contrario
         var divMessage = "<div id='message_'"+value.id+"' class='row globe-chat'>"+
                                 "<div class='cont-title-query' style='display: none'>"+
                                     "<div class='title-query'>"+
-                                        value.query.title+
+                                        data.query+
                                     "</div>"+
                                 "</div>"+
                                 "<div class='message col-sm-6 col-sm-offset-6'"+
-                                "data-sender='"+value.user_id+"' data-timemessage='"+value.timeMessage+"' data-query='"+value.query.id+"'>"+
+                                "data-sender='"+value.user_id+"' data-timemessage='"+value.timeMessage+"' data-query='"+value.query_id+"'>"+
                                     "<div class='row'>"+
                                         "<div class='col-sm-12'><p class='text'>"+value.message+"</p></div>"+
                                     "</div>"+
@@ -114,13 +116,10 @@ chatsock.onmessage = function(message) {
                                     "</div>"+
                                 "</div>"+
                             "</div>";
-        boxChat.append(divMessage)
-        // console.log("sender: "+ value.user_id + " conected: "+ userID);
-        if (value.user_id != userID){
-            audio.play();
-        }
-     });
 
+        boxChat.append(divMessage);        
+     });
+    
     changeMessage();
     // Calculo la diferencia de pixeles entre el ultimo msj y el scroll
     // var resta = $("#chat_box").scrollTop() - $("#chat_box .globe-chat:last").position().top;
@@ -128,7 +127,7 @@ chatsock.onmessage = function(message) {
         scrollDown();
     }
     if (!$("#animacion").hasClass('hidden')){
-      console.log("en scrollwdown");
+      //console.log("en scrollwdown");
         $("#animacion").addClass("hidden");
     }
 };
@@ -182,10 +181,10 @@ $("#form-chat").submit(function(e){
           files:JSON.stringify(arr_files)
         },
         success: function(data){
-          console.log("en callback");
+          //console.log("en callback");
           $("#title_query").val('');
           $("#text_message").val('').focus();
-          console.log(data);
+          //console.log(data);
           fetchData(data.query_id, data.message_files_id)
           $('#file-linkup').fileinput('upload');
         }
@@ -197,7 +196,7 @@ function fetchData(query_id, msgs){
 
   $('#file-filepreajax').on('filepreupload', function(event, data, previewId, index) {
     data.extra = { 'query': query_id, 'messages':msgs }
-    console.log(data);
+    //console.log(data);
     // return data;
   });
 }
@@ -216,7 +215,7 @@ function sendQueryMessage(){
     // Validations
     if (text_message == "")
         return false;
-    console.log("send query message")
+    //console.log("send query message")
     $("#animacion").toggleClass("hidden");
 
     if (role_id == ROLES.specialist) {
@@ -237,7 +236,7 @@ function sendQueryMessage(){
         category: category,
         query: query_id
     }
-    console.log(chatsock.send(JSON.stringify(message)));
+    //console.log(chatsock.send(JSON.stringify(message)));
 
     $("#title_query").val('')
     $("#text_message").val('').focus();
