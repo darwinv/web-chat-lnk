@@ -1,0 +1,90 @@
+
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plan_detail.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid">
+  <a href="">
+    <div class="plan-box">
+      <div class="row">
+        <div class="col-3 plan-title">{{ plan.plan_name }}</div>
+        <div class="col-3 offset-6 plan-status">
+          {% ifequal plan.fee.status 1 %} Pending Payment {% endifequal %}
+          {% ifequal plan.fee.status 2 %} Waiting for your ACTIVATION PIN {% endifequal %}
+          {% ifequal plan.fee.status 3 %} Enter your PIN {% endifequal %}
+          {% ifequal plan.fee.status 4 %} In use {% endifequal %}
+          {% ifequal plan.fee..status 5 %} Finished {% endifequal %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 plan-info">
+          {% blocktrans trimmed count quantity=plan.query_quantity %}
+          {{ quantity }} query
+          {% plural %}
+          {{ quantity }} queries
+          {% endblocktrans %}<br />
+
+          {% blocktrans trimmed count validity=plan.validity_months %}
+          Validity {{ validity }} month
+          {% plural %}
+          Validity {{ validity }} months
+          {% endblocktrans %}
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 plan-info">
+          {% blocktrans trimmed count quantity=plan.available_queries %}
+          Available: {{ quantity }} query
+          {% plural %}
+          Available: {{ quantity }} queries
+          {% endblocktrans %}<br />
+
+          {% blocktrans with edate=plan.expiration_date%}Expires: {{ edate }}{% endblocktrans %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 plan-price">S/. {{ plan.price }}</div>
+        <div class="col-12">
+          <div class="query-to-pay">
+            {% blocktrans trimmed count quantity=plan.queries_to_pay %}
+            {{ quantity }} query to pay
+            {% plural %}
+            {{ quantity }} queries to pay
+            {% endblocktrans %}<br />
+          </div>
+        </div>
+        <div class="col-12 fee-info">
+          {% blocktrans trimmed count quantity=plan.fee.fee_quantity %}
+          {{ quantity }} fee to pay.
+          {% plural %}
+          {{ quantity }} fees to pay.
+          {% endblocktrans %}
+
+          {% blocktrans trimmed with price=plan.fee.fee_amount %}Next payment of S/. {{ price }}{% endblocktrans %}
+          {% blocktrans trimmed with edate=plan.fee.pay_before %}You need to pay before {{ edate }}{% endblocktrans %}
+        </div>
+      </div>
+      status: {{plan.fee.status}}
+      {% ifequal 4 4 %}
+      {% if plan.available_queries > 0 %}
+      <div class="row">
+        <div class="col-4">
+          <a href=""><div class="plan-button">Transfer</div></a>
+        </div>
+        <div class="col-4">
+          <a href=""><div class="plan-button">Empower</div></a>
+        </div>
+        <div class="col-4">
+          <a href=""><div class="plan-button">Share</div></a>
+        </div>
+      </div>
+      {% endif  %}
+      {% endifequal %}
+    </div>
+  </a>
+</div>
+{% endblock main_content %}

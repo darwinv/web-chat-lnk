@@ -1,0 +1,55 @@
+
+.container-fluid {
+    overflow-y: scroll;
+    background: var(--black);
+}
+
+.plan-box {
+    background: var(--dark-blue);
+    color: var(--white);
+    border: 1px solid #CCC;
+    box-shadow: 0 0 5px -1px var(--dark-blue);
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+}
+
+.plan-box:hover, .plan-box:active {
+    background: var(--blue);
+    color: var(--gray);
+    box-shadow: 0 0 5px -1px var(--black);
+}
+
+.plan-info {
+    color: var(--turquoise);
+}
+
+.plan-status {
+    color: var(--red);
+    font-size: 12px;
+}
+
+.plan-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.plan-price, .query-to-pay {
+    color: var(--white);
+    font-weight: bold;
+}
+
+.fee-info {
+    color: var(--dark-gray);
+}
+
+.plan-button {
+    background: var(--turquoise);
+    color: var(--white);
+    font-weight: bold;
+    border: 1px solid #CCC;
+    border-radius: 20px;
+    box-shadow: 0 0 5px -1px var(--dark-blue);
+    text-align: center;
+}

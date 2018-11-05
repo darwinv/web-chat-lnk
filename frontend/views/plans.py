@@ -3,6 +3,7 @@ import json
 from django.http import JsonResponse
 from api.connection import api
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render
 
 class Client:
     def set_chosen_plan(self, request, pk):
@@ -46,6 +47,21 @@ class Client:
         """Planes Activos."""
         obj_api = api()
         token = request.session['token']
-        resp = obj_api.get(slug='clients/plans/', token=token)
+        resp = obj_api.get(slug='clients/plans-all/', token=token)
         if resp['count'] > 0:
-            return JsonResponse(resp)
+            return render(request, 'frontend/actors/client/plan_list.html', {'plans': resp['results']})
+        else:
+            return JsonResponse({'message': _('You don\'t have active plans'),
+                                 'class': 'successful'})
+
+    def plan(self, request, pk):
+        """ Plan efectivo """
+
+        obj_api = api()
+        token =  request.session['token']
+        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        if resp:
+            return render(request, 'frontend/actors/client/plan_detail.html', {'plan': resp})
+        else:
+            return JsonResponse({'message': _('That plan doesn\'t exist'),
+                                 'class': 'successful'})
