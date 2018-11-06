@@ -1,91 +1,98 @@
 {% extends 'frontend/base.html' %}
-{% load static i18n adminlte_helpers %}
-{% is_mobile request as device_is_mobile %}
+{% load static %}
+{% load i18n %}
 
-{% block main_content %}
-  {% if device_is_mobile %}
-    {% include 'frontend/actors/client/lib/category.html' %}
-  {% endif %}
-{% endblock main_content %}
+{% block meta %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+<link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
+{% endblock %}
+
+
 
 {% block content_left_slide %}
-  {% if device_is_mobile is False %}
-    {% include 'frontend/actors/client/lib/category.html' %}
-  {% endif %}
+    {% url 'frontend:chat-client' pk=0 as urlchat%}
+<div class="info-div" data-urlchat='{{urlchat}}'>
+        <div class="list-group" id="list_categories">
+            <!--print categories-->
+        </div>
+
+  <div id="chosen-plan" class="hidden" data-url="{% url 'frontend:active-plans' %}">
+  
+  </div>
+</div>
+
+{% include 'frontend/lib/modals/change_chosen_plan.html' %}
+{% include 'frontend/lib/modals/reload.html' %}
 {% endblock content_left_slide %}
 
-{% if device_is_mobile %}
-  {% block meta %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
-    <link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
-  {% endblock %}
 
-  {% block scripts_custom %}
-    
-    <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
-      <script type="text/javascript">
-       url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
-      </script>
-      <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
-      <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
-      <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
-      
-      <script>
-      var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}"
-      // Cambiar plan elegido de los adquiridos y activos
-      $("#change-chosen").submit(function(e){
-        $("#animacion1").toggleClass("hidden");
-          e.preventDefault();
-        var plan = $('input[name=active_plans]:checked', '#change-chosen').val();
-        var url_plan = url_p.replace('0', plan);
-        var csrfToken = $('[name=csrfmiddlewaretoken]').val();
-        // url_plan = $("#change-chosen").data("url");
-        $.ajax({
-            type:"POST",
-            url:url_plan,
-            data: {
-              csrfmiddlewaretoken: csrfToken,
-                   'is_chosen': 1
-                   },
-            success: function(data){
-              $("#animacion1").toggleClass("hidden");
-              $('#message').addClass(data.class);
-                $('#message').html(data.message);
-              // $('#changePlan').modal('hide');
-              setTimeout(function(){
-                $("#changePlan").modal('hide');
-                $("#changePlan .close").click();
-              }, 2000);
-            }
+
+{% block scripts_custom %}
+     <script> 
+     const url_status_plan = "{% url 'frontend:status-footer-plans' %}";
+     </script>  
+<script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+    <script type="text/javascript">
+     url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
+    </script>
+    <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
+    <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
+    <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
+    <script>
+    var url_p = "{% url 'frontend:set-chosen-plan' pk=0 %}";
+    // Cambiar plan elegido de los adquiridos y activos
+    $("#change-chosen").submit(function(e){
+      $("#animacion1").toggleClass("hidden");
+        e.preventDefault();
+      var plan = $('input[name=active_plans]:checked', '#change-chosen').val();
+      var url_plan = url_p.replace('0', plan);
+      var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+      // url_plan = $("#change-chosen").data("url");
+      $.ajax({
+          type:"POST",
+          url:url_plan,
+          data: {
+            csrfmiddlewaretoken: csrfToken,
+                 'is_chosen': 1
+                 },
+          success: function(data){
+            $("#animacion1").toggleClass("hidden");
+            $('#message').addClass(data.class);
+              $('#message').html(data.message);
+            // $('#changePlan').modal('hide');
+            setTimeout(function(){
+              $("#changePlan").modal('hide');
+              $("#changePlan .close").click();
+            }, 2000);
+          }
+     });
+ });
+  // Activar plan  con codigo pin a traves de ajax
+  var url_code= "{% url 'frontend:activate-plan' code=0 %}"
+   $("#activate_plan").submit(function(e){
+     e.preventDefault();
+     var code = $("#pinCode").val();
+     var url_pin = url_code.replace('0', code);
+     console.log(url_pin);
+     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+     $.ajax({
+         type:"POST",
+         url:url_pin,
+         data: {
+           csrfmiddlewaretoken: csrfToken
+                },
+         success: function(data){
+           $('.resp-message').addClass(data.class);
+           $('.resp-message').html(data.message);
+           setTimeout(function(){
+             $("#reload").modal('hide');
+             $("#reload .close").click();
+             // $("#reload").removeClass('show');
+           }, 2000);
+         }
        });
    });
-    // Activar plan  con codigo pin a traves de ajax
-    var url_code= "{% url 'frontend:activate-plan' code=0 %}"
-     $("#activate_plan").submit(function(e){
-       e.preventDefault();
-       var code = $("#pinCode").val();
-       var url_pin = url_code.replace('0', code);
-       console.log(url_pin);
-       var csrfToken = $('[name=csrfmiddlewaretoken]').val();
-       $.ajax({
-           type:"POST",
-           url:url_pin,
-           data: {
-             csrfmiddlewaretoken: csrfToken
-                  },
-           success: function(data){
-             $('.resp-message').addClass(data.class);
-             $('.resp-message').html(data.message);
-             setTimeout(function(){
-               $("#reload").modal('hide');
-               $("#reload .close").click();
-               // $("#reload").removeClass('show');
-             }, 2000);
-           }
-         });
-     });
 
-     </script>
-  {% endblock scripts_custom %}
-{% endif %}
+   </script>
+{% endblock scripts_custom %}
