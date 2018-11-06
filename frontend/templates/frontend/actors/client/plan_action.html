@@ -12,9 +12,9 @@
 {% block main_content %}
 <div class="container-fluid">
   <div class="plan-box">
-    <div class="row">
+    <div class="row first-section">
       <div class="col-12">
-        Transfer your plan<br />
+        {{ action|title }} your plan<br />
         Available queries: 2<br />
         <input id="email-box" type="" name=""><br />
         <button class="action-button">Accept</button>
@@ -25,7 +25,7 @@
   <div class="plan-box user-list-box">
     <div class="row second-section">
       <div class="col-12">
-        <p id="add-email" class="turquoise-phrase">Add the email of the person to whom you are going to transfer the use of your plan</p>
+        <p id="add-email" class="turquoise-phrase">Add the email of the person to whom you are going to {{ action }} the use of your plan</p>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
             <input id="legal-checkbox" type="checkbox" name="">Accept <a class="turquoise-phrase" href="">Terms and conditions</a><br />
             <span class="checkmark"></span>
           </label>
-          <input class="action-button" type="submit" name="submit" value="Submit">
+          <input class="action-button" type="submit" name="submit" value="{{ action }}">
         </form>
       </div>
     </div>

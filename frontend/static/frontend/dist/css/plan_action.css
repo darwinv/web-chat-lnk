@@ -7,6 +7,10 @@
     text-align: center;
 }
 
+.first-section {
+    font-weight: bold;
+}
+
 .action-button {
     color: var(--white);
     background: var(--turquoise-opaque);
@@ -98,7 +102,7 @@
 }
 
 #add-email {
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     margin: 0;
     height: 100%;

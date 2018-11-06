@@ -67,13 +67,13 @@ class Client:
                                  'class': 'successful'})
 
     def transfer(self, request, pk):
-        return render(request, 'frontend/actors/client/plan_transfer.html')
+        return render(request, 'frontend/actors/client/plan_action.html', {'action': 'transfer'})
 
     def empower(self, request, pk):
-        pass
+        return render(request, 'frontend/actors/client/plan_action.html', {'action': 'empower'})
 
     def share(self, request, pk):
-        pass
+        return render(request, 'frontend/actors/client/plan_action.html', {'action': 'share'})
 
     def upload(self, request, pk):
         """ Subir voucher de Plan efectivo """
