@@ -1,0 +1,16 @@
+<div class="text-right" style="margin-right: 17%;">
+    <div class="btn-group float-right">
+        <i class="fas fa-bars dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+        <div class="dropdown-menu dropdown-menu-right text-center">
+            {% if request.user.role.id == ROLES.client  %}
+                {% include 'frontend/actors/client/lib/menu.html' %}
+
+            {% elif request.user.role.id == ROLES.specialist  %}
+                {% include 'frontend/actors/specialist/lib/menu.html' %}
+
+            {% elif request.user.role.id == ROLES.seller  %}
+                {% include 'frontend/actors/seller/lib/menu.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>

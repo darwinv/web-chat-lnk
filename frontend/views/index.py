@@ -5,6 +5,7 @@ from login.utils.tools import role_client_check, role_seller_check, role_special
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 
+
 class Client:
     @method_decorator(user_passes_test(role_client_check()))
     def index(self, request):
@@ -16,7 +17,7 @@ class Client:
         # print(data_plans)
         # form = ActivePlansForm()
         return render(request,
-                      'frontend/actors/client/base_client.html')
+                          'frontend/actors/client/base_client.html')
 
 class Seller:
     @method_decorator(user_passes_test(role_seller_check()))

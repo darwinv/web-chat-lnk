@@ -1,0 +1,31 @@
+.derive-associate-list img.rounded-circle.itemp {
+    width: 100px;
+    height: 100px;
+    opacity: 0.7;
+    display: inline-block;
+}
+input[type="radio"]:checked+img {
+    opacity: 1 !important;
+    border: 2px solid var(--turquoise);
+}
+input[type="radio"]:disabled+img {
+    opacity: 0.09 !important;
+}
+.derive-associate-list input[type="radio"] {
+    display: none;
+}
+.derive-associate-list .cont-item.user-chat-logo {
+    display: inline-table;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+li.manage-query-specialist {
+    float: left;
+}
+
+.decline textarea{
+    width: 100%;
+    min-height: 140px;
+    color: black;
+}
