@@ -65,3 +65,24 @@ class Client:
         else:
             return JsonResponse({'message': _('That plan doesn\'t exist'),
                                  'class': 'successful'})
+
+    def transfer(self, request, pk):
+        return render(request, 'frontend/actors/client/plan_transfer.html')
+
+    def empower(self, request, pk):
+        pass
+
+    def share(self, request, pk):
+        pass
+
+    def upload(self, request, pk):
+        """ Subir voucher de Plan efectivo """
+
+        obj_api = api()
+        token =  request.session['token']
+        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        if resp:
+            return render(request, 'frontend/actors/client/plan_upload.html', {'plan': resp})
+        else:
+            return JsonResponse({'message': _('That plan doesn\'t exist'),
+                                 'class': 'successful'})

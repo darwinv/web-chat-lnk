@@ -1,0 +1,47 @@
+
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plan_action.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid">
+  <div class="plan-box">
+    <div class="row">
+      <div class="col-12">
+        Transfer your plan<br />
+        Available queries: 2<br />
+        <input id="email-box" type="" name=""><br />
+        <button class="action-button">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan-box user-list-box">
+    <div class="row second-section">
+      <div class="col-12">
+        <p id="add-email" class="turquoise-phrase">Add the email of the person to whom you are going to transfer the use of your plan</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan-box">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1">
+        <form>
+          <label class="legal-checkbox">
+            <input id="legal-checkbox" type="checkbox" name="">Accept <a class="turquoise-phrase" href="">Terms and conditions</a><br />
+            <span class="checkmark"></span>
+          </label>
+          <input class="action-button" type="submit" name="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main_content %}

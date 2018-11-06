@@ -25,8 +25,18 @@ urlpatterns = [
         name='activate-plan'),
     # Lista de Planes activos
     url(r'^plans/client/$', plans.Client().plans, name='active-plans'),
-    # Lista de Planes activos
+    # Detalle de plan activo
     url(r'^plans/client/(?P<pk>[0-9]+)/$', plans.Client().plan, name='active-plan'),
+
+    # Transferir plan activo
+    url(r'^plans/client/(?P<pk>[0-9]+)/transfer/$', plans.Client().transfer, name='transfer-plan'),
+    # Facultar plan activo
+    url(r'^plans/client/(?P<pk>[0-9]+)/empower/$', plans.Client().empower, name='empower-plan'),
+    # Compartir plan activo
+    url(r'^plans/client/(?P<pk>[0-9]+)/share/$', plans.Client().share, name='share-plan'),
+
+    # Detalle de plan activo
+    #url(r'^plans/client/(?P<pk>[0-9]+)/upload/$', plans.Client().upload, name='active-plan'),
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
