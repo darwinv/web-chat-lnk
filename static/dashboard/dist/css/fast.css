@@ -7,6 +7,10 @@
     --blue: #232155;
     --dark-blue: #14162E;
     --black: #131520;
+
+    /*Extra Colors*/
+    --pink: #D81B60;
+    --pink-basic: #ff9e9e;
 }
 
 ul{
@@ -68,6 +72,10 @@ ul{
     max-width: 100%;
     height: auto;
 }
+.height-70vh{
+  height: 70vh;
+  overflow-y: auto;
+}
 .pointer{
 	cursor: pointer;
 }
@@ -80,7 +88,13 @@ ul{
 .without-border {
     border: none !important;
 }
+.mar-auto {
+  margin: auto;
+}
 /* Margins rapidos */
+.mar0{
+  margin: 0px !important;
+}
 .mar10{
   margin: 10px;
 }
@@ -133,6 +147,9 @@ ul{
 .padT6 {
 	padding-top: 6px;
 }
+.size10{
+  font-size: 10px;
+}
 .size18 {
     font-size: 18px;
 }
@@ -140,7 +157,7 @@ ul{
     font-size: 17px;
 }
 .size16{
-	font-size: 16px;
+  font-size: 16px;
 }
 .font-size25{
   font-size: 25px;

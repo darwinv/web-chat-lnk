@@ -1,29 +1,34 @@
 {% extends 'frontend/base.html' %}
-{% load static %}
-{% block content_left_slide %}
-    {% url 'frontend:chat-specialist' pk=0 as urlchat%}
-    <div class="info-div" data-urlchat='{{urlchat}}'>
-        <div class="list-group" id="list_categories">
-            <!--print categories-->
-        </div>
-    </div>
+{% load static adminlte_helpers %}
+{% is_mobile request as device_is_mobile %}
 
-{% include 'frontend/lib/modals/manage_query_specialist.html' %}
-{% include 'frontend/lib/modals/derive_query_specialist.html' %}
-{% include 'frontend/lib/modals/decline_query_specialist.html' %}
+{% block main_content %}
+  {% if device_is_mobile %}
+    {% include 'frontend/actors/specialist/lib/client.html' %}
+  {% endif %}
+{% endblock main_content %}
+
+{% block content_left_slide %}
+  {% if device_is_mobile is False %}
+    {% include 'frontend/actors/specialist/lib/client.html' %}
+  {% endif %}
 {% endblock content_left_slide %}
 
-{% block meta %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
-    <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
-{% endblock %}
+{% if device_is_mobile is False %}
+  <!-- Solo para index especialista -->
+  {% block meta %}
+      {{ block.super }}
+      <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+      <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
+  {% endblock %}
 
-{% block scripts_custom %}
-    <script type="text/javascript">
-        var type_specialist = "{{request.session.specialist.type_specialist}}";
-        const CHAT_SPECIALIST = "{% url 'frontend:chat-specialist' pk=0 %}";
-    </script>
-    <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
-    <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
-{% endblock scripts_custom %}
+  {% block scripts_custom %}
+      <script type="text/javascript">
+          var type_specialist = "{{request.session.specialist.type_specialist}}";
+          const CHAT_SPECIALIST = "{% url 'frontend:chat-specialist' pk=0 %}";
+      </script>
+      <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
+      <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+  {% endblock scripts_custom %}
+
+{% endif %}

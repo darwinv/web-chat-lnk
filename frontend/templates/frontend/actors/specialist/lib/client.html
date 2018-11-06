@@ -1,0 +1,10 @@
+{% url 'frontend:chat-specialist' pk=0 as urlchat%}
+<div class="info-div" data-urlchat='{{urlchat}}'>
+    <div class="list-group" id="list_categories">
+        <!--print categories-->
+    </div>
+</div>
+
+{% include 'frontend/lib/modals/manage_query_specialist.html' %}
+{% include 'frontend/lib/modals/derive_query_specialist.html' %}
+{% include 'frontend/lib/modals/decline_query_specialist.html' %}
