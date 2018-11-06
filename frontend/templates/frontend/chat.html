@@ -51,13 +51,12 @@
         <div id="upload-div" class="hidden">
             <!-- <div class="file-loading"> -->
                 <form enctype="multipart/form-data">  <label>Preview File Icon</label>
-                    <input id="file-linkup"  name="file-linkup[]" type="file" multiple>
+                    <input id="file-linkup"  name="file-linkup[]" type="file" multiple accept="image/*" data-show-remove="true">
                 </form>
             <!-- </div> -->
         </div>
 
-        <form id="form-chat" action="" method="post" data-queryurl="{% url 'frontend:send-query' %}"
-      data-upload="{% url 'frontend:upload_file' %}" autocomplete="off">
+        <form id="form-chat" action="" method="post" autocomplete="off">
             {% if request.user.role.id == ROLES.client  %}
 
              <div class="title-box" style="display: none;" id="title_query_content">
@@ -73,11 +72,11 @@
                     <!-- <input type="text" class="form-control" id="text_message" placeholder='{% trans "Send your message" %}'> -->
                 </div>
 
-                <button id="img" class="btn pick pick-file">
+                <button id="img" class="btn pick pick-file" type="button">
                     <i class="far fa-image"></i>
                 </button>
 
-                <button id="doc" class="btn pick pick-file">
+                <button id="doc" class="btn pick pick-file" type="button">
                     <i class="fas fa-file"></i>
                 </button>
 

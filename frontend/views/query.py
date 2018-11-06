@@ -13,6 +13,7 @@ def upload_file(request):
     print(request.FILES)
     obj_api = api()
     token = request.session['token']
+    pk = ""
     resp = obj_api.put(slug='queries/upload_files/' + pk, token=token)
     return JsonResponse(
         {'message': 'exito',
