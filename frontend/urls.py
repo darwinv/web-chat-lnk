@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact, utils
+from frontend.views import index, chat, plans, query, contact
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
