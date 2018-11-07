@@ -1,14 +1,14 @@
 
-.action-title {
-    text-align: center;
-}
-
 .plan-box {
     text-align: center;
 }
 
-.first-section {
+#first-section {
     font-weight: bold;
+}
+
+#first-section div {
+    line-height: 30px;
 }
 
 .action-button {
@@ -23,10 +23,61 @@
 
 #email-box {
     border-radius: 20px;
+    color: var(--black);
+    padding-left: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+#second-section {
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+#second-section div {
+    height: 100%;
+    position: absolute;
+    display: table;
+}
+
+#add-email {
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    height: 100%;
+    max-height: 100%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .user-list-box {
     height: 200px;
+}
+
+#user-list {
+}
+
+.user-line {
+    text-align: left;
+    margin: 20px 0 20px 0;
+}
+
+#new-user-modal {
+    padding: 10px;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
+}
+
+.modal-title:first-letter {
+    text-transform: uppercase;
+}
+
+.modal-dialog .modal-content {
+    text-transform: none;
 }
 
 .legal-checkbox {
@@ -99,25 +150,4 @@
 .turquoise-phrase {
     color: var(--turquoise);
     font-weight: bold;
-}
-
-#add-email {
-    font-size: 20px;
-    text-align: center;
-    margin: 0;
-    height: 100%;
-    max-height: 100%;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.second-section {
-    height: 100%;
-    position: relative;
-}
-
-.second-section div {
-    height: 100%;
-    position: absolute;
-    display: table;
 }

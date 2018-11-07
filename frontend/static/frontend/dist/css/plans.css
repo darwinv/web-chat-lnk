@@ -4,7 +4,7 @@
 }
 
 .container-fluid {
-    overflow-y: scroll;
+    overflow-y: auto;
     background: var(--black);
 }
 
@@ -67,7 +67,7 @@
     margin-left: auto;
 }
 
-.plan-button a {
+.button-box div a {
     color: var(--white);
     font-weight: bold;
 }
