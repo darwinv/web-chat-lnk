@@ -19,8 +19,11 @@ function getMobileOperatingSystem() {
 
       // iOS detection from: http://stackoverflow.com/a/9039885/177710
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-          var url_link = "https://testflight.apple.com/join/YwSCtt0f";
-          window.location.href = url_link;
+        if (confirm("¿Deseas usar la app?")) {
+        console.log("ios");
+        var app_store = "https://testflight.apple.com/join/YwSCtt0f";
+        window.location.href = app_store;
+        }
       }
 
       console.log(userAgent);
