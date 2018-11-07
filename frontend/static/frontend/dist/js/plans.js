@@ -9,6 +9,20 @@ $(function() {
         checkEmail();
     });
 
+    function addUSerToList(email, message) {
+        if (email_list.includes(email)) {
+            // TODO: Mostrar el mensaje en un modal
+            alert("The email is already in the list")
+            return;
+        }
+
+        email_list.push(email);
+        if (action == "transfer")
+                $('#email-box').prop('disabled', true);
+        $("#second-section #default-message").remove();
+        $('#second-section div ul').append('<li class="user-line">' + email + '<br />' + message + '</li>');
+    }
+
     function checkEmail() {
         console.log('check_email is working')
         data = {
@@ -28,37 +42,15 @@ $(function() {
                 return;
             }
 
-            if (data == true) 
-                onUserRegistered(data);
-            else if (data.detail)
-                onUserNotRegistered(data);
+            if (data == true) {
+                addUSerToList(email, "User registered")
+            }
+            else if (data.detail) {
+                $('#new-user-modal').modal('show');
+                $('#action-holder').html(email)
+            }
         }, "GET");
     };
-
-    function addUSerToList(email, message) {
-        if (email_list.includes(email)) {
-            // TODO: Mostrar el mensaje en un modal
-            alert("The email is already in the list")
-            return;
-        }
-
-        email_list.push(email);
-        if (action == "transfer")
-                $('#email-box').prop('disabled', true);
-        $("#second-section #default-message").remove();
-        $('#second-section div ul').append('<li class="user-line">' + email + '<br />' + message + '</li>');
-    }
-
-    function onUserRegistered(data) {
-        console.log("user registered");
-        addUSerToList(email, "User registered")
-    }
-
-    function onUserNotRegistered(data) {
-        console.log(data.detail);
-        $('#new-user-modal').modal('show');
-        $('#action-holder').html(email)
-    }
 
     $('#send-invitation-btn').on('click', function(event){
         console.log("send invitation btn")
@@ -67,5 +59,6 @@ $(function() {
 
     $('#register-new-user-btn').on('click', function(event){
         console.log("register new user btn")
+        window.location.replace(register_url)
     });
 });
