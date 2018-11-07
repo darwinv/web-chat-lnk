@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<!-- Modal -->
+<div id="new-user-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title-modal">{{ action }} your plan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The mail <span id="action-holder"></span> is not registered. Do you want to register it?</p>
+        <button id="send-invitation-btn" type="button" class="btn btn-primary" data-dismiss="modal">SEND INVITATION</button>
+        <button id="register-new-user-btn" type="button" class="btn btn-secondary" data-dismiss="modal">REGISTER NEW USER</button>
+      </div>
+    </div>
+  </div>
+</div>
