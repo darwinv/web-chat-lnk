@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact
+from frontend.views import index, chat, plans, query, contact, utils
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -28,12 +28,8 @@ urlpatterns = [
     # Detalle de plan activo
     url(r'^plans/client/(?P<pk>[0-9]+)/$', plans.Client().plan, name='active-plan'),
 
-    # Transferir plan activo
-    url(r'^plans/client/(?P<pk>[0-9]+)/transfer/$', plans.Client().transfer, name='transfer-plan'),
-    # Facultar plan activo
-    url(r'^plans/client/(?P<pk>[0-9]+)/empower/$', plans.Client().empower, name='empower-plan'),
-    # Compartir plan activo
-    url(r'^plans/client/(?P<pk>[0-9]+)/share/$', plans.Client().share, name='share-plan'),
+    # ACcion de plan activo
+    url(r'^plans/client/(?P<pk>[0-9]+)/(?P<action>transfer|empower|share+)/$', plans.Client().action, name='plan-action'),
 
     # Detalle de plan activo
     #url(r'^plans/client/(?P<pk>[0-9]+)/upload/$', plans.Client().upload, name='active-plan'),

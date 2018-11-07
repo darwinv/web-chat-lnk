@@ -5,6 +5,8 @@ from api.connection import api
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 
+from frontend.forms import EmailCheckForm, PlanActionForm
+
 class Client:
     def set_chosen_plan(self, request, pk):
         """Elegir plan para consultar."""
@@ -66,14 +68,15 @@ class Client:
             return JsonResponse({'message': _('That plan doesn\'t exist'),
                                  'class': 'successful'})
 
-    def transfer(self, request, pk):
-        return render(request, 'frontend/actors/client/plan_action.html', {'action': 'transfer'})
-
-    def empower(self, request, pk):
-        return render(request, 'frontend/actors/client/plan_action.html', {'action': 'empower'})
-
-    def share(self, request, pk):
-        return render(request, 'frontend/actors/client/plan_action.html', {'action': 'share'})
+    def action(self, request, pk, action):
+        email_check_form = EmailCheckForm()
+        plan_action_form = PlanActionForm()
+        acquired_plan = pk
+        type_operation = ['transfer', 'empower', 'share'].index(action) + 1
+        return render(request, 'frontend/actors/client/plan_action.html', {
+            'action':action, 'email_check_form':email_check_form, 'plan_action_form':plan_action_form,
+            'acquired_plan':acquired_plan, 'type_operation':type_operation
+        })
 
     def upload(self, request, pk):
         """ Subir voucher de Plan efectivo """
