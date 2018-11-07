@@ -7,9 +7,9 @@ $(document).ready(function () {
 
 
   $.get( url_status_plan, function( data ) {
-  console.log(data);
-  });
-  
+
+});
+
 //
 // $('#reload').on('hidden.bs.modal', function () {
  planObject.on('value', function (snap){
