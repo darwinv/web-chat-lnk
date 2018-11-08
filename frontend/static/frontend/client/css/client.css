@@ -10,8 +10,8 @@
 }
 /* Clases para estatus de los planes */
 
-/* su plan seleccionado expiro, y no tiene por activar */
-.expired-plan{
+/* clase generica para aviso de advertencia en footer plan cliente. */
+.warning-plan{
   background-color: orange;
   color: white;
   font-weight: bold;

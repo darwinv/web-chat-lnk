@@ -27,16 +27,42 @@ $(document).ready(function () {
                   <p>${TRANS_EXPIRATION_DATE}:
                   <span id="expiration_date">${expiration_date}</span></p>`;
           
-          textButton = `<center> <button id="change_plan" type="button" class="btn btn-xs btn-ligth-blue cap"
+          buttonChangePlan = `<center> <button id="change_plan" type="button" class="btn btn-xs btn-ligth-blue cap"
                         data-toggle="modal" data-target="#changePlan">${TRANS_CHANGE_PLAN}</button> 
                         </center>`;
           
-          finalText = text1 + textButton;              
-          if(data.code == 5) {
-            textExpired = `<p class='expired-plan'> Su plan Seleccionado ha expirado</p>`;
-            finalText = text1 + textExpired + textButton;
-          }  
+          buttonReload = `<center> <button type='button' class='btn btn-md btn-ligth-blue cap' data-toggle='modal'"
+          "data-target='#reload'>"${TRANS_RELOAD}"</button> </center>`;
 
+          finalText = text1 + buttonChangePlan;              
+          if(data.code == 5) {
+             textExpired = `<p class='warning-plan'> Su plan Seleccionado ha expirado</p>`;
+             finalText = text1 + textExpired + buttonReload;
+          }
+          if (data.code == 6) {
+             textExpired = `<p class='warning-plan'> Su plan Seleccionado ha expirado, seleccione otro</p>`;
+             finalText = text1 + textExpired + buttonChangePlan;
+          }
+          if (data.code == 7) {
+            textExpired = `<p class='warning-plan'> Su plan Seleccionado ha expirado, activa otro plan</p>`;
+            finalText = text1 + textExpired + buttonReload;
+         }              
+
+         if (data.code == 8) {
+            textExpired = `<p class='warning-plan' style="font-size:12px;">
+             Su plan Seleccionado ha superado el limite de consultas</p>`;
+            finalText = text1 + textExpired + buttonReload;
+          }
+        if (data.code == 9) {
+            textExpired = `<p class='warning-plan' style="font-size:12px;">
+             Su plan Seleccionado ha superado el limite de consultas, seleccione otro</p>`;
+            finalText = text1 + textExpired + buttonChangePlan;
+          } 
+        if (data.code == 10) {
+            textExpired = `<p class='warning-plan' style="font-size:12px;">
+                            Su plan Seleccionado ha superado el limite de consultas, activa otro plan</p>`;
+            finalText = text1 + textExpired + buttonReload;
+         }                               
           $("#chosen-plan").html(finalText);
       }
       else{
