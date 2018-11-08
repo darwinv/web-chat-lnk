@@ -6,15 +6,19 @@ from django.views.decorators.csrf import csrf_exempt
 from api.connection import api
 
 
-@csrf_exempt
 def upload_file(request):
-    """Vista para adjuntar archivo a una consulta"""
-    print(request.POST)
-    print(request.FILES)
-    obj_api = api()
-    token = request.session['token']
-    pk = ""
-    resp = obj_api.put(slug='queries/upload_files/' + pk, token=token)
-    return JsonResponse(
-        {'message': 'exito',
-         'class': 'successful'})
+        """Enviar data de archivos."""
+        obj_api = api()
+        files = request.FILES
+        query = request.POST.get('query')
+
+        token = request.session["token"]
+        slug = 'queries/upload_files/{}'.format(query);
+
+        resp = obj_api.put_all(slug=slug, token=token, files=files)
+        
+        if resp.status_code==200:
+            return JsonResponse({})
+        else:
+            return JsonResponse({"error":resp.status_code})
+

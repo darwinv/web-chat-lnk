@@ -82,9 +82,8 @@ $("#form-chat").submit(function(e){
     var textMessage = $('#text_message').val();
     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
     var messageType = 'q';
-    var files = $('#file-linkup').fileinput('getFileStack');
     
-    var arr_files = []
+    var arrFiles = []
 
     var dataQuery = {
         title: title_query,
@@ -95,41 +94,11 @@ $("#form-chat").submit(function(e){
             content_type: 1,
             file_url: ''
         }],
-    };
+    };    
 
-    var date = new Date();
-    datestring = date.yyyymmdd();
-    for (i = 0; i < files.length; i++) {
-
-        if (files[i].type == 'Image'){
-            prefixFile = "IMG";
-            contentType = 2;
-        }
-        else if (files[i].type == 'Video'){
-            prefixFile = "VID";
-            contentType = 3;
-        }
-        else if (files[i].type == 'Voice'){
-            prefixFile = "AUD";
-            contentType = 4;
-        }
-        else if (files[i].type == 'Document'){
-            prefixFile = "DOC";
-            contentType = 5;
-        }else{
-            prefixFile = "NONE";
-            contentType = 5;
-        }
-        file_url = `${prefixFile}-${datestring}-22222.${files[i].extension}`;
-        arr_files[i] = {
-            msg_type: messageType,
-            message: '',            
-            content_type: contentType,
-            file_url: file_url
-        }        
-    }
+    arrFiles = getMessageFiles(messageType);
     
-    dataQuery["message"] = dataQuery["message"].concat(arr_files);
+    dataQuery["message"] = dataQuery["message"].concat(arrFiles);
     $.ajax({
         beforeSend: function(request, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -143,34 +112,109 @@ $("#form-chat").submit(function(e){
             }
         },
         type: "POST",
-        url: url_send_query,
+        url: URL_SEND_QUERY,
         data: {
             query_data:JSON.stringify(dataQuery)
         },
-        success: function(data){
-            console.log(data);
-            $("#title_query").val('');
-            $("#text_message").val('').focus();
-            fetchData(data.query_id, data.message_files_id)
-            // $('#file-linkup').fileinput('upload');
+        success: function(response){
+            // $("#title_query").val('');
+            // $("#text_message").val('').focus();
+            fetchData(response.query_id, response.message_files_id)
             if (!$("#animacion").hasClass('hidden')){
                 $("#animacion").addClass("hidden");
             }
-            
+            sendFilesMessages(response);
         }
    });
 
 });
 
-function sendFilesMessages(query){
-    data = {
-        "url": `queries/upload_files/${query}/`,
-        "file": JSON.stringify(files),
+function getMessageFiles(messageType){
+    /*Traer los archivos como mensajes*/
+    var arrFiles = []
+    var files = $('#file-linkup').fileinput('getFileStack');
+
+    for (i = 0; i < files.length; i++) {
+        typeSplit = files[i].type.split("/");
+        var contentType = 5;
+        if (typeSplit[0] == 'image'){
+            contentType = 2;
+        }
+        else if (typeSplit[0] == 'video'){
+            contentType = 3;
+        }
+        else if (typeSplit[0] == 'audio'){
+            contentType = 4;
+        }
+
+        arrFiles[i] = {
+            msg_type: messageType,
+            message: '',
+            content_type: contentType,
+            file_url: files[i].name
+        }
     }
-    sendAjaxService(data, function(response){
-        console.log("response ajax");
-    }, "PUT");
-    console.log("HAMBREEEEEEEEEEE");
+    return arrFiles;
+}
+
+function sendFilesMessages(response){
+    var arrFiles = []
+    var files = $('#file-linkup').fileinput('getFileStack');
+    var filesId = response["message_files_id"]
+    var date = new Date();
+    var datestring = date.yyyymmdd();    
+
+
+    var data = new FormData();
+    data.append('query', response.query_id);
+    $.each(files, function(i, file) {
+
+        typeSplit = file.type.split("/");
+        prefixFile = "DOC";
+
+        if (typeSplit[0] == 'Image'){
+            prefixFile = "IMG";
+        }
+        else if (typeSplit[0] == 'Video'){
+            prefixFile = "VID";
+        }
+        else if (typeSplit[0] == 'Voice'){
+            prefixFile = "AUD";
+        }
+
+        extension = (/[.]/.exec(file.name)) ? /[^.]+$/.exec(file.name) : undefined;
+        fileName = `${prefixFile}-${datestring}-${filesId[i]}.${extension}`;
+        //Agregando file al formulario
+        data.append("file-"+i, file, fileName);
+    });
+
+    console.log(data);
+
+    csrfToken = $('[name=csrfmiddlewaretoken]').val();
+    $.ajax({
+        beforeSend: function(request, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              request.setRequestHeader("X-CSRFToken", csrfToken);
+            }
+            // Recorre cabeceras por clave y valor
+            for (var key in headers){
+              if (headers.hasOwnProperty(key)) {
+                request.setRequestHeader(key, headers[key]);
+              }
+            }   
+        },
+        method: "POST",
+        enctype: 'multipart/form-data',
+        url: URL_UPLOAD_FILE_QUERY,
+        data: data,
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function(response){
+            console.log(response);
+        }
+   });
+
 }
 
 function connectingWebSocket(){

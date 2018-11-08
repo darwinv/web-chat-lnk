@@ -15,7 +15,8 @@
   <script src="{% static "frontend/dist/js/reconnecting-websocket.min.js" %}"></script>
   <script type="text/javascript">
       var token = '{{request.session.token}}';
-      var url_send_query = '{% url "frontend:send-query" %}';
+      const URL_SEND_QUERY = '{% url "frontend:send-query" %}';
+      const URL_UPLOAD_FILE_QUERY = '{% url "frontend:upload_file" %}';
   </script>
   <script src="{% static "frontend/dist/js/chat.js" %}"></script>
   <script src="{% static "frontend/client/js/chat.js" %}"></script>

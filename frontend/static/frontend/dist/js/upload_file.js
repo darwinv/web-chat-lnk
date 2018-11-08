@@ -7,8 +7,8 @@ $(function() {
       showBrowse: false,
       showCancel:false,
       previewClass: "previewClass2",
-      // actionUpload: "",
-      showRemove: true,
+      uploadUrl: "/none/",
+      actionUpload: "",
   });
 
   $('#file-linkup').on('fileclear', function(event) {
@@ -20,6 +20,7 @@ $(function() {
       $("#upload-div").removeClass('hidden');
     }
   });
+  
 
   $('#file-linkup').on('filereset', function(event) {
     console.log("filereset");
@@ -30,12 +31,12 @@ $(function() {
 
   //Despliega carga de archivos
   $(".pick-file").click(function(){
-        $('#file-linkup').click()
-        var ele = $(this);
-        //evento se activa luego de cargar la vista previa del archivo
-        $('#file-linkup').on('fileloaded', function(event, file, previewId, index, reader) {
-            console.log(previewId + "- fileloaded - " + ele[0].id);
-            $("#"+previewId).data("type", ele[0].id);
-        })
-    });
+      $('#file-linkup').click()
+      var ele = $(this);
+      //evento se activa luego de cargar la vista previa del archivo
+      $('#file-linkup').on('fileloaded', function(event, file, previewId, index, reader) {
+          console.log(previewId + "- fileloaded - " + ele[0].id);
+          $("#"+previewId).data("type", ele[0].id);
+      })
+  });
 });

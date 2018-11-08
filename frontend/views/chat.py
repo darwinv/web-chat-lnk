@@ -39,22 +39,6 @@ class Client:
         resp = obj_api.post_all(slug='client/queries/', token=token, arg=data)
         return JsonResponse(resp.json())
 
-    # def send_files(self, request):
-    #     """Enviar data de archivos."""
-    #     obj_api = api()
-    #     files = json.loads(request.POST.get('files'))
-    #     query = json.loads(request.POST.get('query'))
-    #     token = request.session["token"]
-    #     slug = 'queries/upload_files/{}/'.format(query);
-    #     data = {
-    #             'file': files
-    #         }
-        
-    #     resp = obj_api.post(slug=slug, token=token, arg=data)
-        
-    #     return JsonResponse(resp)
-
-
 class Specialist:
 
     @method_decorator(user_passes_test(role_specialist_check()))

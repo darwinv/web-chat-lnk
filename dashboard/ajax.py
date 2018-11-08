@@ -38,8 +38,6 @@ def ajax_service(request):
         else:
             token = None
 
-        import pdb
-        pdb.set_trace()
         resp = obj_api.put(slug=url, token=token, arg=data)
         
         return JsonResponse(resp, safe=False)
