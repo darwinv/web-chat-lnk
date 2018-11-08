@@ -1,0 +1,14 @@
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+
+
+{% block main_content %}
+    {% include 'frontend/match.html' %}
+{% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+      var token = '{{request.session.token}}';
+  </script>
+{% endblock %}
