@@ -37,6 +37,7 @@ def ajax_service(request):
             token = request.session['token']
         else:
             token = None
+
         resp = obj_api.put(slug=url, token=token, arg=data)
         
         return JsonResponse(resp, safe=False)

@@ -31,33 +31,13 @@ class Client:
         return render(request, 'frontend/actors/client/chat.html',
                       {'messages': messages, 'form': form, 'speciality': esp})
 
-    def send_query(request):
+    def send_query(self, request):
         """Enviar data de consulta."""
-        data = json.loads(request.POST.get('query_data'))
-        files = json.loads(request.POST.get('files'))
-        messages_list = [data['message_text']]
-        message_file = {
-            "message": "",
-            "msg_type": "q"
-            }
-
-        for n_file in files:
-            message_file.update({"content_type": 2, "file_url": n_file["name"]})
-            messages_list.append(message_file)
-
         obj_api = api()
-
+        data = json.loads(request.POST.get('query_data'))
         token = request.session["token"]
-        query_payload = {
-            "title": data["title"],
-            "category": data["category"],
-            "message": messages_list
-        }
-        resp = obj_api.post(slug='client/queries/', token=token, arg=query_payload)
-        # data = json.loads(request.POST)
-        print(resp)
-        return JsonResponse(resp)
-
+        resp = obj_api.post_all(slug='client/queries/', token=token, arg=data)
+        return JsonResponse(resp.json())
 
 class Specialist:
 
