@@ -8,3 +8,21 @@
     overflow-y: auto;
     height: 70vh;
 }
+/* Clases para estatus de los planes */
+
+/* su plan seleccionado expiro, y no tiene por activar */
+.expired-plan{
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 5px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* mensaje de que no posee plan activo */
+.no-activeplan{
+  background-color: #0a0c1c;
+  color: white;
+}
