@@ -11,4 +11,10 @@ $(document).ready(function () {
         }
     });
 
+    var win = $("#list-match-content");
+    win.data("url",'client/matchs/');  // Url a consumir
+    win.data("page", 1);  // Inicializacion de pagina en 0, solo Modales
+    win.sendAjaxPagination(function(resp){
+        console.log(resp);
+    });
 });

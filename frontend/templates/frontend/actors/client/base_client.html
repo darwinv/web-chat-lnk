@@ -28,7 +28,8 @@
 
 
 
-{% block scripts_custom %}
+{% block javascript %}
+{{ block.super }}
      <script> 
      const url_status_plan = "{% url 'frontend:status-footer-plans' %}";
      </script>  
@@ -95,4 +96,4 @@
    });
 
    </script>
-{% endblock scripts_custom %}
+{% endblock javascript %}

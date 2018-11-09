@@ -17,7 +17,7 @@
         </div>
     </div>
     {% if match_list %}
-    <div class="list-group">
+    <div id="list-match-content" class="list-group">
     
       {% for match in match_list %}
         <div class="match list-group-item" data-time="{{ match.date}}" data-status="{{ match.status }}">
