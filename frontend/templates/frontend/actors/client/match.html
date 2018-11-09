@@ -1,6 +1,10 @@
 {% extends 'frontend/actors/client/base_client.html' %}
 {% load static %}
 
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/match.css" %}">
+{% endblock %}
 
 {% block main_content %}
     {% include 'frontend/match.html' %}
@@ -11,4 +15,5 @@
   <script type="text/javascript">
       var token = '{{request.session.token}}';
   </script>
+<script src="{% static "frontend/dist/js/match.js" %}"></script>
 {% endblock %}
