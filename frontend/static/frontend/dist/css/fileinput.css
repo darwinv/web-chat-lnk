@@ -282,18 +282,11 @@ input[type=file].file-loading {
 }
 
 .krajee-default.file-preview-frame {
-    margin: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 1px 1px 5px 0 #a2958a;
-    padding: 6px;
+    margin: 3px;
     float: left;
-    text-align: center
+    text-align: center;
 }
 
-.krajee-default.file-preview-frame .kv-file-content {
-    width: 213px;
-    height: 160px
-}
 
 .krajee-default.file-preview-frame .file-thumbnail-footer {
     height: 70px
@@ -319,9 +312,6 @@ input[type=file].file-loading {
     overflow: auto
 }
 
-.krajee-default .file-other-icon {
-    font-size: 6em
-}
 
 .krajee-default .file-footer-buttons {
     float: right
@@ -375,7 +365,7 @@ input[type=file].file-loading {
 
 .file-zoom-dialog .file-other-icon {
     font-size: 22em;
-    font-size: 50vmin
+    /*font-size: 50vmin*/
 }
 
 .file-zoom-dialog .modal-dialog {
@@ -573,18 +563,18 @@ input[type=file].file-loading {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column
+        /*flex-direction: column*/
     }
     .file-zoom-dialog .modal-header {
         flex-direction: column
     }
 }
 
-@media screen and (max-width:350px) {
+/*@media screen and (max-width:350px) {
     .krajee-default.file-preview-frame .kv-file-content {
         width: 160px
     }
-}
+}*/
 
 .file-loading[dir=rtl]:before {
     background: url(../img/loading.gif) top right no-repeat;
@@ -611,4 +601,57 @@ input[type=file].file-loading {
 
 .file-preview-initial.sortable-chosen {
     background-color: #d9edf7
+}
+
+/*Custom Files*/
+.file-preview-frame .kv-file-content {
+    width: auto;
+}
+.file-preview-frame img.file-preview-image {
+    height: 100px !important;
+    object-fit: cover;
+}
+.file-preview-frame video.kv-preview-data.file-preview-video {
+    height: 100px !important;
+    max-width: 150px !important;
+    width: auto !important; 
+}
+.file-preview-frame object.kv-preview-data.file-preview-object.file-object.type-default {
+    height: 100px !important;
+    width: auto !important;
+    max-width: 150px !important;
+}
+.file-preview.previewClass2 {
+    display: flex;
+    -webkit-flex: 0 0 120px;
+    flex: 0 0 120px;
+    justify-content: center;
+    height: 120px;
+}
+.file-preview-thumbnails .krajee-default.file-preview-frame {
+    flex: 1;
+}
+.file-preview-thumbnails {
+    display: flex;
+    flex-direction: row;
+}
+.krajee-default.file-preview-frame .file-thumbnail-footer {
+    height: 70px;
+    display: none;
+}
+.krajee-default .file-other-icon {
+    font-size: 5em;
+    width: 100%;
+}
+i.glyphicon.glyphicon-file {
+    vertical-align: middle;
+}
+.glyphicon-file:before, img.file-preview-image.kv-preview-data{
+    background-color: #f0f0f0;
+}
+button.kv-file-zoom.btn.btn-kv.btn-default.btn-outline-secondary {
+     display: none; 
+}
+.file-thumbnail-footer {
+    display: none;
 }

@@ -282,7 +282,9 @@ i.fa.fa-star.yellow{
     border: 0.5px solid rgba(0, 0, 0, 0.13);
   }
   .cont-info-user img.img-circle {
-      max-width: 150px;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
   }
 
 
@@ -461,6 +463,7 @@ input:read-only {
     border-radius: 50%;
     width: 230px;
     height: 230px;
+    object-fit: cover;
 }
 canvas {
     margin: 0px 0px -6px 0px;
@@ -470,6 +473,7 @@ canvas {
     border-radius: 50%;
     width: 150px;
     height: 150px;
+    object-fit: cover;
 }
 
 /*Filtros*/
