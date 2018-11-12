@@ -10,7 +10,6 @@ var userRoom = dataRoom["userRoom"];
 var category = dataRoom["category"];
 var chatsock = connectingWebSocket();
 
-
 chatsock.onopen = function open() {
     console.log('WebSockets connection created.');
 };
@@ -97,7 +96,7 @@ $("#form-chat").submit(function(e){
     };    
 
     arrFiles = getMessageFiles(messageType);
-    
+    $(".send-message-cont").find("button").attr("disabled", true);
     dataQuery["message"] = dataQuery["message"].concat(arrFiles);
     $.ajax({
         beforeSend: function(request, settings) {
@@ -117,13 +116,21 @@ $("#form-chat").submit(function(e){
             query_data:JSON.stringify(dataQuery)
         },
         success: function(response){
-            // $("#title_query").val('');
-            // $("#text_message").val('').focus();
-            fetchData(response.query_id, response.message_files_id)
             if (!$("#animacion").hasClass('hidden')){
                 $("#animacion").addClass("hidden");
             }
-            sendFilesMessages(response);
+            $(".send-message-cont").find("button").attr("disabled", false);
+
+            if (typeof(response.non_field_errors)=="object") {
+                alert(response.non_field_errors[0]);
+            }else{
+                $("#title_query").val('');
+                $("#text_message").val('').focus();                
+                if (arrFiles.length > 0) {
+                    sendFilesMessages(response);
+                }
+            }
+            
         }
    });
 
@@ -160,6 +167,7 @@ function getMessageFiles(messageType){
 function sendFilesMessages(response){
     var arrFiles = []
     var files = $('#file-linkup').fileinput('getFileStack');
+
     var filesId = response["message_files_id"]
     var date = new Date();
     var datestring = date.yyyymmdd();    
@@ -172,13 +180,13 @@ function sendFilesMessages(response){
         typeSplit = file.type.split("/");
         prefixFile = "DOC";
 
-        if (typeSplit[0] == 'Image'){
+        if (typeSplit[0] == 'image'){
             prefixFile = "IMG";
         }
-        else if (typeSplit[0] == 'Video'){
+        else if (typeSplit[0] == 'video'){
             prefixFile = "VID";
         }
-        else if (typeSplit[0] == 'Voice'){
+        else if (typeSplit[0] == 'audio'){
             prefixFile = "AUD";
         }
 
@@ -188,9 +196,10 @@ function sendFilesMessages(response){
         data.append("file-"+i, file, fileName);
     });
 
-    console.log(data);
 
     csrfToken = $('[name=csrfmiddlewaretoken]').val();
+    
+    $('#upload-div').addClass('hidden');
     $.ajax({
         beforeSend: function(request, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -211,6 +220,7 @@ function sendFilesMessages(response){
         processData: false,
         contentType: false,
         success: function(response){
+            $('#file-linkup').fileinput('clear');
             console.log(response);
         }
    });
@@ -240,12 +250,7 @@ function getDataRoom(){
     }
     return {"category": category, "userRoom": userRoom};
 }
-function fetchData(query_id, msgs){
-  $('#file-filepreajax').on('filepreupload', function(
-    event, data, previewId, index) {
-    data.extra = { 'query': query_id, 'messages':msgs }
-  });
-}
+
 
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection

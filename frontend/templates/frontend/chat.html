@@ -26,9 +26,43 @@
             <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
             data-sender="{{message.user_id}}" data-timemessage="{{ message.time_message}}" data-query="{{message.query.query_id}}">
                 <div class="row">
-                    <div class="col-sm-12"><p class="text">{{ message.message }}</p></div>
+                    <div class="col-sm-12">
+
+                        {% if message.content_type == 1 %}
+                            <p class="text">{{ message.message }}</p>
+
+                        {% elif message.content_type == 2 %}
+                            <div class="chat-img-thumb">
+                                <img src="{{message.file_preview_url}}">
+                            </div>
+                        {% elif message.content_type == 3 %}                            
+                            <div class="chat-video-thumb">
+                                <img src="{{message.file_preview_url}}">
+                                <div class="play-video">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="media-play" transform="translate(4 2.5)" fill="#FFF"><path d="M15.5 7.9L2.5.4C1.2-.3.1.3.1 1.8v15c0 1.5 1.1 2.1 2.4 1.4l13-7.5c1.3-.9 1.3-2.1 0-2.8z" id="Path"></path></g></g></svg>
+                                </div>
+                                
+                            </div>
+                        {% elif message.content_type == 4 %}
+                            <div class="chat-audio-thumb text-center">
+                               <audio controls>
+                                  <source src="{{message.file_url}}" type="audio/ogg">
+                                  <source src="{{message.file_url}}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        {% elif message.content_type == 5 %}
+                            <div class="chat-file-thumb text-center">
+                                <i class="fas fa-file"></i>
+                                <a href="{{message.file_url}}">Descargar Archivo</a>                            
+                            </div>
+                        {% endif %}
+
+
+                        
+                    </div>
                 </div>
-                <div class="row">
+                <div class="row marT10 message-footer">
                     <div class="col-sm-6">
                         <p class="code-user">{{ message.code }}</p>
                     </div>
