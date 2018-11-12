@@ -4,10 +4,6 @@
     font-weight: bold;
 }
 
-#content-match .list-group{
-    overflow-y: hidden;
-}
-
 .match img{
     height: 45px;
 }
