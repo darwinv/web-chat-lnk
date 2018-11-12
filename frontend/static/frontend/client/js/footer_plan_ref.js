@@ -71,7 +71,9 @@ $(document).ready(function () {
                             </button>`;
 
               if (data.code == 3) {
-                  $("#chosen-plan").html(selectPlanBtn);
+                  $("#chosen-plan").html(`<center><button id="change_plan" type="button" class="btn btn-xs btn-ligth-blue cap"
+                                        data-toggle="modal" data-target="#changePlan">${TRANS_SELECT_PLAN}
+                                        </button>`);
               }
               if(data.code == 2) {
                  $("#chosen-plan").html(`<div> No tienes un plan de consumo activo </div>`);       
