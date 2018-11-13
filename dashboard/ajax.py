@@ -18,9 +18,7 @@ def ajax_service(request):
             token = request.session['token']
         else:
             token = None
-
         resp = obj_api.get(slug=url, token=token, arg=filters)
-        
         return JsonResponse(resp, safe=False)
 
     elif request.method == "POST":
