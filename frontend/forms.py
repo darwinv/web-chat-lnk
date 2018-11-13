@@ -55,11 +55,11 @@ def format_choices(plans):
 
 class EmailCheckForm(forms.Form):
 
-    email = forms.CharField(max_length=150)
-    email.widget.attrs.update({'id': 'email-box', 'type':'email', 'required':True,
+    email = forms.EmailField(max_length=150, required=True)
+    email.widget.attrs.update({'id': 'email-box', 'type':'email',
                                'placeholder': 'Email'})
 
 
 class PlanActionForm(forms.Form):
-    legal = forms.BooleanField()
+    legal = forms.BooleanField(required=True)
     legal.widget.attrs.update({'id': 'legal-checkbox'})
