@@ -21,13 +21,30 @@
     
       {% for match in match_list %}
         <div class="match list-group-item" data-time="{{ match.date}}" data-status="{{ match.status }}">
-            <img src="{{ match.category_image }}" alt="imagen-especialidad">
-               <p style="float: right;">
-                 <small class="time"> </small>
-                </p>
-               Especialidad: {{match.category}}
-               <p class="status"> </p>
-            <a href="#">Ver Detalle</a>   
+                {% if match.status == 5 %}
+                  <img src="{{ match.specialist.photo }}" style="border-radius:50%;" alt="foto-especialista">
+
+                  <p style="float: right;">
+                    <small class="time"> </small>
+                  </p>
+                   {{match.specialist.email_exact}} 
+                   <br>
+                   {{match.specialist.code}}
+                   <br>
+                   Especialidad: {{match.category}}
+                   <p class="status"> </p>
+                {% else %}
+                  <img src="{{ match.category_image }}" alt="imagen-especialidad">
+                  <p style="float: right;">
+                    <small class="time"> </small>
+                  </p>
+                  Especialidad: {{match.category}}
+                  <p class="status"> </p>
+                {% endif %}
+            <a href="#">Ver Detalle</a>  
+
+
+ 
         </div>
       {% endfor %}
 

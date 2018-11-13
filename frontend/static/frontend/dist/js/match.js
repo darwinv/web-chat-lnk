@@ -8,9 +8,23 @@ $(document).ready(function () {
           var timeMatch = $(this).data("time");
           var status = $(this).data("status");
           var timeMatchFixed = dateTextCustom(moment.utc(timeMatch), "-05:00");
-          $(this).find("small.time").text('Solicitado: '+ timeMatchFixed);
-          if (status == 1){
+         if(status !=5){   
+            $(this).find("small.time").text('Solicitado: '+ timeMatchFixed);
+          }
+          if (status == 1 || status == 2){
               $(this).find("p.status").text("Estado: Esperando Respuesta");
+          }
+          if (status == 3){
+            $(this).find("p.status").text("Estado: Declinado");
+         }
+         if (status == 4){
+          $(this).find("p.status").text("Estado: Pendiente de Pago");
+       }
+          if (status == 6){
+             $(this).find("p.status").text("Estado: Pendiente de Revisión");
+          }
+          if (status == 5){
+            $(this).find("p.status").text("Estado: Aceptado");
           }
       });
     }
