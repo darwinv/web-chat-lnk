@@ -99,10 +99,56 @@
     {% endif  %}
     {% endifequal %}
   </div>
-  <div class="action-list">
-    <div class="row">
-      <div class="col-12"></div>
-    </div>
+  <div id="action-list">
+    {% for client in clients %}
+      <div id="{{ client.email_receiver }}" class="row align-items-center justify-content-center action-entry">
+        <div class="col-3 col-sm-3 col-md-2 col-lg-2">
+          {% if client.receiver.photo %}
+            <img class="user-photo" src="{{ client.receiver.photo }}">
+          {% else %}
+            <span class="circle-photo-placeholder">{{ client.email_receiver|make_list|first|title }}</span>
+          {% endif %}
+        </div>
+        <div class="col-7 col-sm-6 col-md-5 col-lg-4">
+          <b>{{ client.email_receiver }}</b><br />
+
+          {% if client.receiver.display_name %}
+            {{ client.receiver.display_name }}<br />
+          {% endif %}
+          {% ifequal client.type_operation 1 %}
+            User transfered
+          {% endifequal %}
+          {% ifequal client.type_operation 2 %}
+            User shared
+          {% endifequal %}
+          {% ifequal client.type_operation 3 %}
+            User empowered
+          {% endifequal %}
+          <br />
+
+          {% if client.new_acquired_plan.available_queries %}
+          {% if client.new_acquired_plan.query_quantity %}
+            {{ client.new_acquired_plan.available_queries }} / {{ client.new_acquired_plan.query_quantity }}
+          {% endif %}
+          {% endif %}
+        </div>
+        <div class="col-1 button-section">
+          {% ifequal client.type_operation 3 %}
+            <div class="delete-empower-ellipsis fa fa-ellipsis-v"></div>
+            <div id="button-for-{{ client.email_receiver }}" class="drop-down">Dejar de facultar</div>
+          {% endifequal %}
+        </div>
+      </div>
+      <hr />
+    {% endfor %}
   </div>
 </div>
 {% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static "frontend/client/js/plan_detail.js" %}"></script>
+  <script>
+    plan_id = "{{ plan.id }}";
+  </script>
+{% endblock %}

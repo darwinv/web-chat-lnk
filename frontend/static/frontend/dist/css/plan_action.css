@@ -13,12 +13,16 @@
 
 .action-button {
     color: var(--white);
-    background: var(--turquoise-opaque);
+    background: var(--turquoise);
     border: 1px solid #CCC;
     border-radius: 20px;
     box-shadow: 0 0 5px -1px var(--dark-blue);
     text-align: center;
     margin-top: 10px;
+}
+
+.action-button:disabled {
+    background: var(--turquoise-opaque);
 }
 
 #email-box {
@@ -35,7 +39,7 @@
     overflow-y: auto;
 }
 
-#second-section div {
+#default-message {
     height: 100%;
     position: absolute;
     display: table;
@@ -55,12 +59,35 @@
     height: 200px;
 }
 
-#user-list {
+.user-line {
+    width: 100%;
+    height: 60px;
+    margin: 10px 0 10px 0;
 }
 
-.user-line {
+.email-section {
+    width: 100%;
+    padding: 10px 0 10px 0;
     text-align: left;
-    margin: 20px 0 20px 0;
+    vertical-align: top;
+}
+
+.count-section {
+    padding: 10px 0 0 0;
+    vertical-align: top;
+}
+
+.queries-count {
+    color: var(--black);
+    width: 30px;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.queries-count::-webkit-outer-spin-button,
+.queries-count::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 #new-user-modal {
@@ -93,9 +120,10 @@
 
 #legal-checkbox {
     opacity: 0;
+    position: absolute;
+    z-index: -1;
+    left: 11px;
     cursor: pointer;
-    height: 0;
-    width: 0;
 }
 
 /* Create a custom checkbox */

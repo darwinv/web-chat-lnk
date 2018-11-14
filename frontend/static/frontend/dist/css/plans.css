@@ -8,7 +8,7 @@
     background: var(--black);
 }
 
-.plan-box, .action-list {
+.plan-box, #action-list {
     background: var(--dark-blue);
     color: var(--white);
     border: 1px solid #CCC;
@@ -73,5 +73,42 @@
 }
 
 .action-list {
-    height: 100px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.action-entry {
+    margin: 10px;
+}
+
+.user-photo {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.circle-photo-placeholder {
+    background: var(--blue);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 50%;
+    font-size: 35px;
+}
+
+.drop-down {
+    background: var(--gray);
+    color: black;
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    left: -100px;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.delete-empower-ellipsis:hover, .drop-down:hover {
+    cursor: pointer;
 }

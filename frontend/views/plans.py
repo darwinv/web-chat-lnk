@@ -61,9 +61,11 @@ class Client:
 
         obj_api = api()
         token =  request.session['token']
-        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
-        if resp:
-            return render(request, 'frontend/actors/client/plan_detail.html', {'plan': resp})
+        plan =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
+
+        if plan and clients and 'results' in clients:
+            return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients['results']})
         else:
             return JsonResponse({'message': _('That plan doesn\'t exist'),
                                  'class': 'successful'})
@@ -73,9 +75,15 @@ class Client:
         plan_action_form = PlanActionForm()
         acquired_plan = pk
         type_operation = ['transfer', 'empower', 'share'].index(action) + 1
+
+        obj_api = api()
+        token =  request.session['token']
+        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        available_queries = resp['available_queries']
+
         return render(request, 'frontend/actors/client/plan_action.html', {
             'action':action, 'email_check_form':email_check_form, 'plan_action_form':plan_action_form,
-            'acquired_plan':acquired_plan, 'type_operation':type_operation
+            'acquired_plan':acquired_plan, 'type_operation':type_operation, 'available_queries':available_queries
         })
 
     def upload(self, request, pk):
