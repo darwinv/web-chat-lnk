@@ -41,10 +41,7 @@
                   Especialidad: {{match.category}}
                   <p class="status"> </p>
                 {% endif %}
-            <a href="#">Ver Detalle</a>  
-
-
- 
+            <a href="{% url 'frontend:match-client-detail' pk=match.id %}">Ver Detalle</a>
         </div>
       {% endfor %}
 
