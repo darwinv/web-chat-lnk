@@ -53,3 +53,13 @@ def format_choices(plans):
             _('expiration date') + ': ' + plans[l]['expiration_date']
     return newplan
 
+class EmailCheckForm(forms.Form):
+
+    email = forms.EmailField(max_length=150, required=True)
+    email.widget.attrs.update({'id': 'email-box', 'type':'email',
+                               'placeholder': 'Email'})
+
+
+class PlanActionForm(forms.Form):
+    legal = forms.BooleanField(required=True)
+    legal.widget.attrs.update({'id': 'legal-checkbox'})

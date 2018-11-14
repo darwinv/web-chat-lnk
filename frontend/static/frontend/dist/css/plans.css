@@ -1,0 +1,114 @@
+
+.container-fluid a {
+    text-decoration: none;
+}
+
+.container-fluid {
+    overflow-y: auto;
+    background: var(--black);
+}
+
+.plan-box, #action-list {
+    background: var(--dark-blue);
+    color: var(--white);
+    border: 1px solid #CCC;
+    box-shadow: 0 0 5px -1px var(--dark-blue);
+    padding: 10px;
+    margin: 10px;
+}
+
+.plan-box-link:hover, .plan-box-link:active {
+    cursor: pointer;
+    background: var(--blue);
+    color: var(--gray);
+    box-shadow: 0 0 5px -1px var(--black);
+}
+
+.plan-info {
+    color: var(--turquoise);
+}
+
+.plan-status {
+    text-align: right;
+    color: var(--red);
+    font-size: 12px;
+}
+
+.plan-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.plan-price, .query-to-pay {
+    color: var(--white);
+    font-weight: bold;
+}
+
+.fee-info {
+    color: var(--dark-gray);
+}
+
+.button-box {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.plan-button {
+    background: var(--turquoise);
+    border: 1px solid #CCC;
+    border-radius: 20px;
+    box-shadow: 0 0 5px -1px var(--dark-blue);
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.button-box div a {
+    color: var(--white);
+    font-weight: bold;
+}
+
+.action-list {
+    height: 200px;
+    overflow-y: auto;
+}
+
+.action-entry {
+    margin: 10px;
+}
+
+.user-photo {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.circle-photo-placeholder {
+    background: var(--blue);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 50%;
+    font-size: 35px;
+}
+
+.drop-down {
+    background: var(--gray);
+    color: black;
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    left: -100px;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.delete-empower-ellipsis:hover, .drop-down:hover {
+    cursor: pointer;
+}

@@ -3,6 +3,9 @@ import json
 from django.http import JsonResponse
 from api.connection import api
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render
+
+from frontend.forms import EmailCheckForm, PlanActionForm
 
 class Client:
     def set_chosen_plan(self, request, pk):
@@ -46,9 +49,54 @@ class Client:
         """Planes Activos."""
         obj_api = api()
         token = request.session['token']
-        resp = obj_api.get(slug='clients/plans/', token=token)
+        resp = obj_api.get(slug='clients/plans-all/', token=token)
         if resp['count'] > 0:
-            return JsonResponse(resp)
+            return render(request, 'frontend/actors/client/plan_list.html', {'plans': resp['results']})
+        else:
+            return JsonResponse({'message': _('You don\'t have active plans'),
+                                 'class': 'successful'})
+
+    def plan(self, request, pk):
+        """ Plan efectivo """
+
+        obj_api = api()
+        token =  request.session['token']
+        plan =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
+
+        if plan and clients and 'results' in clients:
+            return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients['results']})
+        else:
+            return JsonResponse({'message': _('That plan doesn\'t exist'),
+                                 'class': 'successful'})
+
+    def action(self, request, pk, action):
+        email_check_form = EmailCheckForm()
+        plan_action_form = PlanActionForm()
+        acquired_plan = pk
+        type_operation = ['transfer', 'empower', 'share'].index(action) + 1
+
+        obj_api = api()
+        token =  request.session['token']
+        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        available_queries = resp['available_queries']
+
+        return render(request, 'frontend/actors/client/plan_action.html', {
+            'action':action, 'email_check_form':email_check_form, 'plan_action_form':plan_action_form,
+            'acquired_plan':acquired_plan, 'type_operation':type_operation, 'available_queries':available_queries
+        })
+
+    def upload(self, request, pk):
+        """ Subir voucher de Plan efectivo """
+
+        obj_api = api()
+        token =  request.session['token']
+        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+        if resp:
+            return render(request, 'frontend/actors/client/plan_upload.html', {'plan': resp})
+        else:
+            return JsonResponse({'message': _('That plan doesn\'t exist'),
+                                 'class': 'successful'})
 
     def get_status_footer(self, request):
         """Status del footer."""

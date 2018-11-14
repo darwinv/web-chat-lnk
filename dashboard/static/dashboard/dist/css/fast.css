@@ -6,11 +6,15 @@
     --orange: #BF512D;
     --blue: #232155;
     --dark-blue: #14162E;
-    --black: #131520;
+    --black: #00000d;
+
 
     /*Extra Colors*/
+    --gray: #DEDEDE;
+    --dark-gray: #868686;
     --pink: #D81B60;
     --pink-basic: #ff9e9e;
+    --red: #BC0808;
 }
 
 ul{

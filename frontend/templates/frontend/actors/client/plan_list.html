@@ -1,0 +1,46 @@
+
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid">
+  {% for plan in plans %}
+
+  <a href={% url 'frontend:active-plan' plan.id %}>
+    <div class="row plan-box plan-box-link">
+      <div class="col-9">
+        <div class="plan-title">{{ plan.plan_name }}</div>
+        <div class "plan-info">
+          {% blocktrans trimmed count quantity=plan.query_quantity %}
+          {{ quantity }} query
+          {% plural %}
+          {{ quantity }} queries
+          {% endblocktrans %}<br />
+          {% blocktrans trimmed count validity=plan.validity_months %}
+          Validity {{ validity }} month
+          {% plural %}
+          Validity {{ validity }} months
+          {% endblocktrans %}
+          <div class="plan-price">S/. {{ plan.price }}</div>
+        </div> <!-- Plan main info -->
+      </div><!-- Plan info  -->
+      <div class="col-3 plan-status">
+        {% ifequal plan.status 1 %} Pending Payment {% endifequal %}
+        {% ifequal plan.status 2 %} Waiting for your ACTIVATION PIN {% endifequal %}
+        {% ifequal plan.status 3 %} Enter your PIN {% endifequal %}
+        {% ifequal plan.status 4 %} In use {% endifequal %}
+        {% ifequal plan.status 5 %} Finished {% endifequal %}
+      </div> <!-- Plan status -->
+    </div> <!-- Plan Box -->
+  </a>
+    
+  {% endfor %}
+</div>
+{% endblock main_content %}
+
