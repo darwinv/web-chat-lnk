@@ -2,7 +2,7 @@ $(document).ready(function () {
  
 
     function matchsChange(){
-        $(".match").each(function(){
+        $(".match, .match-detail").each(function(){
           // Renderizamos el time en el listado
           // le damos  formato a de fecha a todas las fechas de match
           var timeMatch = $(this).data("time");

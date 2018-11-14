@@ -2,8 +2,15 @@
 
 {% block content %}
 <!-- content match -->
-<div class="detail-match" data-time="{{ match.date}}" data-status="{{ match.status }}">
-    <img src="{{ match.category_image }}" alt=""> <h3>  {{match.category}} </h3>
+<div class="panel panel-default match-detail container-fluid width-auto" data-time="{{ match.date}}" data-status="{{ match.status }}">
+        <div class="row">
+            <div class="col-xs-4">
+                <img src="{{ match.category_image }}" class="img-responsive" alt="">
+            </div>
+            <div class="col-xs-8">
+                <h3>  {{match.category}} </h3>
+            </div>     
+        </div>
     <hr>
     <div>
         <p style="float: right;">
@@ -11,6 +18,7 @@
                 </p>
         <p class="status"> </p>
     </div>
+   <hr> 
     <div>
         <h4>Descripción de tu caso</h4>
         <p>
