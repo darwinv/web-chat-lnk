@@ -56,7 +56,7 @@ class RegisterClientForm(forms.Form):
         required=False, widget=forms.TextInput(
             attrs={'placeholder': _('Address')}))
     email_exact = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': _('Email')}))
+        widget=forms.TextInput(attrs={'placeholder': _('Email'), 'id':'email_exact'}))
     telephone = forms.CharField(
         widget=forms.TextInput(
             attrs={'placeholder': _('Telephone')}), required=False)
