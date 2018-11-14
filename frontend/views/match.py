@@ -25,5 +25,5 @@ class Client:
         """Detalle de Match."""
         obj_api = api()
         token = request.session['token']
-        data_match = obj_api.get(slug=self.url_client_detail + pk, token=token)
+        data_match = obj_api.get(slug=self.url_client_detail + pk +"/", token=token)
         return render(request, 'frontend/actors/client/match_detail.html', {'match': data_match})       

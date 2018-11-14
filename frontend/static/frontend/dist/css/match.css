@@ -21,6 +21,9 @@
 .match:hover{
     background-color: #0a0c1ccc;
 }
+.match-detail {
+    overflow:auto;
+}
 .match-detail h3{
    font-weight: bold;
 }
