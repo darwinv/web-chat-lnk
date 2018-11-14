@@ -134,6 +134,28 @@ $("#form-chat").submit(function(e){
         }
    });
 
+    
+
+
+
+});
+
+$(document).on('click', ".chat_play_medias", function(){
+    var url = $(this).data("file-url");
+    console.log(url);
+    if ($(this).hasClass("chat-video-thumb")) {
+        // Show videos
+        $("#modal_play_medias").find(".modal-body video").show(
+            ).attr('src', url);
+        $("#modal_play_medias").find(".modal-body img").hide();
+    }else if ($(this).hasClass("chat-img-thumb")){
+        // Show imgs
+        $("#modal_play_medias").find(".modal-body video").hide();
+        $("#modal_play_medias").find(".modal-body img").show().attr(
+        'src', url);
+    }
+
+    $('#modal_play_medias').modal('show');
 });
 
 function getMessageFiles(messageType){

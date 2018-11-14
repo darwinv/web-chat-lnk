@@ -29,18 +29,17 @@
                     <div class="col-sm-12">
                         {% if message.content_type == 1 %}
                             <p class="text">{{ message.message }}</p>
-
                         {% elif message.content_type == 2 %}
-                            <div class="chat-img-thumb" data-toggle='modal' data-target='#modal_play_medias'>
+                            <div class="chat-img-thumb chat_play_medias"
+                            data-file-url="{{message.file_url}}">
                                 <img src="{{message.file_preview_url}}">
                             </div>
                         {% elif message.content_type == 3 %}                            
-                            <div class="chat-video-thumb">
+                            <div class="chat-video-thumb chat_play_medias" data-file-url="{{message.file_url}}">
                                 <img src="{{message.file_preview_url}}">
                                 <div class="play-video">
                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="media-play" transform="translate(4 2.5)" fill="#FFF"><path d="M15.5 7.9L2.5.4C1.2-.3.1.3.1 1.8v15c0 1.5 1.1 2.1 2.4 1.4l13-7.5c1.3-.9 1.3-2.1 0-2.8z" id="Path"></path></g></g></svg>
                                 </div>
-                                
                             </div>
                         {% elif message.content_type == 4 %}
                             <div class="chat-audio-thumb text-center">
