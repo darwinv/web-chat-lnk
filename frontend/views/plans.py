@@ -97,3 +97,10 @@ class Client:
         else:
             return JsonResponse({'message': _('That plan doesn\'t exist'),
                                  'class': 'successful'})
+
+    def get_status_footer(self, request):
+        """Status del footer."""
+        obj_api = api()
+        token = request.session['token']
+        resp = obj_api.get(slug='plans/check_status/', token=token)
+        return JsonResponse(resp)       

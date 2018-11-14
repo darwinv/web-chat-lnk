@@ -6,9 +6,10 @@ $(function() {
       showUpload: false,
       showBrowse: false,
       showCancel:false,
-      uploadUrl: $('#form-chat').data('upload'),
       previewClass: "previewClass2",
+      uploadUrl: "/none/",
       actionUpload: "",
+      autoPlay: false,
   });
 
   $('#file-linkup').on('fileclear', function(event) {
@@ -20,6 +21,7 @@ $(function() {
       $("#upload-div").removeClass('hidden');
     }
   });
+  
 
   $('#file-linkup').on('filereset', function(event) {
     console.log("filereset");
@@ -28,21 +30,25 @@ $(function() {
     console.log('id = ' + id + ', index = ' + index);
   });
 
-  function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-  }
-
+  $(document).on('click', ".kv-file-content", function(){
+   // click videos
+   console.log("click");
+   $(this).parents(".file-preview-frame").first().find('.kv-file-zoom').first().click();
+  });
   //Despliega carga de archivos
   $(".pick-file").click(function(){
-        $('#file-linkup').click()
-        var ele = $(this);
-        //evento se activa luego de cargar la vista previa del archivo
-        $('#file-linkup').on('fileloaded', function(event, file, previewId, index, reader) {
-            //console.log("fileloaded" + ele[0].id);
-            $("#"+previewId).data("type", ele[0].id);
-            console.log(previewId);
-        })
-    });
-
+    var ele = $(this);
+    if (ele[0].id == "img") {
+      $('#file-linkup').attr("accept","image/*");
+    }else{
+      $('#file-linkup').removeAttr("accept");
+    }
+    $('#file-linkup').click();
+    
+    //evento se activa luego de cargar la vista previa del archivo
+    $('#file-linkup').on('fileloaded', function(event, file, previewId, index, reader) {
+        // console.log(previewId + "- fileloaded - " + ele[0].id);
+        $("#"+previewId).data("type", ele[0].id);
+    })
+  });
 });

@@ -1,9 +1,7 @@
 $(document).ready(function () {
     // Cargamos Firebase
     firebase.initializeApp(JSON.parse(apiEnvFirebase));
-    console.log(apiEnvFirebase);
     var client_id = userID;
-    console.log("id: "+client_id);
     // cargamos el listado de los mensajes de las especialidades
     var starCountRef = firebase.database().ref('categories/clients/u' + client_id).orderByChild('datetime');
     starCountRef.on('value', function (snapshot) {
@@ -38,8 +36,6 @@ function inject_items(list_items,  id_user) {
     list_items.forEach(function (item) {
         var itemVal = item;
         // chat = 'es/web/client/chat/'
-        console.log(itemVal.datetime);
-
         if (itemVal.datetime) {
             icon = "pink"
         }else{

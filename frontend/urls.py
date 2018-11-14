@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact
+from frontend.views import index, chat, plans, query, contact, match
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -36,8 +36,9 @@ urlpatterns = [
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
-
-
+   # Chequeo de Status de Planes   
+   url(r'^plans/status/$', plans.Client().get_status_footer,
+        name='status-footer-plans'),
     # Chat
     url(r'^chat/client/(?P<pk>[0-9]+)/$', chat.Client().chat,
         name='chat-client'),
@@ -46,6 +47,8 @@ urlpatterns = [
     url(r'^chat/specialist/(?P<pk>[0-9]+)/$', chat.Specialist().chat,
         name='chat-specialist'),
 
+    # Match
+    url(r'^match/client/$', match.Client().list_match, name='match-client'),
 
     # Contacto
     url(r'^contact/client/$', contact.Client().contact, name='contact-client'),

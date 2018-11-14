@@ -22,12 +22,14 @@
       <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
   {% endblock %}
 
-  {% block scripts_custom %}
+  {% block javascript %}
+      {{ block.super }}
       <script type="text/javascript">
           var type_specialist = "{{request.session.specialist.type_specialist}}";
           const CHAT_SPECIALIST = "{% url 'frontend:chat-specialist' pk=0 %}";
       </script>
       <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
-  {% endblock scripts_custom %}
+      <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+  {% endblock javascript %}
 
 {% endif %}

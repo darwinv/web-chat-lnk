@@ -1,0 +1,27 @@
+.match{
+    background-color: #0a0c1c;
+    color: white;
+    font-weight: bold;
+}
+
+#content-match .list-group{
+    overflow-y: hidden;
+}
+
+.match img{
+    height: 45px;
+}
+
+.match p > small.time{   
+    color: #00b5cb;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.match .status{
+    text-align: center;
+}
+
+.match:hover{
+    background-color: #0a0c1ccc;
+}
