@@ -44,7 +44,7 @@ $(function() {
                 return;
             }
 
-            if (data.status_code == HTTP_CODES.OK) {
+            if (data.status_code == HTTP_CODES.OK || data.status_code == HTTP_CODES.NOT_FOUND) {
                 var selector = '#' + email_receiver.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
                 $(selector).next().remove();
                 $(selector).remove();
