@@ -26,6 +26,7 @@ def ajax_service(request):
     data['status_code'] = resp.status_code
     return JsonResponse(data, safe=False)
 
+
     # if request.method == "GET":
 
     #     data = request.GET
