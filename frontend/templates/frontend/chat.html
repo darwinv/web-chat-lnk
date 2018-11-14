@@ -27,12 +27,11 @@
             data-sender="{{message.user_id}}" data-timemessage="{{ message.time_message}}" data-query="{{message.query.query_id}}">
                 <div class="row">
                     <div class="col-sm-12">
-
                         {% if message.content_type == 1 %}
                             <p class="text">{{ message.message }}</p>
 
                         {% elif message.content_type == 2 %}
-                            <div class="chat-img-thumb">
+                            <div class="chat-img-thumb" data-toggle='modal' data-target='#modal_play_medias'>
                                 <img src="{{message.file_preview_url}}">
                             </div>
                         {% elif message.content_type == 3 %}                            
@@ -122,3 +121,4 @@
         </form>
     </div>
 </div>
+{% include 'frontend/lib/modals/play_medias.html' %}
