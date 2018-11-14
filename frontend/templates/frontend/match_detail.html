@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% block content %}
+<!-- content match -->
+<div class="detail-match" data-time="{{ match.date}}" data-status="{{ match.status }}">
+    <img src="{{ match.category_image }}" alt=""> <h3>  {{match.category}} </h3>
+    <hr>
+    <div>
+        <p style="float: right;">
+                <small class="time"> </small>
+                </p>
+        <p class="status"> </p>
+    </div>
+    <div>
+        <h4>Descripción de tu caso</h4>
+        <p>
+            {{ match.subject}}
+        </p>
+
+    </div>
+</div>
+
+
+{% endblock %}

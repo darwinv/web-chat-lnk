@@ -13,7 +13,7 @@ function dateTextCustom(p_datetime, p_tz) {
         }
     }
     else if (p_datetime.isBefore(yesterday12am)) {
-        custom_text = moment(p_datetime).format('MM/DD/YY');
+        custom_text = moment(p_datetime).format('DD/MM/YY');
     }
     else {
         custom_text = moment(p_datetime).format('LT');
