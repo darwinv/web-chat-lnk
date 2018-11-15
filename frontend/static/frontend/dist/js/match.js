@@ -12,8 +12,16 @@ $(document).ready(function () {
             $(this).find("small.time").text('Solicitado: '+ timeMatchFixed);
           }
           if (status == 1 || status == 2){
-              $(this).find("p.status").text("Estado: Esperando Respuesta");
-          }
+              if (roleID == ROLES.specialist) {
+                declineAcceptBtn = `<center> <button id="match_modal" type="button" class="btn btn-xs btn-ligth-blue cap"
+                                    data-toggle="modal" data-target="#view_match_modal">Responde el Match</button> 
+                                     </center>`;
+                $(this).find("p.status").html(declineAcceptBtn);                     
+              }
+              else {
+                $(this).find("p.status").text("Estado: Esperando Respuesta"); 
+              }
+           }
           if (status == 3){
             $(this).find("p.status").text("Estado: Declinado");
          }
