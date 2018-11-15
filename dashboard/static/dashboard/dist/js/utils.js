@@ -83,7 +83,8 @@ $(document).ready(function () {
         data: data,
         success: function(data) {
           clouserPagination(data);
-          if (data.results) {
+
+          if (data && data.results) {
             $window.data("page", page);
           }
         },

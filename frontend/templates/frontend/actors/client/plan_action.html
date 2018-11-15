@@ -1,0 +1,68 @@
+
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plan_action.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid">
+  <div class="plan-box">
+    <div id="first-section" class="row">
+      <div class="col-12">
+        {{ action|title }} your plan<br />
+        Available queries: <span id="available-queries"></span><br />
+        {% csrf_token %}
+        <form id="check-email-form">
+          {{ email_check_form.email }}<br />
+          <input class="action-button" type="submit" name="submit" value="Accept">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% csrf_token %}
+  <form id="action-form">
+
+  <div class="plan-box user-list-box">
+    <div id="second-section">
+      <div id="default-message" class="col-12">
+        <p id="add-email" class="turquoise-phrase">Add the email of the person to whom you are going to {{ action }} the use of your plan</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan-box">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1">
+        <label class="legal-checkbox">
+          {{ plan_action_form.legal }}Accept <a class="turquoise-phrase" href="http://www.linkup.com.pe/legal/">Terms and conditions</a><br />
+          <span class="checkmark"></span>
+        </label>
+        <input class="action-button" type="submit" name="submit" value="{{ action|title }}">
+      </div>
+    </div>
+  </div>
+
+  </form>
+</div>
+{% include 'frontend/actors/client/lib/new_user_modal.html' %}
+{% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static "frontend/client/js/plan_action.js" %}"></script>
+  <script src="{% static "dashboard/jquery/dist/js/are-you-sure.js" %}"></script>
+  <script>
+    action = "{{ action }}";
+    acquired_plan = "{{ acquired_plan }}";
+    type_operation = "{{ type_operation }}";
+    register_url = "{% url 'login:register' %}";
+    final_url = "{% url 'frontend:active-plans' %}";
+    available_queries = "{{ available_queries }}";
+  </script>
+{% endblock %}
