@@ -84,12 +84,22 @@
 }
 
 .action-entry {
+    height: auto;
     margin: 10px;
+}
+
+.action-entry div {
+    height: 100%;
+    width: 100%;
 }
 
 .user-photo {
     max-width: 100px;
     max-height: 100px;
+    width: 100%;
+    height: 100%;
+    min-width: 55px;
+    min-height: 55px;
 }
 
 .circle-photo-placeholder {
