@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block main_content %}
-<div class="container-fluid">
+<div id="plan-list" class="container-fluid">
   {% for plan in plans %}
 
   <a href={% url 'frontend:active-plan' plan.id %}>
