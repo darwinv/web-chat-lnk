@@ -7,6 +7,7 @@ $(document).ready(function () {
           // le damos  formato a de fecha a todas las fechas de match
           var timeMatch = $(this).data("time");
           var status = $(this).data("status");
+          var matchID = $(this).data("id"); 
           var timeMatchFixed = dateTextCustom(moment.utc(timeMatch), "-05:00");
          if(status !=5){   
             $(this).find("small.time").text('Solicitado: '+ timeMatchFixed);
@@ -14,7 +15,7 @@ $(document).ready(function () {
           if (status == 1 || status == 2){
               if (roleID == ROLES.specialist) {
                 declineAcceptBtn = `<center> <button id="match_modal" type="button" class="btn btn-xs btn-ligth-blue cap"
-                                    data-toggle="modal" data-target="#view_match_modal">Responde el Match</button> 
+                                    data-toggle="modal" data-id="${matchID}" data-target="#view_match_modal">Responde el Match</button> 
                                      </center>`;
                 $(this).find("p.status").html(declineAcceptBtn);                     
               }
