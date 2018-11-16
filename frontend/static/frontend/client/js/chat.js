@@ -18,3 +18,7 @@ $(document).ready(function () {
 
 
 }); // cierra document ready
+$(document).on('click', ".close-reply", function(){
+    $("#reply-content").data("message-reference", null).hide();
+    $(".fileinput-remove").click();    
+});

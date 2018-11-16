@@ -75,29 +75,52 @@ if (chatsock.readyState == WebSocket.OPEN) {
 
 $("#form-chat").submit(function(e){
     e.preventDefault();
-    //sendQueryMessage()
-    $("#animacion").toggleClass("hidden");
-    var title_query = $('#title_query').val();
-    var textMessage = $('#text_message').val();
-    var csrfToken = $('[name=csrfmiddlewaretoken]').val();
-    var messageType = 'q';
+    var textMessage = $('#text_message').val(); 
+    var messageReference = $("#reply-content").data("message-reference");    
+
+    if (messageReference) {
+        // Respuestas o Reconsultas
+        if (roleID==ROLES.specialist) {
+            var messageType = 'a';
+        }else{
+            var messageType = 'r';
+        }
+        var dataQuery = {
+            message: [{
+                msg_type: messageType,
+                message: textMessage,
+                content_type: 1,
+                file_url: '',
+                message_reference: messageReference
+            }],
+        };
+    }else{
+        // Nuevos Queries
+        var title_query = $('#title_query').val();  
+        var messageType = 'q';
+        var dataQuery = {
+            title: title_query,
+            category: category,
+            message: [{
+                msg_type: messageType,
+                message: textMessage,
+                content_type: 1,
+                file_url: ''
+            }],
+        };
+    }
     
-    var arrFiles = []
+    ajaxQuery(dataQuery);
+});
 
-    var dataQuery = {
-        title: title_query,
-        category: category,
-        message: [{
-            msg_type: messageType,
-            message: textMessage,
-            content_type: 1,
-            file_url: ''
-        }],
-    };    
-
-    arrFiles = getMessageFiles(messageType);
-    $(".send-message-cont").find("button").attr("disabled", true);
+function ajaxQuery(dataQuery){
+    var arrFiles = getMessageFiles(dataQuery["message"][0]["msg_type"]);
     dataQuery["message"] = dataQuery["message"].concat(arrFiles);
+
+    $("#animacion").toggleClass("hidden");
+    var csrfToken = $('[name=csrfmiddlewaretoken]').val(); 
+    // Funcion para enviar ajax a query
+    $(".send-message-cont").find("button").attr("disabled", true);    
     $.ajax({
         beforeSend: function(request, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -125,7 +148,8 @@ $("#form-chat").submit(function(e){
                 alert(response.non_field_errors[0]);
             }else{
                 $("#title_query").val('');
-                $("#text_message").val('').focus();                
+                $("#text_message").val('').focus();
+                console.log(response);
                 if (arrFiles.length > 0) {
                     sendFilesMessages(response);
                 }
@@ -134,15 +158,34 @@ $("#form-chat").submit(function(e){
         }
    });
 
-    
+}
 
 
+$(document).on('click', ".query-event-reply", function(){
+    var globeChat = $(this).parents(".globe-chat");
+    var messageReference = globeChat.find(".message").first().data("message");
+    var titleQuery = globeChat.data("title-query");
 
+    var textMessage = globeChat.find(".chat-text-thumb").first().html();
+
+    if (!textMessage) {
+        textMessage = "<i class='fas fa-file'></i> Archivo Adjunto";
+    }
+    $("#reply-content").find(".message-reference-title").html(titleQuery);
+
+    $("#reply-content").find(".message-reference-message").html(textMessage);
+    $("#reply-content").data("message-reference",messageReference).show();
+
+    if (roleID==ROLES.specialist) {
+        $("#selection_message_alert").hide();
+        $(".send-message-cont").show();
+    }
 });
+
+
 
 $(document).on('click', ".chat_play_medias", function(){
     var url = $(this).data("file-url");
-    console.log(url);
     if ($(this).hasClass("chat-video-thumb")) {
         // Show videos
         $("#modal_play_medias").find(".modal-body video").show(
@@ -318,6 +361,9 @@ Date.prototype.yyyymmdd = function() {
           (dd>9 ? '' : '0') + dd
          ].join('');
 };
+
+
+
 });
 // Funcion para devolver la fecha actual del mensaje
 // segun la zona horaria
