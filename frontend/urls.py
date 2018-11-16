@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^match/client/$', match.Client().list_match, name='match-client'),
     url(r'^match/specialist/$', match.Specialist().list_match, name='match-specialist'),
     url(r'^match/client/(?P<pk>[0-9]+)/$', match.Client().detail_match, name='match-client-detail'),
+    url(r'^match/specialist/(?P<pk>[0-9]+)/$', match.Specialist().detail_match, name='match-specialist-detail'),
 
 
     # Contacto

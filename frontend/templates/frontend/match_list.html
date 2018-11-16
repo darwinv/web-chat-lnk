@@ -47,8 +47,12 @@
                         {% endfor %} 
                     </div>
                 </div>
-            {% endif %}     
-            <a href="{% url 'frontend:match-client-detail' pk=match.id %}">Ver Detalle</a>
+            {% endif %}
+            {% if request.user.role.id == ROLES.client  %}     
+            <a class="link-match" href="{% url 'frontend:match-client-detail' pk=match.id %}">Ver Detalle</a>
+            {% else %}
+            <a class="link-match" href="{% url 'frontend:match-specialist-detail' pk=match.id %}">Ver Detalle</a>
+            {% endif %}
         </div>
       {% endfor %}
 

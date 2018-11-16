@@ -13,10 +13,15 @@ $(document).ready(function () {
           }
           if (status == 1 || status == 2){
               if (roleID == ROLES.specialist) {
-                declineAcceptBtn = `<center> <button id="match_modal" type="button" class="btn btn-xs btn-ligth-blue cap"
-                                    data-toggle="modal" data-id="${matchID}" data-target="#view_match_modal">Responde el Match</button> 
-                                     </center>`;
-                $(this).find("p.status").html(declineAcceptBtn);                     
+                if (status == 1) {
+                  declineAcceptBtn = `<center> <button id="match_modal" type="button" class="btn btn-xs btn-ligth-blue cap"
+                  data-toggle="modal" data-id="${matchID}" data-target="#view_match_modal">Responde el Match</button> 
+                   </center>`;
+                      $(this).find("p.status").html(declineAcceptBtn);
+                      $(this).find("a.link-match").addClass('hidden');    
+                 }else{
+                  $(this).find("p.status").text("Estado: Pendiente de Revision"); 
+                 }     
               }
               else {
                 $(this).find("p.status").text("Estado: Esperando Respuesta"); 
@@ -37,8 +42,10 @@ $(document).ready(function () {
       });
     }
 
-
     $('#list-match-content').data("url",'client/matchs/');  // Url a consumir
+    if (roleID == ROLES.specialist){
+      $('#list-match-content').data("url",'specialists/matchs/');  // Url a consumir
+    }
     $('#list-match-content').data("page", 1);
 
     $('#list-match-content').scroll(function() {
