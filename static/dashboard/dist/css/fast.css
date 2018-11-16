@@ -173,6 +173,10 @@ ul{
 .width-auto{
   width: auto;
 }
+.width-60-percent{
+  width: 60%;
+}
+
 button.paperclip{
   font-size: 22px;
   margin: 5px 7px;

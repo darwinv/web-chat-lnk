@@ -4,10 +4,6 @@
     font-weight: bold;
 }
 
-#content-match .list-group{
-    overflow-y: hidden;
-}
-
 .match img{
     height: 45px;
 }
@@ -24,4 +20,18 @@
 
 .match:hover{
     background-color: #0a0c1ccc;
+}
+.match-detail {
+    overflow:auto;
+}
+.match-detail h3{
+   font-weight: bold;
+}
+
+.match-detail h4, .match-detail .time{
+    color: var(--turquoise);
+}
+
+#view_match_modal .subject{
+    text-transform: none;
 }

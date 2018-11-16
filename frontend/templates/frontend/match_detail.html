@@ -1,0 +1,79 @@
+{% load i18n %}
+
+{% block content %}
+<!-- content match -->
+<div class="panel panel-default match-detail container-fluid width-60-percent" data-time="{{ match.date}}" data-status="{{ match.status }}">
+        <div class="row">
+            <div class="col-xs-4">
+                <img src="{{ match.category_image }}" class="img-responsive" alt="">
+            </div>
+            <div class="col-xs-8">
+                <h3>  {{match.category}} </h3>
+            </div>     
+        </div>
+    <hr>
+    {% if match.status == 5 %}
+        <div class="row">
+            <div class="col-xs-4">
+                <img src="{{ match.specialist.photo }}" class="img-responsive img-circle" alt="">
+            </div>
+            <div class="col-xs-8">
+                {{ match.specialist.first_name }}  {{ match.specialist.last_name }} <br>
+                {{ match.specialist.email_exact }} <br>
+                {{ match.specialist.code }} <br>
+                Celular: {{match.specialist.cellphone}} <i class="fas fa-mobile-alt"></i><br>
+                Telefono Fijo: {{match.specialist.telephone}} <i class="fas fa-phone"></i>
+            </div>     
+        </div>
+        <hr>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-12">
+            <p style="float: right;">
+                    <small class="time"> </small>
+                    </p>
+            <p class="status"> </p>
+        </div>
+    </div>
+   <hr> 
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>Descripción de tu caso</h4>
+            <p>
+                {{ match.subject}}
+            </p>
+        </div>
+    </div>
+
+    {% if match.status == 3 %}
+        <h4>Motivo de la Declinación</h4>
+        {{ match.declined_motive }}
+    {% endif %}
+
+    <hr>
+    {% if match.file %}
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Adjuntos</h4>   
+                {% for file in match.file %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <i class="fas fa-file"></i>  
+                            <a href="{{ file.file_url }}" download="" target="_blank">Descarga archivo_{{ file.id }}</a>
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    {% endif %}
+
+<div class="row marT20">
+        <a href="{% url 'frontend:match-client' %}">
+                Volver al listado
+         </a>
+</div>
+
+
+</div>
+
+{% endblock %}

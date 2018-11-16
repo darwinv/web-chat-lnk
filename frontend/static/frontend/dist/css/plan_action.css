@@ -1,0 +1,181 @@
+
+.plan-box {
+    text-align: center;
+}
+
+#first-section {
+    font-weight: bold;
+}
+
+#first-section div {
+    line-height: 30px;
+}
+
+.action-button {
+    color: var(--white);
+    background: var(--turquoise);
+    border: 1px solid #CCC;
+    border-radius: 20px;
+    box-shadow: 0 0 5px -1px var(--dark-blue);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.action-button:disabled {
+    background: var(--turquoise-opaque);
+}
+
+#email-box {
+    border-radius: 20px;
+    color: var(--black);
+    padding-left: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+#second-section {
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+#default-message {
+    height: 100%;
+    position: absolute;
+    display: table;
+}
+
+#add-email {
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    height: 100%;
+    max-height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.user-list-box {
+    height: 200px;
+}
+
+.user-line {
+    width: 100%;
+    height: 60px;
+    margin: 10px 0 10px 0;
+}
+
+.email-section {
+    width: 100%;
+    padding: 10px 0 10px 0;
+    text-align: left;
+    vertical-align: top;
+}
+
+.count-section {
+    padding: 10px 0 0 0;
+    vertical-align: top;
+}
+
+.queries-count {
+    color: var(--black);
+    width: 30px;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.queries-count::-webkit-outer-spin-button,
+.queries-count::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#new-user-modal {
+    padding: 10px;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
+}
+
+.modal-title:first-letter {
+    text-transform: uppercase;
+}
+
+.modal-dialog .modal-content {
+    text-transform: none;
+}
+
+.legal-checkbox {
+    display: block;
+    position: auto;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#legal-checkbox {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    left: 11px;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    left: 10px;
+    vertical-align: bottom;
+    top: -1px;
+    *overflow: hidden;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+#legal-checkbox:hover  ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+#legal-checkbox:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+#legal-checkbox:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.legal-checkbox .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.turquoise-phrase {
+    color: var(--turquoise);
+    font-weight: bold;
+}

@@ -5,39 +5,60 @@ from django.http import QueryDict
 def ajax_service(request):
     """Planes Activos."""
     obj_api = api()
-    if request.method == "GET":
-
-        filters = request.GET
-
-        if 'url' in request.GET:
-            url = request.GET['url']
-        else:
-            return JsonResponse()
-
-        if 'token' in request.session:
-            token = request.session['token']
-        else:
-            token = None
-
-        resp = obj_api.get(slug=url, token=token, arg=filters)
-        
-        return JsonResponse(resp, safe=False)
-
-    elif request.method == "POST":
-        pass
-
-    elif request.method == "PUT":
+    if request.method == 'PUT':
         data = QueryDict(request.body)
-        if 'url' in data:
-            url = data['url']
-        else:
-            return JsonResponse()
+    else:
+        data = getattr(request, request.method)
 
-        if 'token' in request.session:
-            token = request.session['token']
-        else:
-            token = None
+    if 'url' in data:
+        url = data['url']
+    else:
+        return JsonResponse()
 
-        resp = obj_api.put(slug=url, token=token, arg=data)
+    if 'token' in request.session:
+        token = request.session['token']
+    else:
+        token = None
+
+    resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data)
+
+    data = resp.json()
+    data['status_code'] = resp.status_code
+    return JsonResponse(data, safe=False)
+
+
+    # if request.method == "GET":
+
+    #     data = request.GET
+
+    #     if 'url' in data:
+    #         url = data['url']
+    #     else:
+    #         return JsonResponse()
+
+    #     if 'token' in request.session:
+    #         token = request.session['token']
+    #     else:
+    #         token = None
+
+    #     resp = obj_api.get(slug=url, token=token, arg=data)
         
-        return JsonResponse(resp, safe=False)
+    #     return JsonResponse(resp, safe=False)
+
+    # elif request.method == "POST":
+    #     pass
+
+    # elif request.method == "PUT":
+    #     data = QueryDict(request.body)
+    #     if 'url' in data:
+    #         url = data['url']
+    #     else:
+    #         return JsonResponse()
+
+    #     if 'token' in request.session:
+    #         token = request.session['token']
+    #     else:
+    #         token = None
+    #     resp = obj_api.put(slug=url, token=token, arg=data)
+        
+    #     return JsonResponse(resp, safe=False)
