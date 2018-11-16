@@ -23,4 +23,10 @@ $(document).ready(function () {
         // $("#message").removeClass();
             // do something…
     });
+
+    $('#decline_match_modal').on('shown.bs.modal', function (e) {
+        $('#view_match_modal').modal('hide');
+
+    }); 
+
 });
