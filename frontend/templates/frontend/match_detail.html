@@ -13,20 +13,36 @@
         </div>
     <hr>
     {% if match.status == 5 %}
-        <div class="row">
-            <div class="col-xs-4">
-                <img src="{{ match.specialist.photo }}" class="img-responsive img-circle" alt="">
-            </div>
-            <div class="col-xs-8">
-                {{ match.specialist.first_name }}  {{ match.specialist.last_name }} <br>
-                {{ match.specialist.email_exact }} <br>
-                {{ match.specialist.code }} <br>
-                Celular: {{match.specialist.cellphone}} <i class="fas fa-mobile-alt"></i><br>
-                Telefono Fijo: {{match.specialist.telephone}} <i class="fas fa-phone"></i>
-            </div>     
-        </div>
-        <hr>
-    {% endif %}
+            {% if request.user.role.id == ROLES.client  %}   
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="{{ match.specialist.photo }}" class="img-responsive img-circle" alt="">
+                    </div>
+                    <div class="col-xs-8">
+                        {{ match.specialist.first_name }}  {{ match.specialist.last_name }} <br>
+                        {{ match.specialist.email_exact }} <br>
+                        {{ match.specialist.code }} <br>
+                        Celular: {{match.specialist.cellphone}} <i class="fas fa-mobile-alt"></i><br>
+                        Telefono Fijo: {{match.specialist.telephone}} <i class="fas fa-phone"></i>
+                    </div>     
+                </div>
+                <hr>
+                {% else %}
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="{{ match.client.photo }}" class="img-responsive img-circle" alt="">
+                    </div>
+                    <div class="col-xs-8">
+                        {{ match.client.first_name }}  {{ match.client.last_name }} <br>
+                        {{ match.client.email_exact }} <br>
+                        {{ match.client.code }} <br>
+                        Celular: {{match.client.cellphone}} <i class="fas fa-mobile-alt"></i><br>
+                        Telefono Fijo: {{match.client.telephone}} <i class="fas fa-phone"></i>
+                    </div>     
+                </div>
+                <hr>    
+            {% endif %}
+    {% endif %}   
     <div class="row">
         <div class="col-xs-12">
             <p style="float: right;">
