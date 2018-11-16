@@ -63,3 +63,9 @@ class EmailCheckForm(forms.Form):
 class PlanActionForm(forms.Form):
     legal = forms.BooleanField(required=True)
     legal.widget.attrs.update({'id': 'legal-checkbox'})
+
+
+# class DeclineMatchForm(forms.Form):    
+#     declined_motive = forms.CharField(widget=forms.Textarea)
+#     declined_motive.widget.attrs.update({'id': 'declined_motive', 'class': 'form-control ',
+#                                 'placeholder': _('Indicate the reason why it declines')})
