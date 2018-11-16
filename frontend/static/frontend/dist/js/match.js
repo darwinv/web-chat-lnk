@@ -1,6 +1,5 @@
 $(document).ready(function () {
  
-
     function matchsChange(){
         $(".match, .match-detail").each(function(){
           // Renderizamos el time en el listado

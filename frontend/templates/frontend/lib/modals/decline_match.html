@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<div class="modal fade" id="decline_match_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <center>
+          <h4 class="modal-title title-modal-linkup" id="myModalLabel">{% trans "A New Match has arrived"|title %}</h4>
+        </center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-decline">
+                <h3> {% trans "Indicate the reason why it declines" %}</h3>   
+                <form id="decline-match" action="" class=""  method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                             <textarea required="required" id="decline_motive" name="decline_motive" class="form-control"></textarea>                        
+                        </div>       
+                  <div class="col-xs-12">
+                        <button type="submit" id="decline" data-matchid="" class="btn btn-orange btn-block">{% trans "decline"|title %}
+                        </button>   
+                  </div>  
+                </form>
+                <div id="animacion1" class="hidden">
+                    <div class="ball"></div>
+                    <div class="ball1"></div>
+                </div>
+            </div>  
+        </div>
+        <center> <div id="message"> </div></center>
+      </div>
+    </div>
+</div>
