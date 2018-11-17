@@ -22,11 +22,41 @@ chatsock.onmessage = function(message) {
     var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
     var resScroll = positionScroll / diffScroll;
     
+    if (roleID==ROLES.client) {
+        var actionsEvents = `<a class="dropdown-item query-event-reply" href="#">Reconsulta</a>`;            
+    }else{
+        var actionsEvents = `<a class="dropdown-item query-event-reply" href="#">Responder</a>
+                             <a class="dropdown-item query-event-derive"
+                                href="#">Derivar</a>`; 
+    }
+    var actions = `<div class="dropdown chat-angle-down" style="display: none;">
+                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    ${actionsEvents}
+                  </div>
+                </div>`;
+
     $.each(data.messages, function(key,value){
         var msg = value.message;
         var codeUser = value.codeUser;
+
+        console.log(value);
+        var msgType = "value"
+        var specialistMsg = ""
+        var groupStatus = value.groupStatus
         // Se crea el div del globo para renderizarlo
         // se valida el tema de si soy el q cree el mensaje o al contrario
+
+        
+        if (specialistMsg == userID && groupStatus == 1 && (msgType =="q" || msgType =="r") ){
+            actions_temp = actions;
+        }else if(groupStatus == 1 && msgType == "a" && roleID == ROLES.client){
+            actions_temp = actions;
+        }else{
+            actions_temp = "";
+        }
+
         var divMessage = `<div id='message_'${value.id}' class='row globe-chat'>
                                 <div class='cont-title-query' 
                                 style='display: none'>
@@ -38,6 +68,7 @@ chatsock.onmessage = function(message) {
                                 data-sender='${value.user_id}' 
                                 data-timemessage='${value.timeMessage}' 
                                 data-query='${value.query_id}'>
+                                    ${actions_temp}
                                     <div class='row'>
                                         <div class='col-sm-12'>
                                             <p class='text'>
@@ -76,9 +107,10 @@ if (chatsock.readyState == WebSocket.OPEN) {
 $("#form-chat").submit(function(e){
     e.preventDefault();
     var textMessage = $('#text_message').val(); 
-    var messageReference = $("#reply-content").data("message-reference");    
+    var messageReference = $("#reply-content").data("message-reference");
 
     if (messageReference) {
+        query = $("#reply-content").data("query-reference");
         // Respuestas o Reconsultas
         if (roleID==ROLES.specialist) {
             var messageType = 'a';
@@ -86,6 +118,7 @@ $("#form-chat").submit(function(e){
             var messageType = 'r';
         }
         var dataQuery = {
+            query: query,
             message: [{
                 msg_type: messageType,
                 message: textMessage,
@@ -149,7 +182,8 @@ function ajaxQuery(dataQuery){
             }else{
                 $("#title_query").val('');
                 $("#text_message").val('').focus();
-                console.log(response);
+                $("#reply-content").data("message-reference", null).hide();
+
                 if (arrFiles.length > 0) {
                     sendFilesMessages(response);
                 }
@@ -163,9 +197,10 @@ function ajaxQuery(dataQuery){
 
 $(document).on('click', ".query-event-reply", function(){
     var globeChat = $(this).parents(".globe-chat");
-    var messageReference = globeChat.find(".message").first().data("message");
+    var reference = globeChat.find(".message").first();
+    var messageReference = reference.data("message");
+    var queryReference = reference.data("query");
     var titleQuery = globeChat.data("title-query");
-
     var textMessage = globeChat.find(".chat-text-thumb").first().html();
 
     if (!textMessage) {
@@ -174,7 +209,9 @@ $(document).on('click', ".query-event-reply", function(){
     $("#reply-content").find(".message-reference-title").html(titleQuery);
 
     $("#reply-content").find(".message-reference-message").html(textMessage);
-    $("#reply-content").data("message-reference",messageReference).show();
+    $("#reply-content").data("message-reference", messageReference);
+    $("#reply-content").data("query-reference", queryReference).show();
+    $("#title_query_content").hide().find("input").prop("disabled", true );
 
     if (roleID==ROLES.specialist) {
         $("#selection_message_alert").hide();
@@ -334,13 +371,38 @@ function updateMessage(){
         var msg = $(this);
         // Renderizamos el time en el listado
         var timeMessage = msg.data("timemessage");
+        var msgType = msg.data("msg-type");
+        var specialistMsg = msg.data("specialist");
+        var groupStatus = msg.data("group-status");
+        var queryStatus = msg.data("query-status");
+
         timeMessage = toLocalTime(timeMessage);
-        msg.find("small.time").text(timeMessage)
-        if (msg.data("sender") != userID){
-            msg.removeClass("col-sm-offset-6");
-            msg.addClass("message-left");
-        }else{
-            msg.addClass("message-right");
+        msg.find("small.time").text(timeMessage)        
+
+        if (roleID == ROLES.client){
+            if(msgType == "a"){
+                msg.removeClass("col-sm-offset-6");
+                msg.addClass("message-left");
+            }else{           
+                msg.addClass("message-right");            
+            }
+        }else if (roleID == ROLES.specialist){
+            if(msgType == "a"){
+                msg.addClass("message-right");
+            }else{
+                msg.removeClass("col-sm-offset-6");
+                msg.addClass("message-left");
+            }
+        }
+
+
+        if (specialistMsg == userID && groupStatus == 1 && (msgType =="q" || msgType =="r") ){            
+            msg.find(".dropdown-menu").append(`<a class="dropdown-item query-event-derive"
+             href="#">Derivar</a>`);
+            msg.find(".query-event-reply").html(`Responder`);            
+            msg.find(".chat-angle-down").css('display','');
+        }else if(groupStatus == 1 && msgType == "a" && roleID == ROLES.client){
+            msg.find(".chat-angle-down").css('display','');
         }
 
         if (msg.data("query") != previus_query_id){

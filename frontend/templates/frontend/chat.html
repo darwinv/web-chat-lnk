@@ -23,22 +23,28 @@
                     {{message.query.title}}
                 </div>
             </div>
-            <div class="message col-sm-6 col-sm-offset-6" data-category="{{message.query.category_id}}"
-            data-sender="{{message.user_id}}" data-timemessage="{{ message.time_message}}" data-message="{{message.id}}" data-query="{{message.query.query_id}}">
+            <div class="message col-xs-10 col-sm-6 col-sm-offset-6" 
+            data-category="{{message.query.category_id}}"
+            data-sender="{{message.user_id}}" data-timemessage="{{message.time_message}}" 
+            data-message="{{message.id}}" data-query="{{message.query.query_id}}" 
+            data-group-status="{{message.group_status}}"
+            data-msg-type="{{message.msg_type}}"
+            data-specialist="{{message.specialist_id}}" >
                 
-                <div class="dropdown chat-angle-down">
+                <!-- EVENTS -->
+                <div class="dropdown chat-angle-down" style="display: none;">
                   <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item query-event-reply" href="#">Responder</a>
-                    <a class="dropdown-item query-event-derive" href="#">Derivar</a>
+                    <a class="dropdown-item query-event-reply" href="#">{% trans "Requery" %}</a>
                   </div>
                 </div>
 
+                <!-- Vista -->
                 <div class="row">
                     <div class="col-sm-12">
                         {% if message.content_type == 1 %}
-                            <div class="chat-text-thumb chat_play_medias">
+                            <div class="chat-text-thumb">
                                 <p class="text">{{ message.message }}</p>
                             </div>
                         {% elif message.content_type == 2 %}
@@ -70,6 +76,7 @@
                     </div>
                 </div>
 
+                <!-- Foter -->
                 <div class="row marT10 message-footer">
                     <div class="col-sm-6">
                         <p class="code-user">{{ message.code }}</p>
