@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div class="modal fade" id="accept_match_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <center>
+          <h4 class="modal-title title-modal-linkup" id="myModalLabel">{% trans "A New Match has arrived"|title %}</h4>
+        </center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-accept">
+                <h4> {% trans "select the type of payment" %}</h4>   
+                <form id="accept-match" class="text-center" action="" method="POST">
+                        {% csrf_token %}
+                    <label for="paid">Pago Cuenta Recaudadora (Envio Voucher)</label>      
+                    <input name='payment' id='paid' value='1' type='radio' required>
+                    <label for="discount">Adicionar a la cuenta del Mes</label>   
+                    <input name='payment' id='discount' value='2' type='radio'>
+                  <div class="col-xs-12 marT20">
+                        <button type="submit" id="accept" data-matchid="" class="btn btn-primary btn-block">Acepta
+                        </button>   
+                  </div>  
+                </form>
+                <div id="animacion1" class="hidden">
+                    <div class="ball"></div>
+                    <div class="ball1"></div>
+                </div>
+            </div>  
+        </div>
+        <center> <div id="message"> </div></center>
+      </div>
+    </div>
+</div>
