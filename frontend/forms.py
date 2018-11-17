@@ -1,6 +1,7 @@
 """Formularios."""
 from django import forms
 from django.utils.translation import ugettext as _
+from api.models import Category
 
 
 class QueryForm(forms.Form):
@@ -65,7 +66,15 @@ class PlanActionForm(forms.Form):
     legal.widget.attrs.update({'id': 'legal-checkbox'})
 
 
-# class DeclineMatchForm(forms.Form):    
-#     declined_motive = forms.CharField(widget=forms.Textarea)
-#     declined_motive.widget.attrs.update({'id': 'declined_motive', 'class': 'form-control ',
-#                                 'placeholder': _('Indicate the reason why it declines')})
+class MatchForm(forms.Form):
+    """Form para crear match."""
+    category = forms.CharField(widget=forms.Select(), required=False, label=_('speciality'))
+    subject = forms.CharField(label='')
+    subject.widget = forms.Textarea()
+    subject.widget.attrs.update({'id': 'subject', 'class': 'form-control',
+                                 'placeholder': _('Write your query')})
+
+    def __init__(self, data=None, initial=None, *args, **kwargs):
+        categories = Category.objects.all()
+        if categories:
+            self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]

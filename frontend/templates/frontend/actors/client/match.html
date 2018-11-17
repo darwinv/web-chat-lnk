@@ -1,0 +1,37 @@
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+{% block main_content %}
+<form action="." method="post">
+  <div class="container-fluid">
+    <div class="row">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="field-wrapper col-8 offset-2">
+          {{ field.errors }}
+          {{ field }}
+          {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row field-wrapper">
+      <button class="btn btn-xs btn-ligth-blue cap col-2 offset-5" type="submit" value="Submit">
+      {% trans "Send"|title %}
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+      var token = '{{request.session.token}}';
+  </script>
+{% endblock %}

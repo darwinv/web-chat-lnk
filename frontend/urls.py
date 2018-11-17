@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^client/$', index.Client().index, name='index-client'),
     url(r'^specialist/$', index.Specialist().index, name='index-specialist'),
     url(r'^seller/$', index.Seller().index, name='index-seller'),
-    
+
 
     # Plans
     # cambiar plan elegido
@@ -37,7 +37,7 @@ urlpatterns = [
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
-   # Chequeo de Status de Planes   
+   # Chequeo de Status de Planes
    url(r'^plans/status/$', plans.Client().get_status_footer,
         name='status-footer-plans'),
     # Chat
@@ -52,6 +52,7 @@ urlpatterns = [
     url(r'^match/client/$', match.Client().list_match, name='match-client'),
     url(r'^match/specialist/$', match.Specialist().list_match, name='match-specialist'),
     url(r'^match/client/(?P<pk>[0-9]+)/$', match.Client().detail_match, name='match-client-detail'),
+    url(r'^match/client/create/$', match.Client().create_match, name='match-client-create'),
     url(r'^match/specialist/(?P<pk>[0-9]+)/$', match.Specialist().detail_match, name='match-specialist-detail'),
 
 
