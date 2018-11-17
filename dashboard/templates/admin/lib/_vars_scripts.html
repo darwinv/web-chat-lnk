@@ -1,0 +1,39 @@
+{% load static api_tools %}
+{% load i18n %}
+<!-- Este archivo es llamado por toda la App para cumplir funciones  -->
+<!-- personalizadas para 2 o mas vistas -->
+<script src="https://unpkg.com/compress.js@1.1.2/index.js"></script>
+<script>
+    {% autoescape off %}
+        var urlBase = 'http://{{ request.get_host }}/';
+        var headers = {% get_api_header %}; //Retorna un Objeto
+        var apiUrl = '{% get_api_url %}';
+        var apiEnvFirebase = '{% get_api_enviroment_firebase %}';
+        const ROLES = {{ ROLES }};        
+        const AJAX_SERVICE = "{% url 'dashboard:ajax-service' %}";
+        const LOADING_HTML = "<div class='loading-html'><div class='ball'></div>"+
+                                "<div class='ball1'></div>"+
+                             "</div>";
+
+        var audioNotification =  "{% static 'frontend/dist/audio/beep.wav' %}";
+        // Variables para traduccion
+        const TRANS_QUERIES = "{% trans 'queries'%}";
+        const TRANS_QUERY_PLANS = "{% trans 'query plans' %}";
+        const TRANS_AVAILABLES = "{% trans 'availables' %}";
+        const TRANS_EXPIRATION_DATE = "{% trans 'expiration date' %}";
+        const TRANS_VALIDITY_MONTHS = "{% trans 'validity months'%}";
+        const TRANS_RELOAD = "{% trans 'reload' %}";
+        const TRANS_CHANGE_PLAN  = "{% trans 'change plan' %}";
+        const TRANS_SELECT_PLAN  = "{% trans 'select plan' %}";
+        const TRANS_ACTIVATE = "{% trans 'activate' %}";
+
+
+        {% if request.user.id %}
+            var userID = {{request.user.id}};
+            var roleID = {{request.user.role.id}};
+        {% else %}
+            var userID = null
+            var roleID = null
+        {% endif %}
+    {% endautoescape %}
+</script>

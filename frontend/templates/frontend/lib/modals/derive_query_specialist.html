@@ -1,0 +1,47 @@
+{% load i18n %}
+
+<!-- Modal -->
+<div class="modal fade" id="derive_query_specialist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <!-- <i class="fas fa-arrow-left"></i> -->
+      <center>
+        <h4 class="modal-title title-modal-linkup" id="myModalLabel">{% trans "a new query has arrived"|title %}</h4>
+      </center>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+          <form id="derive_query_modal" action="" method="post">
+            {% csrf_token %}
+            <div id="modal_content_list" class="height-70vh">
+              <div class="cont-item user-chat-logo header-modal">
+                <img src="" class="rounded-circle itemp" id="img_cat">
+                <p class="itemp">
+                  <strong class="nick"></strong>
+                </p>
+              </div>
+              <hr>
+              <div class="text-center marB10">
+                <span>Selecciona a quien derivar la consulta</span>
+              </div>
+              <div class="derive-associate-list text-center">
+                
+              </div>
+              <!-- <img src='{% static "frontend/img/bloqued.png"'>
+              <img src='{% static "frontend/img/check.png"'> -->
+            </div>
+            <center>
+               <button disabled="disabled" type="submit" id="derive-query" class="btn btn-orange">{% trans "derive"|title %}
+               </button>       
+             </center>
+          </form>
+          <div id="animacion1" class="hidden">
+              <div class="ball"></div>
+              <div class="ball1"></div>
+          </div>
+      </div>
+      <center> <div id="message"> </div></center>
+    </div>
+  </div>
+</div>

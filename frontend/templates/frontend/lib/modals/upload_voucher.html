@@ -1,0 +1,37 @@
+{% load static i18n %}
+
+<!-- Modal -->
+<div id="upload-voucher-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title-modal">Upload your voucher</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container-fluid">
+        <form id="upload-voucher-form" enctype="multipart/form-data" method="post">
+          <div id="hiddden-input">
+            <input id="file-input" type="file">
+          </div>
+          <div id="voucher-section" class="row justify-content-center">
+            <div class="col-12">
+              <img id="voucher-img">
+            </div>
+            <div id="select-message" class="col-12">SELECT THE VOUCHER PHOTO</div>
+          </div>
+          <div class="row justify-content-center">
+            <div id="legal-line" class="col-10">
+              <input type="checkbox" name="" required>
+              I accept the <a href="http://www.linkup.com.pe/legal/" target="_blank">Terms and Conditions</a> and <a href="http://www.linkup.com.pe/legal/" target="_blank">Privacy Policies</a>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-4"><input id="send-button" type="submit" name="" value="Send"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

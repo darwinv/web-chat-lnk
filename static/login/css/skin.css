@@ -1,16 +1,14 @@
-body {
-    /*Border imagen Photo*/
-  --img-border-color: rgb(111, 111, 111);
-}
+
 
 #frame-profile-img, #frame-profile-img img, #frame-profile-img canvas {
     border-radius: 50%;
     display: inline-block;
     width: 230px;
     height: 230px;
+    object-fit: cover;
 }
 #frame-profile-img {
-    border: 1px solid var(--img-border-color);
+    border: 1px solid rgb(111, 111, 111);
     border-radius: 50%;
     background: #fffffffa;
 }

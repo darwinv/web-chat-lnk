@@ -1,3 +1,43 @@
+:root {
+    /*Color palette*/
+    --white: #ffffff;
+    --turquoise-opaque: #6FABC4;
+    --turquoise: #44ABC4;
+    --orange: #BF512D;
+    --blue: #232155;
+    --dark-blue: #14162E;
+    --black: #00000d;
+
+
+    /*Extra Colors*/
+    --gray: #DEDEDE;
+    --dark-gray: #868686;
+    --pink: #D81B60;
+    --pink-basic: #ff9e9e;
+    --red: #BC0808;
+}
+
+ul{
+  list-style: none;
+}
+/* Exitoso */
+.successful{
+  background-color: green;
+}
+/* Error */
+.error{
+  background-color: red;
+}
+
+.container-modal-inputs{
+  padding-left: 35px;
+  margin-bottom: 12px;
+}
+
+.title-modal-linkup{
+  font-size: x-large;
+  font-weight: bolder;
+}
 /*
 	Put in this file short css standard code
     Example:
@@ -26,12 +66,19 @@
 .cap{
 	text-transform: capitalize;
 }
+.bold {
+  font-weight: bold;
+}
 .inline-block {
     display: inline-block;
 }
 .responsive-img{
     max-width: 100%;
     height: auto;
+}
+.height-70vh{
+  height: 70vh;
+  overflow-y: auto;
 }
 .pointer{
 	cursor: pointer;
@@ -45,11 +92,30 @@
 .without-border {
     border: none !important;
 }
+.mar-auto {
+  margin: auto;
+}
+/* Margins rapidos */
+.mar0{
+  margin: 0px !important;
+}
 .mar10{
-	margin: 10px;
+  margin: 10px;
+}
+.mar15{
+  margin: 15px;
 }
 .marT20{
 	margin-top: 20px;
+}
+.marT10{
+  margin-top: 10px;
+}
+.marL5{
+  margin-left: 5px;
+}
+.marL20{
+  margin-left: 20px;
 }
 .marR15{
 	margin-right: 15px;
@@ -57,9 +123,16 @@
 .marB25{
 	margin-bottom: 25px;
 }
+.marB20{
+	margin-bottom: 20px;
+}
 .marB10 {
     margin-bottom: 10px;
 }
+.marB-5 {
+    margin-bottom: -5px;
+}
+
 .padT10{
 	padding-top: 10px;
 }
@@ -78,6 +151,9 @@
 .padT6 {
 	padding-top: 6px;
 }
+.size10{
+  font-size: 10px;
+}
 .size18 {
     font-size: 18px;
 }
@@ -85,27 +161,49 @@
     font-size: 17px;
 }
 .size16{
-	font-size: 16px;
+  font-size: 16px;
+}
+.font-size25{
+  font-size: 25px;
+}
+.font-sizeLarge{
+  font-size: large;
 }
 .color-red {
     color: red;
 }
 
-/*errorlist*/
-ul.errorlist:not(.nonfield) {
-    position: absolute;
-    width: 100%;
+/* anchura auto */
+.width-auto{
+  width: auto;
+}
+.width-60-percent{
+  width: 60%;
 }
 
-.input-form-control input:hover ~ ul.errorlist li,
-.input-form-control select:hover ~ ul.errorlist li
+button.paperclip{
+  font-size: 22px;
+  margin: 5px 7px;
+  border-radius: 30px;
+}
+
+/*global .errorlist*/
+ul.errorlist:not(.nonfield) {
+  position: absolute;
+  width: 100%;
+  bottom: -10px;
+}
+
+.input-form-control:hover ul.errorlist li
 {
     display: block;
 }
-.input-form-control input + ul.errorlist li,
-.input-form-control select + ul.errorlist li
+.input-form-control ul.errorlist li
 {
     display: none;
+}
+.input-form-control{
+  position: relative;
 }
 ul.errorlist li {
     list-style: none;
@@ -121,11 +219,31 @@ ul.errorlist li {
 ul.errorlist:not(.nonfield) li {
     position: absolute;
 }
-ul.errorlist:not(.nonfield):before {
+.input-form-control .errorlist + select,
+.input-form-control .errorlist + input{
+  border: 2px solid #ff00009e
+}
+/*ul.errorlist:not(.nonfield):before {
     content: "X";
     position: absolute;
     top: -29px;
     right: 43px;
     color: red;
-}
+}*/
 /*fin errorlist*/
+
+/*Boostrap Search Select*/
+.btn-group.bootstrap-select {
+    width: 100% !important;
+}
+button.btn.dropdown-toggle.btn-default {
+    border-radius: 0px !important;
+    background: white !important;
+}
+.dropdown-menu>.active>a > span.text {
+    background-color: #337ab7;
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
+    background: none !important;
+}
+/*Fin Boostrap Search Select*/

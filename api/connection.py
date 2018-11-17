@@ -4,8 +4,8 @@
 from api.config import API_URL, API_CLIENT_ID, API_CLIENT_SECRET, API_HEADERS
 import requests
 from django.utils import translation
+from django.contrib.auth import logout
 from django.urls import reverse
-import pdb
 from django.http import HttpResponseRedirect
 # Django
 # from django.contrib.auth.models import User
@@ -92,7 +92,7 @@ class api:
             # solo para este metodo se va usar un token fijo
             # Django requiere que la clase de autenticacion siempre le devuelva
             # cualquier usuario por id
-            # headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+            # headers = {'Authorization': 'Bearer EGsnU4Cz3Mx50UCuLrc20mup10s0Gz'}
 
             # self._headers.extend(headers)
             # Ubicar el uso del token estatico en la configuracion
@@ -100,7 +100,7 @@ class api:
             # acceder a los usuarios, siempre usa el mismo token
             # usar git diff para ver diferencias y encontra los bugs
 
-            headers = {'Authorization': 'Bearer EGsnU4Cz3Mx5bUCuLrc2hmup51sSGz'}
+            headers = {'Authorization': 'Bearer EGsnU4Cz3Mx50UCuLrc20mup10s0Gz'}
 
             headers = dict(headers, **self._headers)
 
@@ -145,42 +145,37 @@ class api:
             headers = dict(headers, **self._headers)
 
             r = requests.get(self._url + 'users?username=' + username, headers=headers)
-            
+
             data = r.json()
-            try:
-                # obtener id de la respuesta
-
-                id = int(data['results'][0]['id'])
-
-                                    
-                # evaluar si existe el usuario en las sesiones guardadas
-                if User.objects.filter(id=id).count() > 0:
-                    user = User.objects.filter(id=id)[0]
-                else:
-                    user = User()
-
-                # Se agregan campos necesarios en base de datos local
-                # tomando en cuenta campos requeridos y unicos
-                user.id = id
-                user.username = str(data['results'][0]['username'])
-                user.code = str(data['results'][0]['code'])
-                user.document_number = str(data['results'][0]['document_number'])
-                user.email_exact = str(data['results'][0]['email_exact'])
-
-                role_id = int(data['results'][0]['role'])
-                user.role.id = user.role.pk = role_id
-                role = Role.objects.get(pk=role_id)
-                user.role.name = role.name
+            
+            # obtener id de la respuesta
+            pk = int(data['results'][0]['id'])
 
 
-            except Exception as e:
-                print(e)
-                print("---------------ERROR GETUSER---------------")
+            # evaluar si existe el usuario en las sesiones guardadas
+            if User.objects.filter(id=pk).count() > 0:
+                user = User.objects.get(id=pk)
+            else:
+                user = User()
+                
+            # Se agregan campos necesarios en base de datos local
+            # tomando en cuenta campos requeridos y unicos
+            user.id = pk
+            user.username = str(data['results'][0]['username'])
+            user.code = str(data['results'][0]['code'])
+            user.document_type = 1 # str(data['results'][0]['document_type'])
+            user.document_number = str(data['results'][0]['document_number'])
+            user.email_exact = str(data['results'][0]['email_exact'])
+
+            role_id = int(data['results'][0]['role'])
+
+            user.role = Role.objects.get(pk=role_id)
 
             return user
 
         except Exception as e:
-            pass
+            print(e.args)
+            print("---------------ERROR LOGOUT---------------")
 
     def logout(self, token):
         headers = {'Authorization': 'Bearer ' + token, 'Accept-Language': self._language}
@@ -198,96 +193,98 @@ class api:
             print(e.args)
             print("---------------ERROR LOGOUT---------------")
 
+    def check_token(self, token, slug='', arg=None):
+        headers = {'Authorization': 'Bearer ' + token}
+        headers = dict(headers, **self._headers)
 
-    def get(self, token, slug='', arg=None, ):
+        r = requests.get(self._url + slug, headers=headers, params=arg)
+        
+        if r.status_code == 401:
+            return False
+        else:
+            return True
+
+
+    def get_all(self, token, slug='', arg=None, data=None):
 
         try:
-
             headers = {'Authorization': 'Bearer ' + token}
-
             headers = dict(headers, **self._headers)
-            r = requests.get(self._url + slug, headers=headers, params=arg)
-
-            if r.status_code == 401:
-                #logout = requests.get(reverse('login:logout'))
-                #return HttpResponseRedirect(reverse('login:logout'))
-                print("---------------401resp---------------------")
-            else:
-                return r.json()
+            result = requests.get(self._url + slug, headers=headers, params=arg, data=data)
+            return result
 
         except Exception as e:
             print(e.args)
             print("---------------ERROR GET---------------")
+            return None
 
-    def post(self, token='', slug='', arg=None, files=None):
+    def get(self, token, slug='', arg=None, request=None):
+        result = self.get_all(token, slug, arg)
+
+        if hasattr(result, 'status_code'):
+            if result.status_code != 500:
+                return result.json()
+         
+        return None
+        
+
+    def post_all(self, token='', slug='', arg=None, files=None):
         headers = {'Accept-Language': self._language}
-
+        
         if token:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
-
         try:
-            # arg2 = {
-            #     "username": "darwinjesus",
-            #     "password": "intel12345",
-            #     "nick": "dar",
-            #     "type_client": "n",
-            #     "first_name": "darwin",
-            #     "last_name": "vasquez",
-            #     "civil_state": "s",
-            #     "birthdate": "2017-09-19",
-            #     "address": {
-            #         "street": "esteban camere",
-            #         "department": 1,
-            #         "province": 1,
-            #         "district": 1
-            #     },
-            #     "sex": "m",
-            #     "document_type": "2",
-            #     "document_number": "20122984",
-            #     "email_exact": "darwinio_vasqz@gmail.com",
-            #     "telephone": "921471559",
-            #     "cellphone": "921471559",
-            #     "activity_description": "Loremp iptsum",
-            #     "level_instruction": 1,
-            #     "institute": "UNEFA",
-            #     "profession": "Administrador",
-            #     "ocupation": "0",
-            #     "about": "iptsum aabout",
-            #     "ciiu": "10",
-            #     "nationality": 1,
-            #     "residence_country": 1
-            # }
-            r = requests.post(self._url + slug, headers=headers, json=arg, files=files)
-            return r.json()
-            
+            result = requests.post(self._url + slug, headers=headers, json=arg, files=files)
+            return result
+
         except Exception as e:
             print(e.args)
             print("---------------ERROR POST---------------")
+            return None
 
-    def put(self, token, slug='', arg=None, files=None):
-        headers = {'Authorization': 'Bearer ' + token}
-        headers = dict(headers, **self._headers)
-        print(slug)
-        print (headers)
-        print("------------------------------------")
+    def post(self, token='', slug='', arg=None, files=None):
+        result = self.post_all(token, slug, arg, files)
+        
+        if hasattr(result, 'status_code'):
+            if result.status_code != 500:
+                return result.json()
+         
+        return None
+        
+
+    def put(self, token='', slug='', arg=None, files=None):
+        result = self.put_all(token, slug, arg, files)
+
+        if hasattr(result, 'status_code'):
+            if result.status_code != 500:
+                return result.json()
+         
+        return None
+
+    def put_all(self, token='', slug='', arg=None, files=None):
+        headers = {'Accept-Language': self._language}
+        
+        if token:
+            headers['Authorization'] = 'Bearer {}'.format(token)
+            headers = dict(headers, **self._headers)
         try:
-            r = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)            
-            
-            return r.json()
-            
+            result = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
+            return result
+
         except Exception as e:
-            print(e)
+            print(e.args)
             print("---------------ERROR PUT---------------")
+            return None
 
     def delete(self, token, slug='', arg=None):
         headers = {'Authorization': 'Bearer ' + token}
         headers = dict(headers, **self._headers)
 
         try:
-            r = requests.delete(self._url + slug, headers=headers, params=arg)
+            result = requests.delete(self._url + slug, headers=headers, params=arg)
 
-            return r.json()
+            return result.json()
         except Exception as e:
             print(e)
             print("---------------ERROR DELETE---------------")

@@ -1,0 +1,102 @@
+{% load static adminlte_helpers i18n %}
+{% is_mobile request as device_is_mobile %}
+<!DOCTYPE html>
+<html class="frontend-html">
+
+<head>
+    {% block title_outer %}
+        <title>{% block title %}{{ site.name }}{% endblock %}</title>
+    {% endblock %}
+
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" href="{% static "frontend/dist/css/bootstrap.min.css" %}">
+        <link rel="shortcut icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
+        <link rel="icon" href="{% static "dashboard/dist/img/icono-link.ico" %}" type="image/x-icon">
+    {% endblock %}
+
+    {% block stylesheets %}
+        {% include 'frontend/lib/_styles.html' %}
+    {% endblock %}
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="page-wrap">
+        <div class="first-spacing hidden-xs" >
+            <!-- SPACING HERE -->
+        </div>
+        <div class="content-wrap">
+
+            {% if device_is_mobile is False %}
+                <div class="left_slide">
+                    <div class="head-split">
+                        <div class="content-logo">
+                            <!-- LOGO -->                        
+                            <div class="content-img-logo">
+                                <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
+                            </div>
+                        </div>
+                    </div>
+
+                    {% block left_slide %}
+                        <div class="content-left-slide">
+                            {% block content_left_slide %}
+                            {% endblock content_left_slide %}
+                        </div>
+                    {% endblock left_slide %} 
+
+                </div>
+            {% endif %}
+            
+                <div class="content-right">
+                    {% if device_is_mobile %}                    
+                        <div class="head-split">
+                            <div class="content-logo">
+                                <!-- LOGO -->                        
+                                <div class="content-img-logo">
+                                    <img src="{% static "frontend/dist/img/logo-linkup.png" %}" class="front-logo">
+                                </div>
+                            </div>
+                            <div class="menu-mobile">
+                                {% include 'frontend/lib/_main_menu.html' %}
+                            </div>
+                        </div>                            
+                    {% else %}
+                        <div class="content-right-head">
+                            {% block content_right_head %}
+                                <!-- menu y opciones -->
+                                <div class="row">
+                                    <div class="col-md-offset-9">
+                                    </div>
+                                    <div class="col-md-3">
+                                        {% include 'frontend/lib/_main_menu.html' %}
+                                    </div>
+                                </div>
+                            {% endblock content_right_head %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="main-content">
+                        <!-- Main Content -->
+                        {% block main_content %}
+                        {% endblock main_content %}
+                    </div>
+                </div>
+            
+        </div>
+
+        {% block nav_footer %}
+            {% include 'frontend/lib/_main_footer.html' %}
+        {% endblock %}
+    </div>
+    
+{% endblock body %}
+
+{% block javascript %}
+  {% include 'frontend/lib/_scripts.html' %}
+{% endblock %}
+</body>

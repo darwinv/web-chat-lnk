@@ -1,0 +1,25 @@
+{% extends 'admin/payment/payment.html' %}
+{% load i18n %}
+
+
+{% block filters_table %}
+    <div class="col-xs-12 marB10">
+            
+            <div class="filters">
+
+                {% if form_filters.document_number %}
+                    <div class="form-group text-center col-xs-12">
+                        {{ form_filters.document_number.label_tag }}
+                        {{ form_filters.document_number }}
+                        {{ form_filters.document_number.errors }}
+                    </div>
+                {% endif %}                
+
+                <div class="col-xs-12 text-center">
+                    <button type="submit" class="btn btn-flat btn-black">{% trans "send"|title %}</button>
+                    <button type="button" class="btn btn-flat btn-default cleatFilter">{% trans "clear"|title %}</button>
+                </div>
+            </div>
+
+    </div>
+{% endblock filters_table %}

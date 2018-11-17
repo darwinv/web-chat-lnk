@@ -1,6 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
 
-
 class ChoicesAPI:
     """
         Clase Choices para manejo de opciones en los modelos
@@ -12,16 +11,16 @@ class ChoicesAPI:
 
     # User Model
     user_document_type = (
-        ('0', _('DNI')),
-        ('1', _('Passport')),
-        ('2', _('Foreign Card')),
+        (1, _('DNI')),
+        (2, _('Passport')),
+        (3, _('Foreign Card')),
     )
-    
+
     user_status = (
-        ('0', _('Pending')),
-        ('1', _('Activate')),
-        ('2', _('Reject')),
-        ('3', _('Deactivated')),
+        (1, _('Pending')),
+        (2, _('Activate')),
+        (3, _('Reject')),
+        (4, _('Deactivated')),
     )
 
     # Client Model
@@ -29,6 +28,7 @@ class ChoicesAPI:
         ('n', _('Natural')),
         ('b', _('Business')),
     )
+
     client_full_type_client = (
         ('n', _('Natural Person')),
         ('b', _('Business Person')),
@@ -49,13 +49,13 @@ class ChoicesAPI:
     )
 
     client_ocupation = (
-        ('0', _('Employer')),
-        ('1', _('Independent worker')),
-        ('2', _('Employee')),
-        ('3', _('Worker')),
-        ('4', _('Worker in a family business')),
-        ('5', _('Home worker')),
-        ('6', _('Other')),
+        (1, _('Employer')),
+        (2, _('Independent worker')),
+        (3, _('Employee')),
+        (4, _('Worker')),
+        (5, _('Worker in a family business')),
+        (6, _('Home worker')),
+        (7, _('Other')),
     )
 
     # Specialist Model
@@ -78,21 +78,15 @@ class ChoicesAPI:
     )
 
     # Purchase Model
-    purchase_status = (
-        ('0', _('Pending')),
-        ('1', _('Paid')),
-    )
-
-    # Purchase Model
     fee_status = (
-        ('1', _('Pending')),
-        ('2', _('Paid')),
+        (1, _('Pending')),
+        (2, _('Paid')),
     )
-
-    # Sale Model
+    # venta estado
     sale_status = (
-        ('0', _('Pending')),
-        ('1', _('Paid')),
+        (1, _('Unpaid')),  # no se ha pagado
+        (2, _('Progress')),  # al menos una cuota la pagaron
+        (3, _('Paid')),  # ya se pago
     )
 
     # CulqiPayment Model
@@ -105,27 +99,25 @@ class ChoicesAPI:
 
     # payment model
     payment_status = (
-        ('0', _('Pending')),
-        ('1', _('Accepted')),
-        ('2', _('Declined')),
+        (1, _('Pending')),
+        (2, _('Accepted')),
+        (3, _('Declined')),
     )
+
     # Query Model
     query_status = (
-        ('0', _('Requested')),  # Preguntada, pendiente de derivar o responder
-        ('1', _('Requested Derived')),  # derivada, pendiente de declinar o responder, reconsulta
-        ('2', _('Pending Response')),  # derivada a asociado, pendiente de respuesta
-        ('3', _('Pending Main Response')),  # principal, pendiente de respuesta
-        ('4', _('Answered Main')),  # respondida por principal
-        ('5', _('Answered')),  # respondida por asociado
-        ('6', _('Absolved Main')),  # resuelta por principal
-        ('7', _('Absolved')),  # resuelta por asociado
+        (1, _('Requested')),  # pendiente por derivar, responder o declinar
+        (2, _('Accepted')),  # consulta aceptada por un especialista
+        (3, _('Answered')),  # respondida por especialista
+        (4, _('To score')),  # pendiente por puntuar
+        (5, _('Absolved')),  # resuelta y finalizada
     )
 
     # MatchAcquired model
     match_acquired_status = (
-        ('0', _('Requested')),
-        ('1', _('Accepted')),
-        ('2', _('Declined')),
+        (1, _('Requested')),
+        (2, _('Accepted')),
+        (3, _('Declined')),
     )
 
     # Message Model
@@ -135,11 +127,19 @@ class ChoicesAPI:
         ('a', _('answer')),  # es de tipo respuesta
     )
 
-    # MessageFile Model
-    messagefile_type_file = (
-        ('0', _('Image')),
-        ('1', _('Voice')),
-        ('2', _('Document')),
+    message_content_type = (
+        (1, _('Text')),
+        (2, _('Image')),
+        (3, _('Video')),
+        (4, _('Voice')),
+        (5, _('Document')),
+    )
+
+    # Match Model
+    match_type_file = (
+        (2, _('Image')),
+        (3, _('Voice')),
+        (4, _('Document')),
     )
 
     # AlertCategory Model
@@ -147,4 +147,28 @@ class ChoicesAPI:
         ('c', _('Critic')),
         ('m', _('Moderate')),
         ('p', _('Positive')),
+    )
+
+    # Query Plan Client
+    queryplansclient_status = (
+        (1, _('Active')),
+        (2, _('Deactivated')),
+    )
+
+    # Query Plan Manage
+    queryplansmanage_type_operation = (
+        (1, _('Transfer')),
+        (2, _('Share')),
+        (3, _('Empower')),
+    )
+    queryplansmanage_status = (
+        (1, _('Active')),
+        (2, _('Deactivated')),
+        (3, _('Processing')),
+    )
+    # tipo de Contacto
+    type_seller_contact = (
+        (1, _('Effective')),
+        (2, _('Non Effective')),
+        (3, _('Effective paid')),  # efectivo que ya ha pagado.
     )

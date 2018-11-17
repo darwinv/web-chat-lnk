@@ -1,10 +1,11 @@
 """Vista de Autorizaciones (Clientes/Especialistas/Vendedores)."""
 from django.shortcuts import render
 from dashboard.json2table import convert
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
+from login.utils.tools import role_admin_check
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 from dashboard.tools import capitalize as cap, ToolsBackend as Tools
 from dashboard.forms import AuthorizationClientFilter
 class Autorization:
@@ -28,7 +29,7 @@ class AutorizationClient(Autorization):
         Para posterior aprovacion o rechazo
     """
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         """
             Listado de clientes por autorizar,
@@ -101,8 +102,11 @@ class AutorizationClient(Autorization):
             "date_join": {'type': 'date', 'data': ('date_join',)},
             "approve": {'type': 'if_eval', 'data': ('r["status"]=="0"',),
                                          'next': approve_column},
-            "rejected": {'type': 'if_eval', 'data': ('r["status"]=="0"',),
-                                         'next': rejected_column},
+            "rejected": {
+                'type': 'if_eval',
+                'data': ('r["status"]=="0"',),
+                'next': rejected_column
+            },
         }
 
         table = convert(data, header=header_table, multi_header=multi_header, custom_column=custom_column)

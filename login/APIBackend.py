@@ -1,7 +1,5 @@
 from api.models import User
 from api.connection import api
-import pdb
-
 
 class APIBackend(object):
     """
@@ -30,14 +28,22 @@ class APIBackend(object):
 
             # guardar token en la sesion
             request.session['token'] = token
-
+            
             try:
                 # se debe pasar user y token para obtener los datos del usuario
-
                 user = obj_api.getUsuario(token, username)
                 # guardar usuario unicamete para que el framework acepte el objeto
                 user.save()
 
+                # Si es role especialista
+                if user.role.id==3:
+                    specialist = obj_api.get_all(token, slug="specialists-users/{}/".format(username))
+                    
+                    if specialist.status_code == 200:
+                        data_specialist = specialist.json()
+                        request.session['specialist'] = {}
+                        request.session['specialist']['type_specialist'] = data_specialist['type_specialist']
+                        
             except User.DoesNotExist:
                 return None
 

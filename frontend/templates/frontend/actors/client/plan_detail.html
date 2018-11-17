@@ -1,0 +1,155 @@
+
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
+    {% ifequal plan.status 1 %}
+    <style>
+    .plan-box:hover, .plan-box:active {
+        cursor: pointer;
+        background: var(--blue);
+        color: var(--gray);
+        box-shadow: 0 0 5px -1px var(--black);
+    }
+    </style>
+    {% endifequal %}
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid">
+  <div id="main-detail" class="plan-box">
+    <div class="row">
+      <div class="col-3 plan-title">{{ plan.plan_name }}</div>
+      <div class="col-3 offset-6 plan-status">
+        {% ifequal plan.status 1 %} Pending Payment {% endifequal %}
+        {% ifequal plan.status 2 %} Waiting for your ACTIVATION PIN {% endifequal %}
+        {% ifequal plan.status 3 %} Enter your PIN {% endifequal %}
+        {% ifequal plan.status 4 %} In use {% endifequal %}
+        {% ifequal plan.status 5 %} Finished {% endifequal %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 plan-info">
+        {% blocktrans trimmed count quantity=plan.query_quantity %}
+        {{ quantity }} query
+        {% plural %}
+        {{ quantity }} queries
+        {% endblocktrans %}<br />
+
+        {% blocktrans trimmed count validity=plan.validity_months %}
+        Validity {{ validity }} month
+        {% plural %}
+        Validity {{ validity }} months
+        {% endblocktrans %}
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 plan-info">
+        {% blocktrans trimmed count quantity=plan.available_queries %}
+        Available: {{ quantity }} query
+        {% plural %}
+        Available: {{ quantity }} queries
+        {% endblocktrans %}<br />
+
+        {% blocktrans with edate=plan.expiration_date%}Expires: {{ edate }}{% endblocktrans %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 plan-price">S/. {{ plan.price }}</div>
+      <div class="col-12">
+        <div class="query-to-pay">
+          {% blocktrans trimmed count quantity=plan.queries_to_pay %}
+          {{ quantity }} query to pay
+          {% plural %}
+          {{ quantity }} queries to pay
+          {% endblocktrans %}<br />
+        </div>
+      </div>
+      <div class="col-12 fee-info">
+        {% blocktrans trimmed count quantity=plan.fee.fee_quantity %}
+        {{ quantity }} fee to pay.
+        {% plural %}
+        {{ quantity }} fees to pay.
+        {% endblocktrans %}
+
+        {% blocktrans trimmed with price=plan.fee.fee_amount %}Next payment of S/. {{ price }}{% endblocktrans %}
+        {% blocktrans trimmed with edate=plan.fee.pay_before %}You need to pay before {{ edate }}{% endblocktrans %}
+      </div>
+    </div>
+    {% ifequal plan.status 4 %}
+    {% if plan.available_queries > 0 %}
+    <div class="row button-box justify-content-center">
+      {% ifequal plan.transfer True %}
+        <div class="col-4">
+          <a href="transfer/"><div class="plan-button">Transfer</div></a>
+        </div>
+      {% endifequal %}
+      {% ifequal plan.empower True %}
+        <div class="col-4">
+          <a href="empower/"><div class="plan-button">Empower</div></a>
+        </div>
+      {% endifequal %}
+      {% ifequal plan.share True %}
+        <div class="col-4">
+          <a href="share/"><div class="plan-button">Share</div></a>
+        </div>
+      {% endifequal %}
+    </div>
+    {% endif  %}
+    {% endifequal %}
+  </div>
+  <div id="action-list">
+    {% for client in clients %}
+      <div id="{{ client.email_receiver }}" class="row align-items-center justify-content-center action-entry">
+        <div class="col-3 col-sm-3 col-md-2 col-lg-2">
+          {% if client.receiver.photo %}
+            <img class="user-photo" src="{{ client.receiver.photo }}">
+          {% else %}
+            <span class="circle-photo-placeholder">{{ client.email_receiver|make_list|first|title }}</span>
+          {% endif %}
+        </div>
+        <div class="col-7 col-sm-6 col-md-5 col-lg-4">
+          <b>{{ client.email_receiver }}</b><br />
+
+          {% if client.receiver.display_name %}
+            {{ client.receiver.display_name }}<br />
+          {% endif %}
+          {% ifequal client.type_operation 1 %}
+            User transfered
+          {% endifequal %}
+          {% ifequal client.type_operation 2 %}
+            User shared
+          {% endifequal %}
+          {% ifequal client.type_operation 3 %}
+            User empowered
+          {% endifequal %}
+          <br />
+
+          {% if client.new_acquired_plan.available_queries %}
+          {% if client.new_acquired_plan.query_quantity %}
+            {{ client.new_acquired_plan.available_queries }} / {{ client.new_acquired_plan.query_quantity }}
+          {% endif %}
+          {% endif %}
+        </div>
+        <div class="col-1 button-section">
+          {% ifequal client.type_operation 3 %}
+            <div class="delete-empower-ellipsis fa fa-ellipsis-v"></div>
+            <div id="button-for-{{ client.email_receiver }}" class="drop-down">Dejar de facultar</div>
+          {% endifequal %}
+        </div>
+      </div>
+      <hr />
+    {% endfor %}
+  </div>
+</div>
+{% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static "frontend/client/js/plan_detail.js" %}"></script>
+  <script>
+    plan_id = "{{ plan.id }}";
+    plan_status = parseInt("{{ plan.status }}", 10);
+  </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load static i18n %}
+
+<div id="summary" class="container-fluid">
+  <div class="row summary-title">
+    <div class="col-12">Place of payment</div>
+  </div>
+  <div class="row summary-info">
+    <div class="col-12 ">
+      BANCO DE CREDITO DEL PERU<br />
+      PYMPACK S.A.C.<br />
+      RUC: 20600889177<br />
+      N° de Cuenta Soles: 194-2267910-0-80<br />
+      CCI: 00219400226791008094<br />
+      N° de Cuenta Dolares: 194-2258223-1-42<br />
+      CCI: 00219400225822314294
+    </div>
+  </div>
+  <div class="row summary-title">
+    <div class="col-12">Purchased Products</div>
+  </div>
+  <div id="purchased-products" class="row">
+    {% if photo %}
+      <div class="col-4"><img src="photo" /></div>
+    {% endif %}  
+    <div id="product-info" class="col-8 summary-info">
+      {% for line in lines %}
+        {{ line }}<br />
+      {% endfor %}
+    </div>
+  </div>
+  <div id="bottom" class="row">
+    <div id="total-section" class="col-6 col-sm-8">
+      Total<br />
+      <div id="total">S/. {{ total }}</div>
+    </div>
+    <div id="button-box" class="col-6 col-sm-4"><button id="upload-button">UPLOAD VOUCHER</button></div>
+  </div>
+</div>
+
+{% include 'frontend/lib/modals/upload_voucher.html' %}

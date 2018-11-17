@@ -1,0 +1,177 @@
+/* Estilos para el Chat */
+/* .img-category div{
+    color: white;
+    font-size: large;
+    font-weight: bold;
+} */
+.message{
+    margin-top: 5px;
+    border-radius: 21px;
+    padding: 10px 20px;
+    width: 41%;
+}
+
+.message-right{
+    background-color: #00ACC5;
+    color:white;
+    right: 3%;
+}
+
+.message-left{
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 21px;
+    padding: 10px 20px;
+    width: 41%;
+    left: 10px;
+    color:black;
+    border: 3px solid #00ACC5;
+}
+
+.globe-chat p.text{
+    margin: 10px 0px;
+}
+
+.title-query{
+    border: 1px solid #dfdfdf;
+    border-radius: 15px;
+    background-color: #a3ffdd;
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    padding: 5px 15px;
+    vertical-align: middle;
+    margin: 0px 20px;
+    box-shadow: 1px 1px #8888887d;
+    max-width: 70%;
+}
+.cont-title-query{
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+#chat_box {
+    overflow-x: hidden;
+    flex: 1 1 0;
+}
+#content-chat {
+    position: relative;
+    background-color: #f5f5f5;
+    height: 100%;
+    display:  flex;
+    flex-direction:  column;
+}
+
+div.box-send-message {
+    background-color: #D0D0D0;
+    width: 100%;
+    float:  left;
+    margin-top: 1px;
+    position:  relative;
+}
+
+div.title-box {
+    background-color: #00000D;
+    margin-top: 0px;
+    padding: 5px 20px 10px 20px;
+}
+
+div.title-box label{
+    color: white;
+    text-transform: capitalize;
+}
+
+small.time{
+    float: right;
+    font-weight: bold;
+}
+
+.code-user{
+    font-weight: bold;
+}
+
+.send-message-cont {
+    margin-top: 10px;
+    position: relative;
+    display: flex;
+}
+
+.pick{
+    border-radius: 30px;
+    margin-bottom: 7px;
+    font-size: 22px;
+    background: whitesmoke;
+    margin-right: 5px;
+}
+
+#atachment{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    margin-right: 8%;
+    margin-bottom: 5%;
+}
+
+ul#atachment > li {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+    zoom:1;
+}
+
+#close_query{
+    position: absolute;
+    color: white;
+    right: 15px;
+    cursor: pointer;
+}
+
+.chat-video-thumb, .chat-img-thumb {
+    position: relative;
+    text-align: center;
+}
+.chat-video-thumb img, .chat-img-thumb img {
+    width: 100%;
+    border-radius: 21px;
+    max-height: 174px;
+    max-width: 100%;
+    object-fit: cover;
+}
+.chat-video-thumb > .play-video {
+    background: #ffffff38;
+    padding: 15px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.chat-video-thumb svg {
+    vertical-align: middle;
+}
+
+
+.chat-audio-thumb audio{
+    width: 100%;
+    max-width: 300px;
+}
+footer {
+    display: none;
+}
+.chat-file-thumb {
+    border: 1px solid #22242c1c;
+    background-color: #0da6bcba;
+    border-radius: 50px;
+    padding: 10px;
+    font-size: 25px;
+}
+.chat-file-thumb a {
+    color: white;
+    font-size: 16px;
+}
+
+.message-footer {
+    color: #ffffffad;
+}
+

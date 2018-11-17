@@ -1,0 +1,47 @@
+{% load i18n %}
+
+<div class="modal fade" id="view_match_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <center>
+          <h4 class="modal-title title-modal-linkup" id="myModalLabel">{% trans "A New Match has arrived"|title %}</h4>
+        </center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-modal-match">
+                    <div class="row">
+                            <div class="col-xs-12 speciality-img text-center">
+            
+                            </div>
+                        
+                     </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 subject">
+            
+                            </div>
+                        </div>
+                     <div class="row">
+                         <div class="files_match">
+                          </div>
+                     </div>   
+                 <hr>
+                    <div class="row">
+                            <div class="col-xs-6">
+                                    <button type="button" id="open_decline_modal" class="btn btn-danger btn-block" data-matchid="" 
+                                     data-toggle="modal" data-target="#decline_match_modal">Declina</button> 
+                            </div>
+                            <div class="col-xs-6">
+                                  <button type="button" data-toggle="modal" id="open_accept_modal" data-matchid=""
+                                  data-target="#accept_match_modal" class="btn btn-primary btn-block">Acepta</button>
+                            </div>
+                    </div>            
+            </div>  
+
+        </div>
+ 
+      </div>
+    </div>
+  </div>

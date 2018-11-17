@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,15 +18,11 @@
 	    {% endblock %}
 
 	    {% block extra_head %}{% endblock %}
-
 	</head>
 
 	<body class="body-front">
-
 		{% block content %}
 		{% endblock %}
-
-
 
 		{% block footer %}
 			{% include 'public/lib/footer.html' %}
@@ -34,11 +31,9 @@
 		<!-- Cargar Javascripts -->
 		{% block javascript %}
 		  {% include 'public/lib/_scripts.html' %}
+		  <script src="{% static "dashboard/dist/js/user_agent.js" %}"></script>
 		{% endblock %}
 
 		{% block extra_foot %}{% endblock %}
 	</body>
-
-
-
 </html>

@@ -1,0 +1,23 @@
+
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/summary.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/upload_voucher.css" %}">
+{% endblock %}
+
+{% block main_content %}
+  {% include 'frontend/summary.html' %}
+{% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static "frontend/dist/js/summary.js" %}"></script>
+  <script src="{% static "frontend/dist/js/upload_voucher.js" %}"></script>
+  <script>
+    upload_url = "clients/sales/upload_files/{{ pk }}";
+  </script>
+{% endblock %}

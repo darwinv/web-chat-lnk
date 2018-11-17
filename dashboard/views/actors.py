@@ -2,15 +2,15 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 
 from api.connection import api
-
 from dashboard.json2table import convert, get_actual_page
 from dashboard.forms import SpecialistForm, SellerForm, SellerFormFilters
 
+from login.utils.tools import role_admin_check
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 
 class Actor:
     logo_content_header = "fa fa-users"
@@ -36,8 +36,7 @@ class Specialist(Actor):
         'name_create_URL': _create,
         'add_actor': True
     }
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         obj_api = api()
         filters = {}
@@ -74,9 +73,10 @@ class Specialist(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_table = [(_("detail"), "detail"),(lastnames_title, "last_name"),( _("code"), "code"),(
+        header_table = [(lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),( _("RUC"), "ruc"),( _("category"), "category_name"),(
-                        _("specialty"), "type_specialist_name"),( _("delete"), "delete")]
+                        _("specialty"), "type_specialist_name"),( _("delete"), "delete"),
+                        (_("detail"), "detail"),]
 
         table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)
@@ -87,7 +87,9 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsList.html',
                       {'table': table, 'vars_page': vars_page, 'filters': filters})
 
-    @method_decorator(login_required)
+
+
+    @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -111,7 +113,7 @@ class Specialist(Actor):
 
         return render(request, 'admin/actor/specialistsDetail.html', {'data': data, 'vars_page': vars_page})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def create(self, request):
         obj_api = api()
         token = request.session['token']
@@ -128,9 +130,10 @@ class Specialist(Actor):
                         "department": data["department"],
                         "province": data["province"],
                         "district": data["district"],
-                    }
+                    },
+                    "username": data["email_exact"]
                 })
-
+                
                 result = obj_api.post(slug='specialists/', token=token, arg=data)
 
                 if result and 'id' in result:
@@ -145,14 +148,12 @@ class Specialist(Actor):
                         obj_api.put(slug='upload_document/' + str(result['id']), token=token, files=img_document_number)
                     # Process success
 
-
                     return HttpResponseRedirect(reverse(self._list))
                 else:
                     # Mostrar Errores en Form
                     form.add_error_custom(
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
                     print("=======  form error  =========")
-                    print(form)
 
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
 
@@ -167,7 +168,7 @@ class Specialist(Actor):
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -178,8 +179,6 @@ class Specialist(Actor):
 
 
             # check whether it's valid:
-            print("===========  edit specialist post form pre  ===========")
-            print(form)
             if form.is_valid():
                 # Tomamos todo el formulario para enviarlo a la API
                 data = form.cleaned_data
@@ -214,23 +213,19 @@ class Specialist(Actor):
                     form.add_error_custom(
                         add_errors=result)  # Agregamos errores retornados por la app para este formulario
                     print("--------------------else--------------------------")
-                    #print(form)
+
                     return render(request, 'admin/actor/specialistsForm.html', {'form': form})
             else:
                 print(form.errors)
                 print("------------------------------------")
         else:
             specialist = obj_api.get(slug='specialists/' + pk, token=token)
-            print ("================= marko =====================================================")
-            print (specialist)
             form = self.generate_form_specialist(specialist=specialist, form_edit=True)
 
         title_page = _('edit specialist').title()
         vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._edit, args=(pk,))
-#        print (form)
-#        print (vars_page) 
-#        print (specialists_form)
+
         return render(request, 'admin/actor/specialistsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
@@ -246,7 +241,6 @@ class Specialist(Actor):
         """
         department = province = None
 
-
         # Validamos que el listado este en la respuesta
         # si no cumple las validaciones por Default el valor sera None
         # Si el usuario tiene department, traemos provincia
@@ -259,8 +253,7 @@ class Specialist(Actor):
         return SpecialistForm(data=data, files=files, department=department,
                               province=province, initial=specialist, form_edit=form_edit)
 
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def delete(self, request):
         if request.method == 'POST':
             id = request.POST['id']
@@ -284,21 +277,31 @@ class Client(Actor):
         'add_actor': False
     }
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         obj_api = api()
         actual_page = get_actual_page(request)
         token = request.session['token']
-        filters = {}
-
-
+        if 'page' in request.GET:
+            filters = {
+                'page' : request.GET['page']
+            }
+        else:
+            filters = {}
 
         # Traer data para el listado
+        # data = obj_api.get(slug='clients/?page=2', arg=filters, token=token)
         data = obj_api.get(slug='clients/', arg=filters, token=token)
-
+        
         # Definimos columnas adicionales/personalizadas
         custom_column = {
-            "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}}
+            "detail": {'type': 'detail', 'data': {'url': self._detail, 'key': 'id'}},
+            "business_name": {
+                'type': 'if_eval',
+                'data': ('r["business_name"]',),
+                'next': {'type': 'concat', 'data': ('business_name',)},
+                'next_elif': {'type': 'concat', 'data': ('last_name', ' ', 'first_name')},
+            }
         }
         # Atributos para aplicar a la columna RUC
         attributes_column = {
@@ -326,7 +329,7 @@ class Client(Actor):
         return render(request, 'admin/actor/clientsList.html',
                       {'table': table, 'vars_page': vars_page})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
         data = obj_api.get(slug='clients/' + pk, token=request.session['token'])
@@ -340,12 +343,11 @@ class Client(Actor):
 
         return render(request, 'admin/actor/clientsDetail.html', {'data': data, 'vars_page': vars_page})
    
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def create(self, request):
         pass
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -399,9 +401,7 @@ class Client(Actor):
         title_page = _('edit client').title()
         vars_page = self.generate_header(custom_title=title_page)
         specialists_form = reverse(self._edit, args=(pk,))
-#        print (form)
-#        print (vars_page) 
-#        print (specialists_form)
+
         return render(request, 'admin/actor/clientsForm.html',
                       {'vars_page': vars_page, 'form': form, 'specialists_form': specialists_form})
 
@@ -430,11 +430,9 @@ class Client(Actor):
         return SpecialistForm(data=data, files=files, department=department,
                               province=province, initial=specilist, form_edit=form_edit)
 
-
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def delete(self, request):
         pass
-
 
 class Seller(Actor):
     _list = 'dashboard:actor-sellers-list'
@@ -449,7 +447,7 @@ class Seller(Actor):
         'add_actor' : True
     }
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         obj_api = api()
         actual_page = get_actual_page(request)
@@ -465,8 +463,7 @@ class Seller(Actor):
 
         # Traer data para el listado
         data = obj_api.get(slug='sellers/', arg=filters, token=token)
-        #print ("=======dataaaaaaaaaaaa======================")
-#        print (data)
+
         # Definimos columnas adicionales/personalizadas
         custom_column = {
             "last_name": {'type': 'concat', 'data': ('last_name', 'first_name'), 'separator': ' '},
@@ -489,11 +486,12 @@ class Seller(Actor):
         # Coloca los nombres de las cabeceras y a que columna van asociada, customColum tendra prioriedad
         lastnames_title = "{} {} {}".format(_("surnames"), _("and"), _("names"))
 
-        header_table = [(_("detail"), "detail"),( lastnames_title, "last_name"),( _("code"), "code"),(
+        header_table = [( lastnames_title, "last_name"),( _("code"), "code"),(
                         _("email"), "email_exact"),(
                         _("RUC"), "ruc"),( _('see portfolio'), "seeclients"),( _("ubigeo"), "ubigeo"),( _("quota"), "quota"),(
                         _("advance"), "advance"),(
-                        _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries")]
+                        _("number of plans sold"), "count_plans_seller"),( _("number of queries"), "count_queries"),
+                        (_("detail"), "detail")]
 
         table = convert(data, header=header_table, actual_page=actual_page, custom_column=custom_column,
                         attributes_column=attributes_column)
@@ -505,7 +503,7 @@ class Seller(Actor):
         return render(request, 'admin/actor/sellersList.html',
                       {'table': table, 'vars_page': vars_page, 'form_filters': form_filters})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def detail(self, request, pk):
         obj_api = api()
         data = obj_api.get(slug='sellers/' + pk, token=request.session['token'])
@@ -520,7 +518,7 @@ class Seller(Actor):
 
         return render(request, 'admin/actor/sellersDetail.html', {'data': data, 'vars_page': vars_page})
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def create(self, request):
         """Metodo para crear Vendedores."""
         obj_api = api()
@@ -538,7 +536,8 @@ class Seller(Actor):
                         "department": data["department"],
                         "province": data["province"],
                         "district": data["district"],
-                    }
+                    },
+                    "username": data["email_exact"]
                 })
                 result = obj_api.post(slug='sellers/', token=token, arg=data)
                 if result and 'id' in result:
@@ -569,7 +568,6 @@ class Seller(Actor):
         return render(request, 'admin/actor/sellersForm.html',
                       {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
 
-
     def generate_form_seller(self, data=None, files=None, seller=None, form_edit=None):
         """
         Funcion para generar traer formulario de especialistas
@@ -594,7 +592,7 @@ class Seller(Actor):
         return SellerForm(data=data, files=files, department=department,
                               province=province, initial=seller, form_edit=form_edit)
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def edit(self, request, pk):
         obj_api = api()
         token = request.session['token']
@@ -644,9 +642,7 @@ class Seller(Actor):
         title_page = _('edit seller').title()
         vars_page = self.generate_header(custom_title=title_page)
         sellers_form = reverse(self._edit, args=(pk,))
-#        print (form)
-#        print (vars_page) 
-#        print (specialists_form)
+
         return render(request, 'admin/actor/sellersForm.html',
                       {'vars_page': vars_page, 'form': form, 'sellers_form': sellers_form})
 
@@ -656,7 +652,7 @@ class Administrator(Actor):
         'name_create_URL': 'dashboard:actor-administrators-create',
     }
 
-    @method_decorator(login_required)
+    @method_decorator(user_passes_test(role_admin_check()))
     def list(self, request):
         actual_page = get_actual_page(request)
         arg = {"page": actual_page}

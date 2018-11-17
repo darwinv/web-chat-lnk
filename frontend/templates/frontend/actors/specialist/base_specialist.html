@@ -1,0 +1,38 @@
+{% extends 'frontend/base.html' %}
+{% load static adminlte_helpers %}
+{% is_mobile request as device_is_mobile %}
+
+{% block main_content %}
+  {% if device_is_mobile %}
+    {% include 'frontend/actors/specialist/lib/client.html' %}
+  {% endif %}
+  {% include 'frontend/lib/modals/accept_or_decline_match.html' %}
+  {% include 'frontend/lib/modals/decline_match.html' %}
+  {% include 'frontend/lib/modals/accept_match.html' %}
+{% endblock main_content %}
+
+{% block content_left_slide %}
+  {% if device_is_mobile is False %}
+    {% include 'frontend/actors/specialist/lib/client.html' %}
+  {% endif %}
+{% endblock content_left_slide %}
+
+{% if device_is_mobile is False %}
+  <!-- Solo para index especialista -->
+  {% block meta %}
+      {{ block.super }}
+      <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
+      <link rel="stylesheet" href="{% static "frontend/specialist/css/messages-list.css" %}">
+  {% endblock %}
+
+  {% block javascript %}
+      {{ block.super }}
+      <script type="text/javascript">
+          var type_specialist = "{{request.session.specialist.type_specialist}}";
+          const CHAT_SPECIALIST = "{% url 'frontend:chat-specialist' pk=0 %}";
+      </script>
+      <script src="{% static "frontend/specialist/js/messages-list.js" %}"></script>
+      <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+  {% endblock javascript %}
+
+{% endif %}

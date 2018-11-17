@@ -3,14 +3,13 @@
  * -------------------------
  */
 
- body.body-front {
-  background-color: #0A0B22;
+body.body-front {
+  background-color: var(--dark-blue);
   color:white;
-
   display: table;
   width: 100%;
   padding-bottom: 20px;
- }
+}
 
 .login-form{
   padding: 20px;
@@ -62,6 +61,21 @@ footer{
 }
 
 
+/* ************ */
+/* Registro  */
+/* ******** */
+
+/* Live Search  */
+/* Ciuu */
+#id_ciiu{
+  width: 250px !important;
+}
+.register-client-form .dropdown-menu{
+  max-width: 450px;
+}
+
+/* Fin de registro */
+
 /********************/
 .form-group input {
     text-align: center;
@@ -74,6 +88,10 @@ footer{
 .login-logo, .register-logo {
     margin-bottom: 0px;
 }
+.login-logo img {
+  max-width: 100%;
+}
+
 .log-user .form-group.has-feedback {
     padding: 0px 40px;
 }
@@ -82,7 +100,7 @@ footer{
     vertical-align: middle;
 }
 .btn.btn-lightBlue {
-    background-color: #00afc5;
+    background-color: var(--turquoise);
     color: white;
     font-size: 17px;
     padding: 5px 20px;

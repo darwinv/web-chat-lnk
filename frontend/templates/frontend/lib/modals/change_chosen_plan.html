@@ -1,0 +1,32 @@
+{% load i18n %}
+
+<!-- Modal -->
+<div class="modal fade" id="changePlan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <center>
+        <h4 class="modal-title title-modal-linkup" id="myModalLabel">{% trans "choose one of your plans"|title %}</h4>
+      </center>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+          <form id="change-chosen" action="" method="post">
+            {% csrf_token %}
+            <div id="change-chosen-list">
+              
+            </div>
+             <center>
+               <button type="submit" id="change-plan" class="btn btn-ligth-blue">{% trans "save"|title %}
+               </button>
+             </center>
+          </form>
+          <div id="animacion1" class="hidden">
+              <div class="ball"></div>
+              <div class="ball1"></div>
+          </div>
+      </div>
+      <center> <div id="message"> </div></center>
+    </div>
+  </div>
+</div>

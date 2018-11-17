@@ -2,8 +2,9 @@
 from django import forms
 from django.forms import ModelForm
 
-from api.models import Specialist, Seller, Category, Department, Province, District, Countries, Ciiu
-
+from api.models import Department, Province, District, Countries, Ciiu
+from api.models import Payment, Specialist, Seller, Category, Bank
+from api.models import PaymentType
 from django.utils.translation import ugettext_lazy as _
 from api.connection import api
 from api.api_choices_models import ChoicesAPI as Ch
@@ -17,14 +18,14 @@ class FilterForm(forms.Form):
     por defecto ningun valor sera requerido, si hereda de esta clase
     a menos que sea definido como requerido
     """
-    page = forms.CharField()
+    page = forms.CharField(required=False)
     showFilters = False
 
     def __init__(self, *args):
         super(FilterForm, self).__init__(*args)
 
-        for field in self.fields:
-            self.fields[field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
+        # for field in self.fields:
+        #     self.fields[field].required = False  # Los filtros no se validan, por eso siempre para esta clase no seran requeridos
 
     def clean(self):
         super(FilterForm, self).clean()
@@ -97,6 +98,9 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
 
     foreign_address = forms.CharField(label = _('address'), required=False)
     ruc = forms.CharField(label = _('ruc'), required=False)
+
+    payment_per_answer = forms.FloatField(min_value=0)
+
     def __init__(self, data=None, initial=None, department=None, province=None, form_edit=None,
             *args, **kwargs):
         super(SpecialistForm, self).__init__(data=data, initial=initial, *args, **kwargs)
@@ -104,7 +108,6 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
         categories = Category.objects.all()
         departments = Department.objects.all()
         countries = Countries.objects.all()
-
         if categories:
             self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
 
@@ -119,7 +122,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
 
         if data and 'department' in data and data['department']:
             department = data['department']
-            
+
         if data and 'province' in data and data['province']:
             province = data['province']
 
@@ -132,12 +135,13 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
             self.fields['district'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in districts]
 
         # Si se va a editar el especialista, se elimina la contraseña y se bloquea el campo username
-        if form_edit:
-            self.fields['username'].required = False
-            self.fields['username'].widget.attrs['readonly'] = True
+        # se comento porque se quito el campo username del form y de las plantillas
+        # if form_edit:
+        #     self.fields['username'].required = False
+        #     self.fields['username'].widget.attrs['readonly'] = True
 
         self.fields = Operations.setAdress(self, initial, self.fields)
- 
+
                             # cambiar a clase generica
 
     class Meta:
@@ -148,7 +152,8 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
             'password': forms.PasswordInput(),
         }
         model = Specialist
-        fields = ['username', 'payment_per_answer', 'nick', 'first_name', 'last_name',
+        fields = ['nick', 'first_name', 'last_name',
+        # fields = ['payment_per_answer', 'nick', 'first_name', 'last_name',
                   'telephone', 'cellphone', 'document_type', 'email_exact',
                   'business_name', 'type_specialist', 'document_number']
 
@@ -156,7 +161,7 @@ class SpecialistForm(ModelForm, ErrorsFieldsApi):
 class SellerForm(ModelForm, ErrorsFieldsApi):
     """Formulario de Vendedores."""
 
-    select_search = {'data-live-search':'true','class':'selectpicker'}
+    select_search = {'data-live-search': 'true', 'class': 'selectpicker'}
     ciiu = forms.CharField(widget=forms.Select(attrs=select_search),
                            required=False, label=_('CIIU'))
     nationality = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('nationality'))
@@ -213,37 +218,34 @@ class SellerForm(ModelForm, ErrorsFieldsApi):
         """Meta de Vendedor."""
 
         model = Seller
-        fields = ['username', 'nick', 'first_name', 'last_name', 'email_exact',
+        fields = ['nick', 'first_name', 'last_name', 'email_exact',
                   'telephone', 'cellphone', 'document_type', 'document_number',
                    'ruc' ]
-
-    
-
 
 
 class SellerFormFilters(FilterForm):
     """
     Filtrar el listado de vendedores
     """
-    first_name = forms.CharField(label = _('first name'))
-    last_name = forms.CharField(label = _('last name'))
-    ruc = forms.CharField(label = _('RUC'))
-    email_exact = forms.CharField(label = _('mail'))
-    count_plans_seller = forms.IntegerField(label = _('number of plans sold greater than'))
-    count_queries_seller = forms.IntegerField(label = _('number of queries sold greater than'))
-
-
+    first_name = forms.CharField(required=False, label = _('first name'))
+    last_name = forms.CharField(required=False, label = _('last name'))
+    ruc = forms.CharField(required=False, label = _('RUC'))
+    email_exact = forms.CharField(required=False, label = _('mail'))
+    count_plans_seller = forms.IntegerField(required=False, label = _('number of plans sold greater than'))
+    count_queries_seller = forms.IntegerField(required=False, label = _('number of queries sold greater than'))
 
 
 class FromUntilFilters(FilterForm):
     """
-    Filtrar estados de cuenta
+    Filtrar por Fecha Picker
     """
-    from_date = forms.DateField(widget=forms.TextInput(attrs=
+    from_date = forms.DateField(required=False,
+                                widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
                                 }), label = _('from'))
-    until_date = forms.DateField(widget=forms.TextInput(attrs=
+    until_date = forms.DateField(required=False,
+                                widget=forms.TextInput(attrs=
                                 {
                                     'class':'datepicker'
                                 }), label = _('until'))
@@ -291,3 +293,55 @@ class AuthorizationClientFilter(FromUntilFilters):
             self.fields['status'].widget.choices = [('', '')]
             self.fields['status'].widget.choices += status
 
+"""
+    Reporte de Pagos Pendientes
+"""
+class PendingPaymentFilter(FilterForm, ErrorsFieldsApi):
+    """
+        Formulario para filtrar el listado de pagos pendientes
+    """
+    document_number = forms.CharField(required=False, label = _('Document Client'))
+
+    def __init__(self, *args, **kwargs):
+        super(PendingPaymentFilter, self).__init__(*args, **kwargs)
+
+
+class PendingPaymentForm(ModelForm, ErrorsFieldsApi):
+    """Formulario de Vendedores."""    
+    monthly_fee = forms.CharField(required=False)
+    bank = forms.CharField(widget=forms.Select(), required=False,
+     label=_('bank'))
+    payment_type = forms.CharField(widget=forms.Select(), label=_('payment type'))
+
+    def __init__(self, *args, **kwargs):
+        super(PendingPaymentForm, self).__init__(*args, **kwargs)
+        
+        banks = Bank.objects.all()
+        if banks:
+            self.fields['bank'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in banks]
+
+        payment_types = PaymentType.objects.all()
+        if payment_types:
+            self.fields['payment_type'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in payment_types]
+
+        self.fields['monthly_fee'].widget = forms.HiddenInput()
+
+        self.fields['observations'].required = False
+        
+        self.fields['operation_number'].required = False
+        self.fields['operation_number'].label = _("operation code")
+
+    class Meta:
+        """Meta de Vendedor."""
+
+        model = Payment
+        fields = ['amount', 'operation_number', 'observations']
+
+class PaymentMatch(PendingPaymentForm):
+    match = forms.IntegerField()
+
+    fields = ['match']
+
+    def __init__(self, *args, **kwargs):
+        super(PaymentMatch, self).__init__(*args, **kwargs)
+        self.fields['match'].widget = forms.HiddenInput()

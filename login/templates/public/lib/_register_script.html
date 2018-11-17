@@ -1,20 +1,89 @@
 <!-- Archivo para crear funciones especificas en el registro de Clientes -->
 
+{% load static %}
+<script src="{% static "dashboard/dist/js/utils.js" %}"></script>
 <script>
 
+// const compress = new Compress();
+// var upload = document.getElementById('inputFile');
+// upload.addEventListener('change', function (evt) {
+//   const files = [...evt.target.files]
+//   compress.compress(files, {
+//     size: 4, // the max size in MB, defaults to 2MB
+//     quality: .75, // the quality of the image, max is 1,
+//     maxWidth: 1920, // the max width of the output image, defaults to 1920px
+//     maxHeight: 1920, // the max height of the output image, defaults to 1920px
+//     resize: true, // defaults to true, set false if you do not want to resize the image width and height
+//   }).then((data) => {
+//     // returns an array of compressed images
+// 		console.log(data);
+// 		const output = data[0]
+// 		const file = Compress.convertBase64ToFile(output.data, output.ext)
+// 		console.log(file)
+// 		upload.value = file;
+//   })
+// }, false)
+
 $(function () {
+    $(document).ready(function() {
+        $('form').areYouSure();
+        var email = window.localStorage.getItem("email_to_register")
+        if (email) {
+            $('#email_exact').val(email);
+            $('#email_exact').prop('disabled', true);
+        }
+
+        var email_list_json = window.localStorage.getItem("email_list");
+        if (email_list_json) {
+            email_list = JSON.parse(email_list_json)
+            window.localStorage.removeItem("email_list");
+        }
+    });
 
 	$(document).on('change', 'input[name=type_client]', function() {
 		load_by_client_type($(this));
 	});
-	
+
 	function load_by_client_type($this){
 		// redirecciona segun el tipo de cliente que se registra
-		type_client = $this.val();		
-		window.location.href = "{% url 'login:register' %}?type_client="+type_client;		
+		var type_client = $this.val();
+		window.location.href = "{% url 'login:register' %}?type_client=" + type_client;
 	}
 
+    $('.register-client-form').on('submit', function(event) {
+        if ($('#email_exact').prop('disabled'))
+                $('#email_exact').prop('disabled', false);
 
+        var url = window.localStorage.getItem("redirect_to");
+        if (url) {
+            event.preventDefault();
+
+            data = $('.register-client-form').serialize();
+            console.log("data", data)
+
+            $.ajax({
+                url : "",
+                type : "POST",
+                data : data,
+
+                success : function(json) {
+                    console.log("success")
+                    email = window.localStorage.getItem("email_to_register")
+
+                    if (email_list) {
+                        email_list.push({"email":email, "type":2}); // REGISTRATION_SUCCESSFUL
+                        window.localStorage.setItem("email_list", JSON.stringify(email_list));
+                    }
+
+                    if (email)
+                        window.localStorage.removeItem("email_to_register")
+
+                    window.location.replace(url);
+                    window.localStorage.removeItem("redirect_to");
+                },
+            });
+        }
+    });
 });
-	
+
 </script>

@@ -6,7 +6,9 @@ from django.conf import settings
 from django.template import Library
 from django.core.urlresolvers import resolve, reverse
 from django.utils.translation import activate, get_language
-
+from django.utils.translation import ugettext_lazy as _
+from dashboard.tools import ToolsBackend as Tools
+import re
 register = template.Library()
 
 
@@ -64,3 +66,30 @@ def change_lang(context, lang=None, default_arg=True, *args, **kwargs):
             url = "{}?{get_values}".format(url, get_values=get_values)
 
     return "%s" % url
+
+@register.filter()
+def datetime_format_to_view(date):
+    """date: str 2018-02-08 14:28:25+00:00"""
+    if date:
+        tools = Tools()
+        return tools.datetime_format_to_view(date=date)
+    else:
+        return date
+
+@register.filter()
+def bolean_translate(bolean):
+    """bolean: bolean"""
+    if bolean:
+        return _("yes").title()
+    else:
+        return _("no").title()
+
+@register.simple_tag()
+def is_mobile(request):
+    """Return True if the request comes from a mobile device."""
+
+    MOBILE_AGENT_RE=re.compile(r".*(iphone|mobile|androidtouch)",re.IGNORECASE)
+    if MOBILE_AGENT_RE.match(request.META['HTTP_USER_AGENT']):
+        return True
+    else:
+        return False
