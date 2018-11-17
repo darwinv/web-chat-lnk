@@ -20,7 +20,7 @@
 
 {% block main_content %}
 <div class="container-fluid">
-  <div class="plan-box">
+  <div id="main-detail" class="plan-box">
     <div class="row">
       <div class="col-3 plan-title">{{ plan.plan_name }}</div>
       <div class="col-3 offset-6 plan-status">
@@ -150,5 +150,6 @@
   <script src="{% static "frontend/client/js/plan_detail.js" %}"></script>
   <script>
     plan_id = "{{ plan.id }}";
+    plan_status = parseInt("{{ plan.status }}", 10);
   </script>
 {% endblock %}

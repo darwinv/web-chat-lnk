@@ -8,6 +8,13 @@ $(function() {
 
     $(document).ready(function() {
         $('.drop-down').hide();
+
+        if (plan_status === 1) {
+            $('#main-detail').click(function(event) {
+                console.log("PRESSED")
+                window.location.replace('summary/');
+            });
+        }
     });
 
     $('.delete-empower-ellipsis').click(function(event) {
@@ -32,8 +39,6 @@ $(function() {
         }
 
         sendAjaxService(data, function(data) {
-            console.log("output: ",  data)
-
             if (data == null) {
                 console.log("data should not be null");
                 return;

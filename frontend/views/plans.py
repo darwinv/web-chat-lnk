@@ -86,14 +86,29 @@ class Client:
             'acquired_plan':acquired_plan, 'type_operation':type_operation, 'available_queries':available_queries
         })
 
-    def upload(self, request, pk):
-        """ Subir voucher de Plan efectivo """
+    def summary(self, request, pk):
+        """ Resumen de Plan efectivo """
 
         obj_api = api()
         token =  request.session['token']
-        resp =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
-        if resp:
-            return render(request, 'frontend/actors/client/plan_upload.html', {'plan': resp})
+        data = {'client':request.user.id}
+        resp =  obj_api.get(slug='clients/sales/have-payment-pending/', arg=data, token=token)
+
+        product = resp['products'][0]
+
+        total = product['price']
+        plan = product['plan']
+        lines = [
+            plan['plan_name'],
+            str(plan['query_quantity']) + " queries",
+            "Validty " + str(plan['validity_months']) + " months",
+            "S/. " + str(total)
+        ]
+
+        sale_id = product['sale']
+
+        if resp and lines:
+            return render(request, 'frontend/actors/client/summary.html', {'lines': lines, 'total': total, 'pk':sale_id})
         else:
             return JsonResponse({'message': _('That plan doesn\'t exist'),
                                  'class': 'successful'})
