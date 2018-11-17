@@ -269,7 +269,11 @@ class api:
             headers['Authorization'] = 'Bearer {}'.format(token)
             headers = dict(headers, **self._headers)
         try:
-            result = requests.put(self._url + slug + '/', headers=headers, json=arg, files=files)
+            # last / required 
+            if not slug.endswith('/'):
+                slug = slug + '/'
+
+            result = requests.put(self._url + slug, headers=headers, json=arg, files=files)
             return result
 
         except Exception as e:
