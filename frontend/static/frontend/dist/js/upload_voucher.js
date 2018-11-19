@@ -39,7 +39,10 @@ $(function() {
         formData.append('use_method', 'PUT');
 
         uploadFileAjax(formData, function(response) {
-            console.log("response: ", response);
+            if (response.status_code === HTTP_CODES.OK) {
+                $('#upload-voucher-modal').modal('hide');
+                $('#thanks-for-payment-modal').modal('show');
+            }
         });
     }
 });

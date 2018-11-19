@@ -149,8 +149,32 @@ function sendAjaxService(data, clouserSuccess, type='POST'){
   });
 }
 
-
-
+function uploadFileAjax(formData, successCB) {
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    $.ajax({
+        type: "POST",
+        beforeSend: function(request, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                request.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+            // Recorre cabeceras por clave y valor
+            for (var key in headers){
+                if (headers.hasOwnProperty(key)) {
+                    request.setRequestHeader(key, headers[key]);
+                }
+            }
+        },
+        url: AJAX_SERVICE,
+        data: formData,
+        //dataType: "json",
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            successCB(response);
+        }
+    });
+}
 
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
