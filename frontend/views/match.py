@@ -5,6 +5,8 @@ from login.utils.tools import role_client_check, role_specialist_check
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 from frontend.forms import MatchForm
+from dashboard.tools import ToolsBackend
+from django.http import JsonResponse
 
 class Client:
     def __init__(self):
@@ -37,6 +39,7 @@ class Client:
                       {'form': form})
 
 
+
 class Specialist:
     def __init__(self):
         self.url_specialist_list = 'specialists/matchs/'
@@ -59,3 +62,34 @@ class Specialist:
         token = request.session['token']
         data_match = obj_api.get(slug=self.url_specialist_detail + pk +"/", token=token)
         return render(request, 'frontend/actors/specialist/match_detail.html', {'match': data_match})
+
+    @method_decorator(user_passes_test(role_specialist_check()))
+    def summary(self, request, pk):
+        """ Resumen de Match."""
+
+        obj_api = api()
+        token =  request.session['token']
+        tool = ToolsBackend()
+
+
+        resp =  obj_api.get(slug='match/'+ pk + '/', token=token)
+        date = tool.datetime_format_to_view(resp['date'])
+
+        photo = resp['category_image']
+        id_match = resp['id']
+        total = resp["price"]
+
+        lines = [
+            resp['category'],
+            "Solicitado el: "+date,
+            "S/. " + str(resp['price'])
+        ]
+
+        # sale_id = product['sale']
+
+        if resp and lines:
+            return render(request, 'frontend/actors/specialist/summary.html', {'lines': lines, 'total': total,
+                                                                             'photo': photo, 'pk':id_match})
+        else:
+            return JsonResponse({'message': _('That match doesn\'t exist'),
+                                 'class': 'error'})

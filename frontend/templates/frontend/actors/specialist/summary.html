@@ -1,5 +1,5 @@
 
-{% extends 'frontend/actors/client/base_client.html' %}
+{% extends 'frontend/actors/specialist/base_specialist.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -23,6 +23,6 @@
   <script src="{% static "frontend/dist/js/thanks_for_payment.js" %}"></script>
   <script>
     upload_url = "specialists/matchs/upload_files/{{ pk }}/";
-    redirect_to =  "{% url 'frontend:active-plans' %}";
+    // redirect_to =  "{% url 'frontend:active-plans' %}";
   </script>
 {% endblock %}

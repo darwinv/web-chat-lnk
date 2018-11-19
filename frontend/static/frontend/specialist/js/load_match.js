@@ -37,6 +37,8 @@ $(document).ready(function () {
         $('#view_match_modal').modal('hide');
         var matchId = $(e.relatedTarget).data('matchid');
         $(e.currentTarget).find('#accept').data('matchid', matchId);
+        
+ 
         console.log(matchId);
     }); 
 
@@ -89,6 +91,9 @@ $(document).ready(function () {
             if($('#discount').is(':checked')){
                 option_payment = 2;   
             }
+            if($('#paid').is(':checked')){
+                option_payment = 1;   
+            }
             data = {
                 "url": `specialists/accept/matchs/${win.data("matchid")}`,
                 "payment_option_specialist": option_payment
@@ -118,6 +123,12 @@ $(document).ready(function () {
                     }, type="PUT")   
 
             }
+            else if (option_payment == 1) {
+                matchId = win.data("matchid");
+                var url_match = url_match_summary.replace('0', matchId);
+                window.location.href = url_match;
+            } 
+            
         });     
 
 });
