@@ -6,41 +6,48 @@
 {% endblock %}
 
 {% block main_content %}
-<form id="create-match" action="" name="" method="post">
-  <div class="container-fluid">
-    <div class="row">
-      {% csrf_token %}
-      {% for field in form %}
-        <div class="field-wrapper col-8 offset-2">
-          {{ field.errors }}
-          {{ field.label_tag }}
-          {{ field }}
-          {% if field.help_text %}
-            <p class="help">{{ field.help_text|safe }}</p>
-          {% endif %}
+<div id="cont-create-match"> 
+    <form id="create-match" action="" name="" method="post">
+      <div class="container-fluid">
+        <div class="row">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="field-wrapper col-8 offset-2">
+              {{ field.errors }}
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+            <div class="field-wrapper col-8 offset-2">
+              <label for="file_match">Adjuntos</label>
+              <input class="" name="file_match" type="file" id="file_match" size="60" />
+            </div>
         </div>
-      {% endfor %}
-        <div class="field-wrapper col-8 offset-2">
-          <label for="file_match">Adjuntos</label>
-          <input class="" name="file_match" type="file" id="file_match" size="60" />
+        <!-- <div class="file-field">
+            <div class="btn btn-primary btn-sm float-left">
+                <span>Choose files</span>
+                <input type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            </div>
+          </div> -->
+        <div class="row field-wrapper">
+          <button id="submit-match" class="btn btn-xs btn-ligth-blue cap col-2 offset-5" type="submit" value="Submit">
+          {% trans "Send"|title %}
+          </button>
         </div>
+      </div>
+    </form>
+    <div id="animacion1" class="hidden">
+      <div class="ball"></div>
+      <div class="ball1"></div>
     </div>
-    <!-- <div class="file-field">
-        <div class="btn btn-primary btn-sm float-left">
-            <span>Choose files</span>
-            <input type="file" multiple>
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-        </div>
-      </div> -->
-    <div class="row field-wrapper">
-      <button class="btn btn-xs btn-ligth-blue cap col-2 offset-5" type="submit" value="Submit">
-      {% trans "Send"|title %}
-      </button>
-    </div>
-  </div>
-</form>
+    <center> <div id="message"> </div></center>
+ </div>
 {% endblock main_content %}
 
 {% block javascript %}

@@ -31,6 +31,7 @@
 {{ block.super }}
      <script>
      const url_status_plan = "{% url 'frontend:status-footer-plans' %}";
+     const url_matchs_client = "{% url 'frontend:match-client' %}";
      </script>
 <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
     <script type="text/javascript">
@@ -38,6 +39,7 @@
     </script>
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
+    
     <script src="{% static "frontend/client/js/create_match.js" %}"></script>
     <script src="{% static "frontend/client/js/footer_plan_ref.js" %}"></script>
     <script>

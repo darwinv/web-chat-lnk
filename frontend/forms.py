@@ -68,7 +68,7 @@ class PlanActionForm(forms.Form):
 
 class MatchForm(forms.Form):
     """Form para crear match."""
-    category = forms.CharField(widget=forms.Select(), required=False, label=_('speciality'))
+    category = forms.CharField(widget=forms.Select(), required=False, label='Seleccione la especialidad')
     subject = forms.CharField(label='Describe Tu Caso')
     subject.widget = forms.Textarea()
     subject.widget.attrs.update({'id': 'subject', 'class': 'form-control',
