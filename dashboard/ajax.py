@@ -27,6 +27,7 @@ def ajax_service(request):
     else:
         token = None
 
+    print(data)
     resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
 
     data = resp.json()
