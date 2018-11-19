@@ -33,42 +33,13 @@ $(function() {
     });
 
     function upload() {
-        var url = "http://192.168.1.3:8080/" + upload_url;
-        var data = {
-            'url': upload_url
-        }
-
         var formData = new FormData(document.getElementById('upload-voucher-form'));
-        //formData.append('file', $('#file-input').prop('files')[0]);
-        formData.append('data', JSON.stringify(data));
+        formData.append('file', $('#file-input').prop('files')[0]);
+        formData.append('url', upload_url);
+        formData.append('use_method', 'PUT');
 
-        console.log("----ENTRIES----")
-        for (var p of formData)
-            console.log("entry: ", p)
-        console.log("--ENDOFENTRIES--")
-
-        var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-        $.ajax({
-            type: "POST",
-            beforeSend: function(request, settings) {
-                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    request.setRequestHeader("X-CSRFToken", csrftoken);
-                }
-                // Recorre cabeceras por clave y valor
-                for (var key in headers){
-                    if (headers.hasOwnProperty(key)) {
-                        request.setRequestHeader(key, headers[key]);
-                    }
-                }
-            },
-            url: AJAX_SERVICE,
-            data: formData,
-            //dataType: "json",
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                console.log("response: ", response)
-            }
+        uploadFileAjax(formData, function(response) {
+            console.log("response: ", response);
         });
     }
 });
