@@ -11,6 +11,12 @@ def ajax_service(request):
     else:
         data = getattr(request, request.method)
 
+    if request.FILES:
+        files = request.FILES
+
+    if 'use_method' in data:
+        request.method = data['use_method']
+
     if 'url' in data:
         url = data['url']
     else:
@@ -21,7 +27,7 @@ def ajax_service(request):
     else:
         token = None
 
-    resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data)
+    resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
 
     data = resp.json()
     data['status_code'] = resp.status_code
