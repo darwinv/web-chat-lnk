@@ -38,11 +38,43 @@ $(document).ready(function () {
             $("#requery_modal").addClass("hidden");
         });
     });
+
+    $(document).on('click', "#send_punctuation", function(){
+        var qualification = $("#punctuation_modal img.selected").data("qualification");
+        var query = $("#punctuation_modal").data("query");
+        data = {
+            "url": `client/qualify/queries/${query}/`,
+            "qualification": qualification
+        }
+        sendAjaxService(data, function(response){
+            if (response.status_code==200) {
+               
+               queriesToCalificate.shift();
+
+               if (queriesToCalificate.length > 0 && roleID == ROLES.client) {
+                    $("#punctuation_modal").data("query",queriesToCalificate[0]);
+                }else{
+                    $("#punctuation_modal").addClass("hidden");
+                }
+
+            }else{
+                // Error
+                console.log(response);
+            }            
+        },"PUT")
+    });
+
 }); // cierra document ready
 $(document).on('click', ".close-reply", function(){
     $("#reply-content").data("message-reference", null).hide();
     $(".fileinput-remove").click();
 });
+
+$(document).on('click', "#punctuation_modal img", function(){
+    $("#punctuation_modal img").removeClass("selected");
+    $(this).addClass("selected");
+});
+
 
 
 

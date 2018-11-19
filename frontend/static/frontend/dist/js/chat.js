@@ -1,3 +1,5 @@
+
+var queriesToCalificate = []
 $(function() {
 
 updateMessage(); //se llama a la funcion change message
@@ -9,6 +11,7 @@ var dataRoom = getDataRoom()
 var userRoom = dataRoom["userRoom"];
 var category = dataRoom["category"];
 var chatsock = connectingWebSocket();
+
 
 chatsock.onopen = function open() {
     console.log('WebSockets connection created.');
@@ -33,9 +36,10 @@ function updateQuery(data){
         // skip loop if the property is from prototype
         if (!data.data.hasOwnProperty(key)) continue;
         var obj = data.data[key];
-        $(".query_"+query).data(key, obj);
-
+        $(".query_"+query).data(key, obj).addClass(".no-ready-message");
     }
+    
+    updateMessage();
 }
 function updateFiles(data){
     query = data.query
@@ -45,7 +49,7 @@ function updateFiles(data){
     });
 }
 
-function renderMessages(data){    
+function renderMessages(data){
     var audio = new Audio(audioNotification);
     var boxChat = $("#chat_box");
     var chat_box = document.getElementById("chat_box");
@@ -423,6 +427,20 @@ function scrollDown(){
     var scrollchat = $("#chat_box").scrollTop();
     $("#chat_box").animate({scrollTop:ultimo+scrollchat});
 }
+
+Date.prototype.yyyymmdd = function() {
+  var mm = this.getMonth() + 1; // getMonth() is zero-based
+  var dd = this.getDate();
+
+  return [this.getFullYear(),
+          (mm>9 ? '' : '0') + mm,
+          (dd>9 ? '' : '0') + dd
+         ].join('');
+};
+
+
+
+
 function updateMessage(){
     // Mostrar un solo titulo por grupo de query
 
@@ -435,7 +453,8 @@ function updateMessage(){
         var msgType = msg.data("msg-type");
         var specialistMsg = msg.data("specialist");
         var groupStatus = msg.data("group-status");
-        var queryStatus = msg.data("query-status");
+        var queryStatus = msg.data("status");
+        var query = msg.data("query");
 
         timeMessage = toLocalTime(timeMessage);
         msg.find("small.time").text(timeMessage)        
@@ -464,27 +483,29 @@ function updateMessage(){
             msg.find(".chat-angle-down").css('display','');
         }else if(groupStatus == 1 && msgType == "a" && roleID == ROLES.client){
             msg.find(".chat-angle-down").css('display','');
+        }else{
+            msg.find(".chat-angle-down").css('display','none');            
         }
 
-        if (msg.data("query") != previus_query_id){
+        if (query != previus_query_id){
             msg.siblings(".cont-title-query").show();
-            previus_query_id = msg.data("query");
+            previus_query_id = query;
         }else{
             msg.siblings(".cont-title-query").remove();
         }
         msg.removeClass("no-ready-message");
+    
+        
+        if (queryStatus==4 && !queriesToCalificate.includes(query)) {
+
+            queriesToCalificate.push(msg.data("query"));
+        }
     });
+
+    if (queriesToCalificate.length > 0 && roleID == ROLES.client) {
+        $("#punctuation_modal").data("query",queriesToCalificate[0]).removeClass("hidden");
+    }
 }
-Date.prototype.yyyymmdd = function() {
-  var mm = this.getMonth() + 1; // getMonth() is zero-based
-  var dd = this.getDate();
-
-  return [this.getFullYear(),
-          (mm>9 ? '' : '0') + mm,
-          (dd>9 ? '' : '0') + dd
-         ].join('');
-};
-
 
 
 });
