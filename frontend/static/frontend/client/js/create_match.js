@@ -20,8 +20,9 @@ $(document).on('submit','#create-match',function(event){
           };
           var arr = []
           arr.push(fileObj);
-          data["file"] = arr;
+          data["file"] = JSON.stringify(arr);
         }
+        console.log(data);
         $("#submit-match").attr("disabled", true);
         
         sendAjaxService(data, function(response) {
