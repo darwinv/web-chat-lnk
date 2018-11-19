@@ -31,7 +31,8 @@
             data-query="{{message.query.query_id}}" 
             data-group-status="{{message.group_status}}"
             data-msg-type="{{message.msg_type}}"
-            data-specialist="{{message.specialist_id}}" >
+            data-specialist="{{message.specialist_id}}"
+            data-status="{{message.query.status}}"  >
                 
                 <!-- EVENTS -->
                 <div class="dropdown chat-angle-down" style="display: none;">
@@ -122,13 +123,18 @@
             </div>
         </div>
         <div id="punctuation_modal" class="hidden">
-            <p>{% trans "Do you like to requery?" %}</p>
+            <p>{% trans "Please, what are your opinion?" %}</p>
             <div class="modal-options">
-                <img src='{% static "frontend/img/emojis/5.png"%}'>
-                <img src='{% static "frontend/img/emojis/4.png"%}'>      
-                <img src='{% static "frontend/img/emojis/3.png"%}'>
-                <img src='{% static "frontend/img/emojis/2.png"%}'>
-                <img src='{% static "frontend/img/emojis/1.png"%}'>
+                <img data-qualification="1" src='{% static "frontend/img/emojis/5.png"%}'>
+                <img data-qualification="2" src='{% static "frontend/img/emojis/4.png"%}'>      
+                <img data-qualification="3" class="selected" src='{% static "frontend/img/emojis/3.png"%}'>
+                <img data-qualification="4" src='{% static "frontend/img/emojis/2.png"%}'>
+                <img data-qualification="5" src='{% static "frontend/img/emojis/1.png"%}'>
+            </div>
+            <div class="text-center marT10">
+                <button id="send_punctuation" type="button" class="btn btn-ligth-blue">
+                    {% trans "Send punctuation" %}
+                </button>  
             </div>
         </div>
 
