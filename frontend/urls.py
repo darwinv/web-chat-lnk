@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact, match
+from frontend.views import index, chat, plans, query, contact, match, account
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^chat/specialist/(?P<pk>[0-9]+)/$', chat.Specialist().chat,
         name='chat-specialist'),
 
+
     # Match
     url(r'^match/client/$', match.Client().list_match, name='match-client'),
     url(r'^match/specialist/$', match.Specialist().list_match, name='match-specialist'),
@@ -59,6 +60,11 @@ urlpatterns = [
     # Contacto
     url(r'^contact/client/$', contact.Client().contact, name='contact-client'),
     url(r'^contact/specialist/$', contact.Specialist().contact, name='contact-specialist'),
+
+
+    # Account
+    url(r'^account/client/(?P<pk>[0-9]+)/status/$', account.Client().status, name='account-status-client'),
+    url(r'^account/specialist/(?P<pk>[0-9]+)/status/$', account.Specialist().status, name='account-status-specialist'),
 
 
     # Upload files to query
