@@ -234,10 +234,23 @@ span.reply-borde {
     background: #fffffff5;
     border-top: 1px solid #00000021;
 }
-#requery_modal {
+#requery_modal, #punctuation_modal {
     background: orange;
     text-align: center;
     padding: 10px;
+}
+#punctuation_modal img {
+    width: 70px;
+}
+#punctuation_modal img {
+    width: 70px;
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+    cursor: pointer;
+}
+#punctuation_modal img.selected {
+    -webkit-filter: contrast(200%);
+    filter: contrast(120%);
 }
 #errors_alert {
     width: 100%;
