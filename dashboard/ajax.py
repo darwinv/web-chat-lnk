@@ -31,8 +31,6 @@ def ajax_service(request):
         token = None
     
     data = clean_data_files(request, data)
-    print(data)
-    # import pdb; pdb.set_trace()
     resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
 
     data = resp.json()
