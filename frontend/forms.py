@@ -69,12 +69,13 @@ class PlanActionForm(forms.Form):
 class MatchForm(forms.Form):
     """Form para crear match."""
     category = forms.CharField(widget=forms.Select(), required=False, label=_('speciality'))
-    subject = forms.CharField(label='')
+    subject = forms.CharField(label='Describe Tu Caso')
     subject.widget = forms.Textarea()
     subject.widget.attrs.update({'id': 'subject', 'class': 'form-control',
                                  'placeholder': _('Write your query')})
 
     def __init__(self, data=None, initial=None, *args, **kwargs):
+        super(MatchForm, self).__init__(data=data, initial=initial, *args, **kwargs)
         categories = Category.objects.all()
         if categories:
             self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
