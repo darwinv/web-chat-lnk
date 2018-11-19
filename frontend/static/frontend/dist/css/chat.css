@@ -26,6 +26,7 @@
     left: 10px;
     color:black;
     border: 3px solid #00ACC5;
+    position: relative;
 }
 
 .globe-chat p.text{
@@ -54,6 +55,7 @@
 #chat_box {
     overflow-x: hidden;
     flex: 1 1 0;
+    padding-bottom: 5px;
 }
 #content-chat {
     position: relative;
@@ -120,7 +122,7 @@ ul#atachment > li {
     zoom:1;
 }
 
-#close_query{
+.close-absolute {
     position: absolute;
     color: white;
     right: 15px;
@@ -171,7 +173,78 @@ footer {
     font-size: 16px;
 }
 
-.message-footer {
+.message-right .message-footer {
     color: #ffffffad;
 }
+.message-left .message-footer {
+    color: #a1a1a1eb;
+}
+.chat-angle-down {
+    position: absolute;
+    display: none;
+    right: 10px;
+    font-size: 20px;
+    top: 5px;
+    cursor: pointer;
+    z-index: 1111;
+}
+.message:hover .dropdown.chat-angle-down {
+    display: block;
+}
+.dropdown.chat-angle-down .dropdown-toggle::after {
+    margin-left: auto;
+}
 
+#reply-content {
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+span.reply-borde {
+    -webkit-flex: none;
+    flex: none;
+    width: 4px;
+    border-top-left-radius: 7.5px;
+    background-color: var(--turquoise) !important;
+    border-bottom-left-radius: 7.5px;
+}
+.reply-message-reference {
+    background-color: #e5e5e5;
+    width: 100%;
+    padding: 7px 12px 10px 11px;
+    margin-right: 10px;
+}
+.message-reference-title {
+    font-weight: bold;
+}
+.close-reply {
+    cursor: pointer;
+    font-size: 20px;
+    vertical-align: middle;
+    margin: auto;
+    margin-right: 10px;
+}
+#selection_message_alert {
+    padding: 10px;
+    text-align: center;
+    background: #fffffff5;
+    border-top: 1px solid #00000021;
+}
+#requery_modal {
+    background: orange;
+    text-align: center;
+    padding: 10px;
+}
+#errors_alert {
+    width: 100%;
+    text-align: center;
+    background-color: red;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    list-style: none;
+}

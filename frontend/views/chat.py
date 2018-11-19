@@ -36,8 +36,24 @@ class Client:
         obj_api = api()
         data = json.loads(request.POST.get('query_data'))
         token = request.session["token"]
-        resp = obj_api.post_all(slug='client/queries/', token=token, arg=data)
-        return JsonResponse(resp.json())
+        resp = None
+
+        if "msg_type" in data["message"][0]:
+            if "query" in data:
+                query = data["query"]
+
+            if data["message"][0]["msg_type"]=="q":
+                resp = obj_api.post_all(slug='client/queries/', token=token, arg=data)
+            if data["message"][0]["msg_type"]=="a":
+                resp = obj_api.put_all(slug='specialist/queries/{}/'.format(query), token=token, arg=data)
+            if data["message"][0]["msg_type"]=="r":
+                resp = obj_api.put_all(slug='client/queries/{}/'.format(query), token=token, arg=data)
+
+            data = resp.json()
+            data['status_code'] = resp.status_code
+            return JsonResponse(data)
+        
+        return JsonResponse({"msg_type":"required"})
 
 class Specialist:
 
@@ -54,5 +70,6 @@ class Specialist:
         form = QueryForm()
         if data_messages:
             messages = sorted(data_messages["results"], key=itemgetter('id'))
+
         return render(request, 'frontend/actors/specialist/chat.html',
                       {'messages': messages, 'form': form})
