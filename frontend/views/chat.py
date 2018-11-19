@@ -49,8 +49,9 @@ class Client:
             if data["message"][0]["msg_type"]=="r":
                 resp = obj_api.put_all(slug='client/queries/{}/'.format(query), token=token, arg=data)
 
-            if resp:
-                return JsonResponse(resp.json())
+            data = resp.json()
+            data['status_code'] = resp.status_code
+            return JsonResponse(data)
         
         return JsonResponse({"msg_type":"required"})
 

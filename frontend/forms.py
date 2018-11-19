@@ -8,7 +8,7 @@ class QueryForm(forms.Form):
 
     title = forms.CharField(label=_('title'), max_length=100)
     message = forms.CharField(label='')
-    title.widget.attrs.update({'id': 'title_query', 'class': 'form-control',
+    title.widget.attrs.update({'id': 'title', 'class': 'form-control',
                               'placeholder': 'Write your query'})
 
     message.widget.attrs.update({'id': 'text_message', 'class': 'form-control',

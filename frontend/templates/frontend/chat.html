@@ -17,16 +17,18 @@
     </div>
     <div id="chat_box" class="container-fluid">
         {% for message in messages %}
-        <div data-title-query="{{message.query.title}}" id="message_{{ message.id }}" class="row globe-chat">
+        <div data-title-query="{{message.query.title}}"  class="row globe-chat">
             <div class="cont-title-query" style="display: none">
                 <div class="title-query">
                     {{message.query.title}}
                 </div>
             </div>
-            <div class="message col-xs-10 col-sm-6 col-sm-offset-6" 
+            <div id="message_{{ message.id }}" class="message col-xs-10 col-sm-6 col-sm-offset-6  query_{{message.query.query_id}} no-ready-message" 
             data-category="{{message.query.category_id}}"
-            data-sender="{{message.user_id}}" data-timemessage="{{message.time_message}}" 
-            data-message="{{message.id}}" data-query="{{message.query.query_id}}" 
+            data-sender="{{message.user_id}}" 
+            data-timemessage="{{message.time_message}}" 
+            data-message="{{message.id}}" 
+            data-query="{{message.query.query_id}}" 
             data-group-status="{{message.group_status}}"
             data-msg-type="{{message.msg_type}}"
             data-specialist="{{message.specialist_id}}" >
@@ -95,6 +97,10 @@
             <div class="ball1"></div>
         </div>
 
+        <div id="errors_alert" class="hidden">
+            <span id="close_errors_alert" class="close-absolute">X</span>
+        </div>
+
         <!-- Plugin File Input -->
 
         <div id="upload-div" class="hidden">
@@ -104,12 +110,34 @@
                 </form>
             <!-- </div> -->
         </div>
+        <div id="requery_modal" class="hidden">
+            <p>{% trans "Do you like to requery?" %}</p>
+            <div class="modal-options">
+                <button type="button" class="btn btn-orange close-requery-modal">
+                    {% trans "yes"|title %}
+                </button>
+                <button type="button" class="btn btn-ligth-blue no-any-requery">
+                    {% trans "no"|title %}
+                </button>              
+            </div>
+        </div>
+        <div id="punctuation_modal" class="hidden">
+            <p>{% trans "Do you like to requery?" %}</p>
+            <div class="modal-options">
+                <img src='{% static "frontend/img/emojis/5.png"%}'>
+                <img src='{% static "frontend/img/emojis/4.png"%}'>      
+                <img src='{% static "frontend/img/emojis/3.png"%}'>
+                <img src='{% static "frontend/img/emojis/2.png"%}'>
+                <img src='{% static "frontend/img/emojis/1.png"%}'>
+            </div>
+        </div>
+
 
         <form id="form-chat" action="" method="post" autocomplete="off">
             {% if request.user.role.id == ROLES.client  %}
 
              <div class="title-box" style="display: none;" id="title_query_content">
-                <span id="close_query" >X</span>
+                <span id="close_query" class="close-absolute">X</span>
                  {{ form.title.label_tag }}
                  {{ form.title }}
             </div>

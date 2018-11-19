@@ -122,7 +122,7 @@ ul#atachment > li {
     zoom:1;
 }
 
-#close_query{
+.close-absolute {
     position: absolute;
     color: white;
     right: 15px;
@@ -233,4 +233,18 @@ span.reply-borde {
     text-align: center;
     background: #fffffff5;
     border-top: 1px solid #00000021;
+}
+#requery_modal {
+    background: orange;
+    text-align: center;
+    padding: 10px;
+}
+#errors_alert {
+    width: 100%;
+    text-align: center;
+    background-color: red;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    list-style: none;
 }
