@@ -23,6 +23,7 @@ $(document).on('submit','#create-match',function(event){
           data["file"] = arr;
         }
         $("#submit-match").attr("disabled", true);
+        
         sendAjaxService(data, function(response) {
             if (response.status_code == "201") {
               $("#cont-create-match #animacion1").toggleClass("hidden");
@@ -37,7 +38,9 @@ $(document).on('submit','#create-match',function(event){
               $("#submit-match").removeAttr("disabled");
               $('#cont-create-match #message').addClass('error');
               console.log("error: " +response.status_code);
-              $('#cont-create-match #message').text(response);
+              if (response.category){
+                $('#cont-create-match #message').text(response.category);
+              }
               console.log(response);
             }
 

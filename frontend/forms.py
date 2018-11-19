@@ -71,6 +71,7 @@ class MatchForm(forms.Form):
     category = forms.CharField(widget=forms.Select(), required=False, label='Seleccione la especialidad')
     subject = forms.CharField(label='Describe Tu Caso')
     subject.widget = forms.Textarea()
+    category.widget.attrs['required'] = 'required'
     subject.widget.attrs.update({'id': 'subject', 'class': 'form-control',
                                  'placeholder': _('Write your query')})
 

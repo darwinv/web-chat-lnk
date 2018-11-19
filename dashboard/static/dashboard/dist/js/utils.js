@@ -128,6 +128,7 @@ $(document).ready(function () {
 /*AJAX Service*/
 function sendAjaxService(data, clouserSuccess, type='POST'){
   var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
   $.ajax({
     type: type,
     beforeSend: function(request, settings) {
