@@ -15,6 +15,11 @@
     --pink: #D81B60;
     --pink-basic: #ff9e9e;
     --red: #BC0808;
+
+    --status-blue: #3D6EC9;
+    --status-green: #25D366;
+    --status-red: #DA483B;
+    --status-yellow: #FFD04B;
 }
 
 ul{

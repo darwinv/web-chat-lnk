@@ -1,6 +1,6 @@
 {% load static adminlte_helpers i18n %}
 <a href="#">
-    <button class="dropdown-item" type="button">{% trans "my acount"|upfirstletter %}</button>
+    <button class="dropdown-item" type="button">{% trans "my account"|upfirstletter %}</button>
 </a>
 <a href="{% url 'frontend:index-specialist' %}">
     <button class="dropdown-item" type="button">{% trans "queries"|title %}</button>
@@ -11,7 +11,7 @@
 <a href="#">
     <button class="dropdown-item" type="button">{% trans "associated specialist"|upfirstletter %}</button>
 </a>
-<a href="#">
+<a href="{% url 'frontend:account-status-specialist' user.id %}">
     <button class="dropdown-item" type="button">{% trans "account status"|upfirstletter %}</button>
 </a>
 <a href="#">
