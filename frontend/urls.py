@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact, match
+from frontend.views import index, chat, plans, query, contact, match, account, my_account
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^client/$', index.Client().index, name='index-client'),
     url(r'^specialist/$', index.Specialist().index, name='index-specialist'),
     url(r'^seller/$', index.Seller().index, name='index-seller'),
-    
+
 
     # Plans
     # cambiar plan elegido
@@ -33,11 +33,13 @@ urlpatterns = [
 
     # Resumen de plan activo
     url(r'^plans/client/(?P<pk>[0-9]+)/summary/$', plans.Client().summary, name='active-plan-summary'),
+    # Resumen de match para especialista
+    url(r'^match/specialist/(?P<pk>[0-9]+)/summary/$', match.Specialist().summary, name='match-specialist-summary'),
 
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
-   # Chequeo de Status de Planes   
+   # Chequeo de Status de Planes
    url(r'^plans/status/$', plans.Client().get_status_footer,
         name='status-footer-plans'),
     # Chat
@@ -48,16 +50,27 @@ urlpatterns = [
     url(r'^chat/specialist/(?P<pk>[0-9]+)/$', chat.Specialist().chat,
         name='chat-specialist'),
 
+
+    # Mi Cuenta
+    url(r'^myaccount/client/(?P<pk>[0-9]+)/$', my_account.Client().account_profile, name='myaccount-client'),
+    url(r'^myaccount/specialist/(?P<pk>[0-9]+)/$', my_account.Specialist().account_profile, name='account-status-specialist'),
+
     # Match
     url(r'^match/client/$', match.Client().list_match, name='match-client'),
     url(r'^match/specialist/$', match.Specialist().list_match, name='match-specialist'),
     url(r'^match/client/(?P<pk>[0-9]+)/$', match.Client().detail_match, name='match-client-detail'),
+    url(r'^match/client/create/$', match.Client().create_match, name='match-client-create'),
     url(r'^match/specialist/(?P<pk>[0-9]+)/$', match.Specialist().detail_match, name='match-specialist-detail'),
 
 
     # Contacto
     url(r'^contact/client/$', contact.Client().contact, name='contact-client'),
     url(r'^contact/specialist/$', contact.Specialist().contact, name='contact-specialist'),
+
+
+    # Account
+    url(r'^account/client/(?P<pk>[0-9]+)/status/$', account.Client().status, name='account-status-client'),
+    url(r'^account/specialist/(?P<pk>[0-9]+)/status/$', account.Specialist().status, name='account-status-specialist'),
 
 
     # Upload files to query

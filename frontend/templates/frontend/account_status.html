@@ -1,0 +1,36 @@
+{% load static i18n utils %}
+
+<div id="account-status" class="container-fluid">
+  <div class="row justify-content-center"><h4 class="status-title">THIS MONTH</h4></div>
+  {% for box in month %}
+  {% ifequal forloop.counter0|modulo:3 0 %}
+  <div class="row justify-content-center">
+  {% endifequal %}
+    <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+      <div class="status-box
+      {% ifequal forloop.counter0|modulo:3 0 %}blue-box{% endifequal %}
+      {% ifequal forloop.counter0|modulo:3 1 %}green-box{% endifequal %}
+      {% ifequal forloop.counter0|modulo:3 2 %}red-box{% endifequal %}">
+        {{ box.number }} {{ box.text }}
+      </div>
+    </div>
+  {% ifequal forloop.counter0|modulo:3 2 %}
+  </div>
+  {% endifequal %}
+  {% endfor %}
+
+  <div class="row justify-content-center"><h4 class="status-title">ACCUMULATED HISTORICAL</h4></div>
+  {% for box in historic %}
+  {% ifequal forloop.counter0|modulo:3 0 %}
+  <div class="row justify-content-center">
+  {% endifequal %}
+    <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+      <div class="status-box yellow-box">
+        {{ box.number }} {{ box.text }}
+      </div>
+    </div>
+  {% ifequal forloop.counter0|modulo:3 2 %}
+  </div>
+  {% endifequal %}
+  {% endfor %}
+</div>

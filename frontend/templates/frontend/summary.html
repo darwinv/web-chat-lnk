@@ -20,7 +20,7 @@
   </div>
   <div id="purchased-products" class="row">
     {% if photo %}
-      <div class="col-4"><img src="photo" /></div>
+      <div class="col-4"><img src="{{ photo }}" /></div>
     {% endif %}  
     <div id="product-info" class="col-8 summary-info">
       {% for line in lines %}
@@ -36,5 +36,3 @@
     <div id="button-box" class="col-6 col-sm-4"><button id="upload-button">UPLOAD VOUCHER</button></div>
   </div>
 </div>
-
-{% include 'frontend/lib/modals/upload_voucher.html' %}
