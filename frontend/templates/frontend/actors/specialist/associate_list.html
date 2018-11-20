@@ -36,4 +36,7 @@
 {% block javascript %}
   {{ block.super }}
   <script src="{% static "frontend/specialist/js/associate_list.js" %}"></script>
+  <script>
+    var associate_detail_url = "{% url 'frontend:associate' 0 %}";
+  </script>
 {% endblock %}

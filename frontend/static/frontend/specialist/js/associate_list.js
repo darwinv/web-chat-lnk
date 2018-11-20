@@ -7,5 +7,7 @@ $(function() {
 
     $('.associate').click(function(event) {
         var associate_id = $(this).prop('id').slice(10);
+        var url = associate_detail_url.replace('0', associate_id);
+        window.location.replace(url);
     });
 });
