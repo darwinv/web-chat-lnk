@@ -21,6 +21,19 @@ class Client:
 
         return render(request, 'frontend/actors/client/my_account.html', {'data_user': resp, 'ciiu':ciiu, 'name':display_name})
 
+
+    def edit_account_profile(self, request, pk):
+        """Editar cuenta"""
+
+    def contact_linkup(self, request, pk):
+        """Mi contacto Linkup (Vendedor Asignado)."""
+        obj_api = api()
+        title_contact  = "Tu contacto Linkup"
+        token = request.session['token']
+        resp = obj_api.get(slug='sellers/' + pk + "/", token=token)
+        return render(request, 'frontend/actors/client/my_account.html', {'data_user': resp, 
+                                                                        'title_contact': title_contact})
+        
 class Specialist:
     def account_profile(self, request, pk):
         obj_api = api()
