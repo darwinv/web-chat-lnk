@@ -4,7 +4,7 @@ $(function() {
     const ACTION_EMPOWER = "empower";
     const ACTION_SHARE = "share";
 
-    const HTTP_CODES = {OK:"200", CREATED:"201", BAD_REQUEST:"400", NOT_FOUND:"404"}
+    const HTTP_CODES = {OK:200, CREATED:201, BAD_REQUEST:400, NOT_FOUND:404}
 
     $(document).ready(function() {
         $('.drop-down').hide();
@@ -13,6 +13,10 @@ $(function() {
             $('#main-detail').click(function(event) {
                 console.log("PRESSED")
                 window.location.replace('summary/');
+            });
+        } else if (plan_status === 3) {
+            $('#main-detail').click(function(event) {
+                $('#activation-modal').modal('show');
             });
         }
     });
@@ -49,11 +53,11 @@ $(function() {
                 return;
             }
 
-            if (data.status_code == HTTP_CODES.OK || data.status_code == HTTP_CODES.NOT_FOUND) {
+            if (data.status_code === HTTP_CODES.OK || data.status_code === HTTP_CODES.NOT_FOUND) {
                 var selector = '#' + email_receiver.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
                 $(selector).next().remove();
                 $(selector).remove();
-            } else if (data.status_code == HTTP_CODES.BAD_REQUEST) {
+            } else if (data.status_code === HTTP_CODES.BAD_REQUEST) {
                 if (data.detail)
                     alert(data.detail);
             }

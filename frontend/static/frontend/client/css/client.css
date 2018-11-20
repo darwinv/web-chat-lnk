@@ -66,3 +66,10 @@
   font-weight: bold;
   text-align: center;
 }
+.chat-category-detail {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px !important;
+    max-width: 380px;
+    margin: auto;
+}

@@ -72,3 +72,12 @@ def capitalize(line):
         return ''
     return line[0].upper() + line[1:]
 
+
+
+def get_name_by_client(client):
+    # Retornar nombre a mostrar segundo modelo cliente
+    if client["type_client"] == "b":
+        name = "{} {}".format(client["agent_lastname"], client["agent_firstname"])
+    else:
+        name = "{} {}".format(client["last_name"], client["first_name"])
+    return name

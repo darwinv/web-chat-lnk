@@ -10,6 +10,16 @@
     height: 100%;
 }
 
+#empty-row {
+    margin-top: 50px;
+}
+
+#empty {
+    color: var(--dark-gray);
+    font-size: 30px;
+    text-align: center;
+}
+
 #plan-list {
     overflow-y: auto;
 }
@@ -41,7 +51,7 @@
 }
 
 .plan-title {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
     color: var(--white);
 }

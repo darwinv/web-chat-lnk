@@ -1,0 +1,42 @@
+#associates-list {
+    background: var(--dark-blue);
+    overflow-y: auto;
+    height: 100%;
+}
+
+#empty-row {
+    margin-top: 50px;
+}
+
+#empty {
+    color: var(--dark-gray);
+    font-size: 30px;
+    text-align: center;
+}
+
+.associate {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 1px solid;
+}
+
+.associate-photo {
+}
+
+.main-info {
+    color: var(--dark-gray);
+}
+
+.associate-name {
+    color: var(--white);
+    font-weight: bold;
+}
+
+.pending-to-solve {
+    background: var(--turquoise);
+    color: var(--white);
+    width: 20px;
+    height: 20px;
+    border-radius: 70%;
+    text-align: center;
+}
