@@ -50,11 +50,11 @@ class Client:
         obj_api = api()
         token = request.session['token']
         resp = obj_api.get(slug='clients/plans-all/', token=token)
-        if resp['count'] > 0:
-            return render(request, 'frontend/actors/client/plan_list.html', {'plans': resp['results']})
-        else:
-            return JsonResponse({'message': _('You don\'t have active plans'),
-                                 'class': 'successful'})
+
+        plans = resp['results']
+        count = resp['count']
+
+        return render(request, 'frontend/actors/client/plan_list.html', {'plans': plans, 'count':count})
 
     def plan(self, request, pk):
         """ Plan efectivo """
