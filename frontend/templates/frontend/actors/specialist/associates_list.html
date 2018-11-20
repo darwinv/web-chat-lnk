@@ -1,0 +1,38 @@
+
+{% extends 'frontend/actors/specialist/base_specialist.html' %}
+{% load static i18n %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "frontend/specialist/css/associates_list.css" %}">
+{% endblock %}
+
+{% block main_content %}
+{{ block.super }}
+<div id="associates-list" class="container-fluid">
+  {% ifequal count 0 %}
+  <div id="empty-row" class="row justify-content-center">
+    <div class="col-2"><span id="empty">Empty</span></div>
+  </div>
+  {% endifequal %}
+  {% for associate in associates %}
+  <div class="row associate justify-content-center">
+    <div class="col-1"><img class="associate-photo" src="{{ associate.photo }}"></div>
+    <div class="col-5 main-info">
+      <span class="associate-name">{{ associate.first_name }} {{ associate.last_name }}</span><br />
+      {{ associate.email_exact }}<br />
+      {{ associate.code }}
+    </div>
+    <div class="col-1">
+      {% if associate.pending_queries_to_solve > 0 %}
+        <div class="pending-to-solve">{{ associate.pending_queries_to_solve }}</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+{% endblock %}
