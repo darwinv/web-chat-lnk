@@ -10,7 +10,7 @@ $(function() {
 
     const USER_ADDED_MESSAGE = ["User registered", "An invitation will be sent", "Registration successful"];
 
-    const HTTP_CODES = {OK:"200", CREATED:"201", BAD_REQUEST:"400", NOT_FOUND:"404"}
+    const HTTP_CODES = {OK:200, CREATED:201, BAD_REQUEST:400, NOT_FOUND:404}
 
     const LEGAL_REQUIRED_PHRASE = "Please indicate that you accept the Terms and Conditions";
 
@@ -53,19 +53,19 @@ $(function() {
             count = 0;
 
         default_message = $("#second-section #default-message").remove();
-        var user_line = ''
-        user_line += '<div class="row justify-content-center user-line">'
-        user_line += '  <div class="col-7 col-sm-6 col-md-5 col-lg-4 email-section">'
-        user_line +=      email + '<br />' + USER_ADDED_MESSAGE[type] 
-        user_line += '  </div>'
+        var user_line = '';
+        user_line += '<div class="row justify-content-center user-line">';
+        user_line += '  <div class="col-7 col-sm-6 col-md-5 col-lg-4 email-section">';
+        user_line +=      email + '<br />' + USER_ADDED_MESSAGE[type] ;
+        user_line += '  </div>';
         if (action === ACTION_SHARE) {
-            user_line += '  <div class="col-5 col-sm-4 col-md-3 col-lg-2 count-section">'
-            user_line += '    Num of queries<br />'
-            user_line += '    <input id="count-for-' + email + '" class="queries-count" type="number" value="' +  count + '"'
-            user_line += 'min="1" max="' + available_queries + '">'
-            user_line += '  </div>'
+            user_line += '  <div class="col-5 col-sm-4 col-md-3 col-lg-2 count-section">';
+            user_line += '    Num of queries<br />';
+            user_line += '    <input id="count-for-' + email + '" class="queries-count" type="number" value="' +  count + '"';
+            user_line += 'min="1" max="' + available_queries + '">';
+            user_line += '  </div>';
         }
-        user_line += '</div>'
+        user_line += '</div>';
         $('#second-section').append(user_line);
 
         if (action === ACTION_SHARE) {
@@ -126,13 +126,13 @@ $(function() {
             }
 
             console.log("data: ", data)
-            if (data.status_code == HTTP_CODES.OK) {
+            if (data.status_code === HTTP_CODES.OK) {
                 addUserToList(email, USER_REGISTERED);
                 $('#email-box').val('');
-            } else if (data.status_code == HTTP_CODES.NOT_FOUND) {
+            } else if (data.status_code === HTTP_CODES.NOT_FOUND) {
                 $('#new-user-modal').modal('show');
                 $('#action-holder').html(email);
-            } else if (data.status_code == HTTP_CODES.BAD_REQUEST) {
+            } else if (data.status_code === HTTP_CODES.BAD_REQUEST) {
                 if (data.email_receiver) {
                     // TODO Mostrar en modal
                     alert(data.email_receiver)
@@ -209,9 +209,9 @@ $(function() {
                 return;
             }
 
-            if (data.status_code == HTTP_CODES.OK) {
+            if (data.status_code === HTTP_CODES.OK) {
                 window.location.replace(final_url);
-            } else if (data.status_code == HTTP_CODES.BAD_REQUEST) {
+            } else if (data.status_code === HTTP_CODES.BAD_REQUEST) {
                 if (data.detail)
                     alert(data.detail);
             }

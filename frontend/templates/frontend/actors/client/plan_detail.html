@@ -6,7 +6,7 @@
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
-    {% ifequal plan.status 1 %}
+    {% if plan.status == 1 or plan.status == 3 %}
     <style>
     .plan-box:hover, .plan-box:active {
         cursor: pointer;
@@ -15,7 +15,7 @@
         box-shadow: 0 0 5px -1px var(--black);
     }
     </style>
-    {% endifequal %}
+    {% endif %}
 {% endblock %}
 
 {% block main_content %}
@@ -24,11 +24,11 @@
     <div class="row">
       <div class="col-3 plan-title">{{ plan.plan_name }}</div>
       <div class="col-3 offset-6 plan-status">
-        {% ifequal plan.status 1 %} Pending Payment {% endifequal %}
-        {% ifequal plan.status 2 %} Waiting for your ACTIVATION PIN {% endifequal %}
-        {% ifequal plan.status 3 %} Enter your PIN {% endifequal %}
-        {% ifequal plan.status 4 %} In use {% endifequal %}
-        {% ifequal plan.status 5 %} Finished {% endifequal %}
+        {% ifequal plan.status 1 %} Pago pendiente {% endifequal %}
+        {% ifequal plan.status 2 %} Esperando por tu PIN de ACTIVACION {% endifequal %}
+        {% ifequal plan.status 3 %} Ingresa tu PIN {% endifequal %}
+        {% ifequal plan.status 4 %} En uso {% endifequal %}
+        {% ifequal plan.status 5 %} Finalizado {% endifequal %}
       </div>
     </div>
     <div class="row">
@@ -82,17 +82,17 @@
     <div class="row button-box justify-content-center">
       {% ifequal plan.transfer True %}
         <div class="col-4">
-          <a href="transfer/"><div class="plan-button">Transfer</div></a>
+          <a href="transfer/"><div class="plan-button">Transferir</div></a>
         </div>
       {% endifequal %}
       {% ifequal plan.empower True %}
         <div class="col-4">
-          <a href="empower/"><div class="plan-button">Empower</div></a>
+          <a href="empower/"><div class="plan-button">Facultar</div></a>
         </div>
       {% endifequal %}
       {% ifequal plan.share True %}
         <div class="col-4">
-          <a href="share/"><div class="plan-button">Share</div></a>
+          <a href="share/"><div class="plan-button">Compartir</div></a>
         </div>
       {% endifequal %}
     </div>
@@ -116,13 +116,13 @@
             {{ client.receiver.display_name }}<br />
           {% endif %}
           {% ifequal client.type_operation 1 %}
-            User transfered
+            Usuario transferido
           {% endifequal %}
           {% ifequal client.type_operation 2 %}
-            User shared
+            Usuario compartido
           {% endifequal %}
           {% ifequal client.type_operation 3 %}
-            User empowered
+            Usuario facultado
           {% endifequal %}
           <br />
 
@@ -135,7 +135,9 @@
         <div class="col-1 button-section">
           {% ifequal client.type_operation 3 %}
             <div class="delete-empower-ellipsis fa fa-ellipsis-v"></div>
-            <div id="button-for-{{ client.email_receiver }}" class="drop-down">Dejar de facultar</div>
+            <div id="button-for-{{ client.email_receiver }}" class="drop-down">
+              Dejar de facultar
+            </div>
           {% endifequal %}
         </div>
       </div>
