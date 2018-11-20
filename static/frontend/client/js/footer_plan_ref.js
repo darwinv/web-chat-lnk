@@ -11,9 +11,7 @@ $(document).ready(function () {
 //
 // $('#reload').on('hidden.bs.modal', function () {
  planObject.on('value', function (snap){
-    $.get( url_status_plan, function( data ) {
-        console.log(data); 
-      
+    $.get( url_status_plan, function( data ) {      
       if (snap.exists()) {
         
           var available_queries = snap.val().available_queries;

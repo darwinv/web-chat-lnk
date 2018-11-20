@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact, match, account, my_account
+from frontend.views import index, chat, plans, query, contact, match, account, my_account, purchase
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -74,8 +74,14 @@ urlpatterns = [
     url(r'^account/client/(?P<pk>[0-9]+)/status/$', account.Client().status, name='account-status-client'),
     url(r'^account/specialist/(?P<pk>[0-9]+)/status/$', account.Specialist().status, name='account-status-specialist'),
 
+    # Purchase
+    url(r'^purchase/client/$', purchase.Client().list_purchase, name='purchase-client'),
+
 
     # Upload files to query
     url(r'^query/upload_file/$',
         query.upload_file, name='upload_file'),
+
+
+
 ]
