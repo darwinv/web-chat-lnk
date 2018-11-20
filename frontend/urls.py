@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact, match, account
+from frontend.views import index, chat, plans, query, contact, match, account, my_account
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -50,6 +50,10 @@ urlpatterns = [
     url(r'^chat/specialist/(?P<pk>[0-9]+)/$', chat.Specialist().chat,
         name='chat-specialist'),
 
+
+    # Mi Cuenta
+    url(r'^myaccount/client/(?P<pk>[0-9]+)/$', my_account.Client().account_profile, name='myaccount-client'),
+    url(r'^myaccount/specialist/(?P<pk>[0-9]+)/$', my_account.Specialist().account_profile, name='account-status-specialist'),
 
     # Match
     url(r'^match/client/$', match.Client().list_match, name='match-client'),

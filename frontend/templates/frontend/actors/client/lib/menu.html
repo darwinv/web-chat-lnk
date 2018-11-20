@@ -1,5 +1,5 @@
 {% load static adminlte_helpers i18n %}
-<a href="#">
+<a href="{% url 'frontend:myaccount-client' pk=request.user.id %}">
     <button class="dropdown-item" type="button">{% trans "my account"|upfirstletter %}</button>
 </a>
 <a href="{% url 'frontend:index-client' %}">

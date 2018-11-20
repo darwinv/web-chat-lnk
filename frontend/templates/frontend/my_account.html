@@ -1,0 +1,53 @@
+{% load static i18n utils %}
+<div class="panel panel-default container-fluid width-60-percent">
+    {% if data_client %}
+
+    <div class="row">
+        <div class="col-xs-4">
+            <img src="{{ data_client.photo }}" class="img-responsive" alt="">
+        </div>
+        <div class="col-xs-8">
+            <h3> {{name}}</h3> </br>
+            {{data_client.username}} </br>
+            {{data_client.code}}
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+
+        <div class="col-xs-12">
+           <p>Direccion: {{data_client.address.street}} , {{data_client.address.district_name}} , {{data_client.address.province_name}} , 
+                {{data_client.address.department_name}} - {{data_client.residence_country_name}}
+
+           </p> 
+
+           {% if data_client.telephone %} 
+                 <p>
+                    Telefono: {{ data_client.telephone}}
+                </p>
+            {% endif %}
+
+            {% if data_client.cellphone %} 
+            <p>
+                Telefono: {{ data_client.cellphone}}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        {% if ciiu %}
+        <div class="col-xs-12">
+           CIIU: {{ciiu.code}} - {{ciiu.description}}
+        </div> <br> <br>
+        {% endif %}
+        <div class="col-xs-12">
+                <i class="fas fa-map-marker-alt"></i> <a href="#">Tu contacto Linkup</a>
+        </div>
+    </div>
+
+
+    {% endif %}
+
+</div>
