@@ -48,7 +48,27 @@
                 Contactar
             </a>
         </div>
+    <div class="col-xs-12"> 
+        <button id="next" type="button" class="btn btn-primary btn-block">Siguiente</button> 
+    </div>
+</div>
 
+<div class="hidden" class="container-fluid">
+    <h3>Modalidad de Pago</h3>
+    <ul class="nav nav-tabs">
+            <li class="active"><a href="#contado">Pago al Contado</a></li>
+            <li><a href="#credito">Pago al Credito</a></li>
+    </ul>
 
+    <div class="tab-content">    
+        <div id="contado" class="tab-pane fade in active">
+            <h3>Al Contado</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div id="credito" class="tab-pane fade">
+            <h3>Al Credito</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+         </div>
+    </div> 
 </div>
 {% endblock main_content %}
