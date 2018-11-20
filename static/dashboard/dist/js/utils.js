@@ -83,7 +83,8 @@ $(document).ready(function () {
         data: data,
         success: function(data) {
           clouserPagination(data);
-          if (data.results) {
+
+          if (data && data.results) {
             $window.data("page", page);
           }
         },
@@ -127,6 +128,7 @@ $(document).ready(function () {
 /*AJAX Service*/
 function sendAjaxService(data, clouserSuccess, type='POST'){
   var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
   $.ajax({
     type: type,
     beforeSend: function(request, settings) {
