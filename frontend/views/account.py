@@ -83,6 +83,13 @@ class Specialist:
         resp = obj_api.get(slug='specialists/' + pk, token=token)
 
         data_user = resp
+        name = data_user['first_name'] + ' ' + data_user['last_name']
         type_specialist = data_user['type_specialist']
+        if type_specialist == 'a':
+            type_specialist = 'Especialista asociado'
+        elif type_specialist == 'm':
+            type_specialist = 'Especialista principal'
 
-        return render(request, 'frontend/actors/specialist/my_account.html', {'data_user':data_user, 'type_specialist':type_specialist})
+        return render(request, 'frontend/actors/specialist/my_account.html', {
+            'data_user':data_user, 'type_specialist':type_specialist, 'name':name
+        })
