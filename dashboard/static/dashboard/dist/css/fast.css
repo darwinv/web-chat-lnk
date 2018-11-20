@@ -184,7 +184,9 @@ ul{
 .a-white {
     color: white;
 }
-
+.white {
+    color: white;
+}
 /* anchura auto */
 .width-auto{
   width: auto;

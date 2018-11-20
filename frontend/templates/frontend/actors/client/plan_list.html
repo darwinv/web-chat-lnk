@@ -17,9 +17,9 @@
         <div class="plan-title">{{ plan.plan_name }}</div>
         <div class "plan-info">
           {% blocktrans trimmed count quantity=plan.query_quantity %}
-          {{ quantity }} consulta
-          {% plural %}
-          {{ quantity }} consultas
+            {{ quantity }} consulta
+            {% plural %}
+            {{ quantity }} consultas
           {% endblocktrans %}<br />
           {% blocktrans trimmed count validity=plan.validity_months %}
           Validez {{ validity }} mes

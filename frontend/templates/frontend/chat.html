@@ -23,96 +23,101 @@
         </div>
     </div>
     <div id="chat_box" class="container-fluid">
-        {% for message in messages %}
-        <div data-title-query="{{message.query.title}}"  class="row globe-chat">
-            <div class="cont-title-query" style="display: none">
-                <div class="title-query">
-                    {{message.query.title}}
+        {% if messages %}
+            {% for message in messages %}
+            <div data-title-query="{{message.query.title}}"  class="row globe-chat">
+                <div class="cont-title-query" style="display: none">
+                    <div class="title-query">
+                        {{message.query.title}}
+                    </div>
                 </div>
-            </div>
-            <div id="message_{{ message.id }}" class="message col-xs-10 col-sm-6 col-sm-offset-6  query_{{message.query.query_id}} no-ready-message" 
-            data-category="{{message.query.category_id}}"
-            data-sender="{{message.user_id}}" 
-            data-timemessage="{{message.time_message}}" 
-            data-message="{{message.id}}" 
-            data-query="{{message.query.query_id}}" 
-            data-group-status="{{message.group_status}}"
-            data-msg-type="{{message.msg_type}}"
-            data-specialist="{{message.specialist_id}}"
-            data-status="{{message.query.status}}"
-            data-content-type="{{message.content_type}}"  
-            data-uploaded="{{message.uploaded}}"   >
-                
-                <!-- EVENTS -->
-                <div class="dropdown chat-angle-down" style="display: none;">
-                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item query-event-reply" href="#">{% trans "Requery" %}</a>
-                  </div>
-                </div>
+                <div id="message_{{ message.id }}" class="message col-xs-10 col-sm-6 col-sm-offset-6  query_{{message.query.query_id}} no-ready-message" 
+                data-category="{{message.query.category_id}}"
+                data-sender="{{message.user_id}}" 
+                data-timemessage="{{message.time_message}}" 
+                data-message="{{message.id}}" 
+                data-query="{{message.query.query_id}}" 
+                data-group-status="{{message.group_status}}"
+                data-msg-type="{{message.msg_type}}"
+                data-specialist="{{message.specialist_id}}"
+                data-status="{{message.query.status}}"
+                data-content-type="{{message.content_type}}"  
+                data-uploaded="{{message.uploaded}}"   >
+                    
+                    <!-- EVENTS -->
+                    <div class="dropdown chat-angle-down" style="display: none;">
+                      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item query-event-reply" href="#">{% trans "Requery" %}</a>
+                      </div>
+                    </div>
 
-                <!-- Vista -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        {% if message.content_type == 1 %}
-                            <div class="chat-text-thumb">
-                                <p class="text">{{ message.message }}</p>
-                            </div>
-                        {% elif message.content_type == 2 %}
-                            <div class="chat-img-thumb chat_play_medias"
-                            data-file-url="{{message.file_url}}">
-                                <img src="{{message.file_preview_url}}">
-                            </div>
-                        {% elif message.content_type == 3 %}                            
-                            <div class="chat-video-thumb chat_play_medias" data-file-url="{{message.file_url}}">
-                                <img src="{{message.file_preview_url}}">
-                                <div class="play-video">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="media-play" transform="translate(4 2.5)" fill="#FFF"><path d="M15.5 7.9L2.5.4C1.2-.3.1.3.1 1.8v15c0 1.5 1.1 2.1 2.4 1.4l13-7.5c1.3-.9 1.3-2.1 0-2.8z" id="Path"></path></g></g></svg>
+                    <!-- Vista -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% if message.content_type == 1 %}
+                                <div class="chat-text-thumb">
+                                    <p class="text">{{ message.message }}</p>
                                 </div>
-                            </div>
-                        {% elif message.content_type == 4 %}
-                            <div class="chat-audio-thumb text-center">
-                               <audio controls>
-                                  <source src="{{message.file_url}}" type="audio/ogg">
-                                  <source src="{{message.file_url}}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            </div>
-                        {% elif message.content_type == 5 %}
-                            <div class="chat-file-thumb text-center">
-                                <i class="fas fa-file"></i>
-                                {% if message.uploaded == 2 %}
-                                    <a target="_blank" href="{{message.file_url}}">Descargar Archivo</a>
-                                {% else %}
-                                    <a href="#">Archivo no encontrado</a>
-                                {% endif %}
-                            </div>
-                        {% endif %}
+                            {% elif message.content_type == 2 %}
+                                <div class="chat-img-thumb chat_play_medias"
+                                data-file-url="{{message.file_url}}">
+                                    <img src="{{message.file_preview_url}}">
+                                </div>
+                            {% elif message.content_type == 3 %}                            
+                                <div class="chat-video-thumb chat_play_medias" data-file-url="{{message.file_url}}">
+                                    <img src="{{message.file_preview_url}}">
+                                    <div class="play-video">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="media-play" transform="translate(4 2.5)" fill="#FFF"><path d="M15.5 7.9L2.5.4C1.2-.3.1.3.1 1.8v15c0 1.5 1.1 2.1 2.4 1.4l13-7.5c1.3-.9 1.3-2.1 0-2.8z" id="Path"></path></g></g></svg>
+                                    </div>
+                                </div>
+                            {% elif message.content_type == 4 %}
+                                <div class="chat-audio-thumb text-center">
+                                   <audio controls>
+                                      <source src="{{message.file_url}}" type="audio/ogg">
+                                      <source src="{{message.file_url}}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                            {% elif message.content_type == 5 %}
+                                <div class="chat-file-thumb text-center">
+                                    <i class="fas fa-file"></i>
+                                    {% if message.uploaded == 2 %}
+                                        <a target="_blank" href="{{message.file_url}}">Descargar Archivo</a>
+                                    {% else %}
+                                        <a href="#">Archivo no encontrado</a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
 
-                {% if message.content_type != 1 and message.uploaded == 5 or message.content_type != 1 and message.uploaded == 1 %}
-                    <div class="file-uploading marT10 text-center">
-                        {% if message.uploaded == 1  %}
-                            <spam>Subiendo Archivo...</spam>
-                        {% elif message.uploaded == 5  %}
-                            <spam>Error al intentar subir el archivo</spam>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <!-- Foter -->
-                <div class="row marT10 message-footer">
-                    <div class="col-sm-6">
-                        <p class="code-user">{{ message.code }}</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p><small class="time"> </small></p>
+                    {% if message.content_type != 1 and message.uploaded == 5 or message.content_type != 1 and message.uploaded == 1 %}
+                        <div class="file-uploading marT10 text-center">
+                            {% if message.uploaded == 1  %}
+                                <spam>Subiendo Archivo...</spam>
+                            {% elif message.uploaded == 5  %}
+                                <spam>Error al intentar subir el archivo</spam>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <!-- Foter -->
+                    <div class="row marT10 message-footer">
+                        <div class="col-sm-6">
+                            <p class="code-user">{{ message.code }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><small class="time"> </small></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+
+        {% elif request.user.role.id == ROLES.client %}                    
+            <div class="chat-category-detail">{{speciality.description}}</div>               
+        {% endif %}
     </div>
     <div class="box-send-message">
         <div id="animacion" class="hidden">

@@ -13,3 +13,23 @@ span.purchase_soon {
     padding: 3px;
     float: right;
 }
+.plan-cell {
+    border-bottom: 1px solid #3b3b3b;
+    padding: 10px 10px;
+}
+.clasification-plan {
+    padding: 10px;
+    color: #7e7e7e;
+    border-bottom: 1px solid var(--turquoise);
+    margin-top: 10px;
+}
+.clasification-plan span {
+    color: var(--turquoise);
+    display: block;
+    font-size: 22px;
+}
+.contact {
+    padding: 10px;
+    font-size: 20px;
+}
+

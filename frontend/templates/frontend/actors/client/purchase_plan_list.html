@@ -1,0 +1,53 @@
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/purchase.css" %}">
+{% endblock %}
+{% block javascript %}
+{{ block.super }}
+    <script src="{% static "frontend/dist/js/purchase.js" %}"></script>
+{% endblock %}
+
+{% block main_content %}
+<div id="plan-list" class="container-fluid">
+
+    {% for plan in plans %}
+        <input type="checkbox" name="vehicle" value="{{plan.id}}" class="hidden">
+
+        <div class="plan-cell" data-clasification="{{plan.clasification}}" >
+            <div class="plan-title">{{plan.name}}</div>
+            <div class="white">
+
+            {% blocktrans trimmed count quantity=plan.query_quantity %}
+                {{ quantity }} consulta
+                {% plural %}
+                {{ quantity }} consultas
+            {% endblocktrans %}<br />
+            {% blocktrans trimmed count validity=plan.validity_months %}
+                Vigencia {{ validity }} mes
+                {% plural %}
+                Vigencia {{ validity }} meses
+            {% endblocktrans %}
+              <div class="plan-price">S/. {{plan.price}}</div>
+            </div> <!-- Plan main info -->
+        </div>
+    {% endfor %}
+
+        <div class="clasification-plan">
+            <span>Grandes Empresas</span>
+            Contáctanos por Planes a Medida.
+        </div>
+
+        <div class="contact">
+            <a class="a-white" href="{% url 'frontend:contact-client' %}">
+                <i class="fas fa-envelope"></i>
+                Contactar
+            </a>
+        </div>
+
+
+</div>
+{% endblock main_content %}
