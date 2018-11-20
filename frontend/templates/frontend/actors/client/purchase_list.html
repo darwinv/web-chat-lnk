@@ -10,8 +10,8 @@
 
 {% block main_content %}
 <div id="plan-list" class="container-fluid">
-	<div class="purchases pointer"><a href="">Planes de consultas</a></div>
-	<div class="purchases pointer"><a href="">Servicio de contratación de especialistas</a></div>
+	<div class="purchases pointer"><a class="a-white" href="{% url 'frontend:purchase-plan' %}">Planes de consultas</a></div>
+	<div class="purchases pointer"><a class="a-white" href="{% url 'frontend:match-client-create' %}">Servicio de contratación de especialistas</a></div>
 	<div class="purchases">Bolsa de trabajo
 		<span class="purchase_soon">PROXIMAMENTE</span></div>
 	<div class="purchases">Gestión de talentos
