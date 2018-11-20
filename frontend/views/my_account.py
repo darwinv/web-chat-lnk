@@ -32,7 +32,7 @@ class Specialist:
         else:
             type_specialist = 'Especialista Asociado'                
             
-
+        
         if resp:
             return render(request, 'frontend/actors/specialist/my_account.html', {'data_user':resp, 'name':name,
                                                                                  'type_specialist': type_specialist})
