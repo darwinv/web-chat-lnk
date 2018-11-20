@@ -10,3 +10,8 @@
 {% block main_content %}
   {% include 'frontend/my_account.html' %}
 {% endblock main_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static "frontend/specialist/js/my_account.js" %}"></script>
+{% endblock %}

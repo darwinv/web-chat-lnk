@@ -1,0 +1,15 @@
+{% extends 'frontend/actors/client/base_client.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+{% block main_content %}
+ <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+ </form>
+{% endblock main_content %}
