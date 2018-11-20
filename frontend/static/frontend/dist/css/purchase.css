@@ -16,6 +16,7 @@ span.purchase_soon {
 .plan-cell {
     border-bottom: 1px solid #3b3b3b;
     padding: 10px 10px;
+    position: relative;
 }
 .clasification-plan {
     padding: 10px;
@@ -32,4 +33,14 @@ span.purchase_soon {
     padding: 10px;
     font-size: 20px;
 }
-
+.checkbox-plan{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin: auto;
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    padding: 10px;
+}

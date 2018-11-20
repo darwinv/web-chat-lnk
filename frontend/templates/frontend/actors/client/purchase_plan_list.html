@@ -15,9 +15,10 @@
 <div id="plan-list" class="container-fluid">
 
     {% for plan in plans %}
-        <input type="checkbox" name="vehicle" value="{{plan.id}}" class="hidden">
+        
 
         <div class="plan-cell" data-clasification="{{plan.clasification}}" >
+            <input type="checkbox" name="vehicle" value="{{plan.id}}" class="checkbox-plan" >
             <div class="plan-title">{{plan.name}}</div>
             <div class="white">
 
