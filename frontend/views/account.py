@@ -72,9 +72,8 @@ class Specialist:
         token = request.session['token']
         resp = obj_api.get(slug='specialists/associate/', token=token)
 
-        import pdb
-        pdb.set_trace()
+        associates = resp['results']
         if resp:
-            return JsonResponse({})
+            return render(request, 'frontend/actors/specialist/associates_list.html', {'associates':associates})
         else:
             return JsonResponse({})
