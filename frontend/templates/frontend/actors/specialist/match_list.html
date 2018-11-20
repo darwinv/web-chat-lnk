@@ -27,7 +27,9 @@
   {{ block.super }}
   <script type="text/javascript">
       var token = '{{request.session.token}}';
+      var url_match_summary =  "{% url 'frontend:match-specialist-summary' pk=0 %}";
   </script>
+  
 <script src="{% static "frontend/specialist/js/load_match.js" %}"></script>
 <script src="{% static "frontend/dist/js/match.js" %}"></script>
 {% endblock %}

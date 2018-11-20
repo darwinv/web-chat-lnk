@@ -31,22 +31,50 @@ chatsock.onmessage = function(message) {
     }
 };
 function updateQuery(data){ 
+    
     query = data.query
     for (var key in data.data) {
         // skip loop if the property is from prototype
         if (!data.data.hasOwnProperty(key)) continue;
         var obj = data.data[key];
-        $(".query_"+query).data(key, obj).addClass(".no-ready-message");
+        $(".query_"+query).data(key, obj).addClass("no-ready-message");
     }
     
     updateMessage();
 }
 function updateFiles(data){
-    query = data.query
-    $.each(data.messages, function(key,value){
-        $("#message_"+value.id).prop("src", value.filePreviewUrl);
-        $("#message_"+value.id).data("file-url", value.fileUrl);
-    });
+    message_id = data.message
+    msg = $(`#message_${message_id}`);
+
+    contentType = msg.data("content-type");
+
+    if (contentType== 2 || contentType== 3) {
+        msg.find(`img`).prop("src", data.filePreviewUrl);
+        msg.find(`.chat-img-thumb`).data("file-url", data.fileUrl);
+    }else if(contentType== 4){
+        var audio = msg.find("audio");
+        msg.find("source").attr("src", data.fileUrl);
+        audio[0].pause();
+        audio[0].load();//suspends and restores all audio element
+
+    }else if(contentType== 5){
+        data.fileType = contentType        
+        msg.find(`.cont-message-type`).html(renderTypeMessage(data));
+    }else{
+        console.log("type file not found");
+    }
+
+    if (data.uploaded==2) {
+        msg.find(".file-uploading").remove();
+    }else if(data.uploaded==1){
+        text_uploaded = `<spam>Subiendo Archivo...</spam>`;
+        msg.find(".file-uploading").html(text_uploaded);
+    }else if(data.uploaded==5){
+        text_uploaded = `<spam>Error al intentar subir el archivo</spam>`;
+        msg.find(".file-uploading").html(text_uploaded);
+    }
+    msg.data("uploaded",data.uploaded);
+
 }
 
 function renderMessages(data){
@@ -57,13 +85,14 @@ function renderMessages(data){
     var diffScroll = chat_box.scrollHeight - chat_box.clientHeight;
     var resScroll = positionScroll / diffScroll;
     var specialistMsg = data.specialist;
-    var showRequery = false;
+    var queryStatus = data.status;
+    
 
     if (roleID==ROLES.client) {
         var actionsEvents = `<a class="dropdown-item query-event-reply" href="#">Reconsulta</a>`;            
     }else{
         var actionsEvents = `<a class="dropdown-item query-event-reply" href="#">Responder</a>
-                             <a class="dropdown-item query-event-derive"
+                             <a class="dropdown-item decline-derive-chat"
                                 href="#">Derivar</a>`; 
     }
     var actions = `<div class="dropdown chat-angle-down" >
@@ -79,15 +108,28 @@ function renderMessages(data){
         var codeUser = value.codeUser;        
         var msgType = value.messageType;
         var groupStatus = value.groupStatus;
-
         
         if (specialistMsg == userID && groupStatus == 1 && (msgType =="q" || msgType =="r") ){
             actions_temp = actions;
         }else if(groupStatus == 1 && msgType == "a" && roleID == ROLES.client){
             actions_temp = actions;
-            showRequery = true;
         }else{
             actions_temp = "";
+        }
+
+
+        if (value.content_type != 1 && (value.uploaded == 5 || value.uploaded == 1)){
+            if (value.uploaded == 1){
+                text_uploaded = `<spam>Subiendo Archivo...</spam>`;
+            }else{
+                text_uploaded = `<spam>Error al intentar subir el archivo</spam>`;
+            }      
+
+            message_uploaded = `<div class="file-uploading marT10 text-center">
+                                    ${text_uploaded}
+                                </div>`;
+        }else{
+            message_uploaded = ""
         }
 
         var divMessage = `<div class='row globe-chat'>
@@ -104,14 +146,23 @@ function renderMessages(data){
                                 data-query='${value.query_id}'
                                 data-message='${value.id}'
                                 data-msg-type='${msgType}'
-                                data-msg-specialist='${specialistMsg}'
+                                data-specialist='${specialistMsg}'
+                                data-content-type='${value.fileType}'
+                                data-uploaded='${value.uploaded}'
+                                data-group-status='${groupStatus}'
+                                data-status='${queryStatus}'
+
                                 >
                                     ${actions_temp}
                                     <div class='row'>
-                                        <div class='col-sm-12'>
+                                        <div class='col-sm-12 cont-message-type'>
                                             ${renderTypeMessage(value)}
                                         </div>
                                     </div>
+
+                                    ${message_uploaded}
+
+
                                     <div class='row marT10 message-footer'>
                                         <div class='col-sm-6'>
                                             <p class='code-user'>
@@ -136,11 +187,6 @@ function renderMessages(data){
         scrollDown();
     }
 
-    if (showRequery) {
-        $("#requery_modal").removeClass("hidden");
-        $("#reply-content").data("message-reference", null).hide();
-        $(".fileinput-remove").click();
-    }
 }
 
 
@@ -197,9 +243,10 @@ function ajaxQuery(dataQuery, messageReference){
     var arrFiles = getMessageFiles(dataQuery["message"][0]["msg_type"]);
     dataQuery["message"] = dataQuery["message"].concat(arrFiles);
 
-    $("#animacion").toggleClass("hidden");
+    
     var csrfToken = $('[name=csrfmiddlewaretoken]').val(); 
     // Funcion para enviar ajax a query
+    $("#animacion").toggleClass("hidden");
     $(".send-message-cont").find("button").attr("disabled", true);
     $("#errors_alert").addClass("hidden").find("li").remove();
     $.ajax({
@@ -240,6 +287,11 @@ function ajaxQuery(dataQuery, messageReference){
                     sendFilesMessages(response);
                 }
                 
+                if (roleID==ROLES.specialist) {
+                    $("#selection_message_alert").show();
+                    $(".send-message-cont").hide();
+                }
+
             }else{
                 console.log(response);
                 if (typeof(response.non_field_errors)=="object") {
@@ -297,6 +349,12 @@ $(document).on('click', ".query-event-reply", function(){
 
 
 $(document).on('click', ".chat_play_medias", function(){
+
+    msg = $(this).parents(".message");
+    if (msg.data("uploaded")==1 || msg.data("uploaded")==5) {
+        return false;
+    }
+
     var url = $(this).data("file-url");
     if ($(this).hasClass("chat-video-thumb")) {
         // Show videos
@@ -445,7 +503,8 @@ function updateMessage(){
     // Mostrar un solo titulo por grupo de query
 
     var previus_query_id = $(".message.no-ready-message:first").parents('.globe-chat').prev(".globe-chat").find(".message").data("query");
-    
+    var showRequery = false;
+
     $(".message.no-ready-message").each(function(){
         var msg = $(this);
         // Renderizamos el time en el listado
@@ -476,13 +535,15 @@ function updateMessage(){
         }
 
         // Aciones sobre mensaje
-        if (specialistMsg == userID && groupStatus == 1 && (msgType =="q" || msgType =="r") ){            
-            msg.find(".dropdown-menu").append(`<a class="dropdown-item query-event-derive"
+        if (queryStatus == 2 && specialistMsg == userID && groupStatus == 1 && (msgType =="q" || msgType =="r") ){            
+            msg.find(".dropdown-menu").append(`<a class="dropdown-item decline-derive-chat"
              href="#">Derivar</a>`);
             msg.find(".query-event-reply").html(`Responder`);            
             msg.find(".chat-angle-down").css('display','');
-        }else if(groupStatus == 1 && msgType == "a" && roleID == ROLES.client){
+        }else if(queryStatus == 3 && groupStatus == 1 && msgType == "a" && roleID == ROLES.client){
             msg.find(".chat-angle-down").css('display','');
+            showRequery = true;
+            console.log(msg);
         }else{
             msg.find(".chat-angle-down").css('display','none');            
         }
@@ -495,15 +556,20 @@ function updateMessage(){
         }
         msg.removeClass("no-ready-message");
     
-        
         if (queryStatus==4 && !queriesToCalificate.includes(query)) {
 
             queriesToCalificate.push(msg.data("query"));
         }
-    });
 
+    });
+    
     if (queriesToCalificate.length > 0 && roleID == ROLES.client) {
-        $("#punctuation_modal").data("query",queriesToCalificate[0]).removeClass("hidden");
+        $("#punctuation_modal").data("query",queriesToCalificate[0]);
+        visibleForPunctuation(true);
+    }else if(showRequery){
+        $("#reply-content").data("message-reference", null).hide();
+        $(".fileinput-remove").click();
+        visibleForRequery(true);
     }
 }
 
@@ -537,11 +603,20 @@ function renderTypeMessage(message) {
             </audio>
         </div>`;
     }else if(message.fileType == 5){
+        if (message.uploaded == 2){
+            atag = `<a target="_blank" href="${message.fileUrl}">Descargar Archivo</a>`
+        }
+        else{
+            atag = `<a href="#">Archivo no encontrado</a>`
+        }
+
         response  =`<div class="chat-file-thumb text-center">
             <i class="fas fa-file"></i>
-            <a href="${message.fileUrl}">Descargar Archivo</a>
+            ${atag}
         </div>`;
     }
+
+    
 
     return response;
 }

@@ -8,19 +8,18 @@
 <a href="{% url 'frontend:match-specialist' %}">
     <button class="dropdown-item" type="button">{% trans "MATCH"|title %}</button>
 </a>
-<a href="#">
-    <button class="dropdown-item" type="button">{% trans "associated specialist"|upfirstletter %}</button>
-</a>
+{% if request.session.specialist.type_specialist == "m" %}
+    <a href="#">
+        <button class="dropdown-item" type="button">{% trans "associated specialist"|upfirstletter %}</button>
+    </a>
+{% endif %}    
 <a href="{% url 'frontend:account-status-specialist' user.id %}">
     <button class="dropdown-item" type="button">{% trans "account status"|upfirstletter %}</button>
 </a>
 <a href="#">
     <button class="dropdown-item" type="button">{% trans "customer support"|upfirstletter %}</button>
 </a>
-<a href="#">
-    <button class="dropdown-item" type="button">{% trans "activation"|title %}</button>
-</a>
-<a href="#">
+<a href="http://www.linkup.com.pe">
     <button class="dropdown-item" type="button">{% trans "take me to the website"|upfirstletter %}</button>
 </a>
 <a href="{% block logout_url %}{% logout_url %}{% endblock %}" >

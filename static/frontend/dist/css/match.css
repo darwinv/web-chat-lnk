@@ -31,3 +31,7 @@
 .match-detail h4, .match-detail .time{
     color: var(--turquoise);
 }
+
+#view_match_modal .subject{
+    text-transform: none;
+}

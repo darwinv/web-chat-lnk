@@ -32,7 +32,9 @@
             data-group-status="{{message.group_status}}"
             data-msg-type="{{message.msg_type}}"
             data-specialist="{{message.specialist_id}}"
-            data-status="{{message.query.status}}"  >
+            data-status="{{message.query.status}}"
+            data-content-type="{{message.content_type}}"  
+            data-uploaded="{{message.uploaded}}"   >
                 
                 <!-- EVENTS -->
                 <div class="dropdown chat-angle-down" style="display: none;">
@@ -73,12 +75,25 @@
                         {% elif message.content_type == 5 %}
                             <div class="chat-file-thumb text-center">
                                 <i class="fas fa-file"></i>
-                                <a href="{{message.file_url}}">Descargar Archivo</a>
+                                {% if message.uploaded == 2 %}
+                                    <a target="_blank" href="{{message.file_url}}">Descargar Archivo</a>
+                                {% else %}
+                                    <a href="#">Archivo no encontrado</a>
+                                {% endif %}
                             </div>
                         {% endif %}
                     </div>
                 </div>
 
+                {% if message.content_type != 1 and message.uploaded == 5 or message.content_type != 1 and message.uploaded == 1 %}
+                    <div class="file-uploading marT10 text-center">
+                        {% if message.uploaded == 1  %}
+                            <spam>Subiendo Archivo...</spam>
+                        {% elif message.uploaded == 5  %}
+                            <spam>Error al intentar subir el archivo</spam>
+                        {% endif %}
+                    </div>
+                {% endif %}
                 <!-- Foter -->
                 <div class="row marT10 message-footer">
                     <div class="col-sm-6">

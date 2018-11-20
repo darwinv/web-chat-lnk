@@ -15,8 +15,7 @@ def ajax_service(request):
     if request.FILES:
         files = request.FILES
     else:
-        files = None    
-
+        files = None
     if 'use_method' in data:
         request.method = data['use_method']
 
@@ -32,9 +31,13 @@ def ajax_service(request):
     
     data = clean_data_files(request, data)
     resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
-
     data = resp.json()
-    data['status_code'] = resp.status_code
+    
+    try:
+        data['status_code'] = resp.status_code
+    except TypeError as e:
+        print(e)
+
     return JsonResponse(data, safe=False)
 
 

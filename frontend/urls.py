@@ -1,6 +1,6 @@
 """Urls del Front."""
 from django.conf.urls import url
-from frontend.views import index, chat, plans, query, contact, match, account
+from frontend.views import index, chat, plans, query, contact, match, account, my_account, purchase
 from login.utils.tools import get_app_by_user
 
 app_name = 'frontend'
@@ -33,6 +33,8 @@ urlpatterns = [
 
     # Resumen de plan activo
     url(r'^plans/client/(?P<pk>[0-9]+)/summary/$', plans.Client().summary, name='active-plan-summary'),
+    # Resumen de match para especialista
+    url(r'^match/specialist/(?P<pk>[0-9]+)/summary/$', match.Specialist().summary, name='match-specialist-summary'),
 
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
@@ -50,6 +52,10 @@ urlpatterns = [
     url(r'^chat/specialist/(?P<pk>[0-9]+)/$', chat.Specialist().chat,
         name='chat-specialist'),
 
+
+    # Mi Cuenta
+    url(r'^myaccount/client/(?P<pk>[0-9]+)/$', my_account.Client().account_profile, name='myaccount-client'),
+    url(r'^myaccount/specialist/(?P<pk>[0-9]+)/$', my_account.Specialist().account_profile, name='account-status-specialist'),
 
     # Match
     url(r'^match/client/$', match.Client().list_match, name='match-client'),
@@ -69,8 +75,14 @@ urlpatterns = [
     url(r'^account/specialist/(?P<pk>[0-9]+)/status/$', account.Specialist().status, name='account-status-specialist'),
     url(r'^account/specialist/associates/$', account.Specialist().associates, name='associates-specialist'),
 
+    # Purchase
+    url(r'^purchase/client/$', purchase.Client().list_purchase, name='purchase-client'),
+
 
     # Upload files to query
     url(r'^query/upload_file/$',
         query.upload_file, name='upload_file'),
+
+
+
 ]

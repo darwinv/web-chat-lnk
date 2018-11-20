@@ -1,11 +1,11 @@
 {% load static adminlte_helpers i18n %}
-<a href="#">
+<a href="{% url 'frontend:myaccount-client' pk=request.user.id %}">
     <button class="dropdown-item" type="button">{% trans "my account"|upfirstletter %}</button>
 </a>
 <a href="{% url 'frontend:index-client' %}">
     <button class="dropdown-item" type="button">{% trans "specialties"|title %}</button>
 </a>
-<a href="#">
+<a href="{% url 'frontend:purchase-client' %}"  >
     <button class="dropdown-item" type="button">{% trans "products"|title %}</button>
 </a>
 <a href="{% url 'frontend:match-client' %}">
@@ -24,7 +24,7 @@
 <a href="#">
     <button id="activation-button" class="dropdown-item" type="button">{% trans "activation"|title %}</button>
 </a>
-<a href="#">
+<a href="http://www.linkup.com.pe">
     <button class="dropdown-item" type="button">{% trans "take me to the website"|upfirstletter %}</button>
 </a>
 <a href="{% block logout_url %}{% logout_url %}{% endblock %}" >
