@@ -13,7 +13,9 @@ def ajax_service(request):
 
     if request.FILES:
         files = request.FILES
-
+    else:
+        files = None
+        
     if 'use_method' in data:
         request.method = data['use_method']
 
@@ -28,9 +30,12 @@ def ajax_service(request):
         token = None
 
     resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
-
+    
     data = resp.json()
+    # buscar asociados aca Error
     data['status_code'] = resp.status_code
+
+
     return JsonResponse(data, safe=False)
 
 

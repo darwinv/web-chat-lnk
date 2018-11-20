@@ -26,7 +26,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', ".close-requery-modal", function(){
-        $("#requery_modal").addClass("hidden");    
+        visibleForRequery(false);   
     });
     $(document).on('click', ".no-any-requery", function(){
         data = {
@@ -34,8 +34,12 @@ $(document).ready(function () {
             "url": "client/deny_requery/"
         }
 
+        $("#animacion").toggleClass("hidden");
+        $("#requery_modal").find("button").attr("disabled", true);
         sendAjaxService(data, function (response) {
-            $("#requery_modal").addClass("hidden");
+            $("#animacion").toggleClass("hidden");
+            $("#requery_modal").find("button").attr("disabled", false);
+            visibleForRequery(false);
         });
     });
 
@@ -46,15 +50,18 @@ $(document).ready(function () {
             "url": `client/qualify/queries/${query}/`,
             "qualification": qualification
         }
+        $("#animacion").toggleClass("hidden");
+        $("#punctuation_modal").find("button").attr("disabled", true);
         sendAjaxService(data, function(response){
-            if (response.status_code==200) {
-               
-               queriesToCalificate.shift();
+            $("#animacion").toggleClass("hidden");
+            $("#punctuation_modal").find("button").attr("disabled", false);
 
-               if (queriesToCalificate.length > 0 && roleID == ROLES.client) {
+            if (response.status_code==200) {
+                queriesToCalificate.shift();
+                if (queriesToCalificate.length > 0 && roleID == ROLES.client) {
                     $("#punctuation_modal").data("query",queriesToCalificate[0]);
                 }else{
-                    $("#punctuation_modal").addClass("hidden");
+                    visibleForPunctuation(false);
                 }
 
             }else{
@@ -75,7 +82,24 @@ $(document).on('click', "#punctuation_modal img", function(){
     $(this).addClass("selected");
 });
 
-
+function visibleForPunctuation(show){
+    if (show) {
+        $("#upload-div, #errors_alert, #animacion, #requery_modal, #form-chat").addClass("hidden");
+        $("#punctuation_modal").removeClass("hidden");
+    }else{
+        $("#punctuation_modal").addClass("hidden");
+        $("#form-chat").removeClass("hidden");
+    }             
+}
+function visibleForRequery(show){
+    if (show) {
+        $("#upload-div, #errors_alert, #animacion, #punctuation_modal, #form-chat").addClass("hidden");
+        $("#requery_modal").removeClass("hidden");
+    }else{
+        $("#requery_modal").addClass("hidden");
+        $("#form-chat").removeClass("hidden");
+    }
+}
 
 
 

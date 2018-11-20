@@ -261,3 +261,6 @@ span.reply-borde {
     font-weight: bold;
     list-style: none;
 }
+.chat-video-thumb.chat_play_medias {
+    min-height: 55px;
+}

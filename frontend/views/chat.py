@@ -19,14 +19,17 @@ class Client:
         token = request.session['token']
 
         messages = None
+        parameters = {
+            'page_size': 0
+        }
         data_messages = obj_api.get(slug='queries/categories/' + pk,
-                                    token=token)
+                                    token=token, arg=parameters)
         # Ordenamos el listado de mensajes para que los mas recientes salgan
         # abajo.
         esp = Category.objects.get(pk=pk)
         form = QueryForm()
         if data_messages:
-            messages = sorted(data_messages["results"], key=itemgetter('id'))
+            messages = sorted(data_messages, key=itemgetter('id'))
 
         return render(request, 'frontend/actors/client/chat.html',
                       {'messages': messages, 'form': form, 'speciality': esp})
@@ -63,13 +66,16 @@ class Specialist:
         obj_api = api()
         token = request.session['token']
         messages = None
+        parameters = {
+            'page_size': 0
+        }
 
-        data_messages = obj_api.get(slug='queries/clients/' + pk, token=token)
+        data_messages = obj_api.get(slug='queries/clients/' + pk, token=token, arg=parameters)
         # Ordenamos el listado de mensajes
         # para que los mas recientes salgan abajo.
         form = QueryForm()
         if data_messages:
-            messages = sorted(data_messages["results"], key=itemgetter('id'))
+            messages = sorted(data_messages, key=itemgetter('id'))
 
         return render(request, 'frontend/actors/specialist/chat.html',
                       {'messages': messages, 'form': form})

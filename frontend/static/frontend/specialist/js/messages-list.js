@@ -219,6 +219,24 @@ $(document).on('click','.decline-query',function(event){
     event.preventDefault();
     showModalDeriveDecline();
 });
+
+$(document).on('click','.decline-derive-chat',function(event){
+    /*Usuario le da click boton declina*/
+    event.preventDefault();
+    queryId = $(this).parents(".message").data("query");
+    win = $("#manage_query_specialist").find('#modal_content_list');
+    
+    data = {
+        "url": 'queries-messages/{}/'.format(queryId)
+    }
+    
+    sendAjaxService(data, (function(data) {
+        $(".modal-body .header-modal").find(".rounded-circle").attr("src",data.user.photo)
+        $(".modal-body .header-modal").find(".nick").html(data.user.display_name)
+    }), "GET");
+    showModalDeriveDecline();
+});
+
 $(document).on('submit','#decline_query_modal',function(event){
     /*Usuario acepta el query*/
     event.preventDefault();
