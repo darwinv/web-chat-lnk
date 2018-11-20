@@ -75,5 +75,7 @@ class Specialist:
         associates = resp['results']
         count = resp['count']
 
-        return render(request, 'frontend/actors/specialist/associates_list.html', {'associates':associates, 'count':count})
+        return render(request, 'frontend/actors/specialist/associate_list.html', {'associates':associates, 'count':count})
 
+    def associate(self, request):
+        return render(request, 'frontend/actors/specialist/associate_details.html')

@@ -9,7 +9,7 @@
     <button class="dropdown-item" type="button">{% trans "MATCH"|title %}</button>
 </a>
 {% if request.session.specialist.type_specialist == "m" %}
-    <a href="{% url 'frontend:associates-specialist' %}">
+    <a href="{% url 'frontend:associates' %}">
         <button class="dropdown-item" type="button">{% trans "associated specialist"|upfirstletter %}</button>
     </a>
 {% endif %}

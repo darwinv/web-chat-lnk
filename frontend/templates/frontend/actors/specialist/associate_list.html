@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
   {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% static "frontend/specialist/css/associates_list.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "frontend/specialist/css/associate_list.css" %}">
 {% endblock %}
 
 {% block main_content %}
@@ -16,7 +16,7 @@
   </div>
   {% endifequal %}
   {% for associate in associates %}
-  <div class="row associate justify-content-center">
+  <div id="associate-{{ associate.id }}" class="row associate justify-content-center">
     <div class="col-1"><img class="associate-photo" src="{{ associate.photo }}"></div>
     <div class="col-5 main-info">
       <span class="associate-name">{{ associate.first_name }} {{ associate.last_name }}</span><br />
@@ -35,4 +35,5 @@
 
 {% block javascript %}
   {{ block.super }}
+  <script src="{% static "frontend/specialist/js/associate_list.js" %}"></script>
 {% endblock %}
