@@ -1,10 +1,15 @@
 {% load static i18n utils %}
-<div class="panel panel-default container-fluid width-60-percent">
+<div class="panel panel-default container-fluid width-60-percent overflow-auto">
+
+     {% if title_contact %}
+        <h3> {{title_contact}} </h3>
+     {% endif %}
+
     {% if data_user %}
 
     <div class="row">
         <div class="col-xs-4">
-            <img src="{{ data_user.photo }}" class="img-responsive" alt="">
+            <img src="{{ data_user.photo }}" class="img-responsive img-circle" alt="">
         </div>
         <div class="col-xs-8">
             <h3> {{name}}</h3> </br>
@@ -66,9 +71,10 @@
            CIIU: {{ciiu.code}} - {{ciiu.description}}
         </div> <br> <br>
         {% endif %}
-      {% if request.user.role.id == ROLES.client  %}
+      {% if data_user.seller_assigned  %}
         <div class="col-xs-12">
-                <i class="fas fa-map-marker-alt"></i> <a href="#">Tu contacto Linkup</a>
+                <i class="fas fa-map-marker-alt"></i>
+                 <a href="{% url 'frontend:contact-linkup' pk=data_user.seller_assigned %}">Tu contacto Linkup</a>
         </div>
       {% endif %}  
     </div>
