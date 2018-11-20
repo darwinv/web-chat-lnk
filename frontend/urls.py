@@ -80,6 +80,4 @@ urlpatterns = [
     url(r'^query/upload_file/$',
         query.upload_file, name='upload_file'),
 
-
-
 ]

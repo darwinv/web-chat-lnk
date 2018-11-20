@@ -5,13 +5,13 @@
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/purchases.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/purchase.css" %}">
 {% endblock %}
 
 {% block main_content %}
 <div id="plan-list" class="container-fluid">
-	<div class="purchases">Planes de consultas</div>
-	<div class="purchases">Servicio de contratación de especialistas</div>
+	<div class="purchases pointer"><a href="">Planes de consultas</a></div>
+	<div class="purchases pointer"><a href="">Servicio de contratación de especialistas</a></div>
 	<div class="purchases">Bolsa de trabajo
 		<span class="purchase_soon">PROXIMAMENTE</span></div>
 	<div class="purchases">Gestión de talentos

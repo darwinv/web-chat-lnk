@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 from frontend.forms import QueryForm
 from api.models import Category
+from dashboard.tools import get_name_by_client
 
 class Client:
 
@@ -77,5 +78,10 @@ class Specialist:
         if data_messages:
             messages = sorted(data_messages, key=itemgetter('id'))
 
+        client = obj_api.get(slug='clients/{}/'.format(pk), token=token)        
+        client_data = {}
+        client_data["name"] = get_name_by_client(client);
+        client_data["photo"] = client["photo"]
+
         return render(request, 'frontend/actors/specialist/chat.html',
-                      {'messages': messages, 'form': form})
+                      {'messages': messages, 'form': form, 'client': client_data})

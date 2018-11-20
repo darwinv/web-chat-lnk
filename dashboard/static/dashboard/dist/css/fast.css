@@ -178,6 +178,13 @@ ul{
     color: red;
 }
 
+.a-white:hover {
+    color: #bebebe;
+}
+.a-white {
+    color: white;
+}
+
 /* anchura auto */
 .width-auto{
   width: auto;

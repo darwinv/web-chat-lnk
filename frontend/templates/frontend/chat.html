@@ -8,10 +8,17 @@
             <div class="col-xs-12">
                 <i class="fas fa-angle-left"></i>
                 <div class="img-bar-grey" style="float:right">
-                    <div style="display:inline-block">{% trans speciality.name|title %}</div>
-                    <img src="{{speciality.image}}"
-                    style="height: 45px;" alt="">
+                    {% if request.user.role.id == ROLES.client %}                    
+                        <div style="display:inline-block">{% trans speciality.name|title %}</div>
+                        <img class="img-circle" src="{{speciality.image}}"
+                        style="height: 45px;" alt="">
+                    {% elif request.user.role.id == ROLES.specialist  %}
+                        <div style="display:inline-block">{% trans client.name|title %}</div>
+                        <img class="img-circle" src="{{client.photo}}"
+                        style="height: 45px;" alt="">                    
+                    {% endif %}
                 </div>
+                
             </div>
         </div>
     </div>
