@@ -73,7 +73,7 @@ class Specialist:
         resp = obj_api.get(slug='specialists/associate/', token=token)
 
         associates = resp['results']
-        if resp:
-            return render(request, 'frontend/actors/specialist/associates_list.html', {'associates':associates})
-        else:
-            return JsonResponse({})
+        count = resp['count']
+
+        return render(request, 'frontend/actors/specialist/associates_list.html', {'associates':associates, 'count':count})
+
