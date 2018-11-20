@@ -205,7 +205,7 @@ class api:
             return True
 
 
-    def get_all(self, token, slug='', arg=None, data=None):
+    def get_all(self, token, slug='', arg=None, data=None, files=None):
 
         try:
             headers = {'Authorization': 'Bearer ' + token}

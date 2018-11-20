@@ -37,9 +37,11 @@ urlpatterns = [
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
         name='pincode-plans'),
-   # Chequeo de Status de Planes
-   url(r'^plans/status/$', plans.Client().get_status_footer,
+    # Chequeo de Status de Planes
+    url(r'^plans/status/$', plans.Client().get_status_footer,
         name='status-footer-plans'),
+
+
     # Chat
     url(r'^chat/client/(?P<pk>[0-9]+)/$', chat.Client().chat,
         name='chat-client'),
@@ -65,6 +67,7 @@ urlpatterns = [
     # Account
     url(r'^account/client/(?P<pk>[0-9]+)/status/$', account.Client().status, name='account-status-client'),
     url(r'^account/specialist/(?P<pk>[0-9]+)/status/$', account.Specialist().status, name='account-status-specialist'),
+    url(r'^account/specialist/associates/$', account.Specialist().associates, name='associates-specialist'),
 
 
     # Upload files to query

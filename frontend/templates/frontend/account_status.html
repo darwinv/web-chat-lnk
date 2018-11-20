@@ -1,7 +1,7 @@
 {% load static i18n utils %}
 
 <div id="account-status" class="container-fluid">
-  <div class="row justify-content-center"><h4 class="status-title">THIS MONTH</h4></div>
+  <div class="row justify-content-center"><h4 class="status-title">ESTE MES</h4></div>
   {% for box in month %}
   {% ifequal forloop.counter0|modulo:3 0 %}
   <div class="row justify-content-center">
@@ -19,7 +19,7 @@
   {% endifequal %}
   {% endfor %}
 
-  <div class="row justify-content-center"><h4 class="status-title">ACCUMULATED HISTORICAL</h4></div>
+  <div class="row justify-content-center"><h4 class="status-title">HISTORICO</h4></div>
   {% for box in historic %}
   {% ifequal forloop.counter0|modulo:3 0 %}
   <div class="row justify-content-center">

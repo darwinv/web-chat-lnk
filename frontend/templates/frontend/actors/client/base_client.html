@@ -21,6 +21,7 @@
     </div>
   </div>
 
+  {% include 'frontend/actors/client/lib/activation_modal.html' %}
   {% include 'frontend/lib/modals/change_chosen_plan.html' %}
   {% include 'frontend/lib/modals/reload.html' %}
 {% endblock content_left_slide %}
@@ -29,13 +30,14 @@
 
 {% block javascript %}
 {{ block.super }}
-     <script>
-     const url_status_plan = "{% url 'frontend:status-footer-plans' %}";
-     const url_matchs_client = "{% url 'frontend:match-client' %}";
-     </script>
-<script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+  <script>
+    const url_status_plan = "{% url 'frontend:status-footer-plans' %}";
+    const url_matchs_client = "{% url 'frontend:match-client' %}";
+  </script>
+  <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
+  <script src="{% static "frontend/client/js/client.js" %}"></script>
     <script type="text/javascript">
-     url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}"
+     url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}";
     </script>
     <script src="{% static "frontend/client/js/categories-ref.js" %}"></script>
     <script src="{% static "frontend/client/js/load_plans.js" %}"></script>
