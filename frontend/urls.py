@@ -81,7 +81,9 @@ urlpatterns = [
     # Account
     url(r'^account/client/(?P<pk>[0-9]+)/status/$', account.Client().status, name='account-status-client'),
     url(r'^account/specialist/(?P<pk>[0-9]+)/status/$', account.Specialist().status, name='account-status-specialist'),
-    url(r'^account/specialist/associates/$', account.Specialist().associates, name='associates-specialist'),
+    url(r'^account/specialist/associates/$', account.Specialist().associates, name='associates'),
+    url(r'^account/specialist/associates/(?P<pk>[0-9]+)/$', account.Specialist().associate, name='associate'),
+
 
     # Purchase
     url(r'^purchase/client/$', purchase.Client().list_purchase, name='purchase-client'),
@@ -90,5 +92,4 @@ urlpatterns = [
     # Upload files to query
     url(r'^query/upload_file/$',
         query.upload_file, name='upload_file'),
-
 ]
