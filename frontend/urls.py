@@ -55,6 +55,9 @@ urlpatterns = [
     url(r'^myaccount/client/(?P<pk>[0-9]+)/$',
         my_account.Client().account_profile, name='myaccount-client'),
 
+    # url(r'^myaccount/client/edit/(?P<pk>[0-9]+)/$',
+    #     my_account.Client().edit_account_profile, name='myaccount-client-edit'),       
+
     url(r'^contact/linkup/(?P<pk>[0-9]+)/$', my_account.Client().contact_linkup, name='contact-linkup'),
             
     url(r'^myaccount/specialist/(?P<pk>[0-9]+)/$',

@@ -22,6 +22,9 @@ class Client:
         return render(request, 'frontend/actors/client/my_account.html', {'data_user': resp, 'ciiu':ciiu, 'name':display_name})
 
 
+    def edit_account_profile(self, request, pk):
+        """Editar cuenta"""
+
     def contact_linkup(self, request, pk):
         """Mi contacto Linkup (Vendedor Asignado)."""
         obj_api = api()

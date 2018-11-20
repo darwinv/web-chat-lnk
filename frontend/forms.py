@@ -1,5 +1,7 @@
 """Formularios."""
 from django import forms
+from django.forms import ModelForm
+from api.models import User
 from django.utils.translation import ugettext as _
 from api.models import Category
 
@@ -80,3 +82,17 @@ class MatchForm(forms.Form):
         categories = Category.objects.all()
         if categories:
             self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
+
+class UserForm(ModelForm):
+    """Formulario para editar perfil."""
+    select_search = {'data-live-search':'true','class':'selectpicker'}
+    department = forms.CharField(widget=forms.Select(), required=False, label=_('department'))
+    province = forms.CharField(widget=forms.Select(), required=False, label=_('province'))
+    district = forms.CharField(widget=forms.Select(), required=False, label=_('district'))
+    street = forms.CharField(required=False, label=_('street'))
+    residence_country = forms.CharField(widget=forms.Select(attrs=select_search), required=True, label=_('residence country'))
+
+    class Meta:
+        """Meta."""
+        model = User
+        fields = ['nick', 'telephone', 'cellphone']
