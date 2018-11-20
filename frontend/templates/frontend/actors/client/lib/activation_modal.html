@@ -1,0 +1,44 @@
+{% load i18n %}
+
+<!-- Modal -->
+<div id="activation-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title-modal">Enter your Plan PIN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="row justify-content-center">
+          <div id="activation-message" class="col-8">If you bought a plan, your PIN code was sent to your email.</div>
+        </div>
+        <form id="activation-form">
+          <div class="row justify-content-center">
+            <div><input id="pin-box" type="text" name="pin" placeholder="Code PIN" maxlength="15"></div>
+          </div>
+          <div class="row justify-content-center">
+            <div id="detail-section"></div>
+          </div>
+          <div class="row justify-content-center">
+            <div><input id="activate-button" type="submit" name="activate" value="Activate"></div>
+          </div>
+        </form>
+        <div class="row justify-content-center">
+          <div class="col-2">
+            <div id="activation-animation" class="hidden">
+              <div class="ball"></div>
+              <div class="ball1"></div>
+            </div>
+          </div>
+          </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div id="response-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
