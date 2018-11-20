@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 18:12-0500\n"
+"POT-Creation-Date: 2018-11-20 09:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -713,7 +713,7 @@ msgstr "Mienbro desde"
 #: .\dashboard\templates\admin\lib\_main_header.html:193
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:32
 #: .\frontend\templates\frontend\actors\seller\lib\menu.html:22
-#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:28
+#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:27
 msgid "Sign out"
 msgstr "desconectarse"
 
@@ -830,11 +830,11 @@ msgstr "borrar"
 msgid "queries"
 msgstr "consultas"
 
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:22 .\frontend\forms.py:51
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:22 .\frontend\forms.py:52
 msgid "availables"
 msgstr "disponibles"
 
-#: .\dashboard\templates\admin\lib\_vars_scripts.html:23 .\frontend\forms.py:53
+#: .\dashboard\templates\admin\lib\_vars_scripts.html:23 .\frontend\forms.py:54
 msgid "expiration date"
 msgstr "fecha de vencimiento"
 
@@ -925,12 +925,12 @@ msgid "fee quantities"
 msgstr "total de cutas"
 
 #: .\dashboard\templatetags\adminlte_helpers.py:83
-#: .\dashboard\views\payments.py:82
+#: .\dashboard\views\payments.py:82 .\frontend\templates\frontend\chat.html:133
 msgid "yes"
 msgstr "si"
 
 #: .\dashboard\templatetags\adminlte_helpers.py:85
-#: .\dashboard\views\payments.py:83
+#: .\dashboard\views\payments.py:83 .\frontend\templates\frontend\chat.html:136
 msgid "no"
 msgstr "no"
 
@@ -1223,24 +1223,27 @@ msgstr "match especialista"
 msgid "client"
 msgstr "client"
 
-#: .\frontend\forms.py:9
+#: .\frontend\forms.py:10
 msgid "title"
 msgstr "título"
 
-#: .\frontend\forms.py:37
+#: .\frontend\forms.py:38
 msgid "Title of your concern"
 msgstr ""
 
-#: .\frontend\forms.py:40
+#: .\frontend\forms.py:41
 msgid "Write what you want to tell us"
 msgstr ""
 
+#: .\frontend\forms.py:76
+msgid "Write your query"
+msgstr "Escriba tu consulta"
+
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:3
-#: .\frontend\templates\frontend\actors\seller\lib\menu.html:3
 #: .\frontend\templates\frontend\actors\specialist\lib\menu.html:3
 #, fuzzy
 #| msgid "My acount"
-msgid "my acount"
+msgid "my account"
 msgstr "Mi cuenta"
 
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:6
@@ -1250,7 +1253,7 @@ msgid "specialties"
 msgstr "especialista"
 
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:12
-#: .\frontend\templates\frontend\match.html:13
+#: .\frontend\templates\frontend\actors\client\match_list.html:21
 #, fuzzy
 #| msgid "specialists"
 msgid "specialist hirings"
@@ -1264,7 +1267,7 @@ msgstr "planes de consulta"
 
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:18
 #: .\frontend\templates\frontend\actors\seller\lib\menu.html:9
-#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:15
+#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:17
 #, fuzzy
 #| msgid "Account status"
 msgid "account status"
@@ -1272,13 +1275,12 @@ msgstr "Estados de cuenta"
 
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:22
 #: .\frontend\templates\frontend\actors\seller\lib\menu.html:12
-#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:18
+#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:20
 msgid "customer support"
 msgstr ""
 
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:25
 #: .\frontend\templates\frontend\actors\seller\lib\menu.html:15
-#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:21
 #, fuzzy
 #| msgid "activate"
 msgid "activation"
@@ -1286,9 +1288,77 @@ msgstr "activar"
 
 #: .\frontend\templates\frontend\actors\client\lib\menu.html:28
 #: .\frontend\templates\frontend\actors\seller\lib\menu.html:18
-#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:24
+#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:23
 msgid "take me to the website"
 msgstr ""
+
+#: .\frontend\templates\frontend\actors\client\match.html:40
+#: .\frontend\templates\frontend\contact.html:19
+msgid "Send"
+msgstr ""
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:36
+#: .\frontend\templates\frontend\actors\client\plan_list.html:19
+#, fuzzy, python-format
+#| msgid "%(queries)s query"
+#| msgid_plural "%(queries)s queries"
+msgid "%(quantity)s query"
+msgid_plural "%(quantity)s queries"
+msgstr[0] "%(queries)s consulta"
+msgstr[1] "%(queries)s consultas"
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:42
+#: .\frontend\templates\frontend\actors\client\plan_list.html:24
+#, fuzzy, python-format
+#| msgid "validity months"
+msgid "Validity %(validity)s month"
+msgid_plural "Validity %(validity)s months"
+msgstr[0] "meses de vigencia"
+msgstr[1] "meses de vigencia"
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:49
+#, python-format
+msgid "Available: %(quantity)s query"
+msgid_plural "Available: %(quantity)s queries"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:55
+#, python-format
+msgid "Expires: %(edate)s"
+msgstr ""
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:62
+#, fuzzy, python-format
+#| msgid "%(queries)s query"
+#| msgid_plural "%(queries)s queries"
+msgid "%(quantity)s query to pay"
+msgid_plural "%(quantity)s queries to pay"
+msgstr[0] "%(queries)s consulta"
+msgstr[1] "%(queries)s consultas"
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:70
+#, python-format
+msgid "%(quantity)s fee to pay."
+msgid_plural "%(quantity)s fees to pay."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:76
+#, python-format
+msgid "Next payment of S/. %(price)s"
+msgstr ""
+
+#: .\frontend\templates\frontend\actors\client\plan_detail.html:77
+#, python-format
+msgid "You need to pay before %(edate)s"
+msgstr ""
+
+#: .\frontend\templates\frontend\actors\seller\lib\menu.html:3
+#, fuzzy
+#| msgid "My acount"
+msgid "my acount"
+msgstr "Mi cuenta"
 
 #: .\frontend\templates\frontend\actors\seller\lib\menu.html:6
 msgid "sales management"
@@ -1298,34 +1368,65 @@ msgstr ""
 msgid "MATCH"
 msgstr ""
 
-#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:12
+#: .\frontend\templates\frontend\actors\specialist\lib\menu.html:13
 #, fuzzy
 #| msgid "associated specialists"
 msgid "associated specialist"
 msgstr "ver especialistas asociados"
 
-#: .\frontend\templates\frontend\chat.html:105
+#: .\frontend\templates\frontend\actors\specialist\match_list.html:17
+msgid "Matchs"
+msgstr ""
+
+#: .\frontend\templates\frontend\chat.html:44
+#, fuzzy
+#| msgid "requery"
+msgid "Requery"
+msgstr "reconsulta"
+
+#: .\frontend\templates\frontend\chat.html:130
+msgid "Do you like to requery?"
+msgstr ""
+
+#: .\frontend\templates\frontend\chat.html:141
+msgid "Please, what are your opinion?"
+msgstr ""
+
+#: .\frontend\templates\frontend\chat.html:151
+msgid "Send punctuation"
+msgstr ""
+
+#: .\frontend\templates\frontend\chat.html:170
+msgid ""
+"\n"
+"                        Pre-select the query that you are going to answer\n"
+"                    "
+msgstr ""
+
+#: .\frontend\templates\frontend\chat.html:196
 msgid "Send your message"
 msgstr "Envia un mensaje"
 
-#: .\frontend\templates\frontend\contact.html:19
-msgid "Send"
+#: .\frontend\templates\frontend\lib\modals\accept_match.html:8
+#: .\frontend\templates\frontend\lib\modals\accept_or_decline_match.html:8
+#: .\frontend\templates\frontend\lib\modals\decline_match.html:8
+msgid "A New Match has arrived"
+msgstr ""
+
+#: .\frontend\templates\frontend\lib\modals\accept_match.html:14
+msgid "select the type of payment"
 msgstr ""
 
 #: .\frontend\templates\frontend\lib\modals\change_chosen_plan.html:9
 msgid "choose one of your plans"
 msgstr "selecciona uno de tus planes"
 
-#: .\frontend\templates\frontend\lib\modals\decline_query_specialist.html:10
-#: .\frontend\templates\frontend\lib\modals\derive_query_specialist.html:10
-#: .\frontend\templates\frontend\lib\modals\manage_query_specialist.html:9
-msgid "a new query has arrived"
-msgstr ""
-
+#: .\frontend\templates\frontend\lib\modals\decline_match.html:14
 #: .\frontend\templates\frontend\lib\modals\decline_query_specialist.html:28
 msgid "Indicate the reason why it declines"
 msgstr ""
 
+#: .\frontend\templates\frontend\lib\modals\decline_match.html:21
 #: .\frontend\templates\frontend\lib\modals\decline_query_specialist.html:35
 #: .\frontend\templates\frontend\lib\modals\manage_query_specialist.html:39
 #, fuzzy
@@ -1333,10 +1434,22 @@ msgstr ""
 msgid "decline"
 msgstr "Rechazado"
 
+#: .\frontend\templates\frontend\lib\modals\decline_query_specialist.html:10
+#: .\frontend\templates\frontend\lib\modals\derive_query_specialist.html:10
+#: .\frontend\templates\frontend\lib\modals\manage_query_specialist.html:9
+msgid "a new query has arrived"
+msgstr ""
+
 #: .\frontend\templates\frontend\lib\modals\derive_query_specialist.html:35
 #: .\frontend\templates\frontend\lib\modals\manage_query_specialist.html:36
 msgid "derive"
 msgstr ""
+
+#: .\frontend\templates\frontend\lib\modals\play_medias.html:21
+#, fuzzy
+#| msgid "close"
+msgid "Close"
+msgstr "cerrar"
 
 #: .\frontend\templates\frontend\lib\modals\reload.html:16
 msgid "you don't have an active plan"
@@ -1350,21 +1463,35 @@ msgstr "ingresa el pin de tu tarjeta"
 msgid "pin code"
 msgstr "código pin"
 
-#: .\frontend\templates\frontend\match.html:36
+#: .\frontend\templates\frontend\match_list.html:64
 msgid "Empty"
 msgstr ""
 
-#: .\frontend\views\plans.py:16
+#: .\frontend\views\match.py:94
+msgid "That match doesn't exist"
+msgstr ""
+
+#: .\frontend\views\plans.py:19
 msgid "your plan has been chosen correctly"
 msgstr "tu plan se he elegido correctamente"
 
-#: .\frontend\views\plans.py:19 .\frontend\views\plans.py:32
+#: .\frontend\views\plans.py:22 .\frontend\views\plans.py:35
 msgid "there is an error"
 msgstr "hay un error"
 
-#: .\frontend\views\plans.py:29
+#: .\frontend\views\plans.py:32
 msgid "your plan has been activated"
 msgstr "tu plan ha sido activado"
+
+#: .\frontend\views\plans.py:56
+#, fuzzy
+#| msgid "you don't have an active plan"
+msgid "You don't have active plans"
+msgstr "no tienes plan de consultas activo"
+
+#: .\frontend\views\plans.py:70 .\frontend\views\plans.py:113
+msgid "That plan doesn't exist"
+msgstr ""
 
 #: .\linkup\settings.py:109
 msgid "Spanish"
@@ -1531,9 +1658,6 @@ msgstr "continue"
 #: .\login\views.py:50
 msgid "Wrong Credentials"
 msgstr "Credenciales incorrectas"
-
-#~ msgid "Write your query"
-#~ msgstr "Escriba tu consulta"
 
 #~ msgid "pending payments"
 #~ msgstr "pagos pendientes"

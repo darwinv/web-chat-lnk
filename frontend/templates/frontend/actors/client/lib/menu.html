@@ -5,7 +5,7 @@
 <a href="{% url 'frontend:index-client' %}">
     <button class="dropdown-item" type="button">{% trans "specialties"|title %}</button>
 </a>
-<a href="#">
+<a href="{% url 'frontend:purchase-client' %}"  >
     <button class="dropdown-item" type="button">{% trans "products"|title %}</button>
 </a>
 <a href="{% url 'frontend:match-client' %}">
