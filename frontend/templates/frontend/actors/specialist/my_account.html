@@ -1,0 +1,11 @@
+{% extends 'frontend/actors/specialist/base_specialist.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+{% block main_content %}
+  {% include 'frontend/my_account.html' %}
+{% endblock main_content %}

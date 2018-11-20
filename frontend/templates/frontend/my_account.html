@@ -1,15 +1,18 @@
 {% load static i18n utils %}
 <div class="panel panel-default container-fluid width-60-percent">
-    {% if data_client %}
+    {% if data_user %}
 
     <div class="row">
         <div class="col-xs-4">
-            <img src="{{ data_client.photo }}" class="img-responsive" alt="">
+            <img src="{{ data_user.photo }}" class="img-responsive" alt="">
         </div>
         <div class="col-xs-8">
             <h3> {{name}}</h3> </br>
-            {{data_client.username}} </br>
-            {{data_client.code}}
+            {% if type_specialist %}
+            {{ type_specialist }}
+            {% endif %}
+            {{data_user.username}} </br>
+            {{data_user.code}}
 
         </div>
     </div>
@@ -17,20 +20,25 @@
     <div class="row">
 
         <div class="col-xs-12">
-           <p>Direccion: {{data_client.address.street}} , {{data_client.address.district_name}} , {{data_client.address.province_name}} , 
-                {{data_client.address.department_name}} - {{data_client.residence_country_name}}
+           <p>Direccion: {{data_user.address.street}} , {{data_user.address.district_name}} , {{data_user.address.province_name}} , 
+                {{data_user.address.department_name}} - {{data_user.residence_country_name}}
 
            </p> 
+           {% if data_user.category_name %}
+            <p>
+                Especialidad: {{data_user.category_name}}
+            </p>
 
-           {% if data_client.telephone %} 
+           {% endif %}
+           {% if data_user.telephone %} 
                  <p>
-                    Telefono: {{ data_client.telephone}}
+                    Telefono: {{ data_user.telephone}}
                 </p>
             {% endif %}
 
-            {% if data_client.cellphone %} 
+            {% if data_user.cellphone %} 
             <p>
-                Telefono: {{ data_client.cellphone}}
+                Telefono: {{ data_user.cellphone}}
             </p>
             {% endif %}
         </div>
