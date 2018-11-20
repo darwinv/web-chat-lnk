@@ -225,7 +225,7 @@ $(document).on('click','.decline-derive-chat',function(event){
     event.preventDefault();
     queryId = $(this).parents(".message").data("query");
     win = $("#manage_query_specialist").find('#modal_content_list');
-    
+    win.data("query-id", queryId);
     data = {
         "url": 'queries-messages/{}/'.format(queryId)
     }
@@ -308,7 +308,6 @@ function DoAjaxToModalAsociateSpecialistsData(win){
                     <img src='{photo}' data-specialist-id='{id}'
                     class='rounded-circle itemp'  title='{name}'>
                 </div>`;
-
         for (var key in data) {
             declined = ""
             // skip loop if the property is from prototype
