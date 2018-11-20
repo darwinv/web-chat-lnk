@@ -10,9 +10,9 @@ class Client:
         token = request.session['token']
         resp = obj_api.get(slug='clients/' + pk + "/", token=token)
         if resp["type_client"] == 'n':
-            display_name = resp["first_name"] + resp["last_name"]
+            display_name = resp["first_name"] + ' ' + resp["last_name"]
         else:
-            display_name = resp["agent_firstname"] + resp["agent_lastname"]     
+            display_name = resp["agent_firstname"] + ' ' + resp["agent_lastname"]     
 
         try:
             ciiu = Ciiu.objects.get(pk=resp['ciiu'])
@@ -26,7 +26,7 @@ class Specialist:
         obj_api = api()
         token = request.session['token']
         resp = obj_api.get(slug='specialists/' + pk + "/", token=token)
-        name = resp["first_name"] + resp["last_name"]
+        name = resp["first_name"] + ' ' + resp["last_name"]
         if resp["type_specialist"] == 'm':
             type_specialist = 'Especialista Principal'
         else:
