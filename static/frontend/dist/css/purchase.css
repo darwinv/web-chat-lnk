@@ -1,0 +1,35 @@
+.purchases {
+    width: 100%;
+    color: white;
+    padding: 5px;
+    border-bottom: 1px solid #262626;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+span.purchase_soon {
+    font-size: 9px;
+    color: #b80000;
+    border: 1px solid #b80000;
+    padding: 3px;
+    float: right;
+}
+.plan-cell {
+    border-bottom: 1px solid #3b3b3b;
+    padding: 10px 10px;
+}
+.clasification-plan {
+    padding: 10px;
+    color: #7e7e7e;
+    border-bottom: 1px solid var(--turquoise);
+    margin-top: 10px;
+}
+.clasification-plan span {
+    color: var(--turquoise);
+    display: block;
+    font-size: 22px;
+}
+.contact {
+    padding: 10px;
+    font-size: 20px;
+}
+
