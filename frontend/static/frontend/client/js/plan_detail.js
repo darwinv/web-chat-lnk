@@ -12,7 +12,7 @@ $(function() {
         if (plan_status === 1) {
             $('#main-detail').click(function(event) {
                 console.log("PRESSED")
-                window.location.replace('summary/');
+                window.location.replace(summary_url);
             });
         } else if (plan_status === 3) {
             $('#main-detail').click(function(event) {

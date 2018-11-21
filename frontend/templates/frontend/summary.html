@@ -19,14 +19,19 @@
     <div class="col-12">Productos comprados</div>
   </div>
   <div id="purchased-products" class="row">
-    {% if photo %}
-      <div class="col-4"><img src="{{ photo }}" /></div>
-    {% endif %}  
-    <div id="product-info" class="col-8 summary-info">
-      {% for line in lines %}
-        {{ line }}<br />
-      {% endfor %}
-    </div>
+    {% for product in products %}
+      <div class="product-box">
+        {% if product.photo %}
+          <div class="col-4"><img src="{{ product.photo }}" /></div>
+        {% endif %}  
+        <div class="col-8 product-info summary-info">
+        {% for line in product.lines %}
+            {{ line }}<br />
+        {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+    
   </div>
   <div id="bottom" class="row">
     <div id="total-section" class="col-6 col-sm-8">

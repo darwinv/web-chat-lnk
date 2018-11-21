@@ -151,7 +151,8 @@
   {{ block.super }}
   <script src="{% static "frontend/client/js/plan_detail.js" %}"></script>
   <script>
-    plan_id = "{{ plan.id }}";
-    plan_status = parseInt("{{ plan.status }}", 10);
+    var plan_id = "{{ plan.id }}";
+    var plan_status = parseInt("{{ plan.status }}", 10);
+    var summary_url = "{% url 'frontend:active-plan-summary' plan.sale %}";
   </script>
 {% endblock %}

@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^plans/client/(?P<pk>[0-9]+)/(?P<action>transfer|empower|share+)/$', plans.Client().action, name='plan-action'),
 
     # Resumen de plan activo
-    url(r'^plans/client/(?P<pk>[0-9]+)/summary/$', plans.Client().summary, name='active-plan-summary'),
+    url(r'^plans/client/summary/(?P<sale_id>[0-9]+)/$', plans.Client().summary, name='active-plan-summary'),
     # Resumen de match para especialista
     url(r'^match/specialist/(?P<pk>[0-9]+)/summary/$', match.Specialist().summary, name='match-specialist-summary'),
 

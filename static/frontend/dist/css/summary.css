@@ -14,19 +14,17 @@
     margin-bottom: 20px;
 }
 
-.summary-info {
-    color: var(--white);
-}
-
 #purchased-products {
+    overflow-y: auto;
     flex: 1 1 auto;
 }
 
-#product-info {
+.product-info {
     height: 100%;
+    color: var(--white);
 }
 
-#product-info:first-line {
+.product-info:first-line {
     font-weight: bold;
 }
 
