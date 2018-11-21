@@ -140,7 +140,8 @@ class RegisterClientFormNatural(RegisterClientForm, ErrorField):
                                   label=_('civil state'))
     birthdate = forms.DateField(label=_('birthdate'),
                                 widget=forms.TextInput(
-                                    attrs={'class': 'datepicker-register'}),
+                                    attrs={'class': 'datepicker-register',
+                                            'autocomplete': 'off'}),
                                 validators=[Validations.valid_legal_age])
 
     level_instruction = forms.CharField(widget=forms.Select(),
