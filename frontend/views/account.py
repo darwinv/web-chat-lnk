@@ -75,5 +75,21 @@ class Specialist:
         associates = resp['results']
         count = resp['count']
 
-        return render(request, 'frontend/actors/specialist/associates_list.html', {'associates':associates, 'count':count})
+        return render(request, 'frontend/actors/specialist/associate_list.html', {'associates':associates, 'count':count})
 
+    def associate(self, request, pk):
+        obj_api = api()
+        token = request.session['token']
+        resp = obj_api.get(slug='specialists/' + pk, token=token)
+
+        data_user = resp
+        name = data_user['first_name'] + ' ' + data_user['last_name']
+        type_specialist = data_user['type_specialist']
+        if type_specialist == 'a':
+            type_specialist = 'Especialista asociado'
+        elif type_specialist == 'm':
+            type_specialist = 'Especialista principal'
+
+        return render(request, 'frontend/actors/specialist/my_account.html', {
+            'data_user':data_user, 'type_specialist':type_specialist, 'name':name
+        })

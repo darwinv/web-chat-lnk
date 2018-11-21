@@ -23,4 +23,13 @@ $(function() {
         }
     });
 
+
+    $("#next").click(function(){
+        $("#plan-list").toggleClass("hidden");
+        
+    });
+
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
 });
