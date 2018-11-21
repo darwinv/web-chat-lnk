@@ -19,4 +19,4 @@ class Client:
 
         plans = obj_api.get(slug='plans/', token=token)
         return render(request, 'frontend/actors/client/purchase_plan_list.html',
-                        {"plans":plans})
+                        {"plans":plans}

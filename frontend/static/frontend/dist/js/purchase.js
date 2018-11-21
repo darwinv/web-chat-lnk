@@ -29,7 +29,7 @@ $(function() {
         
     });
 
- 
+    $("#next").attr("disabled",true);
 
     $("#next").click(function(){
         $("#plan-list").toggleClass("hidden");
@@ -72,4 +72,15 @@ $(function() {
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
+
+    $(".checkbox-plan").change(function(){
+        var checkBoxPlans = $('.checkbox-plan:checkbox:checked');
+        if (checkBoxPlans.length < 1){
+          $("#next").attr("disabled",true);
+         }
+        else{
+         $("#next").removeAttr("disabled");
+        } 
+    });
+
 });
