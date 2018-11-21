@@ -43,10 +43,11 @@ $(function () {
 	$(document).on('change', 'input[name=type_client]', function() {
 		load_by_client_type($(this));
 	});
-
+    
 	function load_by_client_type($this){
 		// redirecciona segun el tipo de cliente que se registra
 		var type_client = $this.val();
+        $(".register-client-form").remove(); //Eliminamos validaciones para redirecciones
 		window.location.href = "{% url 'login:register' %}?type_client=" + type_client;
 	}
 
