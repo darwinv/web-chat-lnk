@@ -84,12 +84,14 @@ class Specialist:
             "Solicitado el: "+date,
             "S/. " + str(resp['price'])
         ]
+        products = []
+        products.append({'photo':photo, 'lines':lines})
 
         # sale_id = product['sale']
 
         if resp and lines:
-            return render(request, 'frontend/actors/specialist/summary.html', {'lines': lines, 'total': total,
-                                                                             'photo': photo, 'pk':id_match})
+            return render(request, 'frontend/actors/specialist/summary.html', {'products': products,
+                                                                               'total': total, 'pk':id_match})
         else:
             return JsonResponse({'message': _('That match doesn\'t exist'),
                                  'class': 'error'})

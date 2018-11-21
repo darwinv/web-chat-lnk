@@ -62,6 +62,7 @@ class Client:
         obj_api = api()
         token =  request.session['token']
         plan =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
+
         clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
 
         if plan and clients and 'results' in clients:
@@ -86,29 +87,32 @@ class Client:
             'acquired_plan':acquired_plan, 'type_operation':type_operation, 'available_queries':available_queries
         })
 
-    def summary(self, request, pk):
+    def summary(self, request, sale_id):
         """ Resumen de Plan efectivo """
 
         obj_api = api()
         token =  request.session['token']
-        data = {'client':request.user.id}
-        resp =  obj_api.get(slug='clients/sales/have-payment-pending/', arg=data, token=token)
+        data = {'sale_id':sale_id}
+        resp =  obj_api.get(slug='clients/sales/detail/', arg=data, token=token)
 
-        product = resp['products'][0]
+        total = resp['total_amount']
 
-        total = product['price']
-        plan = product['plan']
-        lines = [
-            plan['plan_name'],
-            str(plan['query_quantity']) + " queries",
-            "Validty " + str(plan['validity_months']) + " months",
-            "S/. " + str(total)
-        ]
+        products_api = resp['products']
+        products = []
+        for product in products_api:
+            plan = product['plan']
+            lines = [
+                plan['plan_name'],
+                str(plan['query_quantity']) + " queries",
+                "Validty " + str(plan['validity_months']) + " months",
+                "S/. " + str(product['price'])
+            ]
+            products.append({'lines':lines})
 
-        sale_id = product['sale']
+        sale_id = resp['id']
 
         if resp and lines:
-            return render(request, 'frontend/actors/client/summary.html', {'lines': lines, 'total': total, 'pk':sale_id})
+            return render(request, 'frontend/actors/client/summary.html', {'products': products, 'total': total, 'pk':sale_id})
         else:
             return JsonResponse({'message': _('That plan doesn\'t exist'),
                                  'class': 'successful'})
