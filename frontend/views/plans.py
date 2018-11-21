@@ -96,8 +96,8 @@ class Client:
 
         obj_api = api()
         token =  request.session['token']
-        data = {'sale_id':sale_id}
-        resp =  obj_api.get(slug='clients/sales/detail/', arg=data, token=token)
+        resp =  obj_api.get(slug='clients/sales/detail/' + sale_id + '/', token=token)
+
         total = resp['fee']['fee_amount']
 
         products_api = resp['products']
@@ -108,27 +108,20 @@ class Client:
             plan_name = plan['plan_name']
             total_queries = plan['query_quantity']
             price = float(product['price'])
-            validty = plan['validity_months']
+            validity = plan['validity_months']
             if resp['is_fee']:
-                fee_queries = total_queries // validty
-                price /= validty
+                fee_queries = total_queries // validity
+                price /= validity
+            else:
+                fee_queries = None
 
-            lines = [
-                plan_name,
-                str(total_queries) + " consultas" +
-                (" - Obtendras " + str(fee_queries) + " consultas" if resp['is_fee'] else ""),
-                "Validez " + str(plan['validity_months']) + " meses",
-                "S/. " + str(price)
-            ]
-            products.append({'lines':lines})
+            products.append({'name':plan_name, 'total_queries':total_queries,
+                             'fee_queries':fee_queries, 'validity':validity, 'price':price})
 
         sale_id = resp['id']
 
-        if resp and lines:
-            return render(request, 'frontend/actors/client/summary.html', {'products': products, 'total': total, 'pk':sale_id})
-        else:
-            return JsonResponse({'message': _('That plan doesn\'t exist'),
-                                 'class': 'successful'})
+        return render(request, 'frontend/actors/client/summary.html', {'products': products, 'total': total, 'pk':sale_id})
+
 
     def get_status_footer(self, request):
         """Status del footer."""

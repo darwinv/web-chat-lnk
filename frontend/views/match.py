@@ -79,13 +79,10 @@ class Specialist:
         id_match = resp['id']
         total = resp["price"]
 
-        lines = [
-            resp['category'],
-            "Solicitado el: "+date,
-            "S/. " + str(resp['price'])
-        ]
         products = []
-        products.append({'photo':photo, 'lines':lines})
+        name = resp['category']
+        price = resp['price']
+        products.append({'photo':photo, 'name':name, 'date':date, 'price':price})
 
         # sale_id = product['sale']
 
