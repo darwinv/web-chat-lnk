@@ -65,7 +65,7 @@ class Client:
 
         status = plan['status']
         fee = plan['fee']
-        clickable = status == 1 or status == 2 and plan['is_fee'] and fee and fee['status'] == 1 or status == 3
+        clickable = status == 1 or plan['is_fee'] and fee and fee['status'] == 1 or status == 3
         clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
 
         if 'results' in clients:
@@ -99,7 +99,6 @@ class Client:
         data = {'sale_id':sale_id}
         resp =  obj_api.get(slug='clients/sales/detail/', arg=data, token=token)
         total = resp['fee']['fee_amount']
-
 
         products_api = resp['products']
         products = []
