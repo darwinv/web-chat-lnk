@@ -19,8 +19,6 @@ $(function () {
 		}
 
 	}
-	
-
 });
 
 $(document).ready(function () {
