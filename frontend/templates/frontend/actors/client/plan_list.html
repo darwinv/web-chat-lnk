@@ -38,7 +38,9 @@
         {% ifequal plan.status 1 %} Pago pendiente {% endifequal %}
         {% ifequal plan.status 2 %} Esperando por tu PIN de ACTIVACION {% endifequal %}
         {% ifequal plan.status 3 %} Ingresa tu PIN {% endifequal %}
-        {% ifequal plan.status 4 %} En uso {% endifequal %}
+        {% ifequal plan.status 4 %}
+          {% if plan.is_chosen %} En uso {% else %} Activo {% endif %}
+        {% endifequal %}
         {% ifequal plan.status 5 %} Finalizado {% endifequal %}
       </div> <!-- Plan status -->
     </div> <!-- Plan Box -->

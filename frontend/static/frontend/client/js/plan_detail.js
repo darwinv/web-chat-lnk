@@ -18,6 +18,10 @@ $(function() {
             $('#main-detail').click(function(event) {
                 $('#activation-modal').modal('show');
             });
+        } else if (plan_status === 2 && is_fee && fee_status === 1) {
+            $('#main-detail').click(function(event) {
+                window.location.replace(summary_url);
+            });
         }
     });
 

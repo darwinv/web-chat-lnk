@@ -63,13 +63,17 @@ class Client:
         token =  request.session['token']
         plan =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
 
+        status = plan['status']
+        fee = plan['fee']
+        clickable = status == 1 or status == 2 and plan['is_fee'] and fee and fee['status'] == 1 or status == 3
         clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
 
-        if plan and clients and 'results' in clients:
-            return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients['results']})
+        if 'results' in clients:
+            clients = clients['results']
         else:
-            return JsonResponse({'message': _('That plan doesn\'t exist'),
-                                 'class': 'successful'})
+            clients = None
+        return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients, 'clickable':clickable})
+
 
     def action(self, request, pk, action):
         email_check_form = EmailCheckForm()
@@ -94,18 +98,28 @@ class Client:
         token =  request.session['token']
         data = {'sale_id':sale_id}
         resp =  obj_api.get(slug='clients/sales/detail/', arg=data, token=token)
+        total = resp['fee']['fee_amount']
 
-        total = resp['total_amount']
 
         products_api = resp['products']
         products = []
         for product in products_api:
             plan = product['plan']
+                
+            plan_name = plan['plan_name']
+            total_queries = plan['query_quantity']
+            price = float(product['price'])
+            validty = plan['validity_months']
+            if resp['is_fee']:
+                fee_queries = total_queries // validty
+                price /= validty
+
             lines = [
-                plan['plan_name'],
-                str(plan['query_quantity']) + " queries",
-                "Validty " + str(plan['validity_months']) + " months",
-                "S/. " + str(product['price'])
+                plan_name,
+                str(total_queries) + " consultas" +
+                (" - Obtendras " + str(fee_queries) + " consultas" if resp['is_fee'] else ""),
+                "Validez " + str(plan['validity_months']) + " meses",
+                "S/. " + str(price)
             ]
             products.append({'lines':lines})
 

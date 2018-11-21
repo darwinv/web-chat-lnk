@@ -6,7 +6,7 @@
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "frontend/dist/css/plans.css" %}">
-    {% if plan.status == 1 or plan.status == 3 %}
+    {% if clickable %}
     <style>
     .plan-box:hover, .plan-box:active {
         cursor: pointer;
@@ -27,7 +27,9 @@
         {% ifequal plan.status 1 %} Pago pendiente {% endifequal %}
         {% ifequal plan.status 2 %} Esperando por tu PIN de ACTIVACION {% endifequal %}
         {% ifequal plan.status 3 %} Ingresa tu PIN {% endifequal %}
-        {% ifequal plan.status 4 %} En uso {% endifequal %}
+        {% ifequal plan.status 4 %}
+          {% if plan.is_chosen %} En uso {% else %} Activo {% endif %}
+        {% endifequal %}
         {% ifequal plan.status 5 %} Finalizado {% endifequal %}
       </div>
     </div>
@@ -51,12 +53,14 @@
         {% plural %}
         Available: {{ quantity }} queries
         {% endblocktrans %}<br />
-
+        {% if edate %}
         {% blocktrans with edate=plan.expiration_date%}Expires: {{ edate }}{% endblocktrans %}
+        {% endif %}
       </div>
     </div>
     <div class="row">
       <div class="col-12 plan-price">S/. {{ plan.price }}</div>
+      {% if plan.queries_to_pay > 0 %}
       <div class="col-12">
         <div class="query-to-pay">
           {% blocktrans trimmed count quantity=plan.queries_to_pay %}
@@ -66,6 +70,8 @@
           {% endblocktrans %}<br />
         </div>
       </div>
+      {% endif %}
+      {% if plan.fee %}
       <div class="col-12 fee-info">
         {% blocktrans trimmed count quantity=plan.fee.fee_quantity %}
         {{ quantity }} fee to pay.
@@ -76,6 +82,7 @@
         {% blocktrans trimmed with price=plan.fee.fee_amount %}Next payment of S/. {{ price }}{% endblocktrans %}
         {% blocktrans trimmed with edate=plan.fee.pay_before %}You need to pay before {{ edate }}{% endblocktrans %}
       </div>
+      {% endif %}
     </div>
     {% ifequal plan.status 4 %}
     {% if plan.available_queries > 0 %}
@@ -153,6 +160,8 @@
   <script>
     var plan_id = "{{ plan.id }}";
     var plan_status = parseInt("{{ plan.status }}", 10);
+    var fee_status = parseInt("{% if plan.fee %}{{ plan.fee.status }}{% else %}0{% endif %}", 10);
+    var is_fee = "{{ plan.is_fee }}" === "True";
     var summary_url = "{% url 'frontend:active-plan-summary' plan.sale %}";
   </script>
 {% endblock %}
