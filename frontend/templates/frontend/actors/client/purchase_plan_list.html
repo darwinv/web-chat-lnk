@@ -8,10 +8,12 @@
 {% endblock %}
 {% block javascript %}
 {{ block.super }}
+    <script> url_summary_plans = "{% url 'frontend:purchase-plan-summary' %}";</script>
     <script src="{% static "frontend/dist/js/purchase.js" %}"></script>
 {% endblock %}
 
 {% block main_content %}
+{% csrf_token %}
 <div id="plan-list" class="container-fluid">
 
     {% for plan in plans %}
@@ -60,8 +62,8 @@
         <h3>Modalidad de Pago</h3>
     </div>
     <ul class="nav nav-tabs">
-            <li class="active"><a href="#contado">Pago al Contado</a></li>
-            <li><a href="#credito">Pago al Credito</a></li>
+            <li class="active"><a href="#contado" data-toggle="tab" data-isfee="0">Pago al Contado</a></li>
+            <li><a href="#credito" data-toggle="tab" data-isfee="1">Pago al Credito</a></li>
     </ul>
 
     <div class="tab-content overflow-auto">    
