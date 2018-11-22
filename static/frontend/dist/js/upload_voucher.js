@@ -29,6 +29,8 @@ $(function() {
 
     $('#upload-voucher-form').on('submit', function(event) {
         event.preventDefault();
+        $("#activation-animation").toggleClass("hidden");
+        $('#send-button').prop('disable', true);
         upload();
     });
 
@@ -38,6 +40,8 @@ $(function() {
         formData.append('url', upload_url);
         formData.append('use_method', 'PUT');
 
+        $("#activation-animation").toggleClass("hidden");
+        $('#send-button').prop('disable', false);
         uploadFileAjax(formData, function(response) {
             if (response.status_code === HTTP_CODES.OK) {
                 $('#upload-voucher-modal').modal('hide');

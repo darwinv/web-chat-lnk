@@ -16,10 +16,11 @@
     </div>
   </div>
   <div class="row summary-title">
-    <div class="col-12">Productos comprados</div>
+    <div class="col-12">
+      Productos comprados {% if fee_order_number %} (cuota N° {{ fee_order_number }}){% endif %}
+    </div>
   </div>
   <div id="purchased-products" class="row">
-    
     {% for product in products %}
       <div class="product-box">
         {% if product.photo %}
@@ -59,6 +60,14 @@
       Total<br />
       <div id="total">S/. {{ total|stringformat:".2f" }}</div>
     </div>
-    <div id="button-box" class="col-6 col-sm-4"><button id="upload-button">SUBIR VOUCHER</button></div>
+    <div id="button-box" class="col-6 col-sm-4">
+      {% if validating %}
+        <button id="validating" disabled>
+          Validando{% if fee_order_number %} cuota N° {{ fee_order_number }}{% endif %}
+        </button>
+      {% else %}
+        <button id="upload-button">SUBIR VOUCHER</button>
+      {% endif %}
+    </div>
   </div>
 </div>

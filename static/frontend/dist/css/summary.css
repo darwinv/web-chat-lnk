@@ -67,7 +67,7 @@
     height: 100%;
 }
 
-#upload-button {
+#upload-button, #validating {
     color: var(--white);
     background: var(--turquoise);
     width: 100%;
