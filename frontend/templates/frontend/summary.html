@@ -24,11 +24,11 @@
         {% if product.photo %}
           <div class="col-4"><img src="{{ product.photo }}" /></div>
         {% endif %}  
-        <div class="col-8 product-info summary-info">
+        <div class="col-{% if product.photo %}8{% else %}12{% endif %} product-info summary-info">
           {{ product.name }}<br />
           {% if product.total_queries %}
             {{ product.total_queries }} consultas
-            {% if product.fee_queries %}
+            {% if product.fee_queries and not product.payed %}
                - Obtendras {{ product.fee_queries }}  consultas
             {% endif %}
             <br />
@@ -39,7 +39,15 @@
           {% if product.date %}
             Solicitado el {{ product.date }}<br />
           {% endif %}
-          S/. {{ product.price }}
+          <span class="price">
+            {% if product.payed %}
+              S/. 0.00  
+              <span class="price-not-gonna-pay">S/. {{ product.price|stringformat:".2f" }}</span> 
+              <span class="payed-product">Producto cancelado</span>
+            {% else %}
+              S/. {{ product.price|stringformat:".2f" }}
+            {% endif %}
+          </span>
         </div>
       </div>
     {% endfor %}
@@ -48,7 +56,7 @@
   <div id="bottom" class="row">
     <div id="total-section" class="col-6 col-sm-8">
       Total<br />
-      <div id="total">S/. {{ total }}</div>
+      <div id="total">S/. {{ total|stringformat:".2f" }}</div>
     </div>
     <div id="button-box" class="col-6 col-sm-4"><button id="upload-button">SUBIR VOUCHER</button></div>
   </div>
