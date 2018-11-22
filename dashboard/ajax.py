@@ -6,7 +6,6 @@ import json
 def ajax_service(request):
     """Planes Activos."""
     obj_api = api()
-    
     if request.method == 'PUT':
         data = QueryDict(request.body)
     else:
@@ -30,6 +29,10 @@ def ajax_service(request):
         token = None
     
     data = clean_data_files(request, data)
+
+    if 'serialize' in data:
+        data = serialize_keystr_to_json(request, data, data["serialize"])
+
     resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
     data = resp.json()
     
@@ -40,6 +43,16 @@ def ajax_service(request):
 
     return JsonResponse(data, safe=False)
 
+def serialize_keystr_to_json(request, data, key):
+    """Funcion para serializar correctamente alguna estructura str to json."""
+    if request.method == "POST":
+        if key in data:
+            data2 = data.copy()
+            data_to_convert = data[key]
+            json_data = json.loads(data_to_convert)
+            data2[key] = json_data
+            return data2
+    return data          
 
 def clean_data_files(request, data):
     """Funcion para acomodar los files para match en post"""

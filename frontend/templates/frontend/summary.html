@@ -22,7 +22,7 @@
   </div>
   <div id="purchased-products" class="row">
     {% for product in products %}
-      <div class="product-box">
+      <div class="product-box" data-productid="{{ product.id }}">
         {% if product.photo %}
           <div class="col-4"><img src="{{ product.photo }}" /></div>
         {% endif %}  
@@ -58,7 +58,7 @@
   <div id="bottom" class="row">
     <div id="total-section" class="col-6 col-sm-8">
       Total<br />
-      <div id="total">S/. {{ total|stringformat:".2f" }}</div>
+      <div id="total" data-isfee="{{ isfee }}">S/. {{ total|stringformat:".2f" }}</div>
     </div>
     <div id="button-box" class="col-6 col-sm-4">
       {% if validating %}
