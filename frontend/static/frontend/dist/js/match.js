@@ -31,7 +31,12 @@ $(document).ready(function () {
             $(this).find("p.status").text("Estado: Declinado");
          }
          if (status == 4){
-          $(this).find("p.status").text("Estado: Pendiente de Pago");
+           
+            if (roleID == ROLES.specialist){
+              $(this).find("p.status").text("Estado: Pendiente de Pago por el cliente");
+            }else{
+              $(this).find("p.status").text("Estado: Pendiente de Pago");
+            }
        }
           if (status == 6){
              $(this).find("p.status").text("Estado: Pendiente de Revisión");

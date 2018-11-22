@@ -67,7 +67,6 @@
         <h4>Motivo de la Declinación</h4>
         {{ match.declined_motive }}
     {% endif %}
-
     <hr>
     {% if match.file %}
         <div class="row">
@@ -85,10 +84,21 @@
         </div>
     {% endif %}
 
+    <div class="row text-center">
+        <div class="col-xs-12">
+                {% if request.user.role.id == ROLES.client  %}   
+                {% if match.status == 4 %}
+                    <a href="{% url 'frontend:match-client-summary' pk=match.id %}">Ir a pagar</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
 <div class="row marT20">
         <a href="{% url 'frontend:match-client' %}">
                 Volver al listado
          </a>
+
 </div>
 
 

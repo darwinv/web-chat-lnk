@@ -38,6 +38,36 @@ class Client:
         return render(request, 'frontend/actors/client/match.html',
                       {'form': form})
 
+    @method_decorator(user_passes_test(role_client_check()))
+    def summary(self, request, pk):
+        """ Resumen de Match."""
+
+        obj_api = api()
+        token =  request.session['token']
+        tool = ToolsBackend()
+
+
+        resp =  obj_api.get(slug='match/'+ pk + '/', token=token)
+        date = tool.datetime_format_to_view(resp['date'])
+
+        photo = resp['category_image']
+        id_match = resp['id']
+        sale = resp['sale']
+        total = resp["price"]
+
+        products = []
+        name = resp['category']
+        price = resp['price']
+        products.append({'photo':photo, 'name':name, 'date':date, 'price':price})
+
+        # sale_id = product['sale']
+
+        if resp:
+            return render(request, 'frontend/actors/client/summary_match.html', {'products': products,
+                                                                               'total': total, 'pk':sale})
+        else:
+            return JsonResponse({'message': _('That match doesn\'t exist'),
+                                 'class': 'error'})
 
 
 class Specialist:
@@ -86,7 +116,7 @@ class Specialist:
 
         # sale_id = product['sale']
 
-        if resp and lines:
+        if resp:
             return render(request, 'frontend/actors/specialist/summary.html', {'products': products,
                                                                                'total': total, 'pk':id_match})
         else:

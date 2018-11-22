@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^plans/client/summary/(?P<sale_id>[0-9]+)/$', plans.Client().summary, name='active-plan-summary'),
     # Resumen de match para especialista
     url(r'^match/specialist/(?P<pk>[0-9]+)/summary/$', match.Specialist().summary, name='match-specialist-summary'),
+    url(r'^match/client/(?P<pk>[0-9]+)/summary/$', match.Client().summary, name='match-client-summary'),
 
     # Lista de planes por activar por codigo PIN
     url(r'^plans/client/pincode/(?P<code>[0-9a-zA-Z]+)/$', plans.Client().get_plans_code,
