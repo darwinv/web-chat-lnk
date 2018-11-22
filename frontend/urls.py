@@ -88,6 +88,7 @@ urlpatterns = [
     # Purchase
     url(r'^purchase/client/$', purchase.Client().list_purchase, name='purchase-client'),
     url(r'^purchase/plan/client/$', purchase.Client().list_purchase_plans, name='purchase-plan'),
+    url(r'^purchase/summary/plan/client/$', purchase.Client().summary_purchase_plans, name='purchase-plan-summary'),
 
     # Upload files to query
     url(r'^query/upload_file/$',
