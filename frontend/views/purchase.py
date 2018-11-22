@@ -32,7 +32,6 @@ class Client:
         ids_purchase = []
         plans = obj_api.get(slug='plans/', token=token)
         ids_plans = request.POST.getlist('vehicle')
-        import pdb; pdb.set_trace()
         total = request.POST["total"]
 
         for i in range(0, len(ids_plans)): 
