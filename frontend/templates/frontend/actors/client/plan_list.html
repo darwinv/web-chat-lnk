@@ -31,7 +31,7 @@
           {% plural %}
           Validez {{ validity }} meses
           {% endblocktrans %}
-          <div class="plan-price">S/. {{ plan.price }}</div>
+          <div class="plan-price">S/. {{ plan.price|stringformat:".2f" }}</div>
         </div> <!-- Plan main info -->
       </div><!-- Plan info  -->
       <div class="col-4 plan-status">

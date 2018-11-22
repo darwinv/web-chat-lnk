@@ -98,7 +98,7 @@ class Client:
         token =  request.session['token']
         resp =  obj_api.get(slug='clients/sales/detail/' + sale_id + '/', token=token)
 
-        total = resp['fee']['fee_amount']
+        total = float(resp['fee']['fee_amount'])
 
         products_api = resp['products']
         products = []
@@ -106,6 +106,7 @@ class Client:
             plan = product['plan']
                 
             plan_name = plan['plan_name']
+            payed = plan['queries_to_pay'] == 0
             total_queries = plan['query_quantity']
             price = float(product['price'])
             validity = plan['validity_months']
@@ -115,12 +116,12 @@ class Client:
             else:
                 fee_queries = None
 
-            products.append({'name':plan_name, 'total_queries':total_queries,
-                             'fee_queries':fee_queries, 'validity':validity, 'price':price})
+            products.append({'name':plan_name, 'total_queries':total_queries, 'fee_queries':fee_queries, 
+                             'validity':validity, 'price':price, 'payed':payed})
 
         sale_id = resp['id']
 
-        return render(request, 'frontend/actors/client/summary.html', {'products': products, 'total': total, 'pk':sale_id})
+        return render(request, 'frontend/actors/client/summary.html', {'products':products, 'total':total, 'pk':sale_id})
 
 
     def get_status_footer(self, request):

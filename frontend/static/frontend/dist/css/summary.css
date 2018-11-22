@@ -37,8 +37,21 @@
 .product-info {
 }
 
-.product-info:first-line {
+.product-info:first-line, .price {
     font-weight: bold;
+}
+
+.price-not-gonna-pay {
+    font-weight: normal;
+    text-decoration: line-through;
+    color: var(--dark-gray);
+}
+
+.payed-product {
+    color: var(--dark-gray);
+    text-align: right;
+    position: absolute;
+    right: 10px;
 }
 
 #bottom {
