@@ -63,13 +63,17 @@ class Client:
         token =  request.session['token']
         plan =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
 
+        status = plan['status']
+        fee = plan['fee']
+        clickable = status == 1 or plan['is_fee'] and fee and fee['status'] == 1 or status == 3
         clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
 
-        if plan and clients and 'results' in clients:
-            return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients['results']})
+        if 'results' in clients:
+            clients = clients['results']
         else:
-            return JsonResponse({'message': _('That plan doesn\'t exist'),
-                                 'class': 'successful'})
+            clients = None
+        return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients, 'clickable':clickable})
+
 
     def action(self, request, pk, action):
         email_check_form = EmailCheckForm()
@@ -92,30 +96,32 @@ class Client:
 
         obj_api = api()
         token =  request.session['token']
-        data = {'sale_id':sale_id}
-        resp =  obj_api.get(slug='clients/sales/detail/', arg=data, token=token)
+        resp =  obj_api.get(slug='clients/sales/detail/' + sale_id + '/', token=token)
 
-        total = resp['total_amount']
+        total = resp['fee']['fee_amount']
 
         products_api = resp['products']
         products = []
         for product in products_api:
             plan = product['plan']
-            lines = [
-                plan['plan_name'],
-                str(plan['query_quantity']) + " queries",
-                "Validty " + str(plan['validity_months']) + " months",
-                "S/. " + str(product['price'])
-            ]
-            products.append({'lines':lines})
+                
+            plan_name = plan['plan_name']
+            total_queries = plan['query_quantity']
+            price = float(product['price'])
+            validity = plan['validity_months']
+            if resp['is_fee']:
+                fee_queries = total_queries // validity
+                price /= validity
+            else:
+                fee_queries = None
+
+            products.append({'name':plan_name, 'total_queries':total_queries,
+                             'fee_queries':fee_queries, 'validity':validity, 'price':price})
 
         sale_id = resp['id']
 
-        if resp and lines:
-            return render(request, 'frontend/actors/client/summary.html', {'products': products, 'total': total, 'pk':sale_id})
-        else:
-            return JsonResponse({'message': _('That plan doesn\'t exist'),
-                                 'class': 'successful'})
+        return render(request, 'frontend/actors/client/summary.html', {'products': products, 'total': total, 'pk':sale_id})
+
 
     def get_status_footer(self, request):
         """Status del footer."""

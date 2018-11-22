@@ -26,9 +26,21 @@
           <div class="col-4"><img src="{{ product.photo }}" /></div>
         {% endif %}  
         <div class="col-8 product-info summary-info">
-        {% for line in product.lines %}
-            {{ line }}<br />
-        {% endfor %}
+          {{ product.name }}<br />
+          {% if product.total_queries %}
+            {{ product.total_queries }} consultas
+            {% if product.fee_queries %}
+               - Obtendras {{ product.fee_queries }}  consultas
+            {% endif %}
+            <br />
+          {% endif %}
+          {% if product.validity %}
+            Validez {{ product.validity }} meses<br />
+          {% endif %}
+          {% if product.date %}
+            Solicitado el {{ product.date }}<br />
+          {% endif %}
+          S/. {{ product.price }}
         </div>
       </div>
     {% endfor %}

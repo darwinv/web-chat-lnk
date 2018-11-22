@@ -16,6 +16,7 @@ span.purchase_soon {
 .plan-cell {
     border-bottom: 1px solid #3b3b3b;
     padding: 10px 10px;
+    position: relative;
 }
 .clasification-plan {
     padding: 10px;
@@ -28,8 +29,71 @@ span.purchase_soon {
     display: block;
     font-size: 22px;
 }
+
+.m-pay{
+    color: var(--turquoise);
+    display: block;
+}
+
+.m-pay button{
+    background-color: var(--turquoise);
+    color:white;
+}
+.m-pay button:hover{
+    background-color: white;
+    color:var(--turqoise);
+}
 .contact {
     padding: 10px;
     font-size: 20px;
 }
+.checkbox-plan{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin: auto;
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    padding: 10px;
+}
 
+#modality-payment {
+    position: relative;
+    padding-bottom: 50px;
+}
+
+#bottom {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    flex: 0 1 50px;
+    bottom:0;
+}
+
+#total {
+    font-weight: bold;
+    color: var(--turquoise);
+}
+
+#button-box {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#total-section {
+    margin: 0;
+    padding: 5px 0 0 20px;
+    background: var(--white);
+    font-size: 14px;
+}
+
+#summary-button {
+    color: var(--white);
+    background: var(--turquoise);
+    width: 100%;
+    height: 100%;
+}

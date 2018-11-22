@@ -3,8 +3,10 @@
     background: var(--dark-blue);
     height: 100%;
     width: 100%;
+    position: relative;
     display: flex;
-    flex-flow: column
+    flex-direction: column;
+    padding-bottom: 50px;
 }
 
 .summary-title {
@@ -14,14 +16,25 @@
     margin-bottom: 20px;
 }
 
+.summary-info {
+    color: var(--white);
+}
+
 #purchased-products {
+    position: relative;
+    height: 140px;
     overflow-y: auto;
-    flex: 1 1 auto;
+    flex: 1 1 0;
+}
+
+.product-box {
+    border: 1px solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 .product-info {
-    height: 100%;
-    color: var(--white);
 }
 
 .product-info:first-line {
@@ -31,8 +44,8 @@
 #bottom {
     height: 50px;
     width: 100%;
-    position: relative;
-    flex: 0 1 50px;
+    position: absolute;
+    bottom: 0;
 }
 
 #total-section {
