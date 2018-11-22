@@ -56,6 +56,11 @@
     color: var(--white);
 }
 
+.validating-message {
+    color: var(--dark-gray);
+    line-height: 30px;
+}
+
 .plan-price, .query-to-pay {
     color: var(--white);
     font-weight: bold;

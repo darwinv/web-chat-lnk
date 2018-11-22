@@ -21,6 +21,11 @@ $(function() {
         }
     });
 
+    $(document).on('activation', function(event, activated_plan_id) {
+        if (plan_id == activated_plan_id)
+            window.location.reload();
+    })
+
     $('.delete-empower-ellipsis').click(function(event) {
         $(this).parent().find('.drop-down').slideToggle(200);
     });

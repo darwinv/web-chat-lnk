@@ -65,6 +65,9 @@ class Client:
 
         status = plan['status']
         fee = plan['fee']
+        fee_order_number = fee['fee_order_number'] if fee else 0
+        validating = fee and fee['status'] == 3
+
         clickable = status == 1 or plan['is_fee'] and fee and fee['status'] == 1 or status == 3
         clients = obj_api.get(slug='clients/plans-share-empower/' + pk + '/', token=token)
 
@@ -72,7 +75,10 @@ class Client:
             clients = clients['results']
         else:
             clients = None
-        return render(request, 'frontend/actors/client/plan_detail.html', {'plan': plan, 'clients':clients, 'clickable':clickable})
+        return render(request, 'frontend/actors/client/plan_detail.html', {
+            'plan': plan, 'clients':clients, 'clickable':clickable,
+            'fee_order_number':fee_order_number, 'validating':validating
+        })
 
 
     def action(self, request, pk, action):
@@ -98,9 +104,17 @@ class Client:
         token =  request.session['token']
         resp =  obj_api.get(slug='clients/sales/detail/' + sale_id + '/', token=token)
 
-        total = float(resp['fee']['fee_amount'])
+        fee = resp['fee']
+
+        if fee:
+            total = float(fee['fee_amount'])
+            fee_order_number = fee['fee_order_number']
+        else:
+            total = 0
+            fee_order_number = 0
 
         products_api = resp['products']
+
         products = []
         for product in products_api:
             plan = product['plan']
@@ -121,7 +135,14 @@ class Client:
 
         sale_id = resp['id']
 
-        return render(request, 'frontend/actors/client/summary.html', {'products':products, 'total':total, 'pk':sale_id})
+        if not fee or fee['status'] != 1:
+            validating = fee and fee['status'] == 3
+            return render(request, 'frontend/actors/client/summary.html', {
+                'products':products, 'total':total, 'validating':validating, 'fee_order_number':fee_order_number
+            })
+        return render(request, 'frontend/actors/client/summary.html', {
+            'products':products, 'total':total, 'pk':sale_id
+        })
 
 
     def get_status_footer(self, request):

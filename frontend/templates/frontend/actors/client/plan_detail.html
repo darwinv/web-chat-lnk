@@ -22,8 +22,11 @@
 <div class="container-fluid">
   <div id="main-detail" class="plan-box">
     <div class="row">
-      <div class="col-3 plan-title">{{ plan.plan_name }}</div>
-      <div class="col-3 offset-6 plan-status">
+      <div class="col-4 plan-title">{{ plan.plan_name }}</div>
+      <div class="col-4 validating-message">
+        {% if validating and plan.is_fee %}Validando la cuota N° {{ fee_order_number}}{% endif %}
+      </div>
+      <div class="col-4 plan-status">
         {% ifequal plan.status 1 %} Pago pendiente {% endifequal %}
         {% ifequal plan.status 2 %} Esperando por tu PIN de ACTIVACION {% endifequal %}
         {% ifequal plan.status 3 %} Ingresa tu PIN {% endifequal %}

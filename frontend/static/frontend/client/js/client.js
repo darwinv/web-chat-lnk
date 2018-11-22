@@ -66,8 +66,10 @@ $(function() {
 
             if (response.status_code === HTTP_CODES.OK) {
                 $('#response-message').html('<span class="successful">Activacion satisfactoria</span>');
-                setTimeout(function(){
-                  $("#activation-modal").modal('hide');
+                var plan_id = response.id
+                setTimeout(function() {
+                    $(document).trigger("activation", [plan_id]);
+                    $("#activation-modal").modal('hide');
                 }, 2000);
             } else if (response.status_code === HTTP_CODES.NOT_FOUND) {
                 $('#response-message').html('<span class="error">No se encuentra ese plan</span>');
