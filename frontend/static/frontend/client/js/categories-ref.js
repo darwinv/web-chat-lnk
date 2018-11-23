@@ -3,14 +3,12 @@ $(document).ready(function () {
     firebase.initializeApp(JSON.parse(apiEnvFirebase));
     var client_id = userID;
     // cargamos el listado de los mensajes de las especialidades
-    var starCountRef = firebase.database().ref('categories/clients/u' + client_id).orderByChild('datetime');
+    var starCountRef = firebase.database().ref('categories/clients/u' + client_id);
     starCountRef.on('value', function (snapshot) {
             $("#list_categories").empty();
             var id_user = snapshot.key;
-            inject_items(reverse_list(snapshot),id_user);
+            inject_items(reverse_list(snapshot), id_user);
         });
-
-   // cargamos el plan elegido
 
 }); // cierra document ready
 
@@ -35,7 +33,8 @@ function inject_items(list_items,  id_user) {
     var cont = 0;
     list_items.forEach(function (item) {
         var itemVal = item;
-        // chat = 'es/web/client/chat/'
+    
+
         if (itemVal.datetime) {
             icon = "pink"
         }else{
@@ -59,19 +58,43 @@ function inject_items(list_items,  id_user) {
                             </div>\
                         </a>");
         cont += 1;
+
+
+            
     });
 }
 function reverse_list(snapshot) {
-    var l = new Array();
+    var result = new Array();
     snapshot.forEach(function (item) {
-        if(item.val().datetime){
-            var aux = item.val();
-            aux.datetime = dateTextCustom(moment.utc(item.val().datetime), "-05:00");
-            l.push(aux);
-        }
-        else{
-            l.push(item.val());
+        console.log(item)
+        if (item.val().status == 1) {
+            if(item.val().datetime){
+                var aux = item.val();
+                aux.datetime = dateTextCustom(moment.utc(item.val().datetime), "-05:00");
+                result.push(aux);
+            }
+            else{
+                result.push(item.val());
+            }
         }
     });
-    return l.reverse();
+
+    result.sort(compare);
+    return result.reverse();
+}
+
+function compare(a,b) {
+    if (a.datetime=="") {
+        if (a.order > b.order)
+            return -1;
+        if (a.order < b.order)
+            return 1;
+    }else{
+        if (a.datetime < b.datetime)
+            return -1;
+        if (a.datetime > b.datetime)
+            return 1;
+    }
+    
+    return 0;
 }
