@@ -6,7 +6,6 @@
 {{ block.super }}
 <link rel="stylesheet" href="{% static "frontend/dist/css/messages-list.css" %}">
 <link rel="stylesheet" href="{% static "frontend/client/css/client.css" %}">
-<link rel="stylesheet" href="{% static "frontend/dist/css/update_password.css" %}">
 {% endblock %}
 
 
@@ -25,7 +24,6 @@
   {% include 'frontend/actors/client/lib/activation_modal.html' %}
   {% include 'frontend/lib/modals/change_chosen_plan.html' %}
   {% include 'frontend/lib/modals/reload.html' %}
-  {% include 'frontend/lib/modals/update_password.html' %}
 {% endblock content_left_slide %}
 
 
@@ -37,7 +35,6 @@
     const url_matchs_client = "{% url 'frontend:match-client' %}";
   </script>
   <script src="{% static "dashboard/dist/js/utils.js" %}"></script>
-  <script src="{% static "frontend/dist/js/update_password.js" %}"></script>
   <script src="{% static "frontend/client/js/client.js" %}"></script>
     <script type="text/javascript">
      url_get_plans_with_code= "{% url 'frontend:pincode-plans' code=0 %}";
