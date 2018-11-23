@@ -9,21 +9,22 @@ $(function() {
     $(document).ready(function() {
         $('.drop-down').hide();
 
-        if (plan_status === 1) {
+        if (plan_status === 3) {
+            $('#main-detail').click(function(event) {
+                $('#activation-modal').modal('show');
+            });
+        } else if (plan_status === 1 || (is_fee && fee_status === 1)) {
             $('#main-detail').click(function(event) {
                 console.log("PRESSED")
                 window.location.replace(summary_url);
             });
-        } else if (plan_status === 3) {
-            $('#main-detail').click(function(event) {
-                $('#activation-modal').modal('show');
-            });
-        } else if (plan_status === 2 && is_fee && fee_status === 1) {
-            $('#main-detail').click(function(event) {
-                window.location.replace(summary_url);
-            });
         }
     });
+
+    $(document).on('activation', function(event, activated_plan_id) {
+        if (plan_id == activated_plan_id)
+            window.location.reload();
+    })
 
     $('.delete-empower-ellipsis').click(function(event) {
         $(this).parent().find('.drop-down').slideToggle(200);

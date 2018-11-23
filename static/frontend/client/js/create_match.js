@@ -32,9 +32,17 @@ $(document).on('submit','#create-match',function(event){
               }, 2000);                    
               console.log(response);
               var files_data = $('#file_match').prop('files');
-              upload_files_ids(response.files_id, files_data, response.id);
- 
-            } else {
+                if (files_data.length > 1){
+                  upload_files_ids(response.files_id, files_data, response.id);
+                }
+                else{
+                  $("#cont-create-match #animacion1").toggleClass("hidden");
+                  $('#cont-create-match #message').addClass('successful');
+                  $('#cont-create-match #message').text("Se ha Solicitado correctamente");
+                  window.location.href = url_matchs_client;
+                }              
+            } 
+            else {
               $("#cont-create-match #animacion1").toggleClass("hidden");
               $("#submit-match").removeAttr("disabled");
               $('#cont-create-match #message').addClass('error');
