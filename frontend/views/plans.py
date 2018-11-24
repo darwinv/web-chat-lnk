@@ -14,7 +14,8 @@ class Client:
         token = request.session['token']
         resp = obj_api.put(slug='chosens-plans/' + pk, token=token,
                            arg=request.POST)
-        if 'id' in resp:
+        
+        if resp and 'id' in resp:
             return JsonResponse(
                 {'message': _('your plan has been chosen correctly'),
                  'class': 'successful'})
