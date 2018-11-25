@@ -6,9 +6,11 @@
 {% endblock %}
 
 {% block main_content %}
-<div id="cont-create-match"> 
+<div id="cont-create-match">
     <form id="create-match" action="" name="" method="post">
       <div class="container-fluid">
+        <p class="h3 text-center"> Contrata la especialidad </p>
+        
         <div class="row">
           {% csrf_token %}
           {% for field in form %}
