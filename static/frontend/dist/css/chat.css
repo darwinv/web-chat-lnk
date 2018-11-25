@@ -8,6 +8,8 @@
     margin-top: 5px;
     border-radius: 21px;
     padding: 10px 20px;
+}
+#chat_box .message{
     width: 41%;
 }
 
@@ -263,4 +265,7 @@ span.reply-borde {
 }
 .chat-video-thumb.chat_play_medias {
     min-height: 55px;
+}
+#modal_play_medias .responsive-img {
+    max-height: 75vh;
 }

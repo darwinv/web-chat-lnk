@@ -57,7 +57,7 @@ function inject_items(list_items) {
             if (!itemVal.queries.hasOwnProperty(key)) continue;
 
             var obj = itemVal.queries[key];
-                       
+            
             toogleTree = toogleTree + cell.format_hard({
                         "pendingQuery": "1",
                         "photo": itemVal.photo,
@@ -280,13 +280,13 @@ function DoAjaxToModalQueryData(win){
         for (var key in data.message) {
             // skip loop if the property is from prototype
             if (!data.message.hasOwnProperty(key)) continue;
+            var obj = data.message[key];message
 
-            var obj = data.message[key];
-            if (obj.content_type == 1) {
-                htmlMessage = htmlMessage + cell.format_hard({
-                    "message":obj.message
-                })
-            }
+            
+            content = renderTypeMessage(obj)
+            html = `<div class="message" data-uploaded="${obj.uploaded}" >${content}</div>`
+
+            htmlMessage = htmlMessage + html
         }
         win.find(".mensages-list").html(htmlMessage)
 

@@ -182,3 +182,78 @@ function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+function renderTypeMessage(message) {
+  console.log(message);
+    // Retorna contenido del mensaje segun tipo de mensaje
+    response = '';
+    if (message.file_url) {
+      message.fileUrl = message.file_url;
+      message.filePreviewUrl = message.file_preview_url;
+      message.fileType = message.content_type;
+    }
+    
+
+    if (message.fileType == 1){
+        response  = `<div class="chat-text-thumb">
+                <p class="text">${message.message}</p>
+            </div>`;
+    } else if (message.fileType == 2){
+        response  =    `<div class="chat-img-thumb chat_play_medias"
+            data-file-url="${message.fileUrl}">
+                <img src="${message.filePreviewUrl}">
+            </div>`;
+    }else if(message.fileType == 3){
+        response  =`<div class="chat-video-thumb chat_play_medias" data-file-url="${message.fileUrl}">
+            <img src="${message.filePreviewUrl}">
+            <div class="play-video">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="media-play" transform="translate(4 2.5)" fill="#FFF"><path d="M15.5 7.9L2.5.4C1.2-.3.1.3.1 1.8v15c0 1.5 1.1 2.1 2.4 1.4l13-7.5c1.3-.9 1.3-2.1 0-2.8z" id="Path"></path></g></g></svg>
+            </div>
+        </div>`;
+    }else if(message.fileType == 4){
+        response  =`<div class="chat-audio-thumb text-center">
+           <audio controls>
+              <source src="${message.fileUrl}" type="audio/ogg">
+              <source src="${message.fileUrl}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>`;
+    }else if(message.fileType == 5){
+        if (message.uploaded == 2){
+            atag = `<a target="_blank" href="${message.fileUrl}">Descargar Archivo</a>`
+        }
+        else{
+            atag = `<a href="#">Archivo no encontrado</a>`
+        }
+
+        response  =`<div class="chat-file-thumb text-center">
+                        <i class="fas fa-file"></i>
+                        ${atag}
+                    </div>`;
+    }
+    return response;
+}
+
+$(document).on('click', ".chat_play_medias", function(){
+    
+    msg = $(this).parents(".message");
+    console.log($(this));
+    if (msg.data("uploaded")==1 || msg.data("uploaded")==5) {
+        return false;
+    }
+
+    var url = $(this).data("file-url");
+    if ($(this).hasClass("chat-video-thumb")) {
+        // Show videos
+        $("#modal_play_medias").find(".modal-body video").show(
+            ).attr('src', url);
+        $("#modal_play_medias").find(".modal-body img").hide();
+    }else if ($(this).hasClass("chat-img-thumb")){
+        // Show imgs
+        $("#modal_play_medias").find(".modal-body video").hide();
+        $("#modal_play_medias").find(".modal-body img").show().attr(
+        'src', url);
+    }
+
+    $('#manage_query_specialist').modal('hide');
+    $('#modal_play_medias').modal('show');
+});
