@@ -13,16 +13,21 @@
     font-size: 30px;
     text-align: center;
 }
-
+.associate {
+    cursor: pointer;
+}
 .associate {
     padding-top: 30px;
     padding-bottom: 30px;
     border: 1px solid;
 }
 
-.associate-photo {
+img.associate-photo {
+    border-radius: 50%;
+    width: 100px;
+    object-fit: cover;
+    height: 100px;
 }
-
 .main-info {
     color: var(--dark-gray);
 }

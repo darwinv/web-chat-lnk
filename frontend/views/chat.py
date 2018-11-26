@@ -41,7 +41,8 @@ class Client:
         data = json.loads(request.POST.get('query_data'))
         token = request.session["token"]
         resp = None
-
+        import pdb
+        pdb.set_trace()
         if "msg_type" in data["message"][0]:
             if "query" in data:
                 query = data["query"]

@@ -1,5 +1,5 @@
 {% load static i18n utils %}
-<div class="panel panel-default container-fluid width-60-percent overflow-auto">
+<div class="panel panel-default container-fluid width-60-percent overflow-auto padT10">
 
      {% if title_contact %}
         <h3> {{title_contact}} </h3>
@@ -9,7 +9,12 @@
 
     <div class="row">
         <div class="col-xs-4">
-            <img src="{{ data_user.photo }}" class="img-responsive img-circle" alt="">
+            <img src="{{ data_user.photo }}" class="img-responsive img-circle" alt="" style="
+    border-radius: 50%;
+    width: 120px;
+    object-fit: cover;
+    height: 120px;
+">
         </div>
         <div class="col-xs-8">
             <h3> {{name}}</h3> </br>

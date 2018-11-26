@@ -269,3 +269,16 @@ span.reply-borde {
 #modal_play_medias .responsive-img {
     max-height: 75vh;
 }
+audio.kv-preview-data.file-preview-audio {
+    width: 150px !important;
+    height: 65px !important;
+    max-width: 150px !important;
+}
+.audio-recorder svg{
+    vertical-align: middle;
+}
+.audio-recorder.recording{
+    background-color: white;
+    border: 2px solid red;
+    opacity: 0.45;
+}

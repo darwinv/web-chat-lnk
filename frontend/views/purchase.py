@@ -34,6 +34,7 @@ class Client:
         plans = obj_api.get(slug='plans/', token=token)
         ids_plans = request.POST.getlist('vehicle')
         total = request.POST["total"]
+
         is_fee = int(request.POST["modality"])
 
         for i in range(0, len(ids_plans)): 
@@ -57,5 +58,6 @@ class Client:
             products.append({'id':id_plan, 'name':plan_name, 'total_queries':total_queries,
                             'fee_queries':fee_queries, 'validity':validity, 'price':price})     
         # json_ids = json.loads(ids_purchase)
+
         return render(request, 'frontend/actors/client/summary_plans.html',
                         {"products":products, "total":total, "isfee":is_fee, "ids_plans":ids_purchase} )                

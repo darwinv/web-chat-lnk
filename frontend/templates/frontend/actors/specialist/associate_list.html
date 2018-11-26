@@ -17,7 +17,7 @@
   {% endifequal %}
   {% for associate in associates %}
   <div id="associate-{{ associate.id }}" class="row associate justify-content-center">
-    <div class="col-1"><img class="associate-photo" src="{{ associate.photo }}"></div>
+    <div ><img class="associate-photo" src="{{ associate.photo }}"></div>
     <div class="col-5 main-info">
       <span class="associate-name">{{ associate.first_name }} {{ associate.last_name }}</span><br />
       {{ associate.email_exact }}<br />

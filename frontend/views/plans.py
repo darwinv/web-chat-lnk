@@ -52,8 +52,16 @@ class Client:
         token = request.session['token']
         resp = obj_api.get(slug='clients/plans-all/', token=token)
 
-        plans = resp['results']
-        count = resp['count']
+        if 'results' in resp:
+            plans = resp['results']
+        else:
+            plans = None
+
+        if 'count' in resp:
+            count = resp['count']
+        else:
+            count = None
+
 
         return render(request, 'frontend/actors/client/plan_list.html', {'plans': plans, 'count':count})
 
@@ -63,7 +71,6 @@ class Client:
         obj_api = api()
         token =  request.session['token']
         plan =  obj_api.get(slug='clients/plans/' + pk + '/', token=token)
-
         status = plan['status']
         fee = plan['fee']
         fee_order_number = fee['fee_order_number'] if fee else 0
@@ -104,7 +111,7 @@ class Client:
         obj_api = api()
         token =  request.session['token']
         resp =  obj_api.get(slug='clients/sales/detail/' + sale_id + '/', token=token)
-
+        
         fee = resp['fee']
 
         if fee:
