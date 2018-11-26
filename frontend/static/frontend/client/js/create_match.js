@@ -4,7 +4,8 @@ $(document).ready(function () {
 $(document).on('submit','#create-match',function(event){
         event.preventDefault();
         $("#cont-create-match #animacion1").toggleClass("hidden");
-        var fileToUpload = $('#file_match').prop('files')[0];
+        var fileToUpload = $('#file_match').prop('files');
+        console.log(fileToUpload)
         var speciality = $('select[name=category]').val();
         var subject = $('#subject').val();
         var data = {
@@ -14,12 +15,19 @@ $(document).on('submit','#create-match',function(event){
         }
 
         if (fileToUpload != undefined){
-          var fileObj = {
-            "file_url": fileToUpload.name,
-            "content_type": 2
-          };
+          // var fileObj = {
+          //   "file_url": fileToUpload.name,
+          //   "content_type": 2
+          // };
           var arr = []
-          arr.push(fileObj);
+          for (var i = 0; i < fileToUpload.length; i++) {
+              // console.log(files[i].name);
+              arr.push({"file_url":fileToUpload[i].name, "content_type":2});
+          }
+          for (const file in fileToUpload) {
+             console.log(fileToUpload[file].name);
+          }
+          // arr.push(fileObj);
           data["file"] = JSON.stringify(arr);
         }
         // console.log(data);
