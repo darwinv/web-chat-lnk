@@ -368,6 +368,12 @@ function getMessageFiles(messageType){
         }
         else if (typeSplit[0] == 'audio'){
             contentType = 4;
+            console.log(files[i].name);
+            if (!files[i].name) {
+                console.log("entrooo");
+                name = Math.floor(100000 + Math.random() * 900000);
+                files[i].name = `${name}.${typeSplit[1]}`;
+            }
         }
 
         arrFiles[i] = {
