@@ -27,15 +27,15 @@ def ajax_service(request):
         token = request.session['token']
     else:
         token = None
-    
+
     data = clean_data_files(request, data)
 
     if 'serialize' in data:
         data = serialize_keystr_to_json(request, data, data["serialize"])
-
+    
     resp = getattr(obj_api, request.method.lower() + '_all')(slug=url, token=token, arg=data, files=files)
     data = resp.json()
-    
+
     try:
         data['status_code'] = resp.status_code
     except TypeError as e:
@@ -52,7 +52,7 @@ def serialize_keystr_to_json(request, data, key):
             json_data = json.loads(data_to_convert)
             data2[key] = json_data
             return data2
-    return data          
+    return data
 
 def clean_data_files(request, data):
     """Funcion para acomodar los files para match en post"""
@@ -63,9 +63,9 @@ def clean_data_files(request, data):
             json_data = json.loads(data_to_convert)
             data2['file'] = json_data
             return data2
-    return data        
+    return data
 
-        
+
 
 
 
@@ -86,7 +86,7 @@ def clean_data_files(request, data):
     #         token = None
 
     #     resp = obj_api.get(slug=url, token=token, arg=data)
-        
+
     #     return JsonResponse(resp, safe=False)
 
     # elif request.method == "POST":
@@ -104,5 +104,5 @@ def clean_data_files(request, data):
     #     else:
     #         token = None
     #     resp = obj_api.put(slug=url, token=token, arg=data)
-        
+
     #     return JsonResponse(resp, safe=False)

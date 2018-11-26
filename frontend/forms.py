@@ -81,7 +81,7 @@ class MatchForm(forms.Form):
         super(MatchForm, self).__init__(data=data, initial=initial, *args, **kwargs)
         categories = Category.objects.all()
         if categories:
-            self.fields['category'].widget.choices = [('', '')] + [(l.id, _(l.name)) for l in categories]
+            self.fields['category'].widget.choices = [('', 'Selecciona')] + [(l.id, _(l.name)) for l in categories]
 
 class UserForm(ModelForm):
     """Formulario para editar perfil."""
